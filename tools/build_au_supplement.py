@@ -788,34 +788,34 @@ def build():
 
     SCHOOL_ADEPTS = {
         "Abjuration Adept": {
-            "spells": ["Shield", "Aid", "Dispel Magic", "Death Ward", "Greater Restoration"],
+            "spells": ["Shield", "Lesser Restoration", "Protection from Energy", "Banishment", "Mass Cure Wounds"],
             "feature_name": "Protective Ward",
-            "feature_desc": "When you cast a spell from the Abjuration school using a spell slot, you can expend one of your unexpended Hit Point Dice. You or another creature within 30 feet of you gains Temporary Hit Points equal to the number rolled plus the level of the spell slot expended."
+            "feature_desc": "When you cast a spell from the Abjuration school using a spell slot, you or one creature you can see within 30 feet of yourself gains Temporary Hit Points equal to twice the level of spell slot expended."
         },
         "Conjuration Adept": {
-            "spells": ["Grease", "Misty Step", "Hunger of Hadar", "Dimension Door", "Cloudkill"],
+            "spells": ["Entangle", "Misty Step", "Conjure Animals", "Dimension Door", "Conjure Elemental"],
             "feature_name": "Persistent Conjuration",
-            "feature_desc": "When you cast a spell from the Conjuration school using a spell slot, you have Advantage on Constitution saving throws made to maintain Concentration on it."
+            "feature_desc": "While maintaining Concentration on a spell from the Conjuration school, you gain a bonus to Constitution saving throws to maintain this Concentration. This bonus is equal to the ability modifier of the score increased by this feat."
         },
         "Divination Adept": {
-            "spells": ["Detect Magic", "See Invisibility", "Clairvoyance", "Arcane Eye", "Legend Lore"],
-            "feature_name": "Glimpse Ahead",
-            "feature_desc": "When you cast a spell from the Divination school using a spell slot, choose yourself or one ally you can see within 30 feet of you. The chosen creature gains Advantage on the next d20 Test it makes before the start of your next turn."
+            "spells": ["Detect Evil and Good", "Mind Spike", "Clairvoyance", "Divination", "Scrying"],
+            "feature_name": "Prescient Intervention",
+            "feature_desc": "When a creature you can see within 60 feet of yourself makes a D20 Test, you can take a Reaction to give that creature Advantage or Disadvantage (your choice) on that roll. Once you use this benefit, you can't do so again until you finish a Long Rest. You can also regain use of this feature when you cast a spell from the Divination school using a spell slot."
         },
         "Enchantment Adept": {
-            "spells": ["Charm Person", "Hold Person", "Hypnotic Pattern", "Compulsion", "Synaptic Static"],
-            "feature_name": "Captivating Presence",
-            "feature_desc": "When you cast a spell from the Enchantment school using a spell slot, one target of that spell has Disadvantage on the first saving throw it makes against the spell."
+            "spells": ["Dissonant Whispers", "Enthrall", "Hold Person", "Dominate Beast", "Modify Memory"],
+            "feature_name": "Subtle Enchantments",
+            "feature_desc": "When you cast a spell from the Enchantment school using a spell slot, you can cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell."
         },
         "Evocation Adept": {
-            "spells": ["Burning Hands", "Scorching Ray", "Fireball", "Ice Storm", "Cone of Cold"],
-            "feature_name": "Potent Evocation",
-            "feature_desc": "When you cast a spell from the Evocation school using a spell slot, you can choose to reroll a number of the damage dice up to your spellcasting ability modifier (minimum of one). You must use the new rolls."
+            "spells": ["Chromatic Orb", "Shatter", "Fireball", "Vitriolic Sphere", "Wall of Force"],
+            "feature_name": "Fueled Evocation",
+            "feature_desc": "Once per turn when you cast an Evocation spell and deal damage, you can roll up to two of your unexpended Hit Point Dice and add the total rolled to one of the spell's damage rolls. Those Hit Point Dice are then expended."
         },
         "Illusion Adept": {
             "spells": ["Silent Image", "Phantasmal Force", "Major Image", "Hallucinatory Terrain", "Seeming"],
-            "feature_name": "Fleeting Shadow",
-            "feature_desc": "When you cast a spell from the Illusion school using a spell slot, you can take the Disengage or Hide action as a Bonus Action on this turn."
+            "feature_name": "Masterful Illusions",
+            "feature_desc": "When you cast a spell from the Illusion school using a spell slot, you can cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell. Additionally, creatures have Disadvantage on Intelligence (Investigation) checks made to discern the true nature of illusions created by your spells."
         },
         "Necromancy Adept": {
             "spells": ["Inflict Wounds", "Ray of Enfeeblement", "Vampiric Touch", "Blight", "Raise Dead"],
@@ -849,7 +849,7 @@ def build():
                 f"{adept_info['feature_name']}: {adept_info['feature_desc']}"
             ],
             "category": "General",
-            "prerequisite": "Level 4+, Spellcasting Feature",
+            "prerequisite": "Level 4+, Spellcasting or Pact Magic Feature",
             "source": "Arcana Unleashed",
             "choices": [
                 {
@@ -879,8 +879,7 @@ def build():
         "description": "You gain the following benefits.",
         "benefits": [
             "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 20.",
-            "Elemental Breath: As an action, you can expend one spell slot of level 1 or higher to cause your familiar to exhale elemental energy. Each creature in a 15-foot cone originating from your familiar must make a Dexterity saving throw against your spell save DC, taking 2d8 damage per slot level of the chosen type (Acid, Cold, Fire, Lightning, or Thunder) on a failed save, or half as much on a successful one.",
-            "Elemental Form: When you cast Find Familiar, you can choose for your familiar to be an Elemental instead of its normal creature type. When you do, choose Acid, Cold, Fire, Lightning, or Thunder; the familiar gains Resistance to that damage type."
+            "Elemental Energy: You learn how to imbue your familiar with elemental power. When you cast the Find Familiar spell, choose Acid, Cold, Fire, Lightning, or Thunder damage. Your familiar is imbued with this energy until you cast Find Familiar again, granting it the following benefits:\n• Elemental Resistance: Your familiar has Resistance to the chosen damage type.\n• Energy Pulse: As a Bonus Action, you command your familiar to unleash a burst of elemental energy. Your familiar must be within 120 feet of you and take a Reaction to unleash this burst. Each creature in a 5-foot Emanation originating from your familiar makes a Dexterity saving throw (DC 8 plus your spellcasting ability modifier for the Find Familiar spell and your Proficiency Bonus). On a failed save, a creature takes 2d4 damage of the chosen type, and if the creature is Medium or smaller, it has the Prone condition."
         ],
         "category": "General",
         "prerequisite": "Level 4+, Familiar Friend Feat",

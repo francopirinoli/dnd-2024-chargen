@@ -179,15 +179,27 @@ export function SheetPdf() {
       { title: "Background & Origin", list: backgroundTraits, defaultBadge: "Background" },
     ].filter((s) => s.list.length > 0);
 
-    const totalFeaturesCount =
-      classFeatures.length +
-      subclassFeatures.length +
-      speciesTraits.length +
-      lineageTraits.length +
-      feats.length +
-      backgroundTraits.length;
+    const allFeatureItems = [
+      ...classFeatures,
+      ...subclassFeatures,
+      ...speciesTraits,
+      ...lineageTraits,
+      ...feats,
+      ...backgroundTraits,
+    ];
 
-    if (totalFeaturesCount > 8 && classSections.length > 0 && charSections.length > 0) {
+    const totalFeaturesCount = allFeatureItems.length;
+    const totalCharCount = allFeatureItems.reduce(
+      (acc, feat) =>
+        acc + (str(feat.description)?.length ?? 0) + (str(feat.name)?.length ?? 0),
+      0
+    );
+
+    if (
+      (totalFeaturesCount > 14 || totalCharCount > 3200) &&
+      classSections.length > 0 &&
+      charSections.length > 0
+    ) {
       activePages.push({
         id: "features_class",
         title: "Class Features & Powers",

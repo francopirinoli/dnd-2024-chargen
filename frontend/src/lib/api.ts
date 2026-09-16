@@ -419,6 +419,8 @@ export interface SupplementManifest {
   compatibility?: string;
   description?: string;
   is_core?: boolean;
+  is_builtin?: boolean;
+  is_user_uploaded?: boolean;
   enabled?: boolean;
   dependencies?: string[];
   counts?: SupplementCounts;

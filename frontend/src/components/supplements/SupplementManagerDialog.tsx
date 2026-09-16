@@ -19,6 +19,18 @@ interface Props {
   onClose: () => void;
 }
 
+const BUILTIN_IDS = new Set([
+  "core-phb-2024",
+  "arcana-unleashed",
+  "astarions-book-of-hungers",
+  "eberron-forge-of-the-artificer",
+  "forgotten-realms-heroes-of-faerun",
+  "lorwyn-first-light",
+  "ravenloft-the-horrors-within",
+  "ua-2026-underdark-options",
+  "ua-2026-villainous-options",
+]);
+
 export function SupplementManagerDialog({ open, onClose }: Props) {
   const queryClient = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -185,6 +197,8 @@ export function SupplementManagerDialog({ open, onClose }: Props) {
                 {supplements.map((s: SupplementManifest) => {
                   const isActive = activeSources.includes(s.id);
                   const isCore = s.is_core || s.id === "core-phb-2024";
+                  const isBuiltin = isCore || s.is_builtin === true || BUILTIN_IDS.has(s.id);
+                  const isUserUploaded = s.is_user_uploaded === true && !isBuiltin;
 
                   return (
                     <div
@@ -201,9 +215,17 @@ export function SupplementManagerDialog({ open, onClose }: Props) {
                             <span className="font-semibold text-sm text-foreground">
                               {s.title}
                             </span>
-                            {isCore && (
+                            {isCore ? (
                               <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/20 text-primary uppercase tracking-wide">
                                 Core 2024
+                              </span>
+                            ) : isBuiltin ? (
+                              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-secondary text-secondary-foreground uppercase tracking-wide">
+                                Official Supplement
+                              </span>
+                            ) : (
+                              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">
+                                Custom Upload
                               </span>
                             )}
                             <span className="text-xs text-muted-foreground font-mono">
@@ -260,12 +282,16 @@ export function SupplementManagerDialog({ open, onClose }: Props) {
 
                         {/* Controls */}
                         <div className="flex items-center gap-2 shrink-0">
-                          {!isCore && (
+                          {isUserUploaded && (
                             <button
                               type="button"
-                              onClick={() => deleteMutation.mutate(s.id)}
+                              onClick={() => {
+                                if (window.confirm(`Are you sure you want to permanently delete custom supplement "${s.title}"?`)) {
+                                  deleteMutation.mutate(s.id);
+                                }
+                              }}
                               className="p-1.5 rounded text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
-                              title="Delete supplement"
+                              title="Delete custom supplement"
                             >
                               <Trash2 className="w-4 h-4" />
                             </button>

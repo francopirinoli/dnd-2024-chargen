@@ -160,7 +160,7 @@
       "damage_two_handed": "1d10 + 3",
       "damage_type": "Slashing",
       "icon": "/static/images/weapons/sword.svg",
-      "mastery": "Vex",
+      "mastery": "Sap",
       "name": "Longsword",
       "proficient": true,
       "properties": [
@@ -1154,7 +1154,7 @@
           "cost": "15 gp",
           "damage": "1d8",
           "damage_type": "Slashing",
-          "mastery": "Vex",
+          "mastery": "Sap",
           "proficiency_required": "Martial weapons",
           "properties": [
             "Versatile (1d10)"

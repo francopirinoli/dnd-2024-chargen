@@ -116,7 +116,8 @@
     "damage_type": "Piercing",
     "weight": 0.25,
     "properties": ["Finesse", "Thrown (range 20/60)"],
-    "proficiency_required": "Simple weapons"
+    "proficiency_required": "Simple weapons",
+    "mastery": "Vex"
   },
   "Shortbow": {
     "category": "Simple Ranged",
@@ -216,7 +217,7 @@
     "weight": 3,
     "properties": ["Versatile (1d10)"],
     "proficiency_required": "Martial weapons",
-    "mastery": "Vex"
+    "mastery": "Sap"
   },
   "Maul": {
     "category": "Martial Melee",
@@ -296,7 +297,7 @@
     "weight": 2,
     "properties": [],
     "proficiency_required": "Martial weapons",
-    "mastery": "Push"
+    "mastery": "Sap"
   },
   "Warhammer": {
     "category": "Martial Melee",

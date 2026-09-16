@@ -72,10 +72,270 @@ export function PrintableCombatPage({ c }: PrintableCombatPageProps) {
 
   const passPerception = num(combat.passive_perception) ?? 10;
 
-  // Key combat features
-  const classFeatures = arr<Record<string, unknown>>(rec(c.features).class);
-  const subclassFeatures = arr<Record<string, unknown>>(rec(c.features).subclass);
-  const allFeatures = [...classFeatures, ...subclassFeatures];
+  // Dynamic Resource & Action Pool Trackers
+  const resources: Array<{
+    name: string;
+    max: number | string;
+    bubbles?: number;
+    reset: string;
+    note?: string;
+  }> = [];
+
+  resources.push({
+    name: "Heroic Inspiration",
+    max: 1,
+    bubbles: 1,
+    reset: "Special",
+    note: "Reroll any d20 test",
+  });
+
+  const clsLower = cls.toLowerCase();
+
+  if (clsLower.includes("barbarian")) {
+    const rages = lvl >= 20 ? "Unlimited" : lvl >= 17 ? 6 : lvl >= 12 ? 5 : lvl >= 6 ? 4 : lvl >= 3 ? 3 : 2;
+    resources.push({
+      name: "Rage",
+      max: rages,
+      bubbles: typeof rages === "number" ? rages : undefined,
+      reset: "Long Rest",
+      note: `Bonus: +${lvl >= 16 ? 4 : lvl >= 9 ? 3 : 2} dmg, Adv on STR, Resists`,
+    });
+  }
+
+  if (clsLower.includes("bard")) {
+    const chaMod = Math.max(1, num(rec(abilities.charisma).modifier) ?? 1);
+    const die = lvl >= 15 ? "d12" : lvl >= 10 ? "d10" : lvl >= 5 ? "d8" : "d6";
+    resources.push({
+      name: "Bardic Inspiration",
+      max: chaMod,
+      bubbles: chaMod,
+      reset: lvl >= 5 ? "Short/Long" : "Long Rest",
+      note: `Die: 1${die} (Bonus Action)`,
+    });
+  }
+
+  if (clsLower.includes("cleric") && lvl >= 2) {
+    const uses = lvl >= 18 ? 4 : lvl >= 6 ? 3 : 2;
+    resources.push({
+      name: "Channel Divinity",
+      max: uses,
+      bubbles: uses,
+      reset: "Short/Long",
+      note: "Divine Spark, Turn Undead, Domain",
+    });
+  }
+
+  if (clsLower.includes("druid") && lvl >= 2) {
+    const uses = lvl >= 17 ? 4 : lvl >= 6 ? 3 : 2;
+    resources.push({
+      name: "Wild Shape",
+      max: uses,
+      bubbles: uses,
+      reset: "Short/Long",
+      note: "Beast shape or Wild Companion",
+    });
+  }
+
+  if (clsLower.includes("fighter")) {
+    const sw = lvl >= 10 ? 4 : lvl >= 4 ? 3 : 2;
+    resources.push({
+      name: "Second Wind",
+      max: sw,
+      bubbles: sw,
+      reset: "Short/Long",
+      note: `Regain 1d10+${lvl} HP (BA) or Tactical Mind`,
+    });
+    if (lvl >= 2) {
+      const as = lvl >= 17 ? 2 : 1;
+      resources.push({
+        name: "Action Surge",
+        max: as,
+        bubbles: as,
+        reset: "Short/Long",
+        note: "Gain 1 additional Action on your turn",
+      });
+    }
+    if (lvl >= 9) {
+      const indom = lvl >= 17 ? 3 : lvl >= 13 ? 2 : 1;
+      resources.push({
+        name: "Indomitable",
+        max: indom,
+        bubbles: indom,
+        reset: "Long Rest",
+        note: `Reroll failed saving throw +${lvl}`,
+      });
+    }
+  }
+
+  if (clsLower.includes("monk")) {
+    resources.push({
+      name: "Focus Points",
+      max: lvl,
+      bubbles: Math.min(lvl, 8),
+      reset: "Short/Long",
+      note: "Flurry of Blows, Patient Def, Step of Wind",
+    });
+    if (lvl >= 2) {
+      resources.push({
+        name: "Uncanny Metabolism",
+        max: 1,
+        bubbles: 1,
+        reset: "Long Rest",
+        note: `On Init: regain all Focus + 1d8+${lvl} HP`,
+      });
+    }
+  }
+
+  if (clsLower.includes("paladin")) {
+    resources.push({
+      name: "Lay on Hands Pool",
+      max: `${5 * lvl} HP`,
+      reset: "Long Rest",
+      note: "Bonus Action: heal HP or 5 HP to cure Poison",
+    });
+    if (lvl >= 3) {
+      const cd = lvl >= 11 ? 3 : 2;
+      resources.push({
+        name: "Channel Divinity",
+        max: cd,
+        bubbles: cd,
+        reset: "Short/Long",
+        note: "Divine Sense, Subclass Oath",
+      });
+    }
+  }
+
+  if (clsLower.includes("ranger")) {
+    const uses = lvl >= 17 ? 6 : lvl >= 13 ? 5 : lvl >= 9 ? 4 : lvl >= 5 ? 3 : 2;
+    resources.push({
+      name: "Favored Enemy (Hunter's Mark)",
+      max: uses,
+      bubbles: uses,
+      reset: "Long Rest",
+      note: "Free casts without expending spell slot",
+    });
+  }
+
+  if (clsLower.includes("rogue")) {
+    const diceCount = Math.ceil(lvl / 2);
+    resources.push({
+      name: "Sneak Attack",
+      max: `${diceCount}d6`,
+      reset: "1/turn",
+      note: "Finesse/Ranged attack with Adv or ally in 5 ft",
+    });
+    if (lvl >= 5) {
+      resources.push({
+        name: "Uncanny Dodge",
+        max: "At Will",
+        reset: "Reaction",
+        note: "Halve attack damage from seen attacker",
+      });
+    }
+  }
+
+  if (clsLower.includes("sorcerer")) {
+    resources.push({
+      name: "Innate Sorcery",
+      max: 2,
+      bubbles: 2,
+      reset: "Long Rest",
+      note: "1 min: +1 spell DC, Adv on spell attacks",
+    });
+    if (lvl >= 2) {
+      resources.push({
+        name: "Sorcery Points",
+        max: lvl,
+        bubbles: Math.min(lvl, 8),
+        reset: "Long Rest",
+        note: "Metamagic / Create spell slots",
+      });
+    }
+  }
+
+  if (clsLower.includes("warlock")) {
+    const pactSlots = lvl >= 17 ? 4 : lvl >= 11 ? 3 : lvl >= 2 ? 2 : 1;
+    const pactSlotLevel = Math.min(5, Math.ceil(lvl / 2));
+    resources.push({
+      name: "Pact Magic Slots",
+      max: pactSlots,
+      bubbles: pactSlots,
+      reset: "Short/Long",
+      note: `Level ${pactSlotLevel} slots (all max level)`,
+    });
+    if (lvl >= 2) {
+      resources.push({
+        name: "Magical Cunning",
+        max: 1,
+        bubbles: 1,
+        reset: "Long Rest",
+        note: "1 min ritual to regain half pact slots",
+      });
+    }
+  }
+
+  if (clsLower.includes("wizard")) {
+    resources.push({
+      name: "Arcane Recovery",
+      max: 1,
+      bubbles: 1,
+      reset: "Long Rest",
+      note: `Short Rest: recover up to ${Math.ceil(lvl / 2)} slot levels`,
+    });
+  }
+
+  // Scan features and feats for additional rest-limited features
+  const allTraitItems = [
+    ...arr<Record<string, unknown>>(rec(c.features).feats),
+    ...arr<Record<string, unknown>>(rec(c.features).species),
+    ...arr<Record<string, unknown>>(rec(c.features).lineage),
+    ...arr<Record<string, unknown>>(rec(c.features).subclass),
+  ];
+
+  for (const item of allTraitItems) {
+    const fName = str(item.name) ?? "";
+    const fDesc = str(item.description) ?? "";
+    if (resources.some((r) => r.name.toLowerCase() === fName.toLowerCase())) continue;
+
+    const matchUses = fDesc.match(/(\d+)\s*\/\s*(Short|Long)\s*Rest/i);
+    const matchPb = fDesc.match(/proficiency\s+bonus\s+times\s+per\s+(long|short)\s+rest/i);
+    if (matchUses) {
+      const count = parseInt(matchUses[1], 10);
+      resources.push({
+        name: fName,
+        max: count,
+        bubbles: count <= 6 ? count : undefined,
+        reset: matchUses[2].toLowerCase().includes("short") ? "Short/Long" : "Long Rest",
+      });
+    } else if (matchPb) {
+      resources.push({
+        name: fName,
+        max: pb,
+        bubbles: pb,
+        reset: matchPb[1].toLowerCase().includes("short") ? "Short/Long" : "Long Rest",
+      });
+    }
+  }
+
+  // Weapon Masteries rules
+  const MASTERY_RULES: Record<string, string> = {
+    Cleave: "On hit, make a melee attack vs 2nd creature within 5 ft (weapon damage die only).",
+    Graze: "If your attack misses, deal ability modifier damage to the target.",
+    Nick: "Make extra light weapon attack in Attack action instead of Bonus Action (1/turn).",
+    Push: "On hit, push target up to 10 ft straight away (Large or smaller, no save).",
+    Sap: "On hit, target has Disadvantage on its next attack roll before start of your next turn.",
+    Slow: "On hit, reduce target's speed by 10 ft until start of your next turn (doesn't stack).",
+    Topple: "On hit, target makes CON save (DC 8 + PB + ability mod) or falls Prone.",
+    Vex: "On hit, gain Advantage on next attack roll vs target before end of next turn.",
+  };
+
+  const activeMasteries = Array.from(
+    new Set(
+      attacks
+        .map((a) => str(a.mastery))
+        .filter((m): m is string => Boolean(m && MASTERY_RULES[m]))
+    )
+  );
 
   return (
     <div className="flex flex-col gap-2.5 text-slate-900 leading-tight">
@@ -454,45 +714,90 @@ export function PrintableCombatPage({ c }: PrintableCombatPageProps) {
             )}
           </div>
 
-          {/* Key Tactical Actions & Combat Features */}
-          <div className="border border-slate-800 rounded-md p-2 bg-white flex-1">
-            <div className="font-display font-bold text-xs uppercase tracking-wide text-slate-900 border-b border-slate-300 pb-1 mb-1.5 flex items-center justify-between">
-              <span>Tactical Actions & Combat Traits</span>
+          {/* 1. Dynamic Limited Resources & Action Pools (Pencil Trackers) */}
+          <div className="border border-slate-800 rounded-md p-2 bg-white flex flex-col gap-1.5">
+            <div className="font-display font-bold text-xs uppercase tracking-wide text-slate-900 border-b border-slate-300 pb-1 flex items-center justify-between">
+              <span>Limited Resources & Action Pools</span>
               <span className="text-[9px] font-normal text-slate-500">
-                Core abilities
+                Pencil Trackers
               </span>
             </div>
 
-            <div className="space-y-1.5">
-              {allFeatures.slice(0, 5).map((feat, idx) => {
-                const fName = str(feat.name) ?? "Feature";
-                const fDesc = str(feat.description) ?? "";
-                const fLevel = num(feat.level);
-
-                return (
-                  <div
-                    key={idx}
-                    className="border-b border-slate-100 pb-1 last:border-none last:pb-0"
-                  >
-                    <div className="flex items-center justify-between text-[11px] font-bold text-slate-900">
-                      <span>{fName}</span>
-                      {fLevel && (
-                        <span className="text-[8.5px] font-normal text-slate-500">
-                          Lvl {fLevel}
-                        </span>
-                      )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-[9.5px]">
+              {resources.map((res, idx) => (
+                <div
+                  key={idx}
+                  className="border border-slate-200 rounded p-1.5 bg-slate-50/60 flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="font-bold text-slate-900">{res.name}</span>
+                    <span className="text-[8px] font-semibold text-slate-600 bg-white border border-slate-200 px-1 py-0.2 rounded uppercase">
+                      {res.reset}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between mt-1 pt-0.5 border-t border-slate-100">
+                    <span className="text-[8.5px] text-slate-500 italic truncate max-w-[140px]">
+                      {res.note ?? ""}
+                    </span>
+                    <div className="font-mono text-[9.5px] font-bold text-slate-900 shrink-0">
+                      {res.bubbles && res.bubbles > 0
+                        ? Array.from({ length: res.bubbles }).map(() => "[ ]").join(" ")
+                        : String(res.max)}
                     </div>
-                    <p className="text-[9.5px] text-slate-700 line-clamp-2 leading-relaxed mt-0.5">
-                      {fDesc}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 2. Equipped Weapon Masteries (Tactical Rules) */}
+          {activeMasteries.length > 0 && (
+            <div className="border border-slate-800 rounded-md p-2 bg-white">
+              <div className="font-display font-bold text-xs uppercase tracking-wide text-slate-900 border-b border-slate-300 pb-1 mb-1.5 flex items-center justify-between">
+                <span>Equipped Weapon Masteries</span>
+                <span className="text-[9px] font-semibold text-amber-900 bg-amber-100 px-1.5 py-0.5 rounded">
+                  Active Tactical Properties
+                </span>
+              </div>
+              <div className="grid grid-cols-1 gap-1 text-[9.5px]">
+                {activeMasteries.map((m) => (
+                  <div
+                    key={m}
+                    className="flex items-start gap-1.5 bg-amber-50/50 border border-amber-200/70 rounded px-1.5 py-1"
+                  >
+                    <span className="font-bold text-amber-950 bg-amber-200 px-1.5 py-0.2 rounded text-[8.5px] uppercase shrink-0 mt-0.5 tracking-wider">
+                      {m}
+                    </span>
+                    <p className="text-slate-850 leading-snug text-[9px]">
+                      {MASTERY_RULES[m]}
                     </p>
                   </div>
-                );
-              })}
-              {allFeatures.length > 5 && (
-                <p className="text-[9.5px] text-slate-500 italic pt-1 border-t border-slate-200">
-                  + {allFeatures.length - 5} more class/subclass traits and full rule descriptions on Page 2 (Features & Traits).
-                </p>
-              )}
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 3. Combat Turn Economy & Core Actions */}
+          <div className="border border-slate-800 rounded-md p-2 bg-white text-[9px] flex-1">
+            <div className="font-display font-bold text-[10.5px] uppercase tracking-wide text-slate-900 border-b border-slate-300 pb-0.5 mb-1 flex items-center justify-between">
+              <span>Combat Turn Economy & Actions</span>
+              <span className="text-[8.5px] font-normal text-slate-400">
+                Full Features on Page 2
+              </span>
+            </div>
+            <div className="grid grid-cols-1 gap-1 text-slate-700 leading-tight">
+              <div>
+                <strong className="text-slate-900">Action:</strong> Attack (incl. Extra Attack & Nick), Cast Spell (1 action), Dash, Disengage, Dodge, Help, Hide, Ready, Search, Study, Utilize.
+              </div>
+              <div>
+                <strong className="text-slate-900">Bonus Action:</strong> Off-hand attack (Light weapon), Class BA features, Bonus Action spells.
+              </div>
+              <div>
+                <strong className="text-slate-900">Reaction:</strong> Opportunity Attack (when foe leaves reach), Readied Action trigger, Reaction spells (Shield, Counterspell, Absorb Elements).
+              </div>
+              <div>
+                <strong className="text-slate-900">Movement & Free:</strong> Move up to Speed (can split between attacks); 1 free object interaction (draw/stow weapon, open door).
+              </div>
             </div>
           </div>
         </div>

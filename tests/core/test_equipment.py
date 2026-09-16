@@ -216,7 +216,7 @@ class TestStructuredEquipmentConversion:
             assert structured["name"] == "Longsword"
             assert structured["quantity"] == 1
             assert "mastery" in structured["properties"]
-            assert structured["properties"]["mastery"] == "Vex"
+            assert structured["properties"]["mastery"] == "Sap"
 
     def test_convert_multiple_weapons(self, equipment_data):
         """Test converting multiple weapons with quantities."""
@@ -378,7 +378,7 @@ class TestWeaponMastery:
     def test_specific_weapon_masteries(self, weapons):
         """Test specific weapon mastery assignments."""
         expected_masteries = {
-            "Longsword": "Vex",
+            "Longsword": "Sap",
             "Greatsword": "Graze",
             "Dagger": "Nick",
             "Quarterstaff": "Topple",

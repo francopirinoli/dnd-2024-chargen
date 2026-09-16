@@ -34,6 +34,17 @@ class SupplementManager:
     """
 
     CORE_ID = "core-phb-2024"
+    BUILTIN_SUPPLEMENT_IDS = {
+        "core-phb-2024",
+        "arcana-unleashed",
+        "astarions-book-of-hungers",
+        "eberron-forge-of-the-artificer",
+        "forgotten-realms-heroes-of-faerun",
+        "lorwyn-first-light",
+        "ravenloft-the-horrors-within",
+        "ua-2026-underdark-options",
+        "ua-2026-villainous-options",
+    }
 
     def __init__(self, data_dir: str = "data", supplements_dir: str = "supplements"):
         self.data_dir = Path(data_dir).resolve()
@@ -78,6 +89,8 @@ class SupplementManager:
             "compatibility": "2024",
             "description": "Official 2024 Player's Handbook core rules, classes, species, and backgrounds.",
             "is_core": True,
+            "is_builtin": True,
+            "is_user_uploaded": False,
             "enabled": True,
             "dependencies": [],
         }
@@ -111,7 +124,10 @@ class SupplementManager:
                 manifest = pkg.get("manifest", {})
                 pkg_id = manifest.get("id")
                 if pkg_id:
+                    is_builtin = pkg_id in self.BUILTIN_SUPPLEMENT_IDS
                     manifest["is_core"] = False
+                    manifest["is_builtin"] = is_builtin
+                    manifest["is_user_uploaded"] = not is_builtin
                     manifest["enabled"] = True
                     manifest["file_path"] = str(json_file)
                     self.manifests[pkg_id] = manifest
@@ -127,7 +143,10 @@ class SupplementManager:
                         manifest = json.load(f)
                     pkg_id = manifest.get("id")
                     if pkg_id:
+                        is_builtin = pkg_id in self.BUILTIN_SUPPLEMENT_IDS
                         manifest["is_core"] = False
+                        manifest["is_builtin"] = is_builtin
+                        manifest["is_user_uploaded"] = not is_builtin
                         manifest["enabled"] = True
                         manifest["dir_path"] = str(sub_dir)
                         self.manifests[pkg_id] = manifest
@@ -205,8 +224,8 @@ class SupplementManager:
         if not pkg_id:
             return False, "Package is missing manifest.id", {}
 
-        if pkg_id == self.CORE_ID:
-            return False, f"Cannot overwrite core module ID: {pkg_id}", {}
+        if pkg_id == self.CORE_ID or pkg_id in self.BUILTIN_SUPPLEMENT_IDS:
+            return False, f"Cannot overwrite built-in supplement ID: {pkg_id}", {}
 
         # Save to supplements/<pkg_id>.json
         target_path = self.supplements_dir / f"{pkg_id}.json"
@@ -215,6 +234,8 @@ class SupplementManager:
                 json.dump(pkg, f, indent=2, ensure_ascii=False)
             
             manifest["is_core"] = False
+            manifest["is_builtin"] = False
+            manifest["is_user_uploaded"] = True
             manifest["enabled"] = True
             manifest["file_path"] = str(target_path)
             self.manifests[pkg_id] = manifest
@@ -225,12 +246,15 @@ class SupplementManager:
 
     def uninstall_supplement(self, supplement_id: str) -> Tuple[bool, str]:
         """Uninstall/delete an installed supplement."""
-        if supplement_id == self.CORE_ID:
-            return False, "Cannot uninstall the core rulebook."
+        if supplement_id == self.CORE_ID or supplement_id in self.BUILTIN_SUPPLEMENT_IDS:
+            return False, "Cannot uninstall built-in rulebooks or supplements included with the system."
 
         manifest = self.manifests.get(supplement_id)
         if not manifest:
             return False, f"Supplement not found: {supplement_id}"
+
+        if manifest.get("is_builtin"):
+            return False, "Cannot uninstall built-in rulebooks or supplements included with the system."
 
         file_path = manifest.get("file_path")
         if file_path and os.path.exists(file_path):
