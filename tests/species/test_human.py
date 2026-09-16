@@ -38,6 +38,18 @@ class TestHumanVersatileTrait:
         for feat in expected_feats:
             assert feat in options, f"Versatile should offer '{feat}'"
 
+    def test_versatile_offers_supplement_origin_feats(self):
+        """Versatile should offer origin feats from active supplements and grant them."""
+        builder = CharacterBuilder()
+        builder.character_data["choices_made"]["active_sources"] = ["core-phb-2024", "arcana-unleashed"]
+        builder.set_species("Human")
+        trait_choices = builder.get_species_trait_choices()
+        options = trait_choices["Versatile"]["options"]
+        assert "Arcane Artist" in options
+        builder.apply_choice("Versatile", "Arcane Artist")
+        feat_names = [f["name"] for f in builder.character_data["features"]["feats"]]
+        assert "Arcane Artist" in feat_names
+
     def test_versatile_grants_chosen_feat(self, human_builder):
         """Choosing an origin feat via Versatile adds it to character feats."""
         human_builder.apply_choice("Versatile", "Alert")

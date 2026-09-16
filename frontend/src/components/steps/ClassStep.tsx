@@ -2055,6 +2055,7 @@ function ClassDetail({
 
       <ClassAdvancedChoices
         choicesForDerived={choicesMade}
+        hideSpells={true}
         inspectedSpellName={inspectedSpellName}
         onInspectSpell={(spell) => {
           onInspectSpell({

@@ -6128,13 +6128,12 @@ class CharacterBuilder:
             return
 
         for trait_name, trait_data in traits.items():
-            # Check if this trait matches the choice key and has choice_effects
+            # Check if this trait matches the choice key and has choice_effects or is an origin feat choice
             if (
                 trait_name == choice_key
                 and isinstance(trait_data, dict)
-                and "choice_effects" in trait_data
             ):
-                choice_effects = trait_data["choice_effects"]
+                choice_effects = trait_data.get("choice_effects", {})
                 if choice_value in choice_effects:
                     effects = choice_effects[choice_value]
                     # Apply each effect
@@ -6142,6 +6141,16 @@ class CharacterBuilder:
                         self._apply_effect(
                             effect, f"{trait_name}: {choice_value}", "species_choice"
                         )
+                    return
+                elif (
+                    trait_name == "Versatile"
+                    or trait_data.get("choices", {}).get("source", {}).get("list") == "origin_feats"
+                ):
+                    self._apply_effect(
+                        {"type": "grant_origin_feat", "feat": choice_value},
+                        f"{trait_name}: {choice_value}",
+                        "species_choice",
+                    )
                     return
 
     def _trait_choice_names_for(
@@ -9847,10 +9856,50 @@ class CharacterBuilder:
                 if isinstance(trait_data, dict) and trait_data.get("type") == "choice":
                     choices_data = trait_data.get("choices", {})
                     source_data = choices_data.get("source", {})
-                    options = source_data.get("options", [])
+                    options = []
+
+                    # If this is Versatile or an origin feat choice, resolve from DataLoader with active supplements
+                    if trait_name == "Versatile" or source_data.get("list") == "origin_feats":
+                        from modules.data_loader import DataLoader
+                        active_sources = (
+                            self.character_data.get("choices_made", {}).get("active_sources")
+                            or self.character_data.get("active_sources")
+                        )
+                        dl = DataLoader(data_dir=str(self.data_dir))
+                        all_origin_feats = dl.get_feats(feat_type="origin", active_sources=active_sources)
+                        if all_origin_feats:
+                            options = list(all_origin_feats.keys())
+
+                    if not options:
+                        try:
+                            from utils.choice_resolver import resolve_choice_options
+                            options = resolve_choice_options(choices_data, self.character_data)
+                        except Exception:
+                            options = []
+
+                    if not options:
+                        options = source_data.get("options", [])
+
+                    option_descriptions = {}
+                    if trait_name == "Versatile" or source_data.get("list") == "origin_feats":
+                        from modules.data_loader import DataLoader
+                        active_sources = (
+                            self.character_data.get("choices_made", {}).get("active_sources")
+                            or self.character_data.get("active_sources")
+                        )
+                        dl = DataLoader(data_dir=str(self.data_dir))
+                        all_origin_feats = dl.get_feats(feat_type="origin", active_sources=active_sources)
+                        for fname, fdef in all_origin_feats.items():
+                            fdesc = fdef.get("description", "")
+                            benefits = fdef.get("benefits", [])
+                            if benefits:
+                                fdesc += " " + " ".join(benefits)
+                            option_descriptions[fname] = fdesc
+
                     trait_choices[trait_name] = {
                         "description": trait_data.get("description", ""),
                         "options": options,
+                        "option_descriptions": option_descriptions,
                         "count": choices_data.get("count", 1),
                     }
 

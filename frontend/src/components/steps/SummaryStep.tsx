@@ -7,6 +7,14 @@ import { cn } from "@/lib/utils";
 import { useCharacterStore } from "@/store/characterStore";
 import { useRosterStore } from "@/store/rosterStore";
 import { Button } from "@/components/ui/button";
+import { ClassAdvancedChoices, type SpellReference } from "@/components/wizard/ClassAdvancedChoices";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface Props {
   steps: WizardStep[];
@@ -62,6 +70,7 @@ export function SummaryStep({ steps }: Props) {
   const saveCurrent = useRosterStore((s) => s.saveCurrent);
   const [savedFlash, setSavedFlash] = useState<string | null>(null);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [inspectedSpell, setInspectedSpell] = useState<SpellReference | null>(null);
 
   const validateQuery = useQuery({
     queryKey: ["character", "validate", choicesMade],
@@ -250,6 +259,13 @@ export function SummaryStep({ steps }: Props) {
         </section>
       )}
 
+      {/* Spell Preparation & Spellbook */}
+      <ClassAdvancedChoices
+        onlySpells={true}
+        inspectedSpellName={inspectedSpell?.name}
+        onInspectSpell={(spell) => setInspectedSpell(spell)}
+      />
+
       {/* Character preview */}
       {!buildError && (
         <section className="info-panel">
@@ -396,6 +412,80 @@ export function SummaryStep({ steps }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Spell Details Modal */}
+      <Dialog
+        open={Boolean(inspectedSpell)}
+        onOpenChange={(open) => {
+          if (!open) setInspectedSpell(null);
+        }}
+      >
+        <DialogContent className="max-w-md max-h-[85vh] overflow-y-auto">
+          {inspectedSpell && (
+            <>
+              <DialogHeader>
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <span className="rounded-full border border-border/70 bg-background px-2.5 py-0.5 text-[11px] uppercase tracking-wide text-muted-foreground">
+                    {inspectedSpell.level === 0
+                      ? "Cantrip"
+                      : `Level ${inspectedSpell.level ?? "—"}`}
+                  </span>
+                  {inspectedSpell.school && (
+                    <span className="rounded-full border border-border/70 bg-background px-2.5 py-0.5 text-[11px] uppercase tracking-wide text-muted-foreground">
+                      {inspectedSpell.school}
+                    </span>
+                  )}
+                  {inspectedSpell.ritual && (
+                    <span className="rounded-full border border-blue-500/40 bg-blue-500/10 px-2.5 py-0.5 text-[11px] uppercase tracking-wide text-blue-700 dark:text-blue-300">
+                      Ritual
+                    </span>
+                  )}
+                  {inspectedSpell.concentration && (
+                    <span className="rounded-full border border-amber-600/40 bg-amber-600/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-400">
+                      ✦ Concentration
+                    </span>
+                  )}
+                </div>
+                <DialogTitle className="font-display text-xl">
+                  {inspectedSpell.name}
+                </DialogTitle>
+                <DialogDescription className="text-xs text-muted-foreground">
+                  {inspectedSpell.source ? `Source: ${inspectedSpell.source}` : ""}
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="grid grid-cols-2 gap-2 text-xs border-y border-border/60 py-3 my-1">
+                <div>
+                  <span className="font-semibold text-muted-foreground">Casting Time: </span>
+                  <span>{inspectedSpell.casting_time || "—"}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-muted-foreground">Range: </span>
+                  <span>{inspectedSpell.range || "—"}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-muted-foreground">Components: </span>
+                  <span>
+                    {Array.isArray(inspectedSpell.components) && inspectedSpell.components.length > 0
+                      ? inspectedSpell.components.join(", ")
+                      : "—"}
+                  </span>
+                </div>
+                <div>
+                  <span className="font-semibold text-muted-foreground">Duration: </span>
+                  <span>{inspectedSpell.duration || "—"}</span>
+                </div>
+              </div>
+
+              {inspectedSpell.description && (
+                <div className="text-sm leading-relaxed text-muted-foreground whitespace-pre-wrap">
+                  {inspectedSpell.description}
+                </div>
+              )}
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

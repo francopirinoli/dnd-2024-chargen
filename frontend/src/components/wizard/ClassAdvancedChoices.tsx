@@ -118,10 +118,14 @@ export function ClassAdvancedChoices({
   choicesForDerived,
   inspectedSpellName,
   onInspectSpell,
+  hideSpells = false,
+  onlySpells = false,
 }: {
   choicesForDerived?: Loose;
   inspectedSpellName?: string;
   onInspectSpell?: (spell: SpellReference) => void;
+  hideSpells?: boolean;
+  onlySpells?: boolean;
 } = {}) {
   const choicesMade = useCharacterStore((s) => s.choicesMade);
   const sourceChoices = choicesForDerived ?? choicesMade;
@@ -129,20 +133,23 @@ export function ClassAdvancedChoices({
   const spellsQ = useDerived(sourceChoices, "spell_management");
   const masteryQ = useDerived(sourceChoices, "mastery_management");
   const invocationsQ = useDerived(sourceChoices, "invocation_management");
-  const spellsData = getApplicableData(spellsQ, sourceChoices);
-  const masteryData = getApplicableData(masteryQ, sourceChoices);
-  const invocationsData = getApplicableData(invocationsQ, sourceChoices);
+  const spellsData = hideSpells ? null : getApplicableData(spellsQ, sourceChoices);
+  const masteryData = onlySpells ? null : getApplicableData(masteryQ, sourceChoices);
+  const invocationsData = onlySpells ? null : getApplicableData(invocationsQ, sourceChoices);
 
   const anyVisible = Boolean(spellsData || masteryData || invocationsData);
   const isLoading =
     (!spellsQ.error &&
       !spellsData &&
+      !hideSpells &&
       spellsQ.fetchStatus === "fetching") ||
     (!masteryQ.error &&
       !masteryData &&
+      !onlySpells &&
       masteryQ.fetchStatus === "fetching") ||
     (!invocationsQ.error &&
       !invocationsData &&
+      !onlySpells &&
       invocationsQ.fetchStatus === "fetching");
   if (!anyVisible && !isLoading) return null;
 
@@ -150,15 +157,19 @@ export function ClassAdvancedChoices({
     <section className="rounded-xl border border-border/70 bg-card/50 p-5 shadow-sm sm:p-6">
       <div className="mb-5 flex items-start gap-3">
         <div className="rounded-full bg-primary/10 p-2 text-primary">
-          <Sparkles className="h-4 w-4" />
+          {onlySpells ? <BookOpen className="h-4 w-4" /> : <Sparkles className="h-4 w-4" />}
         </div>
         <div>
           <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            Class refinement
+            {onlySpells ? "Magic & Spells" : "Class refinement"}
           </p>
-          <h3 className="mt-1 font-display text-xl text-primary font-semibold">Class loadout</h3>
+          <h3 className="mt-1 font-display text-xl text-primary font-semibold">
+            {onlySpells ? "Spell Preparation & Spellbook" : "Class loadout"}
+          </h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Finish the class-specific picks that shape how this character plays.
+            {onlySpells
+              ? "Select your prepared spells, cantrips, and manage your spellbook for your adventure."
+              : "Finish the class-specific picks that shape how this character plays."}
           </p>
         </div>
       </div>
@@ -166,7 +177,7 @@ export function ClassAdvancedChoices({
       <div className="space-y-4">
         {!anyVisible && isLoading ? (
           <div className="rounded-xl border border-dashed border-border/70 bg-background/60 px-4 py-5 text-sm text-muted-foreground">
-            Loading class loadout…
+            Loading {onlySpells ? "spells" : "class loadout"}…
           </div>
         ) : (
           <>

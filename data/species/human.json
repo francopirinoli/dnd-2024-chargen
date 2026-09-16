@@ -65,7 +65,9 @@
         "type": "select_single",
         "count": 1,
         "source": {
-          "type": "fixed_list",
+          "type": "external",
+          "file": "origin_feats.json",
+          "list": "origin_feats",
           "options": [
             "Alert",
             "Crafter",
