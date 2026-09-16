@@ -1,0 +1,25 @@
+{
+  "name": "Orc",
+  "description": "Orcs trace their creation to Gruumsh, a powerful god who roamed the wide open spaces of the Material Plane. Even when they turn their devotion to other gods, orcs retain Gruumsh's gifts: endurance, determination, and the ability to see in darkness. Orcs are, on average, tall and broad with gray skin, sharply pointed ears, and prominent lower canines that resemble small tusks.",
+  "creature_type": "Humanoid",
+  "size": "Medium",
+  "size_description": "about 6-7 feet tall",
+  "speed": 30,
+  "traits": {
+    "Adrenaline Rush": "You can take the Dash action as a Bonus Action. When you do so, you gain a number of Temporary Hit Points equal to your Proficiency Bonus. You can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest.",
+    "Darkvision": {
+      "description": "You have Darkvision with a range of 120 feet.",
+      "effects": [
+        {
+          "type": "grant_darkvision",
+          "range": 120
+        }
+      ]
+    },
+    "Relentless Endurance": "When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead. Once you use this trait, you can't do so again until you finish a Long Rest."
+  },
+  "languages": [
+    "Common",
+    "Orc"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Wood Elf",
+  "parent_species": "Elf",
+  "description": "Wood elves are reclusive and deeply attuned to the natural world. They are known for their exceptional agility and stealth, often dwelling in dense forests where they can move unseen. Their connection to nature grants them unique magical abilities that aid them in protecting their woodland homes.",
+  "traits": {
+    "Increased Speed": {
+      "description": "Your Speed increases to 35 feet.",
+      "effects": [
+        {
+          "type": "increase_speed",
+          "value": 5,
+          "feature_group": "wood_elf_increased_speed"
+        }
+      ]
+    },
+    "Wood Elf Spells": {
+      "description": "You know the Druidcraft cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+      "effects": [
+        {
+          "type": "grant_cantrip",
+          "spell": "Druidcraft"
+        },
+        {
+          "type": "grant_spell",
+          "spell": "Longstrider",
+          "min_level": 3
+        },
+        {
+          "type": "grant_spell",
+          "spell": "Pass without Trace",
+          "min_level": 5
+        }
+      ]
+    }
+  }
+}

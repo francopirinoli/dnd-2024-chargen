@@ -1,0 +1,18 @@
+{
+  "name": "Evard's Black Tentacles",
+  "level": 4,
+  "school": "Conjuration",
+  "casting_time": "1 action",
+  "range": "90 feet",
+  "components": [
+    "V",
+    "S",
+    "M (a piece of tentacle from a giant octopus or a giant squid)"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "Squirming, ebony tentacles fill a 20-foot Square on ground that you can see within range. For the duration, these tentacles turn the ground in that area into Difficult Terrain. A creature takes 3d6 Bludgeoning damage when it enters the affected area for the first time on a turn or starts its turn there. A creature in the area when you cast the spell must succeed on a Dexterity saving throw or take the damage and have the Restrained condition until the spell ends. A creature that starts its turn Restrained by the tentacles takes 3d6 Bludgeoning damage. A Restrained creature can take an action to make a Strength or Dexterity check (its choice) against your spell save DC, ending the condition on a success.",
+  "classes": [
+    "Wizard"
+  ],
+  "ritual": false
+}

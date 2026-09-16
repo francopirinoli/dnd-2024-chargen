@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Adventuring Gear",
+  "description": "Schema for data/equipment/adventuring_gear.json. Top-level keys are item names; values describe cost, weight, category, and (for packs) the list of items they contain.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": ["cost", "weight", "category"],
+    "properties": {
+      "cost": { "type": "string" },
+      "weight": {
+        "description": "Item weight in pounds, or the literal sentinel 'Variable' for catch-all entries like 'Musical Instrument' where the underlying SKU's weight depends on the specific instrument. TODO(data-completeness): consider expanding such catch-alls into one entry per instrument so weight can always be numeric.",
+        "oneOf": [
+          { "type": "number", "minimum": 0 },
+          { "const": "Variable" }
+        ]
+      },
+      "category": {
+        "type": "string",
+        "enum": [
+          "Ammunition",
+          "Clothing",
+          "Consumable",
+          "Container",
+          "Miscellaneous",
+          "Pack",
+          "Tool",
+          "Utility"
+        ]
+      },
+      "contents": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "For Pack items, the bundled item names."
+      }
+    },
+    "additionalProperties": false
+  }
+}

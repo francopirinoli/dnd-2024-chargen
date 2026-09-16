@@ -1,0 +1,17 @@
+{
+  "name": "Antilife Shell",
+  "level": 5,
+  "school": "Abjuration",
+  "casting_time": "1 action",
+  "range": "Self",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 1 hour",
+  "description": "An aura extends from you in a 10-foot Emanation for the duration. The aura prevents creatures other than Undead and Constructs from passing or reaching through it. An affected creature can cast spells or make attacks with Ranged or Reach weapons through the aura. If you move so that an affected creature is forced to pass through the aura, the spell ends.",
+  "classes": [
+    "Druid"
+  ],
+  "ritual": false
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Fabricate",
+  "level": 4,
+  "school": "Transmutation",
+  "casting_time": "10 minutes",
+  "range": "120 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Instantaneous",
+  "description": "You convert raw materials into products of the same material. For example, you can fabricate a wooden bridge from a clump of trees, a rope from a patch of hemp, or clothes from flax or wool. Choose raw materials that you can see within range. You can fabricate a Large or smaller object (contained within a 10-foot Cube or eight connected 5-foot Cubes), given a sufficient quantity of material. If you are working with metal, stone, or another mineral substance, however, the fabricated object can be no larger than Medium. The quality of objects made by the spell is commensurate with the quality of the raw materials. You must have proficiency with the type of Artisan's Tools appropriate for crafting the object.",
+  "classes": [
+    "Artificer",
+    "Wizard"
+  ],
+  "ritual": false
+}

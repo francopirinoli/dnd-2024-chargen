@@ -1,0 +1,17 @@
+{
+  "name": "Lightning Arrow",
+  "level": 3,
+  "school": "Transmutation",
+  "casting_time": "1 bonus action, which you take immediately after hitting or missing a target with a Ranged weapon",
+  "range": "Self",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Instantaneous",
+  "description": "The attack deals Lightning damage instead of its normal damage type, and if the attack roll hit, the target takes an extra 4d8 Lightning damage. Whether the attack hits or misses, each creature within 10 feet of the target makes a Dexterity saving throw, taking 2d8 Lightning damage on a failed save or half as much damage on a successful one. Using a Higher-Level Spell Slot. The extra damage on a hit and the damage for the save increase by 1d8 each for each spell slot level above 3.",
+  "classes": [
+    "Ranger"
+  ],
+  "ritual": false
+}

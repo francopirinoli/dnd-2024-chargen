@@ -1,0 +1,18 @@
+{
+  "name": "Commune with Nature",
+  "level": 5,
+  "school": "Divination",
+  "casting_time": "1 minute",
+  "ritual": true,
+  "range": "Self",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Instantaneous",
+  "description": "You briefly become one with nature. In the outdoors, the spell gives you knowledge of the surrounding land within 3 miles of you. In caves and other natural underground settings, the radius is limited to 300 feet. The spell does not function where nature has been replaced by construction, such as in castles and settlements. You instantly gain knowledge of up to three of the following facts of your choice about the surrounding area: (a) locations of communities and bodies of water, (b) prevailing plants, minerals, animals, or peoples, (c) powerful Celestials, Fey, Fiends, Elementals, or Undead, (d) influence from other planes of existence, (e) buildings.",
+  "classes": [
+    "Druid",
+    "Ranger"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Conjure Celestial",
+  "level": 7,
+  "school": "Conjuration",
+  "casting_time": "1 action",
+  "range": "90 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 10 minutes",
+  "description": "You conjure a spirit from the Upper Planes, which flares to life in a space you can see within range. Choose the Expel Fiends or the Heal Allies effect. Expel Fiends: Each creature that is not a Celestial in the spirit's space or within 10 feet of it must make a Charisma saving throw. On a failed save, the creature takes 8d12 Radiant damage and is teleported to a random location on the Astral Plane. On a successful save, the creature takes half damage and isn't teleported. Heal Allies: Each creature of your choice in the spirit's space or within 10 feet of it regains 4d12 Hit Points and is freed from one condition among the following: Blinded, Deafened, or Poisoned. On your later turns, you can take a Magic action to move the spirit up to 30 feet and repeat the chosen effect. Using a Higher-Level Spell Slot. Each die of the effect increases to a d20 when using a level 9 spell slot.",
+  "classes": [
+    "Cleric"
+  ],
+  "ritual": false
+}

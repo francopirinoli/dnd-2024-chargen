@@ -1,0 +1,19 @@
+{
+  "name": "Otiluke's Freezing Sphere",
+  "level": 6,
+  "school": "Evocation",
+  "casting_time": "1 action",
+  "range": "300 feet",
+  "components": [
+    "V",
+    "S",
+    "M (a small crystal sphere)"
+  ],
+  "duration": "Instantaneous",
+  "description": "A frigid globe of cold energy streaks from your fingertips to a point of your choice within range, where it explodes in a 60-foot-radius Sphere. Each creature within the area makes a Constitution saving throw, taking 10d6 Cold damage on a failed save or half as much on a successful one. If the globe strikes a body of water, it freezes the water in a 30-foot square area to a depth of 6 inches for 1 minute. When using a higher-level spell slot, the damage increases by 1d6 for each slot level above 6.",
+  "classes": [
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

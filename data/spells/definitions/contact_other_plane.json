@@ -1,0 +1,17 @@
+{
+  "name": "Contact Other Plane",
+  "level": 5,
+  "school": "Divination",
+  "casting_time": "1 minute or Ritual",
+  "range": "Self",
+  "components": [
+    "V"
+  ],
+  "duration": "1 minute",
+  "description": "You mentally contact a demigod, the spirit of a long-dead sage, or some other mysterious entity from another plane. Contacting this extraplanar intelligence can strain or even break your mind. When you cast this spell, make a DC 15 Intelligence saving throw. On a failure, you take 6d6 Psychic damage and have the Insane condition until you finish a Long Rest. On a successful save, you can ask the entity up to five questions. You must ask your questions before the spell ends. The DM answers each question with one word, such as 'yes,' 'no,' 'maybe,' 'never,' 'irrelevant,' or 'unclear.'",
+  "classes": [
+    "Warlock",
+    "Wizard"
+  ],
+  "ritual": true
+}

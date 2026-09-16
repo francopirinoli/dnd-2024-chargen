@@ -1,0 +1,20 @@
+{
+  "name": "Protection from Poison",
+  "level": 2,
+  "school": "Abjuration",
+  "casting_time": "1 action",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "1 hour",
+  "description": "You touch a creature. If it is Poisoned, you neutralize the poison. If more than one poison afflicts the target, you neutralize one poison that you know is present, or you neutralize one at random. For the duration, the target has Advantage on saving throws against being Poisoned and has Resistance to Poison damage.",
+  "classes": [
+    "Cleric",
+    "Druid",
+    "Paladin",
+    "Ranger"
+  ],
+  "ritual": false
+}

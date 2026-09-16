@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Zara'lyn",
+    "classes": [{"class_name": "Rogue", "level": 3, "subclass": "Assassin"}],
+    "species": "Elf",
+    "lineage": "Drow",
+    "background": "Criminal",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {"Strength": 8, "Dexterity": 15, "Constitution": 13, "Intelligence": 14, "Wisdom": 10, "Charisma": 12},
+    "background_bonuses": {"Dexterity": 2, "Intelligence": 1},
+    "skill_choices": ["Stealth", "Deception", "Perception", "Sleight of Hand"],
+    "languages": ["Orc", "Elvish"],
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_b"},
+    "rogue_expertise_skills_1": ["Stealth", "Perception"],
+    "background_skill_replacement": ["Insight", "Investigation"],
+    "species_trait_choices": {"Elven Lineage": "Intelligence", "Keen Senses": "Survival"},
+    "thieves_cant_language": "Sylvan"
+  }
+}

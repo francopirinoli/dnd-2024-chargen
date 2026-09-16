@@ -1,0 +1,32 @@
+{
+  "name": "College of Lore",
+  "class": "Bard",
+  "description": "Bards of the College of Lore plumb the depths of magical knowledge, collecting spells and secrets from sources as diverse as scholarly tomes, mystical rites, and peasant tales.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Bonus Proficiencies": {
+        "description": "You gain proficiency with three skills of your choice.",
+        "choices": {
+          "type": "select_multiple",
+          "count": 3,
+          "name": "bonus_skill_proficiencies",
+          "source": {
+            "type": "fixed_list",
+            "options": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+          }
+        },
+        "effects": [
+          {"type": "grant_skill_proficiency", "skills": "$bonus_skill_proficiencies"}
+        ]
+      },
+      "Cutting Words": "When a creature you can see within 60 feet of you makes a damage roll or succeeds on an ability check or attack roll, you can use your Reaction to expend one use of your Bardic Inspiration, rolling your Bardic Inspiration die and subtracting the number rolled from the creature's roll, reducing the damage or potentially turning the success into a failure."
+    },
+    "6": {
+      "Magical Discoveries": "You learn two spells of your choice. These spells can come from the Cleric, Druid, or Wizard spell list. A spell you choose must be a cantrip or a spell for which you have spell slots. The chosen spells count as Bard spells for you and are always prepared. Whenever you gain a Bard level, you can replace one of these spells with another eligible spell from the Cleric, Druid, or Wizard spell list."
+    },
+    "14": {
+      "Peerless Skill": "When you fail an ability check or miss with an attack roll, you can expend one use of your Bardic Inspiration, roll the Bardic Inspiration die, and add the number rolled to the d20, potentially turning a failure into a success. If the check or attack still fails, the Bardic Inspiration isn't expended."
+    }
+  }
+}

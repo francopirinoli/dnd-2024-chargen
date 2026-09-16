@@ -1,0 +1,21 @@
+{
+  "name": "Glyph of Warding",
+  "level": 3,
+  "school": "Abjuration",
+  "casting_time": "1 hour",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "incense and powdered diamond worth 200+ GP, which the spell consumes",
+  "duration": "Until dispelled or triggered",
+  "description": "When you cast this spell, you inscribe a harmful glyph either on a surface (such as a table or a section of floor or wall) or within an object that can be closed (such as a book or a scroll). If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered. The glyph is nearly invisible, requiring a successful Perception check against your spell save DC to notice. You decide what triggers the glyph when you cast the spell. For glyphs inscribed on a surface, the most typical triggers are touching or stepping on the glyph, removing another object covering it, or approaching within a certain distance. When triggered, the glyph either releases Explosive Runes or a Spell Glyph.",
+  "classes": [
+    "Bard",
+    "Cleric",
+    "Wizard"
+  ],
+  "ritual": false
+}

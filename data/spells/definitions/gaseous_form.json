@@ -1,0 +1,20 @@
+{
+  "name": "Gaseous Form",
+  "level": 3,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S",
+    "M (a bit of gauze)"
+  ],
+  "duration": "Concentration, up to 1 hour",
+  "description": "You transform a willing creature you touch, along with everything it's wearing and carrying, into a misty cloud for the duration. The spell ends if the creature drops to 0 Hit Points. The creature's only method of movement while in this form is a Fly Speed of 10 feet, and it can hover. The creature can enter and occupy the space of another creature. The creature has Resistance to nonmagical damage, Advantage on Strength, Dexterity, and Constitution saving throws, and can pass through small holes, narrow openings, and even mere cracks. The creature can't fall and remains hovering even when Stunned or otherwise Incapacitated. The creature can't talk, manipulate objects, attack, or cast spells.",
+  "classes": [
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+  ],
+  "ritual": false
+}

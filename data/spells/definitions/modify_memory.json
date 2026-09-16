@@ -1,0 +1,18 @@
+{
+  "name": "Modify Memory",
+  "level": 5,
+  "school": "Enchantment",
+  "casting_time": "1 action",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "You attempt to reshape another creature's memories. One creature that you can see must make a Wisdom saving throw. If you are fighting the creature, it has Advantage on the saving throw. On a failed save, the target has the Incapacitated condition and is unaware of its surroundings, though it can still hear you. While this condition persists, you can affect the target's memory of an event that it experienced within the last 24 hours and that lasted no more than 10 minutes. You can permanently eliminate all memory of the event, allow the target to recall the event with perfect clarity, change its memory of the details of the event, or create a memory of some other event. When the spell ends, the target is no longer Incapacitated. A modified memory doesn't necessarily affect how a creature behaves. At Higher Levels. When you cast this spell using a spell slot of 6th level or higher, you can alter the target's memories of an event that took place up to 7 days ago (6th), 30 days ago (7th), 1 year ago (8th), or any time in the creature's past (9th).",
+  "classes": [
+    "Bard",
+    "Wizard"
+  ],
+  "ritual": false
+}

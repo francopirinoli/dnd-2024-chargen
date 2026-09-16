@@ -1,0 +1,20 @@
+{
+  "name": "Darkness",
+  "level": 2,
+  "school": "Evocation",
+  "casting_time": "1 action",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "M"
+  ],
+  "material": "bat fur and a drop of pitch or piece of coal",
+  "duration": "Concentration, up to 10 minutes",
+  "description": "Magical darkness spreads from a point within range, heavily obscuring the area and blocking nonmagical light.",
+  "classes": [
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+  ],
+  "ritual": false
+}

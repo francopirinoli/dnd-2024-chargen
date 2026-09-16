@@ -1,0 +1,2245 @@
+{
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 15,
+      "modifier": 3,
+      "saving_throw": 5,
+      "saving_throw_proficient": true,
+      "score": 17,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 14,
+      "modifier": 2,
+      "saving_throw": 4,
+      "saving_throw_proficient": true,
+      "score": 15,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 13,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 13,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 8,
+      "modifier": -1,
+      "saving_throw": -1,
+      "saving_throw_proficient": false,
+      "score": 8,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 12,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 12,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 17,
+    "Constitution": 15,
+    "Dexterity": 13,
+    "Intelligence": 10,
+    "Strength": 8,
+    "Wisdom": 12
+  },
+  "ac_options": [
+    {
+      "ac": 11,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (1)",
+      "notes": [],
+      "shield": false
+    },
+    {
+      "ac": 14,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (1) + Cha modifier (3)",
+      "notes": [
+        "Draconic Resilience"
+      ],
+      "shield": false
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [],
+  "attack_combinations": [
+    {
+      "mainhand": {
+        "attack_bonus": 3,
+        "attack_bonus_display": "+3",
+        "avg_damage": 3.5,
+        "damage": "1d4 + 1",
+        "damage_type": "Piercing",
+        "icon": "/static/images/weapons/dagger.svg",
+        "name": "Dagger"
+      },
+      "name": "Two Daggers",
+      "notes": [],
+      "offhand": {
+        "attack_bonus": 3,
+        "attack_bonus_display": "+3",
+        "avg_damage": 2.5,
+        "damage": "1d4",
+        "damage_type": "Piercing",
+        "icon": "/static/images/weapons/dagger.svg",
+        "name": "Dagger"
+      },
+      "rank": 1,
+      "recommended": true,
+      "type": "combination"
+    }
+  ],
+  "attacks": [
+    {
+      "ability": "STR",
+      "attack_bonus": 1,
+      "attack_bonus_display": "+1",
+      "avg_crit": 0.0,
+      "avg_damage": 0.0,
+      "damage": "0",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 1,
+      "attack_bonus_display": "+1",
+      "avg_crit": 6.0,
+      "avg_damage": 2.5,
+      "avg_one_handed": 2.5,
+      "avg_throw_damage": 2.5,
+      "avg_two_handed": 3.5,
+      "damage": "1d6 - 1",
+      "damage_bonus": -1,
+      "damage_notes": [],
+      "damage_one_handed": "1d6 - 1",
+      "damage_two_handed": "1d8 - 1",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/spear.svg",
+      "mastery": "Sap",
+      "name": "Spear",
+      "proficient": true,
+      "properties": [
+        "Thrown (range 20/60)",
+        "Versatile (1d8)"
+      ],
+      "throw_damage": "1d6 - 1"
+    },
+    {
+      "ability": "STR/DEX (DEX)",
+      "attack_bonus": 3,
+      "attack_bonus_display": "+3",
+      "avg_crit": 6.0,
+      "avg_damage": 3.5,
+      "avg_throw_damage": 3.5,
+      "damage": "1d4 + 1",
+      "damage_bonus": 1,
+      "damage_notes": [],
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "mastery": "Nick",
+      "name": "Dagger",
+      "proficient": true,
+      "properties": [
+        "Finesse",
+        "Light",
+        "Thrown (range 20/60)"
+      ],
+      "throw_damage": "1d4 + 1"
+    }
+  ],
+  "background": "Noble",
+  "background_data": {
+    "ability_score_increase": {
+      "options": [
+        "Charisma",
+        "Intelligence",
+        "Wisdom"
+      ],
+      "suggested": {
+        "Charisma": 1,
+        "Intelligence": 2
+      },
+      "total": 3
+    },
+    "description": "You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You might be a pampered aristocrat unfamiliar with work or discomfort, a former merchant just elevated to the nobility, or a disinherited scoundrel with a disproportionate sense of entitlement.",
+    "edition": "2024",
+    "effects": [
+      {
+        "feat": "Skilled",
+        "type": "grant_origin_feat"
+      },
+      {
+        "skills": [
+          "History",
+          "Persuasion"
+        ],
+        "type": "grant_skill_proficiency"
+      },
+      {
+        "tools": [
+          "Gaming Set"
+        ],
+        "type": "grant_tool_proficiency"
+      }
+    ],
+    "name": "Noble",
+    "starting_equipment": {
+      "option_a": {
+        "gold": 29,
+        "items": [
+          "Gaming Set",
+          "Fine Clothes",
+          "Perfume"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "status": "active"
+  },
+  "best_attack_combination": {
+    "mainhand": {
+      "attack_bonus": 3,
+      "attack_bonus_display": "+3",
+      "avg_damage": 3.5,
+      "damage": "1d4 + 1",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "name": "Dagger"
+    },
+    "name": "Two Daggers",
+    "notes": [],
+    "offhand": {
+      "attack_bonus": 3,
+      "attack_bonus_display": "+3",
+      "avg_damage": 2.5,
+      "damage": "1d4",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "name": "Dagger"
+    },
+    "rank": 1,
+    "recommended": true,
+    "type": "combination"
+  },
+  "choices_made": {
+    "ability_scores": {
+      "Charisma": 15,
+      "Constitution": 14,
+      "Dexterity": 13,
+      "Intelligence": 10,
+      "Strength": 8,
+      "Wisdom": 12
+    },
+    "ability_scores_method": "standard_array",
+    "background": "Noble",
+    "background_bonuses": {
+      "Charisma": 2,
+      "Constitution": 1
+    },
+    "background_skill_replacements": [
+      "Deception"
+    ],
+    "background_skill_replacements_needed": 1,
+    "character_name": "Seraphine Dusk",
+    "class": "Sorcerer",
+    "classes": [
+      {
+        "class_name": "Sorcerer",
+        "level": 3,
+        "subclass": "Draconic Sorcery"
+      }
+    ],
+    "draconic_ancestry": "Gold",
+    "equipment_selections": {
+      "background_equipment": "option_b",
+      "class_equipment": "option_a"
+    },
+    "feat_Skilled_skills_or_tools": [
+      "Intimidation",
+      "Perception",
+      "Performance"
+    ],
+    "languages": [
+      "Elvish",
+      "Draconic"
+    ],
+    "level": 3,
+    "metamagic": [
+      "Quickened Spell",
+      "Distant Spell"
+    ],
+    "skill_choices": [
+      "Arcana",
+      "Persuasion"
+    ],
+    "species": "Aasimar",
+    "spell_selections": {
+      "background_cantrips": [],
+      "background_spells": [],
+      "cantrips": [
+        "Fire Bolt",
+        "Chill Touch",
+        "Mage Hand"
+      ],
+      "spells": [
+        "Burning Hands",
+        "False Life",
+        "Blur"
+      ]
+    },
+    "subclass": "Draconic Sorcery"
+  },
+  "class": "Sorcerer",
+  "class_breakdown": [
+    {
+      "class_name": "Sorcerer",
+      "level": 3,
+      "subclass": "Draconic Sorcery"
+    }
+  ],
+  "class_data": {
+    "armor_proficiencies": [],
+    "cantrip_progression": "class_table",
+    "cantrips_by_level": {
+      "1": 4,
+      "10": 6,
+      "11": 6,
+      "12": 6,
+      "13": 6,
+      "14": 6,
+      "15": 6,
+      "16": 6,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 4,
+      "20": 6,
+      "3": 4,
+      "4": 5,
+      "5": 5,
+      "6": 5,
+      "7": 5,
+      "8": 5,
+      "9": 5
+    },
+    "description": "Born with magic stamped into their being, Sorcerers wield innate power from draconic blessings, planar exposure, or glimpses into reality's workings. This churning magic creates an indelible mark that can be passed down through generations.",
+    "features_by_level": {
+      "1": {
+        "Innate Sorcery": "An event in your past left an indelible mark on you, infusing you with simmering magic. As a Bonus Action, you can unleash that magic for 1 minute, during which you gain the following benefits:\n\nThe spell save DC of your Sorcerer spells increases by 1.\nYou have Advantage on the attack rolls of Sorcerer spells you cast.\n\nYou can use this feature twice, and you regain all expended uses of it when you finish a Long Rest.",
+        "Spellcasting": {
+          "description": "An event in your past left an indelible mark on you, infusing you with simmering magic. You are a Sorcerer, and you can cast Sorcerer spells using Charisma as your spellcasting ability. You know four cantrips from the Sorcerer spell list and have two 1st-level Sorcerer spells prepared.",
+          "feature_kind": "spellcasting_setup"
+        }
+      },
+      "10": {
+        "Metamagic": "You gain two additional Metamagic options of your choice."
+      },
+      "12": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_12",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
+      },
+      "14": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Sorcerer subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "16": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_16",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
+      },
+      "17": {
+        "Metamagic": "You gain two additional Metamagic options of your choice."
+      },
+      "18": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Sorcerer subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "19": {
+        "Epic Boon": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Dimensional Travel is recommended."
+      },
+      "2": {
+        "Font of Magic": "You can tap into the wellspring of magic within yourself. This wellspring is represented by Sorcery Points, which allow you to create a variety of magical effects.\n\nYou have 2 Sorcery Points, and you gain more as you reach higher levels. You can't have more Sorcery Points than your Sorcerer level. You regain all expended Sorcery Points when you finish a Long Rest.\n\n**Converting Spell Slots to Sorcery Points.** You can expend a spell slot to gain a number of Sorcery Points equal to the slot's level (no action required).\n\n**Creating Spell Slots.** As a Bonus Action, you can transform unexpended Sorcery Points into one spell slot. The cost is: Level 1 = 2 SP, Level 2 = 3 SP, Level 3 = 5 SP, Level 4 = 6 SP (min Sorcerer Level 7), Level 5 = 7 SP (min Sorcerer Level 9). Any spell slot you create vanishes when you finish a Long Rest.",
+        "Metamagic": {
+          "choices": {
+            "additional_choices_by_level": {
+              "10": {
+                "count": 2,
+                "replace_allowed": true
+              },
+              "17": {
+                "count": 2,
+                "replace_allowed": true
+              }
+            },
+            "count": 2,
+            "name": "metamagic",
+            "optional": false,
+            "source": {
+              "list": "metamagic_options",
+              "type": "internal"
+            },
+            "type": "select_multiple"
+          },
+          "description": "You gain the ability to twist your spells to suit your needs. You gain two Metamagic options of your choice from the options below. You gain two additional options at 10th and 17th level. Whenever you gain a Sorcerer level, you can replace one of your Metamagic options with another one."
+        }
+      },
+      "20": {
+        "Arcane Apotheosis": "While your Innate Sorcery feature is active, you can use one Metamagic option on each of your turns without spending Sorcery Points on it."
+      },
+      "3": {
+        "Sorcerer Subclass": {
+          "description": "You gain a Sorcerer Subclass of your choice.",
+          "feature_kind": "subclass_pick"
+        }
+      },
+      "4": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_4",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
+      },
+      "5": {
+        "Sorcerous Restoration": "When you finish a Short Rest, you can regain expended Sorcery Points, but no more than a number equal to half your Sorcerer level (round down). Once you use this feature, you can't do so again until you finish a Long Rest."
+      },
+      "6": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Sorcerer subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "7": {
+        "Sorcery Incarnate": "If you have no uses of Innate Sorcery left, you can use it if you spend 2 Sorcery Points when you take the Bonus Action to activate it.\n\nIn addition, while your Innate Sorcery feature is active, you can use up to two of your Metamagic options on each spell you cast."
+      },
+      "8": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_8",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
+      }
+    },
+    "hit_die": 6,
+    "metamagic_options": {
+      "Careful Spell": "When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell's full force. Spend 1 Sorcery Point; choose up to your Charisma modifier (minimum of 1) of those creatures. A chosen creature automatically succeeds on its saving throw against the spell.",
+      "Distant Spell": "When you cast a spell that has a range of 5 feet or greater, you can spend 1 Sorcery Point to double the range of the spell. When you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the range of the spell 30 feet.",
+      "Empowered Spell": "When you roll damage for a spell, you can spend 1 Sorcery Point to reroll up to your Charisma modifier (minimum of 1) of the damage dice. You must use the new rolls.",
+      "Extended Spell": "When you cast a spell that has a duration of 1 minute or longer, you can spend 1 Sorcery Point to double its duration, to a maximum of 24 hours.",
+      "Heightened Spell": "When you cast a spell that forces a creature to make a saving throw, you can spend 3 Sorcery Points to give one target of the spell Disadvantage on its first saving throw against the spell.",
+      "Quickened Spell": "When you cast a spell that has a casting time of an Action, you can spend 2 Sorcery Points to change the casting time to a Bonus Action for this casting.",
+      "Seeking Spell": "If you make an attack roll for a spell and miss, you can spend 1 Sorcery Point to reroll the d20, and you must use the new roll.",
+      "Subtle Spell": "When you cast a spell, you can spend 1 Sorcery Point to cast it without any Verbal or Somatic components.",
+      "Transmuted Spell": "When you cast a spell that deals a type of damage from the following list, you can spend 1 Sorcery Point to change that damage type to one of the other listed types: Acid, Cold, Fire, Lightning, Poison, Thunder.",
+      "Twinned Spell": "When you cast a spell that targets only one creature and doesn't have a range of Self, you can spend a number of Sorcery Points equal to the spell's level (1 Sorcery Point minimum) to target a second creature in range with the same spell."
+    },
+    "multiclassing": {
+      "armor_training": [],
+      "hit_die_granted": 6,
+      "notes": null,
+      "other_proficiencies": [],
+      "saving_throw_proficiencies": [],
+      "skill_proficiencies": null,
+      "source_text": "As a Multiclass Character: Gain the Hit Point Die from the Core Sorcerer Traits table. Gain the Sorcerer's level 1 features, which are listed in the Sorcerer Features table. See the multiclassing rules in multiclassing to determine your available spell slots.",
+      "tool_training": [],
+      "weapon_training": []
+    },
+    "name": "Sorcerer",
+    "prepared_spells_by_level": {
+      "1": 2,
+      "10": 15,
+      "11": 16,
+      "12": 16,
+      "13": 17,
+      "14": 17,
+      "15": 18,
+      "16": 18,
+      "17": 19,
+      "18": 20,
+      "19": 21,
+      "2": 4,
+      "20": 22,
+      "3": 6,
+      "4": 7,
+      "5": 9,
+      "6": 10,
+      "7": 11,
+      "8": 12,
+      "9": 14
+    },
+    "primary_ability": "Charisma",
+    "proficiency_bonus_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 2,
+      "20": 6,
+      "3": 2,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 4
+    },
+    "ritual_casting": false,
+    "saving_throw_proficiencies": [
+      "Constitution",
+      "Charisma"
+    ],
+    "skill_options": [
+      "Arcana",
+      "Deception",
+      "Insight",
+      "Intimidation",
+      "Persuasion",
+      "Religion"
+    ],
+    "skill_proficiencies_count": 2,
+    "sorcery_points_by_level": {
+      "1": 0,
+      "10": 10,
+      "11": 11,
+      "12": 12,
+      "13": 13,
+      "14": 14,
+      "15": 15,
+      "16": 16,
+      "17": 17,
+      "18": 18,
+      "19": 19,
+      "2": 2,
+      "20": 20,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9
+    },
+    "spell_list_restrictions": null,
+    "spell_preparation_formula": "class_table",
+    "spell_slots_by_level": {
+      "1": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "10": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "11": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "12": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "13": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        0,
+        0
+      ],
+      "14": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        0,
+        0
+      ],
+      "15": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        0
+      ],
+      "16": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        0
+      ],
+      "17": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "18": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      "19": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      "2": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "20": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        1,
+        1
+      ],
+      "3": [
+        4,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "4": [
+        4,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "5": [
+        4,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "6": [
+        4,
+        3,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "7": [
+        4,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "8": [
+        4,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "9": [
+        4,
+        3,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "spellcasting_ability": "Charisma",
+    "spellcasting_focus": [
+      "Arcane Focus"
+    ],
+    "spellcasting_type": "known",
+    "standard_array_assignment": {
+      "Charisma": 15,
+      "Constitution": 14,
+      "Dexterity": 13,
+      "Intelligence": 8,
+      "Strength": 10,
+      "Wisdom": 12
+    },
+    "starting_equipment": {
+      "option_a": {
+        "gold": 28,
+        "items": [
+          "Spear",
+          "Dagger (2)",
+          "Arcane Focus (Crystal)",
+          "Dungeoneer's Pack"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "subclass_selection_level": 3,
+    "weapon_proficiencies": [
+      "Simple weapons"
+    ]
+  },
+  "combat": {
+    "armor_class": 14,
+    "hit_dice": {
+      "spent": 0,
+      "total": "3d6"
+    },
+    "hit_point_maximum": 23,
+    "hit_points": {
+      "current": 23,
+      "maximum": 23,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 14,
+      "base_hp_breakdown": "Level 1: 6 (max d6) + Levels 2-3: 8 (avg d6)",
+      "class_name": "Sorcerer",
+      "constitution_bonus": 6,
+      "constitution_modifier": 2,
+      "constitution_score": 15,
+      "feature_bonus": 3,
+      "feature_breakdown": [
+        "Draconic Resilience: +1 per level (+3 total)"
+      ],
+      "hit_die": 6,
+      "level": 3,
+      "total_hp": 23
+    },
+    "initiative": 1,
+    "initiative_bonus": 1,
+    "passive_perception": 13,
+    "speed": 30,
+    "uses_shield": false
+  },
+  "condition_immunities": [],
+  "darkvision": 60,
+  "effects": [
+    {
+      "base": 10,
+      "condition": "no_armor",
+      "modifiers": [
+        "dexterity",
+        "charisma"
+      ],
+      "source": "Draconic Resilience",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "type": "alternative_ac"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 3,
+      "source": "Draconic Spells",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "spell": "Alter Self",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 3,
+      "source": "Draconic Spells",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "spell": "Chromatic Orb",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 3,
+      "source": "Draconic Spells",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "spell": "Command",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 3,
+      "source": "Draconic Spells",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "spell": "Dragon's Breath",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 5,
+      "source": "Draconic Spells",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "spell": "Fear",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 5,
+      "source": "Draconic Spells",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "spell": "Fly",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 7,
+      "source": "Draconic Spells",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "spell": "Arcane Eye",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 7,
+      "source": "Draconic Spells",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "spell": "Charm Monster",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 9,
+      "source": "Draconic Spells",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "spell": "Legend Lore",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 9,
+      "source": "Draconic Spells",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "spell": "Summon Dragon",
+      "type": "grant_spell"
+    },
+    {
+      "damage_type": "Necrotic",
+      "source": "Celestial Resistance",
+      "source_type": "species",
+      "type": "grant_damage_resistance"
+    },
+    {
+      "damage_type": "Radiant",
+      "source": "Celestial Resistance",
+      "source_type": "species",
+      "type": "grant_damage_resistance"
+    },
+    {
+      "feat": "Skilled",
+      "source": "Noble",
+      "source_type": "background",
+      "type": "grant_origin_feat"
+    },
+    {
+      "range": 60,
+      "source": "Darkvision",
+      "source_type": "species",
+      "type": "grant_darkvision"
+    },
+    {
+      "scaling": "per_level",
+      "source": "Draconic Resilience",
+      "source_class_name": "Sorcerer",
+      "source_type": "subclass",
+      "type": "bonus_hp",
+      "value": 1
+    },
+    {
+      "skills": [
+        "History",
+        "Persuasion"
+      ],
+      "source": "Noble",
+      "source_type": "background",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "source": "Light Bearer",
+      "source_type": "species",
+      "spell": "Light",
+      "type": "grant_cantrip"
+    },
+    {
+      "source": "Noble",
+      "source_type": "background",
+      "tools": [
+        "Gaming Set"
+      ],
+      "type": "grant_tool_proficiency"
+    }
+  ],
+  "eldritch_invocation_stats": {
+    "available_invocations": [],
+    "current_invocations": [],
+    "has_invocations": false,
+    "max_invocations": 0
+  },
+  "equipment": {
+    "armor": [],
+    "gold": 78,
+    "items": [
+      {
+        "name": "Arcane Focus (Crystal)",
+        "source": "Class"
+      },
+      {
+        "name": "Dungeoneer's Pack",
+        "source": "Class"
+      }
+    ],
+    "weapons": [
+      {
+        "display_name": "Dagger (2)",
+        "name": "Dagger",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "2 gp",
+          "damage": "1d4",
+          "damage_type": "Piercing",
+          "mastery": "Nick",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Finesse",
+            "Light",
+            "Thrown (range 20/60)"
+          ],
+          "weight": 1
+        },
+        "quantity": 2,
+        "source": "Class"
+      },
+      {
+        "display_name": "Spear",
+        "name": "Spear",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "1 gp",
+          "damage": "1d6",
+          "damage_type": "Piercing",
+          "mastery": "Sap",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Thrown (range 20/60)",
+            "Versatile (1d8)"
+          ],
+          "weight": 3
+        },
+        "quantity": 1,
+        "source": "Class"
+      }
+    ]
+  },
+  "features": {
+    "background": [],
+    "class": [
+      {
+        "chosen_options": [
+          {
+            "choice_key": "metamagic",
+            "description": "When you cast a spell that has a casting time of an Action, you can spend 2 Sorcery Points to change the casting time to a Bonus Action for this casting.",
+            "name": "Quickened Spell"
+          },
+          {
+            "choice_key": "metamagic",
+            "description": "When you cast a spell that has a range of 5 feet or greater, you can spend 1 Sorcery Point to double the range of the spell. When you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the range of the spell 30 feet.",
+            "name": "Distant Spell"
+          }
+        ],
+        "description": "You gain the ability to twist your spells to suit your needs. You gain two Metamagic options of your choice from the options below. You gain two additional options at 10th and 17th level. Whenever you gain a Sorcerer level, you can replace one of your Metamagic options with another one.\n\n**Selected Options**:\n\u2022 **Quickened Spell**: When you cast a spell that has a casting time of an Action, you can spend 2 Sorcery Points to change the casting time to a Bonus Action for this casting.\n\u2022 **Distant Spell**: When you cast a spell that has a range of 5 feet or greater, you can spend 1 Sorcery Point to double the range of the spell. When you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the range of the spell 30 feet.",
+        "level": 2,
+        "name": "Metamagic: Quickened Spell, Distant Spell",
+        "source": "Sorcerer"
+      },
+      {
+        "description": "An event in your past left an indelible mark on you, infusing you with simmering magic. As a Bonus Action, you can unleash that magic for 1 minute, during which you gain the following benefits:\n\nThe spell save DC of your Sorcerer spells increases by 1.\nYou have Advantage on the attack rolls of Sorcerer spells you cast.\n\nYou can use this feature twice, and you regain all expended uses of it when you finish a Long Rest.",
+        "level": 1,
+        "name": "Innate Sorcery",
+        "source": "Sorcerer"
+      },
+      {
+        "description": "An event in your past left an indelible mark on you, infusing you with simmering magic. You are a Sorcerer, and you can cast Sorcerer spells using Charisma as your spellcasting ability. You know four cantrips from the Sorcerer spell list and have two 1st-level Sorcerer spells prepared.",
+        "level": 1,
+        "name": "Spellcasting",
+        "source": "Sorcerer"
+      },
+      {
+        "description": "You can tap into the wellspring of magic within yourself. This wellspring is represented by Sorcery Points, which allow you to create a variety of magical effects.\n\nYou have 2 Sorcery Points, and you gain more as you reach higher levels. You can't have more Sorcery Points than your Sorcerer level. You regain all expended Sorcery Points when you finish a Long Rest.\n\n**Converting Spell Slots to Sorcery Points.** You can expend a spell slot to gain a number of Sorcery Points equal to the slot's level (no action required).\n\n**Creating Spell Slots.** As a Bonus Action, you can transform unexpended Sorcery Points into one spell slot. The cost is: Level 1 = 2 SP, Level 2 = 3 SP, Level 3 = 5 SP, Level 4 = 6 SP (min Sorcerer Level 7), Level 5 = 7 SP (min Sorcerer Level 9). Any spell slot you create vanishes when you finish a Long Rest.",
+        "level": 2,
+        "name": "Font of Magic",
+        "source": "Sorcerer"
+      }
+    ],
+    "feats": [
+      {
+        "description": "You have a knack for learning new things. You gain proficiency in any combination of three skills or tools of your choice.\n\nChoose any three skills or tools.\n\nYou gain proficiency with your chosen skills or tools.\n\nThis can include any combination of skills and tool proficiencies.",
+        "name": "Skilled",
+        "source": "Noble"
+      }
+    ],
+    "lineage": [],
+    "species": [
+      {
+        "description": "As a Magic action, you touch a creature and roll a number of d4s equal to your Proficiency Bonus. The creature regains a number of Hit Points equal to the total rolled. Once you use this trait, you can't use it again until you finish a Long Rest.",
+        "name": "Healing Hands",
+        "source": "Aasimar"
+      },
+      {
+        "description": "When you reach character level 3, you can transform as a Bonus Action using one of the options below (choose the option each time you transform). The transformation lasts for 1 minute or until you end it (no action required). Once you transform, you can't do so again until you finish a Long Rest. Once on each of your turns before the transformation ends, you can deal extra damage to one target when you deal damage to it with an attack or a spell. The extra damage equals your Proficiency Bonus, and the extra damage's type is either Necrotic for Necrotic Shroud or Radiant for Heavenly Wings and Inner Radiance.<div class=\"mt-2\"><div class=\"mt-1\"><strong class=\"text-secondary\">Heavenly Wings:</strong> <span>Two spectral wings sprout from your back temporarily. Until the transformation ends, you have a Fly Speed equal to your Speed.</span></div><div class=\"mt-1\"><strong class=\"text-secondary\">Inner Radiance:</strong> <span>Searing light temporarily radiates from your eyes and mouth. For the duration, you shed Bright Light in a 10-foot radius and Dim Light for an additional 10 feet, and at the end of each of your turns, each creature within 10 feet of you takes Radiant damage equal to your Proficiency Bonus.</span></div><div class=\"mt-1\"><strong class=\"text-secondary\">Necrotic Shroud:</strong> <span>Your eyes briefly become pools of darkness, and flightless wings sprout from your back temporarily. Creatures other than your allies within 10 feet of you must succeed on a Charisma saving throw (DC 8 plus your Charisma modifier and Proficiency Bonus) or have the Frightened condition until the end of your next turn.</span></div></div>",
+        "name": "Celestial Revelation",
+        "source": "Aasimar"
+      },
+      {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "name": "Darkvision",
+        "source": "Aasimar"
+      },
+      {
+        "description": "You have Resistance to Necrotic damage and Radiant damage.",
+        "name": "Celestial Resistance",
+        "source": "Aasimar"
+      },
+      {
+        "description": "You know the Light cantrip. Charisma is your spellcasting ability for it.",
+        "name": "Light Bearer",
+        "source": "Aasimar"
+      }
+    ],
+    "subclass": [
+      {
+        "description": "The magic in your body manifests physical traits of your draconic gift. Your Hit Point maximum increases by 3, and it increases by 1 whenever you gain another Sorcerer level.\n\nParts of you are also covered by dragon-like scales. While you aren't wearing armor, your base Armor Class equals 10 plus your Dexterity and Charisma modifiers.",
+        "level": 3,
+        "name": "Draconic Resilience",
+        "source": "Draconic Sorcery"
+      },
+      {
+        "description": "When you reach a Sorcerer level specified in the Draconic Spells table, you thereafter always have the listed spells prepared.\n\n<table class=\"table table-sm table-bordered mt-2\">\n<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n<tbody>\n<tr class=\"table-success\"><td>3</td><td>\u2713 Alter Self, Chromatic Orb, Command, Dragon's Breath</td></tr>\n<tr class=\"table-secondary\"><td>5</td><td>\ud83d\udd12 Fear, Fly</td></tr>\n<tr class=\"table-secondary\"><td>7</td><td>\ud83d\udd12 Arcane Eye, Charm Monster</td></tr>\n<tr class=\"table-secondary\"><td>9</td><td>\ud83d\udd12 Legend Lore, Summon Dragon</td></tr>\n</tbody>\n</table>",
+        "level": 9,
+        "name": "Draconic Spells",
+        "source": "Draconic Sorcery"
+      }
+    ]
+  },
+  "immunities": [],
+  "languages": [
+    "Common",
+    "Elvish",
+    "Draconic"
+  ],
+  "level": 3,
+  "lineage": null,
+  "lineage_data": null,
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "name": "Seraphine Dusk",
+  "proficiencies": {
+    "armor": [],
+    "languages": [
+      "Common",
+      "Elvish",
+      "Draconic"
+    ],
+    "saving_throws": [
+      "Constitution",
+      "Charisma"
+    ],
+    "skills": [
+      "Arcana",
+      "Persuasion",
+      "History",
+      "Deception",
+      "Intimidation",
+      "Perception",
+      "Performance"
+    ],
+    "tools": [
+      "Gaming Set"
+    ],
+    "weapons": [
+      "Simple weapons"
+    ]
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {},
+    "languages": {
+      "Common": "base",
+      "Draconic": "user_choice",
+      "Elvish": "user_choice"
+    },
+    "saving_throws": {},
+    "skills": {
+      "Arcana": "Sorcerer",
+      "Deception": "Noble",
+      "History": "Noble",
+      "Intimidation": "Skilled",
+      "Perception": "Skilled",
+      "Performance": "Skilled",
+      "Persuasion": "Sorcerer"
+    },
+    "tools": {
+      "Gaming Set": "Noble"
+    },
+    "weapons": {}
+  },
+  "resistances": [
+    "Necrotic",
+    "Radiant"
+  ],
+  "save_advantages": [],
+  "skill_proficiencies": [
+    "Arcana",
+    "Persuasion",
+    "History",
+    "Deception",
+    "Intimidation",
+    "Perception",
+    "Performance"
+  ],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": true,
+      "source": "Sorcerer"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Noble"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": true,
+      "source": "Noble"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Skilled"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Skilled"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Skilled"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Sorcerer"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    }
+  },
+  "species": "Aasimar",
+  "species_data": {
+    "creature_type": "Humanoid",
+    "darkvision": 60,
+    "description": "Aasimar are mortals who carry a spark of the Upper Planes within their souls. Whether descended from an angelic being or infused with celestial power, they can fan that spark to bring light, healing, and heavenly fury. Aasimar can arise among any population of mortals. They resemble their parents, but they live for up to 160 years and have features that hint at their celestial heritage, such as metallic freckles, luminous eyes, a halo, or the skin color of an angel (silver, opalescent green, or coppery red). These features start subtle and become obvious when the aasimar learns to reveal their full celestial nature.",
+    "languages": [
+      "Common",
+      "Celestial"
+    ],
+    "name": "Aasimar",
+    "size": "Medium or Small",
+    "size_description": "Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species",
+    "speed": 30,
+    "traits": {
+      "Celestial Resistance": {
+        "description": "You have Resistance to Necrotic damage and Radiant damage.",
+        "effects": [
+          {
+            "damage_type": "Necrotic",
+            "type": "grant_damage_resistance"
+          },
+          {
+            "damage_type": "Radiant",
+            "type": "grant_damage_resistance"
+          }
+        ]
+      },
+      "Celestial Revelation": {
+        "description": "When you reach character level 3, you can transform as a Bonus Action using one of the options below (choose the option each time you transform). The transformation lasts for 1 minute or until you end it (no action required). Once you transform, you can't do so again until you finish a Long Rest. Once on each of your turns before the transformation ends, you can deal extra damage to one target when you deal damage to it with an attack or a spell. The extra damage equals your Proficiency Bonus, and the extra damage's type is either Necrotic for Necrotic Shroud or Radiant for Heavenly Wings and Inner Radiance.",
+        "options": {
+          "Heavenly Wings": "Two spectral wings sprout from your back temporarily. Until the transformation ends, you have a Fly Speed equal to your Speed.",
+          "Inner Radiance": "Searing light temporarily radiates from your eyes and mouth. For the duration, you shed Bright Light in a 10-foot radius and Dim Light for an additional 10 feet, and at the end of each of your turns, each creature within 10 feet of you takes Radiant damage equal to your Proficiency Bonus.",
+          "Necrotic Shroud": "Your eyes briefly become pools of darkness, and flightless wings sprout from your back temporarily. Creatures other than your allies within 10 feet of you must succeed on a Charisma saving throw (DC 8 plus your Charisma modifier and Proficiency Bonus) or have the Frightened condition until the end of your next turn."
+        }
+      },
+      "Darkvision": {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "effects": [
+          {
+            "range": 60,
+            "type": "grant_darkvision"
+          }
+        ]
+      },
+      "Healing Hands": "As a Magic action, you touch a creature and roll a number of d4s equal to your Proficiency Bonus. The creature regains a number of Hit Points equal to the total rolled. Once you use this trait, you can't use it again until you finish a Long Rest.",
+      "Light Bearer": {
+        "description": "You know the Light cantrip. Charisma is your spellcasting ability for it.",
+        "effects": [
+          {
+            "spell": "Light",
+            "type": "grant_cantrip"
+          }
+        ]
+      }
+    }
+  },
+  "speed": 30,
+  "speed_bonuses": {},
+  "spell_metadata": {
+    "Alter Self": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Draconic Sorcery",
+      "source_type": "subclass"
+    },
+    "Chromatic Orb": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Draconic Sorcery",
+      "source_type": "subclass"
+    },
+    "Command": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Draconic Sorcery",
+      "source_type": "subclass"
+    },
+    "Dragon's Breath": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Draconic Sorcery",
+      "source_type": "subclass"
+    },
+    "Light": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "source": "Aasimar",
+      "source_type": "species"
+    }
+  },
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {
+    "1st": 4,
+    "2nd": 2
+  },
+  "spellcasting_stats": {
+    "available_cantrips": [
+      "Acid Splash",
+      "Blade Ward",
+      "Chill Touch",
+      "Dancing Lights",
+      "Elementalism",
+      "Fire Bolt",
+      "Friends",
+      "Light",
+      "Mage Hand",
+      "Mending",
+      "Message",
+      "Mind Sliver",
+      "Minor Illusion",
+      "Poison Spray",
+      "Prestidigitation",
+      "Ray of Frost",
+      "Shocking Grasp",
+      "Sorcerous Burst",
+      "Thunderclap",
+      "True Strike"
+    ],
+    "available_spells": {
+      "1": [
+        "Burning Hands",
+        "Charm Person",
+        "Chromatic Orb",
+        "Color Spray",
+        "Comprehend Languages",
+        "Detect Magic",
+        "Disguise Self",
+        "Expeditious Retreat",
+        "False Life",
+        "Feather Fall",
+        "Fog Cloud",
+        "Grease",
+        "Ice Knife",
+        "Jump",
+        "Mage Armor",
+        "Magic Missile",
+        "Ray of Sickness",
+        "Shield",
+        "Silent Image",
+        "Sleep",
+        "Spellfire Flare",
+        "Thunderwave",
+        "Witch Bolt"
+      ],
+      "2": [
+        "Alter Self",
+        "Blindness/Deafness",
+        "Blur",
+        "Cloud of Daggers",
+        "Crown of Madness",
+        "Darkness",
+        "Darkvision",
+        "Death Armor",
+        "Detect Thoughts",
+        "Disruptive Tune",
+        "Dragon's Breath",
+        "Dueling Ground",
+        "Enhance Ability",
+        "Enlarge/Reduce",
+        "Flame Blade",
+        "Flaming Sphere",
+        "Gust of Wind",
+        "Hold Person",
+        "Invisibility",
+        "Knock",
+        "Levitate",
+        "Magic Weapon",
+        "Mind Spike",
+        "Mirror Image",
+        "Misty Step",
+        "Phantasmal Force",
+        "Scorching Ray",
+        "See Invisibility",
+        "Shatter",
+        "Spider Climb",
+        "Suggestion",
+        "Web",
+        "Wither and Bloom"
+      ]
+    },
+    "background_cantrips_list": null,
+    "background_cantrips_needed": 0,
+    "background_spell_level": 1,
+    "background_spells_list": null,
+    "background_spells_needed": 0,
+    "cantrips_always_prepared": 1,
+    "cantrips_known": 4,
+    "cantrips_to_prepare": 3,
+    "effective_caster_level": 3,
+    "has_spellcasting": true,
+    "max_cantrips": 5,
+    "max_cantrips_prepared": 4,
+    "max_cantrips_to_prepare": 4,
+    "max_prepared_spells": 10,
+    "max_spells_prepared": 6,
+    "max_spells_to_prepare": 6,
+    "multiclass_notes": [],
+    "pact_magic_slots": [],
+    "preparation_formula": "class_table",
+    "ritual_casting": false,
+    "spell_attack_bonus": 5,
+    "spell_save_dc": 13,
+    "spellcasting_ability": "Charisma",
+    "spellcasting_modifier": 3,
+    "spellcasting_type": "known",
+    "spells_always_prepared": 4,
+    "spells_prepared": 7
+  },
+  "spells": {
+    "always_prepared": {
+      "Alter Self": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 2,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Draconic Sorcery"
+      },
+      "Chromatic Orb": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Draconic Sorcery"
+      },
+      "Command": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Draconic Sorcery"
+      },
+      "Dragon's Breath": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 2,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Draconic Sorcery"
+      },
+      "Light": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 0,
+        "source": "Aasimar"
+      }
+    },
+    "background_spells": {},
+    "cantrips": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can't attack, activate magic items, or carry more than 10 pounds.",
+        "duration": "1 minute",
+        "level": 0,
+        "name": "Mage Hand",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You create a ghostly, skeletal hand in the space of a creature within range. Make a ranged spell attack against the creature to assail it with the chill of the grave. On a hit, the target takes 1d8 necrotic damage, and it can't regain hit points until the start of your next turn. If you hit an undead target, it also has disadvantage on attack rolls against you until the end of your next turn. This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
+        "duration": "1 round",
+        "level": 0,
+        "name": "Chill Touch",
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Necromancy",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Fire Bolt",
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, M",
+        "concentration": false,
+        "description": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet.",
+        "duration": "1 hour",
+        "level": 0,
+        "material": "a firefly or phosphorescent moss",
+        "name": "Light",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Aasimar"
+      }
+    ],
+    "known": {},
+    "level_1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Burning Hands",
+        "range": "Self (15-foot cone)",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S, M",
+        "concentration": false,
+        "description": "Bolstering yourself with a necromantic facsimile of life, you gain 1d4 + 4 temporary hit points for the duration. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you gain 5 additional temporary hit points for each slot level above 1st.",
+        "duration": "1 hour",
+        "level": 1,
+        "material": "a small amount of alcohol or distilled spirits",
+        "name": "False Life",
+        "range": "Self",
+        "ritual": false,
+        "school": "Necromancy",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is Undead, if the target doesn't understand your language, or if the command is directly harmful to it. Some typical commands and their effects follow. Approach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you. Drop. The target drops whatever it is holding and then ends its turn. Flee. The target spends its turn moving away from you by the fastest available means. Grovel. The target falls Prone and then ends its turn. Halt. The target doesn't move and takes no action. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Command",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Draconic Sorcery"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S, M (a diamond worth 50+ GP)",
+        "concentration": false,
+        "description": "You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type. If you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again unless you cast the spell with a level 2+ spell slot.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Chromatic Orb",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "90 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Draconic Sorcery"
+      }
+    ],
+    "prepared": {
+      "cantrips": {
+        "Chill Touch": {},
+        "Fire Bolt": {},
+        "Mage Hand": {}
+      },
+      "spells": {
+        "Blur": {},
+        "Burning Hands": {},
+        "False Life": {}
+      }
+    },
+    "slots": {}
+  },
+  "spells_by_level": {
+    "0": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can't attack, activate magic items, or carry more than 10 pounds.",
+        "duration": "1 minute",
+        "level": 0,
+        "name": "Mage Hand",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You create a ghostly, skeletal hand in the space of a creature within range. Make a ranged spell attack against the creature to assail it with the chill of the grave. On a hit, the target takes 1d8 necrotic damage, and it can't regain hit points until the start of your next turn. If you hit an undead target, it also has disadvantage on attack rolls against you until the end of your next turn. This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
+        "duration": "1 round",
+        "level": 0,
+        "name": "Chill Touch",
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Necromancy",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Fire Bolt",
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, M",
+        "concentration": false,
+        "description": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet.",
+        "duration": "1 hour",
+        "level": 0,
+        "material": "a firefly or phosphorescent moss",
+        "name": "Light",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Aasimar"
+      }
+    ],
+    "1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Burning Hands",
+        "range": "Self (15-foot cone)",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S, M",
+        "concentration": false,
+        "description": "Bolstering yourself with a necromantic facsimile of life, you gain 1d4 + 4 temporary hit points for the duration. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you gain 5 additional temporary hit points for each slot level above 1st.",
+        "duration": "1 hour",
+        "level": 1,
+        "material": "a small amount of alcohol or distilled spirits",
+        "name": "False Life",
+        "range": "Self",
+        "ritual": false,
+        "school": "Necromancy",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is Undead, if the target doesn't understand your language, or if the command is directly harmful to it. Some typical commands and their effects follow. Approach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you. Drop. The target drops whatever it is holding and then ends its turn. Flee. The target spends its turn moving away from you by the fastest available means. Grovel. The target falls Prone and then ends its turn. Halt. The target doesn't move and takes no action. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Command",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Draconic Sorcery"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S, M (a diamond worth 50+ GP)",
+        "concentration": false,
+        "description": "You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type. If you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again unless you cast the spell with a level 2+ spell slot.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Chromatic Orb",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "90 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Draconic Sorcery"
+      }
+    ],
+    "2": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Artificer",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "Your body becomes blurred. For the duration, any creature has Disadvantage on attack rolls against you. An attacker is immune to this effect if it perceives you with Blindsight or Truesight.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 2,
+        "name": "Blur",
+        "range": "Self",
+        "ritual": false,
+        "school": "Illusion",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Artificer",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "You alter your physical form. Choose one of the following options, whose effects last for the duration. You can take a Magic action to change your choice. Aquatic Adaptation: you gain gills and grow webbing, gaining a Swim Speed equal to your Speed, and you can breathe underwater. Change Appearance: you change your appearance, including height, weight, features, voice, hair, coloring, and distinguishing characteristics. Natural Weapons: you grow claws, fangs, spines, horns, or a different natural weapon of your choice, which deals 1d6 + your Strength or Dexterity modifier Bludgeoning, Piercing, or Slashing damage (your choice), you are proficient with it, and it has the Light property.",
+        "duration": "Concentration, up to 1 hour",
+        "level": 2,
+        "name": "Alter Self",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Self",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Draconic Sorcery"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S, M (a hot pepper)",
+        "concentration": true,
+        "description": "You touch one willing creature and imbue it with the power to spew magical energy from its mouth. Choose Acid, Cold, Fire, Lightning, or Poison. Until the spell ends, the creature can take a Magic action to exhale energy of the chosen type in a 15-foot Cone. Each creature in that area makes a Dexterity saving throw, taking 3d6 damage of the chosen type on a failed save, or half as much damage on a successful one. When using a higher-level spell slot, the damage increases by 1d6 for each slot level above 2.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 2,
+        "name": "Dragon's Breath",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Draconic Sorcery"
+      }
+    ]
+  },
+  "step": "complete",
+  "subclass": "Draconic Sorcery",
+  "subclass_data": {
+    "class": "Sorcerer",
+    "description": "Your innate magic comes from the gift of a dragon. Perhaps an ancient dragon facing death bequeathed some of its magical power to you or your ancestor. You might have absorbed magic from a site infused with a dragon's power.",
+    "features_by_level": {
+      "14": {
+        "Dragon Wings": "As a Bonus Action, you can cause draconic wings to appear on your back. The wings last for 1 hour or until you dismiss them (no action required). For the duration, you have a Fly Speed of 60 feet. Once you use this feature, you can't use it again until you finish a Long Rest unless you spend 3 Sorcery Points to restore your use of it."
+      },
+      "18": {
+        "Dragon Companion": "You can cast Summon Dragon without a Material component. You can also cast it once without a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest. Whenever you start casting the spell, you can modify it so that it doesn't require Concentration. If you do so, the spell's duration becomes 1 minute for that casting."
+      },
+      "3": {
+        "Draconic Resilience": {
+          "description": "The magic in your body manifests physical traits of your draconic gift. Your Hit Point maximum increases by 3, and it increases by 1 whenever you gain another Sorcerer level.\n\nParts of you are also covered by dragon-like scales. While you aren't wearing armor, your base Armor Class equals 10 plus your Dexterity and Charisma modifiers.",
+          "effects": [
+            {
+              "base": 10,
+              "condition": "no_armor",
+              "modifiers": [
+                "dexterity",
+                "charisma"
+              ],
+              "type": "alternative_ac"
+            },
+            {
+              "scaling": "per_level",
+              "type": "bonus_hp",
+              "value": 1
+            }
+          ]
+        },
+        "Draconic Spells": {
+          "description": "When you reach a Sorcerer level specified in the Draconic Spells table, you thereafter always have the listed spells prepared.",
+          "effects": [
+            {
+              "counts_against_limit": false,
+              "min_level": 3,
+              "spell": "Alter Self",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 3,
+              "spell": "Chromatic Orb",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 3,
+              "spell": "Command",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 3,
+              "spell": "Dragon's Breath",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 5,
+              "spell": "Fear",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 5,
+              "spell": "Fly",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 7,
+              "spell": "Arcane Eye",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 7,
+              "spell": "Charm Monster",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 9,
+              "spell": "Legend Lore",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 9,
+              "spell": "Summon Dragon",
+              "type": "grant_spell"
+            }
+          ]
+        }
+      },
+      "6": {
+        "Elemental Affinity": {
+          "choices": {
+            "count": 1,
+            "name": "draconic_element",
+            "source": {
+              "options": [
+                "Acid",
+                "Cold",
+                "Fire",
+                "Lightning",
+                "Poison"
+              ],
+              "type": "fixed_list"
+            },
+            "type": "select_single"
+          },
+          "description": "Your draconic magic has an affinity with a damage type associated with dragons. Choose one of those types: Acid, Cold, Fire, Lightning, or Poison.\n\nYou have Resistance to that damage type, and when you cast a spell that deals damage of that type, you can add your Charisma modifier to one damage roll of that spell.",
+          "effects": [
+            {
+              "damage_type_from_choice": "draconic_element",
+              "type": "grant_damage_resistance"
+            }
+          ]
+        }
+      }
+    },
+    "name": "Draconic Sorcery",
+    "source": "Player's Handbook 2024"
+  },
+  "superiority_dice": {},
+  "tool_proficiencies": [
+    "Gaming Set"
+  ],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [],
+    "current_masteries": [],
+    "has_mastery": false,
+    "max_masteries": 0
+  },
+  "weapon_proficiencies": [
+    "Simple weapons"
+  ]
+}

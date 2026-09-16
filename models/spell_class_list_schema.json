@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Spell Class List",
+  "description": "Schema for files in data/spells/class_lists/. One manifest per spellcasting class enumerating which spell names appear on that class's list. Cross-existence against data/spells/definitions/ is not enforced here (out of scope for Phase 3; would belong to a future content-integrity check).",
+  "type": "object",
+  "required": ["class", "spells_by_level"],
+  "properties": {
+    "class": { "type": "string" },
+    "cantrips": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "spells_by_level": {
+      "type": "object",
+      "patternProperties": {
+        "^[1-9]$": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

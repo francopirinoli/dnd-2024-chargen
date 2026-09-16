@@ -1,0 +1,84 @@
+{
+  "name": "Circle of the Land",
+  "class": "Druid",
+  "description": "The Circle of the Land comprises mystics and sages who safeguard ancient knowledge and rites. These Druids meet within sacred circles of trees or standing stones to whisper primal secrets in Druidic.",
+  "source": "Player's Handbook 2024",
+  "land_types": {
+    "Arid": {
+      "description": "Arid lands of desert and scorched earth grant fire-themed magic.",
+      "effects": [
+        {"type": "grant_cantrip", "spell": "Fire Bolt"},
+        {"type": "grant_spell", "spell": "Blur", "min_level": 3},
+        {"type": "grant_spell", "spell": "Burning Hands", "min_level": 3},
+        {"type": "grant_spell", "spell": "Fireball", "min_level": 5},
+        {"type": "grant_spell", "spell": "Blight", "min_level": 7},
+        {"type": "grant_spell", "spell": "Wall of Stone", "min_level": 9}
+      ]
+    },
+    "Polar": {
+      "description": "Polar lands of ice and tundra grant cold-themed magic.",
+      "effects": [
+        {"type": "grant_cantrip", "spell": "Ray of Frost"},
+        {"type": "grant_spell", "spell": "Fog Cloud", "min_level": 3},
+        {"type": "grant_spell", "spell": "Hold Person", "min_level": 3},
+        {"type": "grant_spell", "spell": "Sleet Storm", "min_level": 5},
+        {"type": "grant_spell", "spell": "Ice Storm", "min_level": 7},
+        {"type": "grant_spell", "spell": "Cone of Cold", "min_level": 9}
+      ]
+    },
+    "Temperate": {
+      "description": "Temperate lands of forests and grasslands grant storm and movement magic.",
+      "effects": [
+        {"type": "grant_cantrip", "spell": "Shocking Grasp"},
+        {"type": "grant_spell", "spell": "Misty Step", "min_level": 3},
+        {"type": "grant_spell", "spell": "Sleep", "min_level": 3},
+        {"type": "grant_spell", "spell": "Lightning Bolt", "min_level": 5},
+        {"type": "grant_spell", "spell": "Freedom of Movement", "min_level": 7},
+        {"type": "grant_spell", "spell": "Tree Stride", "min_level": 9}
+      ]
+    },
+    "Tropical": {
+      "description": "Tropical lands of jungles and swamps grant acid and poison magic.",
+      "effects": [
+        {"type": "grant_cantrip", "spell": "Acid Splash"},
+        {"type": "grant_spell", "spell": "Ray of Sickness", "min_level": 3},
+        {"type": "grant_spell", "spell": "Web", "min_level": 3},
+        {"type": "grant_spell", "spell": "Stinking Cloud", "min_level": 5},
+        {"type": "grant_spell", "spell": "Polymorph", "min_level": 7},
+        {"type": "grant_spell", "spell": "Insect Plague", "min_level": 9}
+      ]
+    }
+  },
+  "features_by_level": {
+    "3": {
+      "Circle of the Land Spells": {
+        "description": "Whenever you finish a Long Rest, choose one type of land: Arid, Polar, Temperate, or Tropical. You always have certain spells prepared based on your chosen land type. When you choose the land type, you also gain a bonus cantrip associated with that land.",
+        "choices": {
+          "type": "select_single",
+          "count": 1,
+          "name": "land_type",
+          "source": {
+            "type": "internal",
+            "list": "land_types"
+          },
+          "optional": false
+        }
+      },
+      "Land's Aid": "As a Magic action, you can expend a use of Wild Shape and choose a point within 60 feet of yourself. Vitality-giving flowers and life-draining thorns appear in a 10-foot-radius Sphere centered on that point. Each creature of your choice in the Sphere must make a Constitution saving throw against your spell save DC, taking 2d6 Necrotic damage on a failed save or half as much on a successful one. One creature of your choice in that area regains 2d6 Hit Points. The damage and healing increase to 3d6 at level 10 and 4d6 at level 14."
+    },
+    "6": {
+      "Natural Recovery": "You can cast one of the level 1+ spells you gained from Circle of the Land Spells without expending a spell slot, and you must finish a Long Rest before you can do so again. In addition, when you finish a Short Rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your Druid level (rounded up), and none of them can be level 6 or higher. Once you use this Short Rest feature, you must finish a Long Rest before you can do so again."
+    },
+    "10": {
+      "Nature's Ward": {
+        "description": "You are immune to the Poisoned condition. In addition, while your Circle of the Land Spells are active, you also gain resistance to a damage type based on your current land type: Arid grants Fire resistance, Polar grants Cold resistance, Temperate grants Lightning resistance, and Tropical grants Poison resistance.",
+        "effects": [
+          {"type": "grant_condition_immunity", "condition": "Poisoned"}
+        ]
+      }
+    },
+    "14": {
+      "Nature's Sanctuary": "As a Magic action, you can expend a use of Wild Shape and cause spectral trees and vines to appear in a 15-foot Cube on the ground within 120 feet of yourself. The area lasts for 1 minute, and you and your allies have Half Cover while in it. Your allies also gain the current Nature's Ward resistance while in the area. As a Bonus Action, you can move the Cube up to 60 feet to ground within 120 feet of yourself."
+    }
+  }
+}

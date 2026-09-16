@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Grax the Bound",
+    "classes": [{"class_name": "Warlock", "level": 3, "subclass": "The Fiend"}],
+    "species": "Orc",
+    "background": "Charlatan",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {"Strength": 10, "Dexterity": 13, "Constitution": 14, "Intelligence": 8, "Wisdom": 12, "Charisma": 15},
+    "background_bonuses": {"Charisma": 2, "Constitution": 1},
+    "skill_choices": ["Intimidation", "Arcana"],
+    "spell_selections": {
+      "cantrips": ["Eldritch Blast", "Minor Illusion", "Mage Hand"],
+      "spells": ["Armor of Agathys", "Hellish Rebuke", "Hex", "Darkness", "Hold Person"],
+      "background_cantrips": [],
+      "background_spells": []
+    },
+    "languages": ["Orc", "Draconic"],
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_a"}
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Bigby's Hand",
+  "level": 5,
+  "school": "Evocation",
+  "casting_time": "1 action",
+  "range": "120 feet",
+  "components": [
+    "V",
+    "S",
+    "M (an eggshell and a snakeskin glove)"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "You create a Large hand of shimmering, translucent force in an unoccupied space that you can see within range. The hand lasts for the spell's duration, moves at your command, and mimics the movements of your own hand. The hand is an object that has AC 20 and Hit Points equal to your Hit Point maximum. The hand doesn't occupy its space. When you cast the spell and as a Bonus Action on your subsequent turns, you can move the hand up to 60 feet and then use it for one of the following effects: Clenched Fist, Forceful Hand, Grasping Hand, or Interposing Hand.",
+  "classes": [
+    "Artificer",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

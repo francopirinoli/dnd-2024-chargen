@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Weapon Masteries",
+  "description": "Schema for data/equipment/weapon_masteries.json. Top-level keys are mastery names; values describe the mastery.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": ["name", "description"],
+    "properties": {
+      "name": { "type": "string" },
+      "description": { "type": "string" }
+    },
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Draconic Sorcery",
+  "class": "Sorcerer",
+  "description": "Your innate magic comes from the gift of a dragon. Perhaps an ancient dragon facing death bequeathed some of its magical power to you or your ancestor. You might have absorbed magic from a site infused with a dragon's power.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Draconic Resilience": {
+        "description": "The magic in your body manifests physical traits of your draconic gift. Your Hit Point maximum increases by 3, and it increases by 1 whenever you gain another Sorcerer level.\n\nParts of you are also covered by dragon-like scales. While you aren't wearing armor, your base Armor Class equals 10 plus your Dexterity and Charisma modifiers.",
+        "effects": [
+          {"type": "bonus_hp", "value": 1, "scaling": "per_level"},
+          {"type": "alternative_ac", "base": 10, "modifiers": ["dexterity", "charisma"], "condition": "no_armor"}
+        ]
+      },
+      "Draconic Spells": {
+        "description": "When you reach a Sorcerer level specified in the Draconic Spells table, you thereafter always have the listed spells prepared.",
+        "effects": [
+          {"type": "grant_spell", "spell": "Alter Self", "min_level": 3, "counts_against_limit": false},
+          {"type": "grant_spell", "spell": "Chromatic Orb", "min_level": 3, "counts_against_limit": false},
+          {"type": "grant_spell", "spell": "Command", "min_level": 3, "counts_against_limit": false},
+          {"type": "grant_spell", "spell": "Dragon's Breath", "min_level": 3, "counts_against_limit": false},
+          {"type": "grant_spell", "spell": "Fear", "min_level": 5, "counts_against_limit": false},
+          {"type": "grant_spell", "spell": "Fly", "min_level": 5, "counts_against_limit": false},
+          {"type": "grant_spell", "spell": "Arcane Eye", "min_level": 7, "counts_against_limit": false},
+          {"type": "grant_spell", "spell": "Charm Monster", "min_level": 7, "counts_against_limit": false},
+          {"type": "grant_spell", "spell": "Legend Lore", "min_level": 9, "counts_against_limit": false},
+          {"type": "grant_spell", "spell": "Summon Dragon", "min_level": 9, "counts_against_limit": false}
+        ]
+      }
+    },
+    "6": {
+      "Elemental Affinity": {
+        "description": "Your draconic magic has an affinity with a damage type associated with dragons. Choose one of those types: Acid, Cold, Fire, Lightning, or Poison.\n\nYou have Resistance to that damage type, and when you cast a spell that deals damage of that type, you can add your Charisma modifier to one damage roll of that spell.",
+        "choices": {
+          "type": "select_single",
+          "count": 1,
+          "name": "draconic_element",
+          "source": {
+            "type": "fixed_list",
+            "options": ["Acid", "Cold", "Fire", "Lightning", "Poison"]
+          }
+        },
+        "effects": [
+          {"type": "grant_damage_resistance", "damage_type_from_choice": "draconic_element"}
+        ]
+      }
+    },
+    "14": {
+      "Dragon Wings": "As a Bonus Action, you can cause draconic wings to appear on your back. The wings last for 1 hour or until you dismiss them (no action required). For the duration, you have a Fly Speed of 60 feet. Once you use this feature, you can't use it again until you finish a Long Rest unless you spend 3 Sorcery Points to restore your use of it."
+    },
+    "18": {
+      "Dragon Companion": "You can cast Summon Dragon without a Material component. You can also cast it once without a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest. Whenever you start casting the spell, you can modify it so that it doesn't require Concentration. If you do so, the spell's duration becomes 1 minute for that casting."
+    }
+  }
+}

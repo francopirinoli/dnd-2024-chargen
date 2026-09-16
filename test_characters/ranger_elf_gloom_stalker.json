@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Senna Nightbough",
+    "classes": [{"class_name": "Ranger", "level": 3, "subclass": "Gloom Stalker"}],
+    "species": "Elf",
+    "lineage": "Wood Elf",
+    "background": "Guide",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {"Strength": 12, "Dexterity": 15, "Constitution": 13, "Intelligence": 8, "Wisdom": 14, "Charisma": 10},
+    "background_bonuses": {"Dexterity": 2, "Wisdom": 1},
+    "skill_choices": ["Perception", "Stealth", "Survival"],
+    "fighting_style": "Archery",
+    "spell_selections": {
+      "cantrips": [],
+      "spells": ["Ensnaring Strike", "Fog Cloud", "Goodberry", "Barkskin", "Darkvision"],
+      "background_cantrips": [],
+      "background_spells": []
+    },
+    "languages": ["Halfling", "Dwarvish"],
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_b"},
+    "deft_explorer_expertise": "Stealth",
+    "deft_explorer_languages": ["Elvish", "Draconic"],
+    "background_skill_replacement": ["Nature", "Animal Handling"],
+    "species_trait_choices": {"Elven Lineage": "Wisdom", "Keen Senses": "Insight"}
+  }
+}

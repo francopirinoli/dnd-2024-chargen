@@ -1,0 +1,27 @@
+{
+  "name": "Halfling",
+  "description": "Cherished and guided by gods who value life, home, and hearth, halflings gravitate toward bucolic havens where family and community help shape their lives. Their size - similar to that of a human child - helps them pass through crowds unnoticed and slip through tight spaces. They live for about 150 years and possess the storied luck of the halflings.",
+  "creature_type": "Humanoid",
+  "size": "Small",
+  "size_description": "about 2-3 feet tall",
+  "speed": 30,
+  "traits": {
+    "Brave": {
+      "description": "You have Advantage on saving throws you make to avoid or end the Frightened condition.",
+      "effects": [
+        {
+          "type": "grant_save_advantage",
+          "condition": "Frightened",
+          "display": "Advantage vs Frightened condition"
+        }
+      ]
+    },
+    "Halfling Nimbleness": "You can move through the space of any creature that is a size larger than you, but you can't stop in the same space.",
+    "Luck": "When you roll a 1 on the d20 of a D20 Test, you can reroll the die, and you must use the new roll.",
+    "Naturally Stealthy": "You can take the Hide action even when you are obscured only by a creature that is at least one size larger than you."
+  },
+  "languages": [
+    "Common",
+    "Halfling"
+  ]
+}

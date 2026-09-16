@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Trait Entry",
+  "description": "A single trait/feature entry as it appears on species, species_variants, and inline class/subclass features. Either a plain string description, or an object with optional description / effects / choices / choice_effects / type / notes.",
+  "oneOf": [
+    { "type": "string" },
+    {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "type": { "type": "string" },
+        "notes": { "type": "string" },
+        "effects": {
+          "type": "array",
+          "items": { "$ref": "effect.json" }
+        },
+        "choices": {
+          "oneOf": [
+            { "$ref": "choice.json" },
+            {
+              "type": "array",
+              "items": { "$ref": "choice.json" }
+            }
+          ]
+        },
+        "choice_effects": { "$ref": "choice_effects.json" }
+      },
+      "additionalProperties": true
+    }
+  ]
+}

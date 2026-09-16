@@ -1,0 +1,22 @@
+{
+  "name": "Enlarge/Reduce",
+  "level": 2,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "a pinch of powdered iron",
+  "duration": "Concentration, up to 1 minute",
+  "description": "You cause a creature or an object you can see within range to grow larger or smaller for the duration. Choose either a creature or an object that is neither worn nor carried. If the target is unwilling, it can make a Constitution saving throw. On a success, the spell has no effect. Enlarge. The target's size doubles in all dimensions, and its weight is multiplied by eight. This growth increases its size by one category. The target also has Advantage on Strength checks and Strength saving throws. The target's weapons also grow to match its new size; while these weapons are enlarged, the target's attacks with them deal 1d4 extra damage. Reduce. The target's size is halved in all dimensions, and its weight is reduced to one-eighth of normal. This reduction decreases its size by one category. The target also has Disadvantage on Strength checks and Strength saving throws. The target's weapons also shrink to match its new size; while these weapons are reduced, the target's attacks with them deal 1d4 less damage (minimum of 1).",
+  "classes": [
+    "Bard",
+    "Druid",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

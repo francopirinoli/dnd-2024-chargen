@@ -1,0 +1,18 @@
+{
+  "name": "Magic Jar",
+  "level": 6,
+  "school": "Necromancy",
+  "casting_time": "1 minute",
+  "range": "Self",
+  "components": [
+    "V",
+    "S",
+    "M (a gem, crystal, or reliquary worth 500+ GP)"
+  ],
+  "duration": "Until dispelled",
+  "description": "Your body falls into a catatonic state as your soul leaves it and enters the container used for the spell's material component. While your soul inhabits the container, you are aware of your surroundings as if you were in the container's space. You can't move or use Reactions. The only action you can take is to project your soul up to 100 feet out of the container, either returning to your living body (ending the spell) or attempting to possess a Humanoid's body. You can attempt to possess any Humanoid within 100 feet that you can see. That creature must make a Charisma saving throw. On a failure, your soul enters the target's body, and the target's soul becomes trapped in the container.",
+  "classes": [
+    "Wizard"
+  ],
+  "ritual": false
+}

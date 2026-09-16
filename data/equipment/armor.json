@@ -1,0 +1,130 @@
+{
+  "Padded Armor": {
+    "category": "Light Armor",
+    "cost": "5 gp",
+    "ac_base": 11,
+    "ac_formula": "11 + DEX",
+    "weight": 8,
+    "stealth_disadvantage": true,
+    "strength_requirement": null,
+    "proficiency_required": "Light armor"
+  },
+  "Leather Armor": {
+    "category": "Light Armor",
+    "cost": "10 gp",
+    "ac_base": 11,
+    "ac_formula": "11 + DEX",
+    "weight": 10,
+    "stealth_disadvantage": false,
+    "strength_requirement": null,
+    "proficiency_required": "Light armor"
+  },
+  "Studded Leather Armor": {
+    "category": "Light Armor",
+    "cost": "45 gp",
+    "ac_base": 12,
+    "ac_formula": "12 + DEX",
+    "weight": 13,
+    "stealth_disadvantage": false,
+    "strength_requirement": null,
+    "proficiency_required": "Light armor"
+  },
+  "Hide Armor": {
+    "category": "Medium Armor",
+    "cost": "10 gp",
+    "ac_base": 12,
+    "ac_formula": "12 + DEX (max 2)",
+    "weight": 12,
+    "stealth_disadvantage": false,
+    "strength_requirement": null,
+    "proficiency_required": "Medium armor"
+  },
+  "Chain Shirt": {
+    "category": "Medium Armor",
+    "cost": "50 gp",
+    "ac_base": 13,
+    "ac_formula": "13 + DEX (max 2)",
+    "weight": 20,
+    "stealth_disadvantage": false,
+    "strength_requirement": null,
+    "proficiency_required": "Medium armor"
+  },
+  "Scale Mail": {
+    "category": "Medium Armor",
+    "cost": "50 gp",
+    "ac_base": 14,
+    "ac_formula": "14 + DEX (max 2)",
+    "weight": 45,
+    "stealth_disadvantage": true,
+    "strength_requirement": null,
+    "proficiency_required": "Medium armor"
+  },
+  "Breastplate": {
+    "category": "Medium Armor",
+    "cost": "400 gp",
+    "ac_base": 14,
+    "ac_formula": "14 + DEX (max 2)",
+    "weight": 20,
+    "stealth_disadvantage": false,
+    "strength_requirement": null,
+    "proficiency_required": "Medium armor"
+  },
+  "Half Plate Armor": {
+    "category": "Medium Armor",
+    "cost": "750 gp",
+    "ac_base": 15,
+    "ac_formula": "15 + DEX (max 2)",
+    "weight": 40,
+    "stealth_disadvantage": true,
+    "strength_requirement": null,
+    "proficiency_required": "Medium armor"
+  },
+  "Ring Mail": {
+    "category": "Heavy Armor",
+    "cost": "30 gp",
+    "ac_base": 14,
+    "ac_formula": "14",
+    "weight": 40,
+    "stealth_disadvantage": true,
+    "strength_requirement": null,
+    "proficiency_required": "Heavy armor"
+  },
+  "Chain Mail": {
+    "category": "Heavy Armor",
+    "cost": "75 gp",
+    "ac_base": 16,
+    "ac_formula": "16",
+    "weight": 55,
+    "stealth_disadvantage": true,
+    "strength_requirement": 13,
+    "proficiency_required": "Heavy armor"
+  },
+  "Splint Armor": {
+    "category": "Heavy Armor",
+    "cost": "200 gp",
+    "ac_base": 17,
+    "ac_formula": "17",
+    "weight": 60,
+    "stealth_disadvantage": true,
+    "strength_requirement": 15,
+    "proficiency_required": "Heavy armor"
+  },
+  "Plate Armor": {
+    "category": "Heavy Armor",
+    "cost": "1500 gp",
+    "ac_base": 18,
+    "ac_formula": "18",
+    "weight": 65,
+    "stealth_disadvantage": true,
+    "strength_requirement": 15,
+    "proficiency_required": "Heavy armor"
+  },
+  "Shield": {
+    "category": "Shield",
+    "cost": "10 gp",
+    "ac_bonus": 2,
+    "weight": 6,
+    "stealth_disadvantage": false,
+    "proficiency_required": "Shields"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Prestidigitation",
+  "level": 0,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "10 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Up to 1 hour",
+  "description": "You perform minor magical tricks: create a harmless sensory effect, clean or soil a small object, chill/warm/flavor a small amount of material, light or snuff a small flame, or create a small nonmagical trinket/mark. The exact effect is cosmetic and at the DM's discretion.",
+  "classes": [
+    "Bard",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+  ],
+  "ritual": false
+}

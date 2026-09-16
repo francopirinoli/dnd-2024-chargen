@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Scale-of-Jade",
+    "classes": [{"class_name": "Monk", "level": 3, "subclass": "Warrior of Mercy"}],
+    "species": "Dragonborn",
+    "background": "Hermit",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {"Strength": 12, "Dexterity": 15, "Constitution": 13, "Intelligence": 8, "Wisdom": 14, "Charisma": 10},
+    "background_bonuses": {"Dexterity": 2, "Wisdom": 1},
+    "skill_choices": ["Acrobatics", "Insight"],
+    "languages": ["Dwarvish", "Draconic"],
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_b"},
+    "tool_choices": ["Woodcarver's Tools"],
+    "background_skill_replacement": ["Athletics"],
+    "species_trait_choices": {"Draconic Ancestry": "Silver (Cold)"}
+  }
+}

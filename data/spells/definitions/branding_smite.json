@@ -1,0 +1,16 @@
+{
+  "name": "Branding Smite",
+  "level": 2,
+  "school": "Evocation",
+  "casting_time": "1 bonus action, which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike",
+  "range": "Self",
+  "components": [
+    "V"
+  ],
+  "duration": "1 minute",
+  "description": "The target takes an extra 2d6 Radiant damage from the attack. The target also sheds Dim Light in a 5-foot radius and can't benefit from the Invisible condition for the duration. Using a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 2.",
+  "classes": [
+    "Paladin"
+  ],
+  "ritual": false
+}

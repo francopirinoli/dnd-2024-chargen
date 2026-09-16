@@ -1,0 +1,19 @@
+{
+  "name": "Alter Self",
+  "level": 2,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "Self",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 1 hour",
+  "description": "You alter your physical form. Choose one of the following options, whose effects last for the duration. You can take a Magic action to change your choice. Aquatic Adaptation: you gain gills and grow webbing, gaining a Swim Speed equal to your Speed, and you can breathe underwater. Change Appearance: you change your appearance, including height, weight, features, voice, hair, coloring, and distinguishing characteristics. Natural Weapons: you grow claws, fangs, spines, horns, or a different natural weapon of your choice, which deals 1d6 + your Strength or Dexterity modifier Bludgeoning, Piercing, or Slashing damage (your choice), you are proficient with it, and it has the Light property.",
+  "classes": [
+    "Artificer",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

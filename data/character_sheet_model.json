@@ -1,0 +1,480 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Character Sheet Model",
+  "description": "Complete JSON model for D&D 2024 character sheet data",
+  "type": "object",
+  "properties": {
+    "character_info": {
+      "type": "object",
+      "description": "Basic character identification and demographics",
+      "properties": {
+        "character_name": {"type": "string"},
+        "class_level": {"type": "string", "description": "e.g. 'Fighter 5'"},
+        "background": {"type": "string"},
+        "player_name": {"type": "string"},
+        "species": {"type": "string"},
+        "lineage": {"type": "string", "nullable": true},
+        "alignment": {"type": "string"},
+        "experience_points": {"type": "integer"}
+      }
+    },
+    "ability_scores": {
+      "type": "object",
+      "description": "Core ability scores with modifiers",
+      "properties": {
+        "strength": {
+          "type": "object",
+          "properties": {
+            "score": {"type": "integer", "minimum": 1, "maximum": 30},
+            "modifier": {"type": "integer"},
+            "saving_throw": {"type": "integer"},
+            "saving_throw_proficient": {"type": "boolean"}
+          }
+        },
+        "dexterity": {
+          "type": "object",
+          "properties": {
+            "score": {"type": "integer", "minimum": 1, "maximum": 30},
+            "modifier": {"type": "integer"},
+            "saving_throw": {"type": "integer"},
+            "saving_throw_proficient": {"type": "boolean"}
+          }
+        },
+        "constitution": {
+          "type": "object",
+          "properties": {
+            "score": {"type": "integer", "minimum": 1, "maximum": 30},
+            "modifier": {"type": "integer"},
+            "saving_throw": {"type": "integer"},
+            "saving_throw_proficient": {"type": "boolean"}
+          }
+        },
+        "intelligence": {
+          "type": "object",
+          "properties": {
+            "score": {"type": "integer", "minimum": 1, "maximum": 30},
+            "modifier": {"type": "integer"},
+            "saving_throw": {"type": "integer"},
+            "saving_throw_proficient": {"type": "boolean"}
+          }
+        },
+        "wisdom": {
+          "type": "object",
+          "properties": {
+            "score": {"type": "integer", "minimum": 1, "maximum": 30},
+            "modifier": {"type": "integer"},
+            "saving_throw": {"type": "integer"},
+            "saving_throw_proficient": {"type": "boolean"}
+          }
+        },
+        "charisma": {
+          "type": "object",
+          "properties": {
+            "score": {"type": "integer", "minimum": 1, "maximum": 30},
+            "modifier": {"type": "integer"},
+            "saving_throw": {"type": "integer"},
+            "saving_throw_proficient": {"type": "boolean"}
+          }
+        }
+      }
+    },
+    "skills": {
+      "type": "object",
+      "description": "Skill proficiencies and bonuses",
+      "properties": {
+        "acrobatics": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "animal_handling": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "arcana": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "athletics": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "deception": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "history": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "insight": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "intimidation": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "investigation": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "medicine": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "nature": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "perception": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "performance": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "persuasion": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "religion": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "sleight_of_hand": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "stealth": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        },
+        "survival": {
+          "type": "object",
+          "properties": {
+            "proficient": {"type": "boolean"},
+            "expertise": {"type": "boolean"},
+            "bonus": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "combat_stats": {
+      "type": "object",
+      "description": "Combat-related statistics and defenses",
+      "properties": {
+        "armor_class": {"type": "integer"},
+        "initiative": {"type": "integer"},
+        "speed": {"type": "integer"},
+        "hit_point_maximum": {"type": "integer"},
+        "current_hit_points": {"type": "integer"},
+        "temporary_hit_points": {"type": "integer", "default": 0},
+        "hit_dice": {
+          "type": "object",
+          "properties": {
+            "total": {"type": "string", "description": "e.g. '5d10'"},
+            "current": {"type": "integer"}
+          }
+        },
+        "death_saves": {
+          "type": "object",
+          "properties": {
+            "successes": {"type": "integer", "minimum": 0, "maximum": 3},
+            "failures": {"type": "integer", "minimum": 0, "maximum": 3}
+          }
+        }
+      }
+    },
+    "proficiencies": {
+      "type": "object",
+      "description": "Various proficiencies and languages",
+      "properties": {
+        "languages": {"type": "array", "items": {"type": "string"}},
+        "armor": {"type": "array", "items": {"type": "string"}},
+        "weapons": {"type": "array", "items": {"type": "string"}},
+        "tools": {"type": "array", "items": {"type": "string"}},
+        "proficiency_bonus": {"type": "integer"}
+      }
+    },
+    "attacks_and_spellcasting": {
+      "type": "object",
+      "properties": {
+        "attacks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "attack_bonus": {"type": "integer"},
+              "damage_dice": {"type": "string"},
+              "damage_type": {"type": "string"}
+            }
+          }
+        },
+        "spellcasting": {
+          "type": "object",
+          "properties": {
+            "spellcasting_class": {"type": "string"},
+            "spellcasting_ability": {"type": "string"},
+            "spell_save_dc": {"type": "integer"},
+            "spell_attack_bonus": {"type": "integer"},
+            "cantrips_known": {"type": "integer"},
+            "spells_known": {"type": "integer"},
+            "spell_slots": {
+              "type": "object",
+              "properties": {
+                "level_1": {"type": "object", "properties": {"total": {"type": "integer"}, "expended": {"type": "integer"}}},
+                "level_2": {"type": "object", "properties": {"total": {"type": "integer"}, "expended": {"type": "integer"}}},
+                "level_3": {"type": "object", "properties": {"total": {"type": "integer"}, "expended": {"type": "integer"}}},
+                "level_4": {"type": "object", "properties": {"total": {"type": "integer"}, "expended": {"type": "integer"}}},
+                "level_5": {"type": "object", "properties": {"total": {"type": "integer"}, "expended": {"type": "integer"}}},
+                "level_6": {"type": "object", "properties": {"total": {"type": "integer"}, "expended": {"type": "integer"}}},
+                "level_7": {"type": "object", "properties": {"total": {"type": "integer"}, "expended": {"type": "integer"}}},
+                "level_8": {"type": "object", "properties": {"total": {"type": "integer"}, "expended": {"type": "integer"}}},
+                "level_9": {"type": "object", "properties": {"total": {"type": "integer"}, "expended": {"type": "integer"}}}
+              }
+            }
+          }
+        }
+      }
+    },
+    "equipment": {
+      "type": "object",
+      "properties": {
+        "armor": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "ac": {"type": "integer"},
+              "type": {"type": "string"},
+              "stealth_disadvantage": {"type": "boolean"},
+              "equipped": {"type": "boolean"}
+            }
+          }
+        },
+        "weapons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "damage": {"type": "string"},
+              "damage_type": {"type": "string"},
+              "weight": {"type": "number"},
+              "properties": {"type": "array", "items": {"type": "string"}},
+              "equipped": {"type": "boolean"}
+            }
+          }
+        },
+        "other_equipment": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "quantity": {"type": "integer"},
+              "weight": {"type": "number"},
+              "description": {"type": "string"}
+            }
+          }
+        },
+        "money": {
+          "type": "object",
+          "properties": {
+            "copper": {"type": "integer"},
+            "silver": {"type": "integer"},
+            "electrum": {"type": "integer"},
+            "gold": {"type": "integer"},
+            "platinum": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "features_and_traits": {
+      "type": "object",
+      "description": "Character features organized by source",
+      "properties": {
+        "class": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "description": {"type": "string"},
+              "source": {"type": "string"},
+              "level": {"type": "integer"}
+            }
+          }
+        },
+        "species": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "description": {"type": "string"},
+              "source": {"type": "string"}
+            }
+          }
+        },
+        "background": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "description": {"type": "string"},
+              "source": {"type": "string"}
+            }
+          }
+        },
+        "feats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "description": {"type": "string"},
+              "source": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "spells": {
+      "type": "object",
+      "properties": {
+        "cantrips": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "school": {"type": "string"},
+              "casting_time": {"type": "string"},
+              "range": {"type": "string"},
+              "components": {"type": "string"},
+              "duration": {"type": "string"},
+              "description": {"type": "string"}
+            }
+          }
+        },
+        "prepared_spells": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "level": {"type": "integer"},
+              "school": {"type": "string"},
+              "casting_time": {"type": "string"},
+              "range": {"type": "string"},
+              "components": {"type": "string"},
+              "duration": {"type": "string"},
+              "description": {"type": "string"},
+              "prepared": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "physical_characteristics": {
+      "type": "object",
+      "properties": {
+        "age": {"type": "integer"},
+        "height": {"type": "string"},
+        "weight": {"type": "string"},
+        "eyes": {"type": "string"},
+        "skin": {"type": "string"},
+        "hair": {"type": "string"},
+        "appearance": {"type": "string"},
+        "backstory": {"type": "string"},
+        "allies_organizations": {"type": "string"},
+        "additional_features_traits": {"type": "string"},
+        "treasure": {"type": "string"}
+      }
+    },
+    "meta_data": {
+      "type": "object",
+      "description": "Metadata for character creation and tracking",
+      "properties": {
+        "creation_method": {"type": "string"},
+        "creation_date": {"type": "string"},
+        "last_updated": {"type": "string"},
+        "version": {"type": "string"},
+        "choices_made": {"type": "object"}
+      }
+    }
+  }
+}

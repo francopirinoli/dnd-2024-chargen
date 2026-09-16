@@ -1,0 +1,17 @@
+{
+  "name": "Animal Shapes",
+  "level": 8,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 24 hours",
+  "description": "Choose any number of willing creatures that you can see within range. Each target shape-shifts into a Large or smaller Beast with a Challenge Rating of 4 or lower. On later turns, you can take a Magic action to transform affected creatures into new forms. The transformation lasts for the duration for each target, or until the target drops to 0 Hit Points or dies. You can choose a different form for each target. A target's game statistics are replaced by the stat block of the chosen Beast, though the target retains its alignment, personality, Hit Points, Hit Point Dice, Intelligence, Wisdom, and Charisma scores. The target gains Temporary Hit Points equal to the Beast's Hit Points. The target's actions are limited by the nature of its new form, and it can't speak or cast spells. The target's gear melds into the new form.",
+  "classes": [
+    "Druid"
+  ],
+  "ritual": false
+}

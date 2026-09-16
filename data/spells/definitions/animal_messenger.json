@@ -1,0 +1,21 @@
+{
+  "name": "Animal Messenger",
+  "level": 2,
+  "school": "Enchantment",
+  "casting_time": "1 action or Ritual",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "a morsel of food",
+  "duration": "24 hours",
+  "description": "By means of this spell, you use an animal to deliver a message. Choose a Tiny Beast you can see within range, such as a squirrel, a blue jay, or a bat. You specify a location, which you must have visited, and a recipient who matches a general description, such as 'a man or woman dressed in the uniform of the town guard' or 'a red-haired dwarf wearing a pointed hat.' You also speak a message of up to 25 words. The target Beast travels for the duration of the spell toward the specified location, covering about 50 miles per 24 hours for a flying messenger, or 25 miles for other animals. When the messenger arrives, it delivers your message to the creature that you described, replicating the sound of your voice. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, the duration of the spell increases by 48 hours for each slot level above 2nd.",
+  "classes": [
+    "Bard",
+    "Druid",
+    "Ranger"
+  ],
+  "ritual": true
+}

@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Pip Runebright",
+    "classes": [{"class_name": "Wizard", "level": 3, "subclass": "Evoker"}],
+    "species": "Gnome",
+    "background": "Scribe",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {"Strength": 8, "Dexterity": 13, "Constitution": 14, "Intelligence": 15, "Wisdom": 12, "Charisma": 10},
+    "background_bonuses": {"Intelligence": 2, "Constitution": 1},
+    "skill_choices": ["Arcana", "History"],
+    "spell_selections": {
+      "cantrips": ["Fire Bolt", "Acid Splash", "Mage Hand"],
+      "spells": ["Burning Hands", "Chromatic Orb", "Detect Magic", "Alarm", "Blindness/Deafness", "Cloud of Daggers"],
+      "background_cantrips": [],
+      "background_spells": []
+    },
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_b"},
+    "lineage": "Forest Gnome",
+    "species_trait_choices": {"Gnomish Lineage": "Intelligence"},
+    "languages": ["Gnomish", "Goblin"]
+  }
+}

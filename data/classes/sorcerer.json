@@ -1,0 +1,521 @@
+{
+  "name": "Sorcerer",
+  "description": "Born with magic stamped into their being, Sorcerers wield innate power from draconic blessings, planar exposure, or glimpses into reality's workings. This churning magic creates an indelible mark that can be passed down through generations.",
+  "hit_die": 6,
+  "primary_ability": "Charisma",
+  "saving_throw_proficiencies": [
+    "Constitution",
+    "Charisma"
+  ],
+  "standard_array_assignment": {
+    "Strength": 10,
+    "Dexterity": 13,
+    "Constitution": 14,
+    "Intelligence": 8,
+    "Wisdom": 12,
+    "Charisma": 15
+  },
+  "armor_proficiencies": [],
+  "weapon_proficiencies": [
+    "Simple weapons"
+  ],
+  "skill_proficiencies_count": 2,
+  "skill_options": [
+    "Arcana",
+    "Deception",
+    "Insight",
+    "Intimidation",
+    "Persuasion",
+    "Religion"
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Spear",
+        "Dagger (2)",
+        "Arcane Focus (Crystal)",
+        "Dungeoneer's Pack"
+      ],
+      "gold": 28
+    },
+    "option_b": {
+      "gold": 50
+    }
+  },
+  "subclass_selection_level": 3,
+  "spellcasting_ability": "Charisma",
+  "spellcasting_focus": [
+    "Arcane Focus"
+  ],
+  "spellcasting_type": "known",
+  "spell_preparation_formula": "class_table",
+  "cantrip_progression": "class_table",
+  "spell_list_restrictions": null,
+  "ritual_casting": false,
+  "cantrips_by_level": {
+    "1": 4,
+    "2": 4,
+    "3": 4,
+    "4": 5,
+    "5": 5,
+    "6": 5,
+    "7": 5,
+    "8": 5,
+    "9": 5,
+    "10": 6,
+    "11": 6,
+    "12": 6,
+    "13": 6,
+    "14": 6,
+    "15": 6,
+    "16": 6,
+    "17": 6,
+    "18": 6,
+    "19": 6,
+    "20": 6
+  },
+  "prepared_spells_by_level": {
+    "1": 2,
+    "2": 4,
+    "3": 6,
+    "4": 7,
+    "5": 9,
+    "6": 10,
+    "7": 11,
+    "8": 12,
+    "9": 14,
+    "10": 15,
+    "11": 16,
+    "12": 16,
+    "13": 17,
+    "14": 17,
+    "15": 18,
+    "16": 18,
+    "17": 19,
+    "18": 20,
+    "19": 21,
+    "20": 22
+  },
+  "sorcery_points_by_level": {
+    "1": 0,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10,
+    "11": 11,
+    "12": 12,
+    "13": 13,
+    "14": 14,
+    "15": 15,
+    "16": 16,
+    "17": 17,
+    "18": 18,
+    "19": 19,
+    "20": 20
+  },
+  "proficiency_bonus_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 4,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 6,
+    "18": 6,
+    "19": 6,
+    "20": 6
+  },
+  "spell_slots_by_level": {
+    "1": [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "2": [
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "3": [
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "4": [
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "5": [
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "6": [
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "7": [
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "8": [
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "9": [
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "10": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+    ],
+    "11": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+    ],
+    "12": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+    ],
+    "13": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+    ],
+    "14": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+    ],
+    "15": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+    ],
+    "16": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+    ],
+    "17": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+    ],
+    "18": [
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+    ],
+    "19": [
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+    ],
+    "20": [
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+    ]
+  },
+  "features_by_level": {
+    "1": {
+      "Spellcasting": {
+        "description": "An event in your past left an indelible mark on you, infusing you with simmering magic. You are a Sorcerer, and you can cast Sorcerer spells using Charisma as your spellcasting ability. You know four cantrips from the Sorcerer spell list and have two 1st-level Sorcerer spells prepared.",
+        "feature_kind": "spellcasting_setup"
+      },
+      "Innate Sorcery": "An event in your past left an indelible mark on you, infusing you with simmering magic. As a Bonus Action, you can unleash that magic for 1 minute, during which you gain the following benefits:\n\nThe spell save DC of your Sorcerer spells increases by 1.\nYou have Advantage on the attack rolls of Sorcerer spells you cast.\n\nYou can use this feature twice, and you regain all expended uses of it when you finish a Long Rest."
+    },
+    "2": {
+      "Font of Magic": "You can tap into the wellspring of magic within yourself. This wellspring is represented by Sorcery Points, which allow you to create a variety of magical effects.\n\nYou have 2 Sorcery Points, and you gain more as you reach higher levels. You can't have more Sorcery Points than your Sorcerer level. You regain all expended Sorcery Points when you finish a Long Rest.\n\n**Converting Spell Slots to Sorcery Points.** You can expend a spell slot to gain a number of Sorcery Points equal to the slot's level (no action required).\n\n**Creating Spell Slots.** As a Bonus Action, you can transform unexpended Sorcery Points into one spell slot. The cost is: Level 1 = 2 SP, Level 2 = 3 SP, Level 3 = 5 SP, Level 4 = 6 SP (min Sorcerer Level 7), Level 5 = 7 SP (min Sorcerer Level 9). Any spell slot you create vanishes when you finish a Long Rest.",
+      "Metamagic": {
+        "description": "You gain the ability to twist your spells to suit your needs. You gain two Metamagic options of your choice from the options below. You gain two additional options at 10th and 17th level. Whenever you gain a Sorcerer level, you can replace one of your Metamagic options with another one.",
+        "choices": {
+          "type": "select_multiple",
+          "count": 2,
+          "name": "metamagic",
+          "source": {
+            "type": "internal",
+            "list": "metamagic_options"
+          },
+          "optional": false,
+          "additional_choices_by_level": {
+            "10": {
+              "count": 2,
+              "replace_allowed": true
+            },
+            "17": {
+              "count": 2,
+              "replace_allowed": true
+            }
+          }
+        }
+      }
+    },
+    "3": {
+      "Sorcerer Subclass": {
+        "description": "You gain a Sorcerer Subclass of your choice.",
+        "feature_kind": "subclass_pick"
+      }
+    },
+    "4": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+        "choices": {
+          "name": "class_feat_4",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "5": {
+      "Sorcerous Restoration": "When you finish a Short Rest, you can regain expended Sorcery Points, but no more than a number equal to half your Sorcerer level (round down). Once you use this feature, you can't do so again until you finish a Long Rest."
+    },
+    "6": {
+      "Subclass Feature": {
+        "description": "You gain a feature from your Sorcerer subclass.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "7": {
+      "Sorcery Incarnate": "If you have no uses of Innate Sorcery left, you can use it if you spend 2 Sorcery Points when you take the Bonus Action to activate it.\n\nIn addition, while your Innate Sorcery feature is active, you can use up to two of your Metamagic options on each spell you cast."
+    },
+    "8": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+        "choices": {
+          "name": "class_feat_8",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "10": {
+      "Metamagic": "You gain two additional Metamagic options of your choice."
+    },
+    "12": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+        "choices": {
+          "name": "class_feat_12",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "14": {
+      "Subclass Feature": {
+        "description": "You gain a feature from your Sorcerer subclass.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "16": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+        "choices": {
+          "name": "class_feat_16",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "17": {
+      "Metamagic": "You gain two additional Metamagic options of your choice."
+    },
+    "18": {
+      "Subclass Feature": {
+        "description": "You gain a feature from your Sorcerer subclass.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "19": {
+      "Epic Boon": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Dimensional Travel is recommended."
+    },
+    "20": {
+      "Arcane Apotheosis": "While your Innate Sorcery feature is active, you can use one Metamagic option on each of your turns without spending Sorcery Points on it."
+    }
+  },
+  "metamagic_options": {
+    "Careful Spell": "When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell's full force. Spend 1 Sorcery Point; choose up to your Charisma modifier (minimum of 1) of those creatures. A chosen creature automatically succeeds on its saving throw against the spell.",
+    "Distant Spell": "When you cast a spell that has a range of 5 feet or greater, you can spend 1 Sorcery Point to double the range of the spell. When you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the range of the spell 30 feet.",
+    "Empowered Spell": "When you roll damage for a spell, you can spend 1 Sorcery Point to reroll up to your Charisma modifier (minimum of 1) of the damage dice. You must use the new rolls.",
+    "Extended Spell": "When you cast a spell that has a duration of 1 minute or longer, you can spend 1 Sorcery Point to double its duration, to a maximum of 24 hours.",
+    "Heightened Spell": "When you cast a spell that forces a creature to make a saving throw, you can spend 3 Sorcery Points to give one target of the spell Disadvantage on its first saving throw against the spell.",
+    "Quickened Spell": "When you cast a spell that has a casting time of an Action, you can spend 2 Sorcery Points to change the casting time to a Bonus Action for this casting.",
+    "Seeking Spell": "If you make an attack roll for a spell and miss, you can spend 1 Sorcery Point to reroll the d20, and you must use the new roll.",
+    "Subtle Spell": "When you cast a spell, you can spend 1 Sorcery Point to cast it without any Verbal or Somatic components.",
+    "Transmuted Spell": "When you cast a spell that deals a type of damage from the following list, you can spend 1 Sorcery Point to change that damage type to one of the other listed types: Acid, Cold, Fire, Lightning, Poison, Thunder.",
+    "Twinned Spell": "When you cast a spell that targets only one creature and doesn't have a range of Self, you can spend a number of Sorcery Points equal to the spell's level (1 Sorcery Point minimum) to target a second creature in range with the same spell."
+  },
+  "multiclassing": {
+    "hit_die_granted": 6,
+    "armor_training": [],
+    "weapon_training": [],
+    "tool_training": [],
+    "skill_proficiencies": null,
+    "saving_throw_proficiencies": [],
+    "other_proficiencies": [],
+    "notes": null,
+    "source_text": "As a Multiclass Character: Gain the Hit Point Die from the Core Sorcerer Traits table. Gain the Sorcerer's level 1 features, which are listed in the Sorcerer Features table. See the multiclassing rules in multiclassing to determine your available spell slots."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Vexa Nightsong",
+    "classes": [{"class_name": "Bard", "level": 3, "subclass": "College of Valor"}],
+    "species": "Tiefling",
+    "lineage": "Infernal Tiefling",
+    "background": "Charlatan",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {"Strength": 10, "Dexterity": 14, "Constitution": 13, "Intelligence": 8, "Wisdom": 12, "Charisma": 15},
+    "skill_choices": ["Acrobatics", "Performance", "Persuasion"],
+    "spell_selections": {
+      "cantrips": ["Minor Illusion", "Prestidigitation"],
+      "spells": ["Dissonant Whispers", "Cure Wounds", "Charm Person", "Thunderwave", "Aid", "Enhance Ability"],
+      "background_cantrips": [],
+      "background_spells": []
+    },
+    "languages": ["Elvish", "Draconic"],
+    "tool_choices": ["Lute", "Lyre", "Viol"],
+    "feat_Skilled_skills_or_tools": ["Perception", "Insight", "Disguise Kit"],
+    "species_trait_choices": {"Fiendish Legacy": "Charisma"},
+    "background_bonuses": {"Charisma": 2, "Dexterity": 1},
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_b"}
+  }
+}

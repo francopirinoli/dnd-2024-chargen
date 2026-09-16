@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+# Only ignore Python lib directories (venv/lib), not frontend/src/lib
+/lib/
+/lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Flask
+instance/
+flask_session/
+*.db
+*.sqlite
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Wiki data cache
+wiki_data/
+
+# Character files (optional - remove if you want to track these)
+*_character.json
+
+# log files
+character_creator.log
+frontend/tsconfig.app.tsbuildinfo
+frontend/tsconfig.node.tsbuildinfo
+
+# Test artifacts and temporary files
+*.actual.json
+scratch/
+powershell.bat
+frontend/powershell.bat
+
+# Frontend build artifacts and dependencies
+frontend/dist/
+frontend/dist-ssr/
+node_modules/
+frontend/node_modules/
+.vite/
+frontend/.vite/

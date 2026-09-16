@@ -1,0 +1,117 @@
+{
+  "class": "Warlock",
+  "cantrips": [
+    "Blade Ward",
+    "Chill Touch",
+    "Eldritch Blast",
+    "Friends",
+    "Mage Hand",
+    "Mind Sliver",
+    "Minor Illusion",
+    "Poison Spray",
+    "Prestidigitation",
+    "Thunderclap",
+    "Toll the Dead",
+    "True Strike"
+  ],
+  "spells_by_level": {
+    "1": [
+      "Armor of Agathys",
+      "Arms of Hadar",
+      "Bane",
+      "Charm Person",
+      "Comprehend Languages",
+      "Detect Magic",
+      "Expeditious Retreat",
+      "Hellish Rebuke",
+      "Hex",
+      "Illusory Script",
+      "Protection from Evil and Good",
+      "Speak with Animals",
+      "Unseen Servant",
+      "Witch Bolt"
+    ],
+    "2": [
+      "Cloud of Daggers",
+      "Crown of Madness",
+      "Darkness",
+      "Detect Thoughts",
+      "Enthrall",
+      "Hold Person",
+      "Invisibility",
+      "Mind Spike",
+      "Mirror Image",
+      "Misty Step",
+      "Ray of Enfeeblement",
+      "Shatter",
+      "Spider Climb",
+      "Suggestion"
+    ],
+    "3": [
+      "Counterspell",
+      "Dispel Magic",
+      "Fear",
+      "Fly",
+      "Gaseous Form",
+      "Hunger of Hadar",
+      "Hypnotic Pattern",
+      "Magic Circle",
+      "Major Image",
+      "Remove Curse",
+      "Summon Fey",
+      "Summon Undead",
+      "Tongues",
+      "Vampiric Touch"
+    ],
+    "4": [
+      "Banishment",
+      "Blight",
+      "Charm Monster",
+      "Dimension Door",
+      "Hallucinatory Terrain",
+      "Summon Aberration"
+    ],
+    "5": [
+      "Contact Other Plane",
+      "Dream",
+      "Hold Monster",
+      "Mislead",
+      "Planar Binding",
+      "Scrying",
+      "Synaptic Static",
+      "Teleportation Circle"
+    ],
+    "6": [
+      "Arcane Gate",
+      "Circle of Death",
+      "Conjure Fey",
+      "Create Undead",
+      "Eyebite",
+      "Flesh to Stone",
+      "Mass Suggestion",
+      "True Seeing"
+    ],
+    "7": [
+      "Etherealness",
+      "Finger of Death",
+      "Forcecage",
+      "Plane Shift"
+    ],
+    "8": [
+      "Demiplane",
+      "Dominate Monster",
+      "Feeblemind",
+      "Glibness",
+      "Power Word Stun"
+    ],
+    "9": [
+      "Astral Projection",
+      "Foresight",
+      "Gate",
+      "Imprisonment",
+      "Power Word Kill",
+      "True Polymorph",
+      "Weird"
+    ]
+  }
+}

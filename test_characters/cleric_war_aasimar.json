@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-19T08:50:00.141Z",
+  "choices_made": {
+    "classes": [
+      {
+        "class_name": "Cleric",
+        "level": 3,
+        "subclass": "War Domain"
+      }
+    ],
+    "spell_selections": {
+      "cantrips": [
+        "Toll the Dead",
+        "Word of Radiance",
+        "Guidance"
+      ],
+      "spells": [
+        "Healing Word",
+        "Detect Magic",
+        "Bless",
+        "Hold Person",
+        "Aid",
+        "Silence"
+      ],
+      "background_cantrips": [],
+      "background_spells": []
+    },
+    "divine_order": "Protector",
+    "skill_choices": [
+      "History",
+      "Religion"
+    ],
+    "background": "Farmer",
+    "species": "Aasimar",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {
+      "Strength": 14,
+      "Dexterity": 8,
+      "Constitution": 13,
+      "Intelligence": 12,
+      "Wisdom": 15,
+      "Charisma": 10
+    },
+    "languages": [
+      "Gnomish",
+      "Draconic"
+    ],
+    "background_bonuses": {
+      "Wisdom": 2,
+      "Constitution": 1
+    },
+    "equipment_selections": {
+      "class_equipment": "option_a",
+      "background_equipment": "option_b"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Hallow",
+  "level": 5,
+  "school": "Abjuration",
+  "casting_time": "24 hours",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S",
+    "M (herbs, oils, and incense worth 1,000+ GP, which the spell consumes)"
+  ],
+  "duration": "Until dispelled",
+  "description": "You touch a point and infuse an area around it with holy or unholy power. The area can have a radius up to 60 feet, and the spell fails if the radius includes an area already under the effect of a Hallow spell. The affected area has the following effects. Celestials, Elementals, Fey, Fiends, and Undead can't enter the area, nor can such creatures charm, frighten, or possess creatures within it. Any creature Charmed, Frightened, or Possessed by such a creature is no longer Charmed, Frightened, or Possessed upon entering the area. You can designate a secondary effect from the following list or from other effects offered by the DM: Courage, Darkness, Daylight, Energy Protection, Everlasting Rest, Extradimensional Interference, Fear, Silence, Tongues.",
+  "classes": [
+    "Cleric"
+  ],
+  "ritual": false
+}

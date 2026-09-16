@@ -1,0 +1,577 @@
+import json
+import os
+import sys
+from pathlib import Path
+
+# Set stdout encoding
+sys.stdout.reconfigure(encoding='utf-8')
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO_ROOT))
+
+from modules.supplement_manager import get_supplement_manager
+
+OUTPUT_PATH = REPO_ROOT / "supplements" / "lorwyn-first-light.json"
+
+package = {
+    "manifest": {
+        "id": "lorwyn-first-light",
+        "title": "Lorwyn: First Light",
+        "publisher": "Wizards of the Coast",
+        "version": "1.0.0",
+        "compatibility": "2024",
+        "description": "Character options from Lorwyn: First Light: 6 species (Boggart, Lorwyn Changeling, Flamekin, Rimekin, Faerie, Kithkin), 6 species lineages (Lorwyn Elf, Shadowmoor Elf, Lorwyn Faerie, Shadowmoor Faerie, Lorwyn Kithkin, Shadowmoor Kithkin), 2 backgrounds (Lorwyn Expert, Shadowmoor Expert), and 2 Origin feats (Child of the Sun, Shadowmoor Hexer).",
+        "dependencies": [
+            "core-phb-2024"
+        ]
+    },
+    "species": [
+        {
+            "name": "Boggart",
+            "description": "Boggarts are small, capricious humanoids native to Lorwyn and Shadowmoor, kinship to goblins elsewhere in the multiverse. They delight in mischief, sensational discoveries, and gathering sensory experiences. While their appetites and humor can be bewildering to outsiders, they possess surprising ferocity when protecting their warrens.",
+            "creature_type": "Humanoid",
+            "size": "Small",
+            "size_description": "Small (about 3–4 feet tall)",
+            "speed": 30,
+            "darkvision": 60,
+            "languages": [
+                "Common"
+            ],
+            "source": "Lorwyn: First Light",
+            "traits": {
+                "Darkvision": {
+                    "description": "You have Darkvision with a range of 60 feet.",
+                    "effects": [
+                        {
+                            "type": "grant_darkvision",
+                            "range": 60
+                        }
+                    ]
+                },
+                "Goblinoid": {
+                    "description": "You are also considered a goblinoid for any prerequisite or effect that requires you to be a goblinoid."
+                },
+                "Fury of the Small": {
+                    "description": "When you damage a creature with an attack or a spell and the creature's size is larger than yours, you can cause the attack or spell to deal extra damage to the creature. The extra damage equals your Proficiency Bonus. You can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. You can use it only once per turn."
+                },
+                "Nimble Escape": {
+                    "description": "You can take the Disengage or Hide action as a Bonus Action on each of your turns."
+                }
+            }
+        },
+        {
+            "name": "Flamekin",
+            "description": "Flamekin are beings forged of living fire housed within porous, obsidian-like stone armatures. Native to Lorwyn, they are an expressive, passionate people on spiritual quests to understand their inner flame and achieve enlightenment. In Shadowmoor, they burn cooler as cinders, yet retain their elemental magic.",
+            "creature_type": "Humanoid",
+            "size": "Medium or Small",
+            "size_description": "Medium (about 4–7 feet tall) or Small (about 3–4 feet tall), chosen when you select this species",
+            "speed": 30,
+            "darkvision": 60,
+            "languages": [
+                "Common"
+            ],
+            "source": "Lorwyn: First Light",
+            "traits": {
+                "Darkvision": {
+                    "description": "You have Darkvision with a range of 60 feet.",
+                    "effects": [
+                        {
+                            "type": "grant_darkvision",
+                            "range": 60
+                        }
+                    ]
+                },
+                "Fire Resistance": {
+                    "description": "You have Resistance to Fire damage.",
+                    "effects": [
+                        {
+                            "type": "grant_damage_resistance",
+                            "damage_type": "Fire"
+                        }
+                    ]
+                },
+                "Reach to the Blaze": {
+                    "description": "You know the Produce Flame cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for it (choose when you select this species). When you reach character levels 3 and 5, you learn the Burning Hands and Flame Blade spells respectively. You can cast each spell once without a spell slot, regaining the ability to cast it in that way when you finish a Long Rest. You can also cast each of these spells using any spell slots you have of the appropriate level.",
+                    "effects": [
+                        {
+                            "type": "grant_cantrip",
+                            "spell": "Produce Flame"
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Burning Hands",
+                            "min_level": 3
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Flame Blade",
+                            "min_level": 5
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Rimekin",
+            "description": "Rimekin are the cool reflections of flamekin, composed of glacial crystalline frost and frozen vapor. Contemplative, watchful, and steadfast, they embody winter's chill and wield the paradox of frost and inner thermal energy.",
+            "creature_type": "Humanoid",
+            "size": "Medium or Small",
+            "size_description": "Medium (about 4–7 feet tall) or Small (about 3–4 feet tall), chosen when you select this species",
+            "speed": 30,
+            "darkvision": 60,
+            "languages": [
+                "Common"
+            ],
+            "source": "Lorwyn: First Light",
+            "traits": {
+                "Darkvision": {
+                    "description": "You have Darkvision with a range of 60 feet.",
+                    "effects": [
+                        {
+                            "type": "grant_darkvision",
+                            "range": 60
+                        }
+                    ]
+                },
+                "Cold Resistance": {
+                    "description": "You have Resistance to Cold damage.",
+                    "effects": [
+                        {
+                            "type": "grant_damage_resistance",
+                            "damage_type": "Cold"
+                        }
+                    ]
+                },
+                "Cold Fire Magic": {
+                    "description": "You know the Ray of Frost cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for it (choose when you select this species). When you reach character levels 3 and 5, you learn the Ice Knife and Flame Blade spells respectively. You can cast each spell once without a spell slot, regaining the ability to cast it in that way when you finish a Long Rest. You can also cast each of these spells using any spell slots you have of the appropriate level.",
+                    "effects": [
+                        {
+                            "type": "grant_cantrip",
+                            "spell": "Ray of Frost"
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Ice Knife",
+                            "min_level": 3
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Flame Blade",
+                            "min_level": 5
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Lorwyn Changeling",
+            "description": "Changelings in Lorwyn-Shadowmoor are curious, adaptable fey folk known for their fluid forms and capricious luck. Unlike the urban changelings of other worlds, Lorwyn changelings are creatures of the wilderness and fey crossings, capable of shifting into animalistic and humanoid forms with effortless grace.",
+            "creature_type": "Fey",
+            "size": "Medium or Small",
+            "size_description": "Medium (about 4–7 feet tall) or Small (about 3–4 feet tall), chosen when you select this species",
+            "speed": 30,
+            "darkvision": 120,
+            "languages": [
+                "Common"
+            ],
+            "source": "Lorwyn: First Light",
+            "traits": {
+                "Darkvision": {
+                    "description": "You have Darkvision with a range of 120 feet.",
+                    "effects": [
+                        {
+                            "type": "grant_darkvision",
+                            "range": 120
+                        }
+                    ]
+                },
+                "Shape Self": {
+                    "description": "As an action, you can reshape your body to a two-legged Humanoid shape or to a four-legged Beast shape. While you have a Humanoid shape, you can wear clothing and armor made for a Humanoid of your size."
+                },
+                "Unpredictable Movement": {
+                    "description": "When you roll Initiative and you don't have Disadvantage on that roll, you can immediately move up to half your Speed."
+                },
+                "Instinctive Deception": {
+                    "description": "You gain proficiency in one of the following skills of your choice: Deception or Performance.",
+                    "type": "choice",
+                    "choices": {
+                        "type": "select_multiple",
+                        "count": 1,
+                        "source": {
+                            "type": "fixed_list",
+                            "options": [
+                                "Deception",
+                                "Performance"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Faerie",
+            "description": "Faeries of Lorwyn-Shadowmoor are diminutive, gossamer-winged fey who live nomadic lives flitting from glen to village. In Lorwyn they cause whimsical mischief, while in Shadowmoor their pranks turn dark and spiteful. All wield innate fairy magic and aerial grace.",
+            "creature_type": "Fey",
+            "size": "Small",
+            "size_description": "Small (about 2–3 feet tall)",
+            "speed": 30,
+            "languages": [
+                "Common"
+            ],
+            "lineages": [
+                "Lorwyn Faerie",
+                "Shadowmoor Faerie"
+            ],
+            "source": "Lorwyn: First Light",
+            "traits": {
+                "Flight": {
+                    "description": "Because of your wings, you have a Fly Speed equal to your Speed. You can't use this Fly Speed if you're wearing Medium or Heavy armor."
+                },
+                "Fairy Magic": {
+                    "description": "You know the Druidcraft cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for it (choose when you select this species). When you reach character levels 3 and 5, you learn the Faerie Fire and Enlarge/Reduce spells respectively. You can cast each spell once without a spell slot, regaining the ability to cast it in that way when you finish a Long Rest. You can also cast each of these spells using any spell slots you have of the appropriate level.",
+                    "effects": [
+                        {
+                            "type": "grant_cantrip",
+                            "spell": "Druidcraft"
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Faerie Fire",
+                            "min_level": 3
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Enlarge/Reduce",
+                            "min_level": 5
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Kithkin",
+            "description": "Kithkin are tight-knit, industrious folk who live in close-knit communities called clachans. Bound together by an empathic communal sense known as the thoughtweft, they are courageous defenders of their hearths and remarkably agile.",
+            "creature_type": "Humanoid",
+            "size": "Small",
+            "size_description": "Small (about 2–3 feet tall)",
+            "speed": 30,
+            "languages": [
+                "Common"
+            ],
+            "lineages": [
+                "Lorwyn Kithkin",
+                "Shadowmoor Kithkin"
+            ],
+            "source": "Lorwyn: First Light",
+            "traits": {
+                "Brave": {
+                    "description": "You have Advantage on saving throws made to avoid or end the Frightened condition."
+                },
+                "Kithkin Nimbleness": {
+                    "description": "You can move through the space of any creature that is of a size larger than yours."
+                },
+                "Luck": {
+                    "description": "When you roll a 1 on the d20 of a D20 Test, you can reroll the die, and you must use the new roll."
+                },
+                "Naturally Stealthy": {
+                    "description": "You can take the Hide action even when you are obscured only by a creature that is at least one size larger than you."
+                }
+            }
+        }
+    ],
+    "species_variants": [
+        {
+            "name": "Lorwyn Elf",
+            "parent_species": "Elf",
+            "description": "Elves native to Lorwyn embody the resplendent, untamed beauty of eternal day. They commune deeply with nature, weaving primal druidic magic through their ancestral lore.",
+            "cantrip_replacement": "Druid",
+            "spellcasting_ability_choice": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+            ],
+            "traits": {
+                "Lorwyn Elf Lineage": {
+                    "description": "You know the Thorn Whip cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Druid spell list. When you reach character levels 3 and 5, you learn the Command and Silence spells respectively. You can cast each of these spells once without a spell slot, regaining the ability to cast it in that way when you finish a Long Rest. You can also cast each of these spells using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this lineage).",
+                    "effects": [
+                        {
+                            "type": "grant_cantrip",
+                            "spell": "Thorn Whip"
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Command",
+                            "min_level": 3
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Silence",
+                            "min_level": 5
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Shadowmoor Elf",
+            "parent_species": "Elf",
+            "description": "Elves native to Shadowmoor are nocturnal wanderers who stalk misty moors under perpetual night. Their darkvision is exceptionally sharp, and they draw upon melancholy astral light.",
+            "spellcasting_ability_choice": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+            ],
+            "traits": {
+                "Shadowmoor Elf Lineage": {
+                    "description": "You know the Starry Wisp cantrip. When you reach character levels 3 and 5, you learn the Heroism and Gentle Repose spells respectively. You can cast each of these spells once without a spell slot, regaining the ability to cast it in that way when you finish a Long Rest. You can also cast each of these spells using any spell slots you have of the appropriate level. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this lineage).",
+                    "effects": [
+                        {
+                            "type": "grant_cantrip",
+                            "spell": "Starry Wisp"
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Heroism",
+                            "min_level": 3
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Gentle Repose",
+                            "min_level": 5
+                        },
+                        {
+                            "type": "grant_darkvision",
+                            "range": 120
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Lorwyn Faerie",
+            "parent_species": "Faerie",
+            "description": "Faeries attuned to the idyllic, sunlit glens of Lorwyn, full of vibrant curiosity and whimsical play.",
+            "traits": {
+                "Daylight Attunement": {
+                    "description": "You are attuned to the eternal day of Lorwyn, thriving under open skies and warm sunbeams."
+                }
+            }
+        },
+        {
+            "name": "Shadowmoor Faerie",
+            "parent_species": "Faerie",
+            "description": "Faeries attuned to the moonlit bogs and brambles of Shadowmoor, gifted with keen nocturnal vision.",
+            "traits": {
+                "Superior Darkvision": {
+                    "description": "You have Darkvision with a range of 120 feet.",
+                    "effects": [
+                        {
+                            "type": "grant_darkvision",
+                            "range": 120
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Lorwyn Kithkin",
+            "parent_species": "Kithkin",
+            "description": "Kithkin raised in the cozy, sun-drenched clachans of Lorwyn, celebrated for their community craftsmanship and hospitality.",
+            "traits": {
+                "Clachan Kinship": {
+                    "description": "You share the warmth of Lorwyn's tight-knit clachan communities."
+                }
+            }
+        },
+        {
+            "name": "Shadowmoor Kithkin",
+            "parent_species": "Kithkin",
+            "description": "Kithkin hardened by Shadowmoor's treacherous moors, adapting keen senses to navigate the gloom.",
+            "traits": {
+                "Superior Darkvision": {
+                    "description": "You have Darkvision with a range of 120 feet.",
+                    "effects": [
+                        {
+                            "type": "grant_darkvision",
+                            "range": 120
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "backgrounds": [
+        {
+            "name": "Lorwyn Expert",
+            "description": "You have traversed the sunlit hills, bright meadows, and bustling clachans of Lorwyn. You know the waterways, the wandering giants, and how to navigate the eccentric whims of fey and flamekin.",
+            "edition": "2024",
+            "status": "active",
+            "source": "Lorwyn: First Light",
+            "ability_score_increase": {
+                "total": 3,
+                "options": [
+                    "Strength",
+                    "Constitution",
+                    "Wisdom"
+                ],
+                "suggested": {
+                    "Wisdom": 2,
+                    "Constitution": 1
+                }
+            },
+            "effects": [
+                {
+                    "type": "grant_skill_proficiency",
+                    "skills": [
+                        "Athletics",
+                        "Nature"
+                    ]
+                },
+                {
+                    "type": "grant_origin_feat",
+                    "feat": "Child of the Sun"
+                },
+                {
+                    "type": "grant_tool_proficiency",
+                    "tools": [
+                        "Cartographer's Tools"
+                    ]
+                }
+            ],
+            "starting_equipment": {
+                "option_a": {
+                    "items": [
+                        "Cartographer's Tools",
+                        "Quarterstaff",
+                        "Backpack",
+                        "Basket",
+                        "Parchment (4 sheets)",
+                        "Rope",
+                        "Traveler's Clothes"
+                    ],
+                    "gold": 29
+                },
+                "option_b": {
+                    "gold": 50
+                }
+            }
+        },
+        {
+            "name": "Shadowmoor Expert",
+            "description": "You have survived the perpetual night, shifting bogs, and suspicious inhabitants of Shadowmoor. You are skilled in stealth, wary of deceit, and know how to avoid the deadly dangers lurking in the gloom.",
+            "edition": "2024",
+            "status": "active",
+            "source": "Lorwyn: First Light",
+            "ability_score_increase": {
+                "total": 3,
+                "options": [
+                    "Dexterity",
+                    "Intelligence",
+                    "Charisma"
+                ],
+                "suggested": {
+                    "Dexterity": 2,
+                    "Intelligence": 1
+                }
+            },
+            "effects": [
+                {
+                    "type": "grant_skill_proficiency",
+                    "skills": [
+                        "Acrobatics",
+                        "Deception"
+                    ]
+                },
+                {
+                    "type": "grant_origin_feat",
+                    "feat": "Shadowmoor Hexer"
+                },
+                {
+                    "type": "grant_tool_proficiency",
+                    "tools": [
+                        "Glassblower's Tools"
+                    ]
+                }
+            ],
+            "starting_equipment": {
+                "option_a": {
+                    "items": [
+                        "Glassblower's Tools",
+                        "Dagger",
+                        "Backpack",
+                        "Hunting Trap",
+                        "Lamp",
+                        "Oil (3 flasks)",
+                        "Traveler's Clothes",
+                        "Waterskin"
+                    ],
+                    "gold": 8
+                },
+                "option_b": {
+                    "gold": 50
+                }
+            }
+        }
+    ],
+    "feats": {
+        "origin_feats": {
+            "Child of the Sun": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Eyes of Eirdu. You and allies within 10 feet of you have Advantage on saving throws made to avoid or end the Blinded condition.",
+                    "Faerie Fire. You learn the Faerie Fire spell. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have. When you cast Faerie Fire without a spell slot using this benefit, taking damage can't break your Concentration on the spell."
+                ],
+                "category": "Origin",
+                "prerequisite": "None",
+                "source": "Lorwyn: First Light",
+                "effects": [
+                    {
+                        "type": "grant_spell",
+                        "spell": "Faerie Fire",
+                        "level": 1,
+                        "free_uses": 1,
+                        "recovery": "long_rest"
+                    }
+                ]
+            },
+            "Shadowmoor Hexer": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Hex. You always have the Hex spell prepared. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have.",
+                    "Curse Magic. When a creature that you've cursed with Hex hits you with an attack roll, the creature takes Psychic damage equal to your Proficiency Bonus. A creature takes this damage only once per turn."
+                ],
+                "category": "Origin",
+                "prerequisite": "None",
+                "source": "Lorwyn: First Light",
+                "effects": [
+                    {
+                        "type": "grant_spell",
+                        "spell": "Hex",
+                        "level": 1,
+                        "free_uses": 1,
+                        "recovery": "long_rest"
+                    }
+                ]
+            }
+        }
+    }
+}
+
+def main():
+    print("Building Lorwyn: First Light supplement...")
+    mgr = get_supplement_manager()
+    valid, errors = mgr.validate_package(package)
+    if not valid:
+        print("Validation errors encountered:")
+        for err in errors:
+            print(f"  - {err}")
+        sys.exit(1)
+
+    print("Package is valid according to schema!")
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(package, f, indent=2, ensure_ascii=False)
+    print(f"Wrote {OUTPUT_PATH} ({OUTPUT_PATH.stat().st_size} bytes)")
+
+if __name__ == "__main__":
+    main()

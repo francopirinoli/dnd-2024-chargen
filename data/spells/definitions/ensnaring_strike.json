@@ -1,0 +1,16 @@
+{
+  "name": "Ensnaring Strike",
+  "level": 1,
+  "school": "Conjuration",
+  "casting_time": "1 bonus action, which you take immediately after hitting a target with a Weapon",
+  "range": "Self",
+  "components": [
+    "V"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "As you hit the target, grasping, thorny vines appear around it, and it must succeed on a Strength saving throw or have the Restrained condition until the spell ends. A Large or larger creature has Advantage on this save. If the target has the Restrained condition, it takes 1d6 Piercing damage at the start of each of its turns. A creature Restrained by this spell or another creature that can touch the Restrained creature can take an action to make a Strength check against your spell save DC. On a success, the Restrained creature is freed. Using a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
+  "classes": [
+    "Ranger"
+  ],
+  "ritual": false
+}

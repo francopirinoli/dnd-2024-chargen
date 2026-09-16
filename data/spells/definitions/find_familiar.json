@@ -1,0 +1,18 @@
+{
+  "name": "Find Familiar",
+  "level": 1,
+  "school": "Conjuration",
+  "casting_time": "1 hour or Ritual",
+  "range": "10 feet",
+  "components": [
+    "V",
+    "S",
+    "M (burning incense worth 10+ GP, which the spell consumes)"
+  ],
+  "duration": "Instantaneous",
+  "description": "You gain the service of a familiar, a spirit that takes an animal form you choose: Bat, Cat, Frog, Hawk, Lizard, Octopus, Owl, Rat, Raven, Spider, Weasel, or another Beast that has a Challenge Rating of 0. The familiar acts independently but obeys your commands. While within 100 feet, you can communicate telepathically and use a Bonus Action to see through its eyes. When you cast a touch spell, the familiar can deliver it. The familiar can't attack but can take other actions. If it drops to 0 HP, it disappears and reappears when you cast this spell again.",
+  "classes": [
+    "Wizard"
+  ],
+  "ritual": true
+}

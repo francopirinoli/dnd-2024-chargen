@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Seraphine Dusk",
+    "classes": [{"class_name": "Sorcerer", "level": 3, "subclass": "Draconic Sorcery"}],
+    "species": "Aasimar",
+    "background": "Noble",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {"Strength": 8, "Dexterity": 13, "Constitution": 14, "Intelligence": 10, "Wisdom": 12, "Charisma": 15},
+    "background_bonuses": {"Charisma": 2, "Constitution": 1},
+    "skill_choices": ["Arcana", "Persuasion"],
+    "draconic_ancestry": "Gold",
+    "spell_selections": {
+      "cantrips": ["Fire Bolt", "Chill Touch", "Mage Hand"],
+      "spells": ["Burning Hands", "False Life", "Blur"],
+      "background_cantrips": [],
+      "background_spells": []
+    },
+    "languages": ["Elvish", "Draconic"],
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_b"},
+    "metamagic": ["Quickened Spell", "Distant Spell"],
+    "background_skill_replacement": ["Deception"],
+    "feat_Skilled_skills_or_tools": ["Intimidation", "Perception", "Performance"]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Feat",
+  "description": "Single schema covering BOTH data/origin_feats.json and data/general_feats.json. Both files have the same outer shape: a one-key wrapper ('origin_feats' or 'general_feats') around a map of feat_name -> feat entry. A single schema is used instead of two because per-feat entries are structurally identical (description, benefits, category, prerequisite, source, optional choices/choice_effects/effects); only the wrapper key differs. The wrapper key is restricted via maxProperties=1 and the per-key pattern so each file remains self-describing.",
+  "type": "object",
+  "minProperties": 1,
+  "maxProperties": 1,
+  "patternProperties": {
+    "^(origin_feats|general_feats)$": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "benefits", "category", "prerequisite", "source"],
+        "properties": {
+          "description": { "type": "string" },
+          "benefits": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "category": {
+            "type": "string",
+            "enum": ["Origin", "General", "Fighting Style", "Epic Boon"]
+          },
+          "prerequisite": { "type": "string" },
+          "source": { "type": "string" },
+          "repeatable": { "type": "boolean" },
+          "effects": {
+            "type": "array",
+            "items": { "$ref": "_shared/effect.json" }
+          },
+          "choices": {
+            "type": "array",
+            "items": { "$ref": "_shared/choice.json" }
+          },
+          "choice_effects": { "$ref": "_shared/choice_effects.json" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

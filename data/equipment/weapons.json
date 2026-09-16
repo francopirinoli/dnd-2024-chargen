@@ -1,0 +1,370 @@
+{
+  "Club": {
+    "category": "Simple Melee",
+    "cost": "1 sp",
+    "damage": "1d4",
+    "damage_type": "Bludgeoning",
+    "weight": 2,
+    "properties": ["Light"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Slow"
+  },
+  "Dagger": {
+    "category": "Simple Melee",
+    "cost": "2 gp",
+    "damage": "1d4",
+    "damage_type": "Piercing",
+    "weight": 1,
+    "properties": ["Finesse", "Light", "Thrown (range 20/60)"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Nick"
+  },
+  "Greatclub": {
+    "category": "Simple Melee",
+    "cost": "2 sp",
+    "damage": "1d8",
+    "damage_type": "Bludgeoning",
+    "weight": 10,
+    "properties": ["Two-Handed"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Push"
+  },
+  "Handaxe": {
+    "category": "Simple Melee",
+    "cost": "5 gp",
+    "damage": "1d6",
+    "damage_type": "Slashing",
+    "weight": 2,
+    "properties": ["Light", "Thrown (range 20/60)"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Vex"
+  },
+  "Javelin": {
+    "category": "Simple Melee",
+    "cost": "5 sp",
+    "damage": "1d6",
+    "damage_type": "Piercing",
+    "weight": 2,
+    "properties": ["Thrown (range 30/120)"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Slow"
+  },
+  "Light Hammer": {
+    "category": "Simple Melee",
+    "cost": "2 gp",
+    "damage": "1d4",
+    "damage_type": "Bludgeoning",
+    "weight": 2,
+    "properties": ["Light", "Thrown (range 20/60)"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Nick"
+  },
+  "Mace": {
+    "category": "Simple Melee",
+    "cost": "5 gp",
+    "damage": "1d6",
+    "damage_type": "Bludgeoning",
+    "weight": 4,
+    "properties": [],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Sap"
+  },
+  "Quarterstaff": {
+    "category": "Simple Melee",
+    "cost": "2 sp",
+    "damage": "1d6",
+    "damage_type": "Bludgeoning",
+    "weight": 4,
+    "properties": ["Versatile (1d8)"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Topple"
+  },
+  "Sickle": {
+    "category": "Simple Melee",
+    "cost": "1 gp",
+    "damage": "1d4",
+    "damage_type": "Slashing",
+    "weight": 2,
+    "properties": ["Light"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Nick"
+  },
+  "Spear": {
+    "category": "Simple Melee",
+    "cost": "1 gp",
+    "damage": "1d6",
+    "damage_type": "Piercing",
+    "weight": 3,
+    "properties": ["Thrown (range 20/60)", "Versatile (1d8)"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Sap"
+  },
+  "Light Crossbow": {
+    "category": "Simple Ranged",
+    "cost": "25 gp",
+    "damage": "1d8",
+    "damage_type": "Piercing",
+    "weight": 5,
+    "properties": ["Ammunition (range 80/320)", "Loading", "Two-Handed"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Slow"
+  },
+  "Dart": {
+    "category": "Simple Ranged",
+    "cost": "5 cp",
+    "damage": "1d4",
+    "damage_type": "Piercing",
+    "weight": 0.25,
+    "properties": ["Finesse", "Thrown (range 20/60)"],
+    "proficiency_required": "Simple weapons"
+  },
+  "Shortbow": {
+    "category": "Simple Ranged",
+    "cost": "25 gp",
+    "damage": "1d6",
+    "damage_type": "Piercing",
+    "weight": 2,
+    "properties": ["Ammunition (range 80/320)", "Two-Handed"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Vex"
+  },
+  "Sling": {
+    "category": "Simple Ranged",
+    "cost": "1 sp",
+    "damage": "1d4",
+    "damage_type": "Bludgeoning",
+    "weight": 0,
+    "properties": ["Ammunition (range 30/120)"],
+    "proficiency_required": "Simple weapons",
+    "mastery": "Slow"
+  },
+  "Battleaxe": {
+    "category": "Martial Melee",
+    "cost": "10 gp",
+    "damage": "1d8",
+    "damage_type": "Slashing",
+    "weight": 4,
+    "properties": ["Versatile (1d10)"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Topple"
+  },
+  "Flail": {
+    "category": "Martial Melee",
+    "cost": "10 gp",
+    "damage": "1d8",
+    "damage_type": "Bludgeoning",
+    "weight": 2,
+    "properties": [],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Sap"
+  },
+  "Glaive": {
+    "category": "Martial Melee",
+    "cost": "20 gp",
+    "damage": "1d10",
+    "damage_type": "Slashing",
+    "weight": 6,
+    "properties": ["Heavy", "Reach", "Two-Handed"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Graze"
+  },
+  "Greataxe": {
+    "category": "Martial Melee",
+    "cost": "30 gp",
+    "damage": "1d12",
+    "damage_type": "Slashing",
+    "weight": 7,
+    "properties": ["Heavy", "Two-Handed"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Cleave"
+  },
+  "Greatsword": {
+    "category": "Martial Melee",
+    "cost": "50 gp",
+    "damage": "2d6",
+    "damage_type": "Slashing",
+    "weight": 6,
+    "properties": ["Heavy", "Two-Handed"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Graze"
+  },
+  "Halberd": {
+    "category": "Martial Melee",
+    "cost": "20 gp",
+    "damage": "1d10",
+    "damage_type": "Slashing",
+    "weight": 6,
+    "properties": ["Heavy", "Reach", "Two-Handed"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Cleave"
+  },
+  "Lance": {
+    "category": "Martial Melee",
+    "cost": "10 gp",
+    "damage": "1d12",
+    "damage_type": "Piercing",
+    "weight": 6,
+    "properties": ["Reach", "Special"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Topple"
+  },
+  "Longsword": {
+    "category": "Martial Melee",
+    "cost": "15 gp",
+    "damage": "1d8",
+    "damage_type": "Slashing",
+    "weight": 3,
+    "properties": ["Versatile (1d10)"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Vex"
+  },
+  "Maul": {
+    "category": "Martial Melee",
+    "cost": "10 gp",
+    "damage": "2d6",
+    "damage_type": "Bludgeoning",
+    "weight": 10,
+    "properties": ["Heavy", "Two-Handed"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Topple"
+  },
+  "Morningstar": {
+    "category": "Martial Melee",
+    "cost": "15 gp",
+    "damage": "1d8",
+    "damage_type": "Piercing",
+    "weight": 4,
+    "properties": [],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Sap"
+  },
+  "Pike": {
+    "category": "Martial Melee",
+    "cost": "5 gp",
+    "damage": "1d10",
+    "damage_type": "Piercing",
+    "weight": 18,
+    "properties": ["Heavy", "Reach", "Two-Handed"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Push"
+  },
+  "Rapier": {
+    "category": "Martial Melee",
+    "cost": "25 gp",
+    "damage": "1d8",
+    "damage_type": "Piercing",
+    "weight": 2,
+    "properties": ["Finesse"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Vex"
+  },
+  "Scimitar": {
+    "category": "Martial Melee",
+    "cost": "25 gp",
+    "damage": "1d6",
+    "damage_type": "Slashing",
+    "weight": 3,
+    "properties": ["Finesse", "Light"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Nick"
+  },
+  "Shortsword": {
+    "category": "Martial Melee",
+    "cost": "10 gp",
+    "damage": "1d6",
+    "damage_type": "Piercing",
+    "weight": 2,
+    "properties": ["Finesse", "Light"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Vex"
+  },
+  "Trident": {
+    "category": "Martial Melee",
+    "cost": "5 gp",
+    "damage": "1d6",
+    "damage_type": "Piercing",
+    "weight": 4,
+    "properties": ["Thrown (range 20/60)", "Versatile (1d8)"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Topple"
+  },
+  "War Pick": {
+    "category": "Martial Melee",
+    "cost": "5 gp",
+    "damage": "1d8",
+    "damage_type": "Piercing",
+    "weight": 2,
+    "properties": [],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Push"
+  },
+  "Warhammer": {
+    "category": "Martial Melee",
+    "cost": "15 gp",
+    "damage": "1d8",
+    "damage_type": "Bludgeoning",
+    "weight": 2,
+    "properties": ["Versatile (1d10)"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Push"
+  },
+  "Whip": {
+    "category": "Martial Melee",
+    "cost": "2 gp",
+    "damage": "1d4",
+    "damage_type": "Slashing",
+    "weight": 3,
+    "properties": ["Finesse", "Reach"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Slow"
+  },
+  "Blowgun": {
+    "category": "Martial Ranged",
+    "cost": "10 gp",
+    "damage": "1",
+    "damage_type": "Piercing",
+    "weight": 1,
+    "properties": ["Ammunition (range 25/100)", "Loading"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Vex"
+  },
+  "Hand Crossbow": {
+    "category": "Martial Ranged",
+    "cost": "75 gp",
+    "damage": "1d6",
+    "damage_type": "Piercing",
+    "weight": 3,
+    "properties": ["Ammunition (range 30/120)", "Light", "Loading"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Vex"
+  },
+  "Heavy Crossbow": {
+    "category": "Martial Ranged",
+    "cost": "50 gp",
+    "damage": "1d10",
+    "damage_type": "Piercing",
+    "weight": 18,
+    "properties": ["Ammunition (range 100/400)", "Heavy", "Loading", "Two-Handed"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Push"
+  },
+  "Longbow": {
+    "category": "Martial Ranged",
+    "cost": "50 gp",
+    "damage": "1d8",
+    "damage_type": "Piercing",
+    "weight": 2,
+    "properties": ["Ammunition (range 150/600)", "Heavy", "Two-Handed"],
+    "proficiency_required": "Martial weapons",
+    "mastery": "Slow"
+  },
+  "Net": {
+    "category": "Martial Ranged",
+    "cost": "1 gp",
+    "damage": "-",
+    "damage_type": "Special",
+    "weight": 3,
+    "properties": ["Special", "Thrown (range 5/15)"],
+    "proficiency_required": "Martial weapons"
+  }
+}

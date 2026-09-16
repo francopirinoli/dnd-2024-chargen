@@ -1,0 +1,31 @@
+{
+  "name": "Circle of the Moon",
+  "class": "Druid",
+  "description": "Druids of the Circle of the Moon draw on lunar magic to transform themselves. Their order gathers under the moon to share news and perform rituals.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Circle Forms": "When you assume a Wild Shape form, the following rules apply. Challenge Rating: The maximum CR for the form equals your Druid level divided by 3 (round down). Armor Class: Your AC equals 13 plus your Wisdom modifier if that total is higher than the Beast's AC. Temporary Hit Points: You gain Temporary Hit Points equal to three times your Druid level.",
+      "Circle of the Moon Spells": {
+        "description": "You always have certain spells prepared. These spells can also be cast while in Wild Shape form.",
+        "effects": [
+          {"type": "grant_cantrip", "spell": "Starry Wisp"},
+          {"type": "grant_spell", "spell": "Cure Wounds", "min_level": 3},
+          {"type": "grant_spell", "spell": "Moonbeam", "min_level": 3},
+          {"type": "grant_spell", "spell": "Conjure Animals", "min_level": 5},
+          {"type": "grant_spell", "spell": "Fount of Moonlight", "min_level": 7},
+          {"type": "grant_spell", "spell": "Mass Cure Wounds", "min_level": 9}
+        ]
+      }
+    },
+    "6": {
+      "Improved Circle Forms": "While in Wild Shape form, you gain the following benefits. Lunar Radiance: Each of your attacks in Wild Shape can deal its normal damage type or Radiant damage. You make this choice each time you hit. Increased Toughness: You can add your Wisdom modifier to your Constitution saving throws."
+    },
+    "10": {
+      "Moonlight Step": "As a Bonus Action, you can teleport up to 30 feet to an unoccupied space you can see, and you have Advantage on the next attack roll you make before the end of the turn. You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. You can also restore one use by expending a spell slot of level 2 or higher (no action required)."
+    },
+    "14": {
+      "Lunar Form": "Improved Lunar Radiance: Once per turn when you hit a target with a Wild Shape form's attack, you can deal an extra 2d10 Radiant damage to the target. Shared Moonlight: Whenever you use Moonlight Step, you can also teleport one willing creature within 10 feet of you. That creature teleports to an unoccupied space of your choice within 10 feet of your destination."
+    }
+  }
+}

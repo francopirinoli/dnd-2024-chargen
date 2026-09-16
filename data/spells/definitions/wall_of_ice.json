@@ -1,0 +1,18 @@
+{
+  "name": "Wall of Ice",
+  "level": 6,
+  "school": "Evocation",
+  "casting_time": "1 action",
+  "range": "120 feet",
+  "components": [
+    "V",
+    "S",
+    "M (a piece of quartz)"
+  ],
+  "duration": "Concentration, up to 10 minutes",
+  "description": "You create a wall of ice on a solid surface within range. You can form it into a hemispherical dome or a sphere with a radius of up to 10 feet, or you can shape a flat surface made up of ten 10-foot-by-10-foot panels. Each panel must be contiguous with another panel. In any form, the wall is 1 foot thick and lasts for the duration. If the wall cuts through a creature's space when it appears, the creature within its area is pushed to one side of the wall and must make a Dexterity saving throw, taking 10d6 Cold damage on a failed save, or half as much damage on a successful one. The wall has AC 12, 30 HP per 10-foot section, and is vulnerable to Fire damage. Reducing a section to 0 HP destroys it.",
+  "classes": [
+    "Wizard"
+  ],
+  "ritual": false
+}

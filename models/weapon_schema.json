@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Weapons",
+  "description": "Schema for data/equipment/weapons.json. Top-level keys are weapon names; values describe stats. Properties is an open string list (Light, Heavy, Reach, Finesse, Versatile (1dN), Thrown (range A/B), Ammunition (range A/B), Loading, Two-Handed, etc.). Mastery is optional because a handful of weapons (e.g. Dart) intentionally do not carry one.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": ["category", "cost", "damage", "damage_type", "weight", "properties", "proficiency_required"],
+    "properties": {
+      "category": {
+        "type": "string",
+        "enum": ["Simple Melee", "Simple Ranged", "Martial Melee", "Martial Ranged"]
+      },
+      "cost": { "type": "string" },
+      "damage": { "type": "string" },
+      "damage_type": {
+        "type": "string",
+        "description": "Standard damage type, plus the literal 'Special' used by the Net (which deals no damage; see PHB 2024). TODO(data-completeness): consider modelling Net as a non-damaging utility weapon rather than using a 'Special' damage_type sentinel.",
+        "enum": [
+          "Acid", "Bludgeoning", "Cold", "Fire", "Force",
+          "Lightning", "Necrotic", "Piercing", "Poison",
+          "Psychic", "Radiant", "Slashing", "Thunder",
+          "Special"
+        ]
+      },
+      "weight": {
+        "type": "number",
+        "minimum": 0
+      },
+      "properties": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "proficiency_required": { "type": "string" },
+      "mastery": { "type": "string" }
+    },
+    "additionalProperties": false
+  }
+}

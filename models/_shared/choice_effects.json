@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Choice Effects",
+  "description": "Map from chosen option (or choice-name → chosen option) to the effects that selecting it grants. Two shapes are observed in current data: (1) option_label → effect[] (used by species traits with a single inline choice); (2) choice_name → option_label → effect[] (used by feats and class features with named choices).",
+  "type": "object",
+  "additionalProperties": {
+    "oneOf": [
+      {
+        "type": "array",
+        "items": { "$ref": "effect.json" }
+      },
+      {
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": { "$ref": "effect.json" }
+        }
+      }
+    ]
+  }
+}

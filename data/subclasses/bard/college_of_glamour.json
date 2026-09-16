@@ -1,0 +1,29 @@
+{
+  "name": "College of Glamour",
+  "class": "Bard",
+  "description": "The College of Glamour traces its origins to the beguiling magic of the Feywild. Bards who study this magic weave threads of beauty and terror into their songs and stories, and the mightiest among them can cloak themselves in otherworldly majesty.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Beguiling Magic": {
+        "description": "You always have the Charm Person and Mirror Image spells prepared. In addition, immediately after you cast an Enchantment or Illusion spell using a spell slot, you can cause a creature you can see within 60 feet to make a Wisdom saving throw against your spell save DC. On a failed save, the target has the Charmed or Frightened condition (your choice) for 1 minute. The target repeats the save at the end of each of its turns, ending the effect on a success. Once you use this benefit, you can't use it again until you finish a Long Rest, unless you expend a use of your Bardic Inspiration (no action required) to restore your use of it.",
+        "effects": [
+          {"type": "grant_spell", "spell": "Charm Person", "min_level": 3, "counts_against_limit": false},
+          {"type": "grant_spell", "spell": "Mirror Image", "min_level": 3, "counts_against_limit": false}
+        ]
+      },
+      "Mantle of Inspiration": "As a Bonus Action, you can expend a use of your Bardic Inspiration, rolling your Bardic Inspiration die. Choose a number of creatures you can see within 60 feet of you, up to a number equal to your Charisma modifier (minimum 1). Each gains Temporary Hit Points equal to 2 times the number rolled on the Bardic Inspiration die. Each creature that gains these Temporary Hit Points can then use its Reaction to move up to its Speed without provoking Opportunity Attacks."
+    },
+    "6": {
+      "Mantle of Majesty": {
+        "description": "You always have the Command spell prepared. As a Bonus Action, you cast Command without expending a spell slot, and you take on an appearance of unearthly beauty for 1 minute (Concentration). During this time, you can cast Command as a Bonus Action on each of your turns without expending a spell slot. Any creature Charmed by you automatically fails its saving throw against the Command you cast with this feature. Once you use this feature, you can't use it again until you finish a Long Rest, unless you expend a spell slot of level 3 or higher to restore your use of it.",
+        "effects": [
+          {"type": "grant_spell", "spell": "Command", "min_level": 6, "counts_against_limit": false}
+        ]
+      }
+    },
+    "14": {
+      "Unbreakable Majesty": "As a Bonus Action, you can assume a magically majestic presence for 1 minute or until you are Incapacitated. For the duration, whenever a creature hits you with an attack roll for the first time on a turn, the attacker must succeed on a Charisma saving throw against your spell save DC, or the attack misses instead, as the creature recoils from your majesty. Once you use this feature, you can't use it again until you finish a Short or Long Rest."
+    }
+  }
+}

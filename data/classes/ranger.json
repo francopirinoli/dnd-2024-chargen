@@ -1,0 +1,739 @@
+{
+  "name": "Ranger",
+  "description": "Far from bustling cities, amid the trees of trackless forests and across wide plains, Rangers keep their unending watch in the wilderness. Rangers learn to track their quarry as a predator does, moving stealthily through the wilds and hiding themselves in brush and rubble. Thanks to their connection with nature, Rangers can also cast spells that harness primal powers of the wilderness.",
+  "hit_die": 10,
+  "primary_ability": "Dexterity & Wisdom",
+  "saving_throw_proficiencies": [
+    "Strength",
+    "Dexterity"
+  ],
+  "standard_array_assignment": {
+    "Strength": 12,
+    "Dexterity": 15,
+    "Constitution": 13,
+    "Intelligence": 8,
+    "Wisdom": 14,
+    "Charisma": 10
+  },
+  "armor_proficiencies": [
+    "Light armor",
+    "Medium armor",
+    "Shields"
+  ],
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons"
+  ],
+  "skill_proficiencies_count": 3,
+  "skill_options": [
+    "Animal Handling",
+    "Athletics",
+    "Insight",
+    "Investigation",
+    "Nature",
+    "Perception",
+    "Stealth",
+    "Survival"
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Studded Leather Armor",
+        "Scimitar",
+        "Shortsword",
+        "Longbow",
+        "Arrow (20)",
+        "Quiver",
+        "Druidic Focus (sprig of mistletoe)",
+        "Explorer's Pack"
+      ],
+      "gold": 7
+    },
+    "option_b": {
+      "gold": 150
+    }
+  },
+  "subclass_selection_level": 3,
+  "spellcasting_ability": "Wisdom",
+  "spellcasting_focus": [
+    "Druidic Focus"
+  ],
+  "spellcasting_type": "prepared",
+  "spell_preparation_formula": "level + wisdom_modifier",
+  "cantrip_progression": "class_table",
+  "spell_list_restrictions": null,
+  "ritual_casting": false,
+  "masterable_weapons": [
+    "Battleaxe",
+    "Club",
+    "Dagger",
+    "Flail",
+    "Glaive",
+    "Greataxe",
+    "Greatclub",
+    "Greatsword",
+    "Halberd",
+    "Handaxe",
+    "Javelin",
+    "Lance",
+    "Light Crossbow",
+    "Light Hammer",
+    "Longbow",
+    "Longsword",
+    "Mace",
+    "Maul",
+    "Morningstar",
+    "Pike",
+    "Quarterstaff",
+    "Rapier",
+    "Scimitar",
+    "Shortbow",
+    "Shortsword",
+    "Sickle",
+    "Spear",
+    "Trident",
+    "War Pick",
+    "Warhammer",
+    "Whip"
+  ],
+  "proficiency_bonus_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 4,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 6,
+    "18": 6,
+    "19": 6,
+    "20": 6
+  },
+  "masteries_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 2,
+    "7": 2,
+    "8": 2,
+    "9": 2,
+    "10": 2,
+    "11": 2,
+    "12": 2,
+    "13": 2,
+    "14": 2,
+    "15": 2,
+    "16": 2,
+    "17": 2,
+    "18": 2,
+    "19": 2,
+    "20": 2
+  },
+  "cantrips_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": 0,
+    "17": 0,
+    "18": 0,
+    "19": 0,
+    "20": 0
+  },
+  "spell_slots_by_level": {
+    "1": [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "2": [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "3": [
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "4": [
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "5": [
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "6": [
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "7": [
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "8": [
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "9": [
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "10": [
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "11": [
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "12": [
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "13": [
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "14": [
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "15": [
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "16": [
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "17": [
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "18": [
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "19": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+    ],
+    "20": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "prepared_spells_by_level": {
+    "1": 2,
+    "2": 3,
+    "3": 4,
+    "4": 5,
+    "5": 6,
+    "6": 6,
+    "7": 7,
+    "8": 7,
+    "9": 9,
+    "10": 9,
+    "11": 10,
+    "12": 10,
+    "13": 11,
+    "14": 11,
+    "15": 12,
+    "16": 12,
+    "17": 14,
+    "18": 14,
+    "19": 15,
+    "20": 15
+  },
+  "fighting_style_options": {
+    "Archery": {
+      "description": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
+      "effects": [
+        {
+          "type": "bonus_attack",
+          "value": 2,
+          "weapon_property": "Ranged"
+        }
+      ]
+    },
+    "Defense": {
+      "description": "While you are wearing armor, you gain a +1 bonus to AC.",
+      "effects": [
+        {
+          "type": "bonus_ac",
+          "value": 1,
+          "condition": "wearing armor"
+        }
+      ]
+    },
+    "Dueling": {
+      "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+      "effects": [
+        {
+          "type": "bonus_damage",
+          "value": 2,
+          "condition": "one handed melee weapon"
+        }
+      ]
+    },
+    "Great Weapon Fighting": {
+      "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll. The weapon must have the Two-Handed or Versatile property for you to gain this benefit.",
+      "effects": [
+        {
+          "type": "great_weapon_fighting"
+        }
+      ]
+    },
+    "Protection": {
+      "description": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield.",
+      "notes": "This is a reaction ability that requires tactical implementation."
+    },
+    "Two-Weapon Fighting": {
+      "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
+      "effects": [
+        {
+          "type": "two_weapon_fighting_modifier",
+          "applies_to": "offhand"
+        }
+      ]
+    },
+    "Blind Fighting": {
+      "description": "You have blindsight with a range of 10 feet.",
+      "notes": "Requires special sensing implementation."
+    },
+    "Interception": {
+      "description": "When a creature you can see hits a target, other than you, within 5 feet of you with an attack, you can use your reaction to reduce the damage the target takes by 1d10 + your proficiency bonus (to a minimum of 0 damage). You must be wielding a shield or a simple or martial weapon.",
+      "notes": "This is a reaction ability that requires tactical implementation."
+    },
+    "Thrown Weapon Fighting": {
+      "description": "You can draw a weapon that has the thrown property as part of the attack you make with the weapon. In addition, when you hit with a ranged attack using a thrown weapon, you gain a +2 bonus to the damage roll.",
+      "effects": [
+        {
+          "type": "bonus_damage",
+          "value": 2,
+          "condition": "thrown weapon ranged attack"
+        }
+      ]
+    },
+    "Unarmed Fighting": {
+      "description": "Your unarmed strikes can deal bludgeoning damage equal to 1d6 + your Strength modifier on a hit. If you aren't wielding any weapons or a shield when you make the attack roll, the d6 becomes a d8. At the start of each of your turns, you can deal 1d4 bludgeoning damage to one creature grappled by you.",
+      "effects": [
+        {
+          "type": "unarmed_fighting"
+        }
+      ]
+    },
+    "Druidic Warrior": {
+      "description": "You learn two cantrips of your choice from the Druid spell list. Wisdom is your spellcasting ability for these cantrips. You also learn Druidic.",
+      "effects": [
+        {
+          "type": "grant_language",
+          "languages": [
+            "Druidic"
+          ]
+        },
+        {
+          "type": "grant_cantrip_choice",
+          "count": 2,
+          "spell_list": "Druid",
+          "counts_against_limit": false,
+          "category": "always_prepared",
+          "depends_on": "fighting_style"
+        }
+      ]
+    }
+  },
+  "features_by_level": {
+    "1": {
+      "Spellcasting": {
+        "description": "You have learned to channel the magical essence of nature to cast spells. Wisdom is your spellcasting ability. You can use a Druidic Focus as a Spellcasting Focus. You prepare level 1+ Ranger spells, regaining all expended spell slots on a Long Rest.",
+        "feature_kind": "spellcasting_setup"
+      },
+      "Favored Enemy": {
+        "description": "You always have the Hunter's Mark spell prepared, and it doesn't count against the number of spells you can prepare. You can cast Hunter's Mark without expending a spell slot a number of times shown in the Favored Enemy column of the Ranger Features table (2 at level 1, increasing at levels 5, 9, 13, and 17), and you regain all expended uses when you finish a Long Rest.",
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Hunter's Mark"
+          }
+        ]
+      },
+      "Weapon Mastery": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Longbows and Shortswords. Whenever you finish a Long Rest, you can change the kinds of weapons you chose."
+    },
+    "2": {
+      "Deft Explorer": {
+        "description": "Thanks to your travels, you gain the following benefits. Expertise: Choose one of your skill proficiencies with which you lack Expertise. You gain Expertise in that skill. Languages: You know two languages of your choice.",
+        "choices": [
+          {
+            "type": "select_single",
+            "count": 1,
+            "name": "deft_explorer_expertise",
+            "display_name": "Expertise",
+            "source": {
+              "type": "computed",
+              "from": "skill_proficiencies"
+            }
+          },
+          {
+            "type": "select_multiple",
+            "count": 2,
+            "name": "deft_explorer_languages",
+            "display_name": "Languages",
+            "source": {
+              "type": "external",
+              "file": "languages.json",
+              "list": "all"
+            }
+          }
+        ],
+        "effects": [
+          {
+            "type": "grant_skill_expertise",
+            "from_choice": "deft_explorer_expertise"
+          },
+          {
+            "type": "grant_language",
+            "from_choice": "deft_explorer_languages"
+          }
+        ]
+      },
+      "Fighting Style": {
+        "description": "You gain a Fighting Style feat of your choice. Instead of choosing one of those feats, you can choose Druidic Warrior: learn two Druid cantrips (Wisdom is your spellcasting ability for them).",
+        "choices": {
+          "type": "select_single",
+          "count": 1,
+          "name": "fighting_style",
+          "source": {
+            "type": "internal",
+            "list": "fighting_style_options"
+          }
+        }
+      }
+    },
+    "3": {
+      "Ranger Subclass": {
+        "description": "You gain a Ranger Subclass of your choice. The Beast Master, Fey Wanderer, Gloom Stalker, and Hunter subclasses are detailed after this class's description.",
+        "feature_kind": "subclass_pick"
+      }
+    },
+    "4": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify. You gain this feature again at Ranger levels 8, 12, and 16.",
+        "choices": {
+          "name": "class_feat_4",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "5": {
+      "Extra Attack": "You can attack twice instead of once whenever you take the Attack action on your turn."
+    },
+    "6": {
+      "Roving": {
+        "description": "Your speed increases by 10 feet while you aren't wearing Heavy Armor. You also have a Climb Speed and a Swim Speed equal to your Speed.",
+        "effects": [
+          {
+            "type": "increase_speed",
+            "value": 10
+          }
+        ]
+      }
+    },
+    "7": {
+      "Subclass Feature": {
+        "description": "You gain a feature from your Ranger subclass.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "8": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+        "choices": {
+          "name": "class_feat_8",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "9": {
+      "Expertise": {
+        "description": "Choose two of your skill proficiencies with which you lack Expertise. You gain Expertise in those skills.",
+        "choices": {
+          "type": "select_multiple",
+          "count": 2,
+          "name": "expertise_skills",
+          "source": {
+            "type": "computed",
+            "from": "skill_proficiencies"
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_skill_expertise",
+            "from_choice": "expertise_skills"
+          }
+        ]
+      }
+    },
+    "10": {
+      "Tireless": "Primal forces now help fuel you on your journeys. Temporary Hit Points: As a Magic Action, you can give yourself a number of Temporary Hit Points equal to 1d8 plus your Wisdom modifier (minimum of 1). You can use this action a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. Decrease Exhaustion: Whenever you finish a Short Rest, your Exhaustion level, if any, decreases by 1."
+    },
+    "11": {
+      "Subclass Feature": {
+        "description": "You gain a feature from your Ranger subclass.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "12": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+        "choices": {
+          "name": "class_feat_12",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "13": {
+      "Relentless Hunter": "Taking damage can't break your Concentration on Hunter's Mark."
+    },
+    "14": {
+      "Nature's Veil": "You invoke spirits of nature to magically hide yourself. As a Bonus Action, you can give yourself the Invisible condition until the end of your next turn. You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest."
+    },
+    "15": {
+      "Subclass Feature": {
+        "description": "You gain a feature from your Ranger subclass.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "16": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+        "choices": {
+          "name": "class_feat_16",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "17": {
+      "Precise Hunter": "You have Advantage on attack rolls against the creature currently marked by your Hunter's Mark."
+    },
+    "18": {
+      "Feral Senses": "Your connection to the forces of nature grants you Blindsight with a range of 30 feet."
+    },
+    "19": {
+      "Epic Boon": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Dimensional Travel is recommended."
+    },
+    "20": {
+      "Foe Slayer": "The damage die of your Hunter's Mark is a d10 rather than a d6."
+    }
+  },
+  "multiclassing": {
+    "hit_die_granted": 10,
+    "armor_training": [
+      "Light",
+      "Medium",
+      "Shields"
+    ],
+    "weapon_training": [
+      "Martial"
+    ],
+    "tool_training": [],
+    "skill_proficiencies": {
+      "count": 1,
+      "options": [
+        "Animal Handling",
+        "Athletics",
+        "Insight",
+        "Investigation",
+        "Nature",
+        "Perception",
+        "Stealth",
+        "Survival"
+      ]
+    },
+    "saving_throw_proficiencies": [],
+    "other_proficiencies": [],
+    "notes": null,
+    "source_text": "As a Multiclass Character: Gain the following traits from the Core Ranger Traits table: Hit Point Die, proficiency with Martial weapons, proficiency in one skill of your choice from the Ranger's skill list, training with Light and Medium Armor and Shields. Gain the Ranger's level 1 features, which are listed in the Ranger Features table. See the multiclassing rules in multiclassing to determine your available spell slots."
+  }
+}

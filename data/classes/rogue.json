@@ -1,0 +1,366 @@
+{
+  "name": "Rogue",
+  "description": "Rogues rely on cunning, stealth, and their foes' vulnerabilities to get the upper hand. They have a knack for finding solutions to any problem, making precise strikes over brute force. Some began as criminals, others as crime fighters.",
+  "hit_die": 8,
+  "primary_ability": "Dexterity",
+  "saving_throw_proficiencies": [
+    "Dexterity",
+    "Intelligence"
+  ],
+  "standard_array_assignment": {
+    "Strength": 12,
+    "Dexterity": 15,
+    "Constitution": 13,
+    "Intelligence": 14,
+    "Wisdom": 10,
+    "Charisma": 8
+  },
+  "armor_proficiencies": [
+    "Light armor"
+  ],
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons with Finesse or Light property"
+  ],
+  "tool_proficiencies": [
+    "Thieves' Tools"
+  ],
+  "skill_proficiencies_count": 4,
+  "skill_options": [
+    "Acrobatics",
+    "Athletics",
+    "Deception",
+    "Insight",
+    "Intimidation",
+    "Investigation",
+    "Perception",
+    "Persuasion",
+    "Sleight of Hand",
+    "Stealth"
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Rapier",
+        "Shortbow",
+        "Arrow (20)",
+        "Leather Armor",
+        "Dagger (2)",
+        "Thieves' Tools",
+        "Burglar's Pack"
+      ],
+      "gold": 10
+    },
+    "option_b": {
+      "gold": 125
+    }
+  },
+  "subclass_selection_level": 3,
+  "masterable_weapons": [
+    "Club",
+    "Dagger",
+    "Dart",
+    "Handaxe",
+    "Javelin",
+    "Light Crossbow",
+    "Light Hammer",
+    "Mace",
+    "Quarterstaff",
+    "Rapier",
+    "Scimitar",
+    "Shortbow",
+    "Shortsword",
+    "Sickle",
+    "Sling",
+    "Spear",
+    "Whip"
+  ],
+  "proficiency_bonus_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 4,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 6,
+    "18": 6,
+    "19": 6,
+    "20": 6
+  },
+  "masteries_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 2,
+    "7": 2,
+    "8": 2,
+    "9": 2,
+    "10": 2,
+    "11": 2,
+    "12": 2,
+    "13": 2,
+    "14": 2,
+    "15": 2,
+    "16": 2,
+    "17": 2,
+    "18": 2,
+    "19": 2,
+    "20": 2
+  },
+  "sneak_attack_by_level": {
+    "1": "1d6",
+    "3": "2d6",
+    "5": "3d6",
+    "7": "4d6",
+    "9": "5d6",
+    "11": "6d6",
+    "13": "7d6",
+    "15": "8d6",
+    "17": "9d6",
+    "19": "10d6"
+  },
+  "features_by_level": {
+    "1": {
+      "Expertise": {
+        "description": "Gain Expertise in two skills of your choice. Sleight of Hand and Stealth are recommended if you have proficiency in them.",
+        "choices": {
+          "type": "select_multiple",
+          "count": 2,
+          "name": "rogue_expertise_skills_1",
+          "source": {
+            "type": "proficient_skills"
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_skill_expertise",
+            "from_choice": "rogue_expertise_skills_1"
+          }
+        ]
+      },
+      "Sneak Attack": "Once per turn, deal extra 1d6 damage with Finesse/Ranged weapon if you have Advantage or ally within 5 feet of target. The extra damage's type is the same as the weapon's type.",
+      "Thieves' Cant": {
+        "description": "You know Thieves' Cant and one other language of your choice.",
+        "choices": {
+          "type": "select_single",
+          "count": 1,
+          "name": "thieves_cant_language",
+          "source": {
+            "type": "external",
+            "file": "languages.json",
+            "list": "all"
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_language",
+            "languages": [
+              "Thieves' Cant"
+            ]
+          },
+          {
+            "type": "grant_language",
+            "from_choice": "thieves_cant_language"
+          }
+        ]
+      },
+      "Weapon Mastery": "Use mastery properties of two weapons of your choice with which you have proficiency."
+    },
+    "2": {
+      "Cunning Action": "Your quick thinking and agility allow you to take Dash, Disengage, or Hide as a Bonus Action on your turn."
+    },
+    "3": {
+      "Rogue Subclass": {
+        "description": "Choose your roguish archetype: Arcane Trickster, Assassin, Soulknife, or Thief.",
+        "feature_kind": "subclass_pick"
+      },
+      "Steady Aim": "As a Bonus Action, give yourself Advantage on your next attack roll on the current turn. You can use this only if you haven't moved, and your Speed becomes 0 until the end of the turn."
+    },
+    "4": {
+      "Ability Score Improvement": {
+        "description": "Gain Ability Score Improvement feat or another feat of your choice.",
+        "choices": {
+          "name": "class_feat_4",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "5": {
+      "Cunning Strike": "When you deal Sneak Attack damage, you can add one Cunning Strike effect by foregoing Sneak Attack dice. DC equals 8 + Dexterity modifier + Proficiency Bonus. Options: Poison (1d6, Con save or Poisoned 1 min, requires Poisoner's Kit), Trip (1d6, Dex save or Prone if Large or smaller), Withdraw (1d6, move half speed without provoking).",
+      "Uncanny Dodge": "When an attacker you can see hits you with an attack roll, use your Reaction to halve the attack's damage against you."
+    },
+    "6": {
+      "Expertise": {
+        "description": "Gain Expertise in two more skills of your choice.",
+        "choices": {
+          "type": "select_multiple",
+          "count": 2,
+          "name": "rogue_expertise_skills_6",
+          "source": {
+            "type": "proficient_skills"
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_skill_expertise",
+            "from_choice": "rogue_expertise_skills_6"
+          }
+        ]
+      }
+    },
+    "7": {
+      "Evasion": "When subjected to a Dexterity saving throw for half damage, you take no damage on a success and half on a failure. You can't use this if you have the Incapacitated condition.",
+      "Reliable Talent": "Whenever you make an ability check that uses one of your skill or tool proficiencies, you can treat a d20 roll of 9 or lower as a 10."
+    },
+    "8": {
+      "Ability Score Improvement": {
+        "description": "Gain Ability Score Improvement feat or another feat of your choice.",
+        "choices": {
+          "name": "class_feat_8",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "9": {
+      "Subclass Feature": {
+        "description": "Gain feature from your archetype.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "10": {
+      "Ability Score Improvement": {
+        "description": "Gain Ability Score Improvement feat or another feat of your choice.",
+        "choices": {
+          "name": "class_feat_10",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "11": {
+      "Improved Cunning Strike": "You can use up to two Cunning Strike effects when you deal Sneak Attack damage, paying the die cost for each effect."
+    },
+    "12": {
+      "Ability Score Improvement": {
+        "description": "Gain Ability Score Improvement feat or another feat of your choice.",
+        "choices": {
+          "name": "class_feat_12",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "13": {
+      "Subclass Feature": {
+        "description": "Gain feature from your archetype.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "14": {
+      "Devious Strikes": "New Cunning Strike options: Daze (2d6, Con save or limited to one action/move/bonus on next turn), Knock Out (6d6, Con save or Unconscious 1 min), Obscure (3d6, Dex save or Blinded until end of next turn)."
+    },
+    "15": {
+      "Slippery Mind": {
+        "description": "Your mind is exceptionally difficult to control. You gain proficiency in Wisdom and Charisma saving throws.",
+        "effects": [
+          {
+            "type": "grant_save_proficiency",
+            "abilities": [
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        ]
+      }
+    },
+    "16": {
+      "Ability Score Improvement": {
+        "description": "Gain Ability Score Improvement feat or another feat of your choice.",
+        "choices": {
+          "name": "class_feat_16",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "17": {
+      "Subclass Feature": {
+        "description": "Gain capstone feature from your archetype.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "18": {
+      "Elusive": "No attack roll can have Advantage against you unless you have the Incapacitated condition."
+    },
+    "19": {
+      "Epic Boon": "Gain an Epic Boon feat or another feat of your choice. Boon of the Night Spirit is recommended."
+    },
+    "20": {
+      "Stroke of Luck": "If you fail a d20 Test, you can turn the roll into a 20. Once per Short or Long Rest."
+    }
+  },
+  "multiclassing": {
+    "hit_die_granted": 8,
+    "armor_training": [
+      "Light"
+    ],
+    "weapon_training": [],
+    "tool_training": [
+      "Thieves' Tools"
+    ],
+    "skill_proficiencies": {
+      "count": 1,
+      "options": [
+        "Acrobatics",
+        "Athletics",
+        "Deception",
+        "Insight",
+        "Intimidation",
+        "Investigation",
+        "Perception",
+        "Performance",
+        "Persuasion",
+        "Sleight of Hand",
+        "Stealth"
+      ]
+    },
+    "saving_throw_proficiencies": [],
+    "other_proficiencies": [],
+    "notes": null,
+    "source_text": "As a Multiclass Character: Gain the following traits from the Core Rogue Traits table: Hit Point Die, proficiency in one skill of your choice from the Rogue's skill list, proficiency with Thieves' Tools, and training with Light Armor. Gain the Rogue's level 1 features, which are listed in the Rogue Features table."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "Circle of the Sea",
+  "class": "Druid",
+  "description": "Druids who draw on the power of the ocean and its creatures, commanding the fury of wind and waves to smite their foes.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Circle of the Sea Spells": {
+        "description": "You always have certain spells prepared. When you reach a Druid level specified in the Circle of the Sea Spells table, you thereafter always have the listed spells prepared.",
+        "effects": [
+          {"type": "grant_cantrip", "spell": "Ray of Frost"},
+          {"type": "grant_spell", "spell": "Fog Cloud", "min_level": 3},
+          {"type": "grant_spell", "spell": "Gust of Wind", "min_level": 3},
+          {"type": "grant_spell", "spell": "Thunderwave", "min_level": 3},
+          {"type": "grant_spell", "spell": "Lightning Bolt", "min_level": 5},
+          {"type": "grant_spell", "spell": "Water Breathing", "min_level": 5},
+          {"type": "grant_spell", "spell": "Control Water", "min_level": 7},
+          {"type": "grant_spell", "spell": "Ice Storm", "min_level": 7},
+          {"type": "grant_spell", "spell": "Conjure Elemental", "min_level": 9},
+          {"type": "grant_spell", "spell": "Hold Monster", "min_level": 9}
+        ]
+      },
+      "Wrath of the Sea": "As a Bonus Action, you can expend a use of Wild Shape to manifest a 5-foot Emanation of ocean spray that surrounds you for 10 minutes. It ends early if you dismiss it (no action required), manifest it again, or have the Incapacitated condition. When you manifest the Emanation and as a Bonus Action on subsequent turns, you can choose another creature you can see in the Emanation. The target must succeed on a Constitution saving throw against your spell save DC or take Cold damage and, if the creature is Large or smaller, be pushed up to 15 feet away from you. To determine this damage, roll a number of d6s equal to your Wisdom modifier (minimum of one die)."
+    },
+    "6": {
+      "Aquatic Affinity": "The size of the Emanation created by your Wrath of the Sea increases to 10 feet. In addition, you gain a Swim Speed equal to your Speed."
+    },
+    "10": {
+      "Stormborn": "Your Wrath of the Sea confers two more benefits while active. Flight: you gain a Fly Speed equal to your Speed. Resistance: you have Resistance to Cold, Lightning, and Thunder damage."
+    },
+    "14": {
+      "Oceanic Gift": "Instead of manifesting the Emanation of Wrath of the Sea around yourself, you can manifest it around one willing creature within 60 feet of yourself. That creature gains all the benefits of the Emanation and uses your spell save DC and Wisdom modifier for it. In addition, you can manifest the Emanation around both the other creature and yourself if you expend two uses of Wild Shape instead of one."
+    }
+  }
+}

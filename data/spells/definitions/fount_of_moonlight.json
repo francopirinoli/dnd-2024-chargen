@@ -1,0 +1,12 @@
+{
+  "name": "Fount of Moonlight",
+  "level": 4,
+  "school": "Evocation",
+  "casting_time": "1 action",
+  "range": "Self",
+  "components": ["V", "S"],
+  "duration": "Concentration, up to 10 minutes",
+  "description": "A cool light wreathes your body until the spell ends. The light, which sheds dim light in a 10-foot radius, can't be dispelled by the Darkness spell. Until the spell ends, you have Resistance to Radiant damage, and when a creature within 5 feet of you hits you with a melee attack, that creature takes 2d6 Radiant damage.",
+  "classes": [],
+  "ritual": false
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Thief",
+  "class": "Rogue",
+  "description": "A mix of burglar, treasure hunter, and explorer — the epitome of an adventurer. You gain abilities for delving ruins and maximizing magic item benefits.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Fast Hands": "As a Bonus Action, you can do one of the following: make a Dexterity (Sleight of Hand) check to pick a lock or disarm a trap with Thieves' Tools, or pick a pocket; take the Utilize action; or take the Magic action to use a magic item that requires an action to activate.",
+      "Second-Story Work": "You gain a Climb Speed equal to your Speed. When you calculate the distance of a Jump, the ability score used is Dexterity instead of Strength."
+    },
+    "9": {
+      "Supreme Sneak": "You gain a new Cunning Strike option: Stealth Attack (Cost: 1d6). If you have the Invisible condition from the Hide action, this attack doesn't end that condition if you end the turn behind Three-Quarters Cover or Total Cover."
+    },
+    "13": {
+      "Use Magic Device": "Attunement: You can attune to up to 4 magic items at once. Charges: When using a magic item property that expends charges, roll 1d6 — on a 6, you use the property without expending the charges. Scrolls: You can use any Spell Scroll, using Intelligence as your spellcasting ability. Level 1 and cantrip scrolls work reliably; higher level scrolls require an Arcana check (DC 10 + spell level)."
+    },
+    "17": {
+      "Thief's Reflexes": "You can take two turns during the first round of any combat. You take your first turn at your normal Initiative and your second turn at your Initiative minus 10."
+    }
+  }
+}

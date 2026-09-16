@@ -1,0 +1,17 @@
+{
+  "name": "Find Greater Steed",
+  "level": 4,
+  "school": "Conjuration",
+  "casting_time": "10 minutes",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Instantaneous",
+  "description": "You summon a spirit that assumes the form of a loyal, majestic mount. Appearing in an unoccupied space within range, the spirit takes on a form you choose: Griffon, Pegasus, Peryton, Dire Wolf, Rhinoceros, or Saber-Toothed Tiger. The creature has the statistics provided in its stat block, though it is a Celestial, Fey, or Fiend (your choice) instead of its normal creature type. Additionally, if it has an Intelligence score of 5 or less, its Intelligence becomes 6, and it gains the ability to understand one language of your choice that you speak. You control the mount in combat. While the mount is within 1 mile of you, you can communicate with it telepathically. While mounted on it, you can make any spell you cast that targets only you also target the mount. The mount disappears temporarily when it drops to 0 Hit Points or when you dismiss it (no action required). Casting this spell again re-summons the bonded mount, with all its Hit Points restored and any conditions removed. You can't have more than one bond at a time. As an action, you can release a mount from its bond, causing it to disappear permanently. Whenever the mount disappears, it leaves behind any objects it was wearing or carrying.",
+  "classes": [
+    "Paladin"
+  ],
+  "ritual": false
+}

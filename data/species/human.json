@@ -1,0 +1,104 @@
+{
+  "name": "Human",
+  "description": "Found throughout the multiverse, humans are as varied as they are numerous, and they endeavor to achieve as much as they can in the years they are given. Their ambition and resourcefulness are commended, respected, and feared on many worlds. Humans are as diverse in appearance as the people of Earth, and they have many gods.",
+  "creature_type": "Humanoid",
+  "size": "Medium or Small",
+  "size_description": "Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species",
+  "speed": 30,
+  "traits": {
+    "Resourceful": "You gain Heroic Inspiration whenever you finish a Long Rest.",
+    "Skillful": {
+      "description": "You gain proficiency in one skill of your choice.",
+      "type": "choice",
+      "choices": {
+        "type": "select_single",
+        "count": 1,
+        "source": {
+          "type": "fixed_list",
+          "options": [
+            "Acrobatics",
+            "Animal Handling",
+            "Arcana",
+            "Athletics",
+            "Deception",
+            "History",
+            "Insight",
+            "Intimidation",
+            "Investigation",
+            "Medicine",
+            "Nature",
+            "Perception",
+            "Performance",
+            "Persuasion",
+            "Religion",
+            "Sleight of Hand",
+            "Stealth",
+            "Survival"
+          ]
+        }
+      },
+      "choice_effects": {
+        "Acrobatics": [{"type": "grant_skill_proficiency", "skills": ["Acrobatics"]}],
+        "Animal Handling": [{"type": "grant_skill_proficiency", "skills": ["Animal Handling"]}],
+        "Arcana": [{"type": "grant_skill_proficiency", "skills": ["Arcana"]}],
+        "Athletics": [{"type": "grant_skill_proficiency", "skills": ["Athletics"]}],
+        "Deception": [{"type": "grant_skill_proficiency", "skills": ["Deception"]}],
+        "History": [{"type": "grant_skill_proficiency", "skills": ["History"]}],
+        "Insight": [{"type": "grant_skill_proficiency", "skills": ["Insight"]}],
+        "Intimidation": [{"type": "grant_skill_proficiency", "skills": ["Intimidation"]}],
+        "Investigation": [{"type": "grant_skill_proficiency", "skills": ["Investigation"]}],
+        "Medicine": [{"type": "grant_skill_proficiency", "skills": ["Medicine"]}],
+        "Nature": [{"type": "grant_skill_proficiency", "skills": ["Nature"]}],
+        "Perception": [{"type": "grant_skill_proficiency", "skills": ["Perception"]}],
+        "Performance": [{"type": "grant_skill_proficiency", "skills": ["Performance"]}],
+        "Persuasion": [{"type": "grant_skill_proficiency", "skills": ["Persuasion"]}],
+        "Religion": [{"type": "grant_skill_proficiency", "skills": ["Religion"]}],
+        "Sleight of Hand": [{"type": "grant_skill_proficiency", "skills": ["Sleight of Hand"]}],
+        "Stealth": [{"type": "grant_skill_proficiency", "skills": ["Stealth"]}],
+        "Survival": [{"type": "grant_skill_proficiency", "skills": ["Survival"]}]
+      }
+    },
+    "Versatile": {
+      "description": "You gain an Origin feat of your choice. Skilled is recommended.",
+      "type": "choice",
+      "choices": {
+        "type": "select_single",
+        "count": 1,
+        "source": {
+          "type": "fixed_list",
+          "options": [
+            "Alert",
+            "Crafter",
+            "Healer",
+            "Lucky",
+            "Magic Initiate (Cleric)",
+            "Magic Initiate (Druid)",
+            "Magic Initiate (Wizard)",
+            "Musician",
+            "Savage Attacker",
+            "Skilled",
+            "Tavern Brawler",
+            "Tough"
+          ]
+        }
+      },
+      "choice_effects": {
+        "Alert": [{"type": "grant_origin_feat", "feat": "Alert"}],
+        "Crafter": [{"type": "grant_origin_feat", "feat": "Crafter"}],
+        "Healer": [{"type": "grant_origin_feat", "feat": "Healer"}],
+        "Lucky": [{"type": "grant_origin_feat", "feat": "Lucky"}],
+        "Magic Initiate (Cleric)": [{"type": "grant_origin_feat", "feat": "Magic Initiate (Cleric)"}],
+        "Magic Initiate (Druid)": [{"type": "grant_origin_feat", "feat": "Magic Initiate (Druid)"}],
+        "Magic Initiate (Wizard)": [{"type": "grant_origin_feat", "feat": "Magic Initiate (Wizard)"}],
+        "Musician": [{"type": "grant_origin_feat", "feat": "Musician"}],
+        "Savage Attacker": [{"type": "grant_origin_feat", "feat": "Savage Attacker"}],
+        "Skilled": [{"type": "grant_origin_feat", "feat": "Skilled"}],
+        "Tavern Brawler": [{"type": "grant_origin_feat", "feat": "Tavern Brawler"}],
+        "Tough": [{"type": "grant_origin_feat", "feat": "Tough"}]
+      }
+    }
+  },
+  "languages": [
+    "Common"
+  ]
+}

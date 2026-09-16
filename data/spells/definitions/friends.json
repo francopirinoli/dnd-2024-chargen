@@ -1,0 +1,21 @@
+{
+  "name": "Friends",
+  "level": 0,
+  "school": "Enchantment",
+  "casting_time": "1 action",
+  "range": "10 feet",
+  "components": [
+    "S",
+    "M"
+  ],
+  "material": "some makeup applied to the face as this spell is cast",
+  "duration": "Concentration, up to 1 minute",
+  "description": "You magically emanate a sense of friendship toward one creature you can see within range. The creature must succeed on a Wisdom saving throw or have the Charmed condition until the spell ends or until you or your companions harm the target, in which case the spell ends. The Charmed creature is Friendly toward you. When the spell ends, the target is aware it was Charmed by you.",
+  "classes": [
+    "Bard",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+  ],
+  "ritual": false
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Yolande's Regal Presence",
+  "level": 6,
+  "school": "Enchantment",
+  "casting_time": "1 action",
+  "range": "Self (60-foot emanation)",
+  "components": ["V", "S"],
+  "duration": "Concentration, up to 1 minute",
+  "description": "You surround yourself with unearthly majesty for the duration. Whenever you or a creature you choose within 60 feet of you ends its turn, you can force each creature of your choice in that area to make a Wisdom saving throw. On a failed save, a creature takes 4d12 Psychic damage and has the Prone condition. On a successful save, it takes half as much damage only. Cantrip upgrade: The spell's emanation increases to 120 feet when you reach 10th level.",
+  "classes": [],
+  "ritual": false
+}

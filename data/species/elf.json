@@ -1,0 +1,76 @@
+{
+  "name": "Elf",
+  "description": "Created by the god Corellon, elves have pointed ears and lack facial and body hair. They live for around 750 years, and they don't sleep but instead enter a trance when they need to rest. An environment subtly transforms elves after they inhabit it for a millennium or more, granting them certain kinds of magic.",
+  "creature_type": "Humanoid",
+  "size": "Medium",
+  "size_description": "about 5-6 feet tall",
+  "speed": 30,
+  "traits": {
+    "Darkvision": {
+      "description": "You have Darkvision with a range of 60 feet.",
+      "effects": [
+        {
+          "type": "grant_darkvision",
+          "range": 60
+        }
+      ]
+    },
+    "Elven Lineage": {
+      "description": "You are part of a lineage that grants you supernatural abilities. Intelligence, Wisdom of Charisma is your spellcasting ability for the spells you cast with this trait.",
+      "type": "choice",
+      "choices": {
+        "type": "select_single",
+        "count": 1,
+        "source": {
+          "type": "fixed_list",
+          "options": ["Intelligence", "Wisdom", "Charisma"]
+        }
+      }
+    },
+    "Fey Ancestry": {
+      "description": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+      "effects": [
+        {
+          "type": "grant_save_advantage",
+          "condition": "Charmed",
+          "display": "Advantage vs Charmed condition"
+        }
+      ]
+    },
+    "Keen Senses": {
+      "description": "You have proficiency in the Insight, Perception, or Survival skill.",
+      "type": "choice",
+      "choices": {
+        "type": "select_single",
+        "count": 1,
+        "source": {
+          "type": "fixed_list",
+          "options": ["Insight", "Perception", "Survival"]
+        }
+      },
+      "choice_effects": {
+        "Insight": [
+          {
+            "type": "grant_skill_proficiency",
+            "skills": ["Insight"]
+          }
+        ],
+        "Perception": [
+          {
+            "type": "grant_skill_proficiency",
+            "skills": ["Perception"]
+          }
+        ],
+        "Survival": [
+          {
+            "type": "grant_skill_proficiency",
+            "skills": ["Survival"]
+          }
+        ]
+      }
+    },
+    "Trance": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness."
+  },
+  "languages": ["Common", "Elvish"],
+  "lineages": ["Drow", "High Elf", "Wood Elf"]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Meld into Stone",
+  "level": 3,
+  "school": "Transmutation",
+  "casting_time": "1 action or ritual",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "8 hours",
+  "description": "You step into a stone object or surface large enough to fully contain your body, melding yourself and all the equipment you carry with the stone for the duration. You use your movement to step into the stone at a point you can touch. Nothing of your presence remains visible or otherwise detectable by nonmagical senses. While merged with the stone, you can't see what occurs outside it, and any Wisdom (Perception) checks you make to hear sounds outside it are made with Disadvantage. You remain aware of the passage of time and can cast spells on yourself while merged in the stone. You can use your movement to leave the stone where you entered it, which ends the spell.",
+  "classes": [
+    "Cleric",
+    "Druid"
+  ],
+  "ritual": true
+}

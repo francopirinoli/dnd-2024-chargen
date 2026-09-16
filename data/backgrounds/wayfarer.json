@@ -1,0 +1,53 @@
+{
+  "name": "Wayfarer",
+  "description": "You grew up on the streets surrounded by similarly ill-fated castoffs, a few of them friends and a few of them rivals. You slept where you could and did odd jobs for food. At times, when the hunger became unbearable, you resorted to theft. Still, you never lost your pride and never abandoned hope. Fate is not yet finished with you.",
+  "edition": "2024",
+  "status": "active",
+  "ability_score_increase": {
+    "total": 3,
+    "options": [
+      "Dexterity",
+      "Wisdom",
+      "Charisma"
+    ],
+    "suggested": {
+      "Dexterity": 2,
+      "Wisdom": 1
+    }
+  },
+  "effects": [
+    {
+      "type": "grant_skill_proficiency",
+      "skills": [
+        "Insight",
+        "Stealth"
+      ]
+    },
+    {
+      "type": "grant_origin_feat",
+      "feat": "Lucky"
+    },
+    {
+      "type": "grant_tool_proficiency",
+      "tools": [
+        "Thieves' Tools"
+      ]
+    }
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "2 Daggers",
+        "Thieves' Tools",
+        "Gaming Set",
+        "Bedroll",
+        "2 Pouches",
+        "Traveler's Clothes"
+      ],
+      "gold": 16
+    },
+    "option_b": {
+      "gold": 50
+    }
+  }
+}

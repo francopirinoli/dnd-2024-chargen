@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "exported_at": "2024-01-01T00:00:00Z",
+  "_note": "Legacy fixture (audit P0-1): species trait choice is stored as a flat top-level key ('Draconic Ancestry') instead of nested under 'species_trait_choices'. The backend normalizer (_normalize_species_trait_choices) must lift it into the canonical nested object on rebuild, and the round-trip equality test must still pass.",
+  "choices_made": {
+    "classes": [
+      {
+        "class_name": "Fighter",
+        "level": 1
+      }
+    ],
+    "species": "Dragonborn",
+    "Draconic Ancestry": "Red (Fire)",
+    "background": "Soldier",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {
+      "Strength": 15,
+      "Dexterity": 14,
+      "Constitution": 13,
+      "Intelligence": 8,
+      "Wisdom": 12,
+      "Charisma": 10
+    },
+    "background_bonuses": {
+      "Strength": 2,
+      "Constitution": 1
+    },
+    "skill_choices": [
+      "Athletics",
+      "Intimidation"
+    ],
+    "languages": [
+      "Dwarvish",
+      "Elvish"
+    ]
+  }
+}

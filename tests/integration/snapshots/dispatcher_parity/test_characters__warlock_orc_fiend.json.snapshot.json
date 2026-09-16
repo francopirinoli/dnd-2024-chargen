@@ -1,0 +1,2084 @@
+{
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 15,
+      "modifier": 3,
+      "saving_throw": 5,
+      "saving_throw_proficient": true,
+      "score": 17,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 14,
+      "modifier": 2,
+      "saving_throw": 2,
+      "saving_throw_proficient": false,
+      "score": 15,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 13,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 13,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 8,
+      "modifier": -1,
+      "saving_throw": -1,
+      "saving_throw_proficient": false,
+      "score": 8,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 12,
+      "modifier": 1,
+      "saving_throw": 3,
+      "saving_throw_proficient": true,
+      "score": 12,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 17,
+    "Constitution": 15,
+    "Dexterity": 13,
+    "Intelligence": 8,
+    "Strength": 10,
+    "Wisdom": 12
+  },
+  "ac_options": [
+    {
+      "ac": 11,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (1)",
+      "notes": [],
+      "shield": false
+    },
+    {
+      "ac": 12,
+      "armor": "Leather Armor",
+      "equipped_armor": "Leather Armor",
+      "formula": "Armor base (11) + Dex modifier (1)",
+      "notes": [],
+      "shield": false
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [
+    "Light armor"
+  ],
+  "attack_combinations": [
+    {
+      "mainhand": {
+        "attack_bonus": 2,
+        "attack_bonus_display": "+2",
+        "avg_damage": 2.5,
+        "damage": "1d4",
+        "damage_type": "Slashing",
+        "icon": "/static/images/weapons/sickle.svg",
+        "name": "Sickle"
+      },
+      "name": "Sickle & Dagger",
+      "notes": [],
+      "offhand": {
+        "attack_bonus": 3,
+        "attack_bonus_display": "+3",
+        "avg_damage": 2.5,
+        "damage": "1d4",
+        "damage_type": "Piercing",
+        "icon": "/static/images/weapons/dagger.svg",
+        "name": "Dagger"
+      },
+      "rank": 2,
+      "recommended": false,
+      "type": "combination"
+    },
+    {
+      "mainhand": {
+        "attack_bonus": 3,
+        "attack_bonus_display": "+3",
+        "avg_damage": 3.5,
+        "damage": "1d4 + 1",
+        "damage_type": "Piercing",
+        "icon": "/static/images/weapons/dagger.svg",
+        "name": "Dagger"
+      },
+      "name": "Two Daggers",
+      "notes": [],
+      "offhand": {
+        "attack_bonus": 3,
+        "attack_bonus_display": "+3",
+        "avg_damage": 2.5,
+        "damage": "1d4",
+        "damage_type": "Piercing",
+        "icon": "/static/images/weapons/dagger.svg",
+        "name": "Dagger"
+      },
+      "rank": 1,
+      "recommended": true,
+      "type": "combination"
+    }
+  ],
+  "attacks": [
+    {
+      "ability": "STR",
+      "attack_bonus": 2,
+      "attack_bonus_display": "+2",
+      "avg_crit": 1.0,
+      "avg_damage": 1.0,
+      "damage": "1",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 2,
+      "attack_bonus_display": "+2",
+      "avg_crit": 5.0,
+      "avg_damage": 2.5,
+      "damage": "1d4",
+      "damage_bonus": 0,
+      "damage_notes": [],
+      "damage_type": "Slashing",
+      "icon": "/static/images/weapons/sickle.svg",
+      "mastery": "Nick",
+      "name": "Sickle",
+      "proficient": true,
+      "properties": [
+        "Light"
+      ]
+    },
+    {
+      "ability": "STR/DEX (DEX)",
+      "attack_bonus": 3,
+      "attack_bonus_display": "+3",
+      "avg_crit": 6.0,
+      "avg_damage": 3.5,
+      "avg_throw_damage": 3.5,
+      "damage": "1d4 + 1",
+      "damage_bonus": 1,
+      "damage_notes": [],
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "mastery": "Nick",
+      "name": "Dagger",
+      "proficient": true,
+      "properties": [
+        "Finesse",
+        "Light",
+        "Thrown (range 20/60)"
+      ],
+      "throw_damage": "1d4 + 1"
+    }
+  ],
+  "background": "Charlatan",
+  "background_data": {
+    "ability_score_increase": {
+      "options": [
+        "Charisma",
+        "Dexterity",
+        "Intelligence"
+      ],
+      "suggested": {
+        "Charisma": 2,
+        "Dexterity": 1
+      },
+      "total": 3
+    },
+    "description": "You have always had a way with people. You know what makes them tick, you can tease out their hearts' desires after a few minutes of conversation, and with a few leading questions you can read them like they were children's books. It's a useful talent, and one that you're perfectly willing to use for your advantage.",
+    "edition": "2024",
+    "effects": [
+      {
+        "feat": "Skilled",
+        "type": "grant_origin_feat"
+      },
+      {
+        "skills": [
+          "Deception",
+          "Sleight of Hand"
+        ],
+        "type": "grant_skill_proficiency"
+      },
+      {
+        "tools": [
+          "Forgery Kit"
+        ],
+        "type": "grant_tool_proficiency"
+      }
+    ],
+    "name": "Charlatan",
+    "starting_equipment": {
+      "option_a": {
+        "gold": 15,
+        "items": [
+          "Forgery Kit",
+          "Fine Clothes",
+          "Signet Ring (fake)"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "status": "active"
+  },
+  "best_attack_combination": {
+    "mainhand": {
+      "attack_bonus": 3,
+      "attack_bonus_display": "+3",
+      "avg_damage": 3.5,
+      "damage": "1d4 + 1",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "name": "Dagger"
+    },
+    "name": "Two Daggers",
+    "notes": [],
+    "offhand": {
+      "attack_bonus": 3,
+      "attack_bonus_display": "+3",
+      "avg_damage": 2.5,
+      "damage": "1d4",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "name": "Dagger"
+    },
+    "rank": 1,
+    "recommended": true,
+    "type": "combination"
+  },
+  "choices_made": {
+    "ability_scores": {
+      "Charisma": 15,
+      "Constitution": 14,
+      "Dexterity": 13,
+      "Intelligence": 8,
+      "Strength": 10,
+      "Wisdom": 12
+    },
+    "ability_scores_method": "standard_array",
+    "background": "Charlatan",
+    "background_bonuses": {
+      "Charisma": 2,
+      "Constitution": 1
+    },
+    "character_name": "Grax the Bound",
+    "class": "Warlock",
+    "classes": [
+      {
+        "class_name": "Warlock",
+        "level": 3,
+        "subclass": "The Fiend"
+      }
+    ],
+    "equipment_selections": {
+      "background_equipment": "option_a",
+      "class_equipment": "option_a"
+    },
+    "languages": [
+      "Orc",
+      "Draconic"
+    ],
+    "level": 3,
+    "skill_choices": [
+      "Intimidation",
+      "Arcana"
+    ],
+    "species": "Orc",
+    "spell_selections": {
+      "background_cantrips": [],
+      "background_spells": [],
+      "cantrips": [
+        "Eldritch Blast",
+        "Minor Illusion",
+        "Mage Hand"
+      ],
+      "spells": [
+        "Armor of Agathys",
+        "Hellish Rebuke",
+        "Hex",
+        "Darkness",
+        "Hold Person"
+      ]
+    },
+    "subclass": "The Fiend"
+  },
+  "class": "Warlock",
+  "class_breakdown": [
+    {
+      "class_name": "Warlock",
+      "level": 3,
+      "subclass": "The Fiend"
+    }
+  ],
+  "class_data": {
+    "armor_proficiencies": [
+      "Light armor"
+    ],
+    "cantrip_progression": "class_table",
+    "cantrips_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 4,
+      "14": 4,
+      "15": 4,
+      "16": 4,
+      "17": 4,
+      "18": 4,
+      "19": 4,
+      "2": 2,
+      "20": 4,
+      "3": 2,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 3
+    },
+    "description": "Scholars of hidden knowledge who quest for power through binding pacts with otherworldly patrons. Drawing on ancient secrets from angels, archfey, demons, devils, and alien entities, Warlocks piece together arcane mysteries to bolster their abilities.",
+    "features_by_level": {
+      "1": {
+        "Eldritch Invocations": "You have unearthed Eldritch Invocations, pieces of forbidden knowledge that imbue you with an abiding magical ability or other lessons. You gain one invocation of your choice, such as Pact of the Tome. If an invocation has a prerequisite, you must meet it to learn that invocation. Whenever you gain a Warlock level, you can replace one of your invocations with another one for which you qualify. You can't replace an invocation if it's a prerequisite for another invocation that you have. When you gain certain Warlock levels, you gain more invocations of your choice, as shown in the Invocations column of the Warlock Features table.",
+        "Pact Magic": {
+          "description": "Through occult ceremony, you have formed a pact with a mysterious entity to gain magical powers. Charisma is your spellcasting ability, and you can use an Arcane Focus as a spellcasting focus. You know two Warlock cantrips of your choice (Eldritch Blast and Prestidigitation are recommended). You prepare two level 1 Warlock spells (Charm Person and Hex are recommended). The number of spells on your list and their available level increases as you gain Warlock levels, as shown in the Warlock Features table. You regain all expended Pact Magic spell slots when you finish a Short or Long Rest. When you reach Warlock levels 4 and 10, you learn another Warlock cantrip of your choice.",
+          "feature_kind": "spellcasting_setup"
+        }
+      },
+      "10": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Warlock subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "11": {
+        "Mystic Arcanum": "Your patron grants you a magical secret called an arcanum. Choose one level 6 Warlock spell as this arcanum. You can cast your arcanum spell once without expending a spell slot, and you must finish a Long Rest before you can cast it in this way again. You gain another Warlock spell of your choice that can be cast in this way when you reach Warlock levels 13 (level 7 spell), 15 (level 8 spell), and 17 (level 9 spell). You regain all uses of your Mystic Arcanum when you finish a Long Rest. Whenever you gain a Warlock level, you can replace one of your arcanum spells with another Warlock spell of the same level."
+      },
+      "12": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_12",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
+      },
+      "13": {
+        "Mystic Arcanum": "You gain a level 7 Warlock spell as an additional arcanum."
+      },
+      "14": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Warlock subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "15": {
+        "Mystic Arcanum": "You gain a level 8 Warlock spell as an additional arcanum."
+      },
+      "16": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_16",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
+      },
+      "17": {
+        "Mystic Arcanum": "You gain a level 9 Warlock spell as an additional arcanum."
+      },
+      "19": {
+        "Epic Boon": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Fate is recommended."
+      },
+      "2": {
+        "Magical Cunning": "You can perform an esoteric rite for 1 minute. At the end of it, you regain expended Pact Magic spell slots but no more than a number equal to half your maximum (round up). Once you use this feature, you can't do so again until you finish a Long Rest."
+      },
+      "20": {
+        "Eldritch Master": "When you use your Magical Cunning feature, you regain all your expended Pact Magic spell slots."
+      },
+      "3": {
+        "Warlock Subclass": {
+          "description": "You gain a Warlock Subclass of your choice, which represents the entity with which you've made a pact. The Archfey Patron, Celestial Patron, Fiend Patron, and Great Old One Patron subclasses are detailed in the Player's Handbook. For the rest of your career, you gain each of your subclass's features that are of your Warlock level or lower.",
+          "feature_kind": "subclass_pick"
+        }
+      },
+      "4": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_4",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify. You gain this feature again at Warlock levels 8, 12, and 16.",
+          "feature_kind": "asi"
+        }
+      },
+      "6": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Warlock subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "8": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_8",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
+      },
+      "9": {
+        "Contact Patron": {
+          "description": "In the past, you usually contacted your patron through intermediaries. Now you can communicate directly; you always have the Contact Other Plane spell prepared. With this feature, you can cast the spell without expending a spell slot to contact your patron, and you automatically succeed on the spell's saving throw.\n\nOnce you cast the spell with this feature, you can't do so in this way again until you finish a Long Rest.",
+          "effects": [
+            {
+              "counts_against_limit": false,
+              "spell": "Contact Other Plane",
+              "type": "grant_spell"
+            }
+          ]
+        }
+      }
+    },
+    "hit_die": 8,
+    "invocations_by_level": {
+      "1": 1,
+      "10": 7,
+      "11": 7,
+      "12": 8,
+      "13": 8,
+      "14": 8,
+      "15": 9,
+      "16": 9,
+      "17": 9,
+      "18": 10,
+      "19": 10,
+      "2": 3,
+      "20": 10,
+      "3": 3,
+      "4": 3,
+      "5": 5,
+      "6": 5,
+      "7": 6,
+      "8": 6,
+      "9": 7
+    },
+    "multiclassing": {
+      "armor_training": [
+        "Light"
+      ],
+      "hit_die_granted": 8,
+      "notes": null,
+      "other_proficiencies": [],
+      "saving_throw_proficiencies": [],
+      "skill_proficiencies": null,
+      "source_text": "As a Multiclass Character: Gain the following traits from the Core Warlock Traits table: Hit Point Die and training with Light Armor. Gain the Warlock's level 1 features, which are listed in the Warlock Features table. See the multiclassing rules in multiclassing to determine your available spell slots.",
+      "tool_training": [],
+      "weapon_training": []
+    },
+    "name": "Warlock",
+    "pact_magic_slots_by_level": {
+      "1": [
+        1,
+        1
+      ],
+      "10": [
+        2,
+        5
+      ],
+      "11": [
+        3,
+        5
+      ],
+      "12": [
+        3,
+        5
+      ],
+      "13": [
+        3,
+        5
+      ],
+      "14": [
+        3,
+        5
+      ],
+      "15": [
+        3,
+        5
+      ],
+      "16": [
+        3,
+        5
+      ],
+      "17": [
+        4,
+        5
+      ],
+      "18": [
+        4,
+        5
+      ],
+      "19": [
+        4,
+        5
+      ],
+      "2": [
+        2,
+        1
+      ],
+      "20": [
+        4,
+        5
+      ],
+      "3": [
+        2,
+        2
+      ],
+      "4": [
+        2,
+        2
+      ],
+      "5": [
+        2,
+        3
+      ],
+      "6": [
+        2,
+        3
+      ],
+      "7": [
+        2,
+        4
+      ],
+      "8": [
+        2,
+        4
+      ],
+      "9": [
+        2,
+        5
+      ]
+    },
+    "prepared_spells_by_level": {
+      "1": 2,
+      "10": 10,
+      "11": 11,
+      "12": 11,
+      "13": 12,
+      "14": 12,
+      "15": 13,
+      "16": 13,
+      "17": 14,
+      "18": 14,
+      "19": 15,
+      "2": 3,
+      "20": 15,
+      "3": 4,
+      "4": 5,
+      "5": 6,
+      "6": 7,
+      "7": 8,
+      "8": 9,
+      "9": 10
+    },
+    "primary_ability": "Charisma",
+    "proficiency_bonus_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 2,
+      "20": 6,
+      "3": 2,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 4
+    },
+    "ritual_casting": false,
+    "saving_throw_proficiencies": [
+      "Wisdom",
+      "Charisma"
+    ],
+    "skill_options": [
+      "Arcana",
+      "Deception",
+      "History",
+      "Intimidation",
+      "Investigation",
+      "Nature",
+      "Religion"
+    ],
+    "skill_proficiencies_count": 2,
+    "spell_list_restrictions": null,
+    "spell_preparation_formula": "class_table",
+    "spellcasting_ability": "Charisma",
+    "spellcasting_focus": [
+      "Arcane Focus"
+    ],
+    "spellcasting_type": "pact_magic",
+    "standard_array_assignment": {
+      "Charisma": 15,
+      "Constitution": 13,
+      "Dexterity": 14,
+      "Intelligence": 12,
+      "Strength": 8,
+      "Wisdom": 10
+    },
+    "starting_equipment": {
+      "option_a": {
+        "gold": 15,
+        "items": [
+          "Leather Armor",
+          "Sickle",
+          "Dagger (2)",
+          "Arcane Focus (orb)",
+          "Book (occult lore)",
+          "Scholar's Pack"
+        ]
+      },
+      "option_b": {
+        "gold": 100
+      }
+    },
+    "subclass_selection_level": 3,
+    "weapon_proficiencies": [
+      "Simple weapons"
+    ]
+  },
+  "combat": {
+    "armor_class": 12,
+    "hit_dice": {
+      "spent": 0,
+      "total": "3d8"
+    },
+    "hit_point_maximum": 24,
+    "hit_points": {
+      "current": 24,
+      "maximum": 24,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 18,
+      "base_hp_breakdown": "Level 1: 8 (max d8) + Levels 2-3: 10 (avg d8)",
+      "class_name": "Warlock",
+      "constitution_bonus": 6,
+      "constitution_modifier": 2,
+      "constitution_score": 15,
+      "feature_bonus": 0,
+      "feature_breakdown": [],
+      "hit_die": 8,
+      "level": 3,
+      "total_hp": 24
+    },
+    "initiative": 1,
+    "initiative_bonus": 1,
+    "passive_perception": 11,
+    "speed": 30,
+    "uses_shield": false
+  },
+  "condition_immunities": [],
+  "darkvision": 120,
+  "effects": [
+    {
+      "counts_against_limit": false,
+      "min_level": 3,
+      "source": "Fiend Spells",
+      "source_class_name": "Warlock",
+      "source_type": "subclass",
+      "spell": "Burning Hands",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 3,
+      "source": "Fiend Spells",
+      "source_class_name": "Warlock",
+      "source_type": "subclass",
+      "spell": "Command",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 3,
+      "source": "Fiend Spells",
+      "source_class_name": "Warlock",
+      "source_type": "subclass",
+      "spell": "Scorching Ray",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 3,
+      "source": "Fiend Spells",
+      "source_class_name": "Warlock",
+      "source_type": "subclass",
+      "spell": "Suggestion",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 5,
+      "source": "Fiend Spells",
+      "source_class_name": "Warlock",
+      "source_type": "subclass",
+      "spell": "Fireball",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 5,
+      "source": "Fiend Spells",
+      "source_class_name": "Warlock",
+      "source_type": "subclass",
+      "spell": "Stinking Cloud",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 7,
+      "source": "Fiend Spells",
+      "source_class_name": "Warlock",
+      "source_type": "subclass",
+      "spell": "Fire Shield",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 7,
+      "source": "Fiend Spells",
+      "source_class_name": "Warlock",
+      "source_type": "subclass",
+      "spell": "Wall of Fire",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 9,
+      "source": "Fiend Spells",
+      "source_class_name": "Warlock",
+      "source_type": "subclass",
+      "spell": "Geas",
+      "type": "grant_spell"
+    },
+    {
+      "counts_against_limit": false,
+      "min_level": 9,
+      "source": "Fiend Spells",
+      "source_class_name": "Warlock",
+      "source_type": "subclass",
+      "spell": "Insect Plague",
+      "type": "grant_spell"
+    },
+    {
+      "feat": "Skilled",
+      "source": "Charlatan",
+      "source_type": "background",
+      "type": "grant_origin_feat"
+    },
+    {
+      "range": 120,
+      "source": "Darkvision",
+      "source_type": "species",
+      "type": "grant_darkvision"
+    },
+    {
+      "skills": [
+        "Deception",
+        "Sleight of Hand"
+      ],
+      "source": "Charlatan",
+      "source_type": "background",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "source": "Charlatan",
+      "source_type": "background",
+      "tools": [
+        "Forgery Kit"
+      ],
+      "type": "grant_tool_proficiency"
+    }
+  ],
+  "eldritch_invocation_stats": {
+    "available_invocations": [
+      {
+        "choices": [
+          {
+            "name": "origin_feat",
+            "options": [
+              "Alert",
+              "Crafter",
+              "Healer",
+              "Magic Initiate (Cleric)",
+              "Magic Initiate (Druid)",
+              "Magic Initiate (Wizard)",
+              "Musician",
+              "Savage Attacker",
+              "Skilled",
+              "Lucky",
+              "Tavern Brawler",
+              "Tough"
+            ],
+            "source": {
+              "file": "origin_feats.json",
+              "list": "origin_feats",
+              "type": "external"
+            },
+            "type": "select_single"
+          }
+        ],
+        "description": "You have received knowledge from an elder entity of the multiverse, allowing you to gain one Origin feat of your choice.",
+        "name": "Lessons of the First Ones",
+        "notes": "Warlock level 2+ required. Repeatable: each time you take it, choose a different Origin feat.",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 2
+      },
+      {
+        "description": "As a Bonus Action, you can conjure a pact weapon in your hand\u2014a Simple or Martial Melee weapon of your choice with which you bond\u2014or create a bond with a magic weapon you touch; you can't bond with a magic weapon if someone else is attuned to it or another Warlock is bonded with it. Until the bond ends, you have proficiency with the weapon, and you can use it as a Spellcasting Focus. Whenever you attack with the bonded weapon, you can use your Charisma modifier for the attack and damage rolls instead of using Strength or Dexterity; and you can cause the weapon to deal Necrotic, Psychic, or Radiant damage or its normal damage type. Your bond with the weapon ends if you use this feature's Bonus Action again, if the weapon is more than 5 feet away from you for 1 minute or more, or if you die. A conjured weapon disappears when the bond ends.",
+        "name": "Pact of the Blade",
+        "notes": "Enables Pact of the Blade invocations. Set pact_weapon to the bonded weapon's name to apply its Charisma attack and damage override.",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 1
+      },
+      {
+        "description": "Choose a damage type: Acid, Cold, Fire, Lightning, or Thunder. Once per turn, whenever you deal damage of any of the above types, you can deal the chosen damage type instead.",
+        "name": "Elemental Transmutation",
+        "notes": "",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 2
+      },
+      {
+        "description": "Choose one of your known Warlock cantrips that deals damage and has a range of 10+ feet. When you cast that spell, its range increases by a number of feet equal to 30 times your Warlock level.",
+        "name": "Eldritch Spear",
+        "notes": "Repeatable: each time you take it, choose a different eligible damage cantrip. Effect currently models the canonical Eldritch Blast pick.",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 2
+      },
+      {
+        "description": "Choose one of your known Warlock cantrips that deals damage. You can add your Charisma modifier to that spell's damage rolls.",
+        "name": "Agonizing Blast",
+        "notes": "Repeatable: each time you take it, choose a different eligible Warlock damage cantrip. Effect currently models the canonical Eldritch Blast pick.",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 2
+      },
+      {
+        "description": "Choose one of your known Warlock cantrips that requires an attack roll. When you hit a Large or smaller creature with that cantrip, you can push the creature up to 10 feet straight away from you.",
+        "name": "Repelling Blast",
+        "notes": "Repeatable: each time you take it, choose a different eligible attack-roll cantrip. Play-time forced movement; no sheet effect.",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 2
+      },
+      {
+        "description": "Stitching together strands of shadow, you conjure forth a book in your hand at the end of a Short or Long Rest. This Book of Shadows (you determine its appearance) contains eldritch magic that only you can access, granting you the benefits below. The book disappears if you conjure another book with this feature or if you die. Cantrips and Rituals: when the book appears, choose three cantrips, and choose two level 1 spells that have the Ritual tag. The spells can be from any class's spell list, and they must be spells you don't already have prepared. While the book is on your person, you have the chosen spells prepared, and they function as Warlock spells for you. Spellcasting Focus: you can use the book as a Spellcasting Focus.",
+        "name": "Pact of the Tome",
+        "notes": "Enables Pact of the Tome invocations. Grants 3 cantrips from any class list (Arcane/Divine/Primal in 2024 wording) and 2 level-1 ritual spells (the ritual picks are play-time and prose-only here).",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 1
+      },
+      {
+        "description": "You can cast Disguise Self without expending a spell slot.",
+        "name": "Mask of Many Faces",
+        "notes": "Warlock level 2+ required",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 2
+      },
+      {
+        "description": "You can cast False Life on yourself without expending a spell slot. When you cast the spell with this feature, you don't roll the die for the Temporary Hit Points; you automatically get the highest number on the die.",
+        "name": "Fiendish Vigor",
+        "notes": "Warlock level 2+ required",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 2
+      },
+      {
+        "description": "You can cast Jump on yourself without expending a spell slot.",
+        "name": "Otherworldly Leap",
+        "notes": "Warlock level 2+ required",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 2
+      },
+      {
+        "description": "You can cast Mage Armor on yourself without expending a spell slot.",
+        "name": "Armor of Shadows",
+        "notes": "",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 1
+      },
+      {
+        "description": "You can cast Silent Image without expending a spell slot.",
+        "name": "Misty Visions",
+        "notes": "Warlock level 2+ required",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 2
+      },
+      {
+        "description": "You can see normally in Dim Light and Darkness\u2014both magical and nonmagical\u2014within 120 feet of yourself.",
+        "name": "Devil's Sight",
+        "notes": "Warlock level 2+ required",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 2
+      },
+      {
+        "description": "You have Advantage on Constitution saving throws that you make to maintain Concentration.",
+        "name": "Eldritch Mind",
+        "notes": "",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 1
+      },
+      {
+        "description": "You learn the Find Familiar spell and can cast it as a Magic action without expending a spell slot. When you cast the spell, you choose one of the normal forms for your familiar or one of the following special forms: Imp, Pseudodragon, Quasit, Skeleton, Slaad Tadpole, Sphinx of Wonder, Sprite, or Venomous Snake. Additionally, when you take the Attack action, you can forgo one of your own attacks to allow your familiar to make one attack of its own with its Reaction.",
+        "name": "Pact of the Chain",
+        "notes": "Enables Pact of the Chain invocations. Find Familiar is always prepared and does not count against the Warlock's prepared spell list.",
+        "prerequisite_invocations": [],
+        "prerequisite_level": 1
+      }
+    ],
+    "cantrip_choices": {},
+    "current_choices": {},
+    "current_invocations": [],
+    "dependency_map": {},
+    "has_invocations": true,
+    "invocations": [],
+    "max_invocations": 3
+  },
+  "equipment": {
+    "armor": [
+      {
+        "name": "Leather Armor",
+        "source": "Class"
+      }
+    ],
+    "gold": 30,
+    "items": [
+      {
+        "name": "Arcane Focus (orb)",
+        "source": "Class"
+      },
+      {
+        "name": "Book (occult lore)",
+        "source": "Class"
+      },
+      {
+        "name": "Fine Clothes",
+        "source": "Background"
+      },
+      {
+        "name": "Forgery Kit",
+        "source": "Background"
+      },
+      {
+        "name": "Scholar's Pack",
+        "source": "Class"
+      },
+      {
+        "name": "Signet Ring (fake)",
+        "source": "Background"
+      }
+    ],
+    "weapons": [
+      {
+        "display_name": "Dagger (2)",
+        "name": "Dagger",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "2 gp",
+          "damage": "1d4",
+          "damage_type": "Piercing",
+          "mastery": "Nick",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Finesse",
+            "Light",
+            "Thrown (range 20/60)"
+          ],
+          "weight": 1
+        },
+        "quantity": 2,
+        "source": "Class"
+      },
+      {
+        "display_name": "Sickle",
+        "name": "Sickle",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "1 gp",
+          "damage": "1d4",
+          "damage_type": "Slashing",
+          "mastery": "Nick",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Light"
+          ],
+          "weight": 2
+        },
+        "quantity": 1,
+        "source": "Class"
+      }
+    ]
+  },
+  "features": {
+    "background": [],
+    "class": [
+      {
+        "description": "Through occult ceremony, you have formed a pact with a mysterious entity to gain magical powers. Charisma is your spellcasting ability, and you can use an Arcane Focus as a spellcasting focus. You know two Warlock cantrips of your choice (Eldritch Blast and Prestidigitation are recommended). You prepare two level 1 Warlock spells (Charm Person and Hex are recommended). The number of spells on your list and their available level increases as you gain Warlock levels, as shown in the Warlock Features table. You regain all expended Pact Magic spell slots when you finish a Short or Long Rest. When you reach Warlock levels 4 and 10, you learn another Warlock cantrip of your choice.",
+        "level": 1,
+        "name": "Pact Magic",
+        "source": "Warlock"
+      },
+      {
+        "description": "You can perform an esoteric rite for 1 minute. At the end of it, you regain expended Pact Magic spell slots but no more than a number equal to half your maximum (round up). Once you use this feature, you can't do so again until you finish a Long Rest.",
+        "level": 2,
+        "name": "Magical Cunning",
+        "source": "Warlock"
+      },
+      {
+        "description": "You have unearthed Eldritch Invocations, pieces of forbidden knowledge that imbue you with an abiding magical ability or other lessons. You gain one invocation of your choice, such as Pact of the Tome. If an invocation has a prerequisite, you must meet it to learn that invocation. Whenever you gain a Warlock level, you can replace one of your invocations with another one for which you qualify. You can't replace an invocation if it's a prerequisite for another invocation that you have. When you gain certain Warlock levels, you gain more invocations of your choice, as shown in the Invocations column of the Warlock Features table.",
+        "level": 1,
+        "name": "Eldritch Invocations",
+        "source": "Warlock"
+      }
+    ],
+    "feats": [
+      {
+        "description": "You have a knack for learning new things. You gain proficiency in any combination of three skills or tools of your choice.\n\nChoose any three skills or tools.\n\nYou gain proficiency with your chosen skills or tools.\n\nThis can include any combination of skills and tool proficiencies.",
+        "name": "Skilled",
+        "source": "Charlatan"
+      }
+    ],
+    "lineage": [],
+    "species": [
+      {
+        "description": "When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead. Once you use this trait, you can't do so again until you finish a Long Rest.",
+        "name": "Relentless Endurance",
+        "source": "Orc"
+      },
+      {
+        "description": "You can take the Dash action as a Bonus Action. When you do so, you gain a number of Temporary Hit Points equal to your Proficiency Bonus. You can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest.",
+        "name": "Adrenaline Rush",
+        "source": "Orc"
+      },
+      {
+        "description": "You have Darkvision with a range of 120 feet.",
+        "name": "Darkvision",
+        "source": "Orc"
+      }
+    ],
+    "subclass": [
+      {
+        "description": "The magic of your patron ensures you always have certain spells ready; when you reach a Warlock level specified in the Fiend Spells table, you thereafter always have the listed spells prepared.\n\n<table class=\"table table-sm table-bordered mt-2\">\n<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n<tbody>\n<tr class=\"table-success\"><td>3</td><td>\u2713 Burning Hands, Command, Scorching Ray, Suggestion</td></tr>\n<tr class=\"table-secondary\"><td>5</td><td>\ud83d\udd12 Fireball, Stinking Cloud</td></tr>\n<tr class=\"table-secondary\"><td>7</td><td>\ud83d\udd12 Fire Shield, Wall of Fire</td></tr>\n<tr class=\"table-secondary\"><td>9</td><td>\ud83d\udd12 Geas, Insect Plague</td></tr>\n</tbody>\n</table>",
+        "level": 9,
+        "name": "Fiend Spells",
+        "source": "The Fiend"
+      },
+      {
+        "description": "When you reduce an enemy to 0 Hit Points, you gain Temporary Hit Points equal to your Charisma modifier plus your Warlock level (minimum of 1 Temporary Hit Point). You also gain this benefit if someone else reduces an enemy within 10 feet of you to 0 Hit Points.",
+        "level": 3,
+        "name": "Dark One's Blessing",
+        "source": "The Fiend"
+      }
+    ]
+  },
+  "immunities": [],
+  "languages": [
+    "Common",
+    "Orc",
+    "Draconic"
+  ],
+  "level": 3,
+  "lineage": null,
+  "lineage_data": null,
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "name": "Grax the Bound",
+  "pact_magic_slots": [
+    {
+      "class_level": 3,
+      "class_name": "Warlock",
+      "slot_level": 2,
+      "slots": 2,
+      "subclass": "The Fiend"
+    }
+  ],
+  "proficiencies": {
+    "armor": [
+      "Light armor"
+    ],
+    "languages": [
+      "Common",
+      "Orc",
+      "Draconic"
+    ],
+    "saving_throws": [
+      "Wisdom",
+      "Charisma"
+    ],
+    "skills": [
+      "Intimidation",
+      "Arcana",
+      "Deception",
+      "Sleight of Hand"
+    ],
+    "tools": [
+      "Forgery Kit"
+    ],
+    "weapons": [
+      "Simple weapons"
+    ]
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {},
+    "languages": {
+      "Common": "base",
+      "Draconic": "user_choice",
+      "Orc": "user_choice"
+    },
+    "saving_throws": {},
+    "skills": {
+      "Arcana": "Warlock",
+      "Deception": "Charlatan",
+      "Intimidation": "Warlock",
+      "Sleight of Hand": "Charlatan"
+    },
+    "tools": {
+      "Forgery Kit": "Charlatan"
+    },
+    "weapons": {}
+  },
+  "resistances": [],
+  "save_advantages": [],
+  "skill_proficiencies": [
+    "Intimidation",
+    "Arcana",
+    "Deception",
+    "Sleight of Hand"
+  ],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": true,
+      "source": "Warlock"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Charlatan"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Warlock"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Charlatan"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    }
+  },
+  "species": "Orc",
+  "species_data": {
+    "creature_type": "Humanoid",
+    "description": "Orcs trace their creation to Gruumsh, a powerful god who roamed the wide open spaces of the Material Plane. Even when they turn their devotion to other gods, orcs retain Gruumsh's gifts: endurance, determination, and the ability to see in darkness. Orcs are, on average, tall and broad with gray skin, sharply pointed ears, and prominent lower canines that resemble small tusks.",
+    "languages": [
+      "Common",
+      "Orc"
+    ],
+    "name": "Orc",
+    "size": "Medium",
+    "size_description": "about 6-7 feet tall",
+    "speed": 30,
+    "traits": {
+      "Adrenaline Rush": "You can take the Dash action as a Bonus Action. When you do so, you gain a number of Temporary Hit Points equal to your Proficiency Bonus. You can use this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest.",
+      "Darkvision": {
+        "description": "You have Darkvision with a range of 120 feet.",
+        "effects": [
+          {
+            "range": 120,
+            "type": "grant_darkvision"
+          }
+        ]
+      },
+      "Relentless Endurance": "When you are reduced to 0 Hit Points but not killed outright, you can drop to 1 Hit Point instead. Once you use this trait, you can't do so again until you finish a Long Rest."
+    }
+  },
+  "speed": 30,
+  "speed_bonuses": {},
+  "spell_metadata": {
+    "Burning Hands": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "The Fiend",
+      "source_type": "subclass"
+    },
+    "Command": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "The Fiend",
+      "source_type": "subclass"
+    },
+    "Scorching Ray": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "The Fiend",
+      "source_type": "subclass"
+    },
+    "Suggestion": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "The Fiend",
+      "source_type": "subclass"
+    }
+  },
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {},
+  "spellcasting_stats": {
+    "available_cantrips": [
+      "Blade Ward",
+      "Chill Touch",
+      "Eldritch Blast",
+      "Friends",
+      "Mage Hand",
+      "Mind Sliver",
+      "Minor Illusion",
+      "Poison Spray",
+      "Prestidigitation",
+      "Thunderclap",
+      "Toll the Dead",
+      "True Strike"
+    ],
+    "available_spells": {
+      "1": [
+        "Armor of Agathys",
+        "Arms of Hadar",
+        "Bane",
+        "Charm Person",
+        "Comprehend Languages",
+        "Detect Magic",
+        "Expeditious Retreat",
+        "Hellish Rebuke",
+        "Hex",
+        "Illusory Script",
+        "Protection from Evil and Good",
+        "Speak with Animals",
+        "Unseen Servant",
+        "Witch Bolt"
+      ],
+      "2": [
+        "Battle Familiar",
+        "Cloud of Daggers",
+        "Crown of Madness",
+        "Darkness",
+        "Detect Thoughts",
+        "Dueling Ground",
+        "Enthrall",
+        "Hold Person",
+        "Invisibility",
+        "Mind Spike",
+        "Mirror Image",
+        "Misty Step",
+        "Ray of Enfeeblement",
+        "Shatter",
+        "Spider Climb",
+        "Suggestion",
+        "Uncertain Footing"
+      ]
+    },
+    "background_cantrips_list": null,
+    "background_cantrips_needed": 0,
+    "background_spell_level": 1,
+    "background_spells_list": null,
+    "background_spells_needed": 0,
+    "cantrips_always_prepared": 0,
+    "cantrips_known": 3,
+    "cantrips_to_prepare": 3,
+    "effective_caster_level": 0,
+    "has_spellcasting": true,
+    "max_cantrips": 2,
+    "max_cantrips_prepared": 2,
+    "max_cantrips_to_prepare": 2,
+    "max_prepared_spells": 8,
+    "max_spells_prepared": 4,
+    "max_spells_to_prepare": 4,
+    "multiclass_notes": [],
+    "pact_magic_slots": [
+      {
+        "class_level": 3,
+        "class_name": "Warlock",
+        "slot_level": 2,
+        "slots": 2,
+        "subclass": "The Fiend"
+      }
+    ],
+    "preparation_formula": "class_table",
+    "ritual_casting": false,
+    "spell_attack_bonus": 5,
+    "spell_save_dc": 13,
+    "spellcasting_ability": "Charisma",
+    "spellcasting_modifier": 3,
+    "spellcasting_type": "pact_magic",
+    "spells_always_prepared": 4,
+    "spells_prepared": 9
+  },
+  "spells": {
+    "always_prepared": {
+      "Burning Hands": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "The Fiend"
+      },
+      "Command": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "The Fiend"
+      },
+      "Scorching Ray": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 2,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "The Fiend"
+      },
+      "Suggestion": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 2,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "The Fiend"
+      }
+    },
+    "background_spells": {},
+    "cantrips": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "S, M",
+        "concentration": false,
+        "description": "You create a sound or an image of an object within range that lasts for the duration. The illusion ends if you cast this spell again. If a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
+        "duration": "1 minute",
+        "level": 0,
+        "material": "a bit of fleece",
+        "name": "Minor Illusion",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Illusion",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can't attack, activate magic items, or carry more than 10 pounds.",
+        "duration": "1 minute",
+        "level": 0,
+        "name": "Mage Hand",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Warlock"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You hurl a beam of crackling energy. Make a ranged spell attack against one creature or object in range. On a hit, the target takes 1d10 Force damage. Cantrip Upgrade. The spell creates two beams at level 5, three beams at level 11, and four beams at level 17. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Eldritch Blast",
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      }
+    ],
+    "known": {},
+    "level_1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Warlock"
+        ],
+        "components": "V, S, M (a shard of blue glass)",
+        "concentration": false,
+        "description": "A protective magical force surrounds you, manifesting as a spectral frost that covers you and your gear. You gain 5 Temporary Hit Points. If a creature hits you with a melee attack roll while you have these Hit Points, the creature takes 5 Cold damage. Using a Higher-Level Spell Slot. The Temporary Hit Points and the Cold damage both increase by 5 for each spell slot level above 1.",
+        "duration": "1 hour",
+        "level": 1,
+        "name": "Armor of Agathys",
+        "range": "Self",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Warlock"
+        ],
+        "components": "V, S, M (the petrified eye of a newt)",
+        "concentration": true,
+        "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 Necrotic damage to the target whenever you hit it with an attack roll. Also, choose one ability when you cast the spell. The target has Disadvantage on ability checks made with the chosen ability. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action on a later turn to curse a new creature. Using a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 2 (up to 4 hours), 3-4 (up to 8 hours), or 5+ (24 hours).",
+        "duration": "Concentration, up to 1 hour",
+        "level": 1,
+        "name": "Hex",
+        "range": "90 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see",
+        "classes": [
+          "Warlock"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Hellish Rebuke",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is Undead, if the target doesn't understand your language, or if the command is directly harmful to it. Some typical commands and their effects follow. Approach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you. Drop. The target drops whatever it is holding and then ends its turn. Flee. The target spends its turn moving away from you by the fastest available means. Grovel. The target falls Prone and then ends its turn. Halt. The target doesn't move and takes no action. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Command",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "The Fiend"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Burning Hands",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Self (15-foot cone)",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "The Fiend"
+      }
+    ],
+    "prepared": {
+      "cantrips": {
+        "Eldritch Blast": {},
+        "Mage Hand": {},
+        "Minor Illusion": {}
+      },
+      "spells": {
+        "Armor of Agathys": {},
+        "Darkness": {},
+        "Hellish Rebuke": {},
+        "Hex": {},
+        "Hold Person": {}
+      }
+    },
+    "slots": {}
+  },
+  "spells_by_level": {
+    "0": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "S, M",
+        "concentration": false,
+        "description": "You create a sound or an image of an object within range that lasts for the duration. The illusion ends if you cast this spell again. If a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
+        "duration": "1 minute",
+        "level": 0,
+        "material": "a bit of fleece",
+        "name": "Minor Illusion",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Illusion",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can't attack, activate magic items, or carry more than 10 pounds.",
+        "duration": "1 minute",
+        "level": 0,
+        "name": "Mage Hand",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Warlock"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You hurl a beam of crackling energy. Make a ranged spell attack against one creature or object in range. On a hit, the target takes 1d10 Force damage. Cantrip Upgrade. The spell creates two beams at level 5, three beams at level 11, and four beams at level 17. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Eldritch Blast",
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      }
+    ],
+    "1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Warlock"
+        ],
+        "components": "V, S, M (a shard of blue glass)",
+        "concentration": false,
+        "description": "A protective magical force surrounds you, manifesting as a spectral frost that covers you and your gear. You gain 5 Temporary Hit Points. If a creature hits you with a melee attack roll while you have these Hit Points, the creature takes 5 Cold damage. Using a Higher-Level Spell Slot. The Temporary Hit Points and the Cold damage both increase by 5 for each spell slot level above 1.",
+        "duration": "1 hour",
+        "level": 1,
+        "name": "Armor of Agathys",
+        "range": "Self",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Warlock"
+        ],
+        "components": "V, S, M (the petrified eye of a newt)",
+        "concentration": true,
+        "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 Necrotic damage to the target whenever you hit it with an attack roll. Also, choose one ability when you cast the spell. The target has Disadvantage on ability checks made with the chosen ability. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action on a later turn to curse a new creature. Using a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 2 (up to 4 hours), 3-4 (up to 8 hours), or 5+ (24 hours).",
+        "duration": "Concentration, up to 1 hour",
+        "level": 1,
+        "name": "Hex",
+        "range": "90 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see",
+        "classes": [
+          "Warlock"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Hellish Rebuke",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is Undead, if the target doesn't understand your language, or if the command is directly harmful to it. Some typical commands and their effects follow. Approach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you. Drop. The target drops whatever it is holding and then ends its turn. Flee. The target spends its turn moving away from you by the fastest available means. Grovel. The target falls Prone and then ends its turn. Halt. The target doesn't move and takes no action. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Command",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "The Fiend"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Burning Hands",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Self (15-foot cone)",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "The Fiend"
+      }
+    ],
+    "2": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S, M",
+        "concentration": true,
+        "description": "Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 2,
+        "material": "a small, straight piece of iron",
+        "name": "Hold Person",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, M",
+        "concentration": true,
+        "description": "Magical darkness spreads from a point within range, heavily obscuring the area and blocking nonmagical light.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 2,
+        "material": "bat fur and a drop of pitch or piece of coal",
+        "name": "Darkness",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, M",
+        "concentration": true,
+        "description": "You suggest a course of activity (limited to a sentence or two) and magically influence a creature you can see within range that can hear and understand you. Creatures that can't be Charmed are immune to this effect. The suggestion must be worded in such a manner as to make the activity sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself, or do some other obviously harmful act automatically negates the effect of the spell. The target must make a Wisdom saving throw. On a failed save, it pursues the course of action you described to the best of its ability. The suggested course of action can continue for the entire duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do. You can also specify conditions that will trigger a special activity during the duration.",
+        "duration": "Concentration, up to 8 hours",
+        "level": 2,
+        "material": "a snake's tongue and either a bit of honeycomb or a drop of sweet oil",
+        "name": "Suggestion",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "The Fiend"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You create three rays of fire and hurl them at targets within range. You can hurl them at one target or several. Make a ranged spell attack for each ray. On a hit, the target takes 2d6 fire damage.",
+        "duration": "Instantaneous",
+        "level": 2,
+        "name": "Scorching Ray",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "The Fiend"
+      }
+    ]
+  },
+  "step": "complete",
+  "subclass": "The Fiend",
+  "subclass_data": {
+    "class": "Warlock",
+    "description": "Your pact draws on the Lower Planes, the realms of perdition. You might forge a bargain with a demon lord such as Demogorgon or Orcus; an archdevil such as Asmodeus; or a pit fiend, balor, yugoloth, or night hag that is especially mighty. That patron's aims are evil\u2014the corruption or destruction of all things, ultimately including you\u2014and your path is defined by the extent to which you strive against those aims.",
+    "features_by_level": {
+      "10": {
+        "Fiendish Resilience": "Choose one damage type, other than Force, whenever you finish a Short or Long Rest. You have Resistance to that damage type until you choose a different one with this feature."
+      },
+      "14": {
+        "Hurl Through Hell": "Once per turn when you hit a creature with an attack roll, you can try to instantly transport the target through the Lower Planes. The target must succeed on a Charisma saving throw against your spell save DC, or the target disappears and hurtles through a nightmare landscape. The target takes 8d10 Psychic damage if it isn't a Fiend, and it has the Incapacitated condition until the end of your next turn, when it returns to the space it previously occupied or the nearest unoccupied space.\n\nOnce you use this feature, you can't use it again until you finish a Long Rest unless you expend a Pact Magic spell slot (no action required) to restore your use of it."
+      },
+      "3": {
+        "Dark One's Blessing": "When you reduce an enemy to 0 Hit Points, you gain Temporary Hit Points equal to your Charisma modifier plus your Warlock level (minimum of 1 Temporary Hit Point). You also gain this benefit if someone else reduces an enemy within 10 feet of you to 0 Hit Points.",
+        "Fiend Spells": {
+          "description": "The magic of your patron ensures you always have certain spells ready; when you reach a Warlock level specified in the Fiend Spells table, you thereafter always have the listed spells prepared.",
+          "effects": [
+            {
+              "counts_against_limit": false,
+              "min_level": 3,
+              "spell": "Burning Hands",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 3,
+              "spell": "Command",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 3,
+              "spell": "Scorching Ray",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 3,
+              "spell": "Suggestion",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 5,
+              "spell": "Fireball",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 5,
+              "spell": "Stinking Cloud",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 7,
+              "spell": "Fire Shield",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 7,
+              "spell": "Wall of Fire",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 9,
+              "spell": "Geas",
+              "type": "grant_spell"
+            },
+            {
+              "counts_against_limit": false,
+              "min_level": 9,
+              "spell": "Insect Plague",
+              "type": "grant_spell"
+            }
+          ]
+        }
+      },
+      "6": {
+        "Dark One's Own Luck": "You can call on your fiendish patron to alter fate in your favor. When you make an ability check or a saving throw, you can use this feature to add 1d10 to your roll. You can do so after seeing the roll but before any of the roll's effects occur.\n\nYou can use this feature a number of times equal to your Charisma modifier (minimum of once), but you can use it no more than once per roll. You regain all expended uses when you finish a Long Rest."
+      }
+    },
+    "name": "The Fiend",
+    "source": "Player's Handbook 2024"
+  },
+  "superiority_dice": {},
+  "tool_proficiencies": [
+    "Forgery Kit"
+  ],
+  "warnings": [
+    "Spell selections had validation issues: [{'field': 'spell_selections.cantrips', 'reason': 'max_exceeded', 'submitted_count': 3, 'max_allowed': 2}, {'field': 'spell_selections.spells', 'reason': 'max_exceeded', 'submitted_count': 5, 'max_allowed': 4}]"
+  ],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [],
+    "current_masteries": [],
+    "has_mastery": false,
+    "max_masteries": 0
+  },
+  "weapon_proficiencies": [
+    "Simple weapons"
+  ]
+}

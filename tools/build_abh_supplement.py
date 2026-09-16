@@ -1,0 +1,395 @@
+import json
+import sys
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO_ROOT))
+
+from modules.supplement_manager import get_supplement_manager
+
+package = {
+    "manifest": {
+        "id": "astarions-book-of-hungers",
+        "title": "Astarion's Book of Hungers",
+        "publisher": "Wizards of the Coast",
+        "version": "1.0.0",
+        "compatibility": "2024",
+        "description": "Character options from Astarion's Book of Hungers: the Dhampir species, 3 backgrounds (Carouser, Vampire Devotee, Vampire Survivor), and 16 vampiric feats.",
+        "dependencies": ["core-phb-2024"]
+    },
+    "species": [
+        {
+            "name": "Dhampir",
+            "description": "Dhampirs are living people who possess vampiric prowess but are cursed with macabre hunger. Most dhampirs thirst for blood, but some gain sustenance from dreams, life energy, or other vital sources. Dhampirs must choose whether to fight to control their hunger or give in to predatory urges. Dhampirs often arise from encounters with vampires; some are the descendants of a powerful vampire, while others are partially transformed by a vampire's bite. All manner of macabre bargains and necromantic influences might also give rise to a dhampir. Regardless of their origins, dhampirs exhibit their vampiric nature in various ways, including increased speed and a life-draining bite.",
+            "creature_type": "Humanoid",
+            "size": "Medium or Small",
+            "size_description": "Medium (about 4–7 feet tall) or Small (about 2–4 feet tall), chosen when you select this species",
+            "speed": 35,
+            "darkvision": 60,
+            "languages": ["Common"],
+            "source": "Astarion's Book of Hungers",
+            "traits": {
+                "Darkvision": {
+                    "description": "You have Darkvision with a range of 60 feet.",
+                    "effects": [
+                        {
+                            "type": "grant_darkvision",
+                            "range": 60
+                        }
+                    ]
+                },
+                "Spider Climb": {
+                    "description": "You have a Climb Speed equal to your Speed. When you reach character level 3, you can move up, down, and across vertical surfaces and along ceilings while leaving your hands free."
+                },
+                "Trace of Undeath": {
+                    "description": "You have Resistance to Necrotic damage.",
+                    "effects": [
+                        {
+                            "type": "grant_damage_resistance",
+                            "damage_type": "Necrotic"
+                        }
+                    ]
+                },
+                "Vampiric Bite": {
+                    "description": "When you use your Unarmed Strike and deal damage, you can choose to bite with your fangs. You deal Piercing damage equal to 1d4 plus your Constitution modifier instead of the normal damage of an Unarmed Strike. In addition, when you deal this damage to a creature that isn't a Construct or an Undead, you can empower yourself in one of the following ways:\n- Drain. You regain Hit Points equal to the Piercing damage dealt.\n- Strengthen. You gain a bonus to the next ability check or attack roll you make within the next minute; the bonus is equal to the Piercing damage dealt.\nYou can empower yourself with this trait a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest."
+                }
+            }
+        }
+    ],
+    "backgrounds": [
+        {
+            "name": "Carouser",
+            "description": "You grew to adulthood in the beating heart of a large city, such as Baldur's Gate. You spent countless evenings in taverns, playhouses, parlors, and gambling dens, savoring all the city had to offer. You're a natural at interacting with people to learn their secrets, whether over a high-stakes game or at a high-class soiree. You might have been thrown out of an establishment or ten, but only by people who don't know how to party.",
+            "edition": "2024",
+            "status": "active",
+            "source": "Astarion's Book of Hungers",
+            "ability_score_increase": {
+                "total": 3,
+                "options": ["Dexterity", "Intelligence", "Charisma"],
+                "suggested": {
+                    "Charisma": 2,
+                    "Dexterity": 1
+                }
+            },
+            "effects": [
+                {
+                    "type": "grant_skill_proficiency",
+                    "skills": ["Deception", "Persuasion"]
+                },
+                {
+                    "type": "grant_origin_feat",
+                    "feat": "Tireless Reveler"
+                },
+                {
+                    "type": "grant_tool_proficiency",
+                    "tools": ["Gaming Set"]
+                }
+            ],
+            "starting_equipment": {
+                "option_a": {
+                    "items": [
+                        "Dagger",
+                        "Gaming Set",
+                        "Fine Clothes",
+                        "Glass Bottle",
+                        "Mirror",
+                        "Perfume",
+                        "Pouch",
+                        "Tinderbox"
+                    ],
+                    "gold": 19
+                },
+                "option_b": {
+                    "gold": 50
+                }
+            }
+        },
+        {
+            "name": "Vampire Devotee",
+            "description": "You were in service to a vampire or a small group of vampires lairing together. The Undead drank your blood more times than you can count. You might have served willingly, perhaps with aspirations of one day becoming a vampire yourself. Or you might have been magically charmed and retain only a few muddled memories of your time as a vampire familiar. In either case, your time in the vampire den is over.",
+            "edition": "2024",
+            "status": "active",
+            "source": "Astarion's Book of Hungers",
+            "ability_score_increase": {
+                "total": 3,
+                "options": ["Strength", "Constitution", "Charisma"],
+                "suggested": {
+                    "Charisma": 2,
+                    "Constitution": 1
+                }
+            },
+            "effects": [
+                {
+                    "type": "grant_skill_proficiency",
+                    "skills": ["Persuasion", "Stealth"]
+                },
+                {
+                    "type": "grant_origin_feat",
+                    "feat": "Vampire's Plaything"
+                },
+                {
+                    "type": "grant_tool_proficiency",
+                    "tools": ["Cook's Utensils"]
+                }
+            ],
+            "starting_equipment": {
+                "option_a": {
+                    "items": [
+                        "Cook's Utensils",
+                        "Fine Clothes",
+                        "Glass Bottle (2)",
+                        "Healer's Kit",
+                        "Perfume",
+                        "Lamp",
+                        "Oil (3 flasks)",
+                        "Waterskin"
+                    ],
+                    "gold": 19
+                },
+                "option_b": {
+                    "gold": 50
+                }
+            }
+        },
+        {
+            "name": "Vampire Survivor",
+            "description": "You witnessed or survived a vampire attack. You might have been directly involved in this confrontation, or perhaps you were frozen in terror by what you saw. Regardless, you remain vigilant for monster attacks and pride yourself on being ready for anything. No vampire will catch you or your allies by surprise again.",
+            "edition": "2024",
+            "status": "active",
+            "source": "Astarion's Book of Hungers",
+            "ability_score_increase": {
+                "total": 3,
+                "options": ["Dexterity", "Constitution", "Wisdom"],
+                "suggested": {
+                    "Dexterity": 2,
+                    "Wisdom": 1
+                }
+            },
+            "effects": [
+                {
+                    "type": "grant_skill_proficiency",
+                    "skills": ["Insight", "Religion"]
+                },
+                {
+                    "type": "grant_origin_feat",
+                    "feat": "Vampire Hunter"
+                },
+                {
+                    "type": "grant_tool_proficiency",
+                    "tools": ["Woodcarver's Tools"]
+                }
+            ],
+            "starting_equipment": {
+                "option_a": {
+                    "items": [
+                        "Woodcarver's Tools",
+                        "Crowbar",
+                        "Hooded Lantern",
+                        "Holy Symbol (reliquary)",
+                        "Holy Water",
+                        "Mirror",
+                        "Oil (3 flasks)",
+                        "Tinderbox",
+                        "Traveler's Clothes",
+                        "Waterskin"
+                    ],
+                    "gold": 4
+                },
+                "option_b": {
+                    "gold": 50
+                }
+            }
+        }
+    ],
+    "feats": {
+        "origin_feats": {
+            "Tireless Reveler": {
+                "description": "When an ally you can see within 60 feet of yourself expends Heroic Inspiration, you can gain Heroic Inspiration if you lack it. You can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest.",
+                "benefits": [
+                    "When an ally you can see within 60 feet of yourself expends Heroic Inspiration, you can gain Heroic Inspiration if you lack it. You can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Short or Long Rest."
+                ],
+                "category": "Origin",
+                "prerequisite": "None",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Vampire Hunter": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Adroit Escape. You have Advantage on checks to escape from nonmagical restraints or the Grappled condition.",
+                    "Vitality Ward. When you take Necrotic damage, you can take a Reaction to mitigate the damage. Roll a number of d6s equal to your Proficiency Bonus, and add them together. Reduce the Necrotic damage you take by this total. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+                ],
+                "category": "Origin",
+                "prerequisite": "None",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Vampire's Plaything": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Decanting. When you finish a Long Rest, you can create one Potion of Healing or an Antitoxin, as long as you have an empty vial or flask. These liquids evaporate when you finish another Long Rest.",
+                    "Timely Retreat. You can take a Bonus Action to take the Dash action or the Disengage action. You can use this benefit a number of times equal to your Proficiency Bonus, and you recover all expended uses when you finish a Long Rest.",
+                    "Vampiric Connection. The DM determines the fate of your former vampire master. While you and your former vampire master are on the same plane of existence, the vampire can communicate with you telepathically, and you can choose to allow the vampire to perceive through your senses."
+                ],
+                "category": "Origin",
+                "prerequisite": "None",
+                "source": "Astarion's Book of Hungers"
+            }
+        },
+        "general_feats": {
+            "Bloodlust": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.",
+                    "Powerful Recovery. When you roll a Hit Point Die to regain Hit Points, you can treat any roll of 1 or 2 as a 3.",
+                    "Sanguine Feast. Once per turn when you hit a Bloodied creature that isn't a Construct or Undead with an attack roll, you can expend a Hit Point Die, roll it, and regain a number of Hit Points equal to the number rolled plus your Constitution modifier. You can use this feature a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Bomber": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Dexterity score by 1, to a maximum of 20.",
+                    "Far Lobber. When you use the Attack action to throw a vial or flask, you can target an object or creature you can see within 40 feet of yourself.",
+                    "Long Shots. Attacking at long range doesn't impose Disadvantage on your attack rolls with Thrown weapons."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Cloying Mists": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+                    "Arise, Fog. You always have the Fog Cloud spell prepared. You can cast it without a spell slot, and you must finish a Long Rest before you can cast it in this way again. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat.",
+                    "Grasping Mist. Whenever you cast Fog Cloud, nonmagical flames in the spell's Sphere are extinguished, and creatures other than you and your allies have their Speed reduced by 5 feet while in the spell's Sphere."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Delicious Pain": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 20.",
+                    "Toughened Flesh. Immediately after you take Bludgeoning, Piercing, or Slashing damage, you can take a Reaction to gain Resistance to Bludgeoning, Piercing, and Slashing damage until the start of your next turn. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Light Bringer": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+                    "Sacred Magic. You learn the Light spell and can cast it without Material components. If you already know that cantrip, you learn a different Cleric cantrip of your choice. The spell's spellcasting ability is the ability increased by this feat.",
+                    "Solar Luminance. When you cast Light, you can have the light from the spell be sunlight. Once you use this benefit, you can't use it again until you finish a Long Rest.",
+                    "Sun's Healing. As a Bonus Action while within sunlight, you can expend one of your Hit Point Dice, roll the die, and regain a number of Hit Points equal to the roll. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Love Bites": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 20.",
+                    "Endearing Pain. Immediately after you damage a creature with a Melee weapon or an Unarmed Strike, you can take a Bonus Action to give the target the Charmed condition until the start of your next turn or until you or your allies damage it. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Putrefy": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 20.",
+                    "Necrosis. When you make a damage roll that deals Necrotic damage, you can cause one creature taking that damage to have the Poisoned condition until the start of your next turn. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Rebuke": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 20.",
+                    "Radiant Strike. When you make a damage roll that deals Radiant damage, you can cause one Huge or smaller creature taking the damage to have the Prone condition. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Treacherous Allure": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+                    "Enchanting Presence. You always have the Charm Person spell prepared. You can cast it without a spell slot, and you must finish a Long Rest before you can cast it in this way again. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat.",
+                    "Inevitable Betrayal. You have Advantage on attack rolls against creatures with the Charmed condition."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Vampire Touched": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+                    "Vampire Magic. Choose one level 1 spell from the Enchantment or Illusion school of magic. You always have that spell and the Spider Climb spell prepared. You can cast each of these spells without expending a spell slot, but when you cast Spider Climb this way, you must target yourself, and you must finish a Long Rest before you can cast each spell in this way again. You can also cast either spell using spell slots you have of the appropriate level. Your spellcasting ability for the spells is the ability increased by this feat."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Boon of Blazing Dawn": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 30.",
+                    "Beloved of the Sun. You have Immunity to Radiant damage.",
+                    "Blazing Strike. When you hit a creature with a weapon attack, the damage can be Radiant or the weapon's normal damage type (your choice).",
+                    "Burst of Sunlight. Once per turn when you hit a creature with an attack that deals Radiant damage, you can emit Bright Light in a 30-foot radius from yourself and Dim Light for an additional 30 feet until the start of your next turn. This light is sunlight."
+                ],
+                "category": "Epic Boon",
+                "prerequisite": "Level 19+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Boon of Looming Shadows": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 30.",
+                    "Shadowy Stretch. When you take the Attack action, your reach for your Melee weapon attacks increases by 10 feet until the end of your turn.",
+                    "Dancing Silhouette. You can take the Dodge action as a Bonus Action."
+                ],
+                "category": "Epic Boon",
+                "prerequisite": "Level 19+",
+                "source": "Astarion's Book of Hungers"
+            },
+            "Boon of Misty Escape": {
+                "description": "You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 30.",
+                    "Gaseous Form. If you drop to 0 Hit Points but aren't killed outright, you can instead drop to 1 Hit Point and cast Gaseous Form without expending a spell slot (no action required). When you cast this spell this way, you can target only yourself, your Fly Speed is 20 feet, and you regain 10 Hit Points at the start of each of your turns for the spell's duration. The spell's spellcasting ability is the ability increased by this feat. Once you use this benefit, you can't do so again until you finish a Long Rest."
+                ],
+                "category": "Epic Boon",
+                "prerequisite": "Level 19+",
+                "source": "Astarion's Book of Hungers"
+            }
+        }
+    }
+}
+
+target_file = REPO_ROOT / "supplements" / "astarions-book-of-hungers.json"
+with open(target_file, "w", encoding="utf-8") as f:
+    json.dump(package, f, indent=2, ensure_ascii=False)
+
+print(f"Wrote supplement package to {target_file}")
+
+mgr = get_supplement_manager()
+valid, errors = mgr.validate_package(package)
+if valid:
+    print("VALIDATION SUCCESS: Package is strictly schema-compliant!")
+else:
+    print(f"VALIDATION FAILED with {len(errors)} error(s):")
+    for e in errors:
+        print(" -", e)
+    sys.exit(1)

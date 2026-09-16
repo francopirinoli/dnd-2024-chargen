@@ -1,0 +1,3577 @@
+{
+  "manifest": {
+    "id": "forgotten-realms-heroes-of-faerun",
+    "title": "Forgotten Realms: Heroes of Faer\u00fbn",
+    "publisher": "Wizards of the Coast",
+    "version": "1.0.0",
+    "compatibility": "2024",
+    "description": "Character options from Forgotten Realms: Heroes of Faer\u00fbn, including 8 subclasses (College of the Moon, Knowledge Domain, Banneret, Oath of the Noble Genies, Winter Walker, Scion of the Three, Spellfire Sorcery, Bladesinger), 18 backgrounds, 34 feats, and 19 spells.",
+    "dependencies": [
+      "core-phb-2024"
+    ]
+  },
+  "subclasses": [
+    {
+      "name": "College of the Moon",
+      "class": "Bard",
+      "description": "Inspire Allies with Primal Tales The College of the Moon traces its origins to the ancient druidic circles of the Moonshae Isles, who entrusted the first Bards of this tradition with chronicling the stories of the islands and their people. Bards of this college draw from the isles' fey magic and the primal power of the moonwells to bolster their allies, protect the natural world, and inspire their bardic works.",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "features_by_level": {
+        "3": {
+          "Moon's Inspiration": "The primal and ever-changing power of the moon flows through you, granting you the following benefits.\nInspired Eclipse. When you take a Bonus Action to give a creature a Bardic Inspiration die, you can have the Invisible condition and teleport up to 30 feet to an unoccupied space you can see as part of that Bonus Action. This invisibility lasts until the start of your next turn and ends early immediately after you make an attack roll, deal damage, or cast a spell.\nLunar Vitality. Once per turn when you restore Hit Points to a creature with a spell, you can expend a Bardic Inspiration die and increase the amount of Hit Points restored by a number equal to a roll of the Bardic Inspiration die. The creature's Speed also increases by 10 feet until the end of its next turn.",
+          "Primal Lore": "You learn Druidic and one cantrip from the Druid spell list. It counts as a Bard spell for you but doesn't count against the number of cantrips you know. Whenever you gain a Bard level, you can replace this cantrip with another cantrip of your choice from the Druid spell list.\nAdditionally, choose one of the following skills: Animal Handling, Insight, Medicine, Nature, Perception, or Survival. You have proficiency in that skill."
+        },
+        "6": {
+          "Blessing of Moonlight": "You always have the Moonbeam spell prepared.\nWhen you cast Moonbeam, you can modify the spell so that you glow faintly while the spell is active. While glowing, you shed Dim Light out to 5 feet, and whenever a creature fails its saving throw against the effects of this Moonbeam, another creature of your choice that you can see within 60 feet of yourself regains 2d4 Hit Points.\nOnce you use this feature to modify a casting of Moonbeam, you can't use it again until you finish a Long Rest."
+        },
+        "14": {
+          "Eventide's Splendor": "You become suffused with the might of the moon, improving your Moon's Inspiration in the following ways.\nShadow of the New Moon. When you use Inspired Eclipse, the creature who received the Bardic Inspiration die can also have the Invisible condition and immediately take a Reaction to teleport up to 30 feet to an unoccupied space it can see. The creature remains Invisible until the start of its next turn.\nVibrance of the Full Moon. When you use Lunar Vitality, you can roll 1d6 and use the number rolled in place of expending a Bardic Inspiration die."
+        }
+      }
+    },
+    {
+      "name": "Knowledge Domain",
+      "class": "Cleric",
+      "description": "Unearth Secrets and Master the Mind The Knowledge Domain values learning and understanding above all. Clerics who tap into this domain study esoteric lore, collect old tomes, delve into secret places, and examine the processes of the mind. To them, knowledge is more valuable than material wealth, and learning is an act of worship. Libraries, universities, and other educational institutions also draw on the power of the Knowledge Domain. Gods of knowledge vary from masters of arcane magic to patrons of craft and invention. In Faer\u00fbn, Clerics of the Knowledge Domain worship deities of learning and ingenuity such as Oghma and Gond, among many others.",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "features_by_level": {
+        "3": {
+          "Blessings of Knowledge": "You gain proficiency with one type of Artisan's Tools of your choice and in two of the following skills of your choice: Arcana, History, Nature, or Religion. You have Expertise in those two skills.",
+          "Knowledge Domain Spells": {
+            "description": "When you reach a Cleric level specified in the Knowledge Domain Spells table, you thereafter always have the listed spells prepared.",
+            "spells": {
+              "3": [
+                "Command",
+                "Comprehend Languages",
+                "Detect Magic",
+                "Detect Thoughts",
+                "Identify",
+                "Mind Spike"
+              ],
+              "5": [
+                "Dispel Magic",
+                "Nondetection",
+                "Tongues"
+              ],
+              "7": [
+                "Arcane Eye",
+                "Banishment",
+                "Confusion"
+              ],
+              "9": [
+                "Legend Lore",
+                "Scrying",
+                "Synaptic Static"
+              ]
+            }
+          },
+          "Mind Magic": "As a Magic action, you can expend one use of your Channel Divinity to manifest your magical knowledge. Choose one spell from the Divination school on the Knowledge Domain Spells table that you have prepared. As part of that action, you cast that spell without expending a spell slot or needing Material components."
+        },
+        "6": {
+          "Unfettered Mind": "You gain telepathy out to 60 feet. When you use this telepathy, you can simultaneously contact a number of creatures equal to your Wisdom modifier (minimum of one).\nAdditionally, you gain proficiency in Intelligence saving throws. If you already have this proficiency, you instead gain saving throw proficiency with one ability in which you lack it."
+        },
+        "17": {
+          "Divine Foreknowledge": "As a Bonus Action, you magically expand your mind to the future. For 1 hour, you have Advantage on D20 Tests. Once you use this feature, you can't use it again until you finish a Long Rest. You can also restore your use of this feature by expending a level 6+ spell slot (no action required)."
+        }
+      }
+    },
+    {
+      "name": "Banneret",
+      "class": "Fighter",
+      "description": "Rally Fellow Heroes with Inspiring Leadership Bannerets are paragons of valor and leadership who protect the innocent and rally fellow adventurers to the causes of justice and freedom. Many are knights serving in Cormyr, the Silver Marches, Damara, Chessenta, or other lands across Faer\u00fbn. They wander the realms as knights errant, taking the fight against evil beyond their kingdom's borders. A Banneret relies on judgment, bravery, and fidelity to the code of chivalry to guide them in defeating evildoers. A lone Banneret is a skilled warrior, but when leading a band of allies one of these warriors can transform even a poorly equipped militia into a ferocious war band.",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "features_by_level": {
+        "3": {
+          "Knightly Envoy": "You know how to conduct yourself with grace as a noble ambassador. You gain the following benefits.\nComprehension. You can cast the Comprehend Languages spell but only as a Ritual. Charisma is your spellcasting ability for it.\nPolyglot. You learn one language from the language tables in the Player's Handbook or chapter 2 of this book. When you finish a Long Rest, you can replace a language learned from this benefit with another language you have heard, seen signed, or read in the past 24 hours.\nWell Spoken. You gain proficiency in one of the following skills of your choice: Insight, Intimidation, Persuasion, or Performance.",
+          "Group Recovery": "When you use your Second Wind to regain Hit Points, you can choose a number of allies within a 30-foot Emanation originating from yourself, up to a number of allies equal to your Charisma modifier (minimum of one). Each of those allies regains Hit Points equal to 1d4 plus your Fighter level. Once you use this ability, you can't use it again until you finish a Short or Long Rest."
+        },
+        "7": {
+          "Team Tactics": "When you use Group Recovery, each chosen ally has Advantage on D20 Tests until the start of your next turn."
+        },
+        "10": {
+          "Rallying Surge": "When you use your Action Surge, you can choose allies within a 30-foot Emanation originating from yourself, up to a number of allies equal to your Charisma modifier (minimum of one). Each of those allies can immediately take a Reaction to use one of the following options.\nAttack. The ally makes one attack with a weapon or an Unarmed Strike.\nMove. The ally moves up to half its Speed without provoking Opportunity Attacks."
+        },
+        "15": {
+          "Shared Resilience": "When an ally you can see within 60 feet of yourself fails a saving throw, you can take a Reaction to expend a use of your Indomitable feature. The ally can immediately reroll the saving throw with a bonus equal to your Fighter level; the ally must use the new roll."
+        },
+        "18": {
+          "Inspiring Commander": "You gain the following benefits.\nBolstered Rally. The area of effect for both Group Recovery and Rallying Surge is now a 60-foot Emanation.\nUnshakable Bravery. You have Immunity to the Charmed and Frightened conditions."
+        }
+      }
+    },
+    {
+      "name": "Oath of the Noble Genies",
+      "class": "Paladin",
+      "description": "Brandish the Elemental Splendor of Genies Paladins sworn to the Oath of the Noble Genies revere the forces of the Elemental Planes. Through taking this oath, Paladins draw power from the four different types of genies\u2014dao, masters of earth; djinn, masters of air; efreet, masters of fire; and marids, masters of water. In Faer\u00fbn, many Paladins who swear this oath hail from Calimshan, a land teeming with genies. Paladins who swear this oath often undertake quests that take them all over the Realms and across the multiverse\u2014including the Elemental Planes. These paladins share the following tenets: Sow the seeds of creation amid the ashes of destruction. Lead with splendor and grace. Respect the elements, and fear their wrath.",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "features_by_level": {
+        "3": {
+          "Elemental Smite": "Immediately after you cast Divine Smite, you can expend one use of your Channel Divinity and invoke one of the following effects.\nDao's Crush. Earth rises up around the target of your Divine Smite. The target has the Grappled condition (escape DC equal to your spell save DC). While Grappled, the target has the Restrained condition.\nDjinni's Escape. You teleport to an unoccupied space you can see within 30 feet of yourself and take on a semi-incorporeal form, which lasts until the end of your next turn. While in this form, you have Resistance to Bludgeoning, Piercing, and Slashing damage, and you have Immunity to the Grappled, Prone, and Restrained conditions.\nEfreeti's Fury. The target of your Divine Smite takes an extra 2d4 Fire damage, and fire jumps from the target to another creature you can see within 30 feet of yourself. The second creature also takes 2d4 Fire damage.\nMarid's Surge. The target of your Divine Smite and each creature of your choice in a 10-foot Emanation originating from you make a Strength saving throw against your spell save DC. On a failed save, a creature is pushed 15 feet straight away from you and has the Prone condition.",
+          "Genie Spells": {
+            "description": "When you reach a Paladin level specified in the Genie Spells table, you thereafter always have the listed spells prepared.",
+            "spells": {
+              "3": [
+                "Chromatic Orb",
+                "Elementalism",
+                "Thunderous Smite"
+              ],
+              "5": [
+                "Mirror Image",
+                "Phantasmal Force"
+              ],
+              "9": [
+                "Fly",
+                "Gaseous Form"
+              ],
+              "13": [
+                "Conjure Minor Elementals",
+                "Summon Elemental"
+              ],
+              "17": [
+                "Banishing Smite",
+                "Contact Other Plane"
+              ]
+            }
+          },
+          "Genie's Splendor": "When you aren't wearing any armor, your base Armor Class equals 10 plus your Dexterity and Charisma modifiers. You can use a Shield and still gain this benefit.\nYou also gain proficiency in one of the following skills of your choice: Acrobatics, Intimidation, Performance, or Persuasion."
+        },
+        "7": {
+          "Aura of Elemental Shielding": "Choose one of the following damage types: Acid, Cold, Fire, Lightning, or Thunder. You and your allies have Resistance to that damage type while in your Aura of Protection.\nAt the start of each of your turns, you can change the damage type affected by this feature to one of the other listed options (no action required)."
+        },
+        "15": {
+          "Elemental Rebuke": "When you are hit by an attack roll, you can take a Reaction to halve the attack's damage against yourself (round down) and force the attacker to make a Dexterity saving throw against your spell save DC. On a failed save, the attacker takes damage equal to 2d10 plus your Charisma modifier of one of the following types (your choice): Acid, Cold, Fire, Lightning, or Thunder. On a successful save, the attacker takes half as much damage.\nYou can use this feature a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a Long Rest."
+        },
+        "20": {
+          "Noble Scion": "As a Bonus Action, you gain the benefits below for 10 minutes or until you end them (no action required). Once you use this feature, you can't use it again until you finish a Long Rest. You can also restore your use of it by expending a level 5 spell slot (no action required).\nFlight. You have a Fly Speed of 60 feet and can hover.\nMinor Wish. When you or an ally in your Aura of Protection fails a D20 Test, you can take a Reaction to make you or that ally succeed instead."
+        }
+      }
+    },
+    {
+      "name": "Winter Walker",
+      "class": "Ranger",
+      "description": "Withstand the Horrors of Frigid Wastelands Winter Walkers hone their craft in the bleak and frozen wilds of places like Icewind Dale. These ruthless, rimed Rangers hunt monsters that haunt arctic wastelands, eventually becoming frigid terrors themselves. Winter Walkers are well versed in the phenomena of Icewind Dale, including the latent magic of fallen Netherese cities, endemic monsters like yetis and crag cats, and the rising threat of Underdark invaders. Due to their cold pragmatism, terrifying magic, and mastery of the region, Winter Walkers are regarded with equal parts respect and fear. Ten-Towns citizens say that Winter Walkers' frequent exposure to malignant entities gives them their fearsome powers. Many Reghed nomads, on the other hand, believe that nature spirits bestow on Winter Walkers a unique curse.",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "features_by_level": {
+        "3": {
+          "Frigid Explorer": "You gain the following benefits.\nBiting Cold. Damage from your weapon attacks, Ranger spells, and Ranger features ignores Resistance to Cold damage.\nFrost Resistance. You have Resistance to Cold damage.\nPolar Strikes. When you hit a creature with an attack roll using a weapon, you can deal an extra 1d4 Cold damage to the target, which can take this extra damage only once per turn. When you reach Ranger level 11, this extra damage increases to 1d6.",
+          "Hunter's Rime": "Ice rimes you and your prey, protecting you and hindering them. When you cast Hunter's Mark, you gain Temporary Hit Points equal to 1d10 plus your Ranger level.\nAdditionally, while a creature is marked by your Hunter's Mark, it can't take the Disengage action.",
+          "Winter Walker Spells": {
+            "description": "When you reach a Ranger level specified in the Winter Walker Spells table, you thereafter always have the listed spells prepared.",
+            "spells": {
+              "3": [
+                "Ice Knife"
+              ],
+              "5": [
+                "Hold Person"
+              ],
+              "9": [
+                "Remove Curse"
+              ],
+              "13": [
+                "Ice Storm"
+              ],
+              "17": [
+                "Cone of Cold"
+              ]
+            }
+          }
+        },
+        "7": {
+          "Fortifying Soul": "Your experience surviving harrowing environments allows you to bolster your allies in addition to yourself. As a Magic action, choose a number of creatures you can see equal to your Wisdom modifier (minimum of one). Each chosen creature regains Hit Points equal to 1d10 plus your Ranger level and has Advantage on saving throws to avoid or end the Frightened condition for 1 hour.\nOnce you use this feature, you can't use it again until you finish a Long Rest."
+        },
+        "11": {
+          "Chilling Retribution": "When a creature hits you with an attack roll, you can take a Reaction to force the creature to make a Wisdom saving throw against your spell save DC. On a failed save, the target has the Stunned condition until the end of your next turn. While the target is Stunned, its Speed is reduced to 0 feet.\nYou can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest."
+        },
+        "15": {
+          "Frozen Haunt": "When you cast Hunter's Mark, you can adopt a ghostly, snowy form. This form lasts until the spell ends, and while you are in this form, you gain the following benefits. Once you use this feature, you can't use it again until you finish a Long Rest unless you expend a level 4+ spell slot (no action required).\nFrozen Soul. You have Immunity to Cold damage. When you first adopt this form and at the start of each of your subsequent turns, each creature of your choice in a 15-foot Emanation originating from you takes 2d4 Cold damage.\nPartially Incorporeal. You have Immunity to the Grappled, Prone, and Restrained conditions. You can move through creatures and objects as if they were Difficult Terrain, but you take 1d10 Force damage if you end your turn inside a creature or an object. If the form ends while you are inside a creature or an object, you are shunted to the nearest unoccupied space."
+        }
+      }
+    },
+    {
+      "name": "Scion of the Three",
+      "class": "Rogue",
+      "description": "Become a Gruesome Agent of Malice A Scion of the Three draws power from a group of malevolent gods known in Baldur's Gate as the Dead Three: Bane, a god of tyranny; Bhaal, a god of violence and murder; and Myrkul, a god of death. While some Rogues of this subclass pledge themselves ardently to those three macabre gods, others are thrust on this path by a curse. Either way, a scion's power manifests as various occult gifts, as well as an uncanny talent for striking and terrifying foes. Scions of the Three are most common in Baldur's Gate, where the Dead Three lived as mortals before ascending to godhood. Underground cults to Bane, Bhaal, and Myrkul often count Scions of the Three among their most useful agents. Outside Baldur's Gate, secular thieves' guilds such as the Shadow Thieves of Amn or the Xanathar Guild in Waterdeep might call on a Scion of the Three to undertake an especially violent contract.",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "features_by_level": {
+        "3": {
+          "Bloodthirst": "When an enemy you can see within 30 feet of yourself takes damage and is Bloodied after taking that damage but not killed outright, you can take a Reaction and teleport to an unoccupied space you can see within 5 feet of that enemy. You can then make one melee attack. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a Long Rest.",
+          "Dread Allegiance": "Choose one of the Dead Three: Bane, Bhaal, or Myrkul. You gain Resistance to one type of damage and the ability to cast a cantrip, as detailed in the table below; Intelligence is your spellcasting ability for this cantrip. When you finish a Long Rest, you can change your choice.\n\n\nGod\nDamage Resistance\nCantrip\n\n\nBane\nPsychic\nMinor Illusion\n\n\nBhaal\nPoison\nBlade Ward\n\n\nMyrkul\nNecrotic\nChill Touch"
+        },
+        "9": {
+          "Strike Fear": "You gain the following Cunning Strike option.\nTerrify (Cost: 1d6). The target must succeed on a Wisdom saving throw, or it has the Frightened condition for 1 minute. While the target is Frightened in this way, you have Advantage on attack rolls against the target.\nThe Frightened target repeats the save at the end of each of its turns, ending the effect on itself on a success."
+        },
+        "13": {
+          "Aura of Malevolence": "You radiate malignant power associated with one of the Dead Three. When you use Bloodthirst and teleport, each creature of your choice within 10 feet of either the space you left or your destination space (your choice) takes damage equal to your Intelligence modifier; the damage type is the same as the damage Resistance granted by your choice in the Dread Allegiance feature. Damage dealt by this feature ignores Resistance."
+        },
+        "17": {
+          "Dread Incarnate": "You gain the following benefits.\nCutthroat. You regain one expended use of Bloodthirst when you finish a Short Rest.\nMurderous Intent. When you roll for your Sneak Attack damage, you can treat a roll of a 1 or 2 on the die as a 3."
+        }
+      }
+    },
+    {
+      "name": "Spellfire Sorcery",
+      "class": "Sorcerer",
+      "description": "Wield Raw Magic Your innate power stems from the source of magic itself: the Weave. This connection manifests as a rare ability known as spellfire, and you surge with radiant bursts of this raw magic. Your talent with spellfire allows you to heal allies, sear enemies, and absorb powerful spells. Wielders of spellfire tend to have a penchant for wandering. Many travel between cosmopolitan settlements, such as those along the Sword Coast, and wield their magic in service of the common good. Others realize their own strange powers by roaming equally strange lands, from the magic-blasted wastes of the desert of Anauroch to the god-touched wilds of the Old Empires. Wherever they go in the Realms, spellfire Sorcerers are courted by factions with interests in the arcane arts, such as the Harpers, Cult of the Dragon, and Red Wizards.",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "features_by_level": {
+        "3": {
+          "Spellfire Burst": "When you spend at least 1 Sorcery Point as part of a Magic action or a Bonus Action on your turn, you can unleash one of the following magical effects of your choice. You can do so only once per turn.\nBolstering Flames. You or one creature you can see within 30 feet of yourself gains Temporary Hit Points equal to 1d4 plus your Charisma modifier.\nRadiant Fire. One creature you can see within 30 feet of yourself takes 1d4 Fire or Radiant damage (your choice).",
+          "Spellfire Spells": {
+            "description": "When you reach a Sorcerer level specified in the Spellfire Spells table, you thereafter always have the listed spells prepared.",
+            "spells": {
+              "3": [
+                "Cure Wounds",
+                "Guiding Bolt",
+                "Lesser Restoration",
+                "Scorching Ray"
+              ],
+              "5": [
+                "Aura of Vitality",
+                "Dispel Magic"
+              ],
+              "7": [
+                "Fire Shield",
+                "Wall of Fire"
+              ],
+              "9": [
+                "Greater Restoration",
+                "Flame Strike"
+              ]
+            }
+          }
+        },
+        "6": {
+          "Absorb Spells": {
+            "description": "When you reach a Sorcerer level specified in the Spellfire Spells table, you thereafter always have the listed spells prepared.",
+            "spells": {
+              "3": [
+                "Cure Wounds",
+                "Guiding Bolt",
+                "Lesser Restoration",
+                "Scorching Ray"
+              ],
+              "5": [
+                "Aura of Vitality",
+                "Dispel Magic"
+              ],
+              "7": [
+                "Fire Shield",
+                "Wall of Fire"
+              ],
+              "9": [
+                "Greater Restoration",
+                "Flame Strike"
+              ]
+            }
+          }
+        },
+        "14": {
+          "Honed Spellfire": "Your Spellfire Burst improves. You add your Sorcerer level to the Temporary Hit Points gained from Bolstering Flames, and the damage of your Radiant Fire increases to 1d8."
+        },
+        "18": {
+          "Crown of Spellfire": "When you use Innate Sorcery, you can alter it and infuse yourself with the essence of spellfire, gaining the following benefits while this use of Innate Sorcery is active. Once you use this feature to alter Innate Sorcery, you can't use it again until you finish a Long Rest unless you spend 5 Sorcery Points (no action required) to restore your use of it.\nBurning Life Force. Once per turn when you are hit by an attack roll, you can expend a number of Hit Point Dice, up to a maximum equal to your Charisma modifier (minimum of one). Roll the expended dice, and reduce the amount of damage from that attack equal to the total rolled.\nFlight. You gain a Fly Speed of 60 feet and can hover.\nSpell Avoidance. When you're subjected to a spell or magical effect that allows you to make a saving throw to take only half damage, you instead take no damage if you succeed on the save and only half damage if you fail. You can't use this benefit if you have the Incapacitated condition."
+        }
+      }
+    },
+    {
+      "name": "Bladesinger",
+      "class": "Wizard",
+      "description": "Wield Weapon and Wizardry in Elegant Tandem Bladesingers master a tradition of wizardry that incorporates swordplay and dance. In combat, a Bladesinger uses intricate, elegant maneuvers that fend off harm and allow the Bladesinger to channel magic into devastating attacks and a cunning defense. Many who have observed a Bladesinger at work remember the display as one of the more beautiful experiences in their life\u2014a glorious dance accompanied by a singing blade. Bladesinging is associated with the ancient elven societies that first mastered the art and coined the term. Even today, most Bladesingers still hail from old elven realms, such as Myth Drannor, or from non-elven societies that share land and history with elves, such as the Silver Marches. Wherever they hail from, Bladesingers take their talents all across the Realms to help common people and perform heroic deeds. Most communities greet the arrival of a Bladesinger as a good omen.",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "features_by_level": {
+        "3": {
+          "Bladesong": "As a Bonus Action, you invoke an elven magic called the Bladesong, provided you aren't wearing armor or using a Shield.\nThe Bladesong lasts for 1 minute and ends early if you have the Incapacitated condition, if you don armor or a Shield, or if you use two hands to make an attack with a weapon. You can dismiss the Bladesong at any time (no action required).\nWhile the Bladesong is active, you gain the following benefits. You can invoke the Bladesong a number of times equal to your Intelligence modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. You regain one expended use when you use Arcane Recovery.\nAgility. You gain a bonus to your AC equal to your Intelligence modifier (minimum of +1), and your Speed increases by 10 feet. In addition, you have Advantage on Dexterity (Acrobatics) checks.\nBladework. Whenever you attack with a weapon with which you have proficiency, you can use your Intelligence modifier for the attack and damage rolls instead of using Strength or Dexterity.\nFocus. When you make a Constitution saving throw to maintain Concentration, you can add your Intelligence modifier to the total.",
+          "Training in War and Song": "You gain proficiency with all Melee Martial weapons that don't have the Two-Handed or Heavy property. You can use a Melee weapon with which you have proficiency as a Spellcasting Focus for your Wizard spells.\nYou also gain proficiency in one of the following skills of your choice: Acrobatics, Athletics, Performance, or Persuasion."
+        },
+        "6": {
+          "Extra Attack": "You can attack twice, instead of once, whenever you take the Attack action on your turn. Moreover, you can cast one of your Wizard cantrips that has a casting time of an action in place of one of those attacks."
+        },
+        "10": {
+          "Song of Defense": "When you take damage while your Bladesong is active, you can take a Reaction to expend one spell slot and reduce the damage taken by an amount equal to five times the spell slot's level."
+        },
+        "14": {
+          "Song of Victory": "After you cast a spell that has a casting time of an action, you can make one attack with a weapon as a Bonus Action."
+        }
+      }
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "Chondathan Freebooter",
+      "description": "Though most youths in Chondath accept their four-year term of compulsory military service, you bristled at that authoritarian attempt to control your life. You forsook your nationhood, discarded your given name, and worked as a freebooter with the first ship that would have you. Since then, you've traveled the Vilhon Reach. Though you've never sailed more than a few dozen leagues from land, you make up for it with deep local connections and the breadth of your experiences.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Dexterity",
+          "Wisdom"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Dexterity": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Athletics",
+            "Sleight of Hand"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Skilled"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Weaver's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Dagger",
+            "Weaver's Tools",
+            "Backpack",
+            "Ball Bearings",
+            "Basket",
+            "Bedroll",
+            "Bucket",
+            "Rations (3 days' worth)",
+            "Rope",
+            "Signal Whistle",
+            "Traveler's Clothes"
+          ],
+          "gold": 38
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Dead Magic Dweller",
+      "description": "The dead magic zones of the Anauroch desert are anathema to spellcasters and monsters that rely on magic - which is exactly why you made your life there. Perhaps you're on the run from Red Wizards, or you ran afoul of a powerful djinni in Calimshan. Whatever the case, you decided that living in Anauroch was your best option. After long months or years, you're stronger, wiser, and armed with hard-earned knowledge of desert medicine and wasteland survival.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Constitution",
+          "Wisdom"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Constitution": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Medicine",
+            "Survival"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Healer"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Leatherworker's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Greatclub",
+            "Leatherworker's Tools",
+            "Bedroll",
+            "Blanket",
+            "Healer's Kit",
+            "Pole",
+            "Rations (3 days' worth)",
+            "Tent",
+            "Tinderbox",
+            "5 Torches",
+            "Traveler's Clothes",
+            "Waterskin"
+          ],
+          "gold": 32
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Dragon Cultist",
+      "description": "You are an initiate of the Cult of the Dragon. You discovered or were brought to a cell cult, where you exemplified the values honored by dragon cultists: duplicity, secrecy, and determination. In exchange for your oath to serve the cult, the cult offered you the company of fellow dragon worshipers, plus access to resources that might help further your studies in the realms of arcana and occultism.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Dexterity",
+          "Constitution",
+          "Intelligence"
+        ],
+        "suggested": {
+          "Dexterity": 2,
+          "Constitution": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Deception",
+            "Stealth"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Cult of the Dragon Initiate"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Calligrapher's Supplies"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Calligrapher's Supplies",
+            "Dagger",
+            "Glass Bottle",
+            "Lamp",
+            "Manacles",
+            "Oil (5 flasks)",
+            "2 Pouches",
+            "Robe",
+            "Rope"
+          ],
+          "gold": 30
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Emerald Enclave Caretaker",
+      "description": "As a Caretaker with the Emerald Enclave, you take care of those who care for the world. Either alongside your fellow Emerald Enclave members or by yourself, you've learned essential skills for living with the land: how to track game, where to forage for useful herbs, and even how to forecast the weather. You use these talents to maintain the balance between civilization and the wilds and to rid the world of unnatural creatures.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Constitution",
+          "Intelligence",
+          "Wisdom"
+        ],
+        "suggested": {
+          "Constitution": 2,
+          "Intelligence": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Nature",
+            "Survival"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Emerald Enclave Fledgling"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Herbalism Kit"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Shortbow",
+            "20 Arrows",
+            "Herbalism Kit",
+            "Bedroll",
+            "Blanket",
+            "Pouch",
+            "Tent",
+            "Traveler's Clothes"
+          ],
+          "gold": 13
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Flaming Fist Mercenary",
+      "description": "The chief law enforcement branch of Baldur's Gate is the Flaming Fist, a brawny mercenary guild led by the city's grand duke. You once served as a Flaming Fist, where you learned how to preempt trouble with your intimidating stare and, when necessary, absorb deadly blows. Flaming Fist mercenaries, active or retired, are known as some of the toughest, most resilient warriors along the Sword Coast, and you seek to maintain that reputation.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Constitution",
+          "Charisma"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Constitution": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Intimidation",
+            "Perception"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Tough"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Smith's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Mace",
+            "Smith's Tools",
+            "Fine Clothes",
+            "Manacles",
+            "Portable Ram"
+          ],
+          "gold": 4
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Genie Touched",
+      "description": "Although genies no longer rule Calimshan, genie magic is still common in your homeland. Perhaps you inadvertently summoned a djinni from a magic lamp, or maybe you came upon an oasis guarded by a marid. A dao might have saved you from a landslide, or you bargained with an efreeti for fleeting wealth. However your fate intersected with that of a genie, the experience left you with a keen eye, a silver tongue, and more than a touch of magic.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Dexterity",
+          "Wisdom",
+          "Charisma"
+        ],
+        "suggested": {
+          "Dexterity": 2,
+          "Wisdom": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Perception",
+            "Persuasion"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Magic Initiate (Wizard)"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Glassblower's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Light Hammer",
+            "Glassblower's Tools",
+            "Fine Clothes",
+            "Lamp",
+            "Oil (3 flasks)",
+            "Waterskin"
+          ],
+          "gold": 2
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Harper",
+      "description": "You accepted an invitation to join the Harpers, pledging an oath to uphold the Harper code and act in service to the common good. Like all Harpers, you understand the value of teamwork as well as when it's best to go it alone. Harper veterans have taught you the order's secrets\u2014magical melodies, special watchwords, and legerdemain\u2014and have entrusted you to use such knowledge to surveil and undermine the forces of evil.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Dexterity",
+          "Intelligence",
+          "Charisma"
+        ],
+        "suggested": {
+          "Dexterity": 2,
+          "Intelligence": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Performance",
+            "Sleight of Hand"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Harper Agent"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Disguise Kit"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Disguise Kit",
+            "Bedroll",
+            "Costume",
+            "Grappling Hook",
+            "Rope",
+            "Traveler's Clothes"
+          ],
+          "gold": 14
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Ice Fisher",
+      "description": "You come from a proud line of ice fishers out of Ten-Towns in Icewind Dale. Catching knucklehead trout isn't the most glorious trade in the North, but it's an honest living. You've trained your senses for the slightest tug on the line, wrestled big trout out of ice-covered lakes, and gutted enough knucklehead trout to feed your village many times over. These experiences have toughened your body and mind for a life of adventuring.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Dexterity",
+          "Constitution"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Dexterity": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Animal Handling",
+            "Athletics"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Alert"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Woodcarver's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Woodcarver's Tools",
+            "Basket",
+            "Block and Tackle",
+            "Bucket",
+            "Chain",
+            "Hunting Trap",
+            "Net",
+            "Pole",
+            "Rations (3 days' worth)",
+            "Rope",
+            "Traveler's Clothes"
+          ],
+          "gold": 32
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Knight Of The Gauntlet",
+      "description": "Not all who answer the call of a higher power are content to pore over scripture in a stuffy temple apse. You chose the path of the holy warrior by joining the Order of the Gauntlet. As a knight of the Gauntlet, you exercise righteous scorn for the forces of evil, unswerving camaraderie for your siblings in arms, and heartfelt compassion for the survivors of war. With weapon and holy symbol in hand, you've sworn not to rest until the light of justice has vanquished the shadow of chaos across Faer\u00fbn.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Intelligence",
+          "Wisdom"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Intelligence": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Athletics",
+            "Medicine"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Tyro of the Gauntlet"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Smith's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Spear",
+            "Smith's Tools",
+            "Bullseye Lantern",
+            "Holy Symbol",
+            "Manacles",
+            "Oil (5 flasks)",
+            "Tinderbox",
+            "Traveler's Clothes"
+          ],
+          "gold": 9
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Lords' Alliance Vassal",
+      "description": "You've pledged your loyalty to a member-city of the Lords' Alliance. As an Alliance agent, you must uphold the tenets of the Alliance and seek to increase safety and prosperity along the Sword Coast. You're sworn to bring honor and glory to your lord's house, whether that means securing trade roads for a merchant-lord of Waterdeep or vanquishing monsters upriver of Daggerford. You've trained in the arts of swordplay and statecraft and are as deft with a blade as you are with a quill.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Intelligence",
+          "Charisma"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Intelligence": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Insight",
+            "Persuasion"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Lords' Alliance Agent"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Calligrapher's Supplies"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "2 Javelins",
+            "Calligrapher's Supplies",
+            "Fine Clothes",
+            "Ink",
+            "5 Ink Pens",
+            "Parchment (9 sheets)"
+          ],
+          "gold": 13
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Moonwell Pilgrim",
+      "description": "Like many who hail from the Moonshae Isles, you grew up revering the blessed land, its unique gods, and the mysterious shrines called the moonwells. As a moonwell pilgrim, you undertook a quest to visit and commune with every moonwell on (or off) the map. Along your idyllic journeys, you collected a repertoire of Moonshavian folk songs, painted landscapes of enchanting vistas, and even learned how to wield a bit of primal magic.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Constitution",
+          "Wisdom",
+          "Charisma"
+        ],
+        "suggested": {
+          "Constitution": 2,
+          "Wisdom": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Nature",
+            "Performance"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Magic Initiate (Druid)"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Painter's Supplies"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Quarterstaff",
+            "Painter's Supplies",
+            "Bedroll",
+            "Bell",
+            "Pouch",
+            "Robe",
+            "String",
+            "Traveler's Clothes",
+            "Waterskin"
+          ],
+          "gold": 34
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Mulhorandi Tomb Raider",
+      "description": "You grew up in a land of living god-kings, and as a child you were told countless stories of ancient empires and buried cities. In these tales, Mulhorand was a land overflowing with forgotten riches\u2014priceless treasures awaiting anyone cunning and brave enough to seek them out. You've taken it upon yourself to explore your homeland's crypts, tombs, and pyramids to reclaim your people's relics.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Dexterity",
+          "Constitution",
+          "Intelligence"
+        ],
+        "suggested": {
+          "Dexterity": 2,
+          "Constitution": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Investigation",
+            "Religion"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Lucky"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Mason's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Dagger",
+            "Light Hammer",
+            "Mason's Tools",
+            "Backpack",
+            "Bedroll",
+            "Crowbar",
+            "Ladder",
+            "Pole",
+            "2 Pouches",
+            "Rope",
+            "String",
+            "Tinderbox",
+            "5 Torches",
+            "Traveler's Clothes",
+            "Waterskin"
+          ],
+          "gold": 26
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Mythalkeeper",
+      "description": "Mythals are sources of great magical power that can alter the Weave or even the very nature of reality. Most were constructed in antiquity, and many have since been damaged or gone dormant. As a mythalkeeper from the Dalelands, your first experience with a mythal was likely in the ruins of Myth Drannor. You roam Faer\u00fbn in search of other ruined places of power, hoping to learn more about the history and powers of mythals\u2014or even restore a malfunctioning one.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Intelligence",
+          "Wisdom",
+          "Charisma"
+        ],
+        "suggested": {
+          "Intelligence": 2,
+          "Wisdom": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Arcana",
+            "History"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Crafter"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Jeweler's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Quarterstaff",
+            "Jeweler's Tools",
+            "Perfume",
+            "Pouch",
+            "Robe",
+            "Shovel",
+            "String",
+            "Waterskin"
+          ],
+          "gold": 16
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Purple Dragon Squire",
+      "description": "You've pledged your life to the safety of Cormyr and sought admission to that realm's order of elite warriors: the Purple Dragon Knights. But before you have the chance to join the ranks officially, you must first serve as a knight's squire. You've found a liege willing to take you on and teach you the order's ways. Will you uphold the Purple Dragon Knights' ideals of glory, honor, and strength and prove yourself worthy of knighthood?",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Wisdom",
+          "Charisma"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Wisdom": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Animal Handling",
+            "Insight"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Purple Dragon Rook"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Navigator's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Spear",
+            "Navigator's Tools",
+            "Fine Clothes"
+          ],
+          "gold": 9
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Rashemi Wanderer",
+      "description": "You spent years wandering the highlands of Rashemen, a dangerous windswept heath that's dotted with ancient obelisks enchanted to imprison Fiends and home to dragons, gnolls, and other deadly creatures. Friendships are hard to find in such an isolated land, and you've learned to keep strangers at a distance.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Constitution",
+          "Charisma"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Constitution": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Intimidation",
+            "Perception"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Tough"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Cartographer's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Cartographer's Tools",
+            "Backpack",
+            "Bedroll",
+            "Hooded Lantern",
+            "Oil (3 flasks)",
+            "Rope",
+            "Tinderbox",
+            "Traveler's Clothes",
+            "Waterskin"
+          ],
+          "gold": 23
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Shadowmasters Exile",
+      "description": "You trained your whole life to become a member of the Shadowmasters, the mysterious thieves' guild that controls the realm of Thesk from behind the scenes. Stealth and quick reflexes were just the start of your Shadowmaster education; you also needed to hone your ruthlessness to ensure the safety of the guild's secrets. But one wrong move led to your expulsion from the order. Now you must walk your own path.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Dexterity",
+          "Intelligence",
+          "Charisma"
+        ],
+        "suggested": {
+          "Dexterity": 2,
+          "Intelligence": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Acrobatics",
+            "Stealth"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Savage Attacker"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Thieves' Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "2 Daggers",
+            "Thieves' Tools",
+            "Caltrops",
+            "Costume",
+            "Grappling Hook",
+            "Iron Spikes",
+            "Mirror",
+            "2 Pouches",
+            "Rope",
+            "Traveler's Clothes"
+          ],
+          "gold": 3
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Spellfire Initiate",
+      "description": "You bear the gift of spellfire: a rare form of magic that channels the raw power of the Weave. Wielding spellfire takes a heavy toll on the body. You've trained both mind and body to efficiently wield this sacred power.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Constitution",
+          "Intelligence",
+          "Charisma"
+        ],
+        "suggested": {
+          "Constitution": 2,
+          "Intelligence": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Arcana",
+            "Perception"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Spellfire Spark"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Choose one kind of Gaming Set"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Gaming Set (same as above)",
+            "Arcane Focus (Crystal or Wand)",
+            "2 Pouches",
+            "Traveler's Clothes"
+          ],
+          "gold": 36
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Zhentarim Mercenary",
+      "description": "Maybe you needed the money. Maybe you longed for a family, no matter how dubious. Or maybe you're just good at getting the job done by any means necessary. Whatever your reason, you enlisted with the Zhentarim, the most notorious mercenary guild in the Realms. Though the Zhentarim's leaders insist the organization is more like a family than a shadowy syndicate, few families exhibit as much dishonesty, nepotism, and corruption as this one. You've honed your cunning, reflexes, and blade to climb the guild's ranks.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Dexterity",
+          "Charisma"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Dexterity": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Intimidation",
+            "Perception"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Zhentarim Ruffian"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Forgery Kit"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Club",
+            "Dagger",
+            "Forgery Kit",
+            "Fine Clothes",
+            "Hooded Lantern",
+            "Oil (3 flasks)",
+            "2 Pouches",
+            "String",
+            "Tinderbox"
+          ],
+          "gold": 11
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    }
+  ],
+  "feats": {
+    "origin_feats": {
+      "Cult of the Dragon Initiate": {
+        "description": "Origin Feat",
+        "benefits": [
+          "You gain the following benefits.",
+          "Dragon's Tongue. You know Draconic. If you already know Draconic when you select this feat, you instead learn one language of your choice from the language tables in the Player's Handbook or chapter 2 of this book.",
+          "Dragon's Terror. You can take a Magic action to instill terror in a creature you can see within 30 feet of yourself. The target must succeed on a Wisdom saving throw (DC 8 plus your Wisdom modifier and Proficiency Bonus) or have the Frightened condition until the end of your next turn. If the target succeeds on the save or when the effect ends for a target, the target is immune to this effect for 24 hours.",
+          "Inspired by Fear. When you cause a creature to have the Frightened condition and you are the source of its fear, you can gain Heroic Inspiration if you lack it. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+        ],
+        "category": "Origin",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "effects": [
+          {
+            "type": "grant_language",
+            "language": "Draconic"
+          }
+        ]
+      },
+      "Emerald Enclave Fledgling": {
+        "description": "Origin Feat",
+        "benefits": [
+          "You gain the following benefits.",
+          "Speak with Animals. You always have the Speak with Animals spell prepared and can cast it with any spell slots you have. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). When you cast this spell as a Ritual, its duration is 8 hours.",
+          "Tag Team. When you take the Help action, you can switch places with a willing ally within 5 feet of yourself as part of that same action. This movement doesn't provoke Opportunity Attacks. You can't use this benefit if the ally has the Incapacitated condition."
+        ],
+        "category": "Origin",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+      },
+      "Harper Agent": {
+        "description": "Origin Feat",
+        "benefits": [
+          "You gain the following benefits.",
+          "Thieves' Cant. You know Thieves' Cant.",
+          "Instrument Training. You gain proficiency with a Musical Instrument of your choice.",
+          "Distracting Melody. When you take the Help action to assist an ally's attack roll, the enemy you're distracting can be within 30 feet of you, rather than within 5 feet of you, provided the enemy can see or hear you."
+        ],
+        "category": "Origin",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose proficiency with one musical instrument.",
+            "name": "musical_instrument",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Bagpipes",
+                "Drum",
+                "Dulcimer",
+                "Flute",
+                "Horn",
+                "Lute",
+                "Lyre",
+                "Pan Flute",
+                "Shawm",
+                "Viol"
+              ]
+            }
+          }
+        ],
+        "effects": [
+          {
+            "type": "grant_language",
+            "language": "Thieves' Cant"
+          }
+        ],
+        "choice_effects": {
+          "musical_instrument": {
+            "Bagpipes": [
+              {
+                "type": "grant_tool_proficiency",
+                "tools": [
+                  "Bagpipes"
+                ]
+              }
+            ],
+            "Drum": [
+              {
+                "type": "grant_tool_proficiency",
+                "tools": [
+                  "Drum"
+                ]
+              }
+            ],
+            "Dulcimer": [
+              {
+                "type": "grant_tool_proficiency",
+                "tools": [
+                  "Dulcimer"
+                ]
+              }
+            ],
+            "Flute": [
+              {
+                "type": "grant_tool_proficiency",
+                "tools": [
+                  "Flute"
+                ]
+              }
+            ],
+            "Horn": [
+              {
+                "type": "grant_tool_proficiency",
+                "tools": [
+                  "Horn"
+                ]
+              }
+            ],
+            "Lute": [
+              {
+                "type": "grant_tool_proficiency",
+                "tools": [
+                  "Lute"
+                ]
+              }
+            ],
+            "Lyre": [
+              {
+                "type": "grant_tool_proficiency",
+                "tools": [
+                  "Lyre"
+                ]
+              }
+            ],
+            "Pan Flute": [
+              {
+                "type": "grant_tool_proficiency",
+                "tools": [
+                  "Pan Flute"
+                ]
+              }
+            ],
+            "Shawm": [
+              {
+                "type": "grant_tool_proficiency",
+                "tools": [
+                  "Shawm"
+                ]
+              }
+            ],
+            "Viol": [
+              {
+                "type": "grant_tool_proficiency",
+                "tools": [
+                  "Viol"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "Lords' Alliance Agent": {
+        "description": "Origin Feat",
+        "benefits": [
+          "You gain the following benefits.",
+          "Inspiring Strike. Once per turn when you score a Critical Hit against a creature, you can choose an ally within 30 feet of yourself who can see or hear you and who lacks Heroic Inspiration. That ally gains Heroic Inspiration.",
+          "Reassert Honor. When an enemy you can see deals damage to an ally of yours that is within 5 feet of you, you have Advantage on your next attack roll against that enemy before the end of your next turn."
+        ],
+        "category": "Origin",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+      },
+      "Purple Dragon Rook": {
+        "description": "Origin Feat",
+        "benefits": [
+          "You gain the following benefits.",
+          "Entreat. You gain proficiency in one of the following skills: Insight, Performance, or Persuasion.",
+          "Rallying Cry. When you roll Initiative and don't have the Incapacitated condition, you can choose a number of creatures equal to your Proficiency Bonus that you can see within 30 feet of yourself. Those creatures gain Heroic Inspiration.",
+          "Once you use this benefit, you can't do so again until you finish a Long Rest."
+        ],
+        "category": "Origin",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose proficiency in one skill.",
+            "name": "skill",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Insight",
+                "Performance",
+                "Persuasion"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "skill": {
+            "Insight": [
+              {
+                "type": "grant_skill_proficiency",
+                "skills": [
+                  "Insight"
+                ]
+              }
+            ],
+            "Performance": [
+              {
+                "type": "grant_skill_proficiency",
+                "skills": [
+                  "Performance"
+                ]
+              }
+            ],
+            "Persuasion": [
+              {
+                "type": "grant_skill_proficiency",
+                "skills": [
+                  "Persuasion"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "Spellfire Spark": {
+        "description": "Origin Feat",
+        "benefits": [
+          "You gain the following benefits.",
+          "Magic Absorption. Once per turn, when you take damage from a spell or magical effect, you reduce the total damage taken by 1d4. You can't use this benefit if you have the Incapacitated condition.",
+          "Spellfire Flame. You learn the Sacred Flame cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat). You can also cast this cantrip as a Bonus Action a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest."
+        ],
+        "category": "Origin",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+      },
+      "Tyro of the Gauntlet": {
+        "description": "Origin Feat",
+        "benefits": [
+          "You gain the following benefits.",
+          "Stand as One. When an ally within 5 feet of you is subjected to an effect that would push or pull it, you can take a Reaction to prevent that ally from being pushed or pulled. To receive this benefit, the ally can't have the Incapacitated condition.",
+          "Vigilant. When you take the Ready action, the next attack roll made against you has Disadvantage before the start of your next turn."
+        ],
+        "category": "Origin",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+      },
+      "Zhentarim Ruffian": {
+        "description": "Origin Feat",
+        "benefits": [
+          "You gain the following benefits.",
+          "Exploit Opening. When you roll damage for an Opportunity Attack, you can roll the damage dice twice and use either roll against the target.",
+          "Family First. If you have Heroic Inspiration when you roll Initiative, you can expend it to give yourself and your allies Advantage on that Initiative roll."
+        ],
+        "category": "Origin",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+      }
+    },
+    "general_feats": {
+      "Boon of Bloodshed": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Killer's Fortune. When an enemy you can see is reduced to 0 Hit Points, you gain Advantage on the next attack roll you make before the end of your next turn.",
+          "Power from Pain. Once per turn, when you make an attack roll while Bloodied, you can deal extra damage to the target equal to your Proficiency Bonus. The extra damage's type is the same as the attack's type."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Bountiful Health": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Augmented Health. When you gain Temporary Hit Points, increase the number of Temporary Hit Points you gain by 5.",
+          "Superior Recuperation. When you spend one or more Hit Point Dice to regain Hit Points, you can instead use the highest number possible for each die."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Communication": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 30.",
+          "Cunning Speaker. You don't have Disadvantage on ability checks to influence Hostile creatures.",
+          "Gifted Interpreter. You understand the literal meaning of any language you hear or see signed, and you can understand the literal meaning of any written language you see.",
+          "Mental Communication. You gain telepathy with a range of 120 feet."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Desperate Resilience": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Strength or Constitution score by 1, to a maximum of 30.",
+          "Defense of Body and Mind. While you are Bloodied, you have Resistance to every damage type except Force."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Constitution"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Exquisite Radiance": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Eternal Rest. Creatures you reduce to 0 Hit Points can't become Undead.",
+          "Powerful Radiance. When you make a damage roll that deals Radiant damage, you can instead use the highest number possible for each damage die. Once you use this benefit, you can't do so again until you finish a Long Rest."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Fluid Forms": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 30.",
+          "Shapechanger. You can take a Magic action to shape-shift into a Beast, Humanoid, or Monstrosity with a Challenge Rating no higher than 10. When you shape-shift, you gain a number of Temporary Hit Points equal to the Hit Points of the form. The shape-shifting effect lasts for 1 hour, and it ends early if you have no Temporary Hit Points left or if you take a Magic action to return to your true form.",
+          "Your game statistics are replaced by the stat block of the chosen form, but you retain your creature type; alignment; personality; Intelligence, Wisdom, and Charisma scores; Hit Points; Hit Point Dice; proficiencies; and ability to communicate. If you have the Spellcasting or Pact Magic feature, you retain it too. Upon shape-shifting, you determine whether your equipment drops to the ground or changes in size and shape to fit the new form while you're in it.",
+          "Once you use this benefit, you can't do so again until you finish a Long Rest.",
+          "Hardy Transformation. When you gain Temporary Hit Points when you shape-shift, increase that number of Temporary Hit Points by 20."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Fortune's Favor": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Saving Throw Reroll. When you fail a saving throw, you can reroll it and must use the new roll. Once you use this benefit, you can't do so again until the start of your next turn."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Poison Mastery": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Antitoxic. You have Immunity to Poison damage and the Poisoned condition.",
+          "Perfect Poisoner. Once per turn, when you roll dice to determine Poison damage a creature takes from your attack, spell, or feature, you can instead use the highest number possible for each die."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Revelry": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 30.",
+          "Inspire Dance. You always have the Otto's Irresistible Dance spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it that way when you finish a Long Rest. You can also cast the spell using any spell slots you have of the appropriate level.",
+          "When you cast the spell, it requires no spell components, and taking damage doesn't break your Concentration on it.",
+          "Sing Out. While a creature that failed its saving throw against your Otto's Irresistible Dance has the Charmed condition from that spell, it can't cast spells with Verbal components, and it sings delightful nonsense if it can sing."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Terror": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Charisma score by 1, to a maximum of 30.",
+          "Fearless. You have Immunity to the Frightened condition.",
+          "Flee, Fools! When a creature with the Frightened condition starts its turn within 60 feet of you, you can take a Reaction to stoke its terror, provided you can see the creature and it isn't behind Total Cover. If you do so, the creature must succeed on a Wisdom saving throw (DC 8 plus your Charisma modifier and your Proficiency Bonus) or spend its turn moving away from you by the fastest available means. Once you use this benefit, you can't use it again until you finish a Short or Long Rest.",
+          "Intimidating. You gain Proficiency in the Intimidation skill if you don't already have it. You also gain Expertise in Intimidation."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "effects": [
+          {
+            "type": "ability_bonus",
+            "ability": "Charisma",
+            "value": 1
+          }
+        ]
+      },
+      "Boon of the Bright Sun": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Constitution, Wisdom, or Charisma score by 1, to a maximum of 30.",
+          "Daylight Presence. As a Bonus Action, you radiate a 30-foot Emanation of Bright Light that is sunlight. If any of the Emanation's area overlaps with an area of Darkness created by a spell, that spell is dispelled. The Emanation lasts until you dismiss it (no action required), die, or have the Incapacitated condition.",
+          "Fortifying Light. When your Daylight Presence is active, at the start of each of your turns, you and allies you can see in your Daylight Presence gain 10 Temporary Hit Points."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Constitution",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of the Furious Storm": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+, Spellcasting or Pact Magic Feature)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 30.",
+          "Eye of the Storm. You have Resistance to Lightning and Thunder damage. While you are Bloodied, you have Immunity to Lightning and Thunder damage.",
+          "Storm's Strength. Creatures have Disadvantage on saving throws against your spells that deal Lightning or Thunder damage."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+, Spellcasting or Pact Magic Feature",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of the Soul Drinker": {
+        "description": "Epic Boon Feat (Prerequisite: Level 19+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Grave Resistance. You have Resistance to Cold damage and Necrotic damage.",
+          "Siphon Life. When an enemy within 120 feet of you is reduced to 0 Hit Points, you can take a Reaction to regain 50 Hit Points. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+        ],
+        "category": "Epic Boon",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 19+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Cold Caster": {
+        "description": "General Feat (Prerequisite: Level 4+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Cantrip. You learn the Ray of Frost cantrip. If you already know it, you learn a different Wizard cantrip of your choice. The spell's spellcasting ability is the ability increased by this feat.",
+          "Frostbite. Once per turn when you hit a creature with an attack roll and deal Cold damage, you can temporarily negate the creature's defenses. The creature subtracts 1d4 from the next saving throw it makes before the end of your next turn."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Dragonscarred": {
+        "description": "General Feat (Prerequisite: Level 4+, Cult of the Dragon Initiate Feat)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Constitution or Charisma score by 1, to a maximum of 20.",
+          "Damage Resistance. When you gain this feat, choose Acid, Cold, Fire, Lightning, or Poison. You have Resistance to the chosen damage type.",
+          "Fearsome Power. When you deal damage to a creature as part of the Attack or Magic action on your turn, you can use the Dragon's Terror benefit of the Cult of the Dragon Initiate feat as a Bonus Action this turn."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+, Cult of the Dragon Initiate Feat",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Constitution",
+                "Charisma"
+              ]
+            }
+          },
+          {
+            "type": "select_single",
+            "description": "Choose a damage resistance.",
+            "name": "damage_resistance",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Acid",
+                "Cold",
+                "Fire",
+                "Lightning",
+                "Poison"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          },
+          "damage_resistance": {
+            "Acid": [
+              {
+                "type": "grant_resistance",
+                "damage_type": "Acid"
+              }
+            ],
+            "Cold": [
+              {
+                "type": "grant_resistance",
+                "damage_type": "Cold"
+              }
+            ],
+            "Fire": [
+              {
+                "type": "grant_resistance",
+                "damage_type": "Fire"
+              }
+            ],
+            "Lightning": [
+              {
+                "type": "grant_resistance",
+                "damage_type": "Lightning"
+              }
+            ],
+            "Poison": [
+              {
+                "type": "grant_resistance",
+                "damage_type": "Poison"
+              }
+            ]
+          }
+        }
+      },
+      "Enclave Magic": {
+        "description": "General Feat (Prerequisite: Level 4+, Emerald Enclave Fledgling Feat)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Friend to Animals. You have Advantage on ability checks when taking the Influence action with Beasts.",
+          "Two Hearts, One Mind. You always have the Beast Sense spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. When you cast it without a spell slot using this feature, it doesn't require Concentration. You can also cast the spell using any spell slots you have of the appropriate level. The spell's spellcasting ability is the ability increased by this feat."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+, Emerald Enclave Fledgling Feat",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Fairy Trickster": {
+        "description": "General Feat (Prerequisite: Level 4+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Dexterity or Charisma ability score by 1, to a maximum of 20.",
+          "Faerie Trod Trotter. When you take the Disengage action on your turn, Difficult Terrain doesn't cost you extra movement for the rest of that turn.",
+          "Flustering Strike. When you hit a creature with an attack roll, you can attempt to fluster the target. The target must succeed on a Wisdom saving throw (DC 8 plus the ability modifier of the score increased by this feat and your Proficiency Bonus) or have Disadvantage on saving throws until the end of your next turn.",
+          "You can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Dexterity",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Genie Magic": {
+        "description": "General Feat (Prerequisite: Level 4+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Wish Magic. As a Magic action, you can cast a level 1 spell of your choice from the Sorcerer spell list that has a casting time of an action. Once you use this benefit, you can't do so again until you finish a Long Rest. The spell's spellcasting ability is the ability increased by this feat.",
+          "When you reach level 11, the spell you cast with this feat is cast as though using a level 2 spell slot. When you reach level 17, the spell is cast as though using a level 3 spell slot."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Harper Teamwork": {
+        "description": "General Feat (Prerequisite: Level 4+, Harper Agent Feat)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Dexterity or Charisma score by 1, to a maximum of 20.",
+          "Withering Wordplay. When you take the Help action to assist an ally's attack roll against an enemy, that enemy also has Disadvantage on the first saving throw it makes before the start of your next turn.",
+          "Inspiring Willpower. If you succeed on a saving throw to end the Frightened or Paralyzed condition on yourself, you can choose one ally you can see within 30 feet of yourself that has the same condition. That condition immediately ends for that ally."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+, Harper Agent Feat",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Dexterity",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Lordly Resolve": {
+        "description": "General Feat (Prerequisite: Level 4+, Lords' Alliance Agent Feat)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Strength or Charisma score by 1, to a maximum of 20.",
+          "Standard Bearer. As a Bonus Action, choose up to three creatures within 60 feet of yourself that can see you. Each target can immediately take a Reaction to right itself and end the Prone condition, provided its Speed isn't 0.",
+          "Additionally, you bolster the targets' resolve, which lasts for 1 minute or until you have the Incapacitated condition. While bolstered, a target can't be possessed or gain the Charmed or Frightened condition; if a target is already possessed, Charmed, or Frightened, the target has Advantage on any new saving throw against the relevant effect.",
+          "Once you use this benefit, you can't do so again until you finish a Long Rest."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+, Lords' Alliance Agent Feat",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Mythal Touched": {
+        "description": "General Feat (Prerequisite: Level 4+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Mythal Ward. If a spell attack hits you or you fail a saving throw against a spell, you can take a Reaction to roll on the Mythal-Touched Magic table to create a magical effect. If an effect requires a saving throw, the DC equals 8 plus the modifier of the ability increased by this feat and your Proficiency Bonus.",
+          "You can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+          "Mythal-Touched Magic",
+          "1d20",
+          "Effect",
+          "1-2",
+          "You and each creature within 15 feet of you make a Dexterity saving throw, taking Force damage equal to 1d8 times the level of the triggering spell on a failed save or half as much damage on a successful one.",
+          "3-7",
+          "You and the triggering spell's caster form a telepathic link for 1 hour.",
+          "8-10",
+          "Gravity is reversed in a 15-foot-radius, 60-foot-tall Cylinder centered on you for 1 minute, per the Reverse Gravity spell.",
+          "11-13",
+          "You and the triggering spell's caster each make a Constitution saving throw. On a failed save, the creature has the Stunned condition until the end of its next turn.",
+          "14-17",
+          "You gain a +2 bonus to AC for 1 minute, potentially turning the triggering spell into a miss if it was a spell attack.",
+          "18-19",
+          "Any flammable, nonmagical object within 10 feet of the triggering spell's caster that isn't being worn or carried by another creature bursts into flame, takes 1d4 Fire damage, and is burning.",
+          "20",
+          "The triggering spell dissipates with no effect, and the action, Bonus Action, or Reaction used to cast it is wasted. If that spell was cast with a spell slot, the slot isn't expended."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Order's Resilience": {
+        "description": "General Feat (Prerequisite: Level 4+, Tyro of the Gauntlet Feat)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Strength, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Resurge. When you have the Prone condition, you can right yourself with only 5 feet of movement.",
+          "Stronger Together. If you are within 5 feet of an ally that doesn't have the Incapacitated condition, you and that ally have Advantage on Strength saving throws. You can't use this benefit while you have the Incapacitated condition."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+, Tyro of the Gauntlet Feat",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Purple Dragon Commandant": {
+        "description": "General Feat (Prerequisite: Level 4+, Purple Dragon Rook Feat or Martial Weapon Proficiency)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+          "Encourage Ally. As a Bonus Action, you bolster one ally you can see within 30 feet. The ally gains Temporary Hit Points equal to 2d6 plus the modifier of the ability score increased by this feat. You can take this Bonus Action a number of times equal to your Proficiency Bonus, and you regain all uses when you finish a Long Rest.",
+          "Last Stand. You have Advantage on attack rolls while Bloodied."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+, Purple Dragon Rook Feat or Martial Weapon Proficiency",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Spellfire Adept": {
+        "description": "General Feat (Prerequisite: Level 4+, Spellfire Spark Feat or the Spellcasting or Pact Magic Feature)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Fueled Spellfire. Once per turn, when a spell you cast deals Radiant damage, you can expend up to two Hit Point Dice, roll them, and add the total rolled to one damage roll of the spell.",
+          "Searing Spellfire. When you make a damage roll that deals Radiant damage, it ignores Resistance to Radiant damage."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+, Spellfire Spark Feat or the Spellcasting or Pact Magic Feature",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Street Justice": {
+        "description": "General Feat (Prerequisite: Level 4+)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+          "Headlock. Your allies have Advantage on attack rolls against a creature Grappled by you.",
+          "Sturdy Knot. When you use Chain, Manacles, or Rope to bind a creature, add your Proficiency Bonus to the DC to escape or burst the Chain, Manacles, or Rope.",
+          "Tough Talk. A creature's Hostile attitude doesn't impose Disadvantage on your Charisma (Intimidation) checks to influence that creature."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Zhentarim Tactics": {
+        "description": "General Feat (Prerequisite: Level 4+, Zhentarim Ruffian Feat)",
+        "benefits": [
+          "You gain the following benefits.",
+          "Ability Score Increase. Increase your Dexterity or Charisma score by 1, to a maximum of 20.",
+          "Retaliate. Immediately after a creature within 5 feet of you hits you with a melee attack, you can make an Opportunity Attack against that creature.",
+          "Versatile Merc. When you finish a Long Rest, choose a skill in which you have proficiency. You have Expertise in that skill until you finish your next Long Rest."
+        ],
+        "category": "General",
+        "source": "Forgotten Realms: Heroes of Faer\u00fbn",
+        "prerequisite": "Level 4+, Zhentarim Ruffian Feat",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Dexterity",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "spells": [
+    {
+      "name": "Alustriel's Mooncloak",
+      "level": 5,
+      "school": "Abjuration",
+      "casting_time": "Action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S",
+        "M (a moonstone worth 50+ GP)"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 5 Abjuration (Bard, Druid, Ranger, Wizard)\nCasting Time: Action\nRange: Self\nComponents: V, S, M (a moonstone worth 50+ GP)\nDuration: Concentration, up to 1 minute\nFor the duration, moonlight fills a 20-foot Emanation originating from you with Dim Light. While in that area, you and your allies have Half Cover and Resistance to Cold, Lightning, and Radiant damage.\nWhile the spell lasts, you can use one of the following options, ending the spell immediately:\nLiberation. When you fail a saving throw to avoid or end the Frightened, Grappled, or Restrained condition, you can take a Reaction to succeed on the save instead.\nRespite. As a Magic action, you or an ally within the area regains Hit Points equal to 4d10 plus your spellcasting ability modifier.",
+      "classes": [
+        "Bard",
+        "Druid",
+        "Ranger",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Backlash",
+      "level": 4,
+      "school": "Abjuration",
+      "casting_time": "Reaction, which you take in response to taking damage",
+      "range": "60 feet",
+      "components": [
+        "V"
+      ],
+      "duration": "Instantaneous",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 4 Abjuration (Bard, Sorcerer, Warlock, Wizard)\nCasting Time: Reaction, which you take in response to taking damage\nRange: 60 feet\nComponents: V\nDuration: Instantaneous\nYou ward yourself against destructive energy, reducing the damage taken by 4d6 plus your spellcasting ability modifier.\nIf the triggering damage was from a creature within range, you can force the creature to make a Constitution saving throw. The creature takes 4d6 Force damage on a failed save or half as much damage on a successful one.\nUsing a Higher-Level Spell Slot. The damage reduction and Force damage from this spell both increase by 1d6 for every spell slot level above 4.",
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Blade of Disaster",
+      "level": 9,
+      "school": "Conjuration",
+      "casting_time": "Bonus Action",
+      "range": "60 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 9 Conjuration (Sorcerer, Warlock, Wizard)\nCasting Time: Bonus Action\nRange: 60 feet\nComponents: V, S\nDuration: Concentration, up to 1 minute\nYou create a 3-foot-long blade-shaped planar rift that lasts for the duration. The rift appears within range in a space of your choice, and you can immediately make up to two melee spell attacks, each one against a creature or object within 5 feet of the rift. On a hit, the target takes 10d6 Force damage. This attack scores a Critical Hit if the number on the d20 is 18 or higher.\nAs a Bonus Action on your later turns, you can move the rift up to 60 feet and repeat the two attacks against a creature or an object within 5 feet of it. You can direct the attacks at the same target or at different ones.\nThe blade can harmlessly pass through any barrier, including ones created by spells like Wall of Force.",
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Cacophonic Shield",
+      "level": 3,
+      "school": "Evocation",
+      "casting_time": "Action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 10 minutes",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 3 Evocation (Bard, Sorcerer, Wizard)\nCasting Time: Action\nRange: Self\nComponents: V, S\nDuration: Concentration, up to 10 minutes\nThunderous reverberations fill a 10-foot Emanation originating from you for the duration. Whenever the Emanation enters a creature's space and whenever a creature enters the Emanation or ends its turn there, the creature makes a Constitution saving throw. On a failed save, the creature takes 3d6 Thunder damage and has the Deafened condition until the start of your next turn. On a successful save, the creature takes half as much damage only. A creature makes this save only once per turn. When you cast this spell, you can designate creatures to be unaffected by it.\nIn addition, you have Resistance to Thunder damage, and ranged attack rolls against you are made with Disadvantage.\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 3.",
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Conjure Constructs",
+      "level": 3,
+      "school": "Conjuration",
+      "casting_time": "Action",
+      "range": "60 feet",
+      "components": [
+        "V",
+        "S",
+        "M (a brass cog)"
+      ],
+      "duration": "Concentration, up to 10 minutes",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 3 Conjuration (Wizard)\nCasting Time: Action\nRange: 60 feet\nComponents: V, S, M (a brass cog)\nDuration: Concentration, up to 10 minutes\nYou conjure a group of intangible, orderly spirits that appear as a Medium group of modrons or other Constructs in an unoccupied space you can see within range. The spirits last for the duration.\nWhen you cast this spell and as a Magic action on subsequent turns, you can command the spirits to target one creature or object you can see within 5 feet of the spirits and create one of the following effects:\nClockwork Force. The target makes a Dexterity saving throw, taking 3d6 Force damage on a failed save or half as much damage on a successful one.\nOrderly Ward. The target gains Temporary Hit Points equal to 1d6 plus your spellcasting ability modifier.\nWhen you move on your turn, you can also move the spirits up to 30 feet to an unoccupied space you can see.\nUsing a Higher-Level Spell Slot. The damage and Temporary Hit Points both increase by 1d6 for each spell slot level above 3.",
+      "classes": [
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Death Armor",
+      "level": 2,
+      "school": "Necromancy",
+      "casting_time": "Action",
+      "range": "Touch",
+      "components": [
+        "V",
+        "S",
+        "M (an onyx worth 50+ GP, which the spell consumes)"
+      ],
+      "duration": "1 hour",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 2 Necromancy (Sorcerer, Wizard)\nCasting Time: Action\nRange: Touch\nComponents: V, S, M (an onyx worth 50+ GP, which the spell consumes)\nDuration: 1 hour\nFor the duration, an inky aura surrounds one creature you touch. The target has Advantage on Death Saving Throws, and once per turn, when a creature within 5 feet of the target hits it with a melee attack roll, the attacker takes 2d4 Necrotic damage.",
+      "classes": [
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Deryan's Helpful Homunculi",
+      "level": 2,
+      "school": "Conjuration",
+      "casting_time": "Action or Ritual",
+      "range": "Self",
+      "components": [
+        "V",
+        "S",
+        "M (powdered gemstones worth 100+ GP, which the spell consumes, and one set of Artisan's Tools with which you have proficiency)"
+      ],
+      "duration": "8 hours",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 2 Conjuration (Cleric, Wizard)\nCasting Time: Action or Ritual\nRange: Self\nComponents: V, S, M (powdered gemstones worth 100+ GP, which the spell consumes, and one set of Artisan's Tools with which you have proficiency)\nDuration: 8 hours\nYou summon a group of helpful spirits, which lasts for the duration. The spirits appear as homunculi or as another Construct of your choice but are intangible and invulnerable, and they are considered to have proficiency in the Arcana skill and with the set of Artisan's Tools used in the spell's casting.\nIf you are crafting an item, the spirits function as a single assistant for your crafting, halving the crafting time.",
+      "classes": [
+        "Cleric",
+        "Wizard"
+      ],
+      "ritual": true,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Dirge",
+      "level": 6,
+      "school": "Enchantment",
+      "casting_time": "Action",
+      "range": "Self",
+      "components": [
+        "V"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 6 Enchantment (Bard, Cleric)\nCasting Time: Action\nRange: Self\nComponents: V\nDuration: Concentration, up to 1 minute\nDeathly power fills a 60-foot Emanation originating from you for the duration.\nWhen you cast this spell, you can designate creatures to be unaffected by it. Any other creature can't regain Hit Points while in the Emanation. Whenever the Emanation enters a creature's space and whenever a creature enters the Emanation or ends its turn there, the creature makes a Constitution saving throw. On a failed save, the creature takes 3d10 Necrotic damage and has the Prone condition. On a successful save, the creature takes half as much damage and its Speed is halved. A creature makes this save only once per turn.\nCasting as a Circle Spell. Casting this as a Circle spell requires a minimum of two secondary casters. If the spell is cast as a Circle spell, its duration becomes Concentration, up to 10 minutes.\nA creature that fails its save against the spell's effect also gains 1 Exhaustion level. While the creature has Exhaustion levels, finishing a Long Rest neither restores lost Hit Points nor reduces the creature's Exhaustion level.\nWhen the spell is cast, each secondary caster must expend a level 4+ spell slot; otherwise, the spell fails.",
+      "classes": [
+        "Bard",
+        "Cleric"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Doomtide",
+      "level": 4,
+      "school": "Conjuration",
+      "casting_time": "Action",
+      "range": "120 feet",
+      "components": [
+        "V",
+        "S",
+        "M (soot and a dried eel)"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 4 Conjuration (Bard, Cleric, Warlock)\nCasting Time: Action\nRange: 120 feet\nComponents: V, S, M (soot and a dried eel)\nDuration: Concentration, up to 1 minute\nYou create a 20-foot-radius Sphere of inky fog within range. The fog is magical Darkness and lasts for the duration or until a strong wind (such as the one created by the Gust of Wind spell) disperses it, ending the spell.\nEach creature in the Sphere when it appears makes a Wisdom saving throw. On a failed save, a creature takes 5d6 Psychic damage and subtracts 1d6 from its saving throws until the end of its next turn. On a successful save, a creature takes half as much damage only. A creature also makes this save when the Sphere moves into its space, when it enters the Sphere, or when it ends its turn inside the Sphere. A creature makes this save only once per turn.\nThe Sphere moves 10 feet away from you at the start of each of your turns.\nCasting as a Circle Spell. Casting this as a Circle spell requires a minimum of five secondary casters. In addition to the spell's usual components, you must provide a special component (a string of three black pearls from Pandemonium), which the spell consumes. The spell's range increases to 1 mile, and its duration increases to until dispelled (no Concentration required). The spell ends early if any caster who participated in this casting contributes to another casting of Doomtide as a Circle spell.\nWhen the spell is cast, each secondary caster must expend a level 3+ spell slot; otherwise, the spell fails.",
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Warlock"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Elminster's Effulgent Spheres",
+      "level": 6,
+      "school": "Evocation",
+      "casting_time": "Action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S",
+        "M (an opal worth 1,000 GP+)"
+      ],
+      "duration": "1 hour",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 6 Evocation (Druid, Sorcerer, Wizard)\nCasting Time: Action\nRange: Self\nComponents: V, S, M (an opal worth 1,000 GP+)\nDuration: 1 hour\nSix chromatic spheres orbit you for the duration.\nWhile the spheres are present, you can expend spheres to create the following effects:\nAbsorb Energy. When you take Acid, Cold, Fire, Lightning, or Thunder damage, you can take a Reaction to expend one sphere and give yourself Resistance to the triggering damage type until the start of your next turn.\nEnergy Blast. As a Bonus Action, you send one sphere hurtling toward a target within 120 feet of yourself. Make a ranged spell attack. On a hit, the target takes 3d6 Acid, Cold, Fire, Lightning, or Thunder damage (your choice). Regardless of whether you hit, the sphere is expended.\nThe spell ends early if you have no more spheres remaining.\nUsing a Higher-Level Spell Slot. The number of spheres increases by 1 for every spell slot level above 6.",
+      "classes": [
+        "Druid",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Elminster's Elusion",
+      "level": 2,
+      "school": "Abjuration",
+      "casting_time": "Bonus Action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 10 minutes",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 2 Abjuration (Wizard)\nCasting Time: Bonus Action\nRange: Self\nComponents: V, S\nDuration: Concentration, up to 10 minutes\nArcane wards protect you against magic for the duration. You have Advantage on saving throws against spells and magical effects. Additionally, if you succeed on a saving throw against a spell or magical effect and would normally take half as much damage, you instead take no damage.",
+      "classes": [
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Holy Star of Mystra",
+      "level": 8,
+      "school": "Evocation",
+      "casting_time": "Bonus Action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 8 Evocation (Cleric, Wizard)\nCasting Time: Bonus Action\nRange: Self\nComponents: V, S\nDuration: Concentration, up to 1 minute\nYou create a glowing mote of energy that hovers above you for the duration. The mote sheds Bright Light in a 5-foot radius and Dim Light for an additional 5 feet.\nWhen you cast this spell and as a Bonus Action on later turns, you can unleash a shining bolt from the mote, targeting one creature within 120 feet of yourself. Make a ranged spell attack. On a hit, the target takes Force or Radiant damage (your choice) equal to 4d10 plus your spellcasting ability modifier.\nIn addition, while the mote is present, you have Three-Quarters Cover, and if you succeed on a saving throw against a spell of level 7 or lower that targeted only you and didn't create an area of effect, you can take a Reaction to deflect that spell back at the spell's caster; the caster makes a saving throw against that spell using that caster's own spell save DC.",
+      "classes": [
+        "Cleric",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Laeral's Silver Lance",
+      "level": 3,
+      "school": "Evocation",
+      "casting_time": "Action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S",
+        "M (a silver pin worth 250+ GP)"
+      ],
+      "duration": "Instantaneous",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 3 Evocation (Cleric, Sorcerer, Wizard)\nCasting Time: Action\nRange: Self\nComponents: V, S, M (a silver pin worth 250+ GP)\nDuration: Instantaneous\nSilver energy bursts out from you in a 120-foot-long, 5-foot-wide Line. Each creature of your choice in the Line makes a Strength saving throw. On a failed save, a creature takes 3d10 Force damage and has the Prone condition. On a successful save, a creature takes half as much damage only.\nUsing a Higher-Level Spell Slot. The damage increases by 1d10 for every spell slot level above 3.",
+      "classes": [
+        "Cleric",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Simbul's Synostodweomer",
+      "level": 7,
+      "school": "Transmutation",
+      "casting_time": "Action",
+      "range": "Touch",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "1 hour",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 7 Transmutation (Sorcerer, Wizard)\nCasting Time: Action\nRange: Touch\nComponents: V, S\nDuration: 1 hour\nYou imbue one creature you touch with magical healing energy for the duration. Whenever the target casts a spell using a spell slot, the target can immediately roll a number of unexpended Hit Point Dice equal to the spell slot's level and regain Hit Points equal to the roll's total plus your spellcasting ability modifier; those dice are then expended.",
+      "classes": [
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Songal's Elemental Suffusion",
+      "level": 5,
+      "school": "Transmutation",
+      "casting_time": "Action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S",
+        "M (a pearl worth 100+ GP)"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 5 Transmutation (Druid, Sorcerer, Wizard)\nCasting Time: Action\nRange: Self\nComponents: V, S, M (a pearl worth 100+ GP)\nDuration: Concentration, up to 1 minute\nYou imbue yourself with the elemental power of genies. You gain the following benefits until the spell ends:\nElemental Immunity. When you cast this spell, choose one of the following damage types: Acid, Cold, Fire, Lightning, or Thunder. You have Resistance to the chosen damage type.\nElemental Pulse. When you cast this spell and at the start of each of your subsequent turns, you release a burst of elemental energy in a 15-foot Emanation originating from yourself. Each creature of your choice in that area makes a Dexterity saving throw. On a failed save, a creature takes 2d6 Acid, Cold, Fire, Lightning, or Thunder damage (your choice) and has the Prone condition. On a successful save, a creature takes half as much damage only.\nFlight. You gain a Fly Speed of 30 feet and can hover.\nCasting as a Circle Spell. If the spell is cast as a Circle spell, its casting time increases to 1 minute, and its duration increases to Concentration, up to 10 minutes. For each secondary caster who participates in the casting, you can choose one additional creature, to a maximum of nine additional creatures. The chosen creatures also gain the benefits of the spell for its duration.\nWhen the spell is cast, each secondary caster must expend a level 2+ spell slot; otherwise, the spell fails.",
+      "classes": [
+        "Druid",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Spellfire Flare",
+      "level": 1,
+      "school": "Evocation",
+      "casting_time": "Action",
+      "range": "60 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Instantaneous",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 1 Evocation (Sorcerer, Wizard)\nCasting Time: Action\nRange: 60 feet\nComponents: V, S\nDuration: Instantaneous\nYou unleash a blast of brilliant fire. Make a ranged spell attack against a target within range; a target gains no benefit from Half Cover or Three-Quarters Cover for this attack roll. On a hit, the target takes 2d10 Radiant damage.\nUsing a Higher-Level Spell Slot. You create an additional blast for each spell slot level above 1. You can direct the blasts at the same target or at different ones. Make a separate attack roll for each blast.",
+      "classes": [
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Spellfire Storm",
+      "level": 4,
+      "school": "Evocation",
+      "casting_time": "Action",
+      "range": "60 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 4 Evocation (Sorcerer, Wizard)\nCasting Time: Action\nRange: 60 feet\nComponents: V, S\nDuration: Concentration, up to 1 minute\nYou conjure a pillar of spellfire in a 20-foot-radius, 20-foot-high Cylinder centered on a point within range. The area of the Cylinder is Bright Light, and each creature in it when it appears makes a Constitution saving throw, taking 4d10 Radiant damage on a failed save or half as much damage on a successful one. A creature also makes this save when it enters the spell's area for the first time on a turn or ends its turn there. A creature makes this save only once per turn.\nIn addition, whenever a creature in the Cylinder casts a spell, that creature makes a Constitution saving throw. On a failed save, the spell dissipates with no effect, and the action, Bonus Action, or Reaction used to cast it is wasted. If that spell was cast with a spell slot, the slot isn't expended.\nWhen you cast this spell, you can designate creatures to be unaffected by it.\nCasting as a Circle Spell. In addition to the spell's usual components, you must provide a special component (a blue star sapphire worth 25,000+ GP), which the spell consumes. The spell's range increases to 1 mile, and it no longer requires Concentration. When the spell is cast, each secondary caster must expend a level 3+ spell slot; otherwise, the spell fails.\nUsing a Higher-Level Spell Slot. The damage increases by 1d10 for every spell slot level above 4.\nThe number of secondary casters determines the spell's area of effect and duration, as shown in the table below. The spell ends early if any caster who participated in this casting contributes to another casting of Spellfire Storm as a Circle spell.\n\n\nSecondary Casters\nArea of Effect\nDuration\n\n\n1-3\n40-foot-radius, 40-foot-high Cylinder\n1 hour\n\n\n4-6\n60-foot-radius, 60-foot-high Cylinder\n8 hours\n\n\n7+\n100-foot-radius, 100-foot-high Cylinder\n24 hours",
+      "classes": [
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Sylune's Viper",
+      "level": 3,
+      "school": "Conjuration",
+      "casting_time": "Bonus Action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S",
+        "M (a snake fang)"
+      ],
+      "duration": "1 hour",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 3 Conjuration (Druid, Wizard)\nCasting Time: Bonus Action\nRange: Self\nComponents: V, S, M (a snake fang)\nDuration: 1 hour\nA shimmering, spectral snake encircles your body for the duration. You gain 15 Temporary Hit Points; the spell ends early if you have no Temporary Hit Points left.\nWhile the spell is active, you gain the following benefits:\nClimbing. You gain a Climb Speed equal to your Speed.\nVenomous Bite. As a Magic action, you can make a ranged spell attack using the snake against one creature within 50 feet. On a hit, the target takes 1d6 Force damage and has the Poisoned condition until the start of your next turn. While Poisoned, the target has the Incapacitated condition.\nUsing a Higher-Level Spell Slot. For each spell slot level above 3, the number of Temporary Hit Points you gain from this spell increases by 5, and the damage of Venomous Bite increases by 1d6.",
+      "classes": [
+        "Druid",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    },
+    {
+      "name": "Wardaway",
+      "level": 1,
+      "school": "Abjuration",
+      "casting_time": "Action",
+      "range": "60 feet",
+      "components": [
+        "V",
+        "S",
+        "M (a miniature clay hand)"
+      ],
+      "duration": "Instantaneous",
+      "description": "Source: Forgotten Realms - Heroes of Faerun\nLevel 1 Abjuration (Bard, Cleric, Paladin, Wizard)\nCasting Time: Action\nRange: 60 feet\nComponents: V, S, M (a miniature clay hand)\nDuration: Instantaneous\nYou hurl a disorienting magical force toward one creature within range. The target makes a Constitution saving throw; Constructs and Undead automatically succeed on this save.\nOn a failed save, the target takes 2d4 Force damage, its Speed is halved until the start of your next turn, and on its next turn, it can take only an action or a Bonus Action (but not both). On a successful save, the target takes half as much damage only.\nUsing a Higher-Level Spell Slot. The damage increases by 2d4 for every spell slot level above 1.",
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Paladin",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Forgotten Realms: Heroes of Faer\u00fbn"
+    }
+  ],
+  "spell_class_lists": {
+    "artificer": {
+      "cantrips": [],
+      "spells_by_level": {}
+    },
+    "bard": {
+      "cantrips": [],
+      "spells_by_level": {
+        "5": [
+          "Alustriel's Mooncloak"
+        ],
+        "4": [
+          "Backlash",
+          "Doomtide"
+        ],
+        "3": [
+          "Cacophonic Shield"
+        ],
+        "6": [
+          "Dirge"
+        ],
+        "1": [
+          "Wardaway"
+        ]
+      }
+    },
+    "cleric": {
+      "cantrips": [],
+      "spells_by_level": {
+        "2": [
+          "Deryan's Helpful Homunculi"
+        ],
+        "6": [
+          "Dirge"
+        ],
+        "4": [
+          "Doomtide"
+        ],
+        "8": [
+          "Holy Star of Mystra"
+        ],
+        "3": [
+          "Laeral's Silver Lance"
+        ],
+        "1": [
+          "Wardaway"
+        ]
+      }
+    },
+    "druid": {
+      "cantrips": [],
+      "spells_by_level": {
+        "5": [
+          "Alustriel's Mooncloak",
+          "Songal's Elemental Suffusion"
+        ],
+        "6": [
+          "Elminster's Effulgent Spheres"
+        ],
+        "3": [
+          "Sylune's Viper"
+        ]
+      }
+    },
+    "paladin": {
+      "cantrips": [],
+      "spells_by_level": {
+        "1": [
+          "Wardaway"
+        ]
+      }
+    },
+    "ranger": {
+      "cantrips": [],
+      "spells_by_level": {
+        "5": [
+          "Alustriel's Mooncloak"
+        ]
+      }
+    },
+    "sorcerer": {
+      "cantrips": [],
+      "spells_by_level": {
+        "4": [
+          "Backlash",
+          "Spellfire Storm"
+        ],
+        "9": [
+          "Blade of Disaster"
+        ],
+        "3": [
+          "Cacophonic Shield",
+          "Laeral's Silver Lance"
+        ],
+        "2": [
+          "Death Armor"
+        ],
+        "6": [
+          "Elminster's Effulgent Spheres"
+        ],
+        "7": [
+          "Simbul's Synostodweomer"
+        ],
+        "5": [
+          "Songal's Elemental Suffusion"
+        ],
+        "1": [
+          "Spellfire Flare"
+        ]
+      }
+    },
+    "warlock": {
+      "cantrips": [],
+      "spells_by_level": {
+        "4": [
+          "Backlash",
+          "Doomtide"
+        ],
+        "9": [
+          "Blade of Disaster"
+        ]
+      }
+    },
+    "wizard": {
+      "cantrips": [],
+      "spells_by_level": {
+        "5": [
+          "Alustriel's Mooncloak",
+          "Songal's Elemental Suffusion"
+        ],
+        "4": [
+          "Backlash",
+          "Spellfire Storm"
+        ],
+        "9": [
+          "Blade of Disaster"
+        ],
+        "3": [
+          "Cacophonic Shield",
+          "Conjure Constructs",
+          "Laeral's Silver Lance",
+          "Sylune's Viper"
+        ],
+        "2": [
+          "Death Armor",
+          "Deryan's Helpful Homunculi",
+          "Elminster's Elusion"
+        ],
+        "6": [
+          "Elminster's Effulgent Spheres"
+        ],
+        "8": [
+          "Holy Star of Mystra"
+        ],
+        "7": [
+          "Simbul's Synostodweomer"
+        ],
+        "1": [
+          "Spellfire Flare",
+          "Wardaway"
+        ]
+      }
+    }
+  }
+}

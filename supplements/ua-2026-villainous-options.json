@@ -1,0 +1,1257 @@
+{
+  "manifest": {
+    "id": "ua-2026-villainous-options",
+    "title": "Unearthed Arcana: Villainous Options",
+    "publisher": "Wizards of the Coast (Playtest)",
+    "version": "1.0.0",
+    "compatibility": "2024",
+    "description": "Playtest character options from Unearthed Arcana 2026: Villainous Options (Articles 1, 2, and Update): 7 subclasses (Path of Lament Barbarian, Pestilence Domain Cleric, Circle of the Titan Druid [Revised], Hell Knight Fighter [Revised], Warrior of Venom Monk, Demonic Sorcery Sorcerer [Revised], Primordial Patron Warlock), 19 feats (4 Origin feats, 11 Paths of Villainy feats for Death Knight & Lich, 4 Epic Boon feats), and 2 Eldritch Invocations.",
+    "dependencies": [
+      "core-phb-2024"
+    ]
+  },
+  "subclasses": [
+    {
+      "name": "Path of Lament",
+      "class": "Barbarian",
+      "description": "Barbarians who walk the Path of Lament hone their regrets into deadly weapons and channel their deepest sorrows into rageful action. Propelled by supernatural grief, their fury grants them gifts from beyond the grave.",
+      "source": "Unearthed Arcana: Villainous Options",
+      "features_by_level": {
+        "3": {
+          "Banshee's Wail": "When you activate your Rage or as a Bonus Action while your Rage is active, you can let out a doleful wail. Each creature of your choice in a 30-foot Emanation originating from you makes a Constitution saving throw (DC 8 plus your Constitution modifier and Proficiency Bonus). On a failed save, a creature takes Psychic damage and has the Deafened condition for 1 minute. On a successful save, a creature takes half as much damage only. To determine the Psychic damage, roll a number of d12s equal to your Rage Damage bonus, and add them together.\nYou can use this feature a number of times equal to your Constitution modifier (minimum of once). You regain all expended uses when you finish a Long Rest. You can also regain all uses by expending a use of your Rage (no action required).",
+          "Path of Lament Origins": "A Barbarian may choose the Path of Lament, but more often the path is thrust on the Barbarian by unhappy accident. At the heart of the Barbarian's rage are great trauma and unresolved grief\u2014painful emotions fueled by haunting memories that rise to the surface during adrenaline-filled moments."
+        },
+        "6": {
+          "Commune with the Dead": "You can cast the Speak with Dead spell but only as a Ritual. Wisdom is your spellcasting ability for it.",
+          "Horrifying Strike": "Once per turn when you hit a creature with a Strength-based attack roll while your Rage is active, you can attempt to horrify the target. The target must succeed on a Wisdom saving throw (DC 8 plus your Constitution modifier and Proficiency Bonus) or have the Frightened condition until the start of your next turn."
+        },
+        "10": {
+          "Otherworldly Anguish": "You draw power from a sorrow so deep it extends beyond the boundaries of the realm of the living. You gain the following benefits:\n- Deathly Wail: If a target fails its saving throw against your Banshee's Wail and it has Hit Points equal to twice your Barbarian level or fewer, it drops to 0 Hit Points instead of taking damage.\n- Impenetrable Sorrow: You can't be possessed.\n- Resistance: You have Resistance to Cold and Necrotic damage while your Rage is active."
+        },
+        "14": {
+          "Sorrow Form": "When you activate your Rage, you can empower yourself with undeath. You gain the benefits below for 1 minute or until you drop to 0 Hit Points. Once you use this feature, you can't do so again until you finish a Long Rest.\n- Immunities: You have Immunity to the Charmed and Frightened conditions. If you're Charmed or Frightened when you empower yourself, the condition ends on you. In addition, you can't gain Exhaustion levels.\n- Life-Draining Strike: When a creature fails its saving throw against your Horrifying Strike, the creature takes 2d10 Necrotic damage. You regain Hit Points equal to the Necrotic damage dealt.\n- Undead: Your creature type is Undead."
+        }
+      }
+    },
+    {
+      "name": "Pestilence Domain",
+      "class": "Cleric",
+      "description": "Clerics of the Pestilence Domain harness supernatural plague and decay to erode their enemies' vitality. Associated with deities of poison, disease, famine, and rot, these clerics wield pestilence with surgical precision.",
+      "source": "Unearthed Arcana: Villainous Options",
+      "features_by_level": {
+        "3": {
+          "Blight Weaver": "You gain the following benefits:\n- Inoculated Soul: You have Resistance to Necrotic and Poison damage, and you can't be infected by magical contagions.\n- Rot and Fester: Damage from your Cleric spells and Cleric features ignores Resistance to Necrotic and Poison damage. Additionally, when you cast a Cleric spell or use a Cleric feature that deals either Necrotic or Poison damage, you can change that damage to the other type.",
+          "Pestilence Domain Spells": {
+            "description": "Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Pestilence Domain Spells table, you thereafter always have the listed spells prepared.",
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Detect Poison and Disease",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Protection from Poison",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Ray of Enfeeblement",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Ray of Sickness",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Stinking Cloud",
+                "min_level": 5,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Vampiric Touch",
+                "min_level": 5,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Blight",
+                "min_level": 7,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Giant Insect",
+                "min_level": 7,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Contagion",
+                "min_level": 9,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Insect Plague",
+                "min_level": 9,
+                "counts_against_limit": false
+              }
+            ]
+          },
+          "Plague Blessing": "As a Magic action, you can present your Holy Symbol and expend a use of Channel Divinity to manifest a 5-foot Emanation of withering plague that surrounds you or one willing creature you touch for 1 minute. It ends early if you dismiss it (no action required), manifest it again, or have the Incapacitated condition.\nEach creature of your choice that starts its turn in the Emanation must succeed on a Constitution saving throw against your spell save DC or gain 1 Exhaustion level. This feature can't increase a creature's Exhaustion level higher than a level equal to your Wisdom modifier (minimum of 1 Exhaustion level)."
+        },
+        "6": {
+          "Virulent Burst": "When an enemy within 60 feet of you is reduced to 0 Hit Points, you can take a Reaction to cause plague to burst from that creature, spreading pestilence in a 10-foot Emanation originating from the enemy; if the enemy had at least 1 Exhaustion level, the size of the Emanation increases to 20 feet.\nEach creature of your choice in the Emanation makes a Constitution saving throw against your spell save DC. On a failed save, a target suffers one of the following effects (your choice):\n- Putrid Shock: The target has the Incapacitated condition until the end of its next turn. While Incapacitated, the target's Speed is 0.\n- Toxic Infection: The target takes 3d6 Necrotic or Poison damage (your choice).\nYou can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest."
+        },
+        "17": {
+          "Vermin Form": "As a Bonus Action, you can shape-shift into a Medium swarm of Tiny pests, such as cockroaches, maggots, or rats. While you're in this form, you retain your general shape, personality, memories, and the ability to speak; any equipment you're wearing or carrying doesn't transform with you, but you can continue using that equipment while in this form. Your game statistics remain the same, apart from the following changes:\n- Condition Immunities: You have Immunity to the Grappled, Paralyzed, Prone, and Restrained conditions.\n- Damage Resistances: You have Resistance to Bludgeoning, Piercing, and Slashing damage.\n- Movement: You can enter and occupy another creature's space and vice versa. Additionally, you have a Climb Speed equal to your Speed, and you can climb difficult surfaces\u2014including along ceilings\u2014without needing to make an ability check.\n- Plague Bites: Whenever you enter an enemy's space, that creature takes damage equal to your Wisdom modifier; the damage is Necrotic, Piercing, or Poison (your choice). A creature also takes this damage when it enters your space or ends its turn there. A creature takes this damage only once per turn.\nYou revert to your true form after 10 minutes, if you choose to end the transformation (no action required), if you have the Incapacitated condition, or if you die.\nOnce you use this feature, you can't use it again until you finish a Long Rest unless you expend a level 5+ spell slot (no action required) to restore your use of it."
+        }
+      }
+    },
+    {
+      "name": "Circle of the Titan",
+      "class": "Druid",
+      "description": "Druids of the Circle of the Titan believe that when civilization violates the natural world, society must fall. They assume towering, monstrous forms to mete out cataclysmic retribution and forcibly restore the natural order.",
+      "source": "Unearthed Arcana: Villainous Options",
+      "features_by_level": {
+        "3": {
+          "Circle of the Titan Spells": {
+            "description": "When you reach a Druid level specified in the Circle of the Titan Spells table, you thereafter always have the listed spells prepared. In addition, you can cast the spells from this feature while you're in your Titan Form.",
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Enlarge/Reduce",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Thaumaturgy",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Thunderwave",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Fear",
+                "min_level": 5,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Fire Shield",
+                "min_level": 7,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Destructive Wave",
+                "min_level": 9,
+                "counts_against_limit": false
+              }
+            ]
+          },
+          "Titan Form": "When you use Wild Shape, you can adopt a Titan Form, choosing from the Behemoth, Leviathan, and Insectoid stat blocks. You can stay in a Titan Form for 10 minutes, instead of a number of hours. Features that apply to your Beast forms also apply to your Titan Form.\n- Behemoth: Large, AC 13 + Wis mod, Temp HP 4 x Druid level, Speed 40 ft, Climb 40 ft. Str & Dex equal to Wis score. Siege Monster. Rend: spell attack mod, reach 10 ft, 1d8 + Wis slashing (2d8 at lvl 6, 3d8 at lvl 12). Multiattack (level 5+). Incandescent Breath: expend level 1+ slot for 2d10 Radiant damage per level in 5x60 ft line. Rampager (lvl 10+).\n- Leviathan: Large, AC 13 + Wis mod, Temp HP 4 x Druid level, Speed 40 ft, Swim 40 ft. Str & Dex equal to Wis score. Amphibious, Siege Monster. Rend: 1d8 + Wis bludgeoning (2d8 at lvl 6, 3d8 at lvl 12). Toxic Deluge (lvl 10+): expend level 1+ slot for 2d4 Poison per level in 10-ft emanation and Poisoned.\n- Insectoid: Large, AC 13 + Wis mod, Temp HP 4 x Druid level, Speed 40 ft, Fly 40 ft (lvl 10+). Str & Dex equal to Wis score. Flyby (lvl 10+), Siege Monster. Rend: 1d8 + Wis piercing (2d8 at lvl 6, 3d8 at lvl 12). Energizing Pollen: expend level 1+ slot, move up to half speed no OA, restore 2d6 HP per level to creatures within 5 ft."
+        },
+        "6": {
+          "Dire Impact": "Your Titan Form brings greater devastation, gaining the following benefits:\n- Elemental Rend: Whenever you hit with your Titan Form's Rend attack, you can cause it to deal your choice of Acid, Cold, Fire, Lightning, or Thunder damage rather than its normal damage type.\n- Shock Wave: Once per turn, immediately after you move at least half your Speed, you can create a shock wave in a 10-foot Emanation originating from you. Each creature in the Emanation must succeed on a Constitution saving throw against your spell save DC or have the Prone condition."
+        },
+        "10": {
+          "Primal Havoc": "The unbridled power of nature surges within you, granting you the following benefits:\n- Huge Size: You can choose to become Huge when assuming your Titan Form if you're in a big enough space.\n- Toughened Hide: Immediately after you assume a Huge or larger Titan Form, you can expend a level 1+ spell slot. For the duration of the form, you gain a bonus to your AC equal to half the expended spell slot's level (round up).\n- Above It All: While you are Huge or larger in your Titan Form, Difficult Terrain caused by heavy snow, ice, rubble, or undergrowth doesn't cost you extra movement."
+        },
+        "14": {
+          "Monstrous Appetite": "Your transformation embodies the vast size and terror of nature's titans. You gain the following benefits:\n- Gargantuan Size: You can choose to become Gargantuan when assuming your Titan Form if you're in a big enough space.\n- Grappling Rend: Once per turn, while you are Huge or larger and hit a creature with your Titan Form's Rend attack, you can give the target the Grappled condition (escape DC equals your spell save DC). You can have only one target grappled in this way at a time.\n- Swallow: As a Bonus Action while you are Gargantuan, choose one Large or smaller creature Grappled by you. The target makes a Strength saving throw against your spell save DC. On a failure, you swallow the target, and the Grappled condition ends on it. A swallowed creature has the Blinded and Restrained conditions, has Total Cover against attacks and other effects outside of your stomach, and takes Acid damage at the start of each of your turns equal to a number of d12s equal to your Wisdom modifier. Swallowed capacity equals Wisdom modifier (min 1). Concentration required."
+        }
+      }
+    },
+    {
+      "name": "Hell Knight",
+      "class": "Fighter",
+      "description": "Hell Knights are the champions of archdevils and high-ranking fiends of the Nine Hells. Armed with infernal weapons and wicked techniques, Hell Knights inflict agonizing infernal wounds and fight with ruthless tenacity.",
+      "source": "Unearthed Arcana: Villainous Options",
+      "features_by_level": {
+        "3": {
+          "Diabolical Gift": "As a soldier for the agents of the Nine Hells, you've been given fiendish powers:\n- Devil's Sight: You can see normally in Dim Light and Darkness\u2014both magical and nonmagical\u2014within 120 feet of yourself.\n- Devil's Talents: You know Infernal, the language of devils. If you already know Infernal, you learn another language of your choice. You also gain proficiency in one of these skills of your choice: Deception, Performance, or Sleight of Hand.",
+          "Hell-Forged Weapon": "When you take the Attack action, you can imbue each weapon that you are holding with hellfire, transforming it into a Hell-Forged Weapon. It remains transformed until you use this feature again, have the Unconscious condition, or the weapon is more than 5 feet away for 1 minute or more.\nWhile you wield a Hell-Forged Weapon, it sheds Dim Light in a 5-foot radius, and whenever you deal damage with the weapon, it can deal your choice of Cold, Fire, or Necrotic damage or its normal damage type (choose when you imbue the weapon).",
+          "Infernal Wound": "Your Hell-Forged Weapon can inflict infernal wounds.\n- Infernal Wound Die: You have an Infernal Wound Die, which is a d6.\n- Inflicting Infernal Wounds: When you hit a creature with your Hell-Forged Weapon, you can deal extra damage equal to one roll of your Infernal Wound Die (same type as chosen for the weapon). You also give the target an infernal wound if it doesn't already have one.\n- Wounded Effect: The target takes damage equal to one roll of your Infernal Wound Die at the start of each of its turns. Lasts 1 minute, until healed, or until an action is taken to stanch the wound.\n- Uses: Equal to your Constitution modifier (minimum of once) per Short or Long Rest."
+        },
+        "7": {
+          "Advanced Wounds": "When you roll your Infernal Wound Die, you can apply one of the following effects. If you roll a 6 on the Infernal Wound Die, the effect you choose has an additional Devil's Luck effect (once per turn):\n- Purulence of Minauros: Each enemy in a 5-foot Emanation originating from the target takes Acid damage equal to your Constitution modifier, and the target is Poisoned until the end of its next turn. Devil's Luck: -1 penalty to AC until end of your next turn.\n- Rupture of Cania: Target takes Force damage equal to your Constitution modifier. Devil's Luck: Target subtracts 1d6 from its next saving throw before the end of your next turn.\n- Stygian Gangrene: Target takes Cold damage equal to your Constitution modifier and can't take Reactions until the start of its next turn. Devil's Luck: Target's Speed is halved until the end of its next turn.",
+          "Infernal Equipment": "Your armor and weapons embody infernal armaments forged in the fires of Avernus:\n- Infernal Resilience: Whenever you finish a Short or Long Rest, choose Cold, Fire, or Necrotic. While wearing Heavy armor or wielding a Shield, you have Resistance to that damage type until you choose a different one.\n- Unholy Power: When you roll your Infernal Wound Die, you can treat a roll of 1 as a 6."
+        },
+        "10": {
+          "Hellfire Surge": "When you use your Action Surge while holding a Hell-Forged Weapon, you erupt with hellfire in a 20-foot Emanation originating from you that lasts until the end of your next turn. Whenever a creature suffering an infernal wound starts its turn within the Emanation, it takes damage equal to two rolls of your Infernal Wound Die instead of one."
+        },
+        "15": {
+          "Devil's Misfortune": "When a creature with an infernal wound hits you with an attack roll, you can take a Reaction to roll your Infernal Wound Die and reduce the damage taken by the number rolled. On a roll of 6, roll your Infernal Wound Die again (up to three rolls total) and reduce the damage by the total. In addition, if the attack is a Critical Hit, it becomes a normal hit."
+        },
+        "18": {
+          "Infernal Bargain": "When you roll a 6 on your Infernal Wound Die three or more times before the start of your next turn, you gain Heroic Inspiration.\nInfernal Inspiration: If a creature you can see within 120 feet rolls a d20 for a D20 Test, you can expend your Heroic Inspiration to force the target to reroll the d20. If the reroll succeeds, you regain an expended use of Indomitable or Second Wind (your choice). If the reroll fails, you lose Hit Points equal to 3d6 plus your Fighter level."
+        }
+      }
+    },
+    {
+      "name": "Warrior of Venom",
+      "class": "Monk",
+      "description": "Warriors of Venom pollute their internal reservoirs of power to become poison incarnate. Through study and meditation on poisons, these monks harness deadly toxicity to envenom their strikes and dissolve their foes.",
+      "source": "Unearthed Arcana: Villainous Options",
+      "features_by_level": {
+        "3": {
+          "Envenom Weapon": "At the start of your turn, you can expend 1 Focus Point to apply a toxin produced from your blood to one Monk weapon that you're holding. A creature that takes damage from the weapon is subjected to one of the following toxin effects (choose when you apply the toxin):\n- Slowing Toxin: Until the start of your next turn, the target's Speed is halved; it can't take Reactions; and it can take either an action or a Bonus Action on its turn, not both.\n- Venom: The target takes Poison damage equal to two rolls of your Martial Arts die.\nThe toxin retains potency for 1 minute or until a creature takes damage from the weapon.",
+          "Potent Arsenal": "You gain a Poisoner's Kit, and you have proficiency with it. When creating a Basic Poison, you can do so over the course of 1 day (8 hours of work). Additionally, whenever you deal Poison damage with a Monk feature or a Monk weapon, you can change that damage type to Acid."
+        },
+        "6": {
+          "Toxic Touch": "As a Magic action, you can expend 1 Focus Point to apply a potent toxin to a creature you touch. The target makes a Constitution saving throw. On a failed save, the target has the Poisoned condition for 1 minute. While Poisoned, the target is affected by one of the following effects of your choice:\n- Intoxicant: The target has the Charmed condition for the duration or until you or your allies deal damage to the target.\n- Sedative: The creature falls asleep and has the Unconscious condition for the duration. Another creature can use an action to shake it awake and remove the condition.\n- Truth Serum: The target can't knowingly communicate a lie for the duration."
+        },
+        "11": {
+          "Toxin Refiner": "Your body can filter poison. You gain Immunity to Poison damage. Whenever you are subjected to Poison damage, your Envenom Weapon options each deal extra Poison damage equal to one roll of your Martial Arts die, and you can't gain this benefit again until the end of your next turn. In addition, whenever you ingest a poison, you regain Hit Points equal to one roll of your Martial Arts die.",
+          "Toxic Blood": "Enemies draw your toxic blood at their own peril. Whenever a creature hits you with a melee attack roll, the attacker takes 1d6 Poison damage. If you are Bloodied, the attacker instead takes Poison damage equal to one roll of your Martial Arts die."
+        },
+        "17": {
+          "Hallucinogenic Breath": "When you take the Attack action on your turn, you can expend 2 Focus Points and replace one of your attacks with an exhalation of hallucinogenic vapors at one creature you can see within 30 feet. The target must make a Constitution saving throw. On a failed save, the target takes Poison damage equal to three rolls of your Martial Arts die and has the Frightened condition for 1 minute or until the target takes damage. While Frightened, the target takes the Dash action and moves away from you by the safest route on each of its turns unless there is nowhere to move. On a successful save, a creature takes half as much damage only."
+        }
+      }
+    },
+    {
+      "name": "Demonic Sorcery",
+      "class": "Sorcerer",
+      "description": "The corruptive magic of demons courses through you, making you a conduit for the infinite layers of the Abyss. Abyssal energy erupts in tandem with your sorcery, warping flesh, magic, and reality.",
+      "source": "Unearthed Arcana: Villainous Options",
+      "features_by_level": {
+        "3": {
+          "Abyssal Rupture": "When you use Innate Sorcery, you create a rupture into the Abyss, which fills a 10-foot-radius Sphere centered on a point you can see within 30 feet of yourself with Abyssal energy. When you activate your Innate Sorcery and as a Bonus Action while your Innate Sorcery is active, you can choose one of the following options. While the rupture persists, you can move the center of the Sphere to a point you can see within 30 feet of yourself at the start of each of your turns:\n- Demonic Lash: Make a melee spell attack against a target within 5 feet of the rupture. On a hit, the target takes 1d8 Slashing damage, and if it is Large or smaller, you can pull it up to 10 feet toward the center of the Sphere.\n- Terrifying Screams: Each creature in the rupture must succeed on a Wisdom saving throw against your spell save DC or take 1d4 Psychic damage.",
+          "Demonic Spells": {
+            "description": "When you reach a Sorcerer level specified in the Demonic Spells table, you thereafter always have the listed spells prepared.",
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Bane",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Dissonant Whispers",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Spike Growth",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Web",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Bestow Curse",
+                "min_level": 5,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Dispel Magic",
+                "min_level": 5,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Giant Insect",
+                "min_level": 7,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Hallucinatory Terrain",
+                "min_level": 7,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Contact Other Plane",
+                "min_level": 9,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Modify Memory",
+                "min_level": 9,
+                "counts_against_limit": false
+              }
+            ]
+          },
+          "Abyssal Manifestations": "These Abyssal eruptions manifest in strange and gruesome ways. Roll on or choose from the Abyssal Manifestations table to inspire how your connection to the Abyss manifests."
+        },
+        "6": {
+          "Abyssal Realm": "When you spend at least 1 Sorcery Point as part of a Magic action or a Bonus Action on your turn, you can pull influence from the Abyss. When you do, you create a 10-foot Emanation originating from you, or you fill the Sphere of your Abyssal Rupture with magic from one of the following layers of the Abyss (DC equals your spell save DC):\n- Gaping Maw's Frenzy: Designate a direction horizontal to you. Each creature in the area that fails a Charisma saving throw must use as much of its movement as possible to move in that direction at the start of its next turn, taking the safest route.\n- Maze of Azzatar: Each creature in the area makes an Intelligence saving throw. On a failed save, you gain the benefits of the Invisible condition against the target until the start of your next turn.\n- Slime Pits' Haze: Each creature in the area makes a Constitution saving throw. On a failed save, the target has your choice of the Charmed or Poisoned condition until the start of your next turn."
+        },
+        "14": {
+          "Abyssal Conduit": "Your Abyssal powers reach their full potential. You gain the following benefits:\n- Rupture Expansion: The size of your Abyssal Rupture is now a 30-foot-radius Sphere, and the area is Difficult Terrain for your enemies.\n- Fiendish Servant: You always have the Summon Fiend spell prepared. When you cast the spell, you can modify it so that it doesn't require Concentration. When you do so, the spell's duration becomes 1 minute for that casting, and you must choose Demon when you summon the Fiend. In addition, the Fiend has Advantage on attack rolls while within your Abyssal Rupture."
+        },
+        "18": {
+          "Abyssal Explosion": "You unleash the chaos of the Abyss. As a Magic action, you fill a 30-foot-radius Sphere with an explosion of Abyssal energy. Each creature in the Sphere makes a Constitution saving throw against your spell save DC. On a failed save, a creature takes 8d6 Force damage if it isn't a Fiend, and it has the Incapacitated condition until the start of your next turn.\nOnce you use this feature, you can't do so again until you finish a Long Rest, unless you spend 7 Sorcery Points (no action required) to restore your use of it."
+        }
+      }
+    },
+    {
+      "name": "Primordial Patron",
+      "class": "Warlock",
+      "description": "Your pact draws on the Inner Planes, the realms of elemental forces and building blocks of the multiverse. Warlocks of this pact act as heralds of ancient elemental scions\u2014such as the Elemental Evils\u2014creating elemental nodes suffused with planar fury.",
+      "source": "Unearthed Arcana: Villainous Options",
+      "features_by_level": {
+        "3": {
+          "Elemental Node": "As a Magic action, you can create a 5-foot-radius Sphere of elemental magic centered on a point you can see within 60 feet of yourself. On later turns, you can take a Bonus Action to move the node up to 30 feet.\nWhen the node appears, each creature other than you in the node makes a Dexterity saving throw against your spell save DC, taking 1d6 damage of your chosen element's type on a failed save or half as much on a successful one. A creature also makes this save when the node moves into its space and when it enters the node or ends its turn there (only once per turn).\nThe node lasts for 1 minute, until dismissed, or until you use this feature to create another node. Uses: 1 per Short or Long Rest, or expend a Pact Magic spell slot. Damage increases by 1d6 at Warlock levels 6 (2d6) and 14 (3d6).",
+          "Elemental Spells": {
+            "description": "The magic of your patron ensures you always have certain spells ready. When you reach a Warlock level specified in the Elemental Spells table, you thereafter always have the listed primordial spells prepared, along with spells corresponding to your chosen element.",
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Chromatic Orb",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Darkvision",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Elemental Weapon",
+                "min_level": 5,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Summon Elemental",
+                "min_level": 7,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Commune with Nature",
+                "min_level": 9,
+                "counts_against_limit": false
+              }
+            ]
+          }
+        },
+        "6": {
+          "Elemental Haven": "Your Elemental Node shields you from harm. You gain the following benefits:\n- Elemental Protection: While you're within your node, you have a bonus to AC equal to your Charisma modifier (minimum of 1).\n- Elemental Teleport: As a Bonus Action, you can teleport into your node or the nearest unoccupied space within 5 feet of it. You can use this benefit a number of times equal to your Charisma modifier (minimum of once), and you regain all expended uses when you finish a Long Rest."
+        },
+        "10": {
+          "Primeval Protection": "You gain the following benefits:\n- Elemental Fortitude: You have Resistance to your chosen element's damage type. Additionally, while within your Elemental Node, you have Immunity to that damage type.\n- Node Improvement: Your Elemental Node is now a 10-foot-radius Sphere."
+        },
+        "14": {
+          "Elemental Harbinger": "Your Elemental Node can usher in the mightiest of elementals, granting you the following benefits:\n- Elemental Vortex: Whenever you expend a Pact Magic spell slot while you're within your Elemental Node, you can attempt to pull a creature into the node. One creature you choose within 30 feet of the node must succeed on a Strength saving throw or be pulled up to 15 feet toward the node's center.\n- Node Improvement: Your Elemental Node now lasts for up to 1 hour.\n- Primordial Herald: While you're within your node's area, you can cast the Planar Ally spell without expending a spell slot. When you cast the spell in this way, you speak the name of your patron. Once you use this benefit, you can't use it again until you finish 2d4 Long Rests."
+        }
+      }
+    }
+  ],
+  "eldritch_invocations": {
+    "Elemental Overflow": {
+      "description": "Choose a damage type: Acid, Cold, Fire, Lightning, or Thunder. Whenever you cast a spell that deals the chosen damage type, you can cause elemental energy to wreathe you until the end of your next turn. For the duration, whenever a creature within 5 feet of you hits you with a melee attack roll, that creature takes 1d4 damage of the chosen damage type.",
+      "prerequisite_level": 5,
+      "prerequisite_invocations": [],
+      "notes": "Repeatable: choose a different damage type each time."
+    },
+    "Elemental Transmutation": {
+      "description": "Choose a damage type: Acid, Cold, Fire, Lightning, or Thunder. Once per turn, whenever you deal damage of any of the above types, you can deal the chosen damage type instead.",
+      "prerequisite_level": 2,
+      "prerequisite_invocations": [],
+      "notes": ""
+    }
+  },
+  "feats": {
+    "origin_feats": {
+      "Atoner's Grace": {
+        "description": "You have renounced dark ways and seek to redeem yourself, carrying an aura of reconciliation.",
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Disarming Mien: A creature's Hostile attitude doesn't impose Disadvantage on your Charisma (Persuasion) checks to influence that creature.",
+          "Parley: When you take the Disengage or Influence action, each creature of your choice within 5 feet of you has Advantage on the next ability check or saving throw it makes before the start of your next turn."
+        ]
+      },
+      "Raised by Cultists": {
+        "description": "Your upbringing in a dark cabal taught you to harness pain and bolster the dark rites of your companions.",
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Bloody Revelation: When you become Bloodied, you can take a Reaction to gain Heroic Inspiration.",
+          "Communal Caster: When an ally within 5 feet of you makes a Constitution saving throw to maintain Concentration, you can take a Reaction to give your ally Advantage on the save."
+        ]
+      },
+      "Trapper": {
+        "description": "You are a master of cunning snares, keen observation, and tracking your prey across wild terrain.",
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Eye for Detail: You have Advantage on any Intelligence (Investigation) check you make as part of the Study action.",
+          "Swift Tracker: You don't have Disadvantage on Wisdom (Perception or Survival) checks while traveling at a Fast pace, and you have Advantage on such checks while traveling at a Normal pace.",
+          "Trap Expert: You can take a Bonus Action, instead of a Utilize action, to set a Hunting Trap. When you set a Hunting Trap, you add your Proficiency Bonus to the DC of the saving throw to avoid the trap and the DC of the check to escape it."
+        ]
+      },
+      "Underhanded": {
+        "description": "You fight with underhanded tactics and lightning reflexes to catch enemies off-guard.",
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Elusive: Immediately after you roll Initiative, you can move up to 10 feet.",
+          "Fight Dirty: When a creature one size larger than you or smaller makes an Opportunity Attack against you and misses, you can take a Reaction to give that creature the Prone condition. You must have a free hand to use this Reaction."
+        ]
+      }
+    },
+    "general_feats": {
+      "Death Knight Initiate": {
+        "description": "You dedicate yourself to the profane path of the Death Knight, learning to channel dark power through weapon strikes.",
+        "category": "General",
+        "prerequisite": "Level 4+, Weapon Mastery Feature",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Strength or Charisma score by 1, to a maximum of 20.",
+          "Death Points: You have a number of Death Points equal to your Proficiency Bonus, regaining all expended points on a Long Rest.",
+          "Dread Strike: You always have Wrathful Smite prepared (Charisma is your spellcasting ability). You can cast it without expending a spell slot by expending 1 Death Point. When cast this way, the target has Disadvantage on Wisdom saves to avoid or end the spell's effect. You can also cast it using spell slots."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Dread Authority": {
+        "description": "Your dread countenance exerts tyrannical command over the minds of mortals and undead alike.",
+        "category": "General",
+        "prerequisite": "Death Knight Initiate Feat",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Constitution or Charisma score by 1, to a maximum of 20.",
+          "Dread Command: You always have Command prepared (Charisma is your spellcasting ability). You can cast it without expending a spell slot by expending 1 Death Point. When cast with Death Points, Undead targeted have Disadvantage on the saving throw. You can also cast it using spell slots."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Constitution",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Harbinger of Doom": {
+        "description": "Your presence heralds doom and despair, sapping the resolve and fortune of your adversaries.",
+        "category": "General",
+        "prerequisite": "Death Knight Initiate Feat",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Strength, Constitution, or Charisma score by 1, to a maximum of 20.",
+          "Ill Omen: You always have Bane prepared (Charisma is your spellcasting ability). You can cast it without expending a spell slot by expending 1 Death Point. When cast with Death Points, affected targets subtract 1d6 from attack rolls and saving throws instead of 1d4. You can also cast it using spell slots."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Constitution",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Deathly Presence": {
+        "description": "Your terrifying aura can shake even hardened champions, dealing psychic trauma to their minds.",
+        "category": "General",
+        "prerequisite": "Level 8+, Death Knight Initiate Feat",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Strength, Constitution, or Charisma score by 1, to a maximum of 20.",
+          "Awful Presence: You always have Fear prepared (Charisma is your spellcasting ability). You can cast it without expending a spell slot by expending 1 Death Point. When cast with Death Points, you deal 2d6 Psychic damage to each creature failing its save. You can also cast it using spell slots."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Constitution",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Unholy Steed": {
+        "description": "You summon a fiendish warhorse or monstrous mount bound to your dark will.",
+        "category": "General",
+        "prerequisite": "Level 8+, Death Knight Initiate Feat",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Strength or Constitution score by 1, to a maximum of 20.",
+          "Spectral Steed: You always have Find Steed prepared (Charisma is your spellcasting ability). You can cast it without expending a spell slot by expending 1 Death Point. When cast with Death Points, the summoned steed is a Fiend, and chosen targets have Disadvantage on Wisdom saves against its Fell Glare. You can also cast it using spell slots."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Constitution"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Death Knight Ascension": {
+        "description": "Your descent into undeath is complete. You become a true Death Knight, a terrifying lord of martial doom.",
+        "category": "General",
+        "prerequisite": "Level 12+, two Path of the Death Knight Feats",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Strength or Charisma score by 1, to a maximum of 20.",
+          "Undead: Your creature type is Undead.",
+          "Unholy Anatomy: You have Resistance to Necrotic and Poison damage. You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation.",
+          "Hellfire Orb: As a Magic action, expend 1 to 5 Death Points to throw an orb of hellfire at a point within 120 feet (20-foot Sphere). Dex save (DC 8 + Cha mod + PB): target takes 2d6 Fire damage and 2d6 Necrotic damage per Death Point expended on a failure, or half on a success."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Lich Initiate": {
+        "description": "You take the first steps toward lichdom, binding your soul to a spirit jar and consuming the souls of the living.",
+        "category": "General",
+        "prerequisite": "Level 4+, Spellcasting or Pact Magic Feature",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Creating Your Spirit Jar: You spend a Long Rest anchoring your soul to a Tiny object of significance. AC equals your spell save DC; HP equals your spellcasting modifier plus character level. If destroyed, you gain 2 Exhaustion levels and cannot use Soul Siphon until you create a new one.",
+          "Soul Siphon: When you or an ally within 10 feet reduces a Humanoid enemy to 0 Hit Points, you can consume its soul. On your next turn, your first attack hit deals extra Necrotic damage equal to 1d6 plus your spellcasting ability modifier. A consumed soul can only be restored by True Resurrection or Wish."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Arcane Restoration": {
+        "description": "Consuming souls replenishes your magical energy, restoring expended spell slots.",
+        "category": "General",
+        "prerequisite": "Lich Initiate Feat",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Essence Rejuvenation: When you use Soul Siphon to consume a soul, you can recover one or more expended spell slots with a combined level of 4 or lower (once per Short or Long Rest)."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Transfer Life": {
+        "description": "You can siphon life energy from devoured souls to shield yourself or your allies.",
+        "category": "General",
+        "prerequisite": "Lich Initiate Feat",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Soul Transference: When you use Soul Siphon to consume a soul, you can choose a creature within 60 feet to gain Temporary Hit Points equal to your Proficiency Bonus plus your spellcasting ability modifier (minimum of 1)."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Undead Grasp": {
+        "description": "Your touch carries the paralyzing chill of the grave, freezing the flesh and vitality of your enemies.",
+        "category": "General",
+        "prerequisite": "Lich Initiate Feat",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Paralyzing Touch: You know the Chill Touch cantrip. When you deal damage with it, you can expend a level 1+ spell slot: the target takes an extra 1d10 Necrotic damage per slot level and must succeed on a Constitution saving throw against your spell save DC or have the Paralyzed condition until the start of your next turn."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Lich Ascension": {
+        "description": "Your transformation into a lich is complete. You achieve eternal undeath through your spirit jar.",
+        "category": "General",
+        "prerequisite": "Level 12+, at least two Path of the Lich Feats",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Undead: Your creature type is Undead.",
+          "Unholy Anatomy: You have Resistance to Necrotic and Poison damage. You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation.",
+          "Frightening Gaze: You learn and prepare the Fear spell. You can cast it without expending a spell slot a number of times equal to your spellcasting ability modifier (minimum of once) per Long Rest.",
+          "Rejuvenation: If you die, you re-form in 1d10 days if you have a spirit jar and aren't revived before then, gaining a new body with all your Hit Points within 5 feet of your spirit jar."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of the Bandit King": {
+        "description": "You possess unparalleled thieving grace and slippery agility.",
+        "category": "Epic Boon",
+        "prerequisite": "Level 19+",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Dastardly Charm: You have Advantage on Dexterity (Sleight of Hand) checks to pick a pocket. On success, you can cause the target to willingly part with the item and have the Charmed condition for 1 minute or until it takes damage (once per Short or Long Rest).",
+          "Uncatchable: You don't provoke Opportunity Attacks when you move out of a creature's reach."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of the Cleansed Heart": {
+        "description": "Your spirit has been purified by holy fire, reflecting necrotic malice as searing radiance.",
+        "category": "Epic Boon",
+        "prerequisite": "Level 19+",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Cleanse Heart: You can cast Dispel Evil and Good without expending a spell slot (cannot use Dismissal).",
+          "Radiant Reflection: You have Immunity to Necrotic damage. When subjected to Necrotic damage while not Incapacitated, you can deal 2d8 Radiant damage to each creature of choice in a 10-foot Emanation."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of the Hunter's Eye": {
+        "description": "Your hunter's gaze dissects every weakness, vulnerability, and vitality threshold of your quarry.",
+        "category": "Epic Boon",
+        "prerequisite": "Level 19+",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Quick Capture: When you deal damage to knock a creature out rather than kill, if it has 20 or fewer Hit Points after damage, it is reduced to 0 Hit Points instead.",
+          "Studied Hunter: When you roll Initiative, choose a creature you see: you know all its Immunities, Resistances, and Vulnerabilities."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Unwavering Devotion": {
+        "description": "Your devotion is an impenetrable fortress against mental intrusion and trickery.",
+        "category": "Epic Boon",
+        "prerequisite": "Level 19+",
+        "source": "Unearthed Arcana: Villainous Options",
+        "benefits": [
+          "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Possession Immunity: You automatically succeed on saving throws to avoid or end possession.",
+          "See Through Illusions: Visual illusions appear transparent to you, and you automatically succeed on saving throws against them.",
+          "Undeniable Confidence: When a creature succeeds on a Wisdom saving throw against an effect you created, Reaction forces a reroll (once per Short or Long Rest, or when you roll Initiative)."
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose which ability score to increase.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Planar Binding",
+  "level": 5,
+  "school": "Abjuration",
+  "casting_time": "1 hour",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "S",
+    "M (a jewel worth 1,000+ GP, which the spell consumes)"
+  ],
+  "duration": "24 hours",
+  "description": "With this spell, you attempt to bind a Celestial, an Elemental, a Fey, or a Fiend to your service. The creature must be within range for the entire casting of the spell. At the completion of the casting, the target must make a Charisma saving throw. On a failed save, it is bound to serve you for the duration. A bound creature must follow your instructions to the best of its ability. When using a higher-level spell slot, the duration increases to 10 days with a 6th-level slot, to 30 days with a 7th-level slot, to 180 days with an 8th-level slot, and to a year and a day with a 9th-level spell slot.",
+  "classes": [
+    "Bard",
+    "Cleric",
+    "Druid",
+    "Wizard"
+  ],
+  "ritual": false
+}

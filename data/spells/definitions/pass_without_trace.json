@@ -1,0 +1,20 @@
+{
+  "name": "Pass without Trace",
+  "level": 2,
+  "school": "Abjuration",
+  "casting_time": "1 action",
+  "range": "Self",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "ashes from a burned leaf of mistletoe and a sprig of spruce",
+  "duration": "Concentration, up to 1 hour",
+  "description": "You and nearby allies become harder to track and gain a bonus to Stealth checks for the duration.",
+  "classes": [
+    "Druid",
+    "Ranger"
+  ],
+  "ritual": false
+}

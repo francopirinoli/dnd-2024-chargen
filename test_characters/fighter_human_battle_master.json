@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Valdris Ashenbrow",
+    "classes": [{"class_name": "Fighter", "level": 3, "subclass": "Battle Master"}],
+    "species": "Human",
+    "background": "Soldier",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {"Strength": 15, "Dexterity": 13, "Constitution": 14, "Intelligence": 8, "Wisdom": 12, "Charisma": 10},
+    "background_bonuses": {"Strength": 2, "Constitution": 1},
+    "skill_choices": ["Athletics", "Intimidation"],
+    "fighting_style": "Dueling",
+    "languages": ["Elvish", "Dwarvish"],
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_b"},
+    "maneuvers": ["Rally", "Riposte", "Trip Attack"],
+    "background_skill_replacement": ["Acrobatics", "Perception"],
+    "Skillful": "Investigation",
+    "Versatile": "Lucky"
+  }
+}

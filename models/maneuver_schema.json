@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Battle Master Maneuvers",
+  "description": "Schema for data/maneuvers.json. A one-key wrapper ('maneuvers') around a map of maneuver_name -> entry, mirroring data/fighting_styles.json. All entries are description-only per the audit scope rule (D0-2): individual maneuver mechanics (push, trip, parry damage reduction, etc.) are spent-resource reactions/bonus actions resolved during play and do not change a rendered sheet field. The 'effects' array is allowed by the schema but is expected to remain empty; the maneuver SELECTION is recorded on the sheet via the grant_maneuver effect type, not via per-maneuver effect entries.",
+  "type": "object",
+  "required": ["maneuvers"],
+  "properties": {
+    "maneuvers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description"],
+        "properties": {
+          "description": { "type": "string" },
+          "notes": { "type": "string" },
+          "effects": {
+            "type": "array",
+            "items": { "$ref": "_shared/effect.json" }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Delayed Blast Fireball",
+  "level": 7,
+  "school": "Evocation",
+  "casting_time": "1 action",
+  "range": "150 feet",
+  "components": [
+    "V",
+    "S",
+    "M (a tiny ball of bat guano and sulfur)"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "A beam of yellow light flashes from your pointing finger, then condenses to linger at a chosen point within range as a glowing bead for the duration. When the spell ends, the bead erupts. Each creature in a 20-foot-radius Sphere centered on that point makes a Dexterity saving throw. A creature takes Fire damage equal to the total accumulated damage on a failed save, or half as much on a success. The spell's base damage is 12d6, and the damage increases by 1d6 for each second the spell persists (up to 10d6 additional). When using a higher-level spell slot, the base damage increases by 1d6 for each slot level above 7.",
+  "classes": [
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

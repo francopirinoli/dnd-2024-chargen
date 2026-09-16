@@ -1,0 +1,86 @@
+name: Build and deploy Python app to Azure Web App - dnd2024-character-creator
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Build the React frontend first
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        run: cd frontend && npm ci
+
+      - name: Build frontend
+        run: cd frontend && npm run build
+
+      # Then set up Python backend
+      - name: Set up Python version
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Create virtual environment and install dependencies
+        run: |
+          python -m venv antenv
+          source antenv/bin/activate
+          pip install -r requirements.txt
+
+      # Run tests before deploying
+      - name: Run tests
+        run: |
+          source antenv/bin/activate
+          pip install pytest pytest-cov
+          pytest tests/ -v
+
+      # Prepare artifact (exclude venv and frontend source, keep built dist/)
+      - name: Upload artifact for deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-app
+          path: |
+            .
+            !antenv/
+            !frontend/node_modules/
+            !frontend/src/
+            !frontend/*.json
+            !frontend/*.config.ts
+            !frontend/tsconfig*
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: python-app
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A0BDDA3B414E4F9D89D40555F01E92A1 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A32DED8B54E54B80B0F8A1685DF7C5FA }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E8E3B03F28E8466F8E1D62887AA37B75 }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'dnd2024-character-creator'
+          slot-name: 'Production'

@@ -1,0 +1,52 @@
+{
+  "name": "Sage",
+  "description": "You spent years learning the lore of the multiverse. You scoured manuscripts, studied scrolls, and listened to the greatest experts on the subjects that interest you. Your efforts have made you a master in your fields of study.",
+  "edition": "2024",
+  "status": "active",
+  "ability_score_increase": {
+    "total": 3,
+    "options": [
+      "Constitution",
+      "Intelligence",
+      "Wisdom"
+    ],
+    "suggested": {
+      "Constitution": 1,
+      "Intelligence": 2
+    }
+  },
+  "effects": [
+    {
+      "type": "grant_skill_proficiency",
+      "skills": [
+        "Arcana",
+        "History"
+      ]
+    },
+    {
+      "type": "grant_origin_feat",
+      "feat": "Magic Initiate (Wizard)"
+    },
+    {
+      "type": "grant_tool_proficiency",
+      "tools": [
+        "Calligrapher's Supplies"
+      ]
+    }
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Quarterstaff",
+        "Calligrapher's Supplies",
+        "Book (history)",
+        "Parchment (8 sheets)",
+        "Robe"
+      ],
+      "gold": 8
+    },
+    "option_b": {
+      "gold": 50
+    }
+  }
+}

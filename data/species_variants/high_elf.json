@@ -1,0 +1,78 @@
+{
+  "name": "High Elf",
+  "parent_species": "Elf",
+  "description": "High elves are known for their keen intellect and mastery of magic. They often pursue scholarly and arcane endeavors, and their societies are rich with culture and tradition.",
+  "traits": {
+    "High Elf Cantrip": {
+      "description": "You know one cantrip of your choice from the Wizard spell list. Whenever you finish a Long rest, you can replace that cantrip with a different cantrip from the Wizard spell list.",
+      "type": "choice",
+      "choices": {
+        "type": "select_single",
+        "count": 1,
+        "source": {
+          "type": "fixed_list",
+          "options": [
+            "Acid Splash",
+            "Blade Ward",
+            "Chill Touch",
+            "Dancing Lights",
+            "Elementalism",
+            "Fire Bolt",
+            "Friends",
+            "Light",
+            "Mage Hand",
+            "Mending",
+            "Message",
+            "Mind Sliver",
+            "Minor Illusion",
+            "Poison Spray",
+            "Prestidigitation",
+            "Ray of Frost",
+            "Shocking Grasp",
+            "Thunderclap",
+            "Toll the Dead",
+            "True Strike"
+          ]
+        }
+      },
+      "choice_effects": {
+        "Acid Splash": [{"type": "grant_cantrip", "spell": "Acid Splash"}],
+        "Blade Ward": [{"type": "grant_cantrip", "spell": "Blade Ward"}],
+        "Chill Touch": [{"type": "grant_cantrip", "spell": "Chill Touch"}],
+        "Dancing Lights": [{"type": "grant_cantrip", "spell": "Dancing Lights"}],
+        "Elementalism": [{"type": "grant_cantrip", "spell": "Elementalism"}],
+        "Fire Bolt": [{"type": "grant_cantrip", "spell": "Fire Bolt"}],
+        "Friends": [{"type": "grant_cantrip", "spell": "Friends"}],
+        "Light": [{"type": "grant_cantrip", "spell": "Light"}],
+        "Mage Hand": [{"type": "grant_cantrip", "spell": "Mage Hand"}],
+        "Mending": [{"type": "grant_cantrip", "spell": "Mending"}],
+        "Message": [{"type": "grant_cantrip", "spell": "Message"}],
+        "Mind Sliver": [{"type": "grant_cantrip", "spell": "Mind Sliver"}],
+        "Minor Illusion": [{"type": "grant_cantrip", "spell": "Minor Illusion"}],
+        "Poison Spray": [{"type": "grant_cantrip", "spell": "Poison Spray"}],
+        "Prestidigitation": [{"type": "grant_cantrip", "spell": "Prestidigitation"}],
+        "Ray of Frost": [{"type": "grant_cantrip", "spell": "Ray of Frost"}],
+        "Shocking Grasp": [{"type": "grant_cantrip", "spell": "Shocking Grasp"}],
+        "Thunderclap": [{"type": "grant_cantrip", "spell": "Thunderclap"}],
+        "Toll the Dead": [{"type": "grant_cantrip", "spell": "Toll the Dead"}],
+        "True Strike": [{"type": "grant_cantrip", "spell": "True Strike"}]
+      }
+    },
+    "High Elf Spells": {
+      "description": "You always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+      "effects": [
+        {
+          "type": "grant_spell",
+          "spell": "Detect Magic",
+          "min_level": 3
+        },
+        {
+          "type": "grant_spell",
+          "spell": "Misty Step",
+          "min_level": 5
+        }
+      ]
+    }
+  },
+  "cantrip_replacement": "Wizard"
+}

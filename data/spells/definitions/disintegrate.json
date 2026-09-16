@@ -1,0 +1,19 @@
+{
+  "name": "Disintegrate",
+  "level": 6,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "S",
+    "M (a lodestone and dust)"
+  ],
+  "duration": "Instantaneous",
+  "description": "You launch a green ray at a target you can see within range. The target can be a creature, a nonmagical object, or a creation of magical force, such as the wall created by Wall of Force. A creature targeted by this spell makes a Dexterity saving throw. On a failed save, the target takes 10d6 + 40 Force damage. If this damage reduces it to 0 Hit Points, it and everything nonmagical it is wearing and carrying are disintegrated. This spell automatically disintegrates a Large or smaller nonmagical object or a creation of magical force. When using a higher-level spell slot, the damage increases by 3d6 for each slot level above 6.",
+  "classes": [
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

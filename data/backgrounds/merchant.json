@@ -1,0 +1,50 @@
+{
+  "name": "Merchant",
+  "description": "You were apprenticed to a trader, caravan master, or shopkeeper, learning the fundamentals of commerce. You traveled broadly, and you earned a living by buying and selling the raw materials artisans need to practice their craft or finished works from such crafters. You might have transported goods from one place to another (by ship, wagon, or caravan) or bought them from traveling traders and sold them in your own shop.",
+  "edition": "2024",
+  "status": "active",
+  "ability_score_increase": {
+    "total": 3,
+    "options": [
+      "Constitution",
+      "Intelligence",
+      "Charisma"
+    ],
+    "suggested": {
+      "Intelligence": 1,
+      "Charisma": 2
+    }
+  },
+  "effects": [
+    {
+      "type": "grant_skill_proficiency",
+      "skills": [
+        "Animal Handling",
+        "Persuasion"
+      ]
+    },
+    {
+      "type": "grant_origin_feat",
+      "feat": "Lucky"
+    },
+    {
+      "type": "grant_tool_proficiency",
+      "tools": [
+        "Navigator's Tools"
+      ]
+    }
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Navigator's Tools",
+        "2 Pouches",
+        "Traveler's Clothes"
+      ],
+      "gold": 22
+    },
+    "option_b": {
+      "gold": 50
+    }
+  }
+}

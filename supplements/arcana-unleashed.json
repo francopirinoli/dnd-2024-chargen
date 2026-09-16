@@ -1,0 +1,4151 @@
+{
+  "manifest": {
+    "id": "arcana-unleashed",
+    "title": "Arcana Unleashed",
+    "publisher": "Wizards of the Coast",
+    "version": "1.0.0",
+    "compatibility": "2024",
+    "description": "Character options from Arcana Unleashed: 8 subclasses (Arcana Domain Cleric, Arcane Archer Fighter, Warrior of the Mystic Arts Monk, Vestige Patron Warlock, Conjurer Wizard, Enchanter Wizard, Necromancer Wizard, Transmuter Wizard), 10 backgrounds, 29 feats, and 33 spells.",
+    "dependencies": [
+      "core-phb-2024"
+    ]
+  },
+  "subclasses": [
+    {
+      "name": "Arcana Domain",
+      "class": "Cleric",
+      "source": "Arcana Unleashed",
+      "description": "Magic suffuses the multiverse and fuels both destruction and creation. Clerics with the Arcana Domain view magical knowledge not as power to be used in pursuit of personal ends, but as a gift they have the responsibility to share. Gods associated with the Arcana Domain know the secrets and potential of magic intimately.",
+      "features_by_level": {
+        "3": {
+          "Arcana Domain Spells": {
+            "description": "When you reach a Cleric level specified in the Arcana Domain Spells table, you thereafter always have the listed spells prepared.",
+            "spells": {
+              "3": [
+                "Detect Magic",
+                "Magic Missile",
+                "Magic Weapon",
+                "Nystul's Magic Aura"
+              ],
+              "5": [
+                "Counterspell",
+                "Dispel Magic"
+              ],
+              "7": [
+                "Arcane Eye",
+                "Leomund's Secret Chest"
+              ],
+              "9": [
+                "Bigby's Hand",
+                "Teleportation Circle"
+              ]
+            },
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Detect Magic",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Magic Missile",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Magic Weapon",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Nystul's Magic Aura",
+                "min_level": 3,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Counterspell",
+                "min_level": 5,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Dispel Magic",
+                "min_level": 5,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Arcane Eye",
+                "min_level": 7,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Leomund's Secret Chest",
+                "min_level": 7,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Bigby's Hand",
+                "min_level": 9,
+                "counts_against_limit": false
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Teleportation Circle",
+                "min_level": 9,
+                "counts_against_limit": false
+              }
+            ]
+          },
+          "Student of Arcana": {
+            "description": "You gain proficiency in the Arcana skill or one skill of your choice from the skills available to Clerics at level 1. You also learn two Wizard cantrips of your choice. Whenever you gain a Cleric level, you can replace one of these cantrips with another Wizard cantrip.",
+            "effects": [
+              {
+                "type": "grant_skill_proficiency",
+                "from_choice": "subclass_Student of Arcana_skill"
+              },
+              {
+                "type": "grant_cantrip_choice",
+                "spell_list": "wizard",
+                "count": 2
+              }
+            ],
+            "choices": [
+              {
+                "type": "select_single",
+                "name": "skill",
+                "source": {
+                  "type": "fixed_list",
+                  "options": [
+                    "Arcana",
+                    "History",
+                    "Insight",
+                    "Medicine",
+                    "Persuasion",
+                    "Religion"
+                  ]
+                },
+                "optional": false
+              }
+            ]
+          },
+          "Modify Magic": "You can use your Channel Divinity to alter your spells as you cast them. When you cast a spell, you can expend one use of your Channel Divinity and change the spell in one of the following ways (no action required):\n- Fortifying Spell: One target of the spell gains Temporary Hit Points equal to 2d8 plus your Cleric level.\n- Tenacious Spell: When you cast a spell that forces a creature to make a saving throw, and a creature you can see succeeds on that saving throw, roll 1d6 and subtract the number rolled from the target's first saving throw against the spell's effect."
+        },
+        "6": {
+          "Dispelling Recovery": "Immediately after you cast a spell with a spell slot that restores Hit Points to a creature or ends a condition on a creature, you can cast Dispel Magic as part of that action, Bonus Action, or Reaction, and without expending a spell slot. Once you use this feature, you can't use it again until you finish a Short or Long Rest. You also restore your use of it by expending a level 3+ spell slot."
+        },
+        "17": {
+          "Magical Mastery": "You learn four Wizard spells, one from each of levels 6, 7, 8, and 9. You thereafter always have those spells prepared. Whenever you gain a Cleric level, you can replace one of these spells with another Wizard spell of the same level."
+        }
+      }
+    },
+    {
+      "name": "Arcane Archer",
+      "class": "Fighter",
+      "source": "Arcana Unleashed",
+      "description": "An Arcane Archer studies a unique elven method of archery that weaves magic into attacks to produce supernatural effects. Over the centuries, other folk have learned this technique and broadened it so it applies to ranged weapons of many kinds and to aspects of adventuring life outside of combat.",
+      "features_by_level": {
+        "3": {
+          "Arcane Archer Lore": {
+            "description": "You learn magical theory and secrets of nature, granting you the following benefits:\n- Cantrip: You know either the Druidcraft or the Prestidigitation cantrip. Intelligence is your spellcasting ability for it.\n- Skills: You gain proficiency in the Arcana and Nature skills (or another Fighter skill if already proficient).",
+            "effects": [
+              {
+                "type": "grant_cantrip",
+                "from_choice": "subclass_Arcane Archer Lore_cantrip"
+              },
+              {
+                "type": "grant_skill_proficiency",
+                "from_choice": "subclass_Arcane Archer Lore_skill1"
+              },
+              {
+                "type": "grant_skill_proficiency",
+                "from_choice": "subclass_Arcane Archer Lore_skill2"
+              }
+            ],
+            "choices": [
+              {
+                "type": "select_single",
+                "name": "cantrip",
+                "source": {
+                  "type": "fixed_list",
+                  "options": [
+                    "Druidcraft",
+                    "Prestidigitation"
+                  ]
+                },
+                "optional": false
+              },
+              {
+                "type": "select_single",
+                "name": "skill1",
+                "source": {
+                  "type": "fixed_list",
+                  "options": [
+                    "Arcana",
+                    "Acrobatics",
+                    "Animal Handling",
+                    "Athletics",
+                    "History",
+                    "Insight",
+                    "Intimidation",
+                    "Perception",
+                    "Survival"
+                  ]
+                },
+                "optional": false
+              },
+              {
+                "type": "select_single",
+                "name": "skill2",
+                "source": {
+                  "type": "fixed_list",
+                  "options": [
+                    "Nature",
+                    "Acrobatics",
+                    "Animal Handling",
+                    "Athletics",
+                    "History",
+                    "Insight",
+                    "Intimidation",
+                    "Perception",
+                    "Survival"
+                  ]
+                },
+                "optional": false
+              }
+            ]
+          },
+          "Arcane Shot": {
+            "description": "You learn to unleash special magical effects with your shots. You learn two Arcane Shot options of your choice. You learn an additional Arcane Shot option when you reach Fighter levels 7, 10, 15, and 18. Each time you learn a new Arcane Shot option, you can replace one option you know with a different one.\n\nOnce per turn when you make a ranged attack using a weapon with the Ammunition property, you can apply one of your Arcane Shot options to that attack. You decide to use the option when you hit a creature and deal damage to it unless the option doesn't involve an attack roll.\n\nYou can use this feature a number of times equal to your Intelligence modifier (minimum of once). You regain all expended uses when you finish a Short or Long Rest.\n\nArcane Shot options refer to your Arcane Shot Die. Your Arcane Shot Die is a d6 (scaling to d8 at level 10, d10 at level 15, and d12 at level 18). If an option requires a saving throw, the DC equals 8 + your Intelligence modifier + your Proficiency Bonus.",
+            "effects": [
+              {
+                "type": "grant_arcane_shot_dice",
+                "die_by_level": {
+                  "3": "d6",
+                  "10": "d8",
+                  "15": "d10",
+                  "18": "d12"
+                }
+              }
+            ],
+            "choices": {
+              "type": "select_multiple",
+              "count": 2,
+              "name": "arcane_shots",
+              "source": {
+                "type": "external",
+                "file": "arcane_shots.json",
+                "list": "arcane_shots"
+              },
+              "optional": false,
+              "additional_choices_by_level": {
+                "7": {
+                  "count": 1,
+                  "replace_allowed": true
+                },
+                "10": {
+                  "count": 1,
+                  "replace_allowed": true
+                },
+                "15": {
+                  "count": 1,
+                  "replace_allowed": true
+                },
+                "18": {
+                  "count": 1,
+                  "replace_allowed": true
+                }
+              }
+            }
+          }
+        },
+        "7": {
+          "Curving Shot": "You learn how to direct an errant shot toward a new target. If you make a ranged attack roll with a weapon with the Ammunition property and miss, you can cause the shot to ricochet toward a new target as a Bonus Action immediately after the attack misses. The new target must be a creature you can see within the weapon's range and within 60 feet of the attack's original target. Make an attack roll against the new target.",
+          "Magical Ammunition": "You learn to imbue your ammunition with magical properties. As a Magic action, you can imbue a piece of nonmagical ammunition with one of the following magical properties and fire it at a solid surface you can see within the weapon's range. When the ammunition hits the surface, the effect activates until you remove it as a Magic action or the effect ends (destroying the ammunition). Once you use this feature, you can't do so again until you finish a Short or Long Rest, or restore your use by expending a use of Second Wind:\n- Darkening Ammunition: Magical shadows fill a 15-foot Emanation originating from the ammunition for 1 minute. Nonmagical flames are extinguished, and creatures in the Emanation have a -5 penalty to Wisdom (Perception) checks and Passive Perception.\n- Unlocking Ammunition: A burst of magic fills a 15-foot Emanation with a knocking sound audible up to 300 feet away. Any object held shut by a nonmagical lock or that is stuck/barred becomes unlocked, unstuck, or unbarred.\n- Vine Ammunition: A 120-foot-long climbable vine grows from the ammunition, lasting 10 minutes."
+        },
+        "10": {
+          "Ever-Ready Shot": "When you roll Initiative, you can regain one expended use of Arcane Shot."
+        },
+        "15": {
+          "Indomitable Teleport": "Your magical mastery lets you escape dire situations. When you use your Indomitable feature and succeed on the saving throw, you can teleport up to 60 feet to an unoccupied space you can see."
+        },
+        "18": {
+          "Masterful Shots": "You employ agility in your sharpshooting. When a creature you can see misses you with an attack roll, you can take a Reaction to move up to half your Speed away from the attacker without provoking Opportunity Attacks. You can then make a ranged attack roll against the attacker as part of this Reaction if within range."
+        }
+      }
+    },
+    {
+      "name": "Warrior of the Mystic Arts",
+      "class": "Monk",
+      "source": "Arcana Unleashed",
+      "description": "Warriors of the Mystic Arts wield magic to supplement their martial skill. They harness mystical focus to enhance their magical and physical abilities.",
+      "spellcasting_ability": "Wisdom",
+      "spell_list": "Sorcerer",
+      "cantrips_by_level": {
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 3,
+        "11": 3,
+        "12": 3,
+        "13": 3,
+        "14": 3,
+        "15": 3,
+        "16": 3,
+        "17": 3,
+        "18": 3,
+        "19": 3,
+        "20": 3
+      },
+      "prepared_spells_by_level": {
+        "3": 3,
+        "4": 4,
+        "5": 4,
+        "6": 4,
+        "7": 5,
+        "8": 6,
+        "9": 6,
+        "10": 7,
+        "11": 8,
+        "12": 8,
+        "13": 9,
+        "14": 10,
+        "15": 10,
+        "16": 11,
+        "17": 11,
+        "18": 11,
+        "19": 12,
+        "20": 13
+      },
+      "spell_slots_by_level": {
+        "3": [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "4": [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "5": [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "6": [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "7": [
+          4,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "8": [
+          4,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "9": [
+          4,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "10": [
+          4,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "11": [
+          4,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "12": [
+          4,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "13": [
+          4,
+          3,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "14": [
+          4,
+          3,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "15": [
+          4,
+          3,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "16": [
+          4,
+          3,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "17": [
+          4,
+          3,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "18": [
+          4,
+          3,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "19": [
+          4,
+          3,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "20": [
+          4,
+          3,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "features_by_level": {
+        "3": {
+          "Spellcasting": {
+            "description": "You have learned to cast Sorcerer spells. You know two Sorcerer cantrips of your choice (Wisdom is your spellcasting ability). You prepare and cast level 1+ Sorcerer spells using spell slots and Wisdom as your spellcasting ability.",
+            "feature_kind": "spellcasting_setup",
+            "effects": [
+              {
+                "type": "grant_cantrip_choice",
+                "spell_list": "sorcerer",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "6": {
+          "Mystic Fighting Style": "When you take the Attack action on your turn, you can replace one Unarmed Strike with a casting of one of your Sorcerer cantrips that has a casting time of an action.",
+          "Mystic Focus": "You keep your magical power and martial focus in perfect balance:\n- Converting Spell Slots to Focus Points: You can expend a spell slot to regain a number of expended Focus Points equal to the slot's level (no action required).\n- Recovering Spell Slots: As a Bonus Action, you can expend Focus Points to regain an expended spell slot: 2 Focus Points for a level 1 slot, or 3 Focus Points for a level 2 slot."
+        },
+        "11": {
+          "Focused Strike": "When you use your Stunning Strike, whether the target succeeds or fails on the saving throw, the target has Disadvantage on saving throws against your spells until the start of your next turn."
+        },
+        "17": {
+          "Improved Mystic Fighting Style": "When you use Flurry of Blows, you can replace two of the Unarmed Strikes with a casting of one of your level 1 or 2 Sorcerer spells that has a casting time of an action, and you cast it as part of the same Bonus Action you use to activate Flurry of Blows."
+        }
+      }
+    },
+    {
+      "name": "Vestige Patron",
+      "class": "Warlock",
+      "source": "Arcana Unleashed",
+      "description": "Your pact draws on the power of a dying god, a being once worshipped by countless followers but now abandoned and forgotten. Driven to regain its former power, the vestige shares its remaining strength with you.",
+      "features_by_level": {
+        "3": {
+          "Vestige Companion": "The vestige manifests as a loyal companion with the Vestige Companion stat block. It is a Celestial, Fiend, or Undead (choose when you gain this feature). It is friendly to you and your allies and obeys your commands. In combat, it shares your Initiative count and acts immediately after your turn.",
+          "Vestige Spells": {
+            "description": "The magic of your Vestige Companion ensures you always have certain spells ready. Select one of the following Cleric domains: Life, Light, Trickery, or War. The Domain Spells of your chosen domain are Warlock spells for you and are always prepared.",
+            "choices": [
+              {
+                "type": "select_single",
+                "name": "domain",
+                "source": {
+                  "type": "fixed_list",
+                  "options": [
+                    "Life Domain",
+                    "Light Domain",
+                    "Trickery Domain",
+                    "War Domain"
+                  ]
+                },
+                "optional": false
+              }
+            ],
+            "choice_effects": {
+              "domain": {
+                "Life Domain": [
+                  {
+                    "type": "grant_spell",
+                    "spell": "Aid",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Bless",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Cure Wounds",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Lesser Restoration",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Mass Healing Word",
+                    "min_level": 5,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Revivify",
+                    "min_level": 5,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Aura of Life",
+                    "min_level": 7,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Death Ward",
+                    "min_level": 7,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Greater Restoration",
+                    "min_level": 9,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Mass Cure Wounds",
+                    "min_level": 9,
+                    "counts_against_limit": false
+                  }
+                ],
+                "Light Domain": [
+                  {
+                    "type": "grant_spell",
+                    "spell": "Burning Hands",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Faerie Fire",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Scorching Ray",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "See Invisibility",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Daylight",
+                    "min_level": 5,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Fireball",
+                    "min_level": 5,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Arcane Eye",
+                    "min_level": 7,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Wall of Fire",
+                    "min_level": 7,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Flame Strike",
+                    "min_level": 9,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Scrying",
+                    "min_level": 9,
+                    "counts_against_limit": false
+                  }
+                ],
+                "Trickery Domain": [
+                  {
+                    "type": "grant_spell",
+                    "spell": "Charm Person",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Disguise Self",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Invisibility",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Pass without Trace",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Hypnotic Pattern",
+                    "min_level": 5,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Nondetection",
+                    "min_level": 5,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Confusion",
+                    "min_level": 7,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Dimension Door",
+                    "min_level": 7,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Dominate Person",
+                    "min_level": 9,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Modify Memory",
+                    "min_level": 9,
+                    "counts_against_limit": false
+                  }
+                ],
+                "War Domain": [
+                  {
+                    "type": "grant_spell",
+                    "spell": "Guiding Bolt",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Magic Weapon",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Shield of Faith",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Spiritual Weapon",
+                    "min_level": 3,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Crusader's Mantle",
+                    "min_level": 5,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Spirit Guardians",
+                    "min_level": 5,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Fire Shield",
+                    "min_level": 7,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Freedom of Movement",
+                    "min_level": 7,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Hold Monster",
+                    "min_level": 9,
+                    "counts_against_limit": false
+                  },
+                  {
+                    "type": "grant_spell",
+                    "spell": "Steel Wind Strike",
+                    "min_level": 9,
+                    "counts_against_limit": false
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "6": {
+          "Vestige Power": "Your Vestige Companion now regains its use of Divine Power whenever you finish a Short or Long Rest or when you use your Magical Cunning feature. In addition, while within 30 feet of your Vestige Companion, you have Resistance to the same damage types as the vestige."
+        },
+        "10": {
+          "Vestige Recovery": "When your Vestige Companion would drop to 0 Hit Points, you can take a Reaction and expend a Pact Magic spell slot to instead change its Hit Points to its Hit Point maximum. The vestige then teleports to an unoccupied space you can see within 30 feet of it (once per Long Rest)."
+        },
+        "14": {
+          "Semblance of Life": "As a Magic action while the vestige is within 90 feet of you, you can shape-shift it for 1 hour into a powerful spirit based on its creature type: Celestial Spirit (if Celestial), Fiendish Spirit (if Fiend), or Undead Spirit (if Undead), using your Warlock spell slot level for its statistics."
+        }
+      }
+    },
+    {
+      "name": "Conjurer",
+      "class": "Wizard",
+      "source": "Arcana Unleashed",
+      "description": "Conjurers specialize in the magical summoning of creatures and inanimate objects, as well as manipulating space itself through rapid teleportation.",
+      "features_by_level": {
+        "3": {
+          "Conjuration Savant": "Choose two Wizard spells from the Conjuration school, each of which must be no higher than level 2, and add them to your spellbook for free. In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Conjuration school to your spellbook for free.",
+          "Benign Transposition": "As a Bonus Action, you can teleport up to 30 feet to an unoccupied space you can see. Alternatively, you can choose a willing Small or Medium creature within 30 feet of you that you can see; both you and that creature teleport, swapping spaces. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), regaining all expended uses on a Long Rest. Whenever you cast a level 1+ Conjuration spell using a spell slot, you regain one expended use."
+        },
+        "6": {
+          "Distant Transposition": "The range of your Benign Transposition increases to 60 feet. In addition, you can target Large willing creatures with it.",
+          "Durable Summons": "Any creature that you summon or create with a Conjuration spell gains Temporary Hit Points equal to twice your Wizard level."
+        },
+        "10": {
+          "Focused Conjuration": "While you are maintaining Concentration on a Conjuration spell, your Concentration can't be broken as a result of taking damage."
+        },
+        "14": {
+          "Splintered Summons": "When you cast a Conjuration spell that summons or creates one creature, you can summon or create two of that creature instead. Each creature has half the Hit Points of the normal creature."
+        }
+      }
+    },
+    {
+      "name": "Enchanter",
+      "class": "Wizard",
+      "source": "Arcana Unleashed",
+      "description": "Enchanters cloud minds and captivate wills, transforming hostile foes into allies and bending perceptions to their design.",
+      "features_by_level": {
+        "3": {
+          "Enchantment Savant": "Choose two Wizard spells from the Enchantment school, each of which must be no higher than level 2, and add them to your spellbook for free. In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Enchantment school to your spellbook for free.",
+          "Enchanting Conversationalist": {
+            "description": "You gain proficiency in two of the following skills of your choice: Deception, Insight, Intimidation, or Persuasion.",
+            "choices": [
+              {
+                "type": "select_multiple",
+                "count": 2,
+                "name": "skills",
+                "description": "Choose two skill proficiencies.",
+                "source": {
+                  "type": "fixed_list",
+                  "options": [
+                    "Deception",
+                    "Insight",
+                    "Intimidation",
+                    "Persuasion"
+                  ]
+                },
+                "optional": false
+              }
+            ],
+            "effects": [
+              {
+                "type": "grant_skill_proficiency",
+                "from_choice": "subclass_Enchanting Conversationalist_skills"
+              }
+            ]
+          },
+          "Hypnotic Presence": "As a Magic action, choose one creature you can see within 30 feet. If the target can see or hear you, it must succeed on a Wisdom saving throw against your spell save DC or have the Charmed condition until the end of your next turn (its Speed is 0 while Charmed). You can use this feature a number of times equal to your Intelligence modifier (minimum of once), regaining all expended uses on a Long Rest."
+        },
+        "6": {
+          "Split Enchantment": "When you use a spell slot to cast an Enchantment spell, such as Charm Person or Hold Person, that can be cast with a higher-level spell slot to target an additional creature, you can increase the spell's effective level by 1 for free. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), regaining all expended uses on a Long Rest."
+        },
+        "10": {
+          "Instinctive Charm": "When a creature within 30 feet of you that you can see hits you with an attack roll, you can take a Reaction to force the attacker to make a Wisdom saving throw against your spell save DC. On a failed save, the attack misses instead, and if there is another creature within range of the attack other than the attacker, the attacker targets that creature with the triggering attack."
+        },
+        "14": {
+          "Alter Memories": "When you cast an Enchantment spell that imposes the Charmed condition using a spell slot, you can choose one creature targeted by the spell. That creature remains unaware of being Charmed by you. In addition, once before the spell ends, you can take a Magic action to alter its memory of the time spent Charmed."
+        }
+      }
+    },
+    {
+      "name": "Necromancer",
+      "class": "Wizard",
+      "source": "Arcana Unleashed",
+      "description": "Necromancers command the powers of life, death, and undeath, manipulating animating energies and drawing power from forbidden secrets inscribed in their spellbooks.",
+      "features_by_level": {
+        "3": {
+          "Necromancy Savant": "Choose two Wizard spells from the Necromancy school, each of which must be no higher than level 2, and add them to your spellbook for free. In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Necromancy school to your spellbook for free.",
+          "Necromancy Spellbook": {
+            "description": "Your spellbook's necromantic secrets grant you Resistance to Necrotic damage, and the Find Familiar spell appears in your spellbook if it isn't there already (your familiar can take the form of an Undead skeleton or zombie animal).",
+            "effects": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_type": "Necrotic"
+              },
+              {
+                "type": "grant_spell",
+                "spell": "Find Familiar",
+                "min_level": 3,
+                "counts_against_limit": false
+              }
+            ]
+          }
+        },
+        "6": {
+          "Grave Power": "While holding your spellbook: your Exhaustion level decreases by 1 whenever you use Arcane Recovery, and your Necromancy spells ignore Resistance to Necrotic damage.",
+          "Undead Thralls": {
+            "description": "You always have Animate Dead prepared and can cast it once per Long Rest without expending a spell slot, increasing its effective level by 1. Undead created or summoned by your spells add your Wizard level to their Hit Point maximum and add your Intelligence modifier to their damage rolls.",
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Animate Dead",
+                "min_level": 6,
+                "counts_against_limit": false
+              }
+            ]
+          }
+        },
+        "10": {
+          "Harvest Undead": "Immediately after you become Bloodied but aren't reduced to 0 Hit Points, you can take a Reaction to reduce an Undead creature under your control that you can see to 0 Hit Points. You then immediately regain Hit Points equal to twice the destroyed creature's CR (minimum of 10 Hit Points)."
+        },
+        "14": {
+          "Death's Master": "While holding your spellbook: As a Bonus Action, choose any number of Undead you created or summoned with a Necromancy spell within 60 feet; they gain Advantage on attack rolls and saving throws until the start of your next turn. In addition, you can take a Magic action to bring an Undead within 60 feet under your permanent control if it fails a Charisma saving throw (once per Long Rest)."
+        }
+      }
+    },
+    {
+      "name": "Transmuter",
+      "class": "Wizard",
+      "source": "Arcana Unleashed",
+      "description": "Transmuters study spells that modify energy and matter. To you, the world is eminently mutable, and you become a smith at reality's forge.",
+      "features_by_level": {
+        "3": {
+          "Transmutation Savant": "Choose two Wizard spells from the Transmutation school, each of which must be no higher than level 2, and add them to your spellbook for free. In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Transmutation school to your spellbook for free.",
+          "Transmuter's Stone": "When you finish a Long Rest, you can create a Transmuter's Stone that lasts until you use this feature again. A creature with the stone in its possession gains proficiency in Constitution saving throws and one of the following benefits: Darkvision 60 ft, Speed +10 ft, or Resistance to Acid, Cold, Fire, Lightning, or Thunder damage.",
+          "Wondrous Alteration": {
+            "description": "You always have the Alter Self spell prepared and can cast it once per Long Rest without expending a spell slot. While under the effects of Alter Self, you gain enhanced benefits for each of its options.",
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Alter Self",
+                "min_level": 3,
+                "counts_against_limit": false
+              }
+            ]
+          }
+        },
+        "6": {
+          "Empowered Transmutation": "When you use a spell slot to cast a Transmutation spell that doesn't make an attack roll or force a saving throw (such as Fly or Magic Weapon), you can increase the spell's effective level by 1 for free. You can use this feature a number of times equal to your Intelligence modifier (minimum once), regaining all expended uses on a Long Rest."
+        },
+        "10": {
+          "Potent Stone": "When you create your Transmuter's Stone, you can choose up to two benefits. In addition, you can change either or both benefits whenever you cast a Transmutation spell using a spell slot.",
+          "Shape-Shifter": {
+            "description": "You always have the Polymorph spell prepared and can cast it once per Long Rest without expending a spell slot.",
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Polymorph",
+                "min_level": 10,
+                "counts_against_limit": false
+              }
+            ]
+          }
+        },
+        "14": {
+          "Master Transmuter": "While you carry your Transmuter's Stone, you can take a Magic action to consume the reserve of magic stored inside to achieve one of the following effects: Major Transformation (transmute an object into another object), Panacea (remove all curses, diseases, and restore all Hit Points), Restore Life (cast Raise Dead without a spell slot or components), or Restore Youth (reduce apparent age by 3d10 years)."
+        }
+      }
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "Agent of the Ninth Quill",
+      "description": "You were trained by the Ninth Quill, a secretive arcane espionage syndicate that operates from the shadows to protect regional stability and procure magical secrets.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Arcana Unleashed",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Dexterity",
+          "Intelligence",
+          "Charisma"
+        ],
+        "suggested": {
+          "Dexterity": 2,
+          "Intelligence": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Arcana",
+            "Sleight of Hand"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Arcane Infiltrator"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Thieves' Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Dagger",
+            "Light Hammer",
+            "Thieves' Tools",
+            "Iron Spikes",
+            "Rope",
+            "Traveler's Clothes"
+          ],
+          "gold": 17
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Bejeweled Conclave Spy",
+      "description": "You served the Bejeweled Conclave, an elite network of gem-mages and diplomats who trade in high-stakes secrets and glittering illusions.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Arcana Unleashed",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Dexterity",
+          "Wisdom",
+          "Charisma"
+        ],
+        "suggested": {
+          "Dexterity": 2,
+          "Wisdom": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Deception",
+            "Perception"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Arcane Eloquence"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Disguise Kit"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Disguise Kit",
+            "Fine Clothes",
+            "Perfume"
+          ],
+          "gold": 5
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Cosmic Dawn Experiment",
+      "description": "You were altered by the Bringers of Cosmic Dawn, an esoteric cabal that pushed the boundaries of transmutation to evolve mortal forms.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Arcana Unleashed",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Dexterity",
+          "Constitution"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Dexterity": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Athletics",
+            "Survival"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Transmuted Anatomy"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Alchemist's Supplies"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Alchemist's Supplies",
+            "Backpack",
+            "Robe",
+            "Traveler's Clothes"
+          ],
+          "gold": 30
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Covenant of the Grave Recruit",
+      "description": "Inducted into the Covenant of the Grave, you learned morbid anatomy and funeral rites, walking the threshold between mortality and necromancy.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Arcana Unleashed",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Intelligence",
+          "Wisdom"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Intelligence": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "History",
+            "Medicine"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Arcane Undertaker"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Herbalism Kit"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Dagger",
+            "Herbalism Kit",
+            "Book (anatomy)",
+            "Shovel"
+          ],
+          "gold": 16
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Crucible Storm Chaser",
+      "description": "You chased living storms and geothermal arcane vents for the Crucible Keepers, mastering rapid reactions and raw magical energy.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Arcana Unleashed",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Strength",
+          "Constitution",
+          "Intelligence"
+        ],
+        "suggested": {
+          "Strength": 2,
+          "Constitution": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Athletics",
+            "Nature"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Arcane Overload"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Glassblower's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Glassblower's Tools",
+            "Backpack",
+            "Rope",
+            "Traveler's Clothes"
+          ],
+          "gold": 15
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Familiar Trainer",
+      "description": "You grew up bonding with magical creatures and familiars, understanding their subtle signs and training them to act as loyal scouts and guardians.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Arcana Unleashed",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Constitution",
+          "Intelligence",
+          "Wisdom"
+        ],
+        "suggested": {
+          "Constitution": 2,
+          "Intelligence": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Animal Handling",
+            "Arcana"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Familiar Friend"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Dice Set"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Quarterstaff",
+            "Dice Set",
+            "Bedroll",
+            "Bell",
+            "String",
+            "Tinderbox",
+            "Traveler's Clothes",
+            "Waterskin"
+          ],
+          "gold": 44
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Horizon Weaver Initiate",
+      "description": "You studied under the Horizon Weavers, planar pathfinders who chart invisible dimensional rifts and mend tears across the planes.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Arcana Unleashed",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Dexterity",
+          "Constitution",
+          "Wisdom"
+        ],
+        "suggested": {
+          "Dexterity": 2,
+          "Constitution": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Acrobatics",
+            "Survival"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Portal Jumper"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Weaver's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Shortbow",
+            "Arrows (20)",
+            "Weaver's Tools",
+            "Map",
+            "Quiver",
+            "Rope",
+            "Traveler's Clothes"
+          ],
+          "gold": 18
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Phantasmic Circus Trouper",
+      "description": "You performed under the grand pavilions of the Phantasmic Circus, mesmerizing crowds with magical artistry, acrobatic flair, and phantasmagoria.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Arcana Unleashed",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Dexterity",
+          "Constitution",
+          "Charisma"
+        ],
+        "suggested": {
+          "Dexterity": 2,
+          "Constitution": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Deception",
+            "Performance"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Arcane Artist"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Disguise Kit"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Disguise Kit",
+            "Playing Card Set",
+            "Costume",
+            "Mirror",
+            "Traveler's Clothes"
+          ],
+          "gold": 12
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Seer Apprentice",
+      "description": "You apprenticed under the Seers of Sea and Sky, reading portents in tide and cloud, predicting fortunes, and preparing for destiny.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Arcana Unleashed",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Intelligence",
+          "Wisdom",
+          "Charisma"
+        ],
+        "suggested": {
+          "Intelligence": 2,
+          "Wisdom": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "History",
+            "Insight"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Arcane Omens"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Navigator's Tools"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Navigator's Tools",
+            "Candle (8)",
+            "Ink",
+            "Ink Pen",
+            "Parchment (9 sheets)",
+            "Pouch",
+            "Tinderbox",
+            "Traveler's Clothes"
+          ],
+          "gold": 11
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    },
+    {
+      "name": "Ward of the Sheltering Hands",
+      "description": "Raised in the healing hospices and soup kitchens of the Sheltering Hands, you learned to care for the needy and shield the vulnerable with protective wards.",
+      "edition": "2024",
+      "status": "active",
+      "source": "Arcana Unleashed",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Constitution",
+          "Wisdom",
+          "Charisma"
+        ],
+        "suggested": {
+          "Constitution": 2,
+          "Wisdom": 1
+        }
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Insight",
+            "Medicine"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Arcane Safeguard"
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Cook's Utensils"
+          ]
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Cook's Utensils",
+            "Blanket",
+            "Healer's Kit",
+            "Lamp",
+            "Oil (3 flasks)",
+            "Tinderbox",
+            "Traveler's Clothes",
+            "Waterskin"
+          ],
+          "gold": 40
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    }
+  ],
+  "feats": {
+    "origin_feats": {
+      "Arcane Artist": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Cantrip: You learn the Minor Illusion cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat).",
+          "Inspiring Magic: When you cast a spell from the Illusion school, you can choose one ally within 30 feet of yourself who can see you. That ally gains Heroic Inspiration. Once you use this benefit, you can't use it again until you finish a Long Rest."
+        ],
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Arcana Unleashed",
+        "effects": [
+          {
+            "type": "grant_cantrip",
+            "spell": "Minor Illusion"
+          }
+        ],
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Choose your spellcasting ability for Minor Illusion.",
+            "name": "spellcasting_ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ]
+      },
+      "Arcane Eloquence": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Cantrip: You learn the Friends cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat).",
+          "Silver Tongue: You have Advantage on Charisma (Deception and Persuasion) checks made against Humanoids who are indifferent or friendly toward you."
+        ],
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Arcana Unleashed",
+        "effects": [
+          {
+            "type": "grant_cantrip",
+            "spell": "Friends"
+          }
+        ]
+      },
+      "Arcane Infiltrator": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Cantrip: You learn the Friends cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat).",
+          "Cunning Diversion: You can take the Dodge action as a Bonus Action. You can use this benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest."
+        ],
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Arcana Unleashed",
+        "effects": [
+          {
+            "type": "grant_cantrip",
+            "spell": "Friends"
+          }
+        ]
+      },
+      "Arcane Omens": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Cantrip: You learn the Guidance cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat).",
+          "Fateful Omen: When a creature you can see within 30 feet makes an attack roll or saving throw, you can use your Reaction to add or subtract 1d4 from the roll. Once you use this benefit, you can't do so again until you finish a Long Rest."
+        ],
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Arcana Unleashed",
+        "effects": [
+          {
+            "type": "grant_cantrip",
+            "spell": "Guidance"
+          }
+        ]
+      },
+      "Arcane Overload": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Cantrip: You learn the Fire Bolt cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat).",
+          "Volatile Discharge: When you deal damage with a cantrip or spell of level 1 or higher, you can cause the spell to deal extra damage equal to your Proficiency Bonus to the target or to another creature within 5 feet of it. Once you use this benefit, you can't do so again until you finish a Long Rest."
+        ],
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Arcana Unleashed",
+        "effects": [
+          {
+            "type": "grant_cantrip",
+            "spell": "Fire Bolt"
+          }
+        ]
+      },
+      "Arcane Safeguard": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Cantrip: You learn the Resistance cantrip. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat).",
+          "Warding Barrier: When you or a creature within 30 feet of you takes damage, you can take a Reaction to give the target Resistance to that damage instance. Once you use this benefit, you can't do so again until you finish a Long Rest."
+        ],
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Arcana Unleashed",
+        "effects": [
+          {
+            "type": "grant_cantrip",
+            "spell": "Resistance"
+          }
+        ]
+      },
+      "Arcane Undertaker": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Cantrip: You learn one Cleric or Wizard cantrip of your choice from the Necromancy school: Chill Touch, Spare the Dying, or Toll the Dead. Intelligence, Wisdom, or Charisma is your spellcasting ability for this spell (choose when you select this feat).",
+          "Knowledge from the Dead: When you make an Intelligence (History) or Wisdom (Medicine) check, you can roll 1d4 and add the number rolled to the ability check.",
+          "Understanding of Death: When you take the Help action to stabilize a creature with 0 Hit Points, you gain Heroic Inspiration. Once you use this benefit, you can't use it again until you finish a Long Rest."
+        ],
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "name": "cantrip",
+            "description": "Choose one Cleric or Wizard cantrip from the Necromancy school.",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Chill Touch",
+                "Spare the Dying",
+                "Toll the Dead"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "cantrip": {
+            "Chill Touch": [
+              {
+                "type": "grant_cantrip",
+                "spell": "Chill Touch"
+              }
+            ],
+            "Spare the Dying": [
+              {
+                "type": "grant_cantrip",
+                "spell": "Spare the Dying"
+              }
+            ],
+            "Toll the Dead": [
+              {
+                "type": "grant_cantrip",
+                "spell": "Toll the Dead"
+              }
+            ]
+          }
+        }
+      },
+      "Familiar Friend": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Find Familiar: You always have Find Familiar prepared. You can cast it once without expending a spell slot or material components, and you regain the ability to cast it in that way when you finish a Long Rest.",
+          "Familiar Scout: You can communicate telepathically with your familiar and perceive through its senses as long as you are on the same plane of existence."
+        ],
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Arcana Unleashed",
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Find Familiar",
+            "counts_against_limit": false
+          }
+        ]
+      },
+      "Portal Jumper": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Otherworldly Resilience: You have Resistance to one of the following damage types: Necrotic, Psychic, or Radiant.",
+          "Portal Step: You can spend 15 feet of movement to teleport to an unoccupied space you can see within 15 feet."
+        ],
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "name": "damage_resistance",
+            "description": "Choose one damage resistance.",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Necrotic",
+                "Psychic",
+                "Radiant"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "damage_resistance": {
+            "Necrotic": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_type": "Necrotic"
+              }
+            ],
+            "Psychic": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_type": "Psychic"
+              }
+            ],
+            "Radiant": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_type": "Radiant"
+              }
+            ]
+          }
+        }
+      },
+      "Transmuted Anatomy": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Lengthened Stride: Your Speed increases by 5 feet.",
+          "Resilient Anatomy: You have Advantage on saving throws against effects that would alter your form or impose the Paralyzed or Petrified condition."
+        ],
+        "category": "Origin",
+        "prerequisite": "None",
+        "source": "Arcana Unleashed",
+        "effects": [
+          {
+            "type": "increase_speed",
+            "value": 5
+          }
+        ]
+      }
+    },
+    "general_feats": {
+      "Abjuration Adept": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Additional Spells: Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Abjuration Adept Spells table, you thereafter always have the spells listed for that level and lower prepared.",
+          "Level 1: Shield",
+          "Level 2: Aid",
+          "Level 3: Dispel Magic",
+          "Level 4: Death Ward",
+          "Level 5: Greater Restoration",
+          "Protective Ward: When you cast a spell from the Abjuration school using a spell slot, you can expend one of your unexpended Hit Point Dice. You or another creature within 30 feet of you gains Temporary Hit Points equal to the number rolled plus the level of the spell slot expended."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Shield",
+            "min_level": 1,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Aid",
+            "min_level": 3,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Dispel Magic",
+            "min_level": 5,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Death Ward",
+            "min_level": 7,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Greater Restoration",
+            "min_level": 9,
+            "counts_against_limit": false
+          }
+        ]
+      },
+      "Conjuration Adept": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Additional Spells: Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Conjuration Adept Spells table, you thereafter always have the spells listed for that level and lower prepared.",
+          "Level 1: Grease",
+          "Level 2: Misty Step",
+          "Level 3: Hunger of Hadar",
+          "Level 4: Dimension Door",
+          "Level 5: Cloudkill",
+          "Persistent Conjuration: When you cast a spell from the Conjuration school using a spell slot, you have Advantage on Constitution saving throws made to maintain Concentration on it."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Grease",
+            "min_level": 1,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Misty Step",
+            "min_level": 3,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Hunger of Hadar",
+            "min_level": 5,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Dimension Door",
+            "min_level": 7,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Cloudkill",
+            "min_level": 9,
+            "counts_against_limit": false
+          }
+        ]
+      },
+      "Divination Adept": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Additional Spells: Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Divination Adept Spells table, you thereafter always have the spells listed for that level and lower prepared.",
+          "Level 1: Detect Magic",
+          "Level 2: See Invisibility",
+          "Level 3: Clairvoyance",
+          "Level 4: Arcane Eye",
+          "Level 5: Legend Lore",
+          "Glimpse Ahead: When you cast a spell from the Divination school using a spell slot, choose yourself or one ally you can see within 30 feet of you. The chosen creature gains Advantage on the next d20 Test it makes before the start of your next turn."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Detect Magic",
+            "min_level": 1,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "See Invisibility",
+            "min_level": 3,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Clairvoyance",
+            "min_level": 5,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Arcane Eye",
+            "min_level": 7,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Legend Lore",
+            "min_level": 9,
+            "counts_against_limit": false
+          }
+        ]
+      },
+      "Enchantment Adept": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Additional Spells: Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Enchantment Adept Spells table, you thereafter always have the spells listed for that level and lower prepared.",
+          "Level 1: Charm Person",
+          "Level 2: Hold Person",
+          "Level 3: Hypnotic Pattern",
+          "Level 4: Compulsion",
+          "Level 5: Synaptic Static",
+          "Captivating Presence: When you cast a spell from the Enchantment school using a spell slot, one target of that spell has Disadvantage on the first saving throw it makes against the spell."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Charm Person",
+            "min_level": 1,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Hold Person",
+            "min_level": 3,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Hypnotic Pattern",
+            "min_level": 5,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Compulsion",
+            "min_level": 7,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Synaptic Static",
+            "min_level": 9,
+            "counts_against_limit": false
+          }
+        ]
+      },
+      "Evocation Adept": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Additional Spells: Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Evocation Adept Spells table, you thereafter always have the spells listed for that level and lower prepared.",
+          "Level 1: Burning Hands",
+          "Level 2: Scorching Ray",
+          "Level 3: Fireball",
+          "Level 4: Ice Storm",
+          "Level 5: Cone of Cold",
+          "Potent Evocation: When you cast a spell from the Evocation school using a spell slot, you can choose to reroll a number of the damage dice up to your spellcasting ability modifier (minimum of one). You must use the new rolls."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Burning Hands",
+            "min_level": 1,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Scorching Ray",
+            "min_level": 3,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Fireball",
+            "min_level": 5,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Ice Storm",
+            "min_level": 7,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Cone of Cold",
+            "min_level": 9,
+            "counts_against_limit": false
+          }
+        ]
+      },
+      "Illusion Adept": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Additional Spells: Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Illusion Adept Spells table, you thereafter always have the spells listed for that level and lower prepared.",
+          "Level 1: Silent Image",
+          "Level 2: Phantasmal Force",
+          "Level 3: Major Image",
+          "Level 4: Hallucinatory Terrain",
+          "Level 5: Seeming",
+          "Fleeting Shadow: When you cast a spell from the Illusion school using a spell slot, you can take the Disengage or Hide action as a Bonus Action on this turn."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Silent Image",
+            "min_level": 1,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Phantasmal Force",
+            "min_level": 3,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Major Image",
+            "min_level": 5,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Hallucinatory Terrain",
+            "min_level": 7,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Seeming",
+            "min_level": 9,
+            "counts_against_limit": false
+          }
+        ]
+      },
+      "Necromancy Adept": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Additional Spells: Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Necromancy Adept Spells table, you thereafter always have the spells listed for that level and lower prepared.",
+          "Level 1: Inflict Wounds",
+          "Level 2: Ray of Enfeeblement",
+          "Level 3: Vampiric Touch",
+          "Level 4: Blight",
+          "Level 5: Raise Dead",
+          "Life Manipulation: When you cast a spell from the Necromancy school using a spell slot, you can immediately roll up to two of your unexpended Hit Point Dice. You regain Hit Points equal to the total rolled plus the level of the spell slot expended."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Inflict Wounds",
+            "min_level": 1,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Ray of Enfeeblement",
+            "min_level": 3,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Vampiric Touch",
+            "min_level": 5,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Blight",
+            "min_level": 7,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Raise Dead",
+            "min_level": 9,
+            "counts_against_limit": false
+          }
+        ]
+      },
+      "Transmutation Adept": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Additional Spells: Your prowess allows you to always have certain spells at the ready. When you have spell slots of a level specified in the Transmutation Adept Spells table, you thereafter always have the spells listed for that level and lower prepared.",
+          "Level 1: Jump",
+          "Level 2: Spider Climb",
+          "Level 3: Slow",
+          "Level 4: Polymorph",
+          "Level 5: Animate Objects",
+          "Magical Augmentation: On your turn when you cast a spell from the Transmutation school using a spell slot, your Speed increases by 10 feet until the end of that turn, and you can make one weapon attack or Unarmed Strike as a Bonus Action."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Jump",
+            "min_level": 1,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Spider Climb",
+            "min_level": 3,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Slow",
+            "min_level": 5,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Polymorph",
+            "min_level": 7,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Animate Objects",
+            "min_level": 9,
+            "counts_against_limit": false
+          }
+        ]
+      },
+      "Elemental Familiar": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 20.",
+          "Elemental Breath: As an action, you can expend one spell slot of level 1 or higher to cause your familiar to exhale elemental energy. Each creature in a 15-foot cone originating from your familiar must make a Dexterity saving throw against your spell save DC, taking 2d8 damage per slot level of the chosen type (Acid, Cold, Fire, Lightning, or Thunder) on a failed save, or half as much on a successful one.",
+          "Elemental Form: When you cast Find Familiar, you can choose for your familiar to be an Elemental instead of its normal creature type. When you do, choose Acid, Cold, Fire, Lightning, or Thunder; the familiar gains Resistance to that damage type."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Familiar Friend Feat",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase one ability score of your choice by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Otherworldly Familiar": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 20.",
+          "Otherworldly Power: When you cast the Find Familiar spell, you can imbue your familiar with otherworldly power. When you do, your familiar has Resistance to one damage type of your choice: Necrotic, Poison, Psychic, Radiant, or Thunder.",
+          "Energy Resistance: Choose Necrotic, Poison, Psychic, Radiant, or Thunder damage. Your familiar has Resistance to that damage type.",
+          "Phase Walk: Your familiar can move through other creatures and objects as if they were Difficult Terrain. It takes 1d10 Force damage if it ends its turn inside an object."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Familiar Friend Feat",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase one ability score of your choice by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          },
+          {
+            "type": "select_single",
+            "description": "Choose one damage resistance for your familiar.",
+            "name": "energy_resistance",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Necrotic",
+                "Poison",
+                "Psychic",
+                "Radiant",
+                "Thunder"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Soothing Familiar": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 20.",
+          "Healing Beacon: Positive energy fills a 5-foot Emanation originating from your familiar. Whenever you or an ally inside the Emanation regains Hit Points, the creature regains additional Hit Points equal to your Proficiency Bonus.",
+          "Comforting Touch: As a Magic action, your familiar can touch a creature and end either the Frightened or Poisoned condition on it."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Familiar Friend Feat",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase one ability score of your choice by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Warlike Familiar": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 20.",
+          "Battle Familiar: You always have the Battle Familiar spell prepared. You can cast it once without expending a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest.",
+          "Intercept Attack: When a creature within 5 feet of your familiar is hit by an attack roll, your familiar can use its Reaction to interpose itself, causing the attack to target the familiar instead."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Familiar Friend Feat",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase one ability score of your choice by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Battle Familiar",
+            "min_level": 4,
+            "counts_against_limit": false
+          }
+        ]
+      },
+      "Magic Connoisseur": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Additional Spells: Choose a level 1 and a level 2 spell from the same spell list you selected for the Magic Initiate feat. You always have those spells prepared.",
+          "Spell Change: Whenever you gain a level, you can replace one of the spells you chose for this feat with another spell of the same level from the chosen list."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Magic Initiate Feat",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Spell Resistant": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Dexterity or Constitution score by 1, to a maximum of 20.",
+          "Magical Resilience: You have Resistance to one of the following damage types (choose when you gain this feat): Necrotic, Psychic, Radiant, or Thunder.",
+          "Magic Resistant: When you would fail a saving throw against a spell or magical effect, you can roll 1d4 and add it to the total, potentially turning a failure into a success."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Dexterity or Constitution score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Dexterity",
+                "Constitution"
+              ]
+            }
+          },
+          {
+            "type": "select_single",
+            "description": "Choose one damage resistance.",
+            "name": "damage_resistance",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Necrotic",
+                "Psychic",
+                "Radiant",
+                "Thunder"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1
+              }
+            ]
+          },
+          "damage_resistance": {
+            "Necrotic": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_type": "Necrotic"
+              }
+            ],
+            "Psychic": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_type": "Psychic"
+              }
+            ],
+            "Radiant": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_type": "Radiant"
+              }
+            ],
+            "Thunder": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_type": "Thunder"
+              }
+            ]
+          }
+        }
+      },
+      "Spell Subterfuge": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "Shrouding Spells: After you cast a spell that has a casting time of an action using a spell slot, you can take the Hide action as a Bonus Action on that turn.",
+          "Sneaky Casting: If you have the Invisible condition from the Hide action, casting a spell with Verbal components does not end that condition if you succeed on a Dexterity (Stealth) check against the Passive Perception of any creature that could hear you."
+        ],
+        "category": "General",
+        "prerequisite": "Level 4+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Erupting Spellpower": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 30.",
+          "Spell Eruption: When you cast a spell of level 1 or higher using a spell slot, you can cause a burst of arcane energy to erupt around you. Each creature of your choice within 15 feet of you takes Force damage equal to your spellcasting ability modifier plus twice the level of the spell slot expended."
+        ],
+        "category": "Epic Boon",
+        "prerequisite": "Level 19+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 30.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1,
+                "maximum": 30
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1,
+                "maximum": 30
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1,
+                "maximum": 30
+              }
+            ]
+          }
+        }
+      },
+      "Boon of Magic School Mastery": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 30.",
+          "School Mastery: Choose one school of magic. Spells you cast from that school cannot be countered by Counterspell, and creatures have Disadvantage on saving throws against them."
+        ],
+        "category": "Epic Boon",
+        "prerequisite": "Level 19+, Spellcasting Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 30.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1,
+                "maximum": 30
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1,
+                "maximum": 30
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1,
+                "maximum": 30
+              }
+            ]
+          }
+        }
+      },
+      "Boon of the Iron Mind": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+          "Iron Will: You have Advantage on Intelligence, Wisdom, and Charisma saving throws. In addition, you are immune to the Charmed and Frightened conditions."
+        ],
+        "category": "Epic Boon",
+        "prerequisite": "Level 19+",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_single",
+            "description": "Increase one ability score of your choice by 1, to a maximum of 30.",
+            "name": "ability",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "ability": {
+            "Strength": [
+              {
+                "type": "ability_bonus",
+                "ability": "Strength",
+                "value": 1,
+                "maximum": 30
+              }
+            ],
+            "Dexterity": [
+              {
+                "type": "ability_bonus",
+                "ability": "Dexterity",
+                "value": 1,
+                "maximum": 30
+              }
+            ],
+            "Constitution": [
+              {
+                "type": "ability_bonus",
+                "ability": "Constitution",
+                "value": 1,
+                "maximum": 30
+              }
+            ],
+            "Intelligence": [
+              {
+                "type": "ability_bonus",
+                "ability": "Intelligence",
+                "value": 1,
+                "maximum": 30
+              }
+            ],
+            "Wisdom": [
+              {
+                "type": "ability_bonus",
+                "ability": "Wisdom",
+                "value": 1,
+                "maximum": 30
+              }
+            ],
+            "Charisma": [
+              {
+                "type": "ability_bonus",
+                "ability": "Charisma",
+                "value": 1,
+                "maximum": 30
+              }
+            ]
+          }
+        }
+      },
+      "Arcane Warrior": {
+        "description": "You gain the following benefits.",
+        "benefits": [
+          "Arcane Armament: You learn two cantrips of your choice from the following list: Dancing Lights, Light, Message, Prestidigitation, or True Strike. Intelligence, Wisdom, or Charisma is your spellcasting ability for them (choose when you select this style)."
+        ],
+        "category": "Fighting Style",
+        "prerequisite": "Fighting Style Feature",
+        "source": "Arcana Unleashed",
+        "choices": [
+          {
+            "type": "select_multiple",
+            "count": 2,
+            "name": "cantrips",
+            "description": "Choose two cantrips from the list.",
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Dancing Lights",
+                "Light",
+                "Message",
+                "Prestidigitation",
+                "True Strike"
+              ]
+            }
+          }
+        ],
+        "choice_effects": {
+          "cantrips": {
+            "Dancing Lights": [
+              {
+                "type": "grant_cantrip",
+                "spell": "Dancing Lights"
+              }
+            ],
+            "Light": [
+              {
+                "type": "grant_cantrip",
+                "spell": "Light"
+              }
+            ],
+            "Message": [
+              {
+                "type": "grant_cantrip",
+                "spell": "Message"
+              }
+            ],
+            "Prestidigitation": [
+              {
+                "type": "grant_cantrip",
+                "spell": "Prestidigitation"
+              }
+            ],
+            "True Strike": [
+              {
+                "type": "grant_cantrip",
+                "spell": "True Strike"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "spells": [
+    {
+      "name": "Aura of Evasion",
+      "level": 7,
+      "school": "Abjuration",
+      "casting_time": "1 action",
+      "range": "Self (30-foot Emanation)",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "An aura of alacrity radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Advantage on Dexterity saving throws. When an affected creature is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it takes no damage if it succeeds on the save and only half damage if it fails. A creature with the Incapacitated condition doesn't gain any benefit from being in the aura.",
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Battle Familiar",
+      "level": 2,
+      "school": "Conjuration",
+      "casting_time": "1 action",
+      "range": "10 feet",
+      "components": [
+        "V",
+        "S",
+        "M (a diamond worth 25+ GP)"
+      ],
+      "duration": "1 hour",
+      "description": "You conjure a familiar imbued with magical might. The familiar appears in an unoccupied space within range; resembles an animal of your choice but is a Celestial, Fey, or Fiend (your choice); and uses the Battle Familiar stat block. When you cast this spell, choose the Brute, Flyer, or Stalker form. The choice determines certain details in the stat block.\n\n**Combat**: The familiar is an ally to you and your allies. It rolls its own Initiative and acts on its own turn.\n\n**Disappearance of the Familiar**: The battle familiar disappears when the spell ends, if it drops to 0 Hit Points, or if you die. When it disappears, it leaves behind in its space anything it was wearing or carrying. If you cast this spell again, you decide whether you summon the familiar that disappeared or a different one.\n\n**One Familiar at a Time**: You can't have more than one familiar at a time. If you cast this spell while you already have a familiar from this spell, that familiar is replaced by the new one.\n\nIf you have a familiar from the *Find Familiar* spell when you cast this spell, you empower your existing familiar rather than conjuring a new one. For the duration, your familiar can attack in addition to taking other actions as normal, and your familiar's game statistics are replaced by the Battle Familiar stat block, but it retains its creature type, alignment, Hit Points, Hit Point Dice, and any features granted by the *Find Familiar* spell. Your familiar gains a number of Temporary Hit Points equal to the Hit Points of the battle familiar. Battle Familiar ends early if the familiar has no more Temporary Hit Points left, and these Temporary Hit Points vanish if any remain when Battle Familiar ends. Your familiar reverts to its previous form when Battle Familiar ends.",
+      "classes": [
+        "Druid",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Catnap",
+      "level": 3,
+      "school": "Enchantment",
+      "casting_time": "1 action",
+      "range": "30 feet",
+      "components": [
+        "S",
+        "M (a pinch of sand)"
+      ],
+      "duration": "10 minutes",
+      "description": "You make a calming gesture, and up to three willing creatures of your choice that you can see within range have the Unconscious condition for the spell's duration. The spell ends on a target if it takes damage or another creature takes an action to shake it awake. If a target has the Unconscious condition from this spell for the full duration, that target gains the benefits of finishing a Short Rest, and it can't be affected by this spell again until it finishes a Long Rest.",
+      "classes": [
+        "Artificer",
+        "Bard",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Detonate",
+      "level": 9,
+      "school": "Evocation",
+      "casting_time": "1 action",
+      "range": "500 feet",
+      "components": [
+        "V",
+        "S",
+        "M (a piece of tinder)"
+      ],
+      "duration": "Instantaneous",
+      "description": "You create a magical, explosive seed inside a creature you can see within range. The target makes a Constitution saving throw, taking 10d10 Fire damage on a failed save or half as much damage on a successful one.\n\nAn explosion then originates from the target. Each creature in a 60-foot Emanation originating from the target (not including the target) makes a Dexterity saving throw, with Disadvantage if this spell reduced the target to 0 Hit Points. A creature takes 10d10 Fire damage on a failed save or half as much damage on a successful one.\n\nA nonmagical object that isn't being worn or carried also takes the damage if it's in the Emanation, and the object starts burning if it's flammable.",
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Disruptive Tune",
+      "level": 2,
+      "school": "Abjuration",
+      "casting_time": "1 action",
+      "range": "120 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "A distracting melody momentarily fills a 20-foot-radius Sphere centered on a point you choose within range. Each creature in the Sphere makes a Constitution saving throw. On a failed save, a target loses Concentration, and it has Disadvantage on Constitution saving throws to maintain Concentration for the spell's duration.",
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Distorted Distance",
+      "level": 4,
+      "school": "Illusion",
+      "casting_time": "1 action",
+      "range": "120 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 10 minutes",
+      "description": "You create an illusory spatial dilation that fills a 60-foot-radius Sphere centered on a point within range. For each creature you can see in the Sphere, you can choose one of the following effects for it:\n\n- **Dizzying Elongation**: The creature makes an Intelligence saving throw. On a failed save, the creature takes 2d10 Psychic damage, and the Sphere is Difficult Terrain for it until the end of its turn.\n\n- **Shortened Space**: The creature's Speed increases by 20 feet until the end of its next turn.\n\nUntil the spell ends, whenever a creature enters the Sphere or ends its turn there, you can choose for it to receive one of these effects. A creature can be affected by this spell only once per turn.",
+      "classes": [
+        "Artificer",
+        "Bard",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Dueling Ground",
+      "level": 2,
+      "school": "Abjuration",
+      "casting_time": "10 minutes",
+      "range": "Touch",
+      "components": [
+        "V",
+        "S",
+        "M (a silk flag worth 100+ GP)"
+      ],
+      "duration": "1 hour",
+      "description": "You create a magical dueling ground bounded by a glowing, rune-scribed circle in a 15-foot-radius Sphere centered on a point on the ground you touch.\n\nAs part of creating the dueling ground, you designate two willing creatures within the Sphere as the targets. The spell ends early if a creature other than one of the targets enters the Sphere.\n\nIf a target drops to 0 Hit Points while in the dueling ground, the target is Stable and teleports to the nearest unoccupied space outside the dueling ground. If a target is subjected to an effect that would kill it instantly without dealing damage while in the dueling ground, the target doesn't die and instead has 0 Hit Points and the Unconscious condition, is Stable, and teleports to the nearest unoccupied space outside the dueling ground.\n\nWhen only one target remains in the dueling ground, runes matching those on the ground around the Sphere briefly flash around the remaining target's head like a crown.",
+      "classes": [
+        "Artificer",
+        "Bard",
+        "Cleric",
+        "Druid",
+        "Paladin",
+        "Ranger",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": true,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Enervation",
+      "level": 5,
+      "school": "Necromancy",
+      "casting_time": "1 action",
+      "range": "60 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "A tendril of inky darkness reaches out from you to drain life from a creature you can see within range.\n\nThe target makes a Dexterity saving throw. On a failed save, the target takes 6d8 Necrotic damage. On each of your subsequent turns, you can take a Bonus Action to deal 2d8 Necrotic damage to the target automatically. The spell ends if the target is ever outside the spell's range or it has Total Cover from you.\n\nOn a successful save, the target takes half the initial damage only, and the spell ends.\n\nWhenever this spell deals damage to a target, you regain Hit Points equal to half the amount of Necrotic damage dealt.",
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Entrancing Mirrors",
+      "level": 8,
+      "school": "Illusion",
+      "casting_time": "1 action",
+      "range": "90 feet",
+      "components": [
+        "V",
+        "S",
+        "M (a mirror shard)"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "You create dozens of illusory mirrors to confuse up to three creatures of your choice that you can see within range.\n\nEach target makes an Intelligence saving throw. On a failed save, a target takes 7d6 Psychic damage and has the Stunned condition. While the target is Stunned, its Speed is halved. On a successful save, a target takes half as much damage only.\n\nA Stunned target repeats the Intelligence saving throw at the end of each of its turns, ending the spell on itself on a success.",
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Festering Blast",
+      "level": 4,
+      "school": "Necromancy",
+      "casting_time": "1 action",
+      "range": "Self (60-foot Line)",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "1 minute",
+      "description": "A 60-foot-long, 10-foot-wide Line of miasma blasts from you in a direction you choose. Each creature in the Line must make a Constitution saving throw. On a failed save, a target takes 4d10 Necrotic damage and has the Poisoned condition for the duration.\n\nA creature Poisoned by this spell takes 2d10 Poison damage at the start of each of its turns. At the end of each of its turns, a Poisoned target repeats the save, ending the spell on itself on a success.",
+      "classes": [
+        "Druid",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Fractured Awareness",
+      "level": 7,
+      "school": "Divination",
+      "casting_time": "1 action",
+      "range": "120 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "You cause a creature to receive conflicting visions of multiple possible futures. Choose a creature you can see within range. The target makes an Intelligence saving throw. On a failed save, the target takes 12d10 Psychic damage and has Disadvantage on D20 Tests for the duration. On a successful save, the target takes half as much damage only, and the spell ends.\n\nAt the end of each of its turns, an affected target repeats the save, ending the spell on a success.",
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Grave Ground",
+      "level": 5,
+      "school": "Necromancy",
+      "casting_time": "1 action",
+      "range": "120 feet",
+      "components": [
+        "V",
+        "S",
+        "M (a handful of grave dirt)"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "Skeletal hands burst from an area on the ground within range. The area consists of up to four 10-foot squares, which you arrange as you like. Each square must be contiguous with at least one other square. That area is Difficult Terrain for your enemies.\n\nAny enemy in that area when the skeletal hands appear makes a Strength saving throw. On a failed save, a creature takes 6d6 Necrotic damage, and until the end of its next turn, the creature subtracts 1d6 from all its damage rolls. An enemy also makes this save if it enters the area or ends its turn there. A creature makes this save only once per turn.",
+      "classes": [
+        "Cleric",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Hindsight",
+      "level": 9,
+      "school": "Divination",
+      "casting_time": "10 minutes",
+      "range": "500 feet",
+      "components": [
+        "V",
+        "S",
+        "M (a tiny hourglass worth 500+ GP, which the spell consumes)"
+      ],
+      "duration": "Concentration, up to 1 hour",
+      "description": "You peer backward through the fabric of time. You see visions of events that occurred within range throughout the past 10 years, racing by at approximately 1 day per second. Throughout the spell's duration, you can freely slow down, pause, rewind, or fast-forward through these visions.",
+      "classes": [
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Illusory Dragon",
+      "level": 8,
+      "school": "Illusion",
+      "casting_time": "1 action",
+      "range": "120 feet",
+      "components": [
+        "S"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "By gathering threads of shadow material from the Shadowfell, you create a Huge shadowy dragon in an unoccupied space that you can see within range. The illusion lasts for the spell's duration and occupies its space as if it were a creature. The illusion is tangible because of the shadow material used to create it but has Immunity to all damage and conditions.\n\nWhen the illusion appears, any enemy that can see it makes a Wisdom saving throw. On a failed save, the creature drops whatever it's holding and has the Frightened condition for the duration. If a creature Frightened in this way ends its turn in a space where it doesn't have line of sight to the illusion, the creature repeats the saving throw, ending the condition on itself on a success.\n\nAs a Bonus Action, you can move the illusion up to 60 feet. At any point during its movement, you can cause the shadowy dragon to exhale a blast of energy in a 60-foot Cone. Each creature in the Cone makes an Intelligence saving throw, taking 6d6 Acid, Cold, Fire, Lightning, Necrotic, or Poison damage (your choice when you create the dragon) on a failed save or half as much damage on a successful one.\n\nA creature that takes a Study action to examine the dragon can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image and has Advantage on saving throws to end the Frightened condition it caused and to resist its exhalation.",
+      "classes": [
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Inflict Doubt",
+      "level": 3,
+      "school": "Enchantment",
+      "casting_time": "1 action",
+      "range": "120 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "You inflict self-doubt on a creature you can see within range. The target must succeed on a Wisdom saving throw or have Disadvantage on D20 Tests for the duration. At the end of each of its turns, the target repeats the save, ending the spell on itself on a success.",
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Invulnerability",
+      "level": 9,
+      "school": "Abjuration",
+      "casting_time": "1 action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S",
+        "M (a piece of adamantine worth 500+ GP, which the spell consumes)"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "You have Immunity to all damage until the spell ends.",
+      "classes": [
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Iron Body",
+      "level": 8,
+      "school": "Transmutation",
+      "casting_time": "1 action",
+      "range": "Touch",
+      "components": [
+        "V",
+        "S",
+        "M (diamond dust worth 250+ GP, which the spell consumes)"
+      ],
+      "duration": "Concentration, up to 1 hour",
+      "description": "One willing creature you touch transforms into living metal. Until the spell ends, the target's Exhaustion level can't increase; the target has Resistance to Bludgeoning, Fire, Piercing, and Slashing damage; and it has Immunity to Poison damage and the Paralyzed, Petrified, and Poisoned conditions. If the target is Paralyzed, Petrified, or Poisoned when you cast the spell, those conditions immediately end for the target.",
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Lightning Ring",
+      "level": 8,
+      "school": "Evocation",
+      "casting_time": "1 bonus action",
+      "range": "Self (10-foot Emanation)",
+      "components": [
+        "V",
+        "S",
+        "M (a bit of fur and a glass ring)"
+      ],
+      "duration": "Concentration, up to 10 minutes",
+      "description": "A ring of crackling electricity fills a 10-foot Emanation originating from you. Whenever the Emanation enters a creature's space and whenever a creature enters the Emanation or ends its turn there, you can force that creature to make a Constitution saving throw. On a failed save, the creature takes 3d6 Lightning damage plus 3d6 Thunder damage, and it has the Deafened condition for 1 minute. On a successful save, the creature takes half as much damage only.\n\nAs a Magic action while the spell is active, you can emit a 60-foot-long, 5-foot-wide Line out from you in a direction you choose. Each creature in the Line makes a Dexterity saving throw, taking 6d6 Lightning damage on a failed save or half as much damage on a successful one.",
+      "classes": [
+        "Druid",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Moment of Prescience",
+      "level": 8,
+      "school": "Divination",
+      "casting_time": "1 reaction",
+      "range": "Self",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Instantaneous",
+      "description": "You have a powerful sixth sense that guides you at just the right time. Turn the roll of your failed D20 Test into a 20, or turn the roll of the triggering attack roll into a 1.",
+      "classes": [
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Mordenkainen's Lucubration",
+      "level": 5,
+      "school": "Divination",
+      "casting_time": "1 action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Instantaneous",
+      "description": "You recover up to two expended spell slots of level 2 or lower.",
+      "classes": [
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Negative Energy Flood",
+      "level": 5,
+      "school": "Necromancy",
+      "casting_time": "1 action",
+      "range": "60 feet",
+      "components": [
+        "V",
+        "M (a broken bone and a square of black silk)"
+      ],
+      "duration": "Instantaneous",
+      "description": "You send ribbons of negative energy at one creature you can see within range. If the target isn't Undead, it makes a Constitution saving throw, taking 3d10 + 25 Necrotic damage on a failed save or half as much damage on a successful one. A Humanoid killed by this spell rises at the start of your next turn as a Zombie that follows your verbal orders for 24 hours, after which it acts according to its nature.\n\nIf the target is Undead, it gains 3d10 Temporary Hit Points.",
+      "classes": [
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Power Word Pain",
+      "level": 7,
+      "school": "Enchantment",
+      "casting_time": "1 action",
+      "range": "60 feet",
+      "components": [
+        "V"
+      ],
+      "duration": "1 minute",
+      "description": "You speak a word of power that causes waves of intense pain to assail one creature you can see within range. If the target has 100 Hit Points or fewer, it takes 6d8 Force damage and has the Charmed condition for the duration. Otherwise, it takes 6d8 Force damage only.\n\nWhile the target is Charmed, its Speed can be no more than 10 feet, and it has Disadvantage on D20 Tests except Constitution saving throws. In addition, when the target tries to cast a spell, it must first succeed on a Constitution saving throw, or the spell dissipates with no effect, and the action, Bonus Action, or Reaction used to cast it is wasted. If that spell was cast with a spell slot, the slot isn't expended.\n\nAt the end of each of its turns, the Charmed target makes a Constitution saving throw, ending the spell on itself on a successful save.",
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Reweave Fate",
+      "level": 7,
+      "school": "Divination",
+      "casting_time": "1 reaction",
+      "range": "60 feet",
+      "components": [
+        "S"
+      ],
+      "duration": "Instantaneous",
+      "description": "You untangle a single thread of fate to encourage a different result. The creature that failed the D20 Test can reroll it with Advantage, and the creature must use the new roll. If the D20 Test is successful, the creature gains 6d10 Temporary Hit Points from its strengthened fate.",
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Spirit Lantern",
+      "level": 5,
+      "school": "Necromancy",
+      "casting_time": "1 action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S",
+        "M (a black lantern)"
+      ],
+      "duration": "10 minutes",
+      "description": "You conjure a floating, ghostly black lantern that hovers above you and sheds Dim Light in a 60-foot radius. When an enemy dies within this Dim Light, a fragment of the creature's soul flies into the lantern. The lantern can hold a number of soul fragments equal to your spellcasting ability modifier, and those fragments dissipate when the spell ends.\n\nAs a Bonus Action, you can expend a soul fragment to create one of the following effects.\n\n**Drain Life**: The soul fragment darts at a creature of your choice that you can see within 60 feet of yourself. The target makes a Constitution saving throw, taking Necrotic damage equal to 4d8 plus your spellcasting ability modifier on a failed save or half as much damage on a successful one.\n\n**Repair Undead**: The soul fragment flies into an Undead creature of your choice that you can see within 60 feet of yourself. That creature regains Hit Points equal to 4d8 plus your spellcasting ability modifier.\n\n**Ward Ally**: The soul fragment darts around a creature of your choice that you can see within 60 feet of yourself. Other creatures have Disadvantage on attack rolls against the chosen creature until the start of your next turn.",
+      "classes": [
+        "Artificer",
+        "Cleric",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Summon Dinosaur",
+      "level": 6,
+      "school": "Conjuration",
+      "casting_time": "1 action",
+      "range": "90 feet",
+      "components": [
+        "V",
+        "S",
+        "M (polished scale worth 600+ GP)"
+      ],
+      "duration": "Concentration, up to 1 hour",
+      "description": "You call forth the spirit of a primeval dinosaur. It manifests in an unoccupied space that you can see within range and uses the Dinosaur Spirit stat block. When you cast the spell, choose Ankylosaur, Triceratops, or Tyrannosaur. The creature resembles a dinosaur of the chosen type, which determines certain details in its stat block. The creature disappears when it drops to 0 Hit Points or when the spell ends.\n\nThe creature is an ally to you and your allies. In combat, the creature shares your Initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, the creature takes the Dodge action and uses its movement to avoid danger.",
+      "classes": [
+        "Druid"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Summon Plant",
+      "level": 5,
+      "school": "Conjuration",
+      "casting_time": "1 action",
+      "range": "90 feet",
+      "components": [
+        "V",
+        "S",
+        "M (herbs worth 500+ GP)"
+      ],
+      "duration": "Concentration, up to 1 hour",
+      "description": "You call forth the spirit of an animated plant. It manifests in an unoccupied space that you can see within range and uses the Plant Spirit stat block. When you cast the spell, choose Fungus, Tree, or Vine. The creature resembles a plant of the chosen type, which determines certain details in its stat block. The creature disappears when it drops to 0 Hit Points or when the spell ends.\n\nThe creature is an ally to you and your allies. In combat, the creature shares your Initiative count, but it takes its turn immediately after yours. It obeys your verbal commands (no action required by you). If you don't issue any, it takes the Dodge action and uses its movement to avoid danger.",
+      "classes": [
+        "Druid",
+        "Ranger"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Transfix",
+      "level": 7,
+      "school": "Enchantment",
+      "casting_time": "1 action",
+      "range": "Self",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "For the duration, your appearance becomes otherworldly and alluring. One creature of your choice that you can see within 60 feet of you must succeed on a Charisma saving throw or have the Charmed condition for the duration.\n\nWhile Charmed, the target has the Incapacitated condition, and if the target is more than 5 feet away from you, it moves on its turn toward you by the most direct route, trying to get within 5 feet of you. If the Charmed creature ends its turn within 5 feet of you, it takes 4d8 Psychic damage.\n\nThe target doesn't avoid Opportunity Attack when moving toward you, but before moving into damaging terrain (such as lava or a pit), the target repeats the save, ending the spell on itself on a success.\n\nUntil the spell ends, you can take a Magic action on subsequent turns to target another creature, but you can't target a creature again if it has succeeded on a save against this casting of the spell.",
+      "classes": [
+        "Bard",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Uncertain Footing",
+      "level": 2,
+      "school": "Illusion",
+      "casting_time": "1 action",
+      "range": "120 feet",
+      "components": [
+        "V",
+        "S",
+        "M (a distorted lens)"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "You create illusory obstacles such as rocks or spikes in an attempt to confuse up to three creatures you can see within range, affecting their ability to move. Each target makes an Intelligence saving throw. On a failed save, a target's Speed is halved, and it can't take the Dash action. A hampered target repeats the save at the end of each of its turns, ending the spell on itself on a success.",
+      "classes": [
+        "Artificer",
+        "Bard",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Vision of Elapsing Eons",
+      "level": 9,
+      "school": "Illusion",
+      "casting_time": "1 action",
+      "range": "120 feet",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "1 minute",
+      "description": "You trick a creature you can see within range into believing it is watching itself and its surroundings crumble away, as if eons were passing in moments. The target must succeed on an Intelligence saving throw or take 10d12 Psychic damage and have the Paralyzed condition for the duration.\n\nWhile Paralyzed, the target repeats the save at the end of each of its turns. On a failed save, it gains 1 Exhaustion level. On a successful save, the spell ends. The spell ends early if someone within 5 feet of the target takes an action to shake it free from the illusion.",
+      "classes": [
+        "Bard",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Wail of the Banshee",
+      "level": 9,
+      "school": "Necromancy",
+      "casting_time": "1 action",
+      "range": "60 feet",
+      "components": [
+        "V"
+      ],
+      "duration": "Instantaneous",
+      "description": "You emit a terrible scream that can kill those who hear it. Choose up to ten creatures within range. Each target with 50 Hit Points or fewer dies. Targets with more than 50 Hit Points make a Constitution saving throw. On a failed save, a target takes 12d10 Psychic damage and has the Deafened condition for 1 hour. On a successful save, a target takes half as much damage only. A target is unaffected by the spell if it can't hear you.",
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Waves of Exhaustion",
+      "level": 5,
+      "school": "Necromancy",
+      "casting_time": "1 bonus action",
+      "range": "Self (60-foot Cone)",
+      "components": [
+        "V",
+        "S",
+        "M (a piece of dried meat)"
+      ],
+      "duration": "Concentration, up to 1 minute",
+      "description": "You evoke a nimbus of flickering gray light around your body. For the duration, you can take a Magic action to emit a wave of gray light in a 60-foot Cone. Creatures in that area must succeed on a Constitution saving throw or gain 1 Exhaustion level. This spell can't increase a creature's Exhaustion level above 4.\n\nExhaustion levels gained from this spell are removed when the spell ends.",
+      "classes": [
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Wither and Bloom",
+      "level": 2,
+      "school": "Necromancy",
+      "casting_time": "1 action",
+      "range": "60 feet",
+      "components": [
+        "V",
+        "S",
+        "M (a withered vine twisted into a loop)"
+      ],
+      "duration": "Instantaneous",
+      "description": "You invoke both death and life in a 10-foot-radius Sphere centered on a point within range. Each creature of your choice in that area makes a Constitution saving throw, taking 3d6 Necrotic damage on a failed save or half as much damage on a successful one. Nonmagical plants in that area that aren't creatures, such as trees and shrubs, wither.\n\nIn addition, one creature of your choice in that area can roll one of its unexpended Hit Point Dice and regain a number of Hit Points equal to the roll plus your spellcasting ability modifier. That die is then expended.",
+      "classes": [
+        "Druid",
+        "Sorcerer",
+        "Wizard"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    },
+    {
+      "name": "Zone of Amicability",
+      "level": 4,
+      "school": "Enchantment",
+      "casting_time": "1 action",
+      "range": "Self (60-foot Emanation)",
+      "components": [
+        "V",
+        "S"
+      ],
+      "duration": "10 minutes",
+      "description": "A magical zone of amicability radiates from you in a 60-foot Emanation for the duration. When you make an ability check to influence a creature in that area, you can treat a d20 roll of 9 or lower as a 10.",
+      "classes": [
+        "Bard",
+        "Warlock"
+      ],
+      "ritual": false,
+      "source": "Arcana Unleashed"
+    }
+  ],
+  "spell_class_lists": {
+    "artificer": {
+      "spells_by_level": {
+        "3": [
+          "Catnap"
+        ],
+        "4": [
+          "Distorted Distance"
+        ],
+        "2": [
+          "Dueling Ground",
+          "Uncertain Footing"
+        ],
+        "5": [
+          "Spirit Lantern"
+        ]
+      }
+    },
+    "bard": {
+      "spells_by_level": {
+        "3": [
+          "Catnap",
+          "Inflict Doubt"
+        ],
+        "2": [
+          "Disruptive Tune",
+          "Dueling Ground",
+          "Uncertain Footing"
+        ],
+        "4": [
+          "Distorted Distance",
+          "Zone of Amicability"
+        ],
+        "8": [
+          "Entrancing Mirrors"
+        ],
+        "7": [
+          "Fractured Awareness",
+          "Power Word Pain",
+          "Reweave Fate",
+          "Transfix"
+        ],
+        "9": [
+          "Vision of Elapsing Eons"
+        ]
+      }
+    },
+    "cleric": {
+      "spells_by_level": {
+        "2": [
+          "Dueling Ground"
+        ],
+        "5": [
+          "Grave Ground",
+          "Spirit Lantern"
+        ],
+        "7": [
+          "Reweave Fate"
+        ]
+      }
+    },
+    "druid": {
+      "spells_by_level": {
+        "2": [
+          "Battle Familiar",
+          "Dueling Ground",
+          "Wither and Bloom"
+        ],
+        "4": [
+          "Festering Blast"
+        ],
+        "8": [
+          "Lightning Ring"
+        ],
+        "6": [
+          "Summon Dinosaur"
+        ],
+        "5": [
+          "Summon Plant"
+        ]
+      }
+    },
+    "paladin": {
+      "spells_by_level": {
+        "2": [
+          "Dueling Ground"
+        ]
+      }
+    },
+    "ranger": {
+      "spells_by_level": {
+        "2": [
+          "Dueling Ground"
+        ],
+        "5": [
+          "Summon Plant"
+        ]
+      }
+    },
+    "sorcerer": {
+      "spells_by_level": {
+        "7": [
+          "Aura of Evasion",
+          "Fractured Awareness",
+          "Power Word Pain"
+        ],
+        "3": [
+          "Catnap",
+          "Inflict Doubt"
+        ],
+        "9": [
+          "Detonate",
+          "Vision of Elapsing Eons",
+          "Wail of the Banshee"
+        ],
+        "2": [
+          "Disruptive Tune",
+          "Dueling Ground",
+          "Wither and Bloom"
+        ],
+        "5": [
+          "Enervation",
+          "Waves of Exhaustion"
+        ],
+        "8": [
+          "Entrancing Mirrors",
+          "Iron Body",
+          "Lightning Ring"
+        ],
+        "4": [
+          "Festering Blast"
+        ]
+      }
+    },
+    "warlock": {
+      "spells_by_level": {
+        "7": [
+          "Aura of Evasion",
+          "Fractured Awareness",
+          "Power Word Pain",
+          "Reweave Fate",
+          "Transfix"
+        ],
+        "2": [
+          "Battle Familiar",
+          "Dueling Ground",
+          "Uncertain Footing"
+        ],
+        "9": [
+          "Detonate",
+          "Vision of Elapsing Eons",
+          "Wail of the Banshee"
+        ],
+        "4": [
+          "Distorted Distance",
+          "Festering Blast",
+          "Zone of Amicability"
+        ],
+        "5": [
+          "Enervation",
+          "Grave Ground",
+          "Negative Energy Flood",
+          "Spirit Lantern",
+          "Waves of Exhaustion"
+        ],
+        "8": [
+          "Entrancing Mirrors",
+          "Iron Body",
+          "Lightning Ring"
+        ],
+        "3": [
+          "Inflict Doubt"
+        ]
+      }
+    },
+    "wizard": {
+      "spells_by_level": {
+        "7": [
+          "Aura of Evasion",
+          "Fractured Awareness",
+          "Power Word Pain",
+          "Reweave Fate",
+          "Transfix"
+        ],
+        "2": [
+          "Battle Familiar",
+          "Disruptive Tune",
+          "Dueling Ground",
+          "Uncertain Footing",
+          "Wither and Bloom"
+        ],
+        "3": [
+          "Catnap",
+          "Inflict Doubt"
+        ],
+        "9": [
+          "Detonate",
+          "Hindsight",
+          "Invulnerability",
+          "Vision of Elapsing Eons",
+          "Wail of the Banshee"
+        ],
+        "4": [
+          "Distorted Distance",
+          "Festering Blast"
+        ],
+        "5": [
+          "Enervation",
+          "Grave Ground",
+          "Mordenkainen's Lucubration",
+          "Negative Energy Flood",
+          "Spirit Lantern",
+          "Waves of Exhaustion"
+        ],
+        "8": [
+          "Entrancing Mirrors",
+          "Illusory Dragon",
+          "Iron Body",
+          "Lightning Ring",
+          "Moment of Prescience"
+        ]
+      }
+    }
+  }
+}

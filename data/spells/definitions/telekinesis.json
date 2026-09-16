@@ -1,0 +1,18 @@
+{
+  "name": "Telekinesis",
+  "level": 5,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 10 minutes",
+  "description": "You gain the ability to move or manipulate creatures or objects by thought. When you cast the spell, and as a Magic action on your subsequent turns during the spell's duration, you can exert your will on one creature or object that you can see within range, causing the appropriate effect below. You can affect the same target round after round, or choose a new one at any time. Creature: you can try to move a Huge or smaller creature. Make an ability check with your spellcasting ability contested by the creature's Strength check. If you win, you move the creature up to 30 feet in any direction. Object: you can try to move an object that weighs up to 1,000 pounds. You can move the object up to 30 feet in any direction but not beyond range.",
+  "classes": [
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

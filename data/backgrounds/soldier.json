@@ -1,0 +1,55 @@
+{
+  "name": "Soldier",
+  "description": "War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield. You might have been part of a standing national army or a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.",
+  "edition": "2024",
+  "status": "active",
+  "ability_score_increase": {
+    "total": 3,
+    "options": [
+      "Constitution",
+      "Strength",
+      "Dexterity"
+    ],
+    "suggested": {
+      "Constitution": 1,
+      "Strength": 2
+    }
+  },
+  "effects": [
+    {
+      "type": "grant_skill_proficiency",
+      "skills": [
+        "Athletics",
+        "Intimidation"
+      ]
+    },
+    {
+      "type": "grant_origin_feat",
+      "feat": "Savage Attacker"
+    },
+    {
+      "type": "grant_tool_proficiency",
+      "tools": [
+        "Gaming Set",
+        "Vehicles (Land)"
+      ]
+    }
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Spear",
+        "Shortbow",
+        "20 Arrows",
+        "Quiver",
+        "Gaming Set",
+        "Healer's Kit (10 uses)",
+        "Traveler's Clothes"
+      ],
+      "gold": 14
+    },
+    "option_b": {
+      "gold": 50
+    }
+  }
+}

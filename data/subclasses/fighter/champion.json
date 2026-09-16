@@ -1,0 +1,37 @@
+{
+  "name": "Champion",
+  "class": "Fighter",
+  "description": "A Champion focuses on the development of martial prowess in a relentless pursuit of victory.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Improved Critical": "Your attack rolls with weapons and Unarmed Strikes can score a Critical Hit on a roll of 19 or 20 on the d20.",
+      "Remarkable Athlete": "Thanks to your athleticism, you have Advantage on Initiative rolls and Strength (Athletics) checks. In addition, immediately after you score a Critical Hit, you can move up to half your Speed without provoking Opportunity Attacks."
+    },
+    "7": {
+      "Additional Fighting Style": {
+        "description": "You gain another Fighting Style feat of your choice.",
+        "choices": {
+          "type": "select_single",
+          "count": 1,
+          "name": "additional_fighting_style",
+          "source": {
+            "type": "external",
+            "file": "fighting_styles.json",
+            "list": "fighting_styles"
+          },
+          "optional": false
+        }
+      }
+    },
+    "10": {
+      "Heroic Warrior": "The thrill of battle drives you toward victory. During combat, you can give yourself Heroic Inspiration whenever you start your turn without it."
+    },
+    "15": {
+      "Superior Critical": "Your attack rolls with weapons and Unarmed Strikes can now score a Critical Hit on a roll of 18-20 on the d20."
+    },
+    "18": {
+      "Survivor": "You attain the pinnacle of resilience in battle, giving you these benefits.\n\n**Defy Death.** You have Advantage on Death Saving Throws. Moreover, when you roll 18-20 on a Death Saving Throw, you gain the benefit of rolling a 20 on it.\n\n**Heroic Rally.** At the start of each of your turns, you regain Hit Points equal to 5 plus your Constitution modifier if you are Bloodied and have at least 1 Hit Point."
+    }
+  }
+}

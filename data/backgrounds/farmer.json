@@ -1,0 +1,53 @@
+{
+  "name": "Farmer",
+  "description": "You grew up close to the land. Years tending animals and cultivating the earth rewarded you with patience and good health. You have a keen appreciation for nature's bounty alongside a healthy respect for nature's wrath.",
+  "edition": "2024",
+  "status": "active",
+  "ability_score_increase": {
+    "total": 3,
+    "options": [
+      "Strength",
+      "Constitution",
+      "Wisdom"
+    ],
+    "suggested": {
+      "Strength": 1,
+      "Constitution": 2
+    }
+  },
+  "effects": [
+    {
+      "type": "grant_skill_proficiency",
+      "skills": [
+        "Animal Handling",
+        "Nature"
+      ]
+    },
+    {
+      "type": "grant_origin_feat",
+      "feat": "Tough"
+    },
+    {
+      "type": "grant_tool_proficiency",
+      "tools": [
+        "Carpenter's Tools"
+      ]
+    }
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Sickle",
+        "Carpenter's Tools",
+        "Healer's Kit",
+        "Iron Pot",
+        "Shovel",
+        "Traveler's Clothes"
+      ],
+      "gold": 30
+    },
+    "option_b": {
+      "gold": 50
+    }
+  }
+}

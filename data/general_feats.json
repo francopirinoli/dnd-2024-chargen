@@ -1,0 +1,1422 @@
+{
+  "general_feats": {
+    "Ability Score Improvement": {
+      "description": "Increase one ability score of your choice by 2, or increase two ability scores of your choice by 1 each. As normal, you can't increase an ability score above 20 using this feat.",
+      "benefits": [],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose how to improve your ability scores.",
+          "name": "asi_option",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "+2 to one ability",
+              "+1 to two abilities"
+            ]
+          }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase by 2.",
+          "name": "ability_plus_2",
+          "depends_on": "asi_option",
+          "depends_on_value": "+2 to one ability",
+          "source": {
+            "type": "fixed_list",
+            "options": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+          },
+          "optional": true
+        },
+        {
+          "type": "select_multiple",
+          "description": "Choose two ability scores to each increase by 1.",
+          "count": 2,
+          "name": "abilities_plus_1",
+          "depends_on": "asi_option",
+          "depends_on_value": "+1 to two abilities",
+          "source": {
+            "type": "fixed_list",
+            "options": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+          },
+          "optional": true
+        }
+      ],
+      "choice_effects": {
+        "ability_plus_2": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 2}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 2}],
+          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 2}],
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 2}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 2}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 2}]
+        },
+        "abilities_plus_1": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}],
+          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}],
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+        }
+      }
+    },
+    "Actor": {
+      "description": "Skilled at mimicry and dramatics, you gain the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Charisma score by 1, to a maximum of 20.",
+        "Impersonation: While you're disguised as a fictional person or a real person other than yourself, you have Advantage on Charisma (Deception) and Charisma (Performance) checks to convince others that you are that person.",
+        "Mimicry: You can mimic the sounds of other creatures, including speech. To mimic a sound or a creature's speech, you must have heard it for at least 1 minute. A successful Wisdom (Insight) check contested by your Charisma (Deception) check allows a listener to determine that the mimicry is faked; use the Deception bonus from your character sheet for this."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Charisma 13+",
+      "source": "Player's Handbook 2024",
+      "effects": [
+        {"type": "ability_bonus", "ability": "Charisma", "value": 1}
+      ]
+    },
+    "Athlete": {
+      "description": "You have undergone extensive physical training, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Climb Speed: You gain a Climb Speed equal to your Speed.",
+        "Hop Up: When you are Prone, you can right yourself with only 5 feet of movement.",
+        "Jumping: You can make a running Long Jump or a running High Jump after moving only 5 feet."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Strength or Dexterity 13+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    },
+    "Charger": {
+      "description": "You have trained to charge headlong into battle, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Improved Dash: When you take the Dash action, your Speed increases by 10 feet for that action.",
+        "Charge Attack: If you move at least 10 feet in a straight line toward a target immediately before hitting it with a melee attack as part of the Attack action, the target takes an extra 1d8 damage from the attack or is pushed up to 10 feet directly away from you (your choice). You can use this benefit only once on each of your turns."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Strength or Dexterity 13+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    },
+    "Chef": {
+      "description": "Time spent mastering the culinary arts has paid off, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Constitution or Wisdom score by 1, to a maximum of 20.",
+        "Cook's Utensils: You gain proficiency with Cook's Utensils if you don't already have it.",
+        "Replenishing Meal: As part of a Short Rest, you can cook special food, provided you have ingredients and Cook's Utensils on hand. You can prepare enough of this food for a number of creatures equal to 4 + your Proficiency Bonus. At the end of the Short Rest, any creature who eats the food and spends one or more Hit Dice to regain Hit Points regains an extra 1d8 Hit Points.",
+        "Bolstering Treats: With 1 hour of work or at the end of a Long Rest, you can cook a number of treats equal to your Proficiency Bonus. These special treats last 8 hours after being made. A creature can use a Bonus Action to eat one of those treats to gain Temporary Hit Points equal to your Proficiency Bonus."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Constitution",
+              "Wisdom"
+            ]
+          }
+        }
+      ],
+      "effects": [
+        {"type": "grant_tool_proficiency", "tools": ["Cook's Utensils"]}
+      ],
+      "choice_effects": {
+        "ability": {
+          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}]
+        }
+      }
+    },
+    "Crossbow Expert": {
+      "description": "Thanks to extensive practice with crossbows, you gain the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Dexterity score by 1, to a maximum of 20.",
+        "Ignore Loading: You ignore the Loading property of crossbows.",
+        "Firing in Melee: Being within 5 feet of an enemy doesn't impose Disadvantage on your attack rolls with crossbows.",
+        "Dual Wielding: When you make the extra attack of the Light property with a Light crossbow, you can add your ability modifier to the damage of that attack."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Dexterity 13+",
+      "source": "Player's Handbook 2024",
+      "effects": [
+        {"type": "ability_bonus", "ability": "Dexterity", "value": 1}
+      ]
+    },
+    "Crusher": {
+      "description": "You are practiced in the art of crushing your enemies, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Constitution score by 1, to a maximum of 20.",
+        "Push: Once per turn, when you hit a creature with an attack that deals Bludgeoning damage, you can move it 5 feet to an unoccupied space, provided the target is no more than one size larger than you.",
+        "Enhanced Critical: When you score a Critical Hit that deals Bludgeoning damage to a creature, attack rolls against that creature have Advantage until the start of your next turn."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Constitution"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}]
+        }
+      }
+    },
+    "Defensive Duelist": {
+      "description": "You've learned to deftly parry attacks while wielding a Finesse weapon, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Dexterity score by 1, to a maximum of 20.",
+        "Parry: When you are holding a Finesse weapon and another creature hits you with a melee attack, you can use your Reaction to add your Proficiency Bonus to your Armor Class, potentially causing the attack to miss you. You gain this bonus to AC against melee attacks until the start of your next turn."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Dexterity 13+",
+      "source": "Player's Handbook 2024",
+      "effects": [
+        {"type": "ability_bonus", "ability": "Dexterity", "value": 1}
+      ]
+    },
+    "Dual Wielder": {
+      "description": "You master fighting with two weapons, gaining the following benefits:",
+      "benefits": [
+        "Enhanced Defense: While you are holding a separate weapon in each hand, you gain a +1 bonus to Armor Class.",
+        "Quick Draw: You can draw or stow two weapons that lack the Two-Handed property when you would normally be able to draw or stow only one.",
+        "Two-Weapon Fighting: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Strength or Dexterity 13+",
+      "source": "Player's Handbook 2024",
+      "effects": [
+        {
+          "type": "bonus_ac",
+          "value": 1,
+          "condition": "wielding two weapons"
+        }
+      ]
+    },
+    "Durable": {
+      "description": "Hardy and resilient, you gain the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Constitution score by 1, to a maximum of 20.",
+        "Defy Death: You have Advantage on Death Saving Throws.",
+        "Speedy Recovery: As a Bonus Action, you can expend one of your Hit Point Dice, roll the die, and regain a number of Hit Points equal to the roll."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "effects": [
+        {"type": "ability_bonus", "ability": "Constitution", "value": 1}
+      ]
+    },
+    "Elemental Adept": {
+      "description": "You have studied a damage type's secrets, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+        "Energy Mastery: Choose one of the following damage types: Acid, Cold, Fire, Lightning, or Thunder. Spells you cast that deal damage of that type ignore Resistance to that damage type. In addition, when you roll damage for a spell you cast that deals damage of that type, you can treat any 1 on a damage die as a 2."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Spellcasting or Pact Magic feature",
+      "source": "Player's Handbook 2024",
+      "repeatable": true,
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose one damage type. Spells you cast that deal this damage type ignore Resistance, and you can treat any 1 on a damage die as a 2.",
+          "name": "damage_type",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Acid",
+              "Cold",
+              "Fire",
+              "Lightning",
+              "Thunder"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+        }
+      }
+    },
+    "Fey Touched": {
+      "description": "Your exposure to the Feywild's magic has changed you, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+        "Fey Magic: You learn the Misty Step spell and one 1st-level spell of your choice. The 1st-level spell must be from the Divination or Enchantment school of magic. You always have these spells prepared. You can cast each of these spells without expending a spell slot once per Long Rest. You can also cast these spells using spell slots you have of the appropriate level."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose one 1st-level spell from the Divination or Enchantment school of magic. You always have it prepared and can cast it once per Long Rest without a spell slot.",
+          "name": "fey_touched_spell",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Animal Friendship",
+              "Bane",
+              "Bless",
+              "Charm Person",
+              "Command",
+              "Comprehend Languages",
+              "Detect Evil and Good",
+              "Detect Magic",
+              "Detect Poison and Disease",
+              "Heroism",
+              "Hunter's Mark",
+              "Identify",
+              "Sleep",
+              "Speak with Animals",
+              "Tasha's Hideous Laughter"
+            ]
+          },
+          "restrictions": ["Divination", "Enchantment"]
+        }
+      ],
+      "effects": [
+        {
+          "type": "grant_spell",
+          "spell": "Misty Step",
+          "level": 2
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+        }
+      }
+    },
+    "Grappler": {
+      "description": "You're an accomplished wrestler, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Punch and Grab: When you hit a creature with an Unarmed Strike as part of the Attack action on your turn, you can deal damage to the target and also grapple it. You can use this benefit only once per turn.",
+        "Attack Advantage: You have Advantage on attack rolls against a creature Grappled by you.",
+        "Fast Wrestler: You don't need to spend extra movement to move a creature Grappled by you if the creature is your size or smaller."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Strength or Dexterity 13+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    },
+    "Great Weapon Master": {
+      "description": "You've learned to use the weight and momentum of a weapon to your advantage. You gain the following benefits:",
+      "benefits": [
+        "Heavy Weapon Mastery: When you hit a creature with a weapon that has the Heavy property as part of the Attack action on your turn, you can cause the weapon to deal extra damage to the target. The extra damage equals your Proficiency Bonus.",
+        "Bonus Attack: If you reduce a creature to 0 hit points with an attack using a Heavy weapon, you can make one attack with the same weapon as a Bonus Action."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Strength 13+",
+      "source": "Player's Handbook 2024"
+    },
+    "Heavily Armored": {
+      "description": "You have trained to master the use of heavy armor, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Constitution or Strength score by 1, to a maximum of 20.",
+        "Armor Training: You gain proficiency with Heavy armor."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Medium Armor Training",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Constitution",
+              "Strength"
+            ]
+          }
+        }
+      ],
+      "effects": [
+        {
+          "type": "grant_armor_proficiency",
+          "proficiencies": ["Heavy armor"]
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}],
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}]
+        }
+      }
+    },
+    "Heavy Armor Master": {
+      "description": "You can use your armor to deflect strikes that would kill others, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Constitution or Strength score by 1, to a maximum of 20.",
+        "Damage Reduction: When you're wearing Heavy armor, Bludgeoning, Piercing, and Slashing damage that you take from nonmagical attacks is reduced by an amount equal to your Proficiency Bonus."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Heavy Armor Training",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Constitution",
+              "Strength"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}],
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}]
+        }
+      }
+    },
+    "Inspiring Leader": {
+      "description": "You can spend 10 minutes inspiring your companions, shoring up their resolve to fight. You gain the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Wisdom or Charisma score by 1, to a maximum of 20.",
+        "Bolstering Performance: At the end of a Short or Long Rest, you can give an inspiring performance. When you do so, choose up to 6 allies (which can include yourself) within 30 feet of you who witness the performance. The chosen creatures each gain Temporary Hit Points equal to your level + the modifier of the ability score increased by this feat."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Wisdom or Charisma 13+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+        }
+      }
+    },
+    "Keen Mind": {
+      "description": "You have a mind that can track time, direction, and detail with uncanny precision. You gain the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence score by 1, to a maximum of 20.",
+        "Lore Knowledge: Choose one of the following skills: Arcana, History, Investigation, Nature, or Religion. If you lack proficiency in the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain Expertise in it.",
+        "Quick Study: You can take the Study action as a Bonus Action."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Intelligence 13+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "lore_skill",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Arcana",
+              "History",
+              "Investigation",
+              "Nature",
+              "Religion"
+            ]
+          }
+        }
+      ],
+      "effects": [
+        {"type": "ability_bonus", "ability": "Intelligence", "value": 1}
+      ]
+    },
+    "Lightly Armored": {
+      "description": "You have trained to master the use of light armor, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Armor Training: You gain proficiency with Light armor and Shields."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "effects": [
+        {
+          "type": "grant_armor_proficiency",
+          "proficiencies": ["Light armor", "Shields"]
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    },
+    "Lucky": {
+      "description": "You have inexplicable luck that can kick in at just the right moment. You have a number of Luck Points equal to your Proficiency Bonus. You can spend the points on the following benefits:",
+      "benefits": [
+        "Advantage: Immediately after you roll a d20 for a d20 Test, you can spend 1 Luck Point to give yourself Advantage on the roll.",
+        "Disadvantage on Foe: When a creature you can see makes an attack roll against you, you can spend 1 Luck Point to impose Disadvantage on that roll.",
+        "You regain all expended Luck Points when you finish a Long Rest."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024"
+    },
+    "Mage Slayer": {
+      "description": "You have practiced techniques useful in melee combat against spellcasters, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Concentration Breaker: When you damage a creature that is concentrating on a spell, that creature has Disadvantage on the saving throw it makes to maintain Concentration.",
+        "Guarded Mind: If you fail an Intelligence, a Wisdom, or a Charisma saving throw, you can cause yourself to succeed instead. Once you use this benefit, you can't use it again until you finish a Short or Long Rest."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    },
+    "Martial Weapon Training": {
+      "description": "You have practiced extensively with a variety of weapons, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Weapon Proficiency: You gain proficiency with Martial weapons."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "effects": [
+        {
+          "type": "grant_weapon_proficiency",
+          "proficiencies": ["Martial weapons"]
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    },
+    "Medium Armor Master": {
+      "description": "You have practiced moving in medium armor, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Dexterous Wearer: While you are wearing Medium armor, you can add 3, rather than 2, to your AC if you have a Dexterity of 16 or higher."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Medium Armor Training",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    },
+    "Moderately Armored": {
+      "description": "You have trained to master the use of medium armor, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Armor Training: You gain proficiency with Medium armor."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Light Armor Training",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "effects": [
+        {
+          "type": "grant_armor_proficiency",
+          "proficiencies": ["Medium armor"]
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    },
+    "Mounted Combatant": {
+      "description": "You are a dangerous foe to face while mounted, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength, Dexterity, or Wisdom score by 1, to a maximum of 20.",
+        "Mounted Strike: While mounted, you have Advantage on attack rolls against any unmounted creature within 5 feet of your mount that is at least one size smaller than the mount.",
+        "Leap Aside: If your mount is subjected to an effect that allows it to make a Dexterity saving throw to take only half damage, it instead takes no damage if it succeeds on the saving throw, and only half damage if it fails.",
+        "Veer: While mounted, you can force an attack targeted at your mount to target you instead."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Wisdom"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}]
+        }
+      }
+    },
+    "Observant": {
+      "description": "Quick to notice details of your environment, you gain the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence or Wisdom score by 1, to a maximum of 20.",
+        "Keen Observer: Choose one of the following skills: Insight, Investigation, or Perception. If you lack proficiency in the chosen skill, you gain proficiency in it, and if you already have proficiency in it, you gain Expertise in it.",
+        "Quick Search: You can take the Search action as a Bonus Action."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Intelligence or Wisdom 13+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Increase your Intelligence or Wisdom score by 1, to a maximum of 20.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom"
+            ]
+          }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose one of these skills. You gain proficiency in it if you lack it, or Expertise if you already have proficiency.",
+          "name": "keen_observer_skill",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Insight",
+              "Investigation",
+              "Perception"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}]
+        },
+        "keen_observer_skill": {
+          "Insight": [{"type": "grant_skill_proficiency_or_expertise", "skills": ["Insight"]}],
+          "Investigation": [{"type": "grant_skill_proficiency_or_expertise", "skills": ["Investigation"]}],
+          "Perception": [{"type": "grant_skill_proficiency_or_expertise", "skills": ["Perception"]}]
+        }
+      }
+    },
+    "Piercer": {
+      "description": "You have achieved a penetrating precision in combat, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Puncture: Once per turn, when you hit a creature with an attack that deals Piercing damage, you can reroll one of the attack's Piercing damage dice, and you must use the new roll.",
+        "Enhanced Critical: When you score a Critical Hit that deals Piercing damage to a creature, you can roll one additional Piercing damage die when determining the extra Piercing damage the target takes."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    },
+    "Poisoner": {
+      "description": "You can prepare and deliver deadly poisons, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Dexterity or Intelligence score by 1, to a maximum of 20.",
+        "Potent Poison: When you deal Poison damage, it ignores Resistance to Poison damage.",
+        "Brew Poison: You gain proficiency with the Poisoner's Kit if you don't already have it. With 1 hour of work using a Poisoner's Kit and expending 50 GP worth of materials, you can create a number of doses of potent poison equal to your Proficiency Bonus. As a Bonus Action, you can apply a dose of this poison to a weapon or piece of ammunition. Once applied, the poison retains its potency for 1 minute or until you hit with the weapon or ammunition."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Dexterity",
+              "Intelligence"
+            ]
+          }
+        }
+      ],
+      "effects": [
+        {"type": "grant_tool_proficiency", "tools": ["Poisoner's Kit"]}
+      ],
+      "choice_effects": {
+        "ability": {
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}],
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}]
+        }
+      }
+    },
+    "Polearm Master": {
+      "description": "You've trained extensively with pole weapons. You gain the following benefits:",
+      "benefits": [
+        "Bonus Attack: When you take the Attack action on your turn and attack with a weapon that has the Heavy and Reach properties, you can use a Bonus Action to make a melee attack with the opposite end of the weapon. This attack uses the same ability modifier as the main attack. The weapon's damage die for this attack is a d4, and it deals Bludgeoning damage.",
+        "Reactive Strike: While you are holding a weapon with the Heavy and Reach properties, you can use your Reaction to make one melee attack against a creature that enters the reach you have with that weapon."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Strength or Dexterity 13+",
+      "source": "Player's Handbook 2024"
+    },
+    "Resilient": {
+      "description": "Choose one ability score. You gain the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase the chosen ability score by 1, to a maximum of 20.",
+        "Saving Throw Proficiency: You gain Proficiency in saving throws using the chosen ability."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {"type": "ability_bonus", "ability": "Strength", "value": 1},
+            {"type": "grant_save_proficiency", "abilities": ["Strength"]}
+          ],
+          "Dexterity": [
+            {"type": "ability_bonus", "ability": "Dexterity", "value": 1},
+            {"type": "grant_save_proficiency", "abilities": ["Dexterity"]}
+          ],
+          "Constitution": [
+            {"type": "ability_bonus", "ability": "Constitution", "value": 1},
+            {"type": "grant_save_proficiency", "abilities": ["Constitution"]}
+          ],
+          "Intelligence": [
+            {"type": "ability_bonus", "ability": "Intelligence", "value": 1},
+            {"type": "grant_save_proficiency", "abilities": ["Intelligence"]}
+          ],
+          "Wisdom": [
+            {"type": "ability_bonus", "ability": "Wisdom", "value": 1},
+            {"type": "grant_save_proficiency", "abilities": ["Wisdom"]}
+          ],
+          "Charisma": [
+            {"type": "ability_bonus", "ability": "Charisma", "value": 1},
+            {"type": "grant_save_proficiency", "abilities": ["Charisma"]}
+          ]
+        }
+      }
+    },
+    "Ritual Caster": {
+      "description": "You have learned a number of spells that you can cast as Rituals. You gain the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+        "Ritual Spells: You can choose a number of 1st-level spells equal to your Proficiency Bonus that have the Ritual tag. You always have those spells prepared, and you can cast each of them as a Ritual. Whenever your Proficiency Bonus increases thereafter, you can add an additional 1st-level spell with the Ritual tag to the spells always prepared with this feature.",
+        "Quick Ritual: With this benefit, you can cast any spell as a Ritual if that spell has the Ritual tag and the spell is prepared. Once you cast the spell in this way with its normal casting time rather than the extended Ritual casting time, you can't use this benefit again until you finish a Long Rest."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Intelligence, Wisdom, or Charisma 13+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+        }
+      }
+    },
+    "Sentinel": {
+      "description": "You've mastered techniques to take advantage of every drop in any enemy's guard. You gain the following benefits:",
+      "benefits": [
+        "Guardian: When you hit a creature with an Opportunity Attack, the creature's Speed becomes 0 for the rest of the turn.",
+        "Halt: Creatures provoke Opportunity Attacks from you even if they take the Disengage action before leaving your reach.",
+        "Reprisal: When a creature within 5 feet of you hits a target other than you with an attack, you can use your Reaction to make a melee weapon attack against the attacking creature."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Strength or Dexterity 13+",
+      "source": "Player's Handbook 2024"
+    },
+    "Shadow Touched": {
+      "description": "Your exposure to the Shadowfell's magic has changed you, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+        "Shadow Magic: You learn the Invisibility spell and one 1st-level spell of your choice. The 1st-level spell must be from the Illusion or Necromancy school of magic. You always have these spells prepared. You can cast each of these spells without expending a spell slot once per Long Rest. You can also cast these spells using spell slots you have of the appropriate level."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose one 1st-level spell from the Illusion or Necromancy school of magic. You always have it prepared and can cast it once per Long Rest without a spell slot.",
+          "name": "shadow_touched_spell",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Cause Fear",
+              "Color Spray",
+              "Disguise Self",
+              "False Life",
+              "Inflict Wounds",
+              "Ray of Sickness",
+              "Silent Image"
+            ]
+          },
+          "restrictions": ["Illusion", "Necromancy"]
+        }
+      ],
+      "effects": [
+        {
+          "type": "grant_spell",
+          "spell": "Invisibility",
+          "level": 2
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+        }
+      }
+    },
+    "Sharpshooter": {
+      "description": "You've mastered ranged weapons and can make shots that others find impossible. You gain the following benefits:",
+      "benefits": [
+        "Steady Aim: As a Bonus Action, you can take careful aim, giving yourself Advantage on your next attack roll with a ranged weapon. You can't use this feature if you've moved this turn, and using it reduces your Speed to 0 until the end of the current turn.",
+        "Ignore Cover: Your ranged weapon attacks ignore Half Cover and Three-Quarters Cover.",
+        "Long Shots: Attacking at long range doesn't impose Disadvantage on your ranged weapon attack rolls."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Dexterity 13+",
+      "source": "Player's Handbook 2024"
+    },
+    "Shield Master": {
+      "description": "You use shields not just for protection but also for offense, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength score by 1, to a maximum of 20.",
+        "Shield Bash: If you attack a creature within 5 feet of you as part of the Attack action and hit with a melee weapon, you can immediately force the target to make a Strength saving throw (DC 8 + your Strength modifier + your Proficiency Bonus). On a failed save, you either push the target 5 feet away or cause it to have the Prone condition (your choice). You can use this benefit only once on each of your turns.",
+        "Interpose Shield: If you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you can use your Reaction to take no damage if you succeed on the saving throw."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Shield Training",
+      "source": "Player's Handbook 2024",
+      "effects": [
+        {"type": "ability_bonus", "ability": "Strength", "value": 1}
+      ]
+    },
+    "Skill Expert": {
+      "description": "You have honed your proficiency with particular skills, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 20.",
+        "Skill Proficiency: You gain proficiency in one skill of your choice.",
+        "Expertise: Choose one skill in which you have proficiency. You gain Expertise in that skill."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Increase one ability score of your choice by 1, to a maximum of 20.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        },
+        {
+          "type": "select_single",
+          "description": "You gain proficiency in one skill of your choice.",
+          "name": "skill_proficiency",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Acrobatics",
+              "Animal Handling",
+              "Arcana",
+              "Athletics",
+              "Deception",
+              "History",
+              "Insight",
+              "Intimidation",
+              "Investigation",
+              "Medicine",
+              "Nature",
+              "Perception",
+              "Performance",
+              "Persuasion",
+              "Religion",
+              "Sleight of Hand",
+              "Stealth",
+              "Survival"
+            ]
+          }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose one skill in which you have proficiency. You gain Expertise in that skill.",
+          "name": "skill_expertise",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Acrobatics",
+              "Animal Handling",
+              "Arcana",
+              "Athletics",
+              "Deception",
+              "History",
+              "Insight",
+              "Intimidation",
+              "Investigation",
+              "Medicine",
+              "Nature",
+              "Perception",
+              "Performance",
+              "Persuasion",
+              "Religion",
+              "Sleight of Hand",
+              "Stealth",
+              "Survival"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}],
+          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}],
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+        },
+        "skill_proficiency": {
+          "Acrobatics": [{"type": "grant_skill_proficiency", "skills": ["Acrobatics"]}],
+          "Animal Handling": [{"type": "grant_skill_proficiency", "skills": ["Animal Handling"]}],
+          "Arcana": [{"type": "grant_skill_proficiency", "skills": ["Arcana"]}],
+          "Athletics": [{"type": "grant_skill_proficiency", "skills": ["Athletics"]}],
+          "Deception": [{"type": "grant_skill_proficiency", "skills": ["Deception"]}],
+          "History": [{"type": "grant_skill_proficiency", "skills": ["History"]}],
+          "Insight": [{"type": "grant_skill_proficiency", "skills": ["Insight"]}],
+          "Intimidation": [{"type": "grant_skill_proficiency", "skills": ["Intimidation"]}],
+          "Investigation": [{"type": "grant_skill_proficiency", "skills": ["Investigation"]}],
+          "Medicine": [{"type": "grant_skill_proficiency", "skills": ["Medicine"]}],
+          "Nature": [{"type": "grant_skill_proficiency", "skills": ["Nature"]}],
+          "Perception": [{"type": "grant_skill_proficiency", "skills": ["Perception"]}],
+          "Performance": [{"type": "grant_skill_proficiency", "skills": ["Performance"]}],
+          "Persuasion": [{"type": "grant_skill_proficiency", "skills": ["Persuasion"]}],
+          "Religion": [{"type": "grant_skill_proficiency", "skills": ["Religion"]}],
+          "Sleight of Hand": [{"type": "grant_skill_proficiency", "skills": ["Sleight of Hand"]}],
+          "Stealth": [{"type": "grant_skill_proficiency", "skills": ["Stealth"]}],
+          "Survival": [{"type": "grant_skill_proficiency", "skills": ["Survival"]}]
+        },
+        "skill_expertise": {
+          "Acrobatics": [{"type": "grant_skill_expertise", "skills": ["Acrobatics"]}],
+          "Animal Handling": [{"type": "grant_skill_expertise", "skills": ["Animal Handling"]}],
+          "Arcana": [{"type": "grant_skill_expertise", "skills": ["Arcana"]}],
+          "Athletics": [{"type": "grant_skill_expertise", "skills": ["Athletics"]}],
+          "Deception": [{"type": "grant_skill_expertise", "skills": ["Deception"]}],
+          "History": [{"type": "grant_skill_expertise", "skills": ["History"]}],
+          "Insight": [{"type": "grant_skill_expertise", "skills": ["Insight"]}],
+          "Intimidation": [{"type": "grant_skill_expertise", "skills": ["Intimidation"]}],
+          "Investigation": [{"type": "grant_skill_expertise", "skills": ["Investigation"]}],
+          "Medicine": [{"type": "grant_skill_expertise", "skills": ["Medicine"]}],
+          "Nature": [{"type": "grant_skill_expertise", "skills": ["Nature"]}],
+          "Perception": [{"type": "grant_skill_expertise", "skills": ["Perception"]}],
+          "Performance": [{"type": "grant_skill_expertise", "skills": ["Performance"]}],
+          "Persuasion": [{"type": "grant_skill_expertise", "skills": ["Persuasion"]}],
+          "Religion": [{"type": "grant_skill_expertise", "skills": ["Religion"]}],
+          "Sleight of Hand": [{"type": "grant_skill_expertise", "skills": ["Sleight of Hand"]}],
+          "Stealth": [{"type": "grant_skill_expertise", "skills": ["Stealth"]}],
+          "Survival": [{"type": "grant_skill_expertise", "skills": ["Survival"]}]
+        }
+      }
+    },
+    "Skulker": {
+      "description": "You are expert at slinking through shadows, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Dexterity score by 1, to a maximum of 20.",
+        "Blindsight: You have Blindsight with a range of 10 feet.",
+        "Fog of War: You exploit the distractions of battle, giving you Advantage on any Dexterity (Stealth) check you make as part of the Hide action during combat.",
+        "Sniper: If you make an attack roll while Hidden and the roll misses, making the roll doesn't reveal your location."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Dexterity 13+",
+      "source": "Player's Handbook 2024",
+      "effects": [
+        {"type": "ability_bonus", "ability": "Dexterity", "value": 1}
+      ]
+    },
+    "Slasher": {
+      "description": "You've learned where to cut to have the greatest results, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Hamstring: Once per turn, when you hit a creature with an attack that deals Slashing damage, you can reduce the Speed of that creature by 10 feet until the start of your next turn.",
+        "Enhanced Critical: When you score a Critical Hit that deals Slashing damage to a creature, the target has Disadvantage on attack rolls until the start of your next turn."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    },
+    "Speedy": {
+      "description": "You are uncommonly swift, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Dexterity or Constitution score by 1, to a maximum of 20.",
+        "Speed Increase: Your Speed increases by 10 feet.",
+        "Dash over Difficult Terrain: When you take the Dash action on your turn, Difficult Terrain doesn't cost you extra movement for the rest of that turn.",
+        "Agile Movement: Opportunity Attacks have Disadvantage against you."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Dexterity or Constitution 13+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Dexterity",
+              "Constitution"
+            ]
+          }
+        }
+      ],
+      "effects": [
+        {
+          "type": "increase_speed",
+          "value": 10
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}],
+          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}]
+        }
+      }
+    },
+    "Spell Sniper": {
+      "description": "You have learned techniques to enhance your attacks with certain kinds of spells, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+        "Bypass Cover: Your spell attacks ignore Half Cover and Three-Quarters Cover.",
+        "Casting in Melee: Being within 5 feet of an enemy doesn't impose Disadvantage on your attack rolls with spells.",
+        "Increased Range: When you cast a spell that has a range of at least 10 feet and requires you to make an attack roll, the spell's range increases by 60 feet."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Spellcasting or Pact Magic feature",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+        }
+      }
+    },
+    "Telekinetic": {
+      "description": "You learn to move things with your mind, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+        "Minor Telekinesis: You learn the Mage Hand cantrip. You can cast it without Verbal or Somatic components, the spectral hand is invisible, and its range increases by 30 feet when you cast it.",
+        "Telekinetic Shove: As a Bonus Action, you can try to telekinetically shove one creature you can see within 30 feet of you. When you do so, the target must succeed on a Strength saving throw (DC 8 + your ability modifier + your Proficiency Bonus) or be moved 5 feet toward you or away from you."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "effects": [
+        {
+          "type": "grant_cantrip",
+          "spell": "Mage Hand"
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+        }
+      }
+    },
+    "Telepathic": {
+      "description": "You awaken the ability to mentally connect with others, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+        "Telepathic Utterance: You can speak telepathically to any creature you can see within 60 feet of you. Your telepathic utterances are in a language you know, and the creature understands you only if it knows that language. Your communication doesn't give the creature the ability to respond to you telepathically.",
+        "Detect Thoughts: You always have the Detect Thoughts spell prepared. You can cast it without a spell slot or components once per Long Rest. You can also cast it using spell slots you have of the appropriate level. Your spellcasting ability for the spell is the ability increased by this feat."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "effects": [
+        {
+          "type": "grant_spell",
+          "spell": "Detect Thoughts",
+          "level": 2
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
+          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
+          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+        }
+      }
+    },
+    "War Caster": {
+      "description": "You've practiced casting spells in the midst of combat, learning techniques that grant you advantages. You gain the following benefits:",
+      "benefits": [
+        "Advantage on Constitution saving throws that you make to maintain Concentration on a spell when you take damage.",
+        "You can perform the somatic components of spells even when you have weapons or a Shield in one or both hands.",
+        "When a creature provokes an Opportunity Attack from you by moving out of your reach, you can use your Reaction to cast a spell at the creature rather than making an Opportunity Attack. The spell must have a casting time of 1 Action and must target only that creature."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level, Spellcasting or Pact Magic feature",
+      "source": "Player's Handbook 2024"
+    },
+    "Weapon Master": {
+      "description": "You have practiced extensively with a variety of weapons, gaining the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity score by 1, to a maximum of 20.",
+        "Mastery Property: You gain the use of the Mastery property of one kind of Simple or Martial weapon of your choice, provided you have proficiency with that weapon. Whenever you finish a Long Rest, you can change the kind of weapon you chose to another eligible kind."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
+          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+        }
+      }
+    }
+  }
+}

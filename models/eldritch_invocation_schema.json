@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Eldritch Invocations",
+  "description": "Schema for data/eldritch_invocations.json. Top-level keys are invocation names; values describe the prerequisite chain and free-form text. Most current invocations carry no effects/choices because their benefits are in-play (e.g. cast a spell without a slot); Phase 7 (D0-1) will add effects for the static-benefit invocations (e.g. Eldritch Mind, Devil's Sight) without changing this schema.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": ["description", "prerequisite_level", "prerequisite_invocations", "notes"],
+    "properties": {
+      "description": { "type": "string" },
+      "prerequisite_level": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 20
+      },
+      "prerequisite_invocations": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "prerequisite_cantrip": { "type": "string" },
+      "notes": { "type": "string" },
+      "effects": {
+        "type": "array",
+        "items": { "$ref": "_shared/effect.json" }
+      },
+      "choices": {
+        "type": "array",
+        "items": { "$ref": "_shared/choice.json" }
+      },
+      "choice_effects": { "$ref": "_shared/choice_effects.json" }
+    },
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Nystul's Magic Aura",
+  "level": 2,
+  "school": "Illusion",
+  "casting_time": "1 action",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S",
+    "M (a small square of silk)"
+  ],
+  "duration": "24 hours",
+  "description": "You place an illusion on a creature or an object you touch so that divination spells reveal false information about it. The target can be a willing creature or an object that isn't being carried or worn by another creature. Choose one or both of the following effects. False Aura: you change the way the target appears to spells that detect magical auras, such as Detect Magic. Mask: you change the way the target appears to spells that detect creature types, such as a paladin's Divine Sense. If you cast the spell on the same target every day for 30 days, the illusion lasts until it is dispelled.",
+  "classes": [
+    "Wizard"
+  ],
+  "ritual": false
+}

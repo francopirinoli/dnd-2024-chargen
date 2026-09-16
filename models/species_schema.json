@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Species",
+  "description": "Schema for D&D 2024 base species JSON files in data/species/. Species describe a creature's intrinsic anatomy, size, speed, traits, and granted languages. Per D&D 2024 rules species do NOT carry ability score increases (those moved to backgrounds).",
+  "type": "object",
+  "required": [
+    "name",
+    "description",
+    "creature_type",
+    "size",
+    "speed",
+    "traits",
+    "languages"
+  ],
+  "properties": {
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "creature_type": { "type": "string" },
+    "size": { "type": "string" },
+    "size_description": { "type": "string" },
+    "speed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "darkvision": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Legacy convenience field for sheet rendering; the canonical grant is the grant_darkvision effect on the relevant trait."
+    },
+    "traits": {
+      "type": "object",
+      "additionalProperties": { "$ref": "_shared/trait_entry.json" }
+    },
+    "languages": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "lineages": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Names of species_variants files (under data/species_variants/) that derive from this species."
+    },
+    "source": {
+      "type": "string",
+      "description": "Source book or supplement"
+    }
+  },
+  "additionalProperties": false
+}

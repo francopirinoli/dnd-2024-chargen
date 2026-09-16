@@ -1,0 +1,18 @@
+{
+  "name": "Wind Walk",
+  "level": 6,
+  "school": "Transmutation",
+  "casting_time": "1 minute",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S",
+    "M (fire and holy water)"
+  ],
+  "duration": "8 hours",
+  "description": "You and up to ten willing creatures you can see within range assume a gaseous form for the duration, appearing as wisps of cloud. While in this cloud form, a target has a Fly Speed of 300 feet and has Resistance to damage from nonmagical weapons. The only actions a target can take in this form are the Dash action or a Magic action to begin reverting to its normal form. Reverting takes 1 minute, during which the target is Incapacitated and can't move. Until the spell ends, the target can revert to cloud form, which also requires a 1-minute transformation.",
+  "classes": [
+    "Druid"
+  ],
+  "ritual": false
+}

@@ -1,0 +1,574 @@
+{
+  "name": "Paladin",
+  "description": "Paladins are united by their oaths to stand against the forces of annihilation and corruption. Whether sworn before a god's altar or in a moment of desperation, a Paladin's oath is a powerful bond that turns a devout warrior into a blessed champion.",
+  "hit_die": 10,
+  "primary_ability": "Strength & Charisma",
+  "saving_throw_proficiencies": [
+    "Wisdom",
+    "Charisma"
+  ],
+  "standard_array_assignment": {
+    "Strength": 15,
+    "Dexterity": 10,
+    "Constitution": 13,
+    "Intelligence": 8,
+    "Wisdom": 12,
+    "Charisma": 14
+  },
+  "armor_proficiencies": [
+    "Light armor",
+    "Medium armor",
+    "Heavy armor",
+    "Shields"
+  ],
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons"
+  ],
+  "skill_proficiencies_count": 2,
+  "skill_options": [
+    "Athletics",
+    "Insight",
+    "Intimidation",
+    "Medicine",
+    "Persuasion",
+    "Religion"
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Longsword",
+        "Shield",
+        "Chain Mail",
+        "Holy Symbol",
+        "Javelin (5)",
+        "Priest's Pack"
+      ],
+      "gold": 10
+    },
+    "option_b": {
+      "gold": 175
+    }
+  },
+  "subclass_selection_level": 3,
+  "spellcasting_ability": "Charisma",
+  "spellcasting_focus": [
+    "Holy Symbol"
+  ],
+  "spellcasting_type": "prepared",
+  "spell_preparation_formula": "level + charisma_modifier",
+  "cantrip_progression": "class_table",
+  "spell_list_restrictions": null,
+  "ritual_casting": false,
+  "masterable_weapons": [
+    "Battleaxe",
+    "Club",
+    "Dagger",
+    "Flail",
+    "Glaive",
+    "Greataxe",
+    "Greatclub",
+    "Greatsword",
+    "Halberd",
+    "Handaxe",
+    "Javelin",
+    "Lance",
+    "Light Crossbow",
+    "Light Hammer",
+    "Longbow",
+    "Longsword",
+    "Mace",
+    "Maul",
+    "Morningstar",
+    "Pike",
+    "Quarterstaff",
+    "Rapier",
+    "Scimitar",
+    "Shortbow",
+    "Shortsword",
+    "Sickle",
+    "Spear",
+    "Trident",
+    "War Pick",
+    "Warhammer",
+    "Whip"
+  ],
+  "proficiency_bonus_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 4,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 6,
+    "18": 6,
+    "19": 6,
+    "20": 6
+  },
+  "cantrips_by_level": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": 0,
+    "17": 0,
+    "18": 0,
+    "19": 0,
+    "20": 0
+  },
+  "spell_slots_by_level": {
+    "1": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "2": [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "3": [
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "4": [
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "5": [
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "6": [
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "7": [
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "8": [
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "9": [
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "10": [
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "11": [
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "12": [
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "13": [
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "14": [
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "15": [
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "16": [
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "17": [
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "18": [
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "19": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+    ],
+    "20": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "prepared_spells_by_level": {
+    "1": 2,
+    "2": 3,
+    "3": 4,
+    "4": 5,
+    "5": 6,
+    "6": 6,
+    "7": 7,
+    "8": 7,
+    "9": 9,
+    "10": 9,
+    "11": 10,
+    "12": 10,
+    "13": 11,
+    "14": 11,
+    "15": 12,
+    "16": 12,
+    "17": 14,
+    "18": 14,
+    "19": 15,
+    "20": 15
+  },
+  "masteries_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 2,
+    "7": 2,
+    "8": 2,
+    "9": 2,
+    "10": 2,
+    "11": 2,
+    "12": 2,
+    "13": 2,
+    "14": 2,
+    "15": 2,
+    "16": 2,
+    "17": 2,
+    "18": 2,
+    "19": 2,
+    "20": 2
+  },
+  "features_by_level": {
+    "1": {
+      "Lay On Hands": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you finish a Long Rest equal to five times your Paladin level. As a Bonus Action, you can touch a creature and restore Hit Points from the pool. You can also expend 5 Hit Points from the pool to remove the Poisoned condition.",
+      "Spellcasting": {
+        "description": "You have learned to cast spells through prayer and meditation. Charisma is your spellcasting ability. You can use a Holy Symbol as a Spellcasting Focus.",
+        "feature_kind": "spellcasting_setup"
+      },
+      "Weapon Mastery": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency."
+    },
+    "2": {
+      "Fighting Style": {
+        "description": "You gain a Fighting Style feat of your choice. Instead of choosing one of those feats, you can choose Blessed Warrior: learn two Cleric cantrips (Charisma is your spellcasting ability for them).",
+        "choices": {
+          "type": "select_single",
+          "count": 1,
+          "name": "fighting_style",
+          "source": {
+            "type": "external",
+            "file": "fighting_styles.json",
+            "list": "fighting_styles"
+          },
+          "optional": false
+        }
+      },
+      "Paladin's Smite": {
+        "description": "You always have the Divine Smite spell prepared. You can cast it once without expending a spell slot, regaining this ability when you finish a Long Rest.",
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Divine Smite",
+            "min_level": 2
+          }
+        ]
+      }
+    },
+    "3": {
+      "Channel Divinity": "You can channel divine energy directly from the Outer Planes. You can use Channel Divinity twice per Long Rest (regain one use on Short Rest, additional use at level 11). Divine Sense: As a Bonus Action, detect Celestials, Fiends, and Undead within 60 feet for 10 minutes.",
+      "Paladin Subclass": {
+        "description": "You gain a Paladin Subclass of your choice: Oath of Devotion, Oath of Glory, Oath of the Ancients, or Oath of Vengeance.",
+        "feature_kind": "subclass_pick"
+      }
+    },
+    "4": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice.",
+        "choices": {
+          "name": "class_feat_4",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "5": {
+      "Extra Attack": "You can attack twice instead of once whenever you take the Attack action on your turn.",
+      "Faithful Steed": {
+        "description": "You always have the Find Steed spell prepared. You can also cast it once without expending a spell slot, regaining this ability when you finish a Long Rest.",
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Find Steed",
+            "min_level": 5
+          }
+        ]
+      }
+    },
+    "6": {
+      "Aura of Protection": "You radiate a protective, unseeable aura in a 10-foot Emanation. You and your allies in the aura gain a bonus to saving throws equal to your Charisma modifier (minimum bonus of +1). Inactive while you have the Incapacitated condition."
+    },
+    "7": {
+      "Subclass Feature": {
+        "description": "You gain a feature from your sacred oath.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "8": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice.",
+        "choices": {
+          "name": "class_feat_8",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "9": {
+      "Abjure Foes": "As a Magic action, expend one use of Channel Divinity. Target a number of creatures equal to your Charisma modifier (minimum of one) within 60 feet. Each must succeed on a Wisdom saving throw or have the Frightened condition for 1 minute or until it takes any damage. While Frightened this way, can only do one of: move, take an action, or take a Bonus Action."
+    },
+    "10": {
+      "Aura of Courage": "You and your allies have Immunity to the Frightened condition while in your Aura of Protection. If a Frightened ally enters the aura, that condition has no effect on that ally while there."
+    },
+    "11": {
+      "Radiant Strikes": "Your strikes carry supernatural power. When you hit a target with an attack roll using a Melee weapon or an Unarmed Strike, the target takes an extra 1d8 Radiant damage."
+    },
+    "12": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice.",
+        "choices": {
+          "name": "class_feat_12",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "14": {
+      "Restoring Touch": "When you use Lay On Hands on a creature, you can also remove one or more of the following conditions: Blinded, Charmed, Deafened, Frightened, Paralyzed, or Stunned. You must expend 5 Hit Points from the healing pool for each condition you remove; those points don't also restore Hit Points."
+    },
+    "15": {
+      "Subclass Feature": {
+        "description": "You gain a feature from your sacred oath.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "16": {
+      "Ability Score Improvement": {
+        "description": "You gain the Ability Score Improvement feat or another feat of your choice.",
+        "choices": {
+          "name": "class_feat_16",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "18": {
+      "Aura Expansion": "Your Aura of Protection is now a 30-foot Emanation."
+    },
+    "19": {
+      "Epic Boon": "You gain an Epic Boon feat or another feat of your choice. Boon of Truesight is recommended."
+    },
+    "20": {
+      "Subclass Feature": {
+        "description": "You gain your capstone feature from your sacred oath.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    }
+  },
+  "multiclassing": {
+    "hit_die_granted": 10,
+    "armor_training": [
+      "Light",
+      "Medium",
+      "Shields"
+    ],
+    "weapon_training": [
+      "Martial"
+    ],
+    "tool_training": [],
+    "skill_proficiencies": null,
+    "saving_throw_proficiencies": [],
+    "other_proficiencies": [],
+    "notes": null,
+    "source_text": "As a Multiclass Character: Gain the following traits from the Core Paladin Traits table: Hit Point Die, proficiency with Martial weapons, and training with Light and Medium armor and Shields. Gain the Paladin's level 1 features, which are listed in the Paladin Features table. See the multiclassing rules in multiclassing to determine your available spell slots."
+  }
+}

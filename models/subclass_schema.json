@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Subclass Data Model",
+  "description": "Schema for D&D 2024 subclass JSON files in data/subclasses/{class}/",
+  "type": "object",
+  "required": [
+    "name",
+    "class",
+    "description",
+    "source",
+    "features_by_level"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the subclass (e.g., 'Oath of Devotion', 'College of Lore')"
+    },
+    "class": {
+      "type": "string",
+      "description": "The parent class this subclass belongs to",
+      "enum": ["Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
+    },
+    "description": {
+      "type": "string",
+      "description": "A brief description of the subclass theme and abilities"
+    },
+    "source": {
+      "type": "string",
+      "description": "The source book for this subclass (e.g., 'Player's Handbook 2024')"
+    },
+    "features_by_level": {
+      "type": "object",
+      "description": "Features gained at specific levels. IMPORTANT: Each level must map to an OBJECT where keys are feature names and values are feature descriptions (NOT an array).",
+      "patternProperties": {
+        "^([1-9]|1[0-9]|20)$": {
+          "type": "object",
+          "description": "An object mapping feature names to their descriptions",
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "A simple text description of the feature"
+                },
+                {
+                  "type": "object",
+                  "description": "A complex feature with additional properties",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "spells": {
+                      "type": "object",
+                      "description": "For spell-granting features, spells by level"
+                    },
+                    "choices": {
+                      "oneOf": [
+                        { "type": "object" },
+                        {
+                          "type": "array",
+                          "items": { "type": "object" }
+                        }
+                      ],
+                      "description": "For features with one or more choices (see Choice Reference System)"
+                    },
+                    "feature_kind": {
+                      "type": "string",
+                      "enum": [
+                        "normal",
+                        "asi",
+                        "subclass_pick",
+                        "spellcasting_setup",
+                        "subclass_feature_slot"
+                      ],
+                      "description": "Phase 8 (D6-2): structural role of this feature for builder dispatch. Defaults to 'normal' when omitted. Subclass JSONs typically only use 'normal' or 'spellcasting_setup' (for subclasses like Eldritch Knight / Arcane Trickster that grant a Spellcasting feature)."
+                    },
+                    "hidden": {
+                      "type": "boolean",
+                      "description": "When true, this feature is suppressed from the rendered features list (Phase 8)."
+                    },
+                    "pdf_summary": {
+                      "type": "string",
+                      "description": "Short PDF-style summary that replaces the verbose description when rendering the sheet (Phase 8)."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "examples": [
+    {
+      "name": "College of Lore",
+      "class": "Bard",
+      "description": "Bards who seek knowledge and secrets",
+      "source": "Player's Handbook 2024",
+      "features_by_level": {
+        "3": {
+          "Bonus Proficiencies": "Gain proficiency in three skills of your choice.",
+          "Cutting Words": "Use Reaction to subtract Bardic Inspiration die from enemy rolls."
+        },
+        "6": {
+          "Magical Discoveries": "Learn two spells from Cleric, Druid, or Wizard lists."
+        },
+        "14": {
+          "Peerless Skill": "Add Bardic Inspiration to failed ability checks or attacks."
+        }
+      }
+    }
+  ]
+}

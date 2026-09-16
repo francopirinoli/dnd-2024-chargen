@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Sylara Dawnwhisper",
+    "classes": [{"class_name": "Druid", "level": 3, "subclass": "Circle of the Moon"}],
+    "primal_order": "Warden",
+    "skill_choices": ["Insight", "Perception"],
+    "background": "Farmer",
+    "species": "Elf",
+    "lineage": "Wood Elf",
+    "species_trait_choices": {"Elven Lineage": "Wisdom", "Keen Senses": "Survival"},
+    "languages": ["Orc", "Elvish"],
+    "ability_scores_method": "recommended",
+    "ability_scores": {"Strength": 8, "Dexterity": 12, "Constitution": 14, "Intelligence": 13, "Wisdom": 15, "Charisma": 10},
+    "background_bonuses": {"Constitution": 1, "Wisdom": 2},
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_b"},
+    "spell_selections": {
+      "cantrips": ["Guidance", "Produce Flame"],
+      "spells": ["Detect Magic", "Entangle", "Faerie Fire", "Healing Word", "Goodberry", "Spike Growth"],
+      "background_cantrips": [],
+      "background_spells": []
+    }
+  }
+}

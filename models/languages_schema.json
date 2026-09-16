@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Languages",
+  "description": "Schema for data/languages.json. Three buckets of language names; 'all' is conventionally the union of 'standard' and 'rare'.",
+  "type": "object",
+  "required": ["standard", "rare", "all"],
+  "properties": {
+    "standard": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rare": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "all": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

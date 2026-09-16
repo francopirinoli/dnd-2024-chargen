@@ -1,0 +1,26 @@
+{
+  "name": "Forest Gnome",
+  "parent_species": "Gnome",
+  "description": "Forest Gnomes are reclusive illusionists who make their homes in dense woodlands. Attuned to the wild folk who share their forests, they slip easily between the natural and the fey, weaving Minor Illusion to misdirect intruders and speaking with the animals around them.",
+  "traits": {
+    "Natural Illusionist": {
+      "description": "You know the Minor Illusion cantrip.",
+      "effects": [
+        {
+          "type": "grant_cantrip",
+          "spell": "Minor Illusion"
+        }
+      ]
+    },
+    "Speak with Animals": {
+      "description": "You always have Speak with Animals prepared. You can cast it without a spell slot a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest. You can also use any spell slots you have to cast the spell.",
+      "effects": [
+        {
+          "type": "grant_spell",
+          "spell": "Speak with Animals",
+          "min_level": 1
+        }
+      ]
+    }
+  }
+}

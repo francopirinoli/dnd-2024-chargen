@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "python validate_data.py 2>&1 | grep -c '❌' | xargs -I{} test {} -eq 0",
+        "timeout": 15,
+        "description": "Validate data file schemas after edits to data/ JSON files"
+      }
+    ]
+  }
+}

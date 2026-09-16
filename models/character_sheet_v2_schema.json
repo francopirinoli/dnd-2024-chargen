@@ -1,0 +1,285 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Character Sheet",
+  "description": "Character sheet format for D&D 2024 character creation tool. Represents a complete character at a specific level (baseline/fresh character sheet).",
+  "type": "object",
+  "required": ["identity", "abilities", "skills", "combat", "hit_points", "proficiencies", "features"],
+  "properties": {
+    "identity": {
+      "type": "object",
+      "required": ["name", "class", "level", "species", "background"],
+      "properties": {
+        "name": {"type": "string", "description": "Character name"},
+        "class": {"type": "string", "description": "Character class"},
+        "subclass": {"type": ["string", "null"], "description": "Character subclass (if selected)"},
+        "level": {"type": "integer", "minimum": 1, "maximum": 20},
+        "species": {"type": "string", "description": "Base species (e.g., Elf, Dwarf, Human)"},
+        "lineage": {"type": ["string", "null"], "description": "Species variant/lineage (e.g., Wood Elf, Hill Dwarf)"},
+        "background": {"type": "string"},
+        "alignment": {"type": "string"},
+        "size": {"type": "string", "enum": ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan"]}
+      }
+    },
+    "abilities": {
+      "type": "object",
+      "description": "All six ability scores with calculated values",
+      "properties": {
+        "strength": {"$ref": "#/definitions/ability"},
+        "dexterity": {"$ref": "#/definitions/ability"},
+        "constitution": {"$ref": "#/definitions/ability"},
+        "intelligence": {"$ref": "#/definitions/ability"},
+        "wisdom": {"$ref": "#/definitions/ability"},
+        "charisma": {"$ref": "#/definitions/ability"}
+      },
+      "required": ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
+    },
+    "skills": {
+      "type": "object",
+      "description": "All 18 skills with calculated modifiers",
+      "patternProperties": {
+        "^[a-z_]+$": {"$ref": "#/definitions/skill"}
+      }
+    },
+    "combat": {
+      "type": "object",
+      "required": ["proficiency_bonus", "initiative", "armor_class", "speed"],
+      "properties": {
+        "proficiency_bonus": {"type": "integer"},
+        "initiative": {"type": "integer"},
+        "armor_class": {"type": "integer", "description": "Best/current AC"},
+        "armor_class_options": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/ac_option"}
+        },
+        "speed": {
+          "type": "object",
+          "properties": {
+            "walk": {"type": "integer"},
+            "fly": {"type": "integer"},
+            "swim": {"type": "integer"},
+            "climb": {"type": "integer"},
+            "burrow": {"type": "integer"}
+          }
+        },
+        "senses": {
+          "type": "object",
+          "properties": {
+            "darkvision": {"type": "integer"},
+            "blindsight": {"type": "integer"},
+            "tremorsense": {"type": "integer"},
+            "truesight": {"type": "integer"},
+            "passive_perception": {"type": "integer"},
+            "passive_investigation": {"type": "integer"},
+            "passive_insight": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "hit_points": {
+      "type": "object",
+      "required": ["maximum", "hit_die", "hit_dice_total"],
+      "properties": {
+        "maximum": {"type": "integer"},
+        "hit_die": {"type": "string", "pattern": "^d\\d+$"},
+        "hit_dice_total": {"type": "integer"},
+        "calculation": {"type": "string", "description": "Human-readable HP calculation"}
+      }
+    },
+    "defenses": {
+      "type": "object",
+      "properties": {
+        "damage_resistances": {"type": "array", "items": {"type": "string"}},
+        "damage_immunities": {"type": "array", "items": {"type": "string"}},
+        "damage_vulnerabilities": {"type": "array", "items": {"type": "string"}},
+        "condition_immunities": {"type": "array", "items": {"type": "string"}},
+        "saving_throw_advantages": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "attacks": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/attack"}
+    },
+    "spellcasting": {
+      "type": ["object", "null"],
+      "description": "Null if non-caster",
+      "properties": {
+        "class": {"type": "string"},
+        "ability": {"type": "string"},
+        "ability_modifier": {"type": "integer"},
+        "spell_save_dc": {"type": "integer"},
+        "spell_attack_bonus": {"type": "integer"},
+        "cantrips_known": {"type": "array", "items": {"type": "string"}},
+        "spells_known": {"type": ["integer", "null"]},
+        "spells_prepared": {"type": ["integer", "null"]},
+        "spell_list": {
+          "type": "object",
+          "properties": {
+            "cantrips": {"type": "array", "items": {"type": "string"}},
+            "1st": {"type": "array", "items": {"type": "string"}},
+            "2nd": {"type": "array", "items": {"type": "string"}},
+            "3rd": {"type": "array", "items": {"type": "string"}},
+            "4th": {"type": "array", "items": {"type": "string"}},
+            "5th": {"type": "array", "items": {"type": "string"}},
+            "6th": {"type": "array", "items": {"type": "string"}},
+            "7th": {"type": "array", "items": {"type": "string"}},
+            "8th": {"type": "array", "items": {"type": "string"}},
+            "9th": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "spell_slots_by_level": {
+          "type": "object",
+          "patternProperties": {
+            "^[1-9]$": {"type": "integer"}
+          }
+        },
+        "ritual_casting": {"type": "boolean"},
+        "spellbook": {"type": "boolean"}
+      }
+    },
+    "proficiencies": {
+      "type": "object",
+      "required": ["armor", "weapons", "tools", "languages"],
+      "properties": {
+        "armor": {"type": "array", "items": {"type": "string"}},
+        "weapons": {"type": "array", "items": {"type": "string"}},
+        "tools": {"type": "array", "items": {"type": "string"}},
+        "languages": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "features": {
+      "type": "object",
+      "required": ["class", "subclass", "species", "lineage", "background", "feats"],
+      "properties": {
+        "class": {"type": "array", "items": {"$ref": "#/definitions/feature"}},
+        "subclass": {"type": "array", "items": {"$ref": "#/definitions/feature"}},
+        "species": {"type": "array", "items": {"$ref": "#/definitions/feature"}},
+        "lineage": {"type": "array", "items": {"$ref": "#/definitions/feature"}},
+        "background": {"type": "array", "items": {"$ref": "#/definitions/feature"}},
+        "feats": {"type": "array", "items": {"$ref": "#/definitions/feature"}}
+      }
+    },
+    "equipment": {
+      "type": "object",
+      "properties": {
+        "armor": {"type": "array", "items": {"$ref": "#/definitions/equipment_item"}},
+        "weapons": {"type": "array", "items": {"$ref": "#/definitions/equipment_item"}},
+        "gear": {"type": "array", "items": {"$ref": "#/definitions/equipment_item"}},
+        "currency": {
+          "type": "object",
+          "properties": {
+            "platinum": {"type": "integer"},
+            "gold": {"type": "integer"},
+            "silver": {"type": "integer"},
+            "copper": {"type": "integer"}
+          }
+        },
+        "starting_wealth": {"type": "string"}
+      }
+    },
+    "details": {
+      "type": "object",
+      "description": "Optional roleplay/narrative details",
+      "properties": {
+        "appearance": {
+          "type": "object",
+          "properties": {
+            "age": {"type": ["integer", "string"]},
+            "height": {"type": "string"},
+            "weight": {"type": "string"},
+            "eyes": {"type": "string"},
+            "skin": {"type": "string"},
+            "hair": {"type": "string"}
+          }
+        },
+        "personality_traits": {"type": "array", "items": {"type": "string"}},
+        "ideals": {"type": "array", "items": {"type": "string"}},
+        "bonds": {"type": "array", "items": {"type": "string"}},
+        "flaws": {"type": "array", "items": {"type": "string"}},
+        "backstory": {"type": "string"},
+        "allies_organizations": {"type": "string"}
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "created": {"type": "string", "format": "date"},
+        "generator": {"type": "string"},
+        "version": {"type": "string"},
+        "choices_made": {"type": "object", "description": "Original choices for rebuild"}
+      }
+    }
+  },
+  "definitions": {
+    "ability": {
+      "type": "object",
+      "required": ["score", "modifier", "save_modifier", "save_proficient"],
+      "properties": {
+        "score": {"type": "integer", "minimum": 1, "maximum": 30},
+        "modifier": {"type": "integer"},
+        "save_modifier": {"type": "integer"},
+        "save_proficient": {"type": "boolean"}
+      }
+    },
+    "skill": {
+      "type": "object",
+      "required": ["modifier", "proficient", "ability"],
+      "properties": {
+        "modifier": {"type": "integer"},
+        "proficient": {"type": "boolean"},
+        "expertise": {"type": "boolean"},
+        "ability": {"type": "string"}
+      }
+    },
+    "ac_option": {
+      "type": "object",
+      "required": ["ac"],
+      "properties": {
+        "ac": {"type": "integer"},
+        "armor": {"type": ["string", "null"]},
+        "shield": {"type": ["string", "boolean"]},
+        "formula": {"type": "string"},
+        "notes": {"type": "string"}
+      }
+    },
+    "attack": {
+      "type": "object",
+      "required": ["name", "attack_bonus", "damage_main", "damage_type", "proficient"],
+      "properties": {
+        "name": {"type": "string"},
+        "attack_bonus": {"type": "integer"},
+        "damage_main": {"type": "string"},
+        "damage_offhand": {"type": ["string", "null"]},
+        "damage_versatile": {"type": ["string", "null"]},
+        "damage_type": {"type": "string"},
+        "average_damage": {"type": "number"},
+        "average_crit": {"type": "number"},
+        "range": {"type": "string"},
+        "properties": {"type": "array", "items": {"type": "string"}},
+        "mastery": {"type": ["string", "null"]},
+        "proficient": {"type": "boolean"},
+        "notes": {"type": "string"}
+      }
+    },
+    "feature": {
+      "type": "object",
+      "required": ["name", "source", "description"],
+      "properties": {
+        "name": {"type": "string"},
+        "source": {"type": "string"},
+        "description": {"type": "string"},
+        "usage": {"type": "string", "description": "e.g., '1/short rest', 'at will'"},
+        "level_gained": {"type": "integer"},
+        "details": {"type": "string"}
+      }
+    },
+    "equipment_item": {
+      "type": "object",
+      "required": ["name", "quantity"],
+      "properties": {
+        "name": {"type": "string"},
+        "quantity": {"type": "integer"},
+        "equipped": {"type": "boolean"}
+      }
+    }
+  }
+}

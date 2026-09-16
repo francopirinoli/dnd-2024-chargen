@@ -1,0 +1,35 @@
+{
+  "name": "Drow",
+  "parent_species": "Elf",
+  "description": "Drow, also known as dark elves, are a subrace of elves that dwell in the Underdark. They are known for their dark skin, white hair, and affinity for magic and stealth.",
+  "traits": {
+    "Extended Darkvision": {
+      "description": "The range of your Darkvision increases to 120 feet.",
+      "effects": [
+        {
+          "type": "grant_darkvision",
+          "range": 120
+        }
+      ]
+    },
+    "Drow Spells": {
+      "description": "You know the Dancing Lights cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+      "effects": [
+        {
+          "type": "grant_cantrip",
+          "spell": "Dancing Lights"
+        },
+        {
+          "type": "grant_spell",
+          "spell": "Faerie Fire",
+          "min_level": 3
+        },
+        {
+          "type": "grant_spell",
+          "spell": "Darkness",
+          "min_level": 5
+        }
+      ]
+    }
+  }
+}

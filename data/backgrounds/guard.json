@@ -1,0 +1,55 @@
+{
+  "name": "Guard",
+  "description": "Your feet ache when you remember the countless hours you spent at your post in the tower. You were trained to keep one eye looking outside the wall, watching for marauders sweeping from the nearby forest, and your other eye looking inside the wall, searching for cutpurses and troublemakers.",
+  "edition": "2024",
+  "status": "active",
+  "ability_score_increase": {
+    "total": 3,
+    "options": [
+      "Strength",
+      "Intelligence",
+      "Wisdom"
+    ],
+    "suggested": {
+      "Strength": 2,
+      "Wisdom": 1
+    }
+  },
+  "effects": [
+    {
+      "type": "grant_skill_proficiency",
+      "skills": [
+        "Athletics",
+        "Perception"
+      ]
+    },
+    {
+      "type": "grant_origin_feat",
+      "feat": "Alert"
+    },
+    {
+      "type": "grant_tool_proficiency",
+      "tools": [
+        "Gaming Set"
+      ]
+    }
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Spear",
+        "Light Crossbow",
+        "20 Bolts",
+        "Gaming Set",
+        "Hooded Lantern",
+        "Manacles",
+        "Quiver",
+        "Traveler's Clothes"
+      ],
+      "gold": 12
+    },
+    "option_b": {
+      "gold": 50
+    }
+  }
+}

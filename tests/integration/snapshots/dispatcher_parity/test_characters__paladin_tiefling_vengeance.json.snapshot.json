@@ -1,0 +1,2232 @@
+{
+  "_lineage_traits": {
+    "Infernal Legacy": {
+      "description": "You have Resistance to Fire damage. You know the Fire Bolt cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+      "effects": [
+        {
+          "damage_type": "Fire",
+          "type": "grant_damage_resistance"
+        },
+        {
+          "min_level": 3,
+          "spell": "Hellish Rebuke",
+          "type": "grant_spell"
+        },
+        {
+          "min_level": 5,
+          "spell": "Darkness",
+          "type": "grant_spell"
+        },
+        {
+          "spell": "Fire Bolt",
+          "type": "grant_cantrip"
+        }
+      ]
+    }
+  },
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 14,
+      "modifier": 2,
+      "saving_throw": 4,
+      "saving_throw_proficient": true,
+      "score": 15,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 13,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 13,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 8,
+      "modifier": -1,
+      "saving_throw": -1,
+      "saving_throw_proficient": false,
+      "score": 8,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 15,
+      "modifier": 3,
+      "saving_throw": 3,
+      "saving_throw_proficient": false,
+      "score": 17,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 12,
+      "modifier": 1,
+      "saving_throw": 3,
+      "saving_throw_proficient": true,
+      "score": 12,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 15,
+    "Constitution": 13,
+    "Dexterity": 10,
+    "Intelligence": 8,
+    "Strength": 17,
+    "Wisdom": 12
+  },
+  "ac_options": [
+    {
+      "ac": 12,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (0) + Shield (2)",
+      "notes": [],
+      "shield": true
+    },
+    {
+      "ac": 18,
+      "armor": "Chain Mail",
+      "equipped_armor": "Chain Mail",
+      "formula": "Armor base (16) + Shield (2)",
+      "notes": [],
+      "shield": true
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [
+    "Light armor",
+    "Medium armor",
+    "Heavy armor",
+    "Shields"
+  ],
+  "attack_combinations": [],
+  "attacks": [
+    {
+      "ability": "STR",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 12.0,
+      "avg_damage": 8.5,
+      "avg_throw_damage": 6.5,
+      "damage": "1d6 + 5",
+      "damage_bonus": 5,
+      "damage_notes": [
+        "+2 from Dueling"
+      ],
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/spear.svg",
+      "mastery": "Slow",
+      "name": "Javelin",
+      "proficient": true,
+      "properties": [
+        "Thrown (range 30/120)"
+      ],
+      "throw_damage": "1d6 + 3"
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 14.0,
+      "avg_damage": 9.5,
+      "avg_one_handed": 9.5,
+      "avg_two_handed": 8.5,
+      "damage": "1d8 + 5",
+      "damage_bonus": 5,
+      "damage_notes": [
+        "+2 from Dueling"
+      ],
+      "damage_one_handed": "1d8 + 5",
+      "damage_two_handed": "1d10 + 3",
+      "damage_type": "Slashing",
+      "icon": "/static/images/weapons/sword.svg",
+      "mastery": "Vex",
+      "name": "Longsword",
+      "proficient": true,
+      "properties": [
+        "Versatile (1d10)"
+      ]
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 4.0,
+      "avg_damage": 4.0,
+      "damage": "4",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    }
+  ],
+  "background": "Soldier",
+  "background_data": {
+    "ability_score_increase": {
+      "options": [
+        "Constitution",
+        "Strength",
+        "Dexterity"
+      ],
+      "suggested": {
+        "Constitution": 1,
+        "Strength": 2
+      },
+      "total": 3
+    },
+    "description": "War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield. You might have been part of a standing national army or a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.",
+    "edition": "2024",
+    "effects": [
+      {
+        "feat": "Savage Attacker",
+        "type": "grant_origin_feat"
+      },
+      {
+        "skills": [
+          "Athletics",
+          "Intimidation"
+        ],
+        "type": "grant_skill_proficiency"
+      },
+      {
+        "tools": [
+          "Gaming Set",
+          "Vehicles (Land)"
+        ],
+        "type": "grant_tool_proficiency"
+      }
+    ],
+    "name": "Soldier",
+    "starting_equipment": {
+      "option_a": {
+        "gold": 14,
+        "items": [
+          "Spear",
+          "Shortbow",
+          "20 Arrows",
+          "Quiver",
+          "Gaming Set",
+          "Healer's Kit (10 uses)",
+          "Traveler's Clothes"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "status": "active"
+  },
+  "choices_made": {
+    "ability_scores": {
+      "Charisma": 14,
+      "Constitution": 13,
+      "Dexterity": 10,
+      "Intelligence": 8,
+      "Strength": 15,
+      "Wisdom": 12
+    },
+    "ability_scores_method": "standard_array",
+    "background": "Soldier",
+    "background_bonuses": {
+      "Charisma": 1,
+      "Strength": 2
+    },
+    "background_skill_replacements": [
+      "Insight"
+    ],
+    "background_skill_replacements_needed": 1,
+    "character_name": "Seraphel Ashveil",
+    "class": "Paladin",
+    "classes": [
+      {
+        "class_name": "Paladin",
+        "level": 3,
+        "subclass": "Oath of Vengeance"
+      }
+    ],
+    "equipment_selections": {
+      "background_equipment": "option_b",
+      "class_equipment": "option_a"
+    },
+    "fighting_style": "Dueling",
+    "languages": [
+      "Common Sign Language",
+      "Gnomish"
+    ],
+    "level": 3,
+    "lineage": "Infernal Tiefling",
+    "skill_choices": [
+      "Athletics",
+      "Persuasion"
+    ],
+    "species": "Tiefling",
+    "species_trait_choices": {
+      "Fiendish Legacy": "Charisma"
+    },
+    "spell_selections": {
+      "background_cantrips": [],
+      "background_spells": [],
+      "cantrips": [],
+      "spells": [
+        "Bless",
+        "Detect Evil and Good",
+        "Branding Smite",
+        "Find Steed"
+      ]
+    },
+    "subclass": "Oath of Vengeance"
+  },
+  "class": "Paladin",
+  "class_breakdown": [
+    {
+      "class_name": "Paladin",
+      "level": 3,
+      "subclass": "Oath of Vengeance"
+    }
+  ],
+  "class_data": {
+    "armor_proficiencies": [
+      "Light armor",
+      "Medium armor",
+      "Heavy armor",
+      "Shields"
+    ],
+    "cantrip_progression": "class_table",
+    "cantrips_by_level": {
+      "1": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0,
+      "2": 0,
+      "20": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0
+    },
+    "description": "Paladins are united by their oaths to stand against the forces of annihilation and corruption. Whether sworn before a god's altar or in a moment of desperation, a Paladin's oath is a powerful bond that turns a devout warrior into a blessed champion.",
+    "features_by_level": {
+      "1": {
+        "Lay On Hands": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you finish a Long Rest equal to five times your Paladin level. As a Bonus Action, you can touch a creature and restore Hit Points from the pool. You can also expend 5 Hit Points from the pool to remove the Poisoned condition.",
+        "Spellcasting": {
+          "description": "You have learned to cast spells through prayer and meditation. Charisma is your spellcasting ability. You can use a Holy Symbol as a Spellcasting Focus.",
+          "feature_kind": "spellcasting_setup"
+        },
+        "Weapon Mastery": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency."
+      },
+      "10": {
+        "Aura of Courage": "You and your allies have Immunity to the Frightened condition while in your Aura of Protection. If a Frightened ally enters the aura, that condition has no effect on that ally while there."
+      },
+      "11": {
+        "Radiant Strikes": "Your strikes carry supernatural power. When you hit a target with an attack roll using a Melee weapon or an Unarmed Strike, the target takes an extra 1d8 Radiant damage."
+      },
+      "12": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_12",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice.",
+          "feature_kind": "asi"
+        }
+      },
+      "14": {
+        "Restoring Touch": "When you use Lay On Hands on a creature, you can also remove one or more of the following conditions: Blinded, Charmed, Deafened, Frightened, Paralyzed, or Stunned. You must expend 5 Hit Points from the healing pool for each condition you remove; those points don't also restore Hit Points."
+      },
+      "15": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your sacred oath.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "16": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_16",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice.",
+          "feature_kind": "asi"
+        }
+      },
+      "18": {
+        "Aura Expansion": "Your Aura of Protection is now a 30-foot Emanation."
+      },
+      "19": {
+        "Epic Boon": "You gain an Epic Boon feat or another feat of your choice. Boon of Truesight is recommended."
+      },
+      "2": {
+        "Fighting Style": {
+          "choices": {
+            "count": 1,
+            "name": "fighting_style",
+            "optional": false,
+            "source": {
+              "file": "fighting_styles.json",
+              "list": "fighting_styles",
+              "type": "external"
+            },
+            "type": "select_single"
+          },
+          "description": "You gain a Fighting Style feat of your choice. Instead of choosing one of those feats, you can choose Blessed Warrior: learn two Cleric cantrips (Charisma is your spellcasting ability for them)."
+        },
+        "Paladin's Smite": {
+          "description": "You always have the Divine Smite spell prepared. You can cast it once without expending a spell slot, regaining this ability when you finish a Long Rest.",
+          "effects": [
+            {
+              "min_level": 2,
+              "spell": "Divine Smite",
+              "type": "grant_spell"
+            }
+          ]
+        }
+      },
+      "20": {
+        "Subclass Feature": {
+          "description": "You gain your capstone feature from your sacred oath.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "3": {
+        "Channel Divinity": "You can channel divine energy directly from the Outer Planes. You can use Channel Divinity twice per Long Rest (regain one use on Short Rest, additional use at level 11). Divine Sense: As a Bonus Action, detect Celestials, Fiends, and Undead within 60 feet for 10 minutes.",
+        "Paladin Subclass": {
+          "description": "You gain a Paladin Subclass of your choice: Oath of Devotion, Oath of Glory, Oath of the Ancients, or Oath of Vengeance.",
+          "feature_kind": "subclass_pick"
+        }
+      },
+      "4": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_4",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice.",
+          "feature_kind": "asi"
+        }
+      },
+      "5": {
+        "Extra Attack": "You can attack twice instead of once whenever you take the Attack action on your turn.",
+        "Faithful Steed": {
+          "description": "You always have the Find Steed spell prepared. You can also cast it once without expending a spell slot, regaining this ability when you finish a Long Rest.",
+          "effects": [
+            {
+              "min_level": 5,
+              "spell": "Find Steed",
+              "type": "grant_spell"
+            }
+          ]
+        }
+      },
+      "6": {
+        "Aura of Protection": "You radiate a protective, unseeable aura in a 10-foot Emanation. You and your allies in the aura gain a bonus to saving throws equal to your Charisma modifier (minimum bonus of +1). Inactive while you have the Incapacitated condition."
+      },
+      "7": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your sacred oath.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "8": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_8",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice.",
+          "feature_kind": "asi"
+        }
+      },
+      "9": {
+        "Abjure Foes": "As a Magic action, expend one use of Channel Divinity. Target a number of creatures equal to your Charisma modifier (minimum of one) within 60 feet. Each must succeed on a Wisdom saving throw or have the Frightened condition for 1 minute or until it takes any damage. While Frightened this way, can only do one of: move, take an action, or take a Bonus Action."
+      }
+    },
+    "hit_die": 10,
+    "masterable_weapons": [
+      "Battleaxe",
+      "Club",
+      "Dagger",
+      "Flail",
+      "Glaive",
+      "Greataxe",
+      "Greatclub",
+      "Greatsword",
+      "Halberd",
+      "Handaxe",
+      "Javelin",
+      "Lance",
+      "Light Crossbow",
+      "Light Hammer",
+      "Longbow",
+      "Longsword",
+      "Mace",
+      "Maul",
+      "Morningstar",
+      "Pike",
+      "Quarterstaff",
+      "Rapier",
+      "Scimitar",
+      "Shortbow",
+      "Shortsword",
+      "Sickle",
+      "Spear",
+      "Trident",
+      "War Pick",
+      "Warhammer",
+      "Whip"
+    ],
+    "masteries_by_level": {
+      "1": 2,
+      "10": 2,
+      "11": 2,
+      "12": 2,
+      "13": 2,
+      "14": 2,
+      "15": 2,
+      "16": 2,
+      "17": 2,
+      "18": 2,
+      "19": 2,
+      "2": 2,
+      "20": 2,
+      "3": 2,
+      "4": 2,
+      "5": 2,
+      "6": 2,
+      "7": 2,
+      "8": 2,
+      "9": 2
+    },
+    "multiclassing": {
+      "armor_training": [
+        "Light",
+        "Medium",
+        "Shields"
+      ],
+      "hit_die_granted": 10,
+      "notes": null,
+      "other_proficiencies": [],
+      "saving_throw_proficiencies": [],
+      "skill_proficiencies": null,
+      "source_text": "As a Multiclass Character: Gain the following traits from the Core Paladin Traits table: Hit Point Die, proficiency with Martial weapons, and training with Light and Medium armor and Shields. Gain the Paladin's level 1 features, which are listed in the Paladin Features table. See the multiclassing rules in multiclassing to determine your available spell slots.",
+      "tool_training": [],
+      "weapon_training": [
+        "Martial"
+      ]
+    },
+    "name": "Paladin",
+    "prepared_spells_by_level": {
+      "1": 2,
+      "10": 9,
+      "11": 10,
+      "12": 10,
+      "13": 11,
+      "14": 11,
+      "15": 12,
+      "16": 12,
+      "17": 14,
+      "18": 14,
+      "19": 15,
+      "2": 3,
+      "20": 15,
+      "3": 4,
+      "4": 5,
+      "5": 6,
+      "6": 6,
+      "7": 7,
+      "8": 7,
+      "9": 9
+    },
+    "primary_ability": "Strength & Charisma",
+    "proficiency_bonus_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 2,
+      "20": 6,
+      "3": 2,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 4
+    },
+    "ritual_casting": false,
+    "saving_throw_proficiencies": [
+      "Wisdom",
+      "Charisma"
+    ],
+    "skill_options": [
+      "Athletics",
+      "Insight",
+      "Intimidation",
+      "Medicine",
+      "Persuasion",
+      "Religion"
+    ],
+    "skill_proficiencies_count": 2,
+    "spell_list_restrictions": null,
+    "spell_preparation_formula": "level + charisma_modifier",
+    "spell_slots_by_level": {
+      "1": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "10": [
+        4,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "11": [
+        4,
+        3,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "12": [
+        4,
+        3,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "13": [
+        4,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "14": [
+        4,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "15": [
+        4,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "16": [
+        4,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "17": [
+        4,
+        3,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "18": [
+        4,
+        3,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "19": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "2": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "20": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "3": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "4": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "5": [
+        4,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "6": [
+        4,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "7": [
+        4,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "8": [
+        4,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "9": [
+        4,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "spellcasting_ability": "Charisma",
+    "spellcasting_focus": [
+      "Holy Symbol"
+    ],
+    "spellcasting_type": "prepared",
+    "standard_array_assignment": {
+      "Charisma": 14,
+      "Constitution": 13,
+      "Dexterity": 10,
+      "Intelligence": 8,
+      "Strength": 15,
+      "Wisdom": 12
+    },
+    "starting_equipment": {
+      "option_a": {
+        "gold": 10,
+        "items": [
+          "Longsword",
+          "Shield",
+          "Chain Mail",
+          "Holy Symbol",
+          "Javelin (5)",
+          "Priest's Pack"
+        ]
+      },
+      "option_b": {
+        "gold": 175
+      }
+    },
+    "subclass_selection_level": 3,
+    "weapon_proficiencies": [
+      "Simple weapons",
+      "Martial weapons"
+    ]
+  },
+  "combat": {
+    "armor_class": 18,
+    "hit_dice": {
+      "spent": 0,
+      "total": "3d10"
+    },
+    "hit_point_maximum": 25,
+    "hit_points": {
+      "current": 25,
+      "maximum": 25,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 22,
+      "base_hp_breakdown": "Level 1: 10 (max d10) + Levels 2-3: 12 (avg d10)",
+      "class_name": "Paladin",
+      "constitution_bonus": 3,
+      "constitution_modifier": 1,
+      "constitution_score": 13,
+      "feature_bonus": 0,
+      "feature_breakdown": [],
+      "hit_die": 10,
+      "level": 3,
+      "total_hp": 25
+    },
+    "initiative": 0,
+    "initiative_bonus": 0,
+    "passive_perception": 11,
+    "speed": 30,
+    "uses_shield": true
+  },
+  "condition_immunities": [],
+  "darkvision": 60,
+  "effects": [
+    {
+      "condition": "one handed melee weapon",
+      "source": "Dueling",
+      "source_type": "class_choice",
+      "type": "bonus_damage",
+      "value": 2
+    },
+    {
+      "damage_type": "Fire",
+      "source": "Infernal Legacy",
+      "source_type": "lineage",
+      "type": "grant_damage_resistance"
+    },
+    {
+      "damage_type": "Fire",
+      "source": "Infernal Legacy",
+      "source_type": "lineage",
+      "type": "grant_damage_resistance"
+    },
+    {
+      "feat": "Savage Attacker",
+      "source": "Soldier",
+      "source_type": "background",
+      "type": "grant_origin_feat"
+    },
+    {
+      "min_level": 13,
+      "source": "Oath Spells",
+      "source_class_name": "Paladin",
+      "source_type": "subclass",
+      "spell": "Banishment",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 13,
+      "source": "Oath Spells",
+      "source_class_name": "Paladin",
+      "source_type": "subclass",
+      "spell": "Dimension Door",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 17,
+      "source": "Oath Spells",
+      "source_class_name": "Paladin",
+      "source_type": "subclass",
+      "spell": "Hold Monster",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 17,
+      "source": "Oath Spells",
+      "source_class_name": "Paladin",
+      "source_type": "subclass",
+      "spell": "Scrying",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 2,
+      "source": "Paladin's Smite",
+      "source_class_name": "Paladin",
+      "source_type": "class",
+      "spell": "Divine Smite",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Infernal Legacy",
+      "source_type": "lineage",
+      "spell": "Hellish Rebuke",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Infernal Legacy",
+      "source_type": "lineage",
+      "spell": "Hellish Rebuke",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Oath Spells",
+      "source_class_name": "Paladin",
+      "source_type": "subclass",
+      "spell": "Bane",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Oath Spells",
+      "source_class_name": "Paladin",
+      "source_type": "subclass",
+      "spell": "Hunter's Mark",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Infernal Legacy",
+      "source_type": "lineage",
+      "spell": "Darkness",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Infernal Legacy",
+      "source_type": "lineage",
+      "spell": "Darkness",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Oath Spells",
+      "source_class_name": "Paladin",
+      "source_type": "subclass",
+      "spell": "Hold Person",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Oath Spells",
+      "source_class_name": "Paladin",
+      "source_type": "subclass",
+      "spell": "Misty Step",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 9,
+      "source": "Oath Spells",
+      "source_class_name": "Paladin",
+      "source_type": "subclass",
+      "spell": "Haste",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 9,
+      "source": "Oath Spells",
+      "source_class_name": "Paladin",
+      "source_type": "subclass",
+      "spell": "Protection from Energy",
+      "type": "grant_spell"
+    },
+    {
+      "range": 60,
+      "source": "Darkvision",
+      "source_type": "species",
+      "type": "grant_darkvision"
+    },
+    {
+      "skills": [
+        "Athletics",
+        "Intimidation"
+      ],
+      "source": "Soldier",
+      "source_type": "background",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "source": "Infernal Legacy",
+      "source_type": "lineage",
+      "spell": "Fire Bolt",
+      "type": "grant_cantrip"
+    },
+    {
+      "source": "Infernal Legacy",
+      "source_type": "lineage",
+      "spell": "Fire Bolt",
+      "type": "grant_cantrip"
+    },
+    {
+      "source": "Otherworldly Presence",
+      "source_type": "species",
+      "spell": "Thaumaturgy",
+      "type": "grant_cantrip"
+    },
+    {
+      "source": "Soldier",
+      "source_type": "background",
+      "tools": [
+        "Gaming Set",
+        "Vehicles (Land)"
+      ],
+      "type": "grant_tool_proficiency"
+    }
+  ],
+  "eldritch_invocation_stats": {
+    "available_invocations": [],
+    "current_invocations": [],
+    "has_invocations": false,
+    "max_invocations": 0
+  },
+  "equipment": {
+    "armor": [
+      {
+        "name": "Chain Mail",
+        "source": "Class"
+      },
+      {
+        "name": "Shield",
+        "source": "Class"
+      }
+    ],
+    "gold": 60,
+    "items": [
+      {
+        "name": "Holy Symbol",
+        "source": "Class"
+      },
+      {
+        "name": "Priest's Pack",
+        "source": "Class"
+      }
+    ],
+    "weapons": [
+      {
+        "display_name": "Javelin (5)",
+        "name": "Javelin",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "5 sp",
+          "damage": "1d6",
+          "damage_type": "Piercing",
+          "mastery": "Slow",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Thrown (range 30/120)"
+          ],
+          "weight": 2
+        },
+        "quantity": 5,
+        "source": "Class"
+      },
+      {
+        "display_name": "Longsword",
+        "name": "Longsword",
+        "properties": {
+          "category": "Martial Melee",
+          "cost": "15 gp",
+          "damage": "1d8",
+          "damage_type": "Slashing",
+          "mastery": "Vex",
+          "proficiency_required": "Martial weapons",
+          "properties": [
+            "Versatile (1d10)"
+          ],
+          "weight": 3
+        },
+        "quantity": 1,
+        "source": "Class"
+      }
+    ]
+  },
+  "features": {
+    "background": [],
+    "class": [
+      {
+        "chosen_options": [
+          {
+            "choice_key": "fighting_style",
+            "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+            "name": "Dueling"
+          }
+        ],
+        "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+        "level": 2,
+        "name": "Fighting Style: Dueling",
+        "source": "Paladin"
+      },
+      {
+        "description": "You always have the Divine Smite spell prepared. You can cast it once without expending a spell slot, regaining this ability when you finish a Long Rest.\n\nSpells Always Prepared: Divine Smite",
+        "level": 2,
+        "name": "Paladin's Smite",
+        "source": "Paladin"
+      },
+      {
+        "description": "You can channel divine energy directly from the Outer Planes. You can use Channel Divinity twice per Long Rest (regain one use on Short Rest, additional use at level 11). Divine Sense: As a Bonus Action, detect Celestials, Fiends, and Undead within 60 feet for 10 minutes.",
+        "level": 3,
+        "name": "Channel Divinity",
+        "source": "Paladin"
+      },
+      {
+        "description": "You have learned to cast spells through prayer and meditation. Charisma is your spellcasting ability. You can use a Holy Symbol as a Spellcasting Focus.",
+        "level": 1,
+        "name": "Spellcasting",
+        "source": "Paladin"
+      },
+      {
+        "description": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you finish a Long Rest equal to five times your Paladin level. As a Bonus Action, you can touch a creature and restore Hit Points from the pool. You can also expend 5 Hit Points from the pool to remove the Poisoned condition.",
+        "level": 1,
+        "name": "Lay On Hands",
+        "source": "Paladin"
+      },
+      {
+        "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency.",
+        "level": 1,
+        "name": "Weapon Mastery",
+        "source": "Paladin"
+      }
+    ],
+    "feats": [
+      {
+        "description": "You've trained to deal particularly damaging strikes. Once per turn when you hit a target with a weapon, you can roll the weapon's damage dice twice and use either roll against the target.",
+        "name": "Savage Attacker",
+        "source": "Soldier"
+      }
+    ],
+    "lineage": [
+      {
+        "description": "You have Resistance to Fire damage. You know the Fire Bolt cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.\n\n<table class=\"table table-sm table-bordered mt-2\">\n<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n<tbody>\n<tr class=\"table-success\"><td>3</td><td>\u2713 Hellish Rebuke</td></tr>\n<tr class=\"table-secondary\"><td>5</td><td>\ud83d\udd12 Darkness</td></tr>\n</tbody>\n</table>",
+        "level": 5,
+        "name": "Infernal Legacy",
+        "source": "Infernal Tiefling"
+      }
+    ],
+    "species": [
+      {
+        "description": "You are the recipient of a legacy that grants you supernatural abilities. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait.",
+        "name": "Fiendish Legacy: Charisma",
+        "source": "Tiefling"
+      },
+      {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "name": "Darkvision",
+        "source": "Tiefling"
+      },
+      {
+        "description": "You know the Thaumaturgy cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.",
+        "name": "Otherworldly Presence",
+        "source": "Tiefling"
+      }
+    ],
+    "subclass": [
+      {
+        "description": "The magic of your oath ensures you always have certain spells ready.\n\n<table class=\"table table-sm table-bordered mt-2\">\n<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n<tbody>\n<tr class=\"table-success\"><td>3</td><td>\u2713 Bane, Hunter's Mark</td></tr>\n<tr class=\"table-secondary\"><td>5</td><td>\ud83d\udd12 Hold Person, Misty Step</td></tr>\n<tr class=\"table-secondary\"><td>9</td><td>\ud83d\udd12 Haste, Protection from Energy</td></tr>\n<tr class=\"table-secondary\"><td>13</td><td>\ud83d\udd12 Banishment, Dimension Door</td></tr>\n<tr class=\"table-secondary\"><td>17</td><td>\ud83d\udd12 Hold Monster, Scrying</td></tr>\n</tbody>\n</table>",
+        "level": 17,
+        "name": "Oath Spells",
+        "source": "Oath of Vengeance"
+      },
+      {
+        "description": "When you take the Attack action, you can expend one use of your Channel Divinity to utter a vow of enmity against a creature you can see within 30 feet of yourself. You have Advantage on attack rolls against the creature for 1 minute or until you use this feature again. If the creature drops to 0 Hit Points before the vow ends, you can transfer the vow to a different creature within 30 feet of yourself (no action required).",
+        "level": 3,
+        "name": "Vow of Enmity",
+        "source": "Oath of Vengeance"
+      }
+    ]
+  },
+  "immunities": [],
+  "languages": [
+    "Common",
+    "Common Sign Language",
+    "Gnomish"
+  ],
+  "level": 3,
+  "lineage": "Infernal Tiefling",
+  "lineage_data": {
+    "description": "The infernal legacy connects tieflings not only to Gehenna but also the Nine Hells and the raging battlefields of Acheron. Horns, spines, tails, golden eyes, and a faint odor of sulfur or smoke are common physical features of such tieflings, most of whom trace their ancestry to devils.",
+    "name": "Infernal Tiefling",
+    "parent_species": "Tiefling",
+    "spellcasting_ability_choice": [
+      "Intelligence",
+      "Wisdom",
+      "Charisma"
+    ],
+    "traits": {
+      "Infernal Legacy": {
+        "description": "You have Resistance to Fire damage. You know the Fire Bolt cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+        "effects": [
+          {
+            "damage_type": "Fire",
+            "type": "grant_damage_resistance"
+          },
+          {
+            "min_level": 3,
+            "spell": "Hellish Rebuke",
+            "type": "grant_spell"
+          },
+          {
+            "min_level": 5,
+            "spell": "Darkness",
+            "type": "grant_spell"
+          },
+          {
+            "spell": "Fire Bolt",
+            "type": "grant_cantrip"
+          }
+        ]
+      }
+    }
+  },
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "name": "Seraphel Ashveil",
+  "proficiencies": {
+    "armor": [
+      "Light armor",
+      "Medium armor",
+      "Heavy armor",
+      "Shields"
+    ],
+    "languages": [
+      "Common",
+      "Common Sign Language",
+      "Gnomish"
+    ],
+    "saving_throws": [
+      "Wisdom",
+      "Charisma"
+    ],
+    "skills": [
+      "Athletics",
+      "Persuasion",
+      "Intimidation",
+      "Insight"
+    ],
+    "tools": [
+      "Gaming Set",
+      "Vehicles (Land)"
+    ],
+    "weapons": [
+      "Simple weapons",
+      "Martial weapons"
+    ]
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {},
+    "languages": {
+      "Common": "base",
+      "Common Sign Language": "user_choice",
+      "Gnomish": "user_choice"
+    },
+    "saving_throws": {},
+    "skills": {
+      "Athletics": "Paladin",
+      "Insight": "Soldier",
+      "Intimidation": "Soldier",
+      "Persuasion": "Paladin"
+    },
+    "tools": {
+      "Gaming Set": "Soldier",
+      "Vehicles (Land)": "Soldier"
+    },
+    "weapons": {}
+  },
+  "resistances": [
+    "Fire"
+  ],
+  "save_advantages": [],
+  "skill_proficiencies": [
+    "Athletics",
+    "Persuasion",
+    "Intimidation",
+    "Insight"
+  ],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Paladin"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Soldier"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 4,
+      "expertise": false,
+      "modifier": 4,
+      "proficient": true,
+      "source": "Soldier"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 4,
+      "expertise": false,
+      "modifier": 4,
+      "proficient": true,
+      "source": "Paladin"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    }
+  },
+  "species": "Tiefling",
+  "species_data": {
+    "creature_type": "Humanoid",
+    "description": "Tieflings are either born in the Lower Planes or have fiendish ancestors who originated there. A tiefling is linked by blood to a devil, a demon, or some other Fiend. This connection to the Lower Planes is the tiefling's fiendish legacy, which comes with the promise of power yet has no effect on the tiefling's moral outlook.",
+    "languages": [
+      "Common",
+      "Infernal"
+    ],
+    "lineages": [
+      "Abyssal Tiefling",
+      "Chthonic Tiefling",
+      "Infernal Tiefling"
+    ],
+    "name": "Tiefling",
+    "size": "Medium or Small",
+    "size_description": "Medium (about 4-7 feet tall) or Small (about 3-4 feet tall), chosen when you select this species",
+    "speed": 30,
+    "traits": {
+      "Darkvision": {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "effects": [
+          {
+            "range": 60,
+            "type": "grant_darkvision"
+          }
+        ]
+      },
+      "Fiendish Legacy": {
+        "choices": {
+          "count": 1,
+          "source": {
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ],
+            "type": "fixed_list"
+          },
+          "type": "select_single"
+        },
+        "description": "You are the recipient of a legacy that grants you supernatural abilities. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spells you cast with this trait.",
+        "type": "choice"
+      },
+      "Otherworldly Presence": {
+        "description": "You know the Thaumaturgy cantrip. When you cast it with this trait, the spell uses the same spellcasting ability you use for your Fiendish Legacy trait.",
+        "effects": [
+          {
+            "spell": "Thaumaturgy",
+            "type": "grant_cantrip"
+          }
+        ]
+      }
+    }
+  },
+  "speed": 30,
+  "speed_bonuses": {},
+  "spell_metadata": {
+    "Bane": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Oath of Vengeance",
+      "source_type": "subclass"
+    },
+    "Divine Smite": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Paladin",
+      "source_type": "class"
+    },
+    "Fire Bolt": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "source": "Infernal Tiefling",
+      "source_type": "lineage"
+    },
+    "Hellish Rebuke": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": true,
+      "once_per_long_rest": false,
+      "source": "Infernal Tiefling",
+      "source_type": "lineage"
+    },
+    "Hunter's Mark": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Oath of Vengeance",
+      "source_type": "subclass"
+    },
+    "Thaumaturgy": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "source": "Tiefling",
+      "source_type": "species"
+    }
+  },
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {
+    "1st": 3
+  },
+  "spellcasting_stats": {
+    "available_cantrips": [],
+    "available_spells": {
+      "1": [
+        "Bless",
+        "Command",
+        "Compelled Duel",
+        "Cure Wounds",
+        "Detect Evil and Good",
+        "Detect Magic",
+        "Detect Poison and Disease",
+        "Divine Favor",
+        "Divine Smite",
+        "Heroism",
+        "Protection from Evil and Good",
+        "Purify Food and Drink",
+        "Searing Smite",
+        "Shield of Faith",
+        "Thunderous Smite",
+        "Wardaway",
+        "Wrathful Smite"
+      ]
+    },
+    "background_cantrips_list": null,
+    "background_cantrips_needed": 0,
+    "background_spell_level": 1,
+    "background_spells_list": null,
+    "background_spells_needed": 0,
+    "cantrips_always_prepared": 2,
+    "cantrips_known": 2,
+    "cantrips_to_prepare": 0,
+    "effective_caster_level": 2,
+    "has_spellcasting": true,
+    "max_cantrips": 2,
+    "max_cantrips_prepared": 0,
+    "max_cantrips_to_prepare": 0,
+    "max_prepared_spells": 8,
+    "max_spells_prepared": 4,
+    "max_spells_to_prepare": 4,
+    "multiclass_notes": [],
+    "pact_magic_slots": [],
+    "preparation_formula": "level + charisma_modifier",
+    "ritual_casting": false,
+    "spell_attack_bonus": 4,
+    "spell_save_dc": 12,
+    "spellcasting_ability": "Charisma",
+    "spellcasting_modifier": 2,
+    "spellcasting_type": "prepared",
+    "spells_always_prepared": 4,
+    "spells_prepared": 8
+  },
+  "spells": {
+    "always_prepared": {
+      "Bane": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Oath of Vengeance"
+      },
+      "Divine Smite": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Paladin"
+      },
+      "Fire Bolt": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 0,
+        "source": "Infernal Tiefling"
+      },
+      "Hellish Rebuke": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "source": "Infernal Tiefling"
+      },
+      "Hunter's Mark": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Oath of Vengeance"
+      },
+      "Thaumaturgy": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 0,
+        "source": "Tiefling"
+      }
+    },
+    "background_spells": {},
+    "cantrips": [
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "You manifest a minor wonder, a sign of supernatural power, within range. You create one of several effects: your voice booms, flames flicker, tremors shake the ground, or other minor magical effects.",
+        "duration": "Up to 1 minute",
+        "level": 0,
+        "name": "Thaumaturgy",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Tiefling"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Fire Bolt",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Infernal Tiefling"
+      }
+    ],
+    "known": {},
+    "level_1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "For the duration, you sense the presence of any Aberration, Celestial, Elemental, Fey, Fiend, or Undead within 30 feet of you, as well as where the creature is located. Similarly, you sense whether a place or object within 30 feet of you has been magically consecrated or desecrated. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 1,
+        "name": "Detect Evil and Good",
+        "range": "Self",
+        "ritual": false,
+        "school": "Divination",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V, S, M (a sprinkle of Holy Water)",
+        "concentration": true,
+        "description": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save. Using a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Bless",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric"
+        ],
+        "components": "V, S, M",
+        "concentration": true,
+        "description": "Up to three creatures of your choice that you can see within range must each make a Charisma saving throw. Whenever a target that fails this saving throw makes an attack roll or a saving throw before the spell ends, the target must roll a d4 and subtract the number rolled from the attack roll or saving throw. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "material": "a drop of blood",
+        "name": "Bane",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Oath of Vengeance"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Ranger"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "You magically mark one creature you can see within range as your quarry. Until the spell ends, you deal an extra 1d6 Force damage to the target whenever you hit it with an attack roll. You also have Advantage on any Wisdom (Perception or Survival) check you make to find it. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action to mark a new creature you can see within range. Using a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 3-4 (up to 8 hours) or 5+ (24 hours).",
+        "duration": "Concentration, up to 1 hour",
+        "level": 1,
+        "name": "Hunter's Mark",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "90 feet",
+        "ritual": false,
+        "school": "Divination",
+        "source": "Oath of Vengeance"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action, which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike",
+        "classes": [
+          "Paladin"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "The target takes an extra 2d8 Radiant damage from the attack. The damage increases by 1d8 if the target is a Fiend or an Undead. Using a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 1.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Divine Smite",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Self",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Paladin"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see",
+        "classes": [
+          "Warlock"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Hellish Rebuke",
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Infernal Tiefling"
+      }
+    ],
+    "prepared": {
+      "cantrips": {},
+      "spells": {
+        "Bless": {},
+        "Branding Smite": {},
+        "Detect Evil and Good": {},
+        "Find Steed": {}
+      }
+    },
+    "slots": {}
+  },
+  "spells_by_level": {
+    "0": [
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "You manifest a minor wonder, a sign of supernatural power, within range. You create one of several effects: your voice booms, flames flicker, tremors shake the ground, or other minor magical effects.",
+        "duration": "Up to 1 minute",
+        "level": 0,
+        "name": "Thaumaturgy",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Tiefling"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Fire Bolt",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Infernal Tiefling"
+      }
+    ],
+    "1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "For the duration, you sense the presence of any Aberration, Celestial, Elemental, Fey, Fiend, or Undead within 30 feet of you, as well as where the creature is located. Similarly, you sense whether a place or object within 30 feet of you has been magically consecrated or desecrated. The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 1,
+        "name": "Detect Evil and Good",
+        "range": "Self",
+        "ritual": false,
+        "school": "Divination",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V, S, M (a sprinkle of Holy Water)",
+        "concentration": true,
+        "description": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save. Using a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Bless",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric"
+        ],
+        "components": "V, S, M",
+        "concentration": true,
+        "description": "Up to three creatures of your choice that you can see within range must each make a Charisma saving throw. Whenever a target that fails this saving throw makes an attack roll or a saving throw before the spell ends, the target must roll a d4 and subtract the number rolled from the attack roll or saving throw. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "material": "a drop of blood",
+        "name": "Bane",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Oath of Vengeance"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Ranger"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "You magically mark one creature you can see within range as your quarry. Until the spell ends, you deal an extra 1d6 Force damage to the target whenever you hit it with an attack roll. You also have Advantage on any Wisdom (Perception or Survival) check you make to find it. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action to mark a new creature you can see within range. Using a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 3-4 (up to 8 hours) or 5+ (24 hours).",
+        "duration": "Concentration, up to 1 hour",
+        "level": 1,
+        "name": "Hunter's Mark",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "90 feet",
+        "ritual": false,
+        "school": "Divination",
+        "source": "Oath of Vengeance"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action, which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike",
+        "classes": [
+          "Paladin"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "The target takes an extra 2d8 Radiant damage from the attack. The damage increases by 1d8 if the target is a Fiend or an Undead. Using a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 1.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Divine Smite",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Self",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Paladin"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see",
+        "classes": [
+          "Warlock"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Hellish Rebuke",
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Infernal Tiefling"
+      }
+    ],
+    "2": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Paladin"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You summon a spirit that assumes the form of a unusually intelligent, strong, and loyal steed, creating a long-lasting bond with it. The steed takes on a form you choose: Camel, Donkey, Elk, Horse, Mastiff, Mule, Pony, or Warhorse. The steed has the statistics of the chosen form, though it is a Celestial, Fey, or Fiend (your choice) instead of its normal creature type. If your steed has ever been slain, you can cast this spell to revive it.",
+        "duration": "Instantaneous",
+        "level": 2,
+        "name": "Find Steed",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action, which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike",
+        "classes": [
+          "Paladin"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "The target takes an extra 2d6 Radiant damage from the attack. The target also sheds Dim Light in a 5-foot radius and can't benefit from the Invisible condition for the duration. Using a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 2.",
+        "duration": "1 minute",
+        "level": 2,
+        "name": "Branding Smite",
+        "range": "Self",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      }
+    ]
+  },
+  "step": "complete",
+  "subclass": "Oath of Vengeance",
+  "subclass_data": {
+    "class": "Paladin",
+    "description": "Paladins who swear the Oath of Vengeance pledge to punish wrongdoers with the fury of a righteous storm, dedicating themselves to hunting down evildoers.",
+    "features_by_level": {
+      "15": {
+        "Soul of Vengeance": "Immediately after a creature under the effect of your Vow of Enmity hits or misses with an attack roll, you can take a Reaction to make a melee attack against that creature if it's within range."
+      },
+      "20": {
+        "Avenging Angel": "As a Bonus Action, you gain the benefits below for 10 minutes or until you end them (no action required). Once you use this feature, you can't use it again until you finish a Long Rest. You can also restore your use of it by expending a level 5 spell slot (no action required). Flight: You sprout spectral wings and have a Fly Speed of 60 feet, and can hover. Frightful Aura: Whenever an enemy starts its turn in your Aura of Protection, that creature must succeed on a Wisdom saving throw or have the Frightened condition for 1 minute or until it takes any damage. Attack rolls against the Frightened creature have Advantage."
+      },
+      "3": {
+        "Oath Spells": {
+          "description": "The magic of your oath ensures you always have certain spells ready.",
+          "effects": [
+            {
+              "min_level": 13,
+              "spell": "Banishment",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 13,
+              "spell": "Dimension Door",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 17,
+              "spell": "Hold Monster",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 17,
+              "spell": "Scrying",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 3,
+              "spell": "Bane",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 3,
+              "spell": "Hunter's Mark",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 5,
+              "spell": "Hold Person",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 5,
+              "spell": "Misty Step",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 9,
+              "spell": "Haste",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 9,
+              "spell": "Protection from Energy",
+              "type": "grant_spell"
+            }
+          ]
+        },
+        "Vow of Enmity": "When you take the Attack action, you can expend one use of your Channel Divinity to utter a vow of enmity against a creature you can see within 30 feet of yourself. You have Advantage on attack rolls against the creature for 1 minute or until you use this feature again. If the creature drops to 0 Hit Points before the vow ends, you can transfer the vow to a different creature within 30 feet of yourself (no action required)."
+      },
+      "7": {
+        "Relentless Avenger": "Your supernatural focus helps you close off a foe's retreat. When you hit a creature with an Opportunity Attack, you can reduce the creature's Speed to 0 until the end of the current turn. You can then move up to half your Speed as part of the same Reaction. This movement doesn't provoke Opportunity Attacks."
+      }
+    },
+    "name": "Oath of Vengeance",
+    "source": "Player's Handbook 2024"
+  },
+  "superiority_dice": {},
+  "tool_proficiencies": [
+    "Gaming Set",
+    "Vehicles (Land)"
+  ],
+  "warnings": [
+    "Spell selections had validation issues: [{'field': 'spell_selections.spells', 'reason': 'unavailable_selection', 'selections': ['Branding Smite', 'Find Steed']}]"
+  ],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [
+      "Battleaxe",
+      "Club",
+      "Dagger",
+      "Flail",
+      "Glaive",
+      "Greataxe",
+      "Greatclub",
+      "Greatsword",
+      "Halberd",
+      "Handaxe",
+      "Javelin",
+      "Lance",
+      "Light Crossbow",
+      "Light Hammer",
+      "Longbow",
+      "Longsword",
+      "Mace",
+      "Maul",
+      "Morningstar",
+      "Pike",
+      "Quarterstaff",
+      "Rapier",
+      "Scimitar",
+      "Shortbow",
+      "Shortsword",
+      "Sickle",
+      "Spear",
+      "Trident",
+      "War Pick",
+      "Warhammer",
+      "Whip"
+    ],
+    "current_masteries": [],
+    "has_mastery": true,
+    "max_masteries": 2
+  },
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons"
+  ]
+}

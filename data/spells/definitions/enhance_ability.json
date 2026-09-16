@@ -1,0 +1,24 @@
+{
+  "name": "Enhance Ability",
+  "level": 2,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "fur or a feather from a beast",
+  "duration": "Concentration, up to 1 hour",
+  "description": "You touch a creature and give it a magical enhancement. Choose one of the following effects: Bear's Endurance (Constitution checks have Advantage; also gain 2d6 Temporary Hit Points), Bull's Strength (Strength checks have Advantage; carrying capacity doubles), Cat's Grace (Dexterity checks have Advantage; no damage from falling 20 feet or less if not Incapacitated), Eagle's Splendor (Charisma checks have Advantage), Fox's Cunning (Intelligence checks have Advantage), Owl's Wisdom (Wisdom checks have Advantage). At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
+  "classes": [
+    "Bard",
+    "Cleric",
+    "Druid",
+    "Ranger",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

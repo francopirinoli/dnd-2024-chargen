@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Armor and Shields",
+  "description": "Schema for data/equipment/armor.json. Top-level keys are armor names; values describe stats. The file mixes body armor entries (Light/Medium/Heavy) with the Shield entry; shields use ac_bonus while body armor uses ac_base / ac_formula / strength_requirement. Both ac_base and ac_bonus are optional at the schema level so a single shape covers both.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": ["category", "cost", "weight", "stealth_disadvantage", "proficiency_required"],
+    "properties": {
+      "category": {
+        "type": "string",
+        "enum": ["Light Armor", "Medium Armor", "Heavy Armor", "Shield"]
+      },
+      "cost": { "type": "string" },
+      "weight": {
+        "type": "number",
+        "minimum": 0
+      },
+      "stealth_disadvantage": { "type": "boolean" },
+      "proficiency_required": { "type": "string" },
+      "ac_base": { "type": "integer", "minimum": 0 },
+      "ac_formula": { "type": "string" },
+      "ac_bonus": { "type": "integer", "minimum": 0 },
+      "strength_requirement": {
+        "type": ["integer", "null"],
+        "minimum": 0
+      }
+    },
+    "additionalProperties": false
+  }
+}

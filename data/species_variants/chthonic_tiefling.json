@@ -1,0 +1,31 @@
+{
+  "name": "Chthonic Tiefling",
+  "parent_species": "Tiefling",
+  "description": "Tieflings who have the chthonic legacy feel not only the tug of Carceri but also the greed of Gehenna and the gloom of Hades. Some of these tieflings look cadaverous. Others possess the unearthly beauty of a succubus, or they have physical features in common with a night hag, a yugoloth, or some other Neutral Evil fiendish ancestor.",
+  "traits": {
+    "Chthonic Legacy": {
+      "description": "You have Resistance to Necrotic damage. You know the Chill Touch cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+      "effects": [
+        {
+          "type": "grant_damage_resistance",
+          "damage_type": "Necrotic"
+        },
+        {
+          "type": "grant_cantrip",
+          "spell": "Chill Touch"
+        },
+        {
+          "type": "grant_spell",
+          "spell": "False Life",
+          "min_level": 3
+        },
+        {
+          "type": "grant_spell",
+          "spell": "Ray of Enfeeblement",
+          "min_level": 5
+        }
+      ]
+    }
+  },
+  "spellcasting_ability_choice": ["Intelligence", "Wisdom", "Charisma"]
+}

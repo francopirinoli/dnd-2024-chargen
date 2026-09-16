@@ -1,0 +1,35 @@
+{
+  "name": "Oath of Vengeance",
+  "class": "Paladin",
+  "description": "Paladins who swear the Oath of Vengeance pledge to punish wrongdoers with the fury of a righteous storm, dedicating themselves to hunting down evildoers.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Oath Spells": {
+        "description": "The magic of your oath ensures you always have certain spells ready.",
+        "effects": [
+          {"type": "grant_spell", "spell": "Bane", "min_level": 3},
+          {"type": "grant_spell", "spell": "Hunter's Mark", "min_level": 3},
+          {"type": "grant_spell", "spell": "Hold Person", "min_level": 5},
+          {"type": "grant_spell", "spell": "Misty Step", "min_level": 5},
+          {"type": "grant_spell", "spell": "Haste", "min_level": 9},
+          {"type": "grant_spell", "spell": "Protection from Energy", "min_level": 9},
+          {"type": "grant_spell", "spell": "Banishment", "min_level": 13},
+          {"type": "grant_spell", "spell": "Dimension Door", "min_level": 13},
+          {"type": "grant_spell", "spell": "Hold Monster", "min_level": 17},
+          {"type": "grant_spell", "spell": "Scrying", "min_level": 17}
+        ]
+      },
+      "Vow of Enmity": "When you take the Attack action, you can expend one use of your Channel Divinity to utter a vow of enmity against a creature you can see within 30 feet of yourself. You have Advantage on attack rolls against the creature for 1 minute or until you use this feature again. If the creature drops to 0 Hit Points before the vow ends, you can transfer the vow to a different creature within 30 feet of yourself (no action required)."
+    },
+    "7": {
+      "Relentless Avenger": "Your supernatural focus helps you close off a foe's retreat. When you hit a creature with an Opportunity Attack, you can reduce the creature's Speed to 0 until the end of the current turn. You can then move up to half your Speed as part of the same Reaction. This movement doesn't provoke Opportunity Attacks."
+    },
+    "15": {
+      "Soul of Vengeance": "Immediately after a creature under the effect of your Vow of Enmity hits or misses with an attack roll, you can take a Reaction to make a melee attack against that creature if it's within range."
+    },
+    "20": {
+      "Avenging Angel": "As a Bonus Action, you gain the benefits below for 10 minutes or until you end them (no action required). Once you use this feature, you can't use it again until you finish a Long Rest. You can also restore your use of it by expending a level 5 spell slot (no action required). Flight: You sprout spectral wings and have a Fly Speed of 60 feet, and can hover. Frightful Aura: Whenever an enemy starts its turn in your Aura of Protection, that creature must succeed on a Wisdom saving throw or have the Frightened condition for 1 minute or until it takes any damage. Attack rolls against the Frightened creature have Advantage."
+    }
+  }
+}

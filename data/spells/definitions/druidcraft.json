@@ -1,0 +1,17 @@
+{
+  "name": "Druidcraft",
+  "level": 0,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Instantaneous",
+  "description": "You create a small nature-themed magical effect (predict weather, make a flower bloom, light/snuff a small flame, etc.).",
+  "classes": [
+    "Druid"
+  ],
+  "ritual": false
+}

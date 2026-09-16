@@ -1,0 +1,23 @@
+{
+  "name": "Scrying",
+  "level": 5,
+  "school": "Divination",
+  "casting_time": "10 minutes",
+  "range": "Self",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "a focus worth 1,000+ GP, such as a crystal ball, a silver mirror, or a font filled with holy water",
+  "duration": "Concentration, up to 10 minutes",
+  "description": "You can see and hear a particular creature you choose that is on the same plane of existence as you. The target must make a Wisdom saving throw, which is modified by how well you know the target and the sort of physical connection you have to it. If the target knows you're casting this spell, it can fail the saving throw voluntarily if it wants to be observed. On a successful save, the target isn't affected, and you can't use this spell against it again for 24 hours. On a failed save, the spell creates an invisible sensor within 10 feet of the target. You can see and hear through the sensor as if you were there. The sensor moves with the target, remaining within 10 feet of it for the duration.",
+  "classes": [
+    "Bard",
+    "Cleric",
+    "Druid",
+    "Warlock",
+    "Wizard"
+  ],
+  "ritual": false
+}

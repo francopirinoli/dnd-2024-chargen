@@ -1,0 +1,20 @@
+{
+  "name": "Resurrection",
+  "level": 7,
+  "school": "Necromancy",
+  "casting_time": "1 hour",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "a diamond worth 1,000+ GP, which the spell consumes",
+  "duration": "Instantaneous",
+  "description": "With a touch, you return a dead creature you touch to life, provided that it has been dead no longer than a century, it didn't die of old age, and its soul is free and willing to return. This spell neutralizes any poisons and cures normal diseases that affected the creature at the time it died. It doesn't, however, remove magical diseases, curses, and the like; if such effects aren't removed prior to casting the spell, they afflict the creature on its return to life. The spell closes all mortal wounds. Coming back from the dead is an ordeal. The target takes a -4 penalty to all attack rolls, saving throws, and ability checks. Every time the target finishes a Long Rest, the penalty is reduced by 1 until it disappears.",
+  "classes": [
+    "Bard",
+    "Cleric"
+  ],
+  "ritual": false
+}

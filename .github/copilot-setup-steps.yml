@@ -1,0 +1,23 @@
+# Environment setup for GitHub Copilot coding agent
+# This file tells the agent how to prepare the dev environment
+# before it starts working on an issue.
+
+steps:
+  - name: Install Python dependencies
+    run: pip install -r requirements.txt
+
+  - name: Install test dependencies
+    run: pip install pytest
+
+  - name: Install frontend dependencies
+    run: npm install
+    working-directory: frontend
+
+  - name: Validate Python environment
+    run: |
+      python validate_data.py
+      pytest tests/ -x -q --tb=short
+
+  - name: Validate frontend build
+    run: npm run typecheck
+    working-directory: frontend

@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Spell Definition",
+  "description": "Schema for files in data/spells/definitions/. One file per spell.",
+  "type": "object",
+  "required": [
+    "name",
+    "level",
+    "school",
+    "casting_time",
+    "range",
+    "components",
+    "duration",
+    "description",
+    "classes",
+    "ritual"
+  ],
+  "properties": {
+    "name": { "type": "string" },
+    "level": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9,
+      "description": "0 for cantrips, 1-9 for leveled spells."
+    },
+    "school": {
+      "type": "string",
+      "enum": [
+        "Abjuration",
+        "Conjuration",
+        "Divination",
+        "Enchantment",
+        "Evocation",
+        "Illusion",
+        "Necromancy",
+        "Transmutation"
+      ]
+    },
+    "casting_time": { "type": "string" },
+    "range": { "type": "string" },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "V, S, or M[...] (material with optional inline parenthetical)."
+      },
+      "minItems": 1
+    },
+    "material": {
+      "type": "string",
+      "description": "Material component description (used when components contains a bare 'M' rather than an inline 'M(...)')."
+    },
+    "duration": { "type": "string" },
+    "description": { "type": "string" },
+    "classes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "ritual": { "type": "boolean" },
+    "source": {
+      "type": "string",
+      "description": "Source book or supplement"
+    }
+  },
+  "additionalProperties": false
+}

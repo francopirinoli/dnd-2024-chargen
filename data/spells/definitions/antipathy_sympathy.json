@@ -1,0 +1,21 @@
+{
+  "name": "Antipathy/Sympathy",
+  "level": 8,
+  "school": "Enchantment",
+  "casting_time": "1 hour",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "a lump of alum soaked in vinegar for the Antipathy effect, or a drop of honey for the Sympathy effect",
+  "duration": "10 days",
+  "description": "This spell attracts or repels creatures of your choice. You target something within range, either a Huge or smaller object or creature or an area that is no larger than a 200-foot Cube. Then specify a kind of intelligent creature, such as red dragons, goblins, or vampires. You invest the target with an aura that either attracts or repels the specified creatures for the duration. Antipathy. The enchantment causes creatures of the kind you designated to feel an intense urge to leave the area and avoid the target. When such a creature can see the target or comes within 60 feet of it, the creature must succeed on a Wisdom saving throw or use its movement to move to the nearest safe spot from which it can't perceive the target. Sympathy. The enchantment causes the specified creatures to feel an intense urge to approach the target while within 60 feet of it or able to see it. When such a creature can see the target or comes within 60 feet of it, the creature must succeed on a Wisdom saving throw or use its movement on each of its turns to enter the area or move within reach of the target.",
+  "classes": [
+    "Bard",
+    "Druid",
+    "Wizard"
+  ],
+  "ritual": false
+}

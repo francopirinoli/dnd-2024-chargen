@@ -1,0 +1,21 @@
+{
+  "name": "Sleep",
+  "level": 1,
+  "school": "Enchantment",
+  "casting_time": "1 action",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "a pinch of sand or rose petals",
+  "duration": "Concentration, up to 1 minute",
+  "description": "You send a soporific magical energy toward creatures in a 5-foot-radius Sphere centered on a point within range. Each creature in that area must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target falls Unconscious until the spell ends, the sleeper takes damage, or someone within 5 feet of the sleeper takes an action to shake or slap the sleeper awake. Constructs and Undead aren't affected by this spell. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the Sphere's radius increases by 5 feet for each slot level above 1st.",
+  "classes": [
+    "Bard",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

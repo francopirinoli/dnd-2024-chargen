@@ -1,0 +1,18 @@
+{
+  "name": "Cloudkill",
+  "level": 5,
+  "school": "Conjuration",
+  "casting_time": "1 action",
+  "range": "120 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 10 minutes",
+  "description": "You create a 20-foot-radius Sphere of poisonous, yellow-green fog centered on a point you choose within range. The fog spreads around corners. It lasts for the duration or until strong wind disperses the fog, ending the spell. Its area is Heavily Obscured. A creature takes 5d8 Poison damage when it enters the spell's area for the first time on a turn or starts its turn there. At the start of each of your turns after the spell is cast, the fog moves 10 feet away from you. When using a higher-level spell slot, the damage increases by 1d8 for each slot level above 5.",
+  "classes": [
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

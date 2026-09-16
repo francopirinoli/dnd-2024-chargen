@@ -1,0 +1,2546 @@
+{
+  "_lineage_traits": {
+    "Increased Speed": {
+      "description": "Your Speed increases to 35 feet.",
+      "effects": [
+        {
+          "feature_group": "wood_elf_increased_speed",
+          "type": "increase_speed",
+          "value": 5
+        }
+      ]
+    },
+    "Wood Elf Spells": {
+      "description": "You know the Druidcraft cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+      "effects": [
+        {
+          "min_level": 3,
+          "spell": "Longstrider",
+          "type": "grant_spell"
+        },
+        {
+          "min_level": 5,
+          "spell": "Pass without Trace",
+          "type": "grant_spell"
+        },
+        {
+          "spell": "Druidcraft",
+          "type": "grant_cantrip"
+        }
+      ]
+    }
+  },
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 13,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 13,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 15,
+      "modifier": 3,
+      "saving_throw": 5,
+      "saving_throw_proficient": true,
+      "score": 17,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 8,
+      "modifier": -1,
+      "saving_throw": -1,
+      "saving_throw_proficient": false,
+      "score": 8,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 12,
+      "modifier": 1,
+      "saving_throw": 3,
+      "saving_throw_proficient": true,
+      "score": 12,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 14,
+      "modifier": 2,
+      "saving_throw": 2,
+      "saving_throw_proficient": false,
+      "score": 15,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 10,
+    "Constitution": 13,
+    "Dexterity": 17,
+    "Intelligence": 8,
+    "Strength": 12,
+    "Wisdom": 15
+  },
+  "ac_options": [
+    {
+      "ac": 13,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (3)",
+      "notes": [],
+      "shield": false
+    },
+    {
+      "ac": 15,
+      "armor": "Studded Leather Armor",
+      "equipped_armor": "Studded Leather Armor",
+      "formula": "Armor base (12) + Dex modifier (3)",
+      "notes": [],
+      "shield": false
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [
+    "Light armor",
+    "Medium armor",
+    "Shields"
+  ],
+  "attack_combinations": [
+    {
+      "mainhand": {
+        "attack_bonus": 5,
+        "attack_bonus_display": "+5",
+        "avg_damage": 6.5,
+        "damage": "1d6 + 3",
+        "damage_type": "Slashing",
+        "icon": "/static/images/weapons/scimitar.svg",
+        "name": "Scimitar"
+      },
+      "name": "Scimitar & Shortsword",
+      "notes": [],
+      "offhand": {
+        "attack_bonus": 5,
+        "attack_bonus_display": "+5",
+        "avg_damage": 3.5,
+        "damage": "1d6",
+        "damage_type": "Piercing",
+        "icon": "/static/images/weapons/sword.svg",
+        "name": "Shortsword"
+      },
+      "rank": 1,
+      "recommended": true,
+      "type": "combination"
+    }
+  ],
+  "attacks": [
+    {
+      "ability": "DEX",
+      "attack_bonus": 7,
+      "attack_bonus_display": "+7",
+      "avg_crit": 12.0,
+      "avg_damage": 7.5,
+      "damage": "1d8 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/bow.svg",
+      "mastery": "Slow",
+      "name": "Longbow",
+      "proficient": true,
+      "properties": [
+        "Ammunition (range 150/600)",
+        "Heavy",
+        "Two-Handed"
+      ]
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 3,
+      "attack_bonus_display": "+3",
+      "avg_crit": 2.0,
+      "avg_damage": 2.0,
+      "damage": "2",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    },
+    {
+      "ability": "STR/DEX (DEX)",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 10.0,
+      "avg_damage": 6.5,
+      "damage": "1d6 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/sword.svg",
+      "mastery": "Vex",
+      "name": "Shortsword",
+      "proficient": true,
+      "properties": [
+        "Finesse",
+        "Light"
+      ]
+    },
+    {
+      "ability": "STR/DEX (DEX)",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 10.0,
+      "avg_damage": 6.5,
+      "damage": "1d6 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_type": "Slashing",
+      "icon": "/static/images/weapons/scimitar.svg",
+      "mastery": "Nick",
+      "name": "Scimitar",
+      "proficient": true,
+      "properties": [
+        "Finesse",
+        "Light"
+      ]
+    }
+  ],
+  "background": "Guide",
+  "background_data": {
+    "ability_score_increase": {
+      "options": [
+        "Dexterity",
+        "Constitution",
+        "Wisdom"
+      ],
+      "suggested": {
+        "Dexterity": 1,
+        "Wisdom": 2
+      },
+      "total": 3
+    },
+    "description": "You came of age outdoors, far from settled lands. Your home was anywhere you chose to spread your bedroll. There are wonders in the wilderness\u2014strange monsters, pristine forests and streams, overgrown ruins of great halls once trod by giants\u2014and you learned to fend for yourself as you explored them. From time to time, you guided friendly nature priests who instructed you in the fundamentals of channeling the magic of the wild.",
+    "edition": "2024",
+    "effects": [
+      {
+        "feat": "Magic Initiate (Druid)",
+        "type": "grant_origin_feat"
+      },
+      {
+        "skills": [
+          "Stealth",
+          "Survival"
+        ],
+        "type": "grant_skill_proficiency"
+      },
+      {
+        "tools": [
+          "Cartographer's Tools"
+        ],
+        "type": "grant_tool_proficiency"
+      }
+    ],
+    "name": "Guide",
+    "starting_equipment": {
+      "option_a": {
+        "gold": 3,
+        "items": [
+          "Shortbow",
+          "20 Arrows",
+          "Cartographer's Tools",
+          "Bedroll",
+          "Quiver",
+          "Tent",
+          "Traveler's Clothes"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "status": "active"
+  },
+  "best_attack_combination": {
+    "mainhand": {
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_damage": 6.5,
+      "damage": "1d6 + 3",
+      "damage_type": "Slashing",
+      "icon": "/static/images/weapons/scimitar.svg",
+      "name": "Scimitar"
+    },
+    "name": "Scimitar & Shortsword",
+    "notes": [],
+    "offhand": {
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_damage": 3.5,
+      "damage": "1d6",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/sword.svg",
+      "name": "Shortsword"
+    },
+    "rank": 1,
+    "recommended": true,
+    "type": "combination"
+  },
+  "choices_made": {
+    "ability_scores": {
+      "Charisma": 10,
+      "Constitution": 13,
+      "Dexterity": 15,
+      "Intelligence": 8,
+      "Strength": 12,
+      "Wisdom": 14
+    },
+    "ability_scores_method": "standard_array",
+    "background": "Guide",
+    "background_bonuses": {
+      "Dexterity": 2,
+      "Wisdom": 1
+    },
+    "background_skill_replacements": [
+      "Nature",
+      "Animal Handling"
+    ],
+    "background_skill_replacements_needed": 2,
+    "character_name": "Senna Nightbough",
+    "class": "Ranger",
+    "classes": [
+      {
+        "class_name": "Ranger",
+        "level": 3,
+        "subclass": "Gloom Stalker"
+      }
+    ],
+    "deft_explorer_expertise": "Stealth",
+    "deft_explorer_languages": [
+      "Elvish",
+      "Draconic"
+    ],
+    "equipment_selections": {
+      "background_equipment": "option_b",
+      "class_equipment": "option_a"
+    },
+    "fighting_style": "Archery",
+    "languages": [
+      "Halfling",
+      "Dwarvish"
+    ],
+    "level": 3,
+    "lineage": "Wood Elf",
+    "skill_choices": [
+      "Perception",
+      "Stealth",
+      "Survival"
+    ],
+    "species": "Elf",
+    "species_trait_choices": {
+      "Elven Lineage": "Wisdom",
+      "Keen Senses": "Insight"
+    },
+    "spell_selections": {
+      "background_cantrips": [],
+      "background_spells": [],
+      "cantrips": [],
+      "spells": [
+        "Ensnaring Strike",
+        "Fog Cloud",
+        "Goodberry",
+        "Barkskin",
+        "Darkvision"
+      ]
+    },
+    "subclass": "Gloom Stalker"
+  },
+  "class": "Ranger",
+  "class_breakdown": [
+    {
+      "class_name": "Ranger",
+      "level": 3,
+      "subclass": "Gloom Stalker"
+    }
+  ],
+  "class_data": {
+    "armor_proficiencies": [
+      "Light armor",
+      "Medium armor",
+      "Shields"
+    ],
+    "cantrip_progression": "class_table",
+    "cantrips_by_level": {
+      "1": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 0,
+      "17": 0,
+      "18": 0,
+      "19": 0,
+      "2": 0,
+      "20": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0
+    },
+    "description": "Far from bustling cities, amid the trees of trackless forests and across wide plains, Rangers keep their unending watch in the wilderness. Rangers learn to track their quarry as a predator does, moving stealthily through the wilds and hiding themselves in brush and rubble. Thanks to their connection with nature, Rangers can also cast spells that harness primal powers of the wilderness.",
+    "features_by_level": {
+      "1": {
+        "Favored Enemy": {
+          "description": "You always have the Hunter's Mark spell prepared, and it doesn't count against the number of spells you can prepare. You can cast Hunter's Mark without expending a spell slot a number of times shown in the Favored Enemy column of the Ranger Features table (2 at level 1, increasing at levels 5, 9, 13, and 17), and you regain all expended uses when you finish a Long Rest.",
+          "effects": [
+            {
+              "spell": "Hunter's Mark",
+              "type": "grant_spell"
+            }
+          ]
+        },
+        "Spellcasting": {
+          "description": "You have learned to channel the magical essence of nature to cast spells. Wisdom is your spellcasting ability. You can use a Druidic Focus as a Spellcasting Focus. You prepare level 1+ Ranger spells, regaining all expended spell slots on a Long Rest.",
+          "feature_kind": "spellcasting_setup"
+        },
+        "Weapon Mastery": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Longbows and Shortswords. Whenever you finish a Long Rest, you can change the kinds of weapons you chose."
+      },
+      "10": {
+        "Tireless": "Primal forces now help fuel you on your journeys. Temporary Hit Points: As a Magic Action, you can give yourself a number of Temporary Hit Points equal to 1d8 plus your Wisdom modifier (minimum of 1). You can use this action a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. Decrease Exhaustion: Whenever you finish a Short Rest, your Exhaustion level, if any, decreases by 1."
+      },
+      "11": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Ranger subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "12": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_12",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
+      },
+      "13": {
+        "Relentless Hunter": "Taking damage can't break your Concentration on Hunter's Mark."
+      },
+      "14": {
+        "Nature's Veil": "You invoke spirits of nature to magically hide yourself. As a Bonus Action, you can give yourself the Invisible condition until the end of your next turn. You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest."
+      },
+      "15": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Ranger subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "16": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_16",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
+      },
+      "17": {
+        "Precise Hunter": "You have Advantage on attack rolls against the creature currently marked by your Hunter's Mark."
+      },
+      "18": {
+        "Feral Senses": "Your connection to the forces of nature grants you Blindsight with a range of 30 feet."
+      },
+      "19": {
+        "Epic Boon": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Dimensional Travel is recommended."
+      },
+      "2": {
+        "Deft Explorer": {
+          "choices": [
+            {
+              "count": 1,
+              "display_name": "Expertise",
+              "name": "deft_explorer_expertise",
+              "source": {
+                "from": "skill_proficiencies",
+                "type": "computed"
+              },
+              "type": "select_single"
+            },
+            {
+              "count": 2,
+              "display_name": "Languages",
+              "name": "deft_explorer_languages",
+              "source": {
+                "file": "languages.json",
+                "list": "all",
+                "type": "external"
+              },
+              "type": "select_multiple"
+            }
+          ],
+          "description": "Thanks to your travels, you gain the following benefits. Expertise: Choose one of your skill proficiencies with which you lack Expertise. You gain Expertise in that skill. Languages: You know two languages of your choice.",
+          "effects": [
+            {
+              "from_choice": "deft_explorer_expertise",
+              "type": "grant_skill_expertise"
+            },
+            {
+              "from_choice": "deft_explorer_languages",
+              "type": "grant_language"
+            }
+          ]
+        },
+        "Fighting Style": {
+          "choices": {
+            "count": 1,
+            "name": "fighting_style",
+            "source": {
+              "list": "fighting_style_options",
+              "type": "internal"
+            },
+            "type": "select_single"
+          },
+          "description": "You gain a Fighting Style feat of your choice. Instead of choosing one of those feats, you can choose Druidic Warrior: learn two Druid cantrips (Wisdom is your spellcasting ability for them)."
+        }
+      },
+      "20": {
+        "Foe Slayer": "The damage die of your Hunter's Mark is a d10 rather than a d6."
+      },
+      "3": {
+        "Ranger Subclass": {
+          "description": "You gain a Ranger Subclass of your choice. The Beast Master, Fey Wanderer, Gloom Stalker, and Hunter subclasses are detailed after this class's description.",
+          "feature_kind": "subclass_pick"
+        }
+      },
+      "4": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_4",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify. You gain this feature again at Ranger levels 8, 12, and 16.",
+          "feature_kind": "asi"
+        }
+      },
+      "5": {
+        "Extra Attack": "You can attack twice instead of once whenever you take the Attack action on your turn."
+      },
+      "6": {
+        "Roving": {
+          "description": "Your speed increases by 10 feet while you aren't wearing Heavy Armor. You also have a Climb Speed and a Swim Speed equal to your Speed.",
+          "effects": [
+            {
+              "type": "increase_speed",
+              "value": 10
+            }
+          ]
+        }
+      },
+      "7": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Ranger subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "8": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_8",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
+      },
+      "9": {
+        "Expertise": {
+          "choices": {
+            "count": 2,
+            "name": "expertise_skills",
+            "source": {
+              "from": "skill_proficiencies",
+              "type": "computed"
+            },
+            "type": "select_multiple"
+          },
+          "description": "Choose two of your skill proficiencies with which you lack Expertise. You gain Expertise in those skills.",
+          "effects": [
+            {
+              "from_choice": "expertise_skills",
+              "type": "grant_skill_expertise"
+            }
+          ]
+        }
+      }
+    },
+    "fighting_style_options": {
+      "Archery": {
+        "description": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
+        "effects": [
+          {
+            "type": "bonus_attack",
+            "value": 2,
+            "weapon_property": "Ranged"
+          }
+        ]
+      },
+      "Blind Fighting": {
+        "description": "You have blindsight with a range of 10 feet.",
+        "notes": "Requires special sensing implementation."
+      },
+      "Defense": {
+        "description": "While you are wearing armor, you gain a +1 bonus to AC.",
+        "effects": [
+          {
+            "condition": "wearing armor",
+            "type": "bonus_ac",
+            "value": 1
+          }
+        ]
+      },
+      "Druidic Warrior": {
+        "description": "You learn two cantrips of your choice from the Druid spell list. Wisdom is your spellcasting ability for these cantrips. You also learn Druidic.",
+        "effects": [
+          {
+            "category": "always_prepared",
+            "count": 2,
+            "counts_against_limit": false,
+            "depends_on": "fighting_style",
+            "spell_list": "Druid",
+            "type": "grant_cantrip_choice"
+          },
+          {
+            "languages": [
+              "Druidic"
+            ],
+            "type": "grant_language"
+          }
+        ]
+      },
+      "Dueling": {
+        "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+        "effects": [
+          {
+            "condition": "one handed melee weapon",
+            "type": "bonus_damage",
+            "value": 2
+          }
+        ]
+      },
+      "Great Weapon Fighting": {
+        "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll. The weapon must have the Two-Handed or Versatile property for you to gain this benefit.",
+        "effects": [
+          {
+            "type": "great_weapon_fighting"
+          }
+        ]
+      },
+      "Interception": {
+        "description": "When a creature you can see hits a target, other than you, within 5 feet of you with an attack, you can use your reaction to reduce the damage the target takes by 1d10 + your proficiency bonus (to a minimum of 0 damage). You must be wielding a shield or a simple or martial weapon.",
+        "notes": "This is a reaction ability that requires tactical implementation."
+      },
+      "Protection": {
+        "description": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield.",
+        "notes": "This is a reaction ability that requires tactical implementation."
+      },
+      "Thrown Weapon Fighting": {
+        "description": "You can draw a weapon that has the thrown property as part of the attack you make with the weapon. In addition, when you hit with a ranged attack using a thrown weapon, you gain a +2 bonus to the damage roll.",
+        "effects": [
+          {
+            "condition": "thrown weapon ranged attack",
+            "type": "bonus_damage",
+            "value": 2
+          }
+        ]
+      },
+      "Two-Weapon Fighting": {
+        "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
+        "effects": [
+          {
+            "applies_to": "offhand",
+            "type": "two_weapon_fighting_modifier"
+          }
+        ]
+      },
+      "Unarmed Fighting": {
+        "description": "Your unarmed strikes can deal bludgeoning damage equal to 1d6 + your Strength modifier on a hit. If you aren't wielding any weapons or a shield when you make the attack roll, the d6 becomes a d8. At the start of each of your turns, you can deal 1d4 bludgeoning damage to one creature grappled by you.",
+        "effects": [
+          {
+            "type": "unarmed_fighting"
+          }
+        ]
+      }
+    },
+    "hit_die": 10,
+    "masterable_weapons": [
+      "Battleaxe",
+      "Club",
+      "Dagger",
+      "Flail",
+      "Glaive",
+      "Greataxe",
+      "Greatclub",
+      "Greatsword",
+      "Halberd",
+      "Handaxe",
+      "Javelin",
+      "Lance",
+      "Light Crossbow",
+      "Light Hammer",
+      "Longbow",
+      "Longsword",
+      "Mace",
+      "Maul",
+      "Morningstar",
+      "Pike",
+      "Quarterstaff",
+      "Rapier",
+      "Scimitar",
+      "Shortbow",
+      "Shortsword",
+      "Sickle",
+      "Spear",
+      "Trident",
+      "War Pick",
+      "Warhammer",
+      "Whip"
+    ],
+    "masteries_by_level": {
+      "1": 2,
+      "10": 2,
+      "11": 2,
+      "12": 2,
+      "13": 2,
+      "14": 2,
+      "15": 2,
+      "16": 2,
+      "17": 2,
+      "18": 2,
+      "19": 2,
+      "2": 2,
+      "20": 2,
+      "3": 2,
+      "4": 2,
+      "5": 2,
+      "6": 2,
+      "7": 2,
+      "8": 2,
+      "9": 2
+    },
+    "multiclassing": {
+      "armor_training": [
+        "Light",
+        "Medium",
+        "Shields"
+      ],
+      "hit_die_granted": 10,
+      "notes": null,
+      "other_proficiencies": [],
+      "saving_throw_proficiencies": [],
+      "skill_proficiencies": {
+        "count": 1,
+        "options": [
+          "Animal Handling",
+          "Athletics",
+          "Insight",
+          "Investigation",
+          "Nature",
+          "Perception",
+          "Stealth",
+          "Survival"
+        ]
+      },
+      "source_text": "As a Multiclass Character: Gain the following traits from the Core Ranger Traits table: Hit Point Die, proficiency with Martial weapons, proficiency in one skill of your choice from the Ranger's skill list, training with Light and Medium Armor and Shields. Gain the Ranger's level 1 features, which are listed in the Ranger Features table. See the multiclassing rules in multiclassing to determine your available spell slots.",
+      "tool_training": [],
+      "weapon_training": [
+        "Martial"
+      ]
+    },
+    "name": "Ranger",
+    "prepared_spells_by_level": {
+      "1": 2,
+      "10": 9,
+      "11": 10,
+      "12": 10,
+      "13": 11,
+      "14": 11,
+      "15": 12,
+      "16": 12,
+      "17": 14,
+      "18": 14,
+      "19": 15,
+      "2": 3,
+      "20": 15,
+      "3": 4,
+      "4": 5,
+      "5": 6,
+      "6": 6,
+      "7": 7,
+      "8": 7,
+      "9": 9
+    },
+    "primary_ability": "Dexterity & Wisdom",
+    "proficiency_bonus_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 2,
+      "20": 6,
+      "3": 2,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 4
+    },
+    "ritual_casting": false,
+    "saving_throw_proficiencies": [
+      "Strength",
+      "Dexterity"
+    ],
+    "skill_options": [
+      "Animal Handling",
+      "Athletics",
+      "Insight",
+      "Investigation",
+      "Nature",
+      "Perception",
+      "Stealth",
+      "Survival"
+    ],
+    "skill_proficiencies_count": 3,
+    "spell_list_restrictions": null,
+    "spell_preparation_formula": "level + wisdom_modifier",
+    "spell_slots_by_level": {
+      "1": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "10": [
+        4,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "11": [
+        4,
+        3,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "12": [
+        4,
+        3,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "13": [
+        4,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "14": [
+        4,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "15": [
+        4,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "16": [
+        4,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "17": [
+        4,
+        3,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "18": [
+        4,
+        3,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "19": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "2": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "20": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "3": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "4": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "5": [
+        4,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "6": [
+        4,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "7": [
+        4,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "8": [
+        4,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "9": [
+        4,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "spellcasting_ability": "Wisdom",
+    "spellcasting_focus": [
+      "Druidic Focus"
+    ],
+    "spellcasting_type": "prepared",
+    "standard_array_assignment": {
+      "Charisma": 10,
+      "Constitution": 13,
+      "Dexterity": 15,
+      "Intelligence": 8,
+      "Strength": 12,
+      "Wisdom": 14
+    },
+    "starting_equipment": {
+      "option_a": {
+        "gold": 7,
+        "items": [
+          "Studded Leather Armor",
+          "Scimitar",
+          "Shortsword",
+          "Longbow",
+          "Arrow (20)",
+          "Quiver",
+          "Druidic Focus (sprig of mistletoe)",
+          "Explorer's Pack"
+        ]
+      },
+      "option_b": {
+        "gold": 150
+      }
+    },
+    "subclass_selection_level": 3,
+    "weapon_proficiencies": [
+      "Simple weapons",
+      "Martial weapons"
+    ]
+  },
+  "combat": {
+    "armor_class": 15,
+    "hit_dice": {
+      "spent": 0,
+      "total": "3d10"
+    },
+    "hit_point_maximum": 25,
+    "hit_points": {
+      "current": 25,
+      "maximum": 25,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 22,
+      "base_hp_breakdown": "Level 1: 10 (max d10) + Levels 2-3: 12 (avg d10)",
+      "class_name": "Ranger",
+      "constitution_bonus": 3,
+      "constitution_modifier": 1,
+      "constitution_score": 13,
+      "feature_bonus": 0,
+      "feature_breakdown": [],
+      "hit_die": 10,
+      "level": 3,
+      "total_hp": 25
+    },
+    "initiative": 3,
+    "initiative_bonus": 3,
+    "passive_perception": 14,
+    "speed": 35,
+    "uses_shield": false
+  },
+  "condition_immunities": [],
+  "darkvision": 60,
+  "effects": [
+    {
+      "condition": "Charmed",
+      "display": "Advantage vs Charmed condition",
+      "source": "Fey Ancestry",
+      "source_type": "species",
+      "type": "grant_save_advantage"
+    },
+    {
+      "feat": "Magic Initiate (Druid)",
+      "source": "Guide",
+      "source_type": "background",
+      "type": "grant_origin_feat"
+    },
+    {
+      "feature_group": "wood_elf_increased_speed",
+      "source": "Increased Speed",
+      "source_type": "lineage",
+      "type": "increase_speed",
+      "value": 5
+    },
+    {
+      "feature_group": "wood_elf_increased_speed",
+      "source": "Increased Speed",
+      "source_type": "lineage",
+      "type": "increase_speed",
+      "value": 5
+    },
+    {
+      "from_choice": "deft_explorer_expertise",
+      "source": "Deft Explorer",
+      "source_class_name": "Ranger",
+      "source_type": "class",
+      "type": "grant_skill_expertise"
+    },
+    {
+      "from_choice": "deft_explorer_expertise",
+      "source": "Deft Explorer",
+      "source_type": "class",
+      "type": "grant_skill_expertise"
+    },
+    {
+      "from_choice": "deft_explorer_expertise",
+      "source": "Deft Explorer",
+      "source_type": "class_choice",
+      "type": "grant_skill_expertise"
+    },
+    {
+      "from_choice": "deft_explorer_languages",
+      "source": "Deft Explorer",
+      "source_class_name": "Ranger",
+      "source_type": "class",
+      "type": "grant_language"
+    },
+    {
+      "from_choice": "deft_explorer_languages",
+      "source": "Deft Explorer",
+      "source_type": "class",
+      "type": "grant_language"
+    },
+    {
+      "from_choice": "deft_explorer_languages",
+      "source": "Deft Explorer",
+      "source_type": "class_choice",
+      "type": "grant_language"
+    },
+    {
+      "level": 1,
+      "source": "Magic Initiate (Druid)",
+      "source_type": "feat",
+      "spell": "${1st_level_spell}",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 13,
+      "source": "Gloom Stalker Spells",
+      "source_class_name": "Ranger",
+      "source_type": "subclass",
+      "spell": "Greater Invisibility",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 17,
+      "source": "Gloom Stalker Spells",
+      "source_class_name": "Ranger",
+      "source_type": "subclass",
+      "spell": "Seeming",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Gloom Stalker Spells",
+      "source_class_name": "Ranger",
+      "source_type": "subclass",
+      "spell": "Disguise Self",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Longstrider",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Longstrider",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Gloom Stalker Spells",
+      "source_class_name": "Ranger",
+      "source_type": "subclass",
+      "spell": "Rope Trick",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Pass without Trace",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Pass without Trace",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 9,
+      "source": "Gloom Stalker Spells",
+      "source_class_name": "Ranger",
+      "source_type": "subclass",
+      "spell": "Fear",
+      "type": "grant_spell"
+    },
+    {
+      "range": 60,
+      "source": "Darkvision",
+      "source_type": "species",
+      "type": "grant_darkvision"
+    },
+    {
+      "range": 60,
+      "source": "Umbral Sight",
+      "source_class_name": "Ranger",
+      "source_type": "subclass",
+      "type": "grant_darkvision"
+    },
+    {
+      "skills": [
+        "Stealth",
+        "Survival"
+      ],
+      "source": "Guide",
+      "source_type": "background",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "source": "Archery",
+      "source_type": "class_choice",
+      "type": "bonus_attack",
+      "value": 2,
+      "weapon_property": "Ranged"
+    },
+    {
+      "source": "Favored Enemy",
+      "source_class_name": "Ranger",
+      "source_type": "class",
+      "spell": "Hunter's Mark",
+      "type": "grant_spell"
+    },
+    {
+      "source": "Guide",
+      "source_type": "background",
+      "tools": [
+        "Cartographer's Tools"
+      ],
+      "type": "grant_tool_proficiency"
+    },
+    {
+      "source": "Magic Initiate (Druid)",
+      "source_type": "feat",
+      "spell": "${cantrips[0]}",
+      "type": "grant_cantrip"
+    },
+    {
+      "source": "Magic Initiate (Druid)",
+      "source_type": "feat",
+      "spell": "${cantrips[1]}",
+      "type": "grant_cantrip"
+    },
+    {
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Druidcraft",
+      "type": "grant_cantrip"
+    },
+    {
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Druidcraft",
+      "type": "grant_cantrip"
+    }
+  ],
+  "eldritch_invocation_stats": {
+    "available_invocations": [],
+    "current_invocations": [],
+    "has_invocations": false,
+    "max_invocations": 0
+  },
+  "equipment": {
+    "armor": [
+      {
+        "name": "Studded Leather Armor",
+        "source": "Class"
+      }
+    ],
+    "gold": 57,
+    "items": [
+      {
+        "name": "Arrow (20)",
+        "source": "Class"
+      },
+      {
+        "name": "Druidic Focus (sprig of mistletoe)",
+        "source": "Class"
+      },
+      {
+        "name": "Explorer's Pack",
+        "source": "Class"
+      },
+      {
+        "name": "Quiver",
+        "source": "Class"
+      }
+    ],
+    "weapons": [
+      {
+        "display_name": "Longbow",
+        "name": "Longbow",
+        "properties": {
+          "category": "Martial Ranged",
+          "cost": "50 gp",
+          "damage": "1d8",
+          "damage_type": "Piercing",
+          "mastery": "Slow",
+          "proficiency_required": "Martial weapons",
+          "properties": [
+            "Ammunition (range 150/600)",
+            "Heavy",
+            "Two-Handed"
+          ],
+          "weight": 2
+        },
+        "quantity": 1,
+        "source": "Class"
+      },
+      {
+        "display_name": "Scimitar",
+        "name": "Scimitar",
+        "properties": {
+          "category": "Martial Melee",
+          "cost": "25 gp",
+          "damage": "1d6",
+          "damage_type": "Slashing",
+          "mastery": "Nick",
+          "proficiency_required": "Martial weapons",
+          "properties": [
+            "Finesse",
+            "Light"
+          ],
+          "weight": 3
+        },
+        "quantity": 1,
+        "source": "Class"
+      },
+      {
+        "display_name": "Shortsword",
+        "name": "Shortsword",
+        "properties": {
+          "category": "Martial Melee",
+          "cost": "10 gp",
+          "damage": "1d6",
+          "damage_type": "Piercing",
+          "mastery": "Vex",
+          "proficiency_required": "Martial weapons",
+          "properties": [
+            "Finesse",
+            "Light"
+          ],
+          "weight": 2
+        },
+        "quantity": 1,
+        "source": "Class"
+      }
+    ]
+  },
+  "features": {
+    "background": [],
+    "class": [
+      {
+        "chosen_options": [
+          {
+            "choice_key": "deft_explorer_expertise",
+            "description": "",
+            "name": "Stealth"
+          },
+          {
+            "choice_key": "deft_explorer_languages",
+            "description": "",
+            "name": "Draconic"
+          },
+          {
+            "choice_key": "deft_explorer_languages",
+            "description": "",
+            "name": "Elvish"
+          }
+        ],
+        "description": "Thanks to your travels, you gain the following benefits. Expertise: Choose one of your skill proficiencies with which you lack Expertise. You gain Expertise in that skill. Languages: You know two languages of your choice.\n\n**Selected**: Stealth, Elvish, Draconic",
+        "level": 2,
+        "name": "Deft Explorer: Stealth, Elvish, Draconic",
+        "source": "Ranger"
+      },
+      {
+        "chosen_options": [
+          {
+            "choice_key": "fighting_style",
+            "description": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
+            "name": "Archery"
+          }
+        ],
+        "description": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
+        "level": 2,
+        "name": "Fighting Style: Archery",
+        "source": "Ranger"
+      },
+      {
+        "description": "You always have the Hunter's Mark spell prepared, and it doesn't count against the number of spells you can prepare. You can cast Hunter's Mark without expending a spell slot a number of times shown in the Favored Enemy column of the Ranger Features table (2 at level 1, increasing at levels 5, 9, 13, and 17), and you regain all expended uses when you finish a Long Rest.\n\nSpells Always Prepared: Hunter's Mark",
+        "level": 1,
+        "name": "Favored Enemy",
+        "source": "Ranger"
+      },
+      {
+        "description": "You have learned to channel the magical essence of nature to cast spells. Wisdom is your spellcasting ability. You can use a Druidic Focus as a Spellcasting Focus. You prepare level 1+ Ranger spells, regaining all expended spell slots on a Long Rest.",
+        "level": 1,
+        "name": "Spellcasting",
+        "source": "Ranger"
+      },
+      {
+        "description": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency, such as Longbows and Shortswords. Whenever you finish a Long Rest, you can change the kinds of weapons you chose.",
+        "level": 1,
+        "name": "Weapon Mastery",
+        "source": "Ranger"
+      }
+    ],
+    "feats": [
+      {
+        "description": "You've learned the basics of Druid magic, gaining the following benefits:\n\nChoose two cantrips from the Druid spell list.\n\nChoose one 1st-level spell from the Druid spell list. You can cast this spell once without expending a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest. You can also cast the spell using any spell slots you have.\n\nYour spellcasting ability for these spells is Wisdom.",
+        "name": "Magic Initiate (Druid)",
+        "source": "Guide"
+      }
+    ],
+    "lineage": [
+      {
+        "description": "You know the Druidcraft cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.\n\n<table class=\"table table-sm table-bordered mt-2\">\n<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n<tbody>\n<tr class=\"table-success\"><td>3</td><td>\u2713 Longstrider</td></tr>\n<tr class=\"table-secondary\"><td>5</td><td>\ud83d\udd12 Pass without Trace</td></tr>\n</tbody>\n</table>",
+        "level": 5,
+        "name": "Wood Elf Spells",
+        "source": "Wood Elf"
+      },
+      {
+        "description": "Your Speed increases to 35 feet.",
+        "name": "Increased Speed",
+        "source": "Wood Elf"
+      }
+    ],
+    "species": [
+      {
+        "description": "You are part of a lineage that grants you supernatural abilities. Intelligence, Wisdom of Charisma is your spellcasting ability for the spells you cast with this trait.",
+        "name": "Elven Lineage",
+        "source": "Elf"
+      },
+      {
+        "description": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness.",
+        "name": "Trance",
+        "source": "Elf"
+      },
+      {
+        "description": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+        "name": "Fey Ancestry",
+        "source": "Elf"
+      },
+      {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "name": "Darkvision",
+        "source": "Elf"
+      },
+      {
+        "description": "You have proficiency in the Insight, Perception, or Survival skill.",
+        "name": "Keen Senses: Insight",
+        "source": "Elf"
+      }
+    ],
+    "subclass": [
+      {
+        "description": "When you reach a Ranger level specified in the Gloom Stalker Spells table, you thereafter always have the listed spells prepared.\n\n<table class=\"table table-sm table-bordered mt-2\">\n<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n<tbody>\n<tr class=\"table-success\"><td>3</td><td>\u2713 Disguise Self</td></tr>\n<tr class=\"table-secondary\"><td>5</td><td>\ud83d\udd12 Rope Trick</td></tr>\n<tr class=\"table-secondary\"><td>9</td><td>\ud83d\udd12 Fear</td></tr>\n<tr class=\"table-secondary\"><td>13</td><td>\ud83d\udd12 Greater Invisibility</td></tr>\n<tr class=\"table-secondary\"><td>17</td><td>\ud83d\udd12 Seeming</td></tr>\n</tbody>\n</table>",
+        "level": 17,
+        "name": "Gloom Stalker Spells",
+        "source": "Gloom Stalker"
+      },
+      {
+        "description": "You gain Darkvision with a range of 60 feet. If you already have Darkvision when you gain this feature, its range increases by 60 feet. You are also adept at evading creatures that rely on Darkvision. While entirely in Darkness, you have the Invisible condition to any creature that relies on Darkvision to see you in that Darkness.",
+        "level": 3,
+        "name": "Umbral Sight",
+        "source": "Gloom Stalker"
+      },
+      {
+        "description": "You have mastered the art of creating fearsome ambushes, granting you the following benefits. Ambusher's Leap: At the start of your first turn of each combat, your speed increases by 10 feet until the end of that turn. Dreadful Strike: When you attack a creature and hit it with a weapon, you can deal an extra 2d6 Psychic damage. You can use this benefit only once per turn, you can use it a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. Initiative Bonus: When you roll Initiative, you can add your Wisdom modifier to the roll.",
+        "level": 3,
+        "name": "Dread Ambusher",
+        "source": "Gloom Stalker"
+      }
+    ]
+  },
+  "immunities": [],
+  "languages": [
+    "Common",
+    "Halfling",
+    "Dwarvish",
+    "Elvish",
+    "Draconic"
+  ],
+  "level": 3,
+  "lineage": "Wood Elf",
+  "lineage_data": {
+    "description": "Wood elves are reclusive and deeply attuned to the natural world. They are known for their exceptional agility and stealth, often dwelling in dense forests where they can move unseen. Their connection to nature grants them unique magical abilities that aid them in protecting their woodland homes.",
+    "name": "Wood Elf",
+    "parent_species": "Elf",
+    "traits": {
+      "Increased Speed": {
+        "description": "Your Speed increases to 35 feet.",
+        "effects": [
+          {
+            "feature_group": "wood_elf_increased_speed",
+            "type": "increase_speed",
+            "value": 5
+          }
+        ]
+      },
+      "Wood Elf Spells": {
+        "description": "You know the Druidcraft cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+        "effects": [
+          {
+            "min_level": 3,
+            "spell": "Longstrider",
+            "type": "grant_spell"
+          },
+          {
+            "min_level": 5,
+            "spell": "Pass without Trace",
+            "type": "grant_spell"
+          },
+          {
+            "spell": "Druidcraft",
+            "type": "grant_cantrip"
+          }
+        ]
+      }
+    }
+  },
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "name": "Senna Nightbough",
+  "proficiencies": {
+    "armor": [
+      "Light armor",
+      "Medium armor",
+      "Shields"
+    ],
+    "languages": [
+      "Common",
+      "Halfling",
+      "Dwarvish",
+      "Elvish",
+      "Draconic"
+    ],
+    "saving_throws": [
+      "Strength",
+      "Dexterity"
+    ],
+    "skills": [
+      "Perception",
+      "Stealth",
+      "Survival",
+      "Nature",
+      "Animal Handling"
+    ],
+    "tools": [
+      "Cartographer's Tools"
+    ],
+    "weapons": [
+      "Simple weapons",
+      "Martial weapons"
+    ]
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {},
+    "languages": {
+      "Common": "base",
+      "Draconic": "Deft Explorer",
+      "Dwarvish": "user_choice",
+      "Elvish": "Deft Explorer",
+      "Halfling": "user_choice"
+    },
+    "saving_throws": {},
+    "skills": {
+      "Animal Handling": "Guide",
+      "Nature": "Guide",
+      "Perception": "Ranger",
+      "Stealth": "Ranger",
+      "Survival": "Ranger"
+    },
+    "tools": {
+      "Cartographer's Tools": "Guide"
+    },
+    "weapons": {}
+  },
+  "resistances": [],
+  "save_advantages": [],
+  "skill_expertise": [
+    "Stealth"
+  ],
+  "skill_proficiencies": [
+    "Perception",
+    "Stealth",
+    "Survival",
+    "Nature",
+    "Animal Handling"
+  ],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 4,
+      "expertise": false,
+      "modifier": 4,
+      "proficient": true,
+      "source": "Guide"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": true,
+      "source": "Guide"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 4,
+      "expertise": false,
+      "modifier": 4,
+      "proficient": true,
+      "source": "Ranger"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": 7,
+      "expertise": true,
+      "modifier": 7,
+      "proficient": true,
+      "source": "Ranger"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 4,
+      "expertise": false,
+      "modifier": 4,
+      "proficient": true,
+      "source": "Ranger"
+    }
+  },
+  "species": "Elf",
+  "species_data": {
+    "creature_type": "Humanoid",
+    "description": "Created by the god Corellon, elves have pointed ears and lack facial and body hair. They live for around 750 years, and they don't sleep but instead enter a trance when they need to rest. An environment subtly transforms elves after they inhabit it for a millennium or more, granting them certain kinds of magic.",
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
+    "lineages": [
+      "Drow",
+      "High Elf",
+      "Wood Elf"
+    ],
+    "name": "Elf",
+    "size": "Medium",
+    "size_description": "about 5-6 feet tall",
+    "speed": 30,
+    "traits": {
+      "Darkvision": {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "effects": [
+          {
+            "range": 60,
+            "type": "grant_darkvision"
+          }
+        ]
+      },
+      "Elven Lineage": {
+        "choices": {
+          "count": 1,
+          "source": {
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ],
+            "type": "fixed_list"
+          },
+          "type": "select_single"
+        },
+        "description": "You are part of a lineage that grants you supernatural abilities. Intelligence, Wisdom of Charisma is your spellcasting ability for the spells you cast with this trait.",
+        "type": "choice"
+      },
+      "Fey Ancestry": {
+        "description": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+        "effects": [
+          {
+            "condition": "Charmed",
+            "display": "Advantage vs Charmed condition",
+            "type": "grant_save_advantage"
+          }
+        ]
+      },
+      "Keen Senses": {
+        "choice_effects": {
+          "Insight": [
+            {
+              "skills": [
+                "Insight"
+              ],
+              "type": "grant_skill_proficiency"
+            }
+          ],
+          "Perception": [
+            {
+              "skills": [
+                "Perception"
+              ],
+              "type": "grant_skill_proficiency"
+            }
+          ],
+          "Survival": [
+            {
+              "skills": [
+                "Survival"
+              ],
+              "type": "grant_skill_proficiency"
+            }
+          ]
+        },
+        "choices": {
+          "count": 1,
+          "source": {
+            "options": [
+              "Insight",
+              "Perception",
+              "Survival"
+            ],
+            "type": "fixed_list"
+          },
+          "type": "select_single"
+        },
+        "description": "You have proficiency in the Insight, Perception, or Survival skill.",
+        "type": "choice"
+      },
+      "Trance": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness."
+    }
+  },
+  "speed": 35,
+  "speed_bonuses": {
+    "wood_elf_increased_speed": 5
+  },
+  "spell_metadata": {
+    "Disguise Self": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Gloom Stalker",
+      "source_type": "subclass"
+    },
+    "Druidcraft": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "source": "Wood Elf",
+      "source_type": "lineage"
+    },
+    "Hunter's Mark": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Ranger",
+      "source_type": "class"
+    },
+    "Longstrider": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": true,
+      "once_per_long_rest": false,
+      "source": "Wood Elf",
+      "source_type": "lineage"
+    }
+  },
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {
+    "1st": 3
+  },
+  "spellcasting_ability": "Wisdom",
+  "spellcasting_stats": {
+    "available_cantrips": [],
+    "available_spells": {
+      "1": [
+        "Alarm",
+        "Animal Friendship",
+        "Cure Wounds",
+        "Detect Magic",
+        "Detect Poison and Disease",
+        "Ensnaring Strike",
+        "Entangle",
+        "Fog Cloud",
+        "Goodberry",
+        "Hail of Thorns",
+        "Hunter's Mark",
+        "Jump",
+        "Longstrider",
+        "Speak with Animals"
+      ]
+    },
+    "background_cantrips_list": "Druid",
+    "background_cantrips_needed": 2,
+    "background_spell_level": 1,
+    "background_spells_list": "Druid",
+    "background_spells_needed": 1,
+    "cantrips_always_prepared": 1,
+    "cantrips_known": 1,
+    "cantrips_to_prepare": 0,
+    "effective_caster_level": 2,
+    "has_spellcasting": true,
+    "max_cantrips": 1,
+    "max_cantrips_prepared": 0,
+    "max_cantrips_to_prepare": 0,
+    "max_prepared_spells": 7,
+    "max_spells_prepared": 4,
+    "max_spells_to_prepare": 4,
+    "multiclass_notes": [],
+    "pact_magic_slots": [],
+    "preparation_formula": "level + wisdom_modifier",
+    "ritual_casting": false,
+    "spell_attack_bonus": 4,
+    "spell_save_dc": 12,
+    "spellcasting_ability": "Wisdom",
+    "spellcasting_modifier": 2,
+    "spellcasting_type": "prepared",
+    "spells_always_prepared": 3,
+    "spells_prepared": 8
+  },
+  "spells": {
+    "always_prepared": {
+      "Disguise Self": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Gloom Stalker"
+      },
+      "Druidcraft": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 0,
+        "source": "Wood Elf"
+      },
+      "Hunter's Mark": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Ranger"
+      },
+      "Longstrider": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "source": "Wood Elf"
+      }
+    },
+    "background_spells": {},
+    "cantrips": [
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You create a small nature-themed magical effect (predict weather, make a flower bloom, light/snuff a small flame, etc.).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Druidcraft",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Wood Elf"
+      }
+    ],
+    "known": {},
+    "level_1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid",
+          "Ranger",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "You create a 20-foot-radius Sphere of fog centered on a point within range. The Sphere is Heavily Obscured. It lasts for the duration or until a strong wind disperses it. When using a higher-level spell slot, the fog's radius increases by 20 feet for each slot level above 1.",
+        "duration": "Concentration, up to 1 hour",
+        "level": 1,
+        "name": "Fog Cloud",
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid",
+          "Ranger"
+        ],
+        "components": "V, S, M (a sprig of mistletoe)",
+        "concentration": false,
+        "description": "Ten berries appear in your hand and are infused with magic for the duration. A creature can take a Bonus Action to eat one berry. Eating a berry restores 1 Hit Point, and the berry provides enough nourishment to sustain a creature for one day. Uneaten berries disappear when the spell ends.",
+        "duration": "24 hours",
+        "level": 1,
+        "name": "Goodberry",
+        "range": "Self",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action, which you take immediately after hitting a target with a Weapon",
+        "classes": [
+          "Ranger"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "As you hit the target, grasping, thorny vines appear around it, and it must succeed on a Strength saving throw or have the Restrained condition until the spell ends. A Large or larger creature has Advantage on this save. If the target has the Restrained condition, it takes 1d6 Piercing damage at the start of each of its turns. A creature Restrained by this spell or another creature that can touch the Restrained creature can take an action to make a Strength check against your spell save DC. On a success, the Restrained creature is freed. Using a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Ensnaring Strike",
+        "range": "Self",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid",
+          "Ranger",
+          "Wizard"
+        ],
+        "components": "V, S, M",
+        "concentration": false,
+        "description": "You touch a creature. The target's Speed increases by 10 feet until the spell ends. You can target one additional creature for each spell slot above 1.",
+        "duration": "1 hour",
+        "level": 1,
+        "material": "a pinch of dirt",
+        "name": "Longstrider",
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Wood Elf"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You make yourself\u00e2\u20ac\u201dincluding your clothing, armor, weapons, and other belongings on your person\u00e2\u20ac\u201dlook different until the spell ends or until you use your action to dismiss it. You can appear 1 foot shorter or taller and can appear thin, fat, or in between. You can't change your basic body type, so you must adopt a form that has the same basic arrangement of limbs. Otherwise, the extent of the illusion is up to you. The changes wrought by this spell fail to hold up to physical inspection. If you use this spell to appear thinner, a creature that reaches out to touch you would feel your actual form.",
+        "duration": "1 hour",
+        "level": 1,
+        "name": "Disguise Self",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Self",
+        "ritual": false,
+        "school": "Illusion",
+        "source": "Gloom Stalker"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Ranger"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "You magically mark one creature you can see within range as your quarry. Until the spell ends, you deal an extra 1d6 Force damage to the target whenever you hit it with an attack roll. You also have Advantage on any Wisdom (Perception or Survival) check you make to find it. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action to mark a new creature you can see within range. Using a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 3-4 (up to 8 hours) or 5+ (24 hours).",
+        "duration": "Concentration, up to 1 hour",
+        "level": 1,
+        "name": "Hunter's Mark",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "90 feet",
+        "ritual": false,
+        "school": "Divination",
+        "source": "Ranger"
+      }
+    ],
+    "prepared": {
+      "cantrips": {},
+      "spells": {
+        "Barkskin": {},
+        "Darkvision": {},
+        "Ensnaring Strike": {},
+        "Fog Cloud": {},
+        "Goodberry": {}
+      }
+    },
+    "slots": {}
+  },
+  "spells_by_level": {
+    "0": [
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You create a small nature-themed magical effect (predict weather, make a flower bloom, light/snuff a small flame, etc.).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Druidcraft",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Wood Elf"
+      }
+    ],
+    "1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid",
+          "Ranger",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "You create a 20-foot-radius Sphere of fog centered on a point within range. The Sphere is Heavily Obscured. It lasts for the duration or until a strong wind disperses it. When using a higher-level spell slot, the fog's radius increases by 20 feet for each slot level above 1.",
+        "duration": "Concentration, up to 1 hour",
+        "level": 1,
+        "name": "Fog Cloud",
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid",
+          "Ranger"
+        ],
+        "components": "V, S, M (a sprig of mistletoe)",
+        "concentration": false,
+        "description": "Ten berries appear in your hand and are infused with magic for the duration. A creature can take a Bonus Action to eat one berry. Eating a berry restores 1 Hit Point, and the berry provides enough nourishment to sustain a creature for one day. Uneaten berries disappear when the spell ends.",
+        "duration": "24 hours",
+        "level": 1,
+        "name": "Goodberry",
+        "range": "Self",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action, which you take immediately after hitting a target with a Weapon",
+        "classes": [
+          "Ranger"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "As you hit the target, grasping, thorny vines appear around it, and it must succeed on a Strength saving throw or have the Restrained condition until the spell ends. A Large or larger creature has Advantage on this save. If the target has the Restrained condition, it takes 1d6 Piercing damage at the start of each of its turns. A creature Restrained by this spell or another creature that can touch the Restrained creature can take an action to make a Strength check against your spell save DC. On a success, the Restrained creature is freed. Using a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Ensnaring Strike",
+        "range": "Self",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid",
+          "Ranger",
+          "Wizard"
+        ],
+        "components": "V, S, M",
+        "concentration": false,
+        "description": "You touch a creature. The target's Speed increases by 10 feet until the spell ends. You can target one additional creature for each spell slot above 1.",
+        "duration": "1 hour",
+        "level": 1,
+        "material": "a pinch of dirt",
+        "name": "Longstrider",
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Wood Elf"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You make yourself\u00e2\u20ac\u201dincluding your clothing, armor, weapons, and other belongings on your person\u00e2\u20ac\u201dlook different until the spell ends or until you use your action to dismiss it. You can appear 1 foot shorter or taller and can appear thin, fat, or in between. You can't change your basic body type, so you must adopt a form that has the same basic arrangement of limbs. Otherwise, the extent of the illusion is up to you. The changes wrought by this spell fail to hold up to physical inspection. If you use this spell to appear thinner, a creature that reaches out to touch you would feel your actual form.",
+        "duration": "1 hour",
+        "level": 1,
+        "name": "Disguise Self",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Self",
+        "ritual": false,
+        "school": "Illusion",
+        "source": "Gloom Stalker"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Ranger"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "You magically mark one creature you can see within range as your quarry. Until the spell ends, you deal an extra 1d6 Force damage to the target whenever you hit it with an attack roll. You also have Advantage on any Wisdom (Perception or Survival) check you make to find it. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action to mark a new creature you can see within range. Using a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 3-4 (up to 8 hours) or 5+ (24 hours).",
+        "duration": "Concentration, up to 1 hour",
+        "level": 1,
+        "name": "Hunter's Mark",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "90 feet",
+        "ritual": false,
+        "school": "Divination",
+        "source": "Ranger"
+      }
+    ],
+    "2": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Artificer",
+          "Druid",
+          "Ranger",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S, M (a dried carrot)",
+        "concentration": false,
+        "description": "You touch a willing creature to grant it the ability to see in the dark. For the duration, that creature has Darkvision out to a range of 150 feet.",
+        "duration": "8 hours",
+        "level": 2,
+        "name": "Darkvision",
+        "range": "Touch",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Druid",
+          "Ranger"
+        ],
+        "components": "V, S, M (a handful of oak bark)",
+        "concentration": false,
+        "description": "You touch a willing creature. Until the spell ends, the target's skin takes on a rough, bark-like appearance, and the target's AC can't be less than 17, regardless of what kind of armor it is wearing.",
+        "duration": "1 hour",
+        "level": 2,
+        "name": "Barkskin",
+        "range": "Touch",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Selected"
+      }
+    ]
+  },
+  "step": "complete",
+  "subclass": "Gloom Stalker",
+  "subclass_data": {
+    "class": "Ranger",
+    "description": "Gloom Stalkers are at home in the darkest places, wielding magic drawn from the Shadowfell to combat enemies that lurk in darkness.",
+    "features_by_level": {
+      "11": {
+        "Stalker's Flurry": "The Psychic damage of your Dreadful Strike becomes 2d8. In addition, when you use the Dreadful Strike effect of your Dread Ambusher feature, you can use one of the following additional effects. Sudden Strike: You can make another attack with the same weapon against a different creature that is within 5 feet of the original target and that is within the weapon's range. Mass Fear: The target and each creature within 10 feet of it must make a Wisdom saving throw against your spell save DC. On a failed save, a creature has the Frightened condition until the start of your next turn."
+      },
+      "15": {
+        "Shadowy Dodge": "When a creature makes an attack roll against you, you can take a Reaction to impose Disadvantage on that roll. Whether the attack hits or misses, you can teleport up to 30 feet to an unoccupied space that you can see."
+      },
+      "3": {
+        "Dread Ambusher": "You have mastered the art of creating fearsome ambushes, granting you the following benefits. Ambusher's Leap: At the start of your first turn of each combat, your speed increases by 10 feet until the end of that turn. Dreadful Strike: When you attack a creature and hit it with a weapon, you can deal an extra 2d6 Psychic damage. You can use this benefit only once per turn, you can use it a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. Initiative Bonus: When you roll Initiative, you can add your Wisdom modifier to the roll.",
+        "Gloom Stalker Spells": {
+          "description": "When you reach a Ranger level specified in the Gloom Stalker Spells table, you thereafter always have the listed spells prepared.",
+          "effects": [
+            {
+              "min_level": 13,
+              "spell": "Greater Invisibility",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 17,
+              "spell": "Seeming",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 3,
+              "spell": "Disguise Self",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 5,
+              "spell": "Rope Trick",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 9,
+              "spell": "Fear",
+              "type": "grant_spell"
+            }
+          ]
+        },
+        "Umbral Sight": {
+          "description": "You gain Darkvision with a range of 60 feet. If you already have Darkvision when you gain this feature, its range increases by 60 feet. You are also adept at evading creatures that rely on Darkvision. While entirely in Darkness, you have the Invisible condition to any creature that relies on Darkvision to see you in that Darkness.",
+          "effects": [
+            {
+              "range": 60,
+              "type": "grant_darkvision"
+            }
+          ]
+        }
+      },
+      "7": {
+        "Iron Mind": {
+          "description": "You have honed your ability to resist mind-altering powers. You gain proficiency in Wisdom saving throws. If you already have this proficiency, you instead gain proficiency in Intelligence or Charisma saving throws (your choice).",
+          "effects": [
+            {
+              "abilities": [
+                "Wisdom"
+              ],
+              "type": "grant_save_proficiency"
+            }
+          ]
+        }
+      }
+    },
+    "name": "Gloom Stalker",
+    "source": "Player's Handbook 2024"
+  },
+  "superiority_dice": {},
+  "tool_proficiencies": [
+    "Cartographer's Tools"
+  ],
+  "warnings": [
+    "Spell selections had validation issues: [{'field': 'spell_selections.spells', 'reason': 'max_exceeded', 'submitted_count': 5, 'max_allowed': 4}, {'field': 'spell_selections.spells', 'reason': 'unavailable_selection', 'selections': ['Barkskin', 'Darkvision']}]"
+  ],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [
+      "Battleaxe",
+      "Club",
+      "Dagger",
+      "Flail",
+      "Glaive",
+      "Greataxe",
+      "Greatclub",
+      "Greatsword",
+      "Halberd",
+      "Handaxe",
+      "Javelin",
+      "Lance",
+      "Light Crossbow",
+      "Light Hammer",
+      "Longbow",
+      "Longsword",
+      "Mace",
+      "Maul",
+      "Morningstar",
+      "Pike",
+      "Quarterstaff",
+      "Rapier",
+      "Scimitar",
+      "Shortbow",
+      "Shortsword",
+      "Sickle",
+      "Spear",
+      "Trident",
+      "War Pick",
+      "Warhammer",
+      "Whip"
+    ],
+    "current_masteries": [],
+    "has_mastery": true,
+    "max_masteries": 2
+  },
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons"
+  ]
+}

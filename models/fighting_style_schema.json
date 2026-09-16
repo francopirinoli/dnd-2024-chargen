@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Fighting Styles",
+  "description": "Schema for data/fighting_styles.json. A one-key wrapper ('fighting_styles') around a map of style_name -> style entry. Some styles (Protection, Blind Fighting, Interception) are reaction- or sense-based and carry a notes field instead of effects, reflecting the fact that they have no static character-sheet effect.",
+  "type": "object",
+  "required": ["fighting_styles"],
+  "properties": {
+    "fighting_styles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description"],
+        "properties": {
+          "description": { "type": "string" },
+          "notes": { "type": "string" },
+          "effects": {
+            "type": "array",
+            "items": { "$ref": "_shared/effect.json" }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Otto's Irresistible Dance",
+  "level": 6,
+  "school": "Enchantment",
+  "casting_time": "1 action",
+  "range": "30 feet",
+  "components": [
+    "V"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "One creature that you can see within range must make a Wisdom saving throw. On a failed save, the target begins a comic dance in place: shuffling, tapping its feet, and capering for the duration. Creatures that can't be Charmed are immune to this spell. A dancing creature must use all its movement to dance without leaving its space and has Disadvantage on Dexterity saving throws and attack rolls. While the target is affected by this spell, other creatures have Advantage on attack rolls against it. A dancing creature can use its action to make a Wisdom saving throw to regain control of itself. On a successful save, the spell ends.",
+  "classes": [
+    "Bard",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

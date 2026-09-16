@@ -1,0 +1,240 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Class Data Model",
+  "description": "Schema for D&D 2024 base class JSON files in data/classes/",
+  "type": "object",
+  "required": [
+    "name",
+    "description",
+    "hit_die",
+    "primary_ability",
+    "saving_throw_proficiencies",
+    "subclass_selection_level",
+    "proficiency_bonus_by_level",
+    "features_by_level"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the class (e.g., 'Wizard', 'Fighter')"
+    },
+    "description": {
+      "type": "string",
+      "description": "A brief description of the class and its role"
+    },
+    "hit_die": {
+      "type": "integer",
+      "description": "The size of the Hit Die (6, 8, 10, or 12)",
+      "enum": [6, 8, 10, 12]
+    },
+    "primary_ability": {
+      "type": "string",
+      "description": "The primary ability score(s) for this class (e.g., 'Strength', 'Strength or Dexterity', 'Dexterity and Wisdom')"
+    },
+    "saving_throw_proficiencies": {
+      "type": "array",
+      "description": "The two saving throw proficiencies for this class",
+      "items": {
+        "type": "string",
+        "enum": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "armor_proficiencies": {
+      "type": "array",
+      "description": "Armor proficiencies granted by this class",
+      "items": {
+        "type": "string"
+      }
+    },
+    "weapon_proficiencies": {
+      "type": "array",
+      "description": "Weapon proficiencies granted by this class",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tool_proficiencies": {
+      "type": "array",
+      "description": "Tool proficiencies granted by this class",
+      "items": {
+        "type": "string"
+      }
+    },
+    "skill_proficiencies_count": {
+      "type": "integer",
+      "description": "Number of skill proficiencies the player can choose"
+    },
+    "skill_options": {
+      "type": "array",
+      "description": "List of skills the player can choose from, or ['Any'] for any skill",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subclass_selection_level": {
+      "type": "integer",
+      "description": "The level at which the player selects a subclass",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "spellcasting_ability": {
+      "type": "string",
+      "description": "The ability used for spellcasting (if applicable)",
+      "enum": ["Intelligence", "Wisdom", "Charisma"]
+    },
+    "spellcasting_focus": {
+      "type": "array",
+      "description": "Items that can be used as spellcasting focus",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proficiency_bonus_by_level": {
+      "type": "object",
+      "description": "Proficiency bonus for each level (1-20)",
+      "patternProperties": {
+        "^([1-9]|1[0-9]|20)$": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 6
+        }
+      },
+      "additionalProperties": false
+    },
+    "cantrips_by_level": {
+      "type": "object",
+      "description": "Number of cantrips known at each level (for spellcasters)",
+      "patternProperties": {
+        "^([1-9]|1[0-9]|20)$": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "prepared_spells_by_level": {
+      "type": "object",
+      "description": "Number of spells that can be prepared at each level (for spellcasters)",
+      "patternProperties": {
+        "^([1-9]|1[0-9]|20)$": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "spell_slots_by_level": {
+      "type": "object",
+      "description": "Spell slot progression for each level (1-20). Each value is an array of 9 integers representing slots for spell levels 1-9",
+      "patternProperties": {
+        "^([1-9]|1[0-9]|20)$": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 9,
+          "maxItems": 9
+        }
+      }
+    },
+    "features_by_level": {
+      "type": "object",
+      "description": "Features gained at each level (1-20). IMPORTANT: Each level must map to an OBJECT where keys are feature names and values are feature descriptions (NOT an array). This matches the subclass format.",
+      "patternProperties": {
+        "^([1-9]|1[0-9]|20)$": {
+          "type": "object",
+          "description": "An object mapping feature names to their descriptions",
+          "patternProperties": {
+            ".*": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "A simple text description of the feature"
+                },
+                {
+                  "type": "object",
+                  "description": "A complex feature with additional properties",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "choices": {
+                      "description": "For features with choices (see Choice Reference System). Can be a single choice object or an array of choice objects.",
+                      "oneOf": [
+                        {"type": "object"},
+                        {"type": "array", "items": {"type": "object"}}
+                      ]
+                    },
+                    "feature_kind": {
+                      "type": "string",
+                      "enum": [
+                        "normal",
+                        "asi",
+                        "subclass_pick",
+                        "spellcasting_setup",
+                        "subclass_feature_slot"
+                      ],
+                      "description": "Phase 8 (D6-2): structural role of this feature for builder dispatch. Defaults to 'normal' when omitted. 'asi' = Ability Score Improvement slot; 'subclass_pick' = the placeholder where the player chooses their subclass; 'spellcasting_setup' = Spellcasting/Pact Magic feature that initiates the spell list; 'subclass_feature_slot' = class-level placeholder for a feature granted by the active subclass."
+                    },
+                    "hidden": {
+                      "type": "boolean",
+                      "description": "When true, this feature is suppressed from the rendered class features list (Phase 8). Use sparingly — feature_kind handles asi/subclass_pick suppression automatically."
+                    },
+                    "pdf_summary": {
+                      "type": "string",
+                      "description": "Short PDF-style summary that replaces the verbose description when rendering the sheet (Phase 8)."
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "feature_descriptions": {
+      "type": "object",
+      "description": "DEPRECATED: Feature descriptions are now included directly in features_by_level. This field is maintained for backward compatibility only.",
+      "patternProperties": {
+        ".*": {
+          "type": "string"
+        }
+      }
+    },
+    "multiclassing": {
+      "type": "object",
+      "description": "Proficiencies and traits granted when this class is taken as a SECONDARY class during multiclassing. NOT applied when this is the first/primary class.",
+      "properties": {
+        "hit_die_granted":            { "type": "integer", "enum": [6, 8, 10, 12] },
+        "armor_training":             { "type": "array", "items": { "type": "string" } },
+        "weapon_training":            { "type": "array", "items": { "type": "string" } },
+        "tool_training":              { "type": "array", "items": { "type": "string" } },
+        "skill_proficiencies":        {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "properties": {
+                "count":   { "type": "integer", "minimum": 1 },
+                "options": {
+                  "oneOf": [
+                    { "type": "string", "enum": ["any"] },
+                    { "type": "array", "items": { "type": "string" } }
+                  ]
+                }
+              },
+              "required": ["count", "options"]
+            }
+          ]
+        },
+        "saving_throw_proficiencies": { "type": "array", "items": { "type": "string" } },
+        "other_proficiencies":        { "type": "array", "items": { "type": "string" } },
+        "notes":                      { "type": ["string", "null"] },
+        "source_text":                { "type": "string" }
+      },
+      "required": ["hit_die_granted", "armor_training", "weapon_training", "tool_training", "saving_throw_proficiencies", "source_text"]
+    }
+  }
+}

@@ -1,0 +1,1114 @@
+{
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 13,
+      "modifier": 2,
+      "saving_throw": 4,
+      "saving_throw_proficient": true,
+      "score": 14,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 14,
+      "modifier": 2,
+      "saving_throw": 2,
+      "saving_throw_proficient": false,
+      "score": 14,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 8,
+      "modifier": -1,
+      "saving_throw": -1,
+      "saving_throw_proficient": false,
+      "score": 8,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 15,
+      "modifier": 3,
+      "saving_throw": 5,
+      "saving_throw_proficient": true,
+      "score": 17,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 12,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 12,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 10,
+    "Constitution": 14,
+    "Dexterity": 14,
+    "Intelligence": 8,
+    "Strength": 17,
+    "Wisdom": 12
+  },
+  "ac_options": [
+    {
+      "ac": 12,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (2)",
+      "notes": [],
+      "shield": false
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [
+    "Light armor",
+    "Medium armor",
+    "Heavy armor",
+    "Shields"
+  ],
+  "attack_combinations": [],
+  "attacks": [
+    {
+      "ability": "STR",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 4.0,
+      "avg_damage": 4.0,
+      "damage": "4",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    }
+  ],
+  "background": "Soldier",
+  "background_data": {
+    "ability_score_increase": {
+      "options": [
+        "Constitution",
+        "Strength",
+        "Dexterity"
+      ],
+      "suggested": {
+        "Constitution": 1,
+        "Strength": 2
+      },
+      "total": 3
+    },
+    "description": "War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield. You might have been part of a standing national army or a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.",
+    "edition": "2024",
+    "effects": [
+      {
+        "feat": "Savage Attacker",
+        "type": "grant_origin_feat"
+      },
+      {
+        "skills": [
+          "Athletics",
+          "Intimidation"
+        ],
+        "type": "grant_skill_proficiency"
+      },
+      {
+        "tools": [
+          "Gaming Set",
+          "Vehicles (Land)"
+        ],
+        "type": "grant_tool_proficiency"
+      }
+    ],
+    "name": "Soldier",
+    "starting_equipment": {
+      "option_a": {
+        "gold": 14,
+        "items": [
+          "Spear",
+          "Shortbow",
+          "20 Arrows",
+          "Quiver",
+          "Gaming Set",
+          "Healer's Kit (10 uses)",
+          "Traveler's Clothes"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "status": "active"
+  },
+  "choices_made": {
+    "ability_scores": {
+      "Charisma": 10,
+      "Constitution": 13,
+      "Dexterity": 14,
+      "Intelligence": 8,
+      "Strength": 15,
+      "Wisdom": 12
+    },
+    "ability_scores_method": "standard_array",
+    "background": "Soldier",
+    "background_bonuses": {
+      "Constitution": 1,
+      "Strength": 2
+    },
+    "background_skill_replacements_needed": 2,
+    "class": "Fighter",
+    "classes": [
+      {
+        "class_name": "Fighter",
+        "level": 1
+      }
+    ],
+    "languages": [
+      "Dwarvish",
+      "Elvish"
+    ],
+    "level": 1,
+    "skill_choices": [
+      "Athletics",
+      "Intimidation"
+    ],
+    "species": "Dragonborn",
+    "species_trait_choices": {
+      "Draconic Ancestry": "Red (Fire)"
+    }
+  },
+  "class": "Fighter",
+  "class_breakdown": [
+    {
+      "class_name": "Fighter",
+      "level": 1
+    }
+  ],
+  "class_data": {
+    "armor_proficiencies": [
+      "Light armor",
+      "Medium armor",
+      "Heavy armor",
+      "Shields"
+    ],
+    "description": "Fighters are masters of martial combat, skilled with a variety of weapons and armor. They excel in all forms of armed combat and can specialize in various fighting styles.",
+    "features_by_level": {
+      "1": {
+        "Fighting Style": {
+          "choices": {
+            "count": 1,
+            "name": "fighting_style",
+            "optional": false,
+            "source": {
+              "file": "fighting_styles.json",
+              "list": "fighting_styles",
+              "type": "external"
+            },
+            "type": "select_single"
+          },
+          "description": "You adopt a particular style of fighting as your specialty."
+        },
+        "Second Wind": {
+          "description": "As a Bonus Action, regain Hit Points equal to 1d10 + Fighter level. You can use this feature {uses} times, regaining one use on Short Rest and all uses on Long Rest.",
+          "pdf_summary": "Bonus Action: Regain 1d10+Fighter level HP (2/Short Rest, 3/Short Rest at level 4)",
+          "scaling": {
+            "uses": [
+              {
+                "min_level": 1,
+                "value": "2"
+              },
+              {
+                "min_level": 10,
+                "value": "4"
+              },
+              {
+                "min_level": 4,
+                "value": "3"
+              }
+            ]
+          }
+        },
+        "Weapon Mastery": "Your training with weapons allows you to use the mastery properties of three kinds of Simple or Martial weapons of your choice. Whenever you finish a Long Rest, you can switch one mastery."
+      },
+      "10": {
+        "Subclass Feature": {
+          "description": "Gain a feature from your Martial Archetype subclass.",
+          "feature_kind": "subclass_feature_slot"
+        },
+        "Weapon Mastery": "You can use the mastery properties of one additional kind of weapon."
+      },
+      "11": {
+        "Two Extra Attacks": "You can attack three times instead of once whenever you take the Attack action on your turn."
+      },
+      "12": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_12",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "13": {
+        "Indomitable (Two Uses)": "You can use Indomitable twice before a Long Rest.",
+        "Studied Attacks": "You study your opponents and learn from each attack you make. If you make an attack roll against a creature and miss, you have Advantage on your next attack roll against that creature before the end of your next turn."
+      },
+      "14": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_14",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "15": {
+        "Subclass Feature": {
+          "description": "Gain a feature from your Martial Archetype subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "16": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_16",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        },
+        "Weapon Mastery": "You can use the mastery properties of one additional kind of weapon."
+      },
+      "17": {
+        "Action Surge (Two Uses)": "You can use Action Surge twice before a rest but only once on a turn.",
+        "Indomitable (Three Uses)": "You can use Indomitable three times before a Long Rest."
+      },
+      "18": {
+        "Subclass Feature": {
+          "description": "Gain a feature from your Martial Archetype subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "19": {
+        "Epic Boon": "Gain an Epic Boon feat or another feat of your choice."
+      },
+      "2": {
+        "Action Surge": {
+          "description": "On your turn, take one additional action, except the Magic action. Once per Short or Long Rest. Starting at level 17, you can use it twice before a rest but only once on a turn.",
+          "pdf_summary": "Once per Short Rest, take one additional Action on your turn"
+        },
+        "Tactical Mind": "When you fail an ability check, you can expend a use of your Second Wind to push yourself toward success. Rather than regaining Hit Points, you roll 1d10 and add the number rolled to the ability check, potentially turning it into a success. If the check still fails, this use of Second Wind isn't expended."
+      },
+      "20": {
+        "Three Extra Attacks": "You can attack four times instead of once whenever you take the Attack action on your turn."
+      },
+      "3": {
+        "Fighter Subclass": {
+          "description": "Choose your Martial Archetype subclass.",
+          "feature_kind": "subclass_pick"
+        }
+      },
+      "4": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_4",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        },
+        "Weapon Mastery": "You can use the mastery properties of one additional kind of weapon."
+      },
+      "5": {
+        "Extra Attack": "You can attack twice instead of once whenever you take the Attack action on your turn.",
+        "Tactical Shift": "Whenever you activate your Second Wind with a Bonus Action, you can move up to half your Speed without provoking Opportunity Attacks."
+      },
+      "6": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_6",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "7": {
+        "Subclass Feature": {
+          "description": "Gain a feature from your Martial Archetype subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "8": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_8",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "9": {
+        "Indomitable": {
+          "description": "If you fail a saving throw, you can reroll it with a bonus equal to your Fighter level. You must use the new roll. You can use this feature {uses} before a Long Rest.",
+          "scaling": {
+            "uses": [
+              {
+                "min_level": 13,
+                "value": "twice"
+              },
+              {
+                "min_level": 17,
+                "value": "three times"
+              },
+              {
+                "min_level": 9,
+                "value": "once"
+              }
+            ]
+          }
+        },
+        "Tactical Master": "When you attack with a weapon whose mastery property you can use, you can replace that property with the Push, Sap, or Slow property for that attack."
+      }
+    },
+    "hit_die": 10,
+    "masterable_weapons": [
+      "Battleaxe",
+      "Club",
+      "Dagger",
+      "Flail",
+      "Glaive",
+      "Greataxe",
+      "Greatclub",
+      "Greatsword",
+      "Halberd",
+      "Handaxe",
+      "Javelin",
+      "Lance",
+      "Light Hammer",
+      "Longbow",
+      "Longsword",
+      "Mace",
+      "Maul",
+      "Morningstar",
+      "Pike",
+      "Quarterstaff",
+      "Rapier",
+      "Scimitar",
+      "Shortbow",
+      "Shortsword",
+      "Sickle",
+      "Spear",
+      "Trident",
+      "War Pick",
+      "Warhammer",
+      "Whip"
+    ],
+    "masteries_by_level": {
+      "1": 3,
+      "10": 5,
+      "11": 5,
+      "12": 5,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 6,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 3,
+      "20": 6,
+      "3": 3,
+      "4": 4,
+      "5": 4,
+      "6": 4,
+      "7": 4,
+      "8": 4,
+      "9": 4
+    },
+    "multiclassing": {
+      "armor_training": [
+        "Light",
+        "Medium",
+        "Shields"
+      ],
+      "hit_die_granted": 10,
+      "notes": null,
+      "other_proficiencies": [],
+      "saving_throw_proficiencies": [],
+      "skill_proficiencies": null,
+      "source_text": "As a Multiclass Fighter: Gain the following traits from the Core Fighter Traits table: Hit Point Die, proficiency with Martial weapons, and training with Light and Medium armor and Shields. Gain the Fighter's level 1 features, which are listed in the Fighter Features table.",
+      "tool_training": [],
+      "weapon_training": [
+        "Martial"
+      ]
+    },
+    "name": "Fighter",
+    "primary_ability": "Strength or Dexterity",
+    "proficiency_bonus_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 2,
+      "20": 6,
+      "3": 2,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 4
+    },
+    "saving_throw_proficiencies": [
+      "Strength",
+      "Constitution"
+    ],
+    "skill_options": [
+      "Acrobatics",
+      "Animal Handling",
+      "Athletics",
+      "History",
+      "Insight",
+      "Intimidation",
+      "Persuasion",
+      "Perception",
+      "Survival"
+    ],
+    "skill_proficiencies_count": 2,
+    "standard_array_assignment": {
+      "Charisma": 12,
+      "Constitution": 13,
+      "Dexterity": 14,
+      "Intelligence": 8,
+      "Strength": 15,
+      "Wisdom": 10
+    },
+    "starting_equipment": {
+      "option_a": {
+        "gold": 4,
+        "items": [
+          "Chain Mail",
+          "Greatsword",
+          "Flail",
+          "Javelin (8)",
+          "Dungeoneer's Pack"
+        ]
+      },
+      "option_b": {
+        "gold": 11,
+        "items": [
+          "Studded Leather Armor",
+          "Scimitar",
+          "Shortsword",
+          "Longbow",
+          "20 Arrows",
+          "Quiver",
+          "Dungeoneer's Pack"
+        ]
+      },
+      "option_c": {
+        "gold": 155
+      }
+    },
+    "subclass_selection_level": 3,
+    "weapon_proficiencies": [
+      "Simple weapons",
+      "Martial weapons"
+    ]
+  },
+  "combat": {
+    "armor_class": 12,
+    "hit_dice": {
+      "spent": 0,
+      "total": "1d10"
+    },
+    "hit_point_maximum": 12,
+    "hit_points": {
+      "current": 12,
+      "maximum": 12,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 10,
+      "base_hp_breakdown": "Level 1: 10 (max d10)",
+      "class_name": "Fighter",
+      "constitution_bonus": 2,
+      "constitution_modifier": 2,
+      "constitution_score": 14,
+      "feature_bonus": 0,
+      "feature_breakdown": [],
+      "hit_die": 10,
+      "level": 1,
+      "total_hp": 12
+    },
+    "initiative": 2,
+    "initiative_bonus": 2,
+    "passive_perception": 11,
+    "speed": 30,
+    "uses_shield": false
+  },
+  "condition_immunities": [],
+  "darkvision": 60,
+  "effects": [
+    {
+      "damage_type_from_choice": "Draconic Ancestry",
+      "source": "Damage Resistance",
+      "source_type": "species",
+      "type": "grant_damage_resistance"
+    },
+    {
+      "damage_type_from_choice": "Draconic Ancestry",
+      "source": "Damage Resistance",
+      "source_type": "species",
+      "type": "grant_damage_resistance"
+    },
+    {
+      "feat": "Savage Attacker",
+      "source": "Soldier",
+      "source_type": "background",
+      "type": "grant_origin_feat"
+    },
+    {
+      "range": 60,
+      "source": "Darkvision",
+      "source_type": "species",
+      "type": "grant_darkvision"
+    },
+    {
+      "skills": [
+        "Athletics",
+        "Intimidation"
+      ],
+      "source": "Soldier",
+      "source_type": "background",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "source": "Soldier",
+      "source_type": "background",
+      "tools": [
+        "Gaming Set",
+        "Vehicles (Land)"
+      ],
+      "type": "grant_tool_proficiency"
+    }
+  ],
+  "eldritch_invocation_stats": {
+    "available_invocations": [],
+    "current_invocations": [],
+    "has_invocations": false,
+    "max_invocations": 0
+  },
+  "equipment": null,
+  "features": {
+    "background": [],
+    "class": [
+      {
+        "description": "Bonus Action: Regain 1d10+Fighter level HP (2/Short Rest, 3/Short Rest at level 4)",
+        "level": 1,
+        "name": "Second Wind",
+        "source": "Fighter"
+      },
+      {
+        "description": "You adopt a particular style of fighting as your specialty.",
+        "level": 1,
+        "name": "Fighting Style",
+        "source": "Fighter"
+      },
+      {
+        "description": "Your training with weapons allows you to use the mastery properties of three kinds of Simple or Martial weapons of your choice. Whenever you finish a Long Rest, you can switch one mastery.",
+        "level": 1,
+        "name": "Weapon Mastery",
+        "source": "Fighter"
+      }
+    ],
+    "feats": [
+      {
+        "description": "You've trained to deal particularly damaging strikes. Once per turn when you hit a target with a weapon, you can roll the weapon's damage dice twice and use either roll against the target.",
+        "name": "Savage Attacker",
+        "source": "Soldier"
+      }
+    ],
+    "lineage": [],
+    "species": [
+      {
+        "choice_substitutions": {
+          "damage_type": "Draconic Ancestry"
+        },
+        "description": "When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of Fire energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide. Each creature in that area must make a Dexterity saving throw (DC 8 + your Constitution modifier + Proficiency Bonus). On a failed save, a creature takes 1d10 Fire damage. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10). You can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+        "name": "Breath Weapon",
+        "source": "Dragonborn"
+      },
+      {
+        "choice_substitutions": {
+          "damage_type": "Draconic Ancestry"
+        },
+        "description": "You have Resistance to Fire damage.",
+        "name": "Damage Resistance",
+        "source": "Dragonborn"
+      },
+      {
+        "description": "When you reach character level 5, you can channel draconic magic to give yourself temporary flight. As a Bonus Action, you sprout spectral wings on your back that last for 10 minutes or until you retract the wings (no action required) or have the Incapacitated condition. During that time, you have a Fly Speed equal to your Speed. Your wings appear to be made of the same energy as your Breath Weapon. Once you use this trait, you can't use it again until you finish a Long Rest.",
+        "name": "Draconic Flight",
+        "source": "Dragonborn"
+      },
+      {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "name": "Darkvision",
+        "source": "Dragonborn"
+      },
+      {
+        "description": "Your lineage stems from a dragon progenitor. Choose the kind of dragon from the list. Your choice affects your Breath Weapon and Damage Resistance traits as well as your appearance.",
+        "name": "Draconic Ancestry: Red (Fire)",
+        "source": "Dragonborn"
+      }
+    ],
+    "subclass": []
+  },
+  "immunities": [],
+  "languages": [
+    "Common",
+    "Dwarvish",
+    "Elvish"
+  ],
+  "level": 1,
+  "lineage": null,
+  "lineage_data": null,
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "name": "",
+  "proficiencies": {
+    "armor": [
+      "Light armor",
+      "Medium armor",
+      "Heavy armor",
+      "Shields"
+    ],
+    "languages": [
+      "Common",
+      "Dwarvish",
+      "Elvish"
+    ],
+    "saving_throws": [
+      "Strength",
+      "Constitution"
+    ],
+    "skills": [
+      "Athletics",
+      "Intimidation"
+    ],
+    "tools": [
+      "Gaming Set",
+      "Vehicles (Land)"
+    ],
+    "weapons": [
+      "Simple weapons",
+      "Martial weapons"
+    ]
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {},
+    "languages": {
+      "Common": "base",
+      "Dwarvish": "user_choice",
+      "Elvish": "user_choice"
+    },
+    "saving_throws": {},
+    "skills": {
+      "Athletics": "Fighter",
+      "Intimidation": "Fighter"
+    },
+    "tools": {
+      "Gaming Set": "Soldier",
+      "Vehicles (Land)": "Soldier"
+    },
+    "weapons": {}
+  },
+  "resistances": [
+    "Fire"
+  ],
+  "save_advantages": [],
+  "skill_proficiencies": [
+    "Athletics",
+    "Intimidation"
+  ],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Fighter"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": true,
+      "source": "Fighter"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    }
+  },
+  "species": "Dragonborn",
+  "species_data": {
+    "creature_type": "Humanoid",
+    "darkvision": 60,
+    "description": "The ancestors of dragonborn hatched from the eggs of chromatic and metallic dragons. Dragonborn look like wingless, bipedal dragons - scaly, bright-eyed, and thick-boned with horns on their heads - and their coloration and other features are reminiscent of their draconic ancestors.",
+    "languages": [
+      "Common",
+      "Draconic"
+    ],
+    "name": "Dragonborn",
+    "size": "Medium",
+    "size_description": "about 5-7 feet tall",
+    "speed": 30,
+    "traits": {
+      "Breath Weapon": {
+        "choice_substitutions": {
+          "damage_type": "Draconic Ancestry"
+        },
+        "description": "When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of {damage_type} energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide. Each creature in that area must make a Dexterity saving throw (DC 8 + your Constitution modifier + Proficiency Bonus). On a failed save, a creature takes 1d10 {damage_type} damage. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10). You can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest."
+      },
+      "Damage Resistance": {
+        "choice_substitutions": {
+          "damage_type": "Draconic Ancestry"
+        },
+        "description": "You have Resistance to {damage_type} damage.",
+        "effects": [
+          {
+            "damage_type_from_choice": "Draconic Ancestry",
+            "type": "grant_damage_resistance"
+          }
+        ]
+      },
+      "Darkvision": {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "effects": [
+          {
+            "range": 60,
+            "type": "grant_darkvision"
+          }
+        ]
+      },
+      "Draconic Ancestry": {
+        "choices": {
+          "count": 1,
+          "source": {
+            "options": [
+              "Black (Acid)",
+              "Blue (Lightning)",
+              "Brass (Fire)",
+              "Bronze (Lightning)",
+              "Copper (Acid)",
+              "Gold (Fire)",
+              "Green (Poison)",
+              "Red (Fire)",
+              "Silver (Cold)",
+              "White (Cold)"
+            ],
+            "type": "fixed_list"
+          },
+          "type": "select_single"
+        },
+        "description": "Your lineage stems from a dragon progenitor. Choose the kind of dragon from the list. Your choice affects your Breath Weapon and Damage Resistance traits as well as your appearance.",
+        "type": "choice"
+      },
+      "Draconic Flight": "When you reach character level 5, you can channel draconic magic to give yourself temporary flight. As a Bonus Action, you sprout spectral wings on your back that last for 10 minutes or until you retract the wings (no action required) or have the Incapacitated condition. During that time, you have a Fly Speed equal to your Speed. Your wings appear to be made of the same energy as your Breath Weapon. Once you use this trait, you can't use it again until you finish a Long Rest."
+    }
+  },
+  "speed": 30,
+  "speed_bonuses": {},
+  "spell_metadata": {},
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {},
+  "spellcasting_stats": {
+    "available_cantrips": [],
+    "available_spells": {},
+    "background_cantrips_list": null,
+    "background_cantrips_needed": 0,
+    "background_spell_level": 1,
+    "background_spells_list": null,
+    "background_spells_needed": 0,
+    "cantrips_always_prepared": 0,
+    "cantrips_to_prepare": 0,
+    "effective_caster_level": 0,
+    "has_spellcasting": false,
+    "max_cantrips_prepared": 0,
+    "max_spells_prepared": 0,
+    "multiclass_notes": [],
+    "pact_magic_slots": [],
+    "preparation_formula": null,
+    "ritual_casting": false,
+    "spell_attack_bonus": 0,
+    "spell_save_dc": 0,
+    "spellcasting_ability": null,
+    "spellcasting_modifier": 0,
+    "spellcasting_type": null,
+    "spells_always_prepared": 0,
+    "spells_prepared": 0
+  },
+  "spells": {
+    "always_prepared": {},
+    "background_spells": {},
+    "cantrips": [],
+    "known": {},
+    "level_1": [],
+    "prepared": {
+      "cantrips": {},
+      "spells": {}
+    },
+    "slots": {}
+  },
+  "spells_by_level": {},
+  "step": "complete",
+  "subclass": null,
+  "subclass_data": null,
+  "superiority_dice": {},
+  "tool_proficiencies": [
+    "Gaming Set",
+    "Vehicles (Land)"
+  ],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [
+      "Battleaxe",
+      "Club",
+      "Dagger",
+      "Flail",
+      "Glaive",
+      "Greataxe",
+      "Greatclub",
+      "Greatsword",
+      "Halberd",
+      "Handaxe",
+      "Javelin",
+      "Lance",
+      "Light Hammer",
+      "Longbow",
+      "Longsword",
+      "Mace",
+      "Maul",
+      "Morningstar",
+      "Pike",
+      "Quarterstaff",
+      "Rapier",
+      "Scimitar",
+      "Shortbow",
+      "Shortsword",
+      "Sickle",
+      "Spear",
+      "Trident",
+      "War Pick",
+      "Warhammer",
+      "Whip"
+    ],
+    "current_masteries": [],
+    "has_mastery": true,
+    "max_masteries": 3
+  },
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "manifest": {
+    "id": "tome-of-heroes-sample",
+    "title": "Tome of Heroes (Sample Pack)",
+    "publisher": "Kobold Press",
+    "version": "1.0.0",
+    "compatibility": "2024",
+    "description": "Sample modular supplement demonstrating 2024-compatible third-party subclasses, species, backgrounds, and spells.",
+    "dependencies": [
+      "core-phb-2024"
+    ]
+  },
+  "subclasses": [
+    {
+      "name": "Beer Domain",
+      "class": "Cleric",
+      "source": "Tome of Heroes",
+      "description": "Clerics of the Beer Domain honor fellowship, celebration, warmth, and hospitality.",
+      "features_by_level": {
+        "3": {
+          "Intoxicating Blessing": "You can bless an ordinary beverage. When consumed as a bonus action, the drinker gains temporary hit points equal to your Wisdom modifier and advantage on saving throws against fear."
+        },
+        "6": {
+          "Warmth of the Hearth": "Whenever you cast a spell of 1st level or higher that restores hit points, you can also remove the Poisoned condition from one target."
+        },
+        "17": {
+          "Endless Barrel": "Once per long rest, you can conjure a cask of celestial brew that grants the effects of a Heroes' Feast spell in 10 minutes."
+        }
+      }
+    }
+  ],
+  "species": [
+    {
+      "name": "Derro",
+      "source": "Tome of Heroes",
+      "description": "Stout, grey-skinned subterranean humanoids known for their resilience and erratic innate magic.",
+      "creature_type": "Humanoid",
+      "size": "Small",
+      "speed": 30,
+      "languages": [
+        "Common",
+        "Undercommon"
+      ],
+      "traits": {
+        "Sunlight Sensitivity": "You have disadvantage on attack rolls and Perception checks that rely on sight when you or your target is in direct sunlight.",
+        "Innate Magic": "You know the Minor Illusion cantrip. Intelligence is your spellcasting ability for it."
+      }
+    }
+  ],
+  "backgrounds": [
+    {
+      "name": "Brewmaster",
+      "source": "Tome of Heroes",
+      "description": "You spent years mastering fermentation, tavern camaraderie, and hospitality.",
+      "edition": "2024",
+      "status": "active",
+      "ability_score_increase": {
+        "total": 3,
+        "options": [
+          "Constitution",
+          "Wisdom",
+          "Charisma"
+        ]
+      },
+      "effects": [
+        {
+          "type": "grant_skill_proficiency",
+          "skills": [
+            "Insight",
+            "Medicine"
+          ]
+        },
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Brewer's Supplies"
+          ]
+        },
+        {
+          "type": "grant_origin_feat",
+          "feat": "Tavern Brawler"
+        }
+      ],
+      "starting_equipment": {
+        "option_a": {
+          "items": [
+            "Brewer's Supplies",
+            "Healer's Kit",
+            "Traveler's Clothes"
+          ],
+          "gold": 15
+        },
+        "option_b": {
+          "gold": 50
+        }
+      }
+    }
+  ],
+  "spells": [
+    {
+      "name": "Caustic Brew",
+      "source": "Tome of Heroes",
+      "level": 1,
+      "school": "Evocation",
+      "casting_time": "1 action",
+      "range": "Self (30-foot line)",
+      "duration": "Concentration, up to 1 minute",
+      "components": [
+        "V",
+        "S",
+        "M (a drop of vinegar)"
+      ],
+      "classes": [
+        "Cleric",
+        "Wizard"
+      ],
+      "ritual": false,
+      "description": "A stream of acid emanates from you in a line 30 feet long and 5 feet wide. Each creature in that line must succeed on a Dexterity saving throw or be covered in acid."
+    }
+  ],
+  "spell_class_lists": {
+    "cleric": {
+      "spells_by_level": {
+        "1": [
+          "Caustic Brew"
+        ]
+      }
+    }
+  }
+}

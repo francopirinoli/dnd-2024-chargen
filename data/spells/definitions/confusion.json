@@ -1,0 +1,23 @@
+{
+  "name": "Confusion",
+  "level": 4,
+  "school": "Enchantment",
+  "casting_time": "1 action",
+  "range": "90 feet",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "three nut shells",
+  "duration": "Concentration, up to 1 minute",
+  "description": "This spell assaults and twists creatures' minds, spawning delusions and provoking uncontrolled actions. Each creature in a 10-foot-radius Sphere centered on a point you choose within range must succeed on a Wisdom saving throw when you cast this spell or have the Confused condition for the duration. At the end of each of its turns, an affected target can make a Wisdom saving throw. On a success, the condition ends for that target. At Higher Levels. When you cast this spell using a spell slot of 5th level or higher, the radius of the Sphere increases by 5 feet for each slot level above 4th.",
+  "classes": [
+    "Bard",
+    "Druid",
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+  ],
+  "ritual": false
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Guards and Wards",
+  "level": 6,
+  "school": "Abjuration",
+  "casting_time": "10 minutes",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S",
+    "M"
+  ],
+  "material": "burning incense, a small amount of brimstone and oil, a knotted string, a small amount of umber hulk blood, and a small silver rod worth 10+ GP",
+  "duration": "24 hours",
+  "description": "You create a ward that protects up to 2,500 square feet of floor space (an area 50 feet square, or one hundred 5-foot squares or twenty-five 10-foot squares). The warded area can be up to 20 feet tall, and shaped as you desire. You can ward several stories of a stronghold by dividing the area among them, as long as you can walk into each contiguous area while you're casting the spell. When you cast this spell, you can specify individuals that are unaffected by any or all of the effects that you choose. You can also specify a password that, when spoken aloud, makes the speaker immune to these effects. Guards and Wards creates the following effects within the warded area: corridors fill with fog, stairs are covered with webs, doors are locked with Arcane Lock, and magical alarms are set at 4 points of your choice.",
+  "classes": [
+    "Bard",
+    "Wizard"
+  ],
+  "ritual": false
+}

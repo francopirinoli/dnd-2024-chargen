@@ -1,0 +1,17 @@
+{
+  "name": "Wish",
+  "level": 9,
+  "school": "Conjuration",
+  "casting_time": "1 action",
+  "range": "Self",
+  "components": [
+    "V"
+  ],
+  "duration": "Instantaneous",
+  "description": "Wish is the mightiest spell a mortal can cast. By simply speaking aloud, you can alter reality itself. The basic use of this spell is to duplicate any other spell of level 8 or lower. If you use it this way, you don't need to meet any requirements to cast that spell, including costly components. Alternatively, you can create effects such as: Object Creation (up to 25,000 GP value), Instant Health (restore all HP to up to 20 creatures), Resistance (grant permanent resistance to a damage type), Spell Immunity (grant immunity to a spell for 8 hours), Sudden Learning (replace a feat), Roll Redo (reroll any die within last round), or Reshape Reality. Casting Wish for any effect other than duplicating a spell causes stress: you take 1d10 Necrotic damage per spell level cast until your next Long Rest, your Strength becomes 3 for 2d4 days, and there is a 33% chance you lose the ability to cast Wish ever again.",
+  "classes": [
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

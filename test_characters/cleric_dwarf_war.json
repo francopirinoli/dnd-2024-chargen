@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Torvin Ironvow",
+    "classes": [{"class_name": "Cleric", "level": 3, "subclass": "War Domain"}],
+    "species": "Dwarf",
+    "background": "Folk Hero",
+    "divine_order": "Protector",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {"Strength": 13, "Dexterity": 10, "Constitution": 14, "Intelligence": 8, "Wisdom": 15, "Charisma": 12},
+    "skill_choices": ["History", "Religion"],
+    "spell_selections": {
+      "cantrips": ["Toll the Dead", "Word of Radiance", "Guidance"],
+      "spells": ["Bless", "Healing Word", "Detect Magic", "Hold Person", "Aid", "Silence"],
+      "background_cantrips": [],
+      "background_spells": []
+    },
+    "languages": ["Elvish", "Giant"],
+    "background_bonuses": {"Constitution": 1, "Wisdom": 2},
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_b"}
+  }
+}

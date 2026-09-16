@@ -1,0 +1,19 @@
+{
+  "name": "Otiluke's Resilient Sphere",
+  "level": 4,
+  "school": "Evocation",
+  "casting_time": "1 action",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S",
+    "M (a glass sphere)"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "A sphere of shimmering force encloses a Large or smaller creature or object of your choice that you can see within range. An unwilling creature must make a Dexterity saving throw. On a failed save, the creature is enclosed for the duration. Nothing — not physical objects, energy, or other spell effects — can pass through the barrier, in or out, though a creature in the sphere can breathe there. The sphere is immune to all damage, and a creature or object inside can't be damaged by attacks or effects originating from outside. The sphere weighs nothing. The creature inside can use an action to push against the sphere's walls and thus roll the sphere at up to half the creature's Speed. Similarly, the globe can be picked up and moved by other creatures. A Disintegrate spell targeting the globe destroys it without harming anything inside.",
+  "classes": [
+    "Artificer",
+    "Wizard"
+  ],
+  "ritual": false
+}

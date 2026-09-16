@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-21T12:00:00.000Z",
+  "choices_made": {
+    "character_name": "Seraphel Ashveil",
+    "classes": [{"class_name": "Paladin", "level": 3, "subclass": "Oath of Vengeance"}],
+    "species": "Tiefling",
+    "lineage": "Infernal Tiefling",
+    "background": "Soldier",
+    "ability_scores_method": "standard_array",
+    "ability_scores": {"Strength": 15, "Dexterity": 10, "Constitution": 13, "Intelligence": 8, "Wisdom": 12, "Charisma": 14},
+    "background_bonuses": {"Strength": 2, "Charisma": 1},
+    "skill_choices": ["Athletics", "Persuasion"],
+    "fighting_style": "Dueling",
+    "spell_selections": {
+      "cantrips": [],
+      "spells": ["Bless", "Detect Evil and Good", "Branding Smite", "Find Steed"],
+      "background_cantrips": [],
+      "background_spells": []
+    },
+    "languages": ["Common Sign Language", "Gnomish"],
+    "equipment_selections": {"class_equipment": "option_a", "background_equipment": "option_b"},
+    "background_skill_replacement": ["Insight"],
+    "species_trait_choices": {"Fiendish Legacy": "Charisma"}
+  }
+}

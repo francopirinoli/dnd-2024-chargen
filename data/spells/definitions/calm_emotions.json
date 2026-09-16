@@ -1,0 +1,18 @@
+{
+  "name": "Calm Emotions",
+  "level": 2,
+  "school": "Enchantment",
+  "casting_time": "1 action",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "You attempt to suppress strong emotions in a group of people. Each Humanoid in a 20-foot-radius Sphere centered on a point you choose within range must succeed on a Charisma saving throw or be affected by this spell. You can choose to suppress any hostile feelings the creature has toward other creatures. Alternatively, you can make a creature indifferent about creatures toward which it is Hostile, though the effect ends if the target is attacked or harmed by a spell or witnesses any of its allies being harmed. While the spell lasts, you can use your action to target another creature in range.",
+  "classes": [
+    "Bard",
+    "Cleric"
+  ],
+  "ritual": false
+}

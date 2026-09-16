@@ -1,0 +1,18 @@
+{
+  "name": "Grasping Vine",
+  "level": 4,
+  "school": "Conjuration",
+  "casting_time": "1 bonus action",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "You conjure a vine that sprouts from the ground in an unoccupied space of your choice that you can see within range. The vine lasts for the duration. When you cast this spell, you can direct the vine to lash out at a creature within 30 feet of it that you can see. That creature must succeed on a Dexterity saving throw or be pulled 20 feet directly toward the vine and take 4d8 Bludgeoning damage. On each of your turns for the duration, as a Bonus Action you can direct the vine to lash out at the same creature or another one. Using a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 4.",
+  "classes": [
+    "Druid",
+    "Ranger"
+  ],
+  "ritual": false
+}

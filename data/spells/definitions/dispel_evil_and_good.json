@@ -1,0 +1,19 @@
+{
+  "name": "Dispel Evil and Good",
+  "level": 5,
+  "school": "Abjuration",
+  "casting_time": "1 action",
+  "range": "Self",
+  "components": [
+    "V",
+    "S",
+    "M (powdered silver and iron)"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "For the duration, Celestials, Elementals, Fey, Fiends, and Undead have Disadvantage on attack rolls against you. You can end the spell early by using either of the following special functions. Break Enchantment. As a Magic action, you touch a creature that is Charmed, Frightened, or possessed by a Celestial, an Elemental, a Fey, a Fiend, or an Undead. The creature you touch is no longer Charmed, Frightened, or possessed by such creatures. Dismissal. As a Magic action, you make a melee spell attack against a Celestial, an Elemental, a Fey, a Fiend, or an Undead within reach. On a hit, you try to drive the creature back to its home plane. The creature must succeed on a Charisma saving throw or be sent back to its home plane (if it isn't there already).",
+  "classes": [
+    "Cleric",
+    "Paladin"
+  ],
+  "ritual": false
+}

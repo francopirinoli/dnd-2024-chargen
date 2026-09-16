@@ -1,0 +1,17 @@
+{
+  "name": "Harm",
+  "level": 6,
+  "school": "Necromancy",
+  "casting_time": "1 action",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Instantaneous",
+  "description": "You unleash a virulent disease on a creature that you can see within range. The target makes a Constitution saving throw. On a failed save, it takes 14d6 Necrotic damage, or half as much damage on a successful save. The damage can't reduce the target's Hit Points below 1.",
+  "classes": [
+    "Cleric"
+  ],
+  "ritual": false
+}

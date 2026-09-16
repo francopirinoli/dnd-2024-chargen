@@ -1,0 +1,954 @@
+{
+  "_meta": {
+    "description": "Machine-readable backlog tracking D&D 2024 content implementation status",
+    "updated": "2026-04-20",
+    "last_feat_update": "2026-04-09",
+    "legend": {
+      "data_file": "JSON data file exists in data/",
+      "features_validated": "All features present and described accurately",
+      "effects_implemented": "Mechanical features have effects arrays",
+      "tests_written": "Pytest tests exist for this content"
+    }
+  },
+  "classes": {
+    "Barbarian": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "Path of the Berserker": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Path of the Wild Heart": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Path of the World Tree": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Path of the Zealot": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Bard": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "College of Dance": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "College of Glamour": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "College of Lore": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "College of Valor": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Cleric": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "Life Domain": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Light Domain": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Trickery Domain": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "War Domain": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Druid": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "Circle of the Land": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Circle of the Moon": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Circle of the Sea": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Circle of the Stars": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Fighter": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "Battle Master": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Champion": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Eldritch Knight": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Psi Warrior": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Monk": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "Warrior of Mercy": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Warrior of Shadow": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Warrior of the Elements": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Warrior of the Open Hand": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Paladin": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "Oath of Devotion": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Oath of Glory": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Oath of the Ancients": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Oath of Vengeance": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Ranger": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "Beast Master": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Fey Wanderer": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Gloom Stalker": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Hunter": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Rogue": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "Arcane Trickster": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Assassin": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Soulknife": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Thief": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Sorcerer": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "Aberrant Sorcery": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Clockwork Sorcery": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Draconic Sorcery": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Wild Magic Sorcery": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Warlock": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "The Archfey": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "The Celestial": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "The Fiend": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "The Great Old One": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Wizard": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "subclasses": {
+        "Abjurer": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Diviner": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Evoker": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Illusionist": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    }
+  },
+  "species": {
+    "Aasimar": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Dragonborn": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Dwarf": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Elf": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "variants": {
+        "High Elf": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Wood Elf": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Drow": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Gnome": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "variants": {
+        "Forest Gnome": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Rock Gnome": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    },
+    "Goliath": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Halfling": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Human": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Orc": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Tiefling": {
+      "data_file": true,
+      "features_validated": true,
+      "effects_implemented": true,
+      "tests_written": true,
+      "variants": {
+        "Abyssal Tiefling": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Chthonic Tiefling": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        },
+        "Infernal Tiefling": {
+          "data_file": true,
+          "features_validated": true,
+          "effects_implemented": true,
+          "tests_written": true
+        }
+      }
+    }
+  },
+  "backgrounds": {
+    "Acolyte": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Artisan": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Charlatan": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Criminal": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Entertainer": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Farmer": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Folk Hero": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Guard": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Guide": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Guild Artisan": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Hermit": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Merchant": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Noble": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Sage": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Sailor": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Scribe": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Soldier": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    },
+    "Wayfarer": {
+      "data_file": true,
+      "features_validated": true,
+      "feat_implemented": true,
+      "tests_written": true
+    }
+  },
+  "feats": {
+    "origin": {
+      "Alert": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Crafter": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Healer": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Lucky": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Magic Initiate": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Musician": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Savage Attacker": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Skilled": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Tavern Brawler": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Tough": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      }
+    },
+    "general": {
+      "_note": "44 general feats — all have data files, all effects implemented",
+      "Ability Score Improvement": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Actor": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Athlete": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Charger": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Chef": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Crossbow Expert": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Crusher": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Defensive Duelist": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Dual Wielder": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Durable": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Elemental Adept": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Fey Touched": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Grappler": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Great Weapon Master": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Heavily Armored": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Heavy Armor Master": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Inspiring Leader": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Keen Mind": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Lightly Armored": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Lucky": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Mage Slayer": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Martial Weapon Training": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Medium Armor Master": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Moderately Armored": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Mounted Combatant": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Observant": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Piercer": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Poisoner": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Polearm Master": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Resilient": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Ritual Caster": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Sentinel": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Shadow Touched": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Sharpshooter": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Shield Master": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Skill Expert": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Skulker": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Slasher": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Speedy": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Spell Sniper": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Telekinetic": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Telepathic": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "War Caster": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      },
+      "Weapon Master": {
+        "data_file": true,
+        "effects_implemented": true,
+        "tests_written": true
+      }
+    }
+  },
+  "fighting_styles": {
+    "Archery": {
+      "data_file": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Blind Fighting": {
+      "data_file": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Defense": {
+      "data_file": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Dueling": {
+      "data_file": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Great Weapon Fighting": {
+      "data_file": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Interception": {
+      "data_file": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Protection": {
+      "data_file": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Thrown Weapon Fighting": {
+      "data_file": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Two-Weapon Fighting": {
+      "data_file": true,
+      "effects_implemented": true,
+      "tests_written": true
+    },
+    "Unarmed Fighting": {
+      "data_file": true,
+      "effects_implemented": true,
+      "tests_written": true
+    }
+  }
+}

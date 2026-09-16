@@ -1,0 +1,18 @@
+{
+  "name": "Clone",
+  "level": 8,
+  "school": "Necromancy",
+  "casting_time": "1 hour",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S",
+    "M (a diamond worth 1,000+ GP and a sealable vessel worth 2,000+ GP that is large enough to hold the creature being cloned)"
+  ],
+  "duration": "Instantaneous",
+  "description": "You grow an inert duplicate of a living Medium creature as a safeguard against death. This clone forms inside a sealed vessel and grows to full size and maturity after 120 days; you can also choose to have the clone be a younger version of the same creature. It remains inert and endures indefinitely, as long as its vessel remains undisturbed. At any time after the clone matures, if the original creature dies, its soul transfers to the clone, provided that the soul is free and willing. The clone is physically identical to the original and has the same personality, memories, and abilities, but none of the original's equipment. The original creature's physical remains, if they still exist, become inert and can't thereafter be restored to life.",
+  "classes": [
+    "Wizard"
+  ],
+  "ritual": false
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Hunger of Hadar",
+  "level": 3,
+  "school": "Conjuration",
+  "casting_time": "1 action",
+  "range": "150 feet",
+  "components": [
+    "V",
+    "S",
+    "M (a pickled tentacle)"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "You open a gateway to the dark between the stars, a region infested with unknown horrors. A 20-foot-radius Sphere of Darkness appears, centered on a point with range and lasting for the duration. The Sphere is Difficult Terrain, and the area within it is Heavily Obscured. Any creature that starts its turn in the area takes 2d6 Cold damage. Any creature that ends its turn there must succeed on a Dexterity saving throw or take 2d6 Acid damage.",
+  "classes": [
+    "Warlock"
+  ],
+  "ritual": false
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Abyssal Tiefling",
+  "parent_species": "Tiefling",
+  "description": "The entropy of the Abyss, the chaos of Pandemonium, and the despair of Carceri call to tieflings who have the abyssal legacy. Horns, fur, tusks, and peculiar scents are common physical features of such tieflings, most of whom have the blood of demons coursing through their veins.",
+  "traits": {
+    "Abyssal Legacy": {
+      "description": "You have Resistance to Poison damage. You know the Poison Spray cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+      "effects": [
+        {
+          "type": "grant_damage_resistance",
+          "damage_type": "Poison"
+        },
+        {
+          "type": "grant_cantrip",
+          "spell": "Poison Spray"
+        },
+        {
+          "type": "grant_spell",
+          "spell": "Ray of Sickness",
+          "min_level": 3
+        },
+        {
+          "type": "grant_spell",
+          "spell": "Hold Person",
+          "min_level": 5
+        }
+      ]
+    }
+  },
+  "spellcasting_ability_choice": ["Intelligence", "Wisdom", "Charisma"]
+}

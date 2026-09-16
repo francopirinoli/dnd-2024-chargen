@@ -1,0 +1,1734 @@
+{
+  "_lineage_traits": {
+    "Drow Spells": {
+      "description": "You know the Dancing Lights cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+      "effects": [
+        {
+          "min_level": 3,
+          "spell": "Faerie Fire",
+          "type": "grant_spell"
+        },
+        {
+          "min_level": 5,
+          "spell": "Darkness",
+          "type": "grant_spell"
+        },
+        {
+          "spell": "Dancing Lights",
+          "type": "grant_cantrip"
+        }
+      ]
+    },
+    "Extended Darkvision": {
+      "description": "The range of your Darkvision increases to 120 feet.",
+      "effects": [
+        {
+          "range": 120,
+          "type": "grant_darkvision"
+        }
+      ]
+    }
+  },
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 12,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 12,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 13,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 13,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 15,
+      "modifier": 3,
+      "saving_throw": 5,
+      "saving_throw_proficient": true,
+      "score": 17,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 14,
+      "modifier": 2,
+      "saving_throw": 4,
+      "saving_throw_proficient": true,
+      "score": 15,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 8,
+      "modifier": -1,
+      "saving_throw": -1,
+      "saving_throw_proficient": false,
+      "score": 8,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 12,
+    "Constitution": 13,
+    "Dexterity": 17,
+    "Intelligence": 15,
+    "Strength": 8,
+    "Wisdom": 10
+  },
+  "ac_options": [
+    {
+      "ac": 13,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (3)",
+      "notes": [],
+      "shield": false
+    },
+    {
+      "ac": 14,
+      "armor": "Leather Armor",
+      "equipped_armor": "Leather Armor",
+      "formula": "Armor base (11) + Dex modifier (3)",
+      "notes": [],
+      "shield": false
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [
+    "Light armor"
+  ],
+  "attack_combinations": [
+    {
+      "mainhand": {
+        "attack_bonus": 5,
+        "attack_bonus_display": "+5",
+        "avg_damage": 5.5,
+        "damage": "1d4 + 3",
+        "damage_type": "Piercing",
+        "icon": "/static/images/weapons/dagger.svg",
+        "name": "Dagger"
+      },
+      "name": "Two Daggers",
+      "notes": [],
+      "offhand": {
+        "attack_bonus": 5,
+        "attack_bonus_display": "+5",
+        "avg_damage": 2.5,
+        "damage": "1d4",
+        "damage_type": "Piercing",
+        "icon": "/static/images/weapons/dagger.svg",
+        "name": "Dagger"
+      },
+      "rank": 1,
+      "recommended": true,
+      "type": "combination"
+    }
+  ],
+  "attacks": [
+    {
+      "ability": "DEX",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 10.0,
+      "avg_damage": 6.5,
+      "damage": "1d6 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/bow.svg",
+      "mastery": "Vex",
+      "name": "Shortbow",
+      "proficient": true,
+      "properties": [
+        "Ammunition (range 80/320)",
+        "Two-Handed"
+      ]
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 1,
+      "attack_bonus_display": "+1",
+      "avg_crit": 0.0,
+      "avg_damage": 0.0,
+      "damage": "0",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    },
+    {
+      "ability": "STR/DEX (DEX)",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 12.0,
+      "avg_damage": 7.5,
+      "damage": "1d8 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/rapier.svg",
+      "mastery": "Vex",
+      "name": "Rapier",
+      "proficient": true,
+      "properties": [
+        "Finesse"
+      ]
+    },
+    {
+      "ability": "STR/DEX (DEX)",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 8.0,
+      "avg_damage": 5.5,
+      "avg_throw_damage": 5.5,
+      "damage": "1d4 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "mastery": "Nick",
+      "name": "Dagger",
+      "proficient": true,
+      "properties": [
+        "Finesse",
+        "Light",
+        "Thrown (range 20/60)"
+      ],
+      "throw_damage": "1d4 + 3"
+    }
+  ],
+  "background": "Criminal",
+  "background_data": {
+    "ability_score_increase": {
+      "options": [
+        "Dexterity",
+        "Intelligence",
+        "Charisma"
+      ],
+      "suggested": {
+        "Dexterity": 2,
+        "Intelligence": 1
+      },
+      "total": 3
+    },
+    "description": "You are an experienced criminal with a history of breaking the law. You have spent a lot of time among other criminals and still have contacts within the criminal underworld.",
+    "edition": "2024",
+    "effects": [
+      {
+        "feat": "Alert",
+        "type": "grant_origin_feat"
+      },
+      {
+        "skills": [
+          "Deception",
+          "Stealth"
+        ],
+        "type": "grant_skill_proficiency"
+      },
+      {
+        "tools": [
+          "Thieves' Tools"
+        ],
+        "type": "grant_tool_proficiency"
+      }
+    ],
+    "name": "Criminal",
+    "starting_equipment": {
+      "option_a": {
+        "gold": 16,
+        "items": [
+          "Crowbar",
+          "Thieves' Tools",
+          "Traveler's Clothes"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "status": "active"
+  },
+  "best_attack_combination": {
+    "mainhand": {
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_damage": 5.5,
+      "damage": "1d4 + 3",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "name": "Dagger"
+    },
+    "name": "Two Daggers",
+    "notes": [],
+    "offhand": {
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_damage": 2.5,
+      "damage": "1d4",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "name": "Dagger"
+    },
+    "rank": 1,
+    "recommended": true,
+    "type": "combination"
+  },
+  "choices_made": {
+    "ability_scores": {
+      "Charisma": 12,
+      "Constitution": 13,
+      "Dexterity": 15,
+      "Intelligence": 14,
+      "Strength": 8,
+      "Wisdom": 10
+    },
+    "ability_scores_method": "standard_array",
+    "background": "Criminal",
+    "background_bonuses": {
+      "Dexterity": 2,
+      "Intelligence": 1
+    },
+    "background_skill_replacements": [
+      "Insight",
+      "Investigation"
+    ],
+    "background_skill_replacements_needed": 2,
+    "character_name": "Zara'lyn",
+    "class": "Rogue",
+    "classes": [
+      {
+        "class_name": "Rogue",
+        "level": 3,
+        "subclass": "Assassin"
+      }
+    ],
+    "equipment_selections": {
+      "background_equipment": "option_b",
+      "class_equipment": "option_a"
+    },
+    "languages": [
+      "Orc",
+      "Elvish"
+    ],
+    "level": 3,
+    "lineage": "Drow",
+    "rogue_expertise_skills_1": [
+      "Stealth",
+      "Perception"
+    ],
+    "skill_choices": [
+      "Stealth",
+      "Deception",
+      "Perception",
+      "Sleight of Hand"
+    ],
+    "species": "Elf",
+    "species_trait_choices": {
+      "Elven Lineage": "Intelligence",
+      "Keen Senses": "Survival"
+    },
+    "subclass": "Assassin",
+    "thieves_cant_language": "Sylvan"
+  },
+  "class": "Rogue",
+  "class_breakdown": [
+    {
+      "class_name": "Rogue",
+      "level": 3,
+      "subclass": "Assassin"
+    }
+  ],
+  "class_data": {
+    "armor_proficiencies": [
+      "Light armor"
+    ],
+    "description": "Rogues rely on cunning, stealth, and their foes' vulnerabilities to get the upper hand. They have a knack for finding solutions to any problem, making precise strikes over brute force. Some began as criminals, others as crime fighters.",
+    "features_by_level": {
+      "1": {
+        "Expertise": {
+          "choices": {
+            "count": 2,
+            "name": "rogue_expertise_skills_1",
+            "source": {
+              "type": "proficient_skills"
+            },
+            "type": "select_multiple"
+          },
+          "description": "Gain Expertise in two skills of your choice. Sleight of Hand and Stealth are recommended if you have proficiency in them.",
+          "effects": [
+            {
+              "from_choice": "rogue_expertise_skills_1",
+              "type": "grant_skill_expertise"
+            }
+          ]
+        },
+        "Sneak Attack": "Once per turn, deal extra 1d6 damage with Finesse/Ranged weapon if you have Advantage or ally within 5 feet of target. The extra damage's type is the same as the weapon's type.",
+        "Thieves' Cant": {
+          "choices": {
+            "count": 1,
+            "name": "thieves_cant_language",
+            "source": {
+              "file": "languages.json",
+              "list": "all",
+              "type": "external"
+            },
+            "type": "select_single"
+          },
+          "description": "You know Thieves' Cant and one other language of your choice.",
+          "effects": [
+            {
+              "from_choice": "thieves_cant_language",
+              "type": "grant_language"
+            },
+            {
+              "languages": [
+                "Thieves' Cant"
+              ],
+              "type": "grant_language"
+            }
+          ]
+        },
+        "Weapon Mastery": "Use mastery properties of two weapons of your choice with which you have proficiency."
+      },
+      "10": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_10",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Gain Ability Score Improvement feat or another feat of your choice.",
+          "feature_kind": "asi"
+        }
+      },
+      "11": {
+        "Improved Cunning Strike": "You can use up to two Cunning Strike effects when you deal Sneak Attack damage, paying the die cost for each effect."
+      },
+      "12": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_12",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Gain Ability Score Improvement feat or another feat of your choice.",
+          "feature_kind": "asi"
+        }
+      },
+      "13": {
+        "Subclass Feature": {
+          "description": "Gain feature from your archetype.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "14": {
+        "Devious Strikes": "New Cunning Strike options: Daze (2d6, Con save or limited to one action/move/bonus on next turn), Knock Out (6d6, Con save or Unconscious 1 min), Obscure (3d6, Dex save or Blinded until end of next turn)."
+      },
+      "15": {
+        "Slippery Mind": {
+          "description": "Your mind is exceptionally difficult to control. You gain proficiency in Wisdom and Charisma saving throws.",
+          "effects": [
+            {
+              "abilities": [
+                "Wisdom",
+                "Charisma"
+              ],
+              "type": "grant_save_proficiency"
+            }
+          ]
+        }
+      },
+      "16": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_16",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Gain Ability Score Improvement feat or another feat of your choice.",
+          "feature_kind": "asi"
+        }
+      },
+      "17": {
+        "Subclass Feature": {
+          "description": "Gain capstone feature from your archetype.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "18": {
+        "Elusive": "No attack roll can have Advantage against you unless you have the Incapacitated condition."
+      },
+      "19": {
+        "Epic Boon": "Gain an Epic Boon feat or another feat of your choice. Boon of the Night Spirit is recommended."
+      },
+      "2": {
+        "Cunning Action": "Your quick thinking and agility allow you to take Dash, Disengage, or Hide as a Bonus Action on your turn."
+      },
+      "20": {
+        "Stroke of Luck": "If you fail a d20 Test, you can turn the roll into a 20. Once per Short or Long Rest."
+      },
+      "3": {
+        "Rogue Subclass": {
+          "description": "Choose your roguish archetype: Arcane Trickster, Assassin, Soulknife, or Thief.",
+          "feature_kind": "subclass_pick"
+        },
+        "Steady Aim": "As a Bonus Action, give yourself Advantage on your next attack roll on the current turn. You can use this only if you haven't moved, and your Speed becomes 0 until the end of the turn."
+      },
+      "4": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_4",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Gain Ability Score Improvement feat or another feat of your choice.",
+          "feature_kind": "asi"
+        }
+      },
+      "5": {
+        "Cunning Strike": "When you deal Sneak Attack damage, you can add one Cunning Strike effect by foregoing Sneak Attack dice. DC equals 8 + Dexterity modifier + Proficiency Bonus. Options: Poison (1d6, Con save or Poisoned 1 min, requires Poisoner's Kit), Trip (1d6, Dex save or Prone if Large or smaller), Withdraw (1d6, move half speed without provoking).",
+        "Uncanny Dodge": "When an attacker you can see hits you with an attack roll, use your Reaction to halve the attack's damage against you."
+      },
+      "6": {
+        "Expertise": {
+          "choices": {
+            "count": 2,
+            "name": "rogue_expertise_skills_6",
+            "source": {
+              "type": "proficient_skills"
+            },
+            "type": "select_multiple"
+          },
+          "description": "Gain Expertise in two more skills of your choice.",
+          "effects": [
+            {
+              "from_choice": "rogue_expertise_skills_6",
+              "type": "grant_skill_expertise"
+            }
+          ]
+        }
+      },
+      "7": {
+        "Evasion": "When subjected to a Dexterity saving throw for half damage, you take no damage on a success and half on a failure. You can't use this if you have the Incapacitated condition.",
+        "Reliable Talent": "Whenever you make an ability check that uses one of your skill or tool proficiencies, you can treat a d20 roll of 9 or lower as a 10."
+      },
+      "8": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_8",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Gain Ability Score Improvement feat or another feat of your choice.",
+          "feature_kind": "asi"
+        }
+      },
+      "9": {
+        "Subclass Feature": {
+          "description": "Gain feature from your archetype.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      }
+    },
+    "hit_die": 8,
+    "masterable_weapons": [
+      "Club",
+      "Dagger",
+      "Dart",
+      "Handaxe",
+      "Javelin",
+      "Light Crossbow",
+      "Light Hammer",
+      "Mace",
+      "Quarterstaff",
+      "Rapier",
+      "Scimitar",
+      "Shortbow",
+      "Shortsword",
+      "Sickle",
+      "Sling",
+      "Spear",
+      "Whip"
+    ],
+    "masteries_by_level": {
+      "1": 2,
+      "10": 2,
+      "11": 2,
+      "12": 2,
+      "13": 2,
+      "14": 2,
+      "15": 2,
+      "16": 2,
+      "17": 2,
+      "18": 2,
+      "19": 2,
+      "2": 2,
+      "20": 2,
+      "3": 2,
+      "4": 2,
+      "5": 2,
+      "6": 2,
+      "7": 2,
+      "8": 2,
+      "9": 2
+    },
+    "multiclassing": {
+      "armor_training": [
+        "Light"
+      ],
+      "hit_die_granted": 8,
+      "notes": null,
+      "other_proficiencies": [],
+      "saving_throw_proficiencies": [],
+      "skill_proficiencies": {
+        "count": 1,
+        "options": [
+          "Acrobatics",
+          "Athletics",
+          "Deception",
+          "Insight",
+          "Intimidation",
+          "Investigation",
+          "Perception",
+          "Performance",
+          "Persuasion",
+          "Sleight of Hand",
+          "Stealth"
+        ]
+      },
+      "source_text": "As a Multiclass Character: Gain the following traits from the Core Rogue Traits table: Hit Point Die, proficiency in one skill of your choice from the Rogue's skill list, proficiency with Thieves' Tools, and training with Light Armor. Gain the Rogue's level 1 features, which are listed in the Rogue Features table.",
+      "tool_training": [
+        "Thieves' Tools"
+      ],
+      "weapon_training": []
+    },
+    "name": "Rogue",
+    "primary_ability": "Dexterity",
+    "proficiency_bonus_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 2,
+      "20": 6,
+      "3": 2,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 4
+    },
+    "saving_throw_proficiencies": [
+      "Dexterity",
+      "Intelligence"
+    ],
+    "skill_options": [
+      "Acrobatics",
+      "Athletics",
+      "Deception",
+      "Insight",
+      "Intimidation",
+      "Investigation",
+      "Perception",
+      "Persuasion",
+      "Sleight of Hand",
+      "Stealth"
+    ],
+    "skill_proficiencies_count": 4,
+    "sneak_attack_by_level": {
+      "1": "1d6",
+      "11": "6d6",
+      "13": "7d6",
+      "15": "8d6",
+      "17": "9d6",
+      "19": "10d6",
+      "3": "2d6",
+      "5": "3d6",
+      "7": "4d6",
+      "9": "5d6"
+    },
+    "standard_array_assignment": {
+      "Charisma": 8,
+      "Constitution": 13,
+      "Dexterity": 15,
+      "Intelligence": 14,
+      "Strength": 12,
+      "Wisdom": 10
+    },
+    "starting_equipment": {
+      "option_a": {
+        "gold": 10,
+        "items": [
+          "Rapier",
+          "Shortbow",
+          "Arrow (20)",
+          "Leather Armor",
+          "Dagger (2)",
+          "Thieves' Tools",
+          "Burglar's Pack"
+        ]
+      },
+      "option_b": {
+        "gold": 125
+      }
+    },
+    "subclass_selection_level": 3,
+    "tool_proficiencies": [
+      "Thieves' Tools"
+    ],
+    "weapon_proficiencies": [
+      "Simple weapons",
+      "Martial weapons with Finesse or Light property"
+    ]
+  },
+  "combat": {
+    "armor_class": 14,
+    "hit_dice": {
+      "spent": 0,
+      "total": "3d8"
+    },
+    "hit_point_maximum": 21,
+    "hit_points": {
+      "current": 21,
+      "maximum": 21,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 18,
+      "base_hp_breakdown": "Level 1: 8 (max d8) + Levels 2-3: 10 (avg d8)",
+      "class_name": "Rogue",
+      "constitution_bonus": 3,
+      "constitution_modifier": 1,
+      "constitution_score": 13,
+      "feature_bonus": 0,
+      "feature_breakdown": [],
+      "hit_die": 8,
+      "level": 3,
+      "total_hp": 21
+    },
+    "initiative": 5,
+    "initiative_bonus": 5,
+    "passive_perception": 14,
+    "speed": 30,
+    "uses_shield": false
+  },
+  "condition_immunities": [],
+  "darkvision": 120,
+  "effects": [
+    {
+      "condition": "Charmed",
+      "display": "Advantage vs Charmed condition",
+      "source": "Fey Ancestry",
+      "source_type": "species",
+      "type": "grant_save_advantage"
+    },
+    {
+      "feat": "Alert",
+      "source": "Criminal",
+      "source_type": "background",
+      "type": "grant_origin_feat"
+    },
+    {
+      "from_choice": "rogue_expertise_skills_1",
+      "source": "Expertise",
+      "source_class_name": "Rogue",
+      "source_type": "class",
+      "type": "grant_skill_expertise"
+    },
+    {
+      "from_choice": "rogue_expertise_skills_1",
+      "source": "Expertise",
+      "source_type": "class",
+      "type": "grant_skill_expertise"
+    },
+    {
+      "from_choice": "rogue_expertise_skills_1",
+      "source": "Expertise",
+      "source_type": "class_choice",
+      "type": "grant_skill_expertise"
+    },
+    {
+      "from_choice": "thieves_cant_language",
+      "source": "Thieves' Cant",
+      "source_class_name": "Rogue",
+      "source_type": "class",
+      "type": "grant_language"
+    },
+    {
+      "from_choice": "thieves_cant_language",
+      "source": "Thieves' Cant",
+      "source_type": "class",
+      "type": "grant_language"
+    },
+    {
+      "from_choice": "thieves_cant_language",
+      "source": "Thieves' Cant",
+      "source_type": "class_choice",
+      "type": "grant_language"
+    },
+    {
+      "languages": [
+        "Thieves' Cant"
+      ],
+      "source": "Thieves' Cant",
+      "source_class_name": "Rogue",
+      "source_type": "class",
+      "type": "grant_language"
+    },
+    {
+      "min_level": 3,
+      "source": "Drow Spells",
+      "source_type": "lineage",
+      "spell": "Faerie Fire",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Drow Spells",
+      "source_type": "lineage",
+      "spell": "Faerie Fire",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Drow Spells",
+      "source_type": "lineage",
+      "spell": "Darkness",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Drow Spells",
+      "source_type": "lineage",
+      "spell": "Darkness",
+      "type": "grant_spell"
+    },
+    {
+      "range": 120,
+      "source": "Extended Darkvision",
+      "source_type": "lineage",
+      "type": "grant_darkvision"
+    },
+    {
+      "range": 120,
+      "source": "Extended Darkvision",
+      "source_type": "lineage",
+      "type": "grant_darkvision"
+    },
+    {
+      "range": 60,
+      "source": "Darkvision",
+      "source_type": "species",
+      "type": "grant_darkvision"
+    },
+    {
+      "skills": [
+        "Deception",
+        "Stealth"
+      ],
+      "source": "Criminal",
+      "source_type": "background",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "source": "Alert",
+      "source_type": "feat",
+      "type": "bonus_initiative",
+      "value": "proficiency"
+    },
+    {
+      "source": "Assassin's Tools",
+      "source_class_name": "Rogue",
+      "source_type": "subclass",
+      "tools": [
+        "Disguise Kit",
+        "Poisoner's Kit"
+      ],
+      "type": "grant_tool_proficiency"
+    },
+    {
+      "source": "Criminal",
+      "source_type": "background",
+      "tools": [
+        "Thieves' Tools"
+      ],
+      "type": "grant_tool_proficiency"
+    },
+    {
+      "source": "Drow Spells",
+      "source_type": "lineage",
+      "spell": "Dancing Lights",
+      "type": "grant_cantrip"
+    },
+    {
+      "source": "Drow Spells",
+      "source_type": "lineage",
+      "spell": "Dancing Lights",
+      "type": "grant_cantrip"
+    }
+  ],
+  "eldritch_invocation_stats": {
+    "available_invocations": [],
+    "current_invocations": [],
+    "has_invocations": false,
+    "max_invocations": 0
+  },
+  "equipment": {
+    "armor": [
+      {
+        "name": "Leather Armor",
+        "source": "Class"
+      }
+    ],
+    "gold": 60,
+    "items": [
+      {
+        "name": "Arrow (20)",
+        "source": "Class"
+      },
+      {
+        "name": "Burglar's Pack",
+        "source": "Class"
+      },
+      {
+        "name": "Thieves' Tools",
+        "source": "Class"
+      }
+    ],
+    "weapons": [
+      {
+        "display_name": "Dagger (2)",
+        "name": "Dagger",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "2 gp",
+          "damage": "1d4",
+          "damage_type": "Piercing",
+          "mastery": "Nick",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Finesse",
+            "Light",
+            "Thrown (range 20/60)"
+          ],
+          "weight": 1
+        },
+        "quantity": 2,
+        "source": "Class"
+      },
+      {
+        "display_name": "Rapier",
+        "name": "Rapier",
+        "properties": {
+          "category": "Martial Melee",
+          "cost": "25 gp",
+          "damage": "1d8",
+          "damage_type": "Piercing",
+          "mastery": "Vex",
+          "proficiency_required": "Martial weapons",
+          "properties": [
+            "Finesse"
+          ],
+          "weight": 2
+        },
+        "quantity": 1,
+        "source": "Class"
+      },
+      {
+        "display_name": "Shortbow",
+        "name": "Shortbow",
+        "properties": {
+          "category": "Simple Ranged",
+          "cost": "25 gp",
+          "damage": "1d6",
+          "damage_type": "Piercing",
+          "mastery": "Vex",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Ammunition (range 80/320)",
+            "Two-Handed"
+          ],
+          "weight": 2
+        },
+        "quantity": 1,
+        "source": "Class"
+      }
+    ]
+  },
+  "features": {
+    "background": [],
+    "class": [
+      {
+        "chosen_options": [
+          {
+            "choice_key": "thieves_cant_language",
+            "description": "",
+            "name": "Sylvan"
+          }
+        ],
+        "description": "You know Thieves' Cant and one other language of your choice.\n\n**Selected**: Sylvan",
+        "level": 1,
+        "name": "Thieves' Cant: Sylvan",
+        "source": "Rogue"
+      },
+      {
+        "description": "As a Bonus Action, give yourself Advantage on your next attack roll on the current turn. You can use this only if you haven't moved, and your Speed becomes 0 until the end of the turn.",
+        "level": 3,
+        "name": "Steady Aim",
+        "source": "Rogue"
+      },
+      {
+        "description": "Gain Expertise in two skills of your choice. Sleight of Hand and Stealth are recommended if you have proficiency in them.",
+        "level": 1,
+        "name": "Expertise: Stealth, Perception",
+        "source": "Rogue"
+      },
+      {
+        "description": "Once per turn, deal extra 1d6 damage with Finesse/Ranged weapon if you have Advantage or ally within 5 feet of target. The extra damage's type is the same as the weapon's type.",
+        "level": 1,
+        "name": "Sneak Attack",
+        "source": "Rogue"
+      },
+      {
+        "description": "Use mastery properties of two weapons of your choice with which you have proficiency.",
+        "level": 1,
+        "name": "Weapon Mastery",
+        "source": "Rogue"
+      },
+      {
+        "description": "Your quick thinking and agility allow you to take Dash, Disengage, or Hide as a Bonus Action on your turn.",
+        "level": 2,
+        "name": "Cunning Action",
+        "source": "Rogue"
+      }
+    ],
+    "feats": [
+      {
+        "description": "Always on the lookout for danger, you gain the following benefits:\n\nWhen you roll Initiative, you can add your Proficiency Bonus to the roll.\n\nImmediately after you roll Initiative, you can swap your Initiative with that of one willing ally in the same encounter. You can't make this swap if you or the ally has the Incapacitated condition.",
+        "name": "Alert",
+        "source": "Criminal"
+      }
+    ],
+    "lineage": [
+      {
+        "description": "The range of your Darkvision increases to 120 feet.",
+        "name": "Extended Darkvision",
+        "source": "Drow"
+      },
+      {
+        "description": "You know the Dancing Lights cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.\n\n<table class=\"table table-sm table-bordered mt-2\">\n<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n<tbody>\n<tr class=\"table-success\"><td>3</td><td>\u2713 Faerie Fire</td></tr>\n<tr class=\"table-secondary\"><td>5</td><td>\ud83d\udd12 Darkness</td></tr>\n</tbody>\n</table>",
+        "level": 5,
+        "name": "Drow Spells",
+        "source": "Drow"
+      }
+    ],
+    "species": [
+      {
+        "description": "You are part of a lineage that grants you supernatural abilities. Intelligence, Wisdom of Charisma is your spellcasting ability for the spells you cast with this trait.",
+        "name": "Elven Lineage",
+        "source": "Elf"
+      },
+      {
+        "description": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness.",
+        "name": "Trance",
+        "source": "Elf"
+      },
+      {
+        "description": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+        "name": "Fey Ancestry",
+        "source": "Elf"
+      },
+      {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "name": "Darkvision",
+        "source": "Elf"
+      },
+      {
+        "description": "You have proficiency in the Insight, Perception, or Survival skill.",
+        "name": "Keen Senses: Survival",
+        "source": "Elf"
+      }
+    ],
+    "subclass": [
+      {
+        "description": "You gain a Disguise Kit and a Poisoner's Kit, and you have proficiency with them.",
+        "level": 3,
+        "name": "Assassin's Tools",
+        "source": "Assassin"
+      },
+      {
+        "description": "You're adept at ambushing a target. Initiative: You have Advantage on Initiative rolls. Surprising Strikes: During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn. If your Sneak Attack hits any target during that round, the target takes extra damage of the weapon's type equal to your Rogue level.",
+        "level": 3,
+        "name": "Assassinate",
+        "source": "Assassin"
+      }
+    ]
+  },
+  "immunities": [],
+  "languages": [
+    "Common",
+    "Thieves' Cant",
+    "Orc",
+    "Elvish",
+    "Sylvan"
+  ],
+  "level": 3,
+  "lineage": "Drow",
+  "lineage_data": {
+    "description": "Drow, also known as dark elves, are a subrace of elves that dwell in the Underdark. They are known for their dark skin, white hair, and affinity for magic and stealth.",
+    "name": "Drow",
+    "parent_species": "Elf",
+    "traits": {
+      "Drow Spells": {
+        "description": "You know the Dancing Lights cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+        "effects": [
+          {
+            "min_level": 3,
+            "spell": "Faerie Fire",
+            "type": "grant_spell"
+          },
+          {
+            "min_level": 5,
+            "spell": "Darkness",
+            "type": "grant_spell"
+          },
+          {
+            "spell": "Dancing Lights",
+            "type": "grant_cantrip"
+          }
+        ]
+      },
+      "Extended Darkvision": {
+        "description": "The range of your Darkvision increases to 120 feet.",
+        "effects": [
+          {
+            "range": 120,
+            "type": "grant_darkvision"
+          }
+        ]
+      }
+    }
+  },
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "name": "Zara'lyn",
+  "proficiencies": {
+    "armor": [
+      "Light armor"
+    ],
+    "languages": [
+      "Common",
+      "Thieves' Cant",
+      "Orc",
+      "Elvish",
+      "Sylvan"
+    ],
+    "saving_throws": [
+      "Dexterity",
+      "Intelligence"
+    ],
+    "skills": [
+      "Stealth",
+      "Deception",
+      "Perception",
+      "Sleight of Hand",
+      "Insight",
+      "Investigation"
+    ],
+    "tools": [
+      "Disguise Kit",
+      "Poisoner's Kit",
+      "Thieves' Tools"
+    ],
+    "weapons": [
+      "Simple weapons",
+      "Martial weapons with Finesse or Light property"
+    ]
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {},
+    "languages": {
+      "Common": "base",
+      "Elvish": "user_choice",
+      "Orc": "user_choice",
+      "Sylvan": "Thieves' Cant",
+      "Thieves' Cant": "Thieves' Cant"
+    },
+    "saving_throws": {},
+    "skills": {
+      "Deception": "Rogue",
+      "Insight": "Criminal",
+      "Investigation": "Criminal",
+      "Perception": "Rogue",
+      "Sleight of Hand": "Rogue",
+      "Stealth": "Rogue"
+    },
+    "tools": {
+      "Disguise Kit": "Assassin's Tools",
+      "Poisoner's Kit": "Assassin's Tools",
+      "Thieves' Tools": "Criminal"
+    },
+    "weapons": {}
+  },
+  "resistances": [],
+  "save_advantages": [],
+  "skill_expertise": [
+    "Stealth",
+    "Perception"
+  ],
+  "skill_proficiencies": [
+    "Stealth",
+    "Deception",
+    "Perception",
+    "Sleight of Hand",
+    "Insight",
+    "Investigation"
+  ],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Rogue"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": true,
+      "source": "Criminal"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": 4,
+      "expertise": false,
+      "modifier": 4,
+      "proficient": true,
+      "source": "Criminal"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 4,
+      "expertise": true,
+      "modifier": 4,
+      "proficient": true,
+      "source": "Rogue"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Rogue"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": 7,
+      "expertise": true,
+      "modifier": 7,
+      "proficient": true,
+      "source": "Rogue"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    }
+  },
+  "species": "Elf",
+  "species_data": {
+    "creature_type": "Humanoid",
+    "description": "Created by the god Corellon, elves have pointed ears and lack facial and body hair. They live for around 750 years, and they don't sleep but instead enter a trance when they need to rest. An environment subtly transforms elves after they inhabit it for a millennium or more, granting them certain kinds of magic.",
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
+    "lineages": [
+      "Drow",
+      "High Elf",
+      "Wood Elf"
+    ],
+    "name": "Elf",
+    "size": "Medium",
+    "size_description": "about 5-6 feet tall",
+    "speed": 30,
+    "traits": {
+      "Darkvision": {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "effects": [
+          {
+            "range": 60,
+            "type": "grant_darkvision"
+          }
+        ]
+      },
+      "Elven Lineage": {
+        "choices": {
+          "count": 1,
+          "source": {
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ],
+            "type": "fixed_list"
+          },
+          "type": "select_single"
+        },
+        "description": "You are part of a lineage that grants you supernatural abilities. Intelligence, Wisdom of Charisma is your spellcasting ability for the spells you cast with this trait.",
+        "type": "choice"
+      },
+      "Fey Ancestry": {
+        "description": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+        "effects": [
+          {
+            "condition": "Charmed",
+            "display": "Advantage vs Charmed condition",
+            "type": "grant_save_advantage"
+          }
+        ]
+      },
+      "Keen Senses": {
+        "choice_effects": {
+          "Insight": [
+            {
+              "skills": [
+                "Insight"
+              ],
+              "type": "grant_skill_proficiency"
+            }
+          ],
+          "Perception": [
+            {
+              "skills": [
+                "Perception"
+              ],
+              "type": "grant_skill_proficiency"
+            }
+          ],
+          "Survival": [
+            {
+              "skills": [
+                "Survival"
+              ],
+              "type": "grant_skill_proficiency"
+            }
+          ]
+        },
+        "choices": {
+          "count": 1,
+          "source": {
+            "options": [
+              "Insight",
+              "Perception",
+              "Survival"
+            ],
+            "type": "fixed_list"
+          },
+          "type": "select_single"
+        },
+        "description": "You have proficiency in the Insight, Perception, or Survival skill.",
+        "type": "choice"
+      },
+      "Trance": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness."
+    }
+  },
+  "speed": 30,
+  "speed_bonuses": {},
+  "spell_metadata": {
+    "Dancing Lights": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "source": "Drow",
+      "source_type": "lineage"
+    },
+    "Faerie Fire": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": true,
+      "once_per_long_rest": false,
+      "source": "Drow",
+      "source_type": "lineage"
+    }
+  },
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {},
+  "spellcasting_ability": "Intelligence",
+  "spellcasting_stats": {
+    "available_cantrips": [],
+    "available_spells": {},
+    "background_cantrips_list": null,
+    "background_cantrips_needed": 0,
+    "background_spell_level": 1,
+    "background_spells_list": null,
+    "background_spells_needed": 0,
+    "cantrips_always_prepared": 0,
+    "cantrips_to_prepare": 0,
+    "effective_caster_level": 0,
+    "has_spellcasting": false,
+    "max_cantrips_prepared": 0,
+    "max_spells_prepared": 0,
+    "multiclass_notes": [],
+    "pact_magic_slots": [],
+    "preparation_formula": null,
+    "ritual_casting": false,
+    "spell_attack_bonus": 0,
+    "spell_save_dc": 0,
+    "spellcasting_ability": null,
+    "spellcasting_modifier": 0,
+    "spellcasting_type": null,
+    "spells_always_prepared": 0,
+    "spells_prepared": 0
+  },
+  "spells": {
+    "always_prepared": {
+      "Dancing Lights": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 0,
+        "source": "Drow"
+      },
+      "Faerie Fire": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "source": "Drow"
+      }
+    },
+    "background_spells": {},
+    "cantrips": [
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S, M",
+        "concentration": true,
+        "description": "You create up to four torch-sized lights within range and can move them while the spell lasts.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 0,
+        "material": "a bit of phosphorus or wychwood, or a glowworm",
+        "name": "Dancing Lights",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Drow"
+      }
+    ],
+    "known": {},
+    "level_1": [
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "Each creature/object in an area is outlined with light on a failed save; attacks against affected targets have advantage and affected creatures can't benefit from being Invisible.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Faerie Fire",
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Drow"
+      }
+    ],
+    "prepared": {
+      "cantrips": {},
+      "spells": {}
+    },
+    "slots": {}
+  },
+  "spells_by_level": {
+    "0": [
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S, M",
+        "concentration": true,
+        "description": "You create up to four torch-sized lights within range and can move them while the spell lasts.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 0,
+        "material": "a bit of phosphorus or wychwood, or a glowworm",
+        "name": "Dancing Lights",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Drow"
+      }
+    ],
+    "1": [
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "Each creature/object in an area is outlined with light on a failed save; attacks against affected targets have advantage and affected creatures can't benefit from being Invisible.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Faerie Fire",
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Drow"
+      }
+    ]
+  },
+  "step": "complete",
+  "subclass": "Assassin",
+  "subclass_data": {
+    "class": "Rogue",
+    "description": "An Assassin's training focuses on using stealth, poison, and disguise to eliminate foes with deadly efficiency. While some are hired killers, spies, or bounty hunters, these capabilities are equally useful for adventurers facing monstrous enemies.",
+    "features_by_level": {
+      "13": {
+        "Envenom Weapons": "When you use the Poison option of your Cunning Strike, the target also takes 2d6 Poison damage whenever it fails the saving throw. This damage ignores Resistance to Poison damage."
+      },
+      "17": {
+        "Death Strike": "When you hit with your Sneak Attack on the first round of a combat, the target must succeed on a Constitution saving throw (DC 8 + your Dexterity modifier + Proficiency Bonus), or the attack's damage is doubled against the target."
+      },
+      "3": {
+        "Assassin's Tools": {
+          "description": "You gain a Disguise Kit and a Poisoner's Kit, and you have proficiency with them.",
+          "effects": [
+            {
+              "tools": [
+                "Disguise Kit",
+                "Poisoner's Kit"
+              ],
+              "type": "grant_tool_proficiency"
+            }
+          ]
+        },
+        "Assassinate": "You're adept at ambushing a target. Initiative: You have Advantage on Initiative rolls. Surprising Strikes: During the first round of each combat, you have Advantage on attack rolls against any creature that hasn't taken a turn. If your Sneak Attack hits any target during that round, the target takes extra damage of the weapon's type equal to your Rogue level."
+      },
+      "9": {
+        "Infiltration Expertise": "Masterful Mimicry: You can unerringly mimic another person's speech, handwriting, or both if you have spent at least 1 hour studying them. Roving Aim: Your Speed isn't reduced to 0 by using Steady Aim."
+      }
+    },
+    "name": "Assassin",
+    "source": "Player's Handbook 2024"
+  },
+  "superiority_dice": {},
+  "tool_proficiencies": [
+    "Disguise Kit",
+    "Poisoner's Kit",
+    "Thieves' Tools"
+  ],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [
+      "Club",
+      "Dagger",
+      "Dart",
+      "Handaxe",
+      "Javelin",
+      "Light Crossbow",
+      "Light Hammer",
+      "Mace",
+      "Quarterstaff",
+      "Rapier",
+      "Scimitar",
+      "Shortbow",
+      "Shortsword",
+      "Sickle",
+      "Sling",
+      "Spear",
+      "Whip"
+    ],
+    "current_masteries": [],
+    "has_mastery": true,
+    "max_masteries": 2
+  },
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons with Finesse or Light property"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Detect Magic",
+  "level": 1,
+  "school": "Divination",
+  "casting_time": "1 action",
+  "range": "Self",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 10 minutes",
+  "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+  "classes": [
+    "Bard",
+    "Cleric",
+    "Druid",
+    "Paladin",
+    "Ranger",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": true
+}

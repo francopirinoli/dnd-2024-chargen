@@ -1,0 +1,49 @@
+{
+  "name": "Dwarf",
+  "description": "Dwarves were raised from the earth in the elder days by a deity of the forge. That god gave dwarves an affinity for stone and metal and for living underground. The god also made them resilient like the mountains, with a life span of about 350 years. Squat and often bearded, dwarves carved cities and strongholds into mountainsides and under the earth.",
+  "creature_type": "Humanoid",
+  "size": "Medium",
+  "size_description": "about 4-5 feet tall",
+  "speed": 30,
+  "traits": {
+    "Darkvision": {
+      "description": "You have Darkvision with a range of 120 feet.",
+      "effects": [
+        {
+          "type": "grant_darkvision",
+          "range": 120
+        }
+      ]
+    },
+    "Dwarven Resilience": {
+      "description": "You have Resistance to Poison damage. You also have Advantage on saving throws you make to avoid or end the Poisoned condition.",
+      "effects": [
+        {
+          "type": "grant_save_advantage",
+          "abilities": ["Constitution"],
+          "condition": "Poisoned",
+          "display": "Advantage vs Poisoned condition"
+        },
+        {
+          "type": "grant_damage_resistance",
+          "damage_type": "Poison"
+        }
+      ]
+    },
+    "Dwarven Toughness": {
+      "description": "Your Hit Point maximum increases by 1, and it increases by 1 again whenever you gain a level.",
+      "effects": [
+        {
+          "type": "bonus_hp",
+          "value": 1,
+          "scaling": "per_level"
+        }
+      ]
+    },
+    "Stonecunning": "As a Bonus Action, you gain Tremorsense with a range of 60 feet for 10 minutes. You must be on a stone surface or touching a stone surface to use this Tremorsense. The stone can be natural or worked. You can use this Bonus Action a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest."
+  },
+  "languages": [
+    "Common",
+    "Dwarvish"
+  ]
+}

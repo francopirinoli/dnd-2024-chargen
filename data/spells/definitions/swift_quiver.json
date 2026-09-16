@@ -1,0 +1,18 @@
+{
+  "name": "Swift Quiver",
+  "level": 5,
+  "school": "Transmutation",
+  "casting_time": "1 bonus action",
+  "range": "Self",
+  "components": [
+    "V",
+    "S",
+    "M (a quiver worth 1+ GP)"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "When you make a ranged attack with a weapon, you can draw a piece of nonmagical ammunition from a quiver, a case, or another container as part of the attack. In addition, you can make two extra attacks with a ranged weapon as a Bonus Action. Each time you make such a Bonus Action attack, your quiver magically produces one piece of nonmagical ammunition.",
+  "classes": [
+    "Ranger"
+  ],
+  "ritual": false
+}

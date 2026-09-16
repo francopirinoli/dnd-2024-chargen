@@ -1,0 +1,19 @@
+{
+  "name": "Barkskin",
+  "level": 2,
+  "school": "Transmutation",
+  "casting_time": "1 bonus action",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S",
+    "M (a handful of oak bark)"
+  ],
+  "duration": "1 hour",
+  "description": "You touch a willing creature. Until the spell ends, the target's skin takes on a rough, bark-like appearance, and the target's AC can't be less than 17, regardless of what kind of armor it is wearing.",
+  "classes": [
+    "Druid",
+    "Ranger"
+  ],
+  "ritual": false
+}

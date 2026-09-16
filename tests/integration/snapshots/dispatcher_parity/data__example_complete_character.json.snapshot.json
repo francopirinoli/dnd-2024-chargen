@@ -1,0 +1,426 @@
+{
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 11,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 10,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 12,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 10,
+    "Constitution": 11,
+    "Dexterity": 10,
+    "Intelligence": 10,
+    "Strength": 12,
+    "Wisdom": 10
+  },
+  "ac_options": [
+    {
+      "ac": 10,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (0)",
+      "notes": [],
+      "shield": false
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [],
+  "attack_combinations": [],
+  "attacks": [
+    {
+      "ability": "STR",
+      "attack_bonus": 3,
+      "attack_bonus_display": "+3",
+      "avg_crit": 2.0,
+      "avg_damage": 2.0,
+      "damage": "2",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    }
+  ],
+  "background": null,
+  "background_data": null,
+  "choices_made": {
+    "ability_scores": "standard_array",
+    "background_ability_score_assignment": {
+      "Constitution": 1,
+      "Strength": 2
+    },
+    "background_skills": [
+      "Animal Handling",
+      "Survival"
+    ],
+    "class_skills": [
+      "Athletics",
+      "Intimidation"
+    ],
+    "fighting_style": "Defense"
+  },
+  "class": null,
+  "class_data": null,
+  "combat": {
+    "armor_class": 10,
+    "hit_dice": {
+      "spent": 0,
+      "total": "1d8"
+    },
+    "hit_point_maximum": 6,
+    "hit_points": {
+      "current": 6,
+      "maximum": 6,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 6,
+      "base_hp_breakdown": "Level 1: 6 (max d6)",
+      "class_name": null,
+      "constitution_bonus": 0,
+      "constitution_modifier": 0,
+      "constitution_score": 11,
+      "feature_bonus": 0,
+      "feature_breakdown": [],
+      "hit_die": 6,
+      "level": 1,
+      "total_hp": 6
+    },
+    "initiative": 0,
+    "initiative_bonus": 0,
+    "passive_perception": 10,
+    "speed": 30,
+    "uses_shield": false
+  },
+  "condition_immunities": [],
+  "darkvision": 0,
+  "effects": [],
+  "eldritch_invocation_stats": {
+    "available_invocations": [],
+    "current_invocations": [],
+    "has_invocations": false,
+    "max_invocations": 0
+  },
+  "equipment": null,
+  "features": {
+    "background": [],
+    "class": [],
+    "feats": [],
+    "lineage": [],
+    "species": [],
+    "subclass": []
+  },
+  "immunities": [],
+  "languages": [
+    "Common"
+  ],
+  "level": 1,
+  "lineage": null,
+  "lineage_data": null,
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "name": "",
+  "proficiencies": {
+    "armor": [],
+    "languages": [
+      "Common"
+    ],
+    "saving_throws": [],
+    "skills": [],
+    "tools": [],
+    "weapons": []
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {},
+    "languages": {
+      "Common": "base"
+    },
+    "saving_throws": {},
+    "skills": {},
+    "tools": {},
+    "weapons": {}
+  },
+  "resistances": [],
+  "save_advantages": [],
+  "skill_proficiencies": [],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    }
+  },
+  "species": null,
+  "species_data": null,
+  "speed": 30,
+  "speed_bonuses": {},
+  "spell_metadata": {},
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {},
+  "spellcasting_stats": {
+    "available_cantrips": [],
+    "available_spells": {},
+    "background_cantrips_list": null,
+    "background_cantrips_needed": 0,
+    "background_spell_level": 1,
+    "background_spells_list": null,
+    "background_spells_needed": 0,
+    "cantrips_always_prepared": 0,
+    "cantrips_to_prepare": 0,
+    "effective_caster_level": 0,
+    "has_spellcasting": false,
+    "max_cantrips_prepared": 0,
+    "max_spells_prepared": 0,
+    "multiclass_notes": [],
+    "pact_magic_slots": [],
+    "preparation_formula": null,
+    "ritual_casting": false,
+    "spell_attack_bonus": 0,
+    "spell_save_dc": 0,
+    "spellcasting_ability": null,
+    "spellcasting_modifier": 0,
+    "spellcasting_type": null,
+    "spells_always_prepared": 0,
+    "spells_prepared": 0
+  },
+  "spells": {
+    "always_prepared": {},
+    "background_spells": {},
+    "cantrips": [],
+    "known": {},
+    "level_1": [],
+    "prepared": {
+      "cantrips": {},
+      "spells": {}
+    },
+    "slots": {}
+  },
+  "spells_by_level": {},
+  "step": "species",
+  "subclass": null,
+  "subclass_data": null,
+  "superiority_dice": {},
+  "tool_proficiencies": [],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [],
+    "current_masteries": [],
+    "has_mastery": false,
+    "max_masteries": 0
+  },
+  "weapon_proficiencies": []
+}

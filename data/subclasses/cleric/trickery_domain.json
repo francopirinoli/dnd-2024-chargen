@@ -1,0 +1,33 @@
+{
+  "name": "Trickery Domain",
+  "class": "Cleric",
+  "description": "Clerics who champion deception, illusion, and cunning, patrons of thieves and rebels.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Blessing of the Trickster": "As a Magic action, you can choose yourself or a willing creature within 30 feet of yourself to have Advantage on Dexterity (Stealth) checks. This blessing lasts until you finish a Long Rest or you use this feature again.",
+      "Trickery Domain Spells": {
+        "description": "You always have certain spells prepared.",
+        "effects": [
+          {"type": "grant_spell", "spell": "Charm Person", "min_level": 3},
+          {"type": "grant_spell", "spell": "Disguise Self", "min_level": 3},
+          {"type": "grant_spell", "spell": "Invisibility", "min_level": 3},
+          {"type": "grant_spell", "spell": "Pass without Trace", "min_level": 3},
+          {"type": "grant_spell", "spell": "Hypnotic Pattern", "min_level": 5},
+          {"type": "grant_spell", "spell": "Nondetection", "min_level": 5},
+          {"type": "grant_spell", "spell": "Confusion", "min_level": 7},
+          {"type": "grant_spell", "spell": "Dimension Door", "min_level": 7},
+          {"type": "grant_spell", "spell": "Dominate Person", "min_level": 9},
+          {"type": "grant_spell", "spell": "Modify Memory", "min_level": 9}
+        ]
+      },
+      "Invoke Duplicity": "As a Bonus Action, you can expend one use of your Channel Divinity to create a perfect visual illusion of yourself in an unoccupied space you can see within 30 feet of yourself. The illusion is intangible and doesn't occupy its space. It lasts for 1 minute, but it ends early if you dismiss it (no action required) or have the Incapacitated condition. The illusion is animated and mimics your expressions and gestures. While it persists, you gain the following benefits. Cast Spells: You can cast spells as though you were in the illusion's space, but you must use your own senses. Distract: When both you and your illusion are within 5 feet of a creature that can see the illusion, you have Advantage on attack rolls against that creature, given how distracting the illusion is to the target. Move: As a Bonus Action, you can move the illusion up to 30 feet to an unoccupied space you can see that is within 120 feet of yourself."
+    },
+    "6": {
+      "Trickster's Transposition": "Whenever you take the Bonus Action to create or move the illusion of your Invoke Duplicity, you can teleport, swapping places with the illusion."
+    },
+    "17": {
+      "Improved Duplicity": "The illusion of your Invoke Duplicity has grown more powerful in the following ways. Shared Distraction: When you and your allies make attack rolls against a creature within 5 feet of the illusion, the attack rolls have Advantage. Healing Illusion: When the illusion ends, you or a creature of your choice within 5 feet of it regains a number of Hit Points equal to your Cleric level."
+    }
+  }
+}

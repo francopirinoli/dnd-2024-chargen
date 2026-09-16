@@ -1,0 +1,50 @@
+{
+  "name": "Hermit",
+  "description": "You lived in seclusion—either in a sheltered community such as a monastery, or entirely alone—for a formative part of your life. In your time apart from the clamor of society, you found quiet, solitude, and perhaps some of the answers you were looking for.",
+  "edition": "2024",
+  "status": "active",
+  "ability_score_increase": {
+    "total": 3,
+    "options": [
+      "Constitution",
+      "Wisdom",
+      "Intelligence"
+    ],
+    "suggested": {
+      "Constitution": 1,
+      "Wisdom": 2
+    }
+  },
+  "effects": [
+    {
+      "type": "grant_skill_proficiency",
+      "skills": [
+        "Medicine",
+        "Religion"
+      ]
+    },
+    {
+      "type": "grant_origin_feat",
+      "feat": "Healer"
+    },
+    {
+      "type": "grant_tool_proficiency",
+      "tools": [
+        "Herbalism Kit"
+      ]
+    }
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Herbalism Kit",
+        "Bedroll",
+        "Traveler's Clothes"
+      ],
+      "gold": 5
+    },
+    "option_b": {
+      "gold": 50
+    }
+  }
+}

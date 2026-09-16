@@ -1,0 +1,1339 @@
+{
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 13,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 13,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 15,
+      "modifier": 3,
+      "saving_throw": 5,
+      "saving_throw_proficient": true,
+      "score": 17,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 8,
+      "modifier": -1,
+      "saving_throw": -1,
+      "saving_throw_proficient": false,
+      "score": 8,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 12,
+      "modifier": 1,
+      "saving_throw": 3,
+      "saving_throw_proficient": true,
+      "score": 12,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 14,
+      "modifier": 2,
+      "saving_throw": 2,
+      "saving_throw_proficient": false,
+      "score": 15,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 10,
+    "Constitution": 13,
+    "Dexterity": 17,
+    "Intelligence": 8,
+    "Strength": 12,
+    "Wisdom": 15
+  },
+  "ac_options": [
+    {
+      "ac": 13,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (3)",
+      "notes": [],
+      "shield": false
+    },
+    {
+      "ac": 15,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (3) + Wis modifier (2)",
+      "notes": [
+        "Unarmored Defense"
+      ],
+      "shield": false
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [],
+  "attack_combinations": [
+    {
+      "mainhand": {
+        "attack_bonus": 5,
+        "attack_bonus_display": "+5",
+        "avg_damage": 5.5,
+        "damage": "1d4 + 3",
+        "damage_type": "Piercing",
+        "icon": "/static/images/weapons/dagger.svg",
+        "name": "Dagger"
+      },
+      "name": "Two Daggers",
+      "notes": [],
+      "offhand": {
+        "attack_bonus": 5,
+        "attack_bonus_display": "+5",
+        "avg_damage": 2.5,
+        "damage": "1d4",
+        "damage_type": "Piercing",
+        "icon": "/static/images/weapons/dagger.svg",
+        "name": "Dagger"
+      },
+      "rank": 1,
+      "recommended": true,
+      "type": "combination"
+    }
+  ],
+  "attacks": [
+    {
+      "ability": "DEX",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 10.0,
+      "avg_damage": 6.5,
+      "damage": "1d6 + 3",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    },
+    {
+      "ability": "STR/DEX (DEX)",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 10.0,
+      "avg_damage": 6.5,
+      "avg_one_handed": 6.5,
+      "avg_throw_damage": 6.5,
+      "avg_two_handed": 7.5,
+      "damage": "1d6 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_one_handed": "1d6 + 3",
+      "damage_two_handed": "1d8 + 3",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/spear.svg",
+      "mastery": "Sap",
+      "name": "Spear",
+      "proficient": true,
+      "properties": [
+        "Thrown (range 20/60)",
+        "Versatile (1d8)"
+      ],
+      "throw_damage": "1d6 + 3"
+    },
+    {
+      "ability": "STR/DEX (DEX)",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 8.0,
+      "avg_damage": 5.5,
+      "avg_throw_damage": 5.5,
+      "damage": "1d4 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "mastery": "Nick",
+      "name": "Dagger",
+      "proficient": true,
+      "properties": [
+        "Finesse",
+        "Light",
+        "Thrown (range 20/60)"
+      ],
+      "throw_damage": "1d4 + 3"
+    }
+  ],
+  "background": "Hermit",
+  "background_data": {
+    "ability_score_increase": {
+      "options": [
+        "Constitution",
+        "Wisdom",
+        "Intelligence"
+      ],
+      "suggested": {
+        "Constitution": 1,
+        "Wisdom": 2
+      },
+      "total": 3
+    },
+    "description": "You lived in seclusion\u2014either in a sheltered community such as a monastery, or entirely alone\u2014for a formative part of your life. In your time apart from the clamor of society, you found quiet, solitude, and perhaps some of the answers you were looking for.",
+    "edition": "2024",
+    "effects": [
+      {
+        "feat": "Healer",
+        "type": "grant_origin_feat"
+      },
+      {
+        "skills": [
+          "Medicine",
+          "Religion"
+        ],
+        "type": "grant_skill_proficiency"
+      },
+      {
+        "tools": [
+          "Herbalism Kit"
+        ],
+        "type": "grant_tool_proficiency"
+      }
+    ],
+    "name": "Hermit",
+    "starting_equipment": {
+      "option_a": {
+        "gold": 5,
+        "items": [
+          "Herbalism Kit",
+          "Bedroll",
+          "Traveler's Clothes"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "status": "active"
+  },
+  "best_attack_combination": {
+    "mainhand": {
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_damage": 5.5,
+      "damage": "1d4 + 3",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "name": "Dagger"
+    },
+    "name": "Two Daggers",
+    "notes": [],
+    "offhand": {
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_damage": 2.5,
+      "damage": "1d4",
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/dagger.svg",
+      "name": "Dagger"
+    },
+    "rank": 1,
+    "recommended": true,
+    "type": "combination"
+  },
+  "choices_made": {
+    "ability_scores": {
+      "Charisma": 10,
+      "Constitution": 13,
+      "Dexterity": 15,
+      "Intelligence": 8,
+      "Strength": 12,
+      "Wisdom": 14
+    },
+    "ability_scores_method": "standard_array",
+    "background": "Hermit",
+    "background_bonuses": {
+      "Dexterity": 2,
+      "Wisdom": 1
+    },
+    "background_skill_replacements": [
+      "Athletics"
+    ],
+    "background_skill_replacements_needed": 1,
+    "character_name": "Scale-of-Jade",
+    "class": "Monk",
+    "classes": [
+      {
+        "class_name": "Monk",
+        "level": 3,
+        "subclass": "Warrior of Mercy"
+      }
+    ],
+    "equipment_selections": {
+      "background_equipment": "option_b",
+      "class_equipment": "option_a"
+    },
+    "languages": [
+      "Dwarvish",
+      "Draconic"
+    ],
+    "level": 3,
+    "skill_choices": [
+      "Acrobatics",
+      "Insight"
+    ],
+    "species": "Dragonborn",
+    "species_trait_choices": {
+      "Draconic Ancestry": "Silver (Cold)"
+    },
+    "subclass": "Warrior of Mercy",
+    "tool_choices": [
+      "Woodcarver's Tools"
+    ]
+  },
+  "class": "Monk",
+  "class_breakdown": [
+    {
+      "class_name": "Monk",
+      "level": 3,
+      "subclass": "Warrior of Mercy"
+    }
+  ],
+  "class_data": {
+    "armor_proficiencies": [],
+    "description": "Monks are masters of martial arts, harnessing the power of body, mind, and spirit. Through discipline and training, they channel their Focus to perform extraordinary feats of combat and athleticism.",
+    "features_by_level": {
+      "1": {
+        "Martial Arts": {
+          "description": "Your practice of martial arts gives you mastery of combat styles that use your Unarmed Strike and Monk weapons, which are Simple Melee weapons and Martial Melee weapons that have the Light property. You gain the following benefits while you are unarmed or wielding only Monk weapons and you aren't wearing armor or wielding a Shield.\n\n**Bonus Unarmed Strike.** You can make an Unarmed Strike as a Bonus Action.\n\n**Martial Arts Die.** You can roll 1d6 in place of the normal damage of your Unarmed Strike or Monk weapons. This die changes as you gain Monk levels: d8 at level 5, d10 at level 11, d12 at level 17.\n\n**Dexterous Attacks.** You can use your Dexterity modifier instead of your Strength modifier for the attack and damage rolls of your Unarmed Strikes and Monk weapons. In addition, when you use the Grapple or Shove option of your Unarmed Strike, you can use your Dexterity modifier instead of your Strength modifier to determine the save DC.",
+          "effects": [
+            {
+              "die_by_level": {
+                "1": "1d6",
+                "11": "1d10",
+                "17": "1d12",
+                "5": "1d8"
+              },
+              "type": "set_martial_arts_die"
+            },
+            {
+              "type": "monk_dexterous_attacks"
+            }
+          ]
+        },
+        "Unarmored Defense": {
+          "description": "While you aren't wearing armor or wielding a Shield, your base Armor Class equals 10 plus your Dexterity and Wisdom modifiers.",
+          "effects": [
+            {
+              "base": 10,
+              "condition": "no_armor_no_shield",
+              "modifiers": [
+                "dexterity",
+                "wisdom"
+              ],
+              "type": "alternative_ac"
+            }
+          ]
+        }
+      },
+      "10": {
+        "Heightened Focus": {
+          "description": "Your Flurry of Blows, Patient Defense, and Step of the Wind gain the following benefits.\n\n**Flurry of Blows.** You can expend 1 Focus Point to use Flurry of Blows and make three Unarmed Strikes with it instead of two.\n\n**Patient Defense.** When you expend a Focus Point to use Patient Defense, you gain a number of Temporary Hit Points equal to two rolls of your Martial Arts die.\n\n**Step of the Wind.** When you expend a Focus Point to use Step of the Wind, you can choose a willing creature within 5 feet of yourself that is Large or smaller. You move the creature with you until the end of your turn. The creature's movement doesn't provoke Opportunity Attacks."
+        },
+        "Self-Restoration": "Through sheer force of will, you can remove one of the following conditions from yourself at the end of each of your turns: Charmed, Frightened, or Poisoned. In addition, forgoing food and drink doesn't give you levels of Exhaustion.",
+        "Unarmored Movement": {
+          "description": "Unarmored Movement speed bonus increases to 20 feet.",
+          "effects": [
+            {
+              "feature_group": "unarmored_movement",
+              "type": "increase_speed",
+              "value": 20
+            }
+          ]
+        }
+      },
+      "12": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_12",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1, to a maximum of 20. Alternatively, choose a feat.",
+          "feature_kind": "asi"
+        }
+      },
+      "13": {
+        "Deflect Energy": "You can now use your Deflect Attacks feature against attacks that deal any damage type, not just Bludgeoning, Piercing, or Slashing."
+      },
+      "14": {
+        "Disciplined Survivor": {
+          "description": "Your physical and mental discipline grant you proficiency in all saving throws. Additionally, whenever you make a saving throw and fail, you can expend 1 Focus Point to reroll it, and you must use the new roll.",
+          "effects": [
+            {
+              "abilities": [
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma"
+              ],
+              "type": "grant_save_proficiency"
+            }
+          ]
+        },
+        "Unarmored Movement": {
+          "description": "Unarmored Movement speed bonus increases to 25 feet.",
+          "effects": [
+            {
+              "feature_group": "unarmored_movement",
+              "type": "increase_speed",
+              "value": 25
+            }
+          ]
+        }
+      },
+      "15": {
+        "Perfect Focus": "When you roll Initiative and don't use Uncanny Metabolism, you regain expended Focus Points until you have 4 if you have 3 or fewer."
+      },
+      "16": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_16",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1, to a maximum of 20. Alternatively, choose a feat.",
+          "feature_kind": "asi"
+        }
+      },
+      "18": {
+        "Superior Defense": "At the start of your turn, you can expend 3 Focus Points to bolster yourself against harm for 1 minute or until you have the Incapacitated condition. During that time, you have Resistance to all damage except Force damage.",
+        "Unarmored Movement": {
+          "description": "Unarmored Movement speed bonus increases to 30 feet.",
+          "effects": [
+            {
+              "feature_group": "unarmored_movement",
+              "type": "increase_speed",
+              "value": 30
+            }
+          ]
+        }
+      },
+      "19": {
+        "Epic Boon": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Irresistible Offense is recommended."
+      },
+      "2": {
+        "Monk's Focus": {
+          "description": "Your focus and martial training allow you to harness a well of extraordinary energy within yourself. Your Monk level determines the number of Focus Points you have. You regain all expended points when you finish a Short or Long Rest. Some features that use Focus Points require your target to make a saving throw (DC = 8 + your Wisdom modifier + your Proficiency Bonus).\n\n**Flurry of Blows.** You can expend 1 Focus Point to make two Unarmed Strikes as a Bonus Action.\n\n**Patient Defense.** You can take the Disengage action as a Bonus Action. Alternatively, you can expend 1 Focus Point to take both the Disengage and the Dodge actions as a Bonus Action.\n\n**Step of the Wind.** You can take the Dash action as a Bonus Action. Alternatively, you can expend 1 Focus Point to take both the Disengage and Dash actions as a Bonus Action, and your jump distance is doubled for the turn."
+        },
+        "Unarmored Movement": {
+          "description": "Your Speed increases by 10 feet while you aren't wearing armor or wielding a Shield. This bonus increases as you gain Monk levels: 15 ft at level 6, 20 ft at level 10, 25 ft at level 14, 30 ft at level 18.",
+          "effects": [
+            {
+              "feature_group": "unarmored_movement",
+              "type": "increase_speed",
+              "value": 10
+            }
+          ]
+        },
+        "Uncanny Metabolism": "When you roll Initiative, you can regain all expended Focus Points. When you do so, roll your Martial Arts die, and regain a number of Hit Points equal to your Monk level plus the number rolled. Once you use this feature, you can't use it again until you finish a Long Rest."
+      },
+      "20": {
+        "Body and Mind": {
+          "description": "You have developed your body and mind to new heights. Your Dexterity and Wisdom scores increase by 4, to a maximum of 25.",
+          "effects": [
+            {
+              "ability": "Dexterity",
+              "type": "ability_bonus",
+              "value": 4
+            },
+            {
+              "ability": "Wisdom",
+              "type": "ability_bonus",
+              "value": 4
+            }
+          ]
+        }
+      },
+      "3": {
+        "Deflect Attacks": {
+          "description": "When an attack roll hits you and its damage includes Bludgeoning, Piercing, or Slashing damage, you can take a Reaction to reduce the attack's total damage against you. The reduction equals 1d10 plus your Dexterity modifier and Monk level.\n\nIf you reduce the damage to 0, you can expend 1 Focus Point to redirect some of the attack's force. If you do so, choose a creature you can see within 5 feet of yourself if the attack was a melee attack or a creature you can see within 60 feet of yourself that isn't behind Total Cover if the attack was a ranged attack. That creature must succeed on a Dexterity saving throw or take damage equal to two rolls of your Martial Arts die plus your Dexterity modifier. The damage is the same type dealt by the attack."
+        },
+        "Monk Subclass": {
+          "description": "Choose a Monk subclass: Warrior of Mercy, Warrior of Shadow, Warrior of the Elements, or Warrior of the Open Hand.",
+          "feature_kind": "subclass_pick"
+        }
+      },
+      "4": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_4",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1, to a maximum of 20. Alternatively, choose a feat.",
+          "feature_kind": "asi"
+        },
+        "Slow Fall": "You can take a Reaction when you fall to reduce any damage you take from the fall by an amount equal to five times your Monk level."
+      },
+      "5": {
+        "Extra Attack": "You can attack twice instead of once whenever you take the Attack action on your turn.",
+        "Stunning Strike": "Once per turn when you hit a creature with a Monk weapon or an Unarmed Strike, you can expend 1 Focus Point to attempt a stunning strike. The target must make a Constitution saving throw. On a failed save, the target has the Stunned condition until the start of your next turn. On a successful save, the target's Speed is halved until the start of your next turn, and the next attack roll made against the target before then has Advantage."
+      },
+      "6": {
+        "Empowered Strikes": "Whenever you deal damage with your Unarmed Strike, it can deal your choice of Force damage or its normal damage type.",
+        "Unarmored Movement": {
+          "description": "Unarmored Movement speed bonus increases to 15 feet.",
+          "effects": [
+            {
+              "feature_group": "unarmored_movement",
+              "type": "increase_speed",
+              "value": 15
+            }
+          ]
+        }
+      },
+      "7": {
+        "Evasion": "When you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on the saving throw and only half damage if you fail. You don't benefit from this feature if you have the Incapacitated condition."
+      },
+      "8": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_8",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1, to a maximum of 20. Alternatively, choose a feat.",
+          "feature_kind": "asi"
+        }
+      },
+      "9": {
+        "Acrobatic Movement": "While you aren't wearing armor or wielding a Shield, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the movement."
+      }
+    },
+    "hit_die": 8,
+    "multiclassing": {
+      "armor_training": [],
+      "hit_die_granted": 8,
+      "notes": "Multiclass Monks gain only the Hit Point Die from the Core Monk Traits table (no weapon, armor, or tool proficiencies granted on multiclass entry).",
+      "other_proficiencies": [],
+      "saving_throw_proficiencies": [],
+      "skill_proficiencies": null,
+      "source_text": "As a Multiclass Monk: Gain the Hit Point Die trait from the Core Monk Traits table. Gain the Monk's level 1 features, which are listed in the Monk Features table.",
+      "tool_training": [],
+      "weapon_training": []
+    },
+    "name": "Monk",
+    "primary_ability": "Dexterity and Wisdom",
+    "proficiency_bonus_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 2,
+      "20": 6,
+      "3": 2,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 4
+    },
+    "saving_throw_proficiencies": [
+      "Strength",
+      "Dexterity"
+    ],
+    "skill_options": [
+      "Acrobatics",
+      "Athletics",
+      "History",
+      "Insight",
+      "Religion",
+      "Stealth"
+    ],
+    "skill_proficiencies_count": 2,
+    "standard_array_assignment": {
+      "Charisma": 8,
+      "Constitution": 13,
+      "Dexterity": 15,
+      "Intelligence": 10,
+      "Strength": 12,
+      "Wisdom": 14
+    },
+    "starting_equipment": {
+      "option_a": {
+        "gold": 11,
+        "items": [
+          "Spear",
+          "5 Daggers",
+          "Artisan's Tools or Musical Instrument",
+          "Explorer's Pack"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "subclass_selection_level": 3,
+    "tool_options": [
+      "Alchemist's Supplies",
+      "Brewer's Supplies",
+      "Calligrapher's Supplies",
+      "Carpenter's Tools",
+      "Cartographer's Tools",
+      "Cobbler's Tools",
+      "Cook's Utensils",
+      "Glassblower's Tools",
+      "Jeweler's Tools",
+      "Leatherworker's Tools",
+      "Mason's Tools",
+      "Painter's Supplies",
+      "Potter's Tools",
+      "Smith's Tools",
+      "Tinker's Tools",
+      "Weaver's Tools",
+      "Woodcarver's Tools",
+      "Bagpipes",
+      "Drum",
+      "Dulcimer",
+      "Flute",
+      "Horn",
+      "Lute",
+      "Lyre",
+      "Pan Flute",
+      "Shawm",
+      "Viol"
+    ],
+    "tool_proficiencies_count": 1,
+    "weapon_proficiencies": [
+      "Simple weapons",
+      "Martial weapons that have the Light property"
+    ]
+  },
+  "combat": {
+    "armor_class": 15,
+    "hit_dice": {
+      "spent": 0,
+      "total": "3d8"
+    },
+    "hit_point_maximum": 21,
+    "hit_points": {
+      "current": 21,
+      "maximum": 21,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 18,
+      "base_hp_breakdown": "Level 1: 8 (max d8) + Levels 2-3: 10 (avg d8)",
+      "class_name": "Monk",
+      "constitution_bonus": 3,
+      "constitution_modifier": 1,
+      "constitution_score": 13,
+      "feature_bonus": 0,
+      "feature_breakdown": [],
+      "hit_die": 8,
+      "level": 3,
+      "total_hp": 21
+    },
+    "initiative": 3,
+    "initiative_bonus": 3,
+    "passive_perception": 12,
+    "speed": 40,
+    "uses_shield": false
+  },
+  "condition_immunities": [],
+  "darkvision": 60,
+  "effects": [
+    {
+      "base": 10,
+      "condition": "no_armor_no_shield",
+      "modifiers": [
+        "dexterity",
+        "wisdom"
+      ],
+      "source": "Unarmored Defense",
+      "source_class_name": "Monk",
+      "source_type": "class",
+      "type": "alternative_ac"
+    },
+    {
+      "damage_type_from_choice": "Draconic Ancestry",
+      "source": "Damage Resistance",
+      "source_type": "species",
+      "type": "grant_damage_resistance"
+    },
+    {
+      "damage_type_from_choice": "Draconic Ancestry",
+      "source": "Damage Resistance",
+      "source_type": "species",
+      "type": "grant_damage_resistance"
+    },
+    {
+      "die_by_level": {
+        "1": "1d6",
+        "11": "1d10",
+        "17": "1d12",
+        "5": "1d8"
+      },
+      "source": "Martial Arts",
+      "source_class_name": "Monk",
+      "source_type": "class",
+      "type": "set_martial_arts_die"
+    },
+    {
+      "feat": "Healer",
+      "source": "Hermit",
+      "source_type": "background",
+      "type": "grant_origin_feat"
+    },
+    {
+      "feature_group": "unarmored_movement",
+      "source": "Unarmored Movement",
+      "source_class_name": "Monk",
+      "source_type": "class",
+      "type": "increase_speed",
+      "value": 10
+    },
+    {
+      "range": 60,
+      "source": "Darkvision",
+      "source_type": "species",
+      "type": "grant_darkvision"
+    },
+    {
+      "skills": [
+        "Insight",
+        "Medicine"
+      ],
+      "source": "Implements of Mercy",
+      "source_class_name": "Monk",
+      "source_type": "subclass",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "skills": [
+        "Medicine",
+        "Religion"
+      ],
+      "source": "Hermit",
+      "source_type": "background",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "source": "Hermit",
+      "source_type": "background",
+      "tools": [
+        "Herbalism Kit"
+      ],
+      "type": "grant_tool_proficiency"
+    },
+    {
+      "source": "Martial Arts",
+      "source_class_name": "Monk",
+      "source_type": "class",
+      "type": "monk_dexterous_attacks"
+    }
+  ],
+  "eldritch_invocation_stats": {
+    "available_invocations": [],
+    "current_invocations": [],
+    "has_invocations": false,
+    "max_invocations": 0
+  },
+  "equipment": {
+    "armor": [],
+    "gold": 61,
+    "items": [
+      {
+        "name": "Artisan's Tools or Musical Instrument",
+        "source": "Class"
+      },
+      {
+        "name": "Explorer's Pack",
+        "source": "Class"
+      }
+    ],
+    "weapons": [
+      {
+        "display_name": "5 Daggers",
+        "name": "Dagger",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "2 gp",
+          "damage": "1d4",
+          "damage_type": "Piercing",
+          "mastery": "Nick",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Finesse",
+            "Light",
+            "Thrown (range 20/60)"
+          ],
+          "weight": 1
+        },
+        "quantity": 5,
+        "source": "Class"
+      },
+      {
+        "display_name": "Spear",
+        "name": "Spear",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "1 gp",
+          "damage": "1d6",
+          "damage_type": "Piercing",
+          "mastery": "Sap",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Thrown (range 20/60)",
+            "Versatile (1d8)"
+          ],
+          "weight": 3
+        },
+        "quantity": 1,
+        "source": "Class"
+      }
+    ]
+  },
+  "features": {
+    "background": [],
+    "class": [
+      {
+        "description": "When an attack roll hits you and its damage includes Bludgeoning, Piercing, or Slashing damage, you can take a Reaction to reduce the attack's total damage against you. The reduction equals 1d10 plus your Dexterity modifier and Monk level.\n\nIf you reduce the damage to 0, you can expend 1 Focus Point to redirect some of the attack's force. If you do so, choose a creature you can see within 5 feet of yourself if the attack was a melee attack or a creature you can see within 60 feet of yourself that isn't behind Total Cover if the attack was a ranged attack. That creature must succeed on a Dexterity saving throw or take damage equal to two rolls of your Martial Arts die plus your Dexterity modifier. The damage is the same type dealt by the attack.",
+        "level": 3,
+        "name": "Deflect Attacks",
+        "source": "Monk"
+      },
+      {
+        "description": "When you roll Initiative, you can regain all expended Focus Points. When you do so, roll your Martial Arts die, and regain a number of Hit Points equal to your Monk level plus the number rolled. Once you use this feature, you can't use it again until you finish a Long Rest.",
+        "level": 2,
+        "name": "Uncanny Metabolism",
+        "source": "Monk"
+      },
+      {
+        "description": "While you aren't wearing armor or wielding a Shield, your base Armor Class equals 10 plus your Dexterity and Wisdom modifiers.",
+        "level": 1,
+        "name": "Unarmored Defense",
+        "source": "Monk"
+      },
+      {
+        "description": "Your Speed increases by 10 feet while you aren't wearing armor or wielding a Shield. This bonus increases as you gain Monk levels: 15 ft at level 6, 20 ft at level 10, 25 ft at level 14, 30 ft at level 18.",
+        "level": 2,
+        "name": "Unarmored Movement",
+        "source": "Monk"
+      },
+      {
+        "description": "Your focus and martial training allow you to harness a well of extraordinary energy within yourself. Your Monk level determines the number of Focus Points you have. You regain all expended points when you finish a Short or Long Rest. Some features that use Focus Points require your target to make a saving throw (DC = 8 + your Wisdom modifier + your Proficiency Bonus).\n\n**Flurry of Blows.** You can expend 1 Focus Point to make two Unarmed Strikes as a Bonus Action.\n\n**Patient Defense.** You can take the Disengage action as a Bonus Action. Alternatively, you can expend 1 Focus Point to take both the Disengage and the Dodge actions as a Bonus Action.\n\n**Step of the Wind.** You can take the Dash action as a Bonus Action. Alternatively, you can expend 1 Focus Point to take both the Disengage and Dash actions as a Bonus Action, and your jump distance is doubled for the turn.",
+        "level": 2,
+        "name": "Monk's Focus",
+        "source": "Monk"
+      },
+      {
+        "description": "Your practice of martial arts gives you mastery of combat styles that use your Unarmed Strike and Monk weapons, which are Simple Melee weapons and Martial Melee weapons that have the Light property. You gain the following benefits while you are unarmed or wielding only Monk weapons and you aren't wearing armor or wielding a Shield.\n\n**Bonus Unarmed Strike.** You can make an Unarmed Strike as a Bonus Action.\n\n**Martial Arts Die.** You can roll 1d6 in place of the normal damage of your Unarmed Strike or Monk weapons. This die changes as you gain Monk levels: d8 at level 5, d10 at level 11, d12 at level 17.\n\n**Dexterous Attacks.** You can use your Dexterity modifier instead of your Strength modifier for the attack and damage rolls of your Unarmed Strikes and Monk weapons. In addition, when you use the Grapple or Shove option of your Unarmed Strike, you can use your Dexterity modifier instead of your Strength modifier to determine the save DC.",
+        "level": 1,
+        "name": "Martial Arts",
+        "source": "Monk"
+      }
+    ],
+    "feats": [
+      {
+        "description": "You have the training and intuition to administer first aid and other care effectively, granting you the following benefits:\n\n**Battle Medic.** If you have a Healer's Kit, you can expend one use of it and tend to a creature within 5 feet of you as an Action. That creature can expend one of its Hit Point Dice, and you then roll that die. The creature regains a number of Hit Points equal to the roll plus your Proficiency Bonus.\n\n**Healing Rerolls.** Whenever you roll a die to determine the number of Hit Points you restore with a spell or with this feat's Battle Medic benefit, you can reroll the die if it rolls a 1, and you must use the new roll.",
+        "name": "Healer",
+        "source": "Hermit"
+      }
+    ],
+    "lineage": [],
+    "species": [
+      {
+        "choice_substitutions": {
+          "damage_type": "Draconic Ancestry"
+        },
+        "description": "When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of Cold energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide. Each creature in that area must make a Dexterity saving throw (DC 8 + your Constitution modifier + Proficiency Bonus). On a failed save, a creature takes 1d10 Cold damage. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10). You can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+        "name": "Breath Weapon",
+        "source": "Dragonborn"
+      },
+      {
+        "choice_substitutions": {
+          "damage_type": "Draconic Ancestry"
+        },
+        "description": "You have Resistance to Cold damage.",
+        "name": "Damage Resistance",
+        "source": "Dragonborn"
+      },
+      {
+        "description": "When you reach character level 5, you can channel draconic magic to give yourself temporary flight. As a Bonus Action, you sprout spectral wings on your back that last for 10 minutes or until you retract the wings (no action required) or have the Incapacitated condition. During that time, you have a Fly Speed equal to your Speed. Your wings appear to be made of the same energy as your Breath Weapon. Once you use this trait, you can't use it again until you finish a Long Rest.",
+        "name": "Draconic Flight",
+        "source": "Dragonborn"
+      },
+      {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "name": "Darkvision",
+        "source": "Dragonborn"
+      },
+      {
+        "description": "Your lineage stems from a dragon progenitor. Choose the kind of dragon from the list. Your choice affects your Breath Weapon and Damage Resistance traits as well as your appearance.",
+        "name": "Draconic Ancestry: Silver (Cold)",
+        "source": "Dragonborn"
+      }
+    ],
+    "subclass": [
+      {
+        "description": "As a Magic action, you can expend 1 Focus Point to touch a creature and restore a number of Hit Points equal to a roll of your Martial Arts die plus your Wisdom modifier. When you use your Flurry of Blows, you can replace one of the Unarmed Strikes with a use of this feature without expending a Focus Point for the healing.",
+        "level": 3,
+        "name": "Hand of Healing",
+        "source": "Warrior of Mercy"
+      },
+      {
+        "description": "Once per turn when you hit a creature with an Unarmed Strike and deal damage, you can expend 1 Focus Point to deal extra Necrotic damage equal to one roll of your Martial Arts die plus your Wisdom modifier.",
+        "level": 3,
+        "name": "Hand of Harm",
+        "source": "Warrior of Mercy"
+      },
+      {
+        "description": "You gain proficiency in the Insight and Medicine skills and proficiency with the Herbalism Kit.",
+        "level": 3,
+        "name": "Implements of Mercy",
+        "source": "Warrior of Mercy"
+      }
+    ]
+  },
+  "immunities": [],
+  "languages": [
+    "Common",
+    "Dwarvish",
+    "Draconic"
+  ],
+  "level": 3,
+  "lineage": null,
+  "lineage_data": null,
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "martial_arts_die": "1d6",
+  "monk_dexterous_attacks": true,
+  "name": "Scale-of-Jade",
+  "proficiencies": {
+    "armor": [],
+    "languages": [
+      "Common",
+      "Dwarvish",
+      "Draconic"
+    ],
+    "saving_throws": [
+      "Strength",
+      "Dexterity"
+    ],
+    "skills": [
+      "Insight",
+      "Medicine",
+      "Acrobatics",
+      "Religion",
+      "Athletics"
+    ],
+    "tools": [
+      "Herbalism Kit",
+      "Woodcarver's Tools"
+    ],
+    "weapons": [
+      "Simple weapons",
+      "Martial weapons that have the Light property"
+    ]
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {},
+    "languages": {
+      "Common": "base",
+      "Draconic": "user_choice",
+      "Dwarvish": "user_choice"
+    },
+    "saving_throws": {},
+    "skills": {
+      "Acrobatics": "Monk",
+      "Athletics": "Hermit",
+      "Insight": "Implements of Mercy",
+      "Medicine": "Implements of Mercy",
+      "Religion": "Hermit"
+    },
+    "tools": {
+      "Herbalism Kit": "Hermit",
+      "Woodcarver's Tools": "Monk"
+    },
+    "weapons": {}
+  },
+  "resistances": [
+    "Cold"
+  ],
+  "save_advantages": [],
+  "skill_proficiencies": [
+    "Insight",
+    "Medicine",
+    "Acrobatics",
+    "Religion",
+    "Athletics"
+  ],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Monk"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Hermit"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 4,
+      "expertise": false,
+      "modifier": 4,
+      "proficient": true,
+      "source": "Implements of Mercy"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 4,
+      "expertise": false,
+      "modifier": 4,
+      "proficient": true,
+      "source": "Implements of Mercy"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": true,
+      "source": "Hermit"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    }
+  },
+  "species": "Dragonborn",
+  "species_data": {
+    "creature_type": "Humanoid",
+    "darkvision": 60,
+    "description": "The ancestors of dragonborn hatched from the eggs of chromatic and metallic dragons. Dragonborn look like wingless, bipedal dragons - scaly, bright-eyed, and thick-boned with horns on their heads - and their coloration and other features are reminiscent of their draconic ancestors.",
+    "languages": [
+      "Common",
+      "Draconic"
+    ],
+    "name": "Dragonborn",
+    "size": "Medium",
+    "size_description": "about 5-7 feet tall",
+    "speed": 30,
+    "traits": {
+      "Breath Weapon": {
+        "choice_substitutions": {
+          "damage_type": "Draconic Ancestry"
+        },
+        "description": "When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of {damage_type} energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide. Each creature in that area must make a Dexterity saving throw (DC 8 + your Constitution modifier + Proficiency Bonus). On a failed save, a creature takes 1d10 {damage_type} damage. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10). You can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest."
+      },
+      "Damage Resistance": {
+        "choice_substitutions": {
+          "damage_type": "Draconic Ancestry"
+        },
+        "description": "You have Resistance to {damage_type} damage.",
+        "effects": [
+          {
+            "damage_type_from_choice": "Draconic Ancestry",
+            "type": "grant_damage_resistance"
+          }
+        ]
+      },
+      "Darkvision": {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "effects": [
+          {
+            "range": 60,
+            "type": "grant_darkvision"
+          }
+        ]
+      },
+      "Draconic Ancestry": {
+        "choices": {
+          "count": 1,
+          "source": {
+            "options": [
+              "Black (Acid)",
+              "Blue (Lightning)",
+              "Brass (Fire)",
+              "Bronze (Lightning)",
+              "Copper (Acid)",
+              "Gold (Fire)",
+              "Green (Poison)",
+              "Red (Fire)",
+              "Silver (Cold)",
+              "White (Cold)"
+            ],
+            "type": "fixed_list"
+          },
+          "type": "select_single"
+        },
+        "description": "Your lineage stems from a dragon progenitor. Choose the kind of dragon from the list. Your choice affects your Breath Weapon and Damage Resistance traits as well as your appearance.",
+        "type": "choice"
+      },
+      "Draconic Flight": "When you reach character level 5, you can channel draconic magic to give yourself temporary flight. As a Bonus Action, you sprout spectral wings on your back that last for 10 minutes or until you retract the wings (no action required) or have the Incapacitated condition. During that time, you have a Fly Speed equal to your Speed. Your wings appear to be made of the same energy as your Breath Weapon. Once you use this trait, you can't use it again until you finish a Long Rest."
+    }
+  },
+  "speed": 40,
+  "speed_bonuses": {
+    "unarmored_movement": 10
+  },
+  "spell_metadata": {},
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {},
+  "spellcasting_stats": {
+    "available_cantrips": [],
+    "available_spells": {},
+    "background_cantrips_list": null,
+    "background_cantrips_needed": 0,
+    "background_spell_level": 1,
+    "background_spells_list": null,
+    "background_spells_needed": 0,
+    "cantrips_always_prepared": 0,
+    "cantrips_to_prepare": 0,
+    "effective_caster_level": 0,
+    "has_spellcasting": false,
+    "max_cantrips_prepared": 0,
+    "max_spells_prepared": 0,
+    "multiclass_notes": [],
+    "pact_magic_slots": [],
+    "preparation_formula": null,
+    "ritual_casting": false,
+    "spell_attack_bonus": 0,
+    "spell_save_dc": 0,
+    "spellcasting_ability": null,
+    "spellcasting_modifier": 0,
+    "spellcasting_type": null,
+    "spells_always_prepared": 0,
+    "spells_prepared": 0
+  },
+  "spells": {
+    "always_prepared": {},
+    "background_spells": {},
+    "cantrips": [],
+    "known": {},
+    "level_1": [],
+    "prepared": {
+      "cantrips": {},
+      "spells": {}
+    },
+    "slots": {}
+  },
+  "spells_by_level": {},
+  "step": "complete",
+  "subclass": "Warrior of Mercy",
+  "subclass_data": {
+    "class": "Monk",
+    "description": "Warriors of Mercy manipulate the life force of others. These Monks are wandering physicians, but they bring a swift end to their enemies. They often wear masks, presenting themselves as faceless bringers of life and death.",
+    "features_by_level": {
+      "11": {
+        "Flurry of Healing and Harm": "When you use Flurry of Blows, you can replace each of the Unarmed Strikes with a use of Hand of Healing without expending Focus Points for the healing. In addition, when you make an Unarmed Strike with Flurry of Blows and deal damage, you can use Hand of Harm with that strike without expending a Focus Point for Hand of Harm. You can still use Hand of Harm only once per turn. You can use these benefits a total number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a Long Rest."
+      },
+      "17": {
+        "Hand of Ultimate Mercy": "As a Magic action, you can touch the corpse of a creature that died within the past 24 hours and expend 5 Focus Points. The creature then returns to life with a number of Hit Points equal to 4d10 plus your Wisdom modifier. If the creature died with any of the following conditions, the creature revives with the conditions removed: Blinded, Deafened, Paralyzed, Poisoned, and Stunned. Once you use this feature, you can't use it again until you finish a Long Rest."
+      },
+      "3": {
+        "Hand of Harm": "Once per turn when you hit a creature with an Unarmed Strike and deal damage, you can expend 1 Focus Point to deal extra Necrotic damage equal to one roll of your Martial Arts die plus your Wisdom modifier.",
+        "Hand of Healing": "As a Magic action, you can expend 1 Focus Point to touch a creature and restore a number of Hit Points equal to a roll of your Martial Arts die plus your Wisdom modifier. When you use your Flurry of Blows, you can replace one of the Unarmed Strikes with a use of this feature without expending a Focus Point for the healing.",
+        "Implements of Mercy": {
+          "description": "You gain proficiency in the Insight and Medicine skills and proficiency with the Herbalism Kit.",
+          "effects": [
+            {
+              "skills": [
+                "Insight",
+                "Medicine"
+              ],
+              "type": "grant_skill_proficiency"
+            }
+          ]
+        }
+      },
+      "6": {
+        "Physician's Touch": "Your Hand of Harm and Hand of Healing improve. Hand of Harm: When you use Hand of Harm on a creature, you can also give that creature the Poisoned condition until the end of your next turn. Hand of Healing: When you use Hand of Healing, you can also end one of the following conditions on the creature you heal: Blinded, Deafened, Paralyzed, Poisoned, or Stunned."
+      }
+    },
+    "name": "Warrior of Mercy",
+    "source": "Player's Handbook 2024"
+  },
+  "superiority_dice": {},
+  "tool_proficiencies": [
+    "Herbalism Kit",
+    "Woodcarver's Tools"
+  ],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [],
+    "current_masteries": [],
+    "has_mastery": false,
+    "max_masteries": 0
+  },
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons that have the Light property"
+  ]
+}

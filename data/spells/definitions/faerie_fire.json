@@ -1,0 +1,17 @@
+{
+  "name": "Faerie Fire",
+  "level": 1,
+  "school": "Evocation",
+  "casting_time": "1 action",
+  "range": "60 feet",
+  "components": [
+    "V"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "Each creature/object in an area is outlined with light on a failed save; attacks against affected targets have advantage and affected creatures can't benefit from being Invisible.",
+  "classes": [
+    "Bard",
+    "Druid"
+  ],
+  "ritual": false
+}

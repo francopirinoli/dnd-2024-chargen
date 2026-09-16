@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Trait Patterns",
+  "description": "Schema for data/trait_patterns.json. Heuristic patterns used by feature_manager to classify unstructured feature text into an effect_type when the JSON lacks explicit 'effects'. Mostly legacy fallback logic; new content should ship explicit effects instead of relying on these patterns.",
+  "type": "object",
+  "required": ["patterns", "fallback_patterns"],
+  "properties": {
+    "patterns": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/pattern" }
+    },
+    "fallback_patterns": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/pattern" }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "pattern": {
+      "type": "object",
+      "required": ["name", "pattern_type", "feature"],
+      "properties": {
+        "name": { "type": "string" },
+        "pattern_type": {
+          "type": "string",
+          "enum": ["exact_name", "text_contains", "fallback"]
+        },
+        "pattern": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } }
+          ]
+        },
+        "requires_all": { "type": "boolean" },
+        "feature": {
+          "type": "object",
+          "required": ["effect_type", "value", "scaling", "description_override"],
+          "properties": {
+            "effect_type": { "type": "string" },
+            "value": {
+              "oneOf": [
+                { "type": "string" },
+                { "type": "number" }
+              ]
+            },
+            "scaling": { "type": ["string", "null"] },
+            "description_override": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

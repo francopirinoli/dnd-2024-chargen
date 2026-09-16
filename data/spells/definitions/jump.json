@@ -1,0 +1,22 @@
+{
+  "name": "Jump",
+  "level": 1,
+  "school": "Transmutation",
+  "casting_time": "1 bonus action",
+  "range": "Touch",
+  "components": [
+    "V",
+    "S",
+    "M (a grasshopper's hind leg)"
+  ],
+  "duration": "1 minute",
+  "description": "You touch a willing creature. Once on each of its turns until the spell ends, that creature can jump up to 30 feet by spending 10 feet of movement.",
+  "classes": [
+    "Artificer",
+    "Druid",
+    "Ranger",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

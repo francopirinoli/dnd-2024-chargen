@@ -1,0 +1,19 @@
+{
+  "name": "Shapechange",
+  "level": 9,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "Self",
+  "components": [
+    "V",
+    "S",
+    "M (a jade circlet worth 1,500+ GP)"
+  ],
+  "duration": "Concentration, up to 1 hour",
+  "description": "You assume the form of a different creature for the duration. The new form can be of any creature with a Challenge Rating equal to or less than your level. The creature can't be a Construct or an Undead. Your game statistics are replaced by the statistics of the chosen creature, though you retain your alignment and personality. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature. If the creature has the same proficiency as you, you use the higher bonus. You retain your Hit Points and Hit Dice. You can use the creature's actions, including its Multiattack, and can cast your own spells in the new form. Your equipment melds into the new form.",
+  "classes": [
+    "Druid",
+    "Wizard"
+  ],
+  "ritual": false
+}

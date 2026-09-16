@@ -1,0 +1,338 @@
+{
+  "identity": {
+    "name": "Elenian Silverleaf",
+    "class": "Fighter",
+    "subclass": "Champion",
+    "level": 3,
+    "species": "Elf",
+    "lineage": "Wood Elf",
+    "background": "Soldier",
+    "alignment": "Neutral Good",
+    "size": "Medium"
+  },
+  "abilities": {
+    "strength": {
+      "score": 14,
+      "modifier": 2,
+      "save_modifier": 4,
+      "save_proficient": true
+    },
+    "dexterity": {
+      "score": 17,
+      "modifier": 3,
+      "save_modifier": 5,
+      "save_proficient": true
+    },
+    "constitution": {
+      "score": 14,
+      "modifier": 2,
+      "save_modifier": 2,
+      "save_proficient": false
+    },
+    "intelligence": {
+      "score": 8,
+      "modifier": -1,
+      "save_modifier": -1,
+      "save_proficient": false
+    },
+    "wisdom": {
+      "score": 12,
+      "modifier": 1,
+      "save_modifier": 1,
+      "save_proficient": false
+    },
+    "charisma": {
+      "score": 10,
+      "modifier": 0,
+      "save_modifier": 0,
+      "save_proficient": false
+    }
+  },
+  "skills": {
+    "acrobatics": {"modifier": 5, "proficient": true, "expertise": false, "ability": "dexterity"},
+    "animal_handling": {"modifier": 1, "proficient": false, "expertise": false, "ability": "wisdom"},
+    "arcana": {"modifier": -1, "proficient": false, "expertise": false, "ability": "intelligence"},
+    "athletics": {"modifier": 2, "proficient": false, "expertise": false, "ability": "strength"},
+    "deception": {"modifier": 0, "proficient": false, "expertise": false, "ability": "charisma"},
+    "history": {"modifier": -1, "proficient": false, "expertise": false, "ability": "intelligence"},
+    "insight": {"modifier": 1, "proficient": false, "expertise": false, "ability": "wisdom"},
+    "intimidation": {"modifier": 0, "proficient": false, "expertise": false, "ability": "charisma"},
+    "investigation": {"modifier": -1, "proficient": false, "expertise": false, "ability": "intelligence"},
+    "medicine": {"modifier": 1, "proficient": false, "expertise": false, "ability": "wisdom"},
+    "nature": {"modifier": -1, "proficient": false, "expertise": false, "ability": "intelligence"},
+    "perception": {"modifier": 7, "proficient": true, "expertise": true, "ability": "wisdom"},
+    "performance": {"modifier": 0, "proficient": false, "expertise": false, "ability": "charisma"},
+    "persuasion": {"modifier": 0, "proficient": false, "expertise": false, "ability": "charisma"},
+    "religion": {"modifier": -1, "proficient": false, "expertise": false, "ability": "intelligence"},
+    "sleight_of_hand": {"modifier": 3, "proficient": false, "expertise": false, "ability": "dexterity"},
+    "stealth": {"modifier": 3, "proficient": false, "expertise": false, "ability": "dexterity"},
+    "survival": {"modifier": 3, "proficient": true, "expertise": false, "ability": "wisdom"}
+  },
+  "combat": {
+    "proficiency_bonus": 2,
+    "initiative": 3,
+    "armor_class": 15,
+    "armor_class_options": [
+      {
+        "ac": 15,
+        "armor": "Studded Leather",
+        "shield": false,
+        "formula": "12 (base) + 3 (DEX)",
+        "notes": ""
+      },
+      {
+        "ac": 17,
+        "armor": "Studded Leather",
+        "shield": "Shield",
+        "formula": "12 (base) + 3 (DEX) + 2 (shield)",
+        "notes": "If using shield"
+      },
+      {
+        "ac": 13,
+        "armor": null,
+        "shield": false,
+        "formula": "10 + 3 (DEX)",
+        "notes": "Unarmored"
+      }
+    ],
+    "speed": {
+      "walk": 35,
+      "fly": 0,
+      "swim": 35,
+      "climb": 35,
+      "burrow": 0
+    },
+    "senses": {
+      "darkvision": 60,
+      "blindsight": 0,
+      "tremorsense": 0,
+      "truesight": 0,
+      "passive_perception": 17,
+      "passive_investigation": 9,
+      "passive_insight": 11
+    }
+  },
+  "hit_points": {
+    "maximum": 32,
+    "hit_die": "d10",
+    "hit_dice_total": 3,
+    "calculation": "10 (1st) + 7 (2nd) + 7 (3rd) + 8 (CON: +2 × 4 levels including 0-level)"
+  },
+  "defenses": {
+    "damage_resistances": [],
+    "damage_immunities": [],
+    "damage_vulnerabilities": [],
+    "condition_immunities": [],
+    "saving_throw_advantages": []
+  },
+  "attacks": [
+    {
+      "name": "Longbow",
+      "attack_bonus": 7,
+      "damage_main": "1d8+5",
+      "damage_offhand": null,
+      "damage_versatile": null,
+      "damage_type": "Piercing",
+      "average_damage": 9.5,
+      "average_crit": 14,
+      "range": "150/600",
+      "properties": ["Ammunition", "Heavy", "Two-Handed"],
+      "mastery": "Slow",
+      "proficient": true,
+      "notes": "Archery fighting style: +2 to attack and damage"
+    },
+    {
+      "name": "Scimitar",
+      "attack_bonus": 5,
+      "damage_main": "1d6+3",
+      "damage_offhand": "1d6",
+      "damage_versatile": null,
+      "damage_type": "Slashing",
+      "average_damage": 6.5,
+      "average_crit": 9.5,
+      "range": null,
+      "properties": ["Finesse", "Light"],
+      "mastery": "Nick",
+      "proficient": true,
+      "notes": "Two-weapon fighting: offhand attack as bonus action (no ability mod to damage)"
+    },
+    {
+      "name": "Shortsword",
+      "attack_bonus": 5,
+      "damage_main": "1d6+3",
+      "damage_offhand": "1d6",
+      "damage_versatile": null,
+      "damage_type": "Piercing",
+      "average_damage": 6.5,
+      "average_crit": 9.5,
+      "range": null,
+      "properties": ["Finesse", "Light"],
+      "mastery": "Vex",
+      "proficient": true,
+      "notes": "Two-weapon fighting: offhand attack as bonus action (no ability mod to damage)"
+    }
+  ],
+  "spellcasting": null,
+  "proficiencies": {
+    "armor": ["Light armor", "Medium armor", "Heavy armor", "Shields"],
+    "weapons": ["Simple weapons", "Martial weapons"],
+    "tools": [],
+    "languages": ["Common", "Elvish"]
+  },
+  "features": {
+    "class": [
+      {
+        "name": "Fighting Style: Archery",
+        "source": "Fighter 1",
+        "description": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
+        "usage": "Always active",
+        "level_gained": 1
+      },
+      {
+        "name": "Second Wind",
+        "source": "Fighter 1",
+        "description": "You can use a bonus action to regain 1d10 + 3 hit points.",
+        "usage": "1/short rest",
+        "level_gained": 1
+      },
+      {
+        "name": "Weapon Mastery",
+        "source": "Fighter 1",
+        "description": "You've mastered specific weapons and can use their mastery properties.",
+        "usage": "Always active",
+        "level_gained": 1,
+        "details": "Mastered weapons: Greatsword, Longbow, Shortsword"
+      },
+      {
+        "name": "Action Surge",
+        "source": "Fighter 2",
+        "description": "You can take one additional action on your turn.",
+        "usage": "1/short rest",
+        "level_gained": 2
+      }
+    ],
+    "subclass": [
+      {
+        "name": "Improved Critical",
+        "source": "Champion 3",
+        "description": "Your weapon attacks score a critical hit on a roll of 19 or 20.",
+        "usage": "Always active",
+        "level_gained": 3
+      }
+    ],
+    "species": [
+      {
+        "name": "Darkvision",
+        "source": "Elf",
+        "description": "You can see in dim light within 60 feet of you as if it were bright light."
+      },
+      {
+        "name": "Keen Senses",
+        "source": "Elf",
+        "description": "You have proficiency in Perception. You chose Expertise in Perception for your Elven Lineage choice."
+      },
+      {
+        "name": "Fey Ancestry",
+        "source": "Elf",
+        "description": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
+      },
+      {
+        "name": "Trance",
+        "source": "Elf",
+        "description": "You don't need to sleep, and magic can't put you to sleep. You meditate for 4 hours instead of sleeping."
+      }
+    ],
+    "lineage": [
+      {
+        "name": "Fleet of Foot",
+        "source": "Wood Elf",
+        "description": "Your walking speed increases to 35 feet."
+      },
+      {
+        "name": "Mask of the Wild",
+        "source": "Wood Elf",
+        "description": "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena."
+      }
+    ],
+    "background": [
+      {
+        "name": "Military Rank",
+        "source": "Soldier",
+        "description": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority."
+      }
+    ],
+    "feats": []
+  },
+  "equipment": {
+    "armor": [
+      {"name": "Studded Leather Armor", "quantity": 1, "equipped": true}
+    ],
+    "weapons": [
+      {"name": "Longbow", "quantity": 1, "equipped": false},
+      {"name": "Scimitar", "quantity": 1, "equipped": false},
+      {"name": "Shortsword", "quantity": 1, "equipped": false}
+    ],
+    "gear": [
+      {"name": "Arrows", "quantity": 20, "equipped": false},
+      {"name": "Quiver", "quantity": 1, "equipped": false},
+      {"name": "Dungeoneer's Pack", "quantity": 1, "equipped": false}
+    ],
+    "currency": {
+      "platinum": 0,
+      "gold": 11,
+      "silver": 0,
+      "copper": 0
+    },
+    "starting_wealth": "Fighter Option B + Soldier Option B: 11 GP"
+  },
+  "details": {
+    "appearance": {
+      "age": "150",
+      "height": "",
+      "weight": "",
+      "eyes": "",
+      "skin": "",
+      "hair": ""
+    },
+    "personality_traits": [],
+    "ideals": [],
+    "bonds": [],
+    "flaws": [],
+    "backstory": "",
+    "allies_organizations": ""
+  },
+  "meta": {
+    "created": "2026-02-06",
+    "generator": "D&D 2024 Character Creator v2.0",
+    "version": "2.0",
+    "choices_made": {
+      "species": "Elf",
+      "lineage": "Wood Elf",
+      "class": "Fighter",
+      "subclass": "Champion",
+      "level": 3,
+      "background": "Soldier",
+      "Elven Lineage": "Wisdom",
+      "Fighting Style": "Archery",
+      "Keen Senses": "Survival",
+      "Weapon Mastery": ["Greatsword", "Longbow", "Shortsword"],
+      "ability_scores": {
+        "Strength": 13,
+        "Dexterity": 15,
+        "Constitution": 14,
+        "Intelligence": 8,
+        "Wisdom": 12,
+        "Charisma": 10
+      },
+      "background_bonuses": {
+        "Strength": 1,
+        "Dexterity": 2
+      },
+      "skill_choices": ["Acrobatics", "Perception"],
+      "equipment_selections": {
+        "class_equipment": "option_b",
+        "background_equipment": "option_b"
+      }
+    }
+  }
+}

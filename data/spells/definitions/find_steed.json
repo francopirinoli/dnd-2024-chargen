@@ -1,0 +1,17 @@
+{
+  "name": "Find Steed",
+  "level": 2,
+  "school": "Conjuration",
+  "casting_time": "1 action",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Instantaneous",
+  "description": "You summon a spirit that assumes the form of a unusually intelligent, strong, and loyal steed, creating a long-lasting bond with it. The steed takes on a form you choose: Camel, Donkey, Elk, Horse, Mastiff, Mule, Pony, or Warhorse. The steed has the statistics of the chosen form, though it is a Celestial, Fey, or Fiend (your choice) instead of its normal creature type. If your steed has ever been slain, you can cast this spell to revive it.",
+  "classes": [
+    "Paladin"
+  ],
+  "ritual": false
+}

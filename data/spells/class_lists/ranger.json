@@ -1,0 +1,72 @@
+{
+  "class": "Ranger",
+  "spells_by_level": {
+    "1": [
+      "Alarm",
+      "Animal Friendship",
+      "Cure Wounds",
+      "Detect Magic",
+      "Detect Poison and Disease",
+      "Ensnaring Strike",
+      "Entangle",
+      "Fog Cloud",
+      "Goodberry",
+      "Hail of Thorns",
+      "Hunter's Mark",
+      "Jump",
+      "Longstrider",
+      "Speak with Animals"
+    ],
+    "2": [
+      "Aid",
+      "Animal Messenger",
+      "Barkskin",
+      "Beast Sense",
+      "Darkvision",
+      "Enhance Ability",
+      "Find Traps",
+      "Gust of Wind",
+      "Lesser Restoration",
+      "Locate Animals or Plants",
+      "Locate Object",
+      "Magic Weapon",
+      "Pass without Trace",
+      "Protection from Poison",
+      "Silence",
+      "Spike Growth",
+      "Summon Beast"
+    ],
+    "3": [
+      "Conjure Animals",
+      "Conjure Barrage",
+      "Daylight",
+      "Dispel Magic",
+      "Elemental Weapon",
+      "Lightning Arrow",
+      "Nondetection",
+      "Plant Growth",
+      "Protection from Energy",
+      "Revivify",
+      "Speak with Plants",
+      "Water Breathing",
+      "Water Walk",
+      "Wind Wall"
+    ],
+    "4": [
+      "Conjure Woodland Beings",
+      "Dominate Beast",
+      "Freedom of Movement",
+      "Grasping Vine",
+      "Locate Creature",
+      "Stoneskin"
+    ],
+    "5": [
+      "Commune with Nature",
+      "Conjure Volley",
+      "Greater Restoration",
+      "Steel Wind Strike",
+      "Swift Quiver",
+      "Tree Stride"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Holy Aura",
+  "level": 8,
+  "school": "Abjuration",
+  "casting_time": "1 action",
+  "range": "Self",
+  "components": [
+    "V",
+    "S",
+    "M (a tiny reliquary worth 1,000+ GP)"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "Shimmering light spreads from you in a 30-foot Emanation for the duration. Creatures of your choice in the Emanation when the spell is cast shed Dim Light in a 5-foot radius and have Advantage on all saving throws, and other creatures have Disadvantage on attack rolls against them. In addition, when a Fiend or an Undead hits an affected creature with a melee attack roll, the Emanation flashes with brilliant light. The attacker must succeed on a Constitution saving throw or have the Blinded condition until the spell ends.",
+  "classes": [
+    "Cleric"
+  ],
+  "ritual": false
+}

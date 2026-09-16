@@ -1,0 +1,50 @@
+{
+  "name": "Charlatan",
+  "description": "You have always had a way with people. You know what makes them tick, you can tease out their hearts' desires after a few minutes of conversation, and with a few leading questions you can read them like they were children's books. It's a useful talent, and one that you're perfectly willing to use for your advantage.",
+  "edition": "2024",
+  "status": "active",
+  "ability_score_increase": {
+    "total": 3,
+    "options": [
+      "Charisma",
+      "Dexterity",
+      "Intelligence"
+    ],
+    "suggested": {
+      "Charisma": 2,
+      "Dexterity": 1
+    }
+  },
+  "effects": [
+    {
+      "type": "grant_skill_proficiency",
+      "skills": [
+        "Deception",
+        "Sleight of Hand"
+      ]
+    },
+    {
+      "type": "grant_origin_feat",
+      "feat": "Skilled"
+    },
+    {
+      "type": "grant_tool_proficiency",
+      "tools": [
+        "Forgery Kit"
+      ]
+    }
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Forgery Kit",
+        "Fine Clothes",
+        "Signet Ring (fake)"
+      ],
+      "gold": 15
+    },
+    "option_b": {
+      "gold": 50
+    }
+  }
+}

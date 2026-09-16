@@ -1,0 +1,54 @@
+{
+  "name": "Guide",
+  "description": "You came of age outdoors, far from settled lands. Your home was anywhere you chose to spread your bedroll. There are wonders in the wilderness—strange monsters, pristine forests and streams, overgrown ruins of great halls once trod by giants—and you learned to fend for yourself as you explored them. From time to time, you guided friendly nature priests who instructed you in the fundamentals of channeling the magic of the wild.",
+  "edition": "2024",
+  "status": "active",
+  "ability_score_increase": {
+    "total": 3,
+    "options": [
+      "Dexterity",
+      "Constitution",
+      "Wisdom"
+    ],
+    "suggested": {
+      "Dexterity": 1,
+      "Wisdom": 2
+    }
+  },
+  "effects": [
+    {
+      "type": "grant_skill_proficiency",
+      "skills": [
+        "Stealth",
+        "Survival"
+      ]
+    },
+    {
+      "type": "grant_origin_feat",
+      "feat": "Magic Initiate (Druid)"
+    },
+    {
+      "type": "grant_tool_proficiency",
+      "tools": [
+        "Cartographer's Tools"
+      ]
+    }
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Shortbow",
+        "20 Arrows",
+        "Cartographer's Tools",
+        "Bedroll",
+        "Quiver",
+        "Tent",
+        "Traveler's Clothes"
+      ],
+      "gold": 3
+    },
+    "option_b": {
+      "gold": 50
+    }
+  }
+}

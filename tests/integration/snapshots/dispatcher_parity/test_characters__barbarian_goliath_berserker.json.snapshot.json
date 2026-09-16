@@ -1,0 +1,1268 @@
+{
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 14,
+      "modifier": 2,
+      "saving_throw": 4,
+      "saving_throw_proficient": true,
+      "score": 15,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 13,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 13,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 8,
+      "modifier": -1,
+      "saving_throw": -1,
+      "saving_throw_proficient": false,
+      "score": 8,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 15,
+      "modifier": 3,
+      "saving_throw": 5,
+      "saving_throw_proficient": true,
+      "score": 17,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 12,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 12,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 10,
+    "Constitution": 15,
+    "Dexterity": 13,
+    "Intelligence": 8,
+    "Strength": 17,
+    "Wisdom": 12
+  },
+  "ac_options": [
+    {
+      "ac": 11,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (1)",
+      "notes": [],
+      "shield": false
+    },
+    {
+      "ac": 13,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (1) + Con modifier (2)",
+      "notes": [
+        "Unarmored Defense"
+      ],
+      "shield": false
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [
+    "Light armor",
+    "Medium armor",
+    "Shields"
+  ],
+  "attack_combinations": [
+    {
+      "mainhand": {
+        "attack_bonus": 5,
+        "attack_bonus_display": "+5",
+        "avg_damage": 6.5,
+        "damage": "1d6 + 3",
+        "damage_type": "Slashing",
+        "icon": "/static/images/weapons/axe.svg",
+        "name": "Handaxe"
+      },
+      "name": "Two Handaxes",
+      "notes": [],
+      "offhand": {
+        "attack_bonus": 5,
+        "attack_bonus_display": "+5",
+        "avg_damage": 3.5,
+        "damage": "1d6",
+        "damage_type": "Slashing",
+        "icon": "/static/images/weapons/axe.svg",
+        "name": "Handaxe"
+      },
+      "rank": 1,
+      "recommended": true,
+      "type": "combination"
+    }
+  ],
+  "attacks": [
+    {
+      "ability": "STR",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 10.0,
+      "avg_damage": 6.5,
+      "avg_throw_damage": 6.5,
+      "damage": "1d6 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_type": "Piercing",
+      "icon": "/static/images/weapons/spear.svg",
+      "mastery": "Slow",
+      "name": "Javelin",
+      "proficient": true,
+      "properties": [
+        "Thrown (range 30/120)"
+      ],
+      "throw_damage": "1d6 + 3"
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 10.0,
+      "avg_damage": 6.5,
+      "avg_throw_damage": 6.5,
+      "damage": "1d6 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_type": "Slashing",
+      "icon": "/static/images/weapons/axe.svg",
+      "mastery": "Vex",
+      "name": "Handaxe",
+      "proficient": true,
+      "properties": [
+        "Light",
+        "Thrown (range 20/60)"
+      ],
+      "throw_damage": "1d6 + 3"
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 16.0,
+      "avg_damage": 9.5,
+      "damage": "1d12 + 3",
+      "damage_bonus": 3,
+      "damage_notes": [],
+      "damage_type": "Slashing",
+      "icon": "/static/images/weapons/axe.svg",
+      "mastery": "Cleave",
+      "name": "Greataxe",
+      "proficient": true,
+      "properties": [
+        "Heavy",
+        "Two-Handed"
+      ]
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_crit": 4.0,
+      "avg_damage": 4.0,
+      "damage": "4",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    }
+  ],
+  "background": "Soldier",
+  "background_data": {
+    "ability_score_increase": {
+      "options": [
+        "Constitution",
+        "Strength",
+        "Dexterity"
+      ],
+      "suggested": {
+        "Constitution": 1,
+        "Strength": 2
+      },
+      "total": 3
+    },
+    "description": "War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield. You might have been part of a standing national army or a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.",
+    "edition": "2024",
+    "effects": [
+      {
+        "feat": "Savage Attacker",
+        "type": "grant_origin_feat"
+      },
+      {
+        "skills": [
+          "Athletics",
+          "Intimidation"
+        ],
+        "type": "grant_skill_proficiency"
+      },
+      {
+        "tools": [
+          "Gaming Set",
+          "Vehicles (Land)"
+        ],
+        "type": "grant_tool_proficiency"
+      }
+    ],
+    "name": "Soldier",
+    "starting_equipment": {
+      "option_a": {
+        "gold": 14,
+        "items": [
+          "Spear",
+          "Shortbow",
+          "20 Arrows",
+          "Quiver",
+          "Gaming Set",
+          "Healer's Kit (10 uses)",
+          "Traveler's Clothes"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "status": "active"
+  },
+  "best_attack_combination": {
+    "mainhand": {
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_damage": 6.5,
+      "damage": "1d6 + 3",
+      "damage_type": "Slashing",
+      "icon": "/static/images/weapons/axe.svg",
+      "name": "Handaxe"
+    },
+    "name": "Two Handaxes",
+    "notes": [],
+    "offhand": {
+      "attack_bonus": 5,
+      "attack_bonus_display": "+5",
+      "avg_damage": 3.5,
+      "damage": "1d6",
+      "damage_type": "Slashing",
+      "icon": "/static/images/weapons/axe.svg",
+      "name": "Handaxe"
+    },
+    "rank": 1,
+    "recommended": true,
+    "type": "combination"
+  },
+  "choices_made": {
+    "ability_scores": {
+      "Charisma": 10,
+      "Constitution": 14,
+      "Dexterity": 13,
+      "Intelligence": 8,
+      "Strength": 15,
+      "Wisdom": 12
+    },
+    "ability_scores_method": "standard_array",
+    "background": "Soldier",
+    "background_bonuses": {
+      "Constitution": 1,
+      "Strength": 2
+    },
+    "background_skill_replacements": [
+      "Survival",
+      "Animal Handling"
+    ],
+    "background_skill_replacements_needed": 2,
+    "character_name": "Kragor Stonefist",
+    "class": "Barbarian",
+    "classes": [
+      {
+        "class_name": "Barbarian",
+        "level": 3,
+        "subclass": "Path of the Berserker"
+      }
+    ],
+    "equipment_selections": {
+      "background_equipment": "option_b",
+      "class_equipment": "option_a"
+    },
+    "languages": [
+      "Giant",
+      "Orc"
+    ],
+    "level": 3,
+    "skill_choices": [
+      "Athletics",
+      "Intimidation"
+    ],
+    "species": "Goliath",
+    "species_trait_choices": {
+      "Giant Ancestry": "Cloud's Jaunt: As a Bonus Action, you magically teleport up to 30 feet to an unoccupied space you can see."
+    },
+    "subclass": "Path of the Berserker"
+  },
+  "class": "Barbarian",
+  "class_breakdown": [
+    {
+      "class_name": "Barbarian",
+      "level": 3,
+      "subclass": "Path of the Berserker"
+    }
+  ],
+  "class_data": {
+    "armor_proficiencies": [
+      "Light armor",
+      "Medium armor",
+      "Shields"
+    ],
+    "description": "Barbarians are mighty warriors who rage in battle, channeling primal fury into devastating attacks. They are tough, aggressive combatants who thrive in melee.",
+    "features_by_level": {
+      "1": {
+        "Rage": "You can imbue yourself with a primal power called Rage as a Bonus Action if you aren't wearing Heavy armor. You can enter your Rage a number of times per Barbarian level (see Barbarian table). You regain one use on a Short Rest and all uses on a Long Rest. While raging: you have Resistance to Bludgeoning, Piercing, and Slashing damage; when you make an attack using Strength and deal damage, you gain a bonus equal to your Rage Damage (see Barbarian table); you have Advantage on Strength checks and Strength saving throws; you can't maintain Concentration or cast spells. Rage lasts until the end of your next turn and can be extended by attacking an enemy, forcing a save, or taking a Bonus Action. Maximum duration is 10 minutes.",
+        "Unarmored Defense": {
+          "description": "While you aren't wearing any armor, your base Armor Class equals 10 plus your Dexterity and Constitution modifiers. You can use a Shield and still gain this benefit.",
+          "effects": [
+            {
+              "base": 10,
+              "condition": "no_armor",
+              "modifiers": [
+                "dexterity",
+                "constitution"
+              ],
+              "type": "alternative_ac"
+            }
+          ]
+        },
+        "Weapon Mastery": "Your training with weapons allows you to use the mastery properties of two kinds of Simple or Martial Melee weapons of your choice. Whenever you finish a Long Rest, you can change one of those weapon choices. When you reach certain Barbarian levels, you gain the ability to use more weapon masteries: 3 at level 4, 4 at level 10."
+      },
+      "10": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Barbarian subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "11": {
+        "Relentless Rage": "Your Rage can keep you fighting despite grievous wounds. If you drop to 0 Hit Points while your Rage is active and don't die outright, you can make a DC 10 Constitution saving throw. If you succeed, your Hit Points instead change to a number equal to twice your Barbarian level. Each time you use this feature after the first, the DC increases by 5. When you finish a Short or Long Rest, the DC resets to 10."
+      },
+      "12": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_12",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "13": {
+        "Improved Brutal Strike": "You have honed new ways to attack furiously. The following effects are now among your Brutal Strike options. Staggering Blow: The target has Disadvantage on the next saving throw it makes, and it can't make Opportunity Attacks until the start of your next turn. Sundering Blow: Before the start of your next turn, the next attack roll made by another creature against the target gains a +5 bonus to the roll. An attack roll can gain only one Sundering Blow bonus."
+      },
+      "14": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Barbarian subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "15": {
+        "Persistent Rage": "When you roll Initiative, you can regain all expended uses of Rage. After you regain uses of Rage in this way, you can't do so again until you finish a Long Rest. In addition, your Rage is so fierce that it now lasts for 10 minutes without you needing to do anything to extend it. Your Rage ends early only if you have the Unconscious condition or don Heavy armor."
+      },
+      "16": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_16",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "17": {
+        "Improved Brutal Strike": "The extra damage of your Brutal Strike increases to 2d10. In addition, you can use two different Brutal Strike effects whenever you use your Brutal Strike feature."
+      },
+      "18": {
+        "Indomitable Might": "If your total for a Strength check or Strength saving throw is less than your Strength score, you can use that score in place of the total."
+      },
+      "19": {
+        "Epic Boon": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Irresistible Offense is recommended."
+      },
+      "2": {
+        "Danger Sense": {
+          "description": "You have Advantage on Dexterity saving throws unless you have the Incapacitated condition.",
+          "effects": [
+            {
+              "abilities": [
+                "Dexterity"
+              ],
+              "condition": "not Incapacitated",
+              "display": "Advantage on Dexterity saving throws (Danger Sense)",
+              "type": "grant_save_advantage"
+            }
+          ]
+        },
+        "Reckless Attack": "When you make your first attack roll on your turn, you can decide to attack recklessly. Doing so gives you Advantage on attack rolls using Strength until the start of your next turn, but attack rolls against you have Advantage during that time."
+      },
+      "20": {
+        "Primal Champion": {
+          "description": "You embody primal power. Your Strength and Constitution scores increase by 4, to a maximum of 25.",
+          "effects": [
+            {
+              "ability": "Constitution",
+              "type": "ability_bonus",
+              "value": 4
+            },
+            {
+              "ability": "Strength",
+              "type": "ability_bonus",
+              "value": 4
+            }
+          ]
+        }
+      },
+      "3": {
+        "Barbarian Subclass": {
+          "description": "You gain a Barbarian subclass of your choice: Path of the Berserker, Path of the Wild Heart, Path of the World Tree, or Path of the Zealot.",
+          "feature_kind": "subclass_pick"
+        },
+        "Primal Knowledge": "You gain proficiency in another skill of your choice from the Barbarian skill list. In addition, while your Rage is active, you can channel primal power when you attempt certain tasks; whenever you make an ability check using one of the following skills, you can make it as a Strength check even if it normally uses a different ability: Acrobatics, Intimidation, Perception, Stealth, or Survival."
+      },
+      "4": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_4",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain the Ability Score Improvement feat or another feat of your choice for which you qualify. You gain this feature again at Barbarian levels 8, 12, and 16.",
+          "feature_kind": "asi"
+        }
+      },
+      "5": {
+        "Extra Attack": "You can attack twice instead of once whenever you take the Attack action on your turn.",
+        "Fast Movement": {
+          "description": "Your speed increases by 10 feet while you aren't wearing Heavy armor.",
+          "effects": [
+            {
+              "type": "increase_speed",
+              "value": 10
+            }
+          ]
+        }
+      },
+      "6": {
+        "Subclass Feature": {
+          "description": "You gain a feature from your Barbarian subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "7": {
+        "Feral Instinct": "Your instincts are so honed that you have Advantage on Initiative rolls.",
+        "Instinctive Pounce": "As part of the Bonus Action you take to enter your Rage, you can move up to half your Speed."
+      },
+      "8": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_8",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "9": {
+        "Brutal Strike": "If you use Reckless Attack, you can forgo any Advantage on one Strength-based attack roll on your turn. If the chosen attack roll hits, the target takes an extra 1d10 damage of the same type dealt by the weapon or Unarmed Strike, and you can cause one Brutal Strike effect of your choice. Forceful Blow: The target is pushed 15 feet straight away from you. You can then move up to half your Speed straight toward the target without provoking Opportunity Attacks. Hamstring Blow: The target's Speed is reduced by 15 feet until the start of your next turn."
+      }
+    },
+    "hit_die": 12,
+    "masterable_weapons": [
+      "Battleaxe",
+      "Club",
+      "Dagger",
+      "Flail",
+      "Glaive",
+      "Greataxe",
+      "Greatclub",
+      "Greatsword",
+      "Halberd",
+      "Handaxe",
+      "Javelin",
+      "Lance",
+      "Light Hammer",
+      "Longsword",
+      "Mace",
+      "Maul",
+      "Morningstar",
+      "Pike",
+      "Quarterstaff",
+      "Rapier",
+      "Scimitar",
+      "Shortsword",
+      "Sickle",
+      "Spear",
+      "Trident",
+      "War Pick",
+      "Warhammer",
+      "Whip"
+    ],
+    "masteries_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 4,
+      "14": 4,
+      "15": 4,
+      "16": 4,
+      "17": 4,
+      "18": 4,
+      "19": 4,
+      "2": 2,
+      "20": 4,
+      "3": 2,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 3
+    },
+    "multiclassing": {
+      "armor_training": [
+        "Shields"
+      ],
+      "hit_die_granted": 12,
+      "notes": null,
+      "other_proficiencies": [],
+      "saving_throw_proficiencies": [],
+      "skill_proficiencies": null,
+      "source_text": "As a Multiclass Character: Gain the following traits from the Core Barbarian Traits table: Hit Point Die, proficiency with Martial weapons, and training with Shields. Gain the Barbarian's level 1 features, which are listed in the Barbarian Features table.",
+      "tool_training": [],
+      "weapon_training": [
+        "Martial"
+      ]
+    },
+    "name": "Barbarian",
+    "primary_ability": "Strength",
+    "proficiency_bonus_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 2,
+      "20": 6,
+      "3": 2,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 4
+    },
+    "saving_throw_proficiencies": [
+      "Strength",
+      "Constitution"
+    ],
+    "skill_options": [
+      "Animal Handling",
+      "Athletics",
+      "Intimidation",
+      "Nature",
+      "Perception",
+      "Survival"
+    ],
+    "skill_proficiencies_count": 2,
+    "standard_array_assignment": {
+      "Charisma": 8,
+      "Constitution": 14,
+      "Dexterity": 13,
+      "Intelligence": 10,
+      "Strength": 15,
+      "Wisdom": 12
+    },
+    "starting_equipment": {
+      "option_a": {
+        "gold": 5,
+        "items": [
+          "Greataxe",
+          "Handaxe (2)",
+          "Javelin (4)",
+          "Explorer's Pack"
+        ]
+      },
+      "option_b": {
+        "gold": 75
+      }
+    },
+    "subclass_selection_level": 3,
+    "weapon_proficiencies": [
+      "Simple weapons",
+      "Martial weapons"
+    ]
+  },
+  "combat": {
+    "armor_class": 13,
+    "hit_dice": {
+      "spent": 0,
+      "total": "3d12"
+    },
+    "hit_point_maximum": 32,
+    "hit_points": {
+      "current": 32,
+      "maximum": 32,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 26,
+      "base_hp_breakdown": "Level 1: 12 (max d12) + Levels 2-3: 14 (avg d12)",
+      "class_name": "Barbarian",
+      "constitution_bonus": 6,
+      "constitution_modifier": 2,
+      "constitution_score": 15,
+      "feature_bonus": 0,
+      "feature_breakdown": [],
+      "hit_die": 12,
+      "level": 3,
+      "total_hp": 32
+    },
+    "initiative": 1,
+    "initiative_bonus": 1,
+    "passive_perception": 11,
+    "speed": 35,
+    "uses_shield": false
+  },
+  "condition_immunities": [],
+  "darkvision": 0,
+  "effects": [
+    {
+      "abilities": [
+        "Dexterity"
+      ],
+      "condition": "not Incapacitated",
+      "display": "Advantage on Dexterity saving throws (Danger Sense)",
+      "source": "Danger Sense",
+      "source_class_name": "Barbarian",
+      "source_type": "class",
+      "type": "grant_save_advantage"
+    },
+    {
+      "base": 10,
+      "condition": "no_armor",
+      "modifiers": [
+        "dexterity",
+        "constitution"
+      ],
+      "source": "Unarmored Defense",
+      "source_class_name": "Barbarian",
+      "source_type": "class",
+      "type": "alternative_ac"
+    },
+    {
+      "feat": "Savage Attacker",
+      "source": "Soldier",
+      "source_type": "background",
+      "type": "grant_origin_feat"
+    },
+    {
+      "skills": [
+        "Athletics",
+        "Intimidation"
+      ],
+      "source": "Soldier",
+      "source_type": "background",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "source": "Soldier",
+      "source_type": "background",
+      "tools": [
+        "Gaming Set",
+        "Vehicles (Land)"
+      ],
+      "type": "grant_tool_proficiency"
+    }
+  ],
+  "eldritch_invocation_stats": {
+    "available_invocations": [],
+    "current_invocations": [],
+    "has_invocations": false,
+    "max_invocations": 0
+  },
+  "equipment": {
+    "armor": [],
+    "gold": 55,
+    "items": [
+      {
+        "name": "Explorer's Pack",
+        "source": "Class"
+      }
+    ],
+    "weapons": [
+      {
+        "display_name": "Greataxe",
+        "name": "Greataxe",
+        "properties": {
+          "category": "Martial Melee",
+          "cost": "30 gp",
+          "damage": "1d12",
+          "damage_type": "Slashing",
+          "mastery": "Cleave",
+          "proficiency_required": "Martial weapons",
+          "properties": [
+            "Heavy",
+            "Two-Handed"
+          ],
+          "weight": 7
+        },
+        "quantity": 1,
+        "source": "Class"
+      },
+      {
+        "display_name": "Handaxe (2)",
+        "name": "Handaxe",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "5 gp",
+          "damage": "1d6",
+          "damage_type": "Slashing",
+          "mastery": "Vex",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Light",
+            "Thrown (range 20/60)"
+          ],
+          "weight": 2
+        },
+        "quantity": 2,
+        "source": "Class"
+      },
+      {
+        "display_name": "Javelin (4)",
+        "name": "Javelin",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "5 sp",
+          "damage": "1d6",
+          "damage_type": "Piercing",
+          "mastery": "Slow",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Thrown (range 30/120)"
+          ],
+          "weight": 2
+        },
+        "quantity": 4,
+        "source": "Class"
+      }
+    ]
+  },
+  "features": {
+    "background": [],
+    "class": [
+      {
+        "description": "When you make your first attack roll on your turn, you can decide to attack recklessly. Doing so gives you Advantage on attack rolls using Strength until the start of your next turn, but attack rolls against you have Advantage during that time.",
+        "level": 2,
+        "name": "Reckless Attack",
+        "source": "Barbarian"
+      },
+      {
+        "description": "While you aren't wearing any armor, your base Armor Class equals 10 plus your Dexterity and Constitution modifiers. You can use a Shield and still gain this benefit.",
+        "level": 1,
+        "name": "Unarmored Defense",
+        "source": "Barbarian"
+      },
+      {
+        "description": "You can imbue yourself with a primal power called Rage as a Bonus Action if you aren't wearing Heavy armor. You can enter your Rage a number of times per Barbarian level (see Barbarian table). You regain one use on a Short Rest and all uses on a Long Rest. While raging: you have Resistance to Bludgeoning, Piercing, and Slashing damage; when you make an attack using Strength and deal damage, you gain a bonus equal to your Rage Damage (see Barbarian table); you have Advantage on Strength checks and Strength saving throws; you can't maintain Concentration or cast spells. Rage lasts until the end of your next turn and can be extended by attacking an enemy, forcing a save, or taking a Bonus Action. Maximum duration is 10 minutes.",
+        "level": 1,
+        "name": "Rage",
+        "source": "Barbarian"
+      },
+      {
+        "description": "You gain proficiency in another skill of your choice from the Barbarian skill list. In addition, while your Rage is active, you can channel primal power when you attempt certain tasks; whenever you make an ability check using one of the following skills, you can make it as a Strength check even if it normally uses a different ability: Acrobatics, Intimidation, Perception, Stealth, or Survival.",
+        "level": 3,
+        "name": "Primal Knowledge",
+        "source": "Barbarian"
+      },
+      {
+        "description": "You have Advantage on Dexterity saving throws unless you have the Incapacitated condition.",
+        "level": 2,
+        "name": "Danger Sense",
+        "source": "Barbarian"
+      },
+      {
+        "description": "Your training with weapons allows you to use the mastery properties of two kinds of Simple or Martial Melee weapons of your choice. Whenever you finish a Long Rest, you can change one of those weapon choices. When you reach certain Barbarian levels, you gain the ability to use more weapon masteries: 3 at level 4, 4 at level 10.",
+        "level": 1,
+        "name": "Weapon Mastery",
+        "source": "Barbarian"
+      }
+    ],
+    "feats": [
+      {
+        "description": "You've trained to deal particularly damaging strikes. Once per turn when you hit a target with a weapon, you can roll the weapon's damage dice twice and use either roll against the target.",
+        "name": "Savage Attacker",
+        "source": "Soldier"
+      }
+    ],
+    "lineage": [],
+    "species": [
+      {
+        "description": "Starting at character level 5, you can change your size to Large as a Bonus Action if you're in a big enough space. This transformation lasts for 10 minutes or until you end it (no action required). For that duration, you have Advantage on Strength checks, and your Speed increases by 10 feet. Once you use this trait, you can't use it again until you finish a Long Rest.",
+        "name": "Large Form",
+        "source": "Goliath"
+      },
+      {
+        "description": "You are descended from Giants. Choose one of the following benefits - a supernatural boon from your ancestry; you can use the chosen benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+        "name": "Giant Ancestry: Cloud's Jaunt: As a Bonus Action, you magically teleport up to 30 feet to an unoccupied space you can see.",
+        "source": "Goliath"
+      },
+      {
+        "description": "You have Advantage on any ability check you make to end the Grappled condition. You also count as one size larger when determining your carrying capacity.",
+        "name": "Powerful Build",
+        "source": "Goliath"
+      }
+    ],
+    "subclass": [
+      {
+        "description": "If you use Reckless Attack while your Rage is active, you deal extra damage to the first target you hit on your turn with a Strength-based attack. To determine the extra damage, roll a number of d6s equal to your Rage Damage bonus, and add them together. The damage has the same type as the weapon or Unarmed Strike used for the attack.",
+        "level": 3,
+        "name": "Frenzy",
+        "source": "Path of the Berserker"
+      }
+    ]
+  },
+  "immunities": [],
+  "languages": [
+    "Common",
+    "Giant",
+    "Orc"
+  ],
+  "level": 3,
+  "lineage": null,
+  "lineage_data": null,
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "name": "Kragor Stonefist",
+  "proficiencies": {
+    "armor": [
+      "Light armor",
+      "Medium armor",
+      "Shields"
+    ],
+    "languages": [
+      "Common",
+      "Giant",
+      "Orc"
+    ],
+    "saving_throws": [
+      "Strength",
+      "Constitution"
+    ],
+    "skills": [
+      "Athletics",
+      "Intimidation",
+      "Survival",
+      "Animal Handling"
+    ],
+    "tools": [
+      "Gaming Set",
+      "Vehicles (Land)"
+    ],
+    "weapons": [
+      "Simple weapons",
+      "Martial weapons"
+    ]
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {},
+    "languages": {
+      "Common": "base",
+      "Giant": "user_choice",
+      "Orc": "user_choice"
+    },
+    "saving_throws": {},
+    "skills": {
+      "Animal Handling": "Soldier",
+      "Athletics": "Barbarian",
+      "Intimidation": "Barbarian",
+      "Survival": "Soldier"
+    },
+    "tools": {
+      "Gaming Set": "Soldier",
+      "Vehicles (Land)": "Soldier"
+    },
+    "weapons": {}
+  },
+  "resistances": [],
+  "save_advantages": [
+    {
+      "abilities": [
+        "Dexterity"
+      ],
+      "condition": "not Incapacitated",
+      "display": "Advantage on Dexterity saving throws (Danger Sense)"
+    }
+  ],
+  "skill_proficiencies": [
+    "Athletics",
+    "Intimidation",
+    "Survival",
+    "Animal Handling"
+  ],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Soldier"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Barbarian"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": true,
+      "source": "Barbarian"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Soldier"
+    }
+  },
+  "species": "Goliath",
+  "species_data": {
+    "creature_type": "Humanoid",
+    "description": "Towering over most folk, goliaths are distant descendants of giants. Each goliath bears the favors of the first giants - favors that manifest in various supernatural boons, including the ability to quickly grow and temporarily approach the height of goliaths' gigantic kin. Goliaths have physical characteristics reminiscent of the giants in their family lines.",
+    "languages": [
+      "Common",
+      "Giant"
+    ],
+    "name": "Goliath",
+    "size": "Medium",
+    "size_description": "about 7-8 feet tall",
+    "speed": 35,
+    "traits": {
+      "Giant Ancestry": {
+        "choices": {
+          "count": 1,
+          "source": {
+            "options": [
+              "Cloud's Jaunt: As a Bonus Action, you magically teleport up to 30 feet to an unoccupied space you can see.",
+              "Fire's Burn: When you hit a target with an attack roll and deal damage to it, you can also deal 1d10 Fire damage to that target.",
+              "Frost's Chill: When you hit a target with an attack roll and deal damage to it, you can also deal 1d6 Cold damage to that target and reduce its Speed by 10 feet until the start of your next turn.",
+              "Hill's Tumble: When you hit a Large or smaller creature with an attack roll and deal damage to it, you can give that target the Prone condition.",
+              "Stone's Endurance: When you take damage, you can take a Reaction to roll 1d12. Add your Constitution modifier to the number rolled and reduce the damage by that total.",
+              "Storm's Thunder: When you take damage from a creature within 60 feet of you, you can take a Reaction to deal 1d8 Thunder damage to that creature."
+            ],
+            "type": "fixed_list"
+          },
+          "type": "select_single"
+        },
+        "description": "You are descended from Giants. Choose one of the following benefits - a supernatural boon from your ancestry; you can use the chosen benefit a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+        "type": "choice"
+      },
+      "Large Form": "Starting at character level 5, you can change your size to Large as a Bonus Action if you're in a big enough space. This transformation lasts for 10 minutes or until you end it (no action required). For that duration, you have Advantage on Strength checks, and your Speed increases by 10 feet. Once you use this trait, you can't use it again until you finish a Long Rest.",
+      "Powerful Build": "You have Advantage on any ability check you make to end the Grappled condition. You also count as one size larger when determining your carrying capacity."
+    }
+  },
+  "speed": 35,
+  "speed_bonuses": {},
+  "spell_metadata": {},
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {},
+  "spellcasting_stats": {
+    "available_cantrips": [],
+    "available_spells": {},
+    "background_cantrips_list": null,
+    "background_cantrips_needed": 0,
+    "background_spell_level": 1,
+    "background_spells_list": null,
+    "background_spells_needed": 0,
+    "cantrips_always_prepared": 0,
+    "cantrips_to_prepare": 0,
+    "effective_caster_level": 0,
+    "has_spellcasting": false,
+    "max_cantrips_prepared": 0,
+    "max_spells_prepared": 0,
+    "multiclass_notes": [],
+    "pact_magic_slots": [],
+    "preparation_formula": null,
+    "ritual_casting": false,
+    "spell_attack_bonus": 0,
+    "spell_save_dc": 0,
+    "spellcasting_ability": null,
+    "spellcasting_modifier": 0,
+    "spellcasting_type": null,
+    "spells_always_prepared": 0,
+    "spells_prepared": 0
+  },
+  "spells": {
+    "always_prepared": {},
+    "background_spells": {},
+    "cantrips": [],
+    "known": {},
+    "level_1": [],
+    "prepared": {
+      "cantrips": {},
+      "spells": {}
+    },
+    "slots": {}
+  },
+  "spells_by_level": {},
+  "step": "complete",
+  "subclass": "Path of the Berserker",
+  "subclass_data": {
+    "class": "Barbarian",
+    "description": "Barbarians who walk the Path of the Berserker direct their Rage primarily toward violence. Their path is one of untrammeled fury, and they thrill in the chaos of battle as they allow their Rage to seize and empower them.",
+    "features_by_level": {
+      "10": {
+        "Retaliation": "When you take damage from a creature that is within 5 feet of you, you can take a Reaction to make one melee attack against that creature, using a weapon or an Unarmed Strike."
+      },
+      "14": {
+        "Intimidating Presence": "As a Bonus Action, you can strike terror into others with your menacing presence and primal power. When you do so, each creature of your choice in a 30-foot Emanation originating from you must make a Wisdom saving throw (DC 8 plus your Strength modifier and Proficiency Bonus). On a failed save, a creature has the Frightened condition for 1 minute. At the end of each of the Frightened creature's turns, the creature repeats the save, ending the effect on itself on a success. Once you use this feature, you can't use it again until you finish a Long Rest unless you expend a use of your Rage (no action required) to restore your use of it."
+      },
+      "3": {
+        "Frenzy": "If you use Reckless Attack while your Rage is active, you deal extra damage to the first target you hit on your turn with a Strength-based attack. To determine the extra damage, roll a number of d6s equal to your Rage Damage bonus, and add them together. The damage has the same type as the weapon or Unarmed Strike used for the attack."
+      },
+      "6": {
+        "Mindless Rage": "You have Immunity to the Charmed and Frightened conditions while your Rage is active. If you're Charmed or Frightened when you enter your Rage, the condition ends on you."
+      }
+    },
+    "name": "Path of the Berserker",
+    "source": "Player's Handbook 2024"
+  },
+  "superiority_dice": {},
+  "tool_proficiencies": [
+    "Gaming Set",
+    "Vehicles (Land)"
+  ],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [
+      "Battleaxe",
+      "Club",
+      "Dagger",
+      "Flail",
+      "Glaive",
+      "Greataxe",
+      "Greatclub",
+      "Greatsword",
+      "Halberd",
+      "Handaxe",
+      "Javelin",
+      "Lance",
+      "Light Hammer",
+      "Longsword",
+      "Mace",
+      "Maul",
+      "Morningstar",
+      "Pike",
+      "Quarterstaff",
+      "Rapier",
+      "Scimitar",
+      "Shortsword",
+      "Sickle",
+      "Spear",
+      "Trident",
+      "War Pick",
+      "Warhammer",
+      "Whip"
+    ],
+    "current_masteries": [],
+    "has_mastery": true,
+    "max_masteries": 2
+  },
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons"
+  ]
+}

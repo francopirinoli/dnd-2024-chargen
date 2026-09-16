@@ -1,0 +1,584 @@
+{
+  "Abacus": {
+    "cost": "2 gp",
+    "weight": 2,
+    "category": "Tool"
+  },
+  "Acid (vial)": {
+    "cost": "25 gp",
+    "weight": 1,
+    "category": "Consumable"
+  },
+  "Alchemist's Fire (flask)": {
+    "cost": "50 gp",
+    "weight": 1,
+    "category": "Consumable"
+  },
+  "Ammunition (Arrows 20)": {
+    "cost": "1 gp",
+    "weight": 1,
+    "category": "Ammunition"
+  },
+  "Ammunition (Blowgun Needles 50)": {
+    "cost": "1 gp",
+    "weight": 1,
+    "category": "Ammunition"
+  },
+  "Ammunition (Crossbow Bolts 20)": {
+    "cost": "1 gp",
+    "weight": 1.5,
+    "category": "Ammunition"
+  },
+  "Ammunition (Sling Bullets 20)": {
+    "cost": "4 cp",
+    "weight": 1.5,
+    "category": "Ammunition"
+  },
+  "Antitoxin (vial)": {
+    "cost": "50 gp",
+    "weight": 0,
+    "category": "Consumable"
+  },
+  "Backpack": {
+    "cost": "2 gp",
+    "weight": 5,
+    "category": "Container"
+  },
+  "Ball Bearings (bag of 1,000)": {
+    "cost": "1 gp",
+    "weight": 2,
+    "category": "Utility"
+  },
+  "Barrel": {
+    "cost": "2 gp",
+    "weight": 70,
+    "category": "Container"
+  },
+  "Basket": {
+    "cost": "4 sp",
+    "weight": 2,
+    "category": "Container"
+  },
+  "Bedroll": {
+    "cost": "1 gp",
+    "weight": 7,
+    "category": "Utility"
+  },
+  "Bell": {
+    "cost": "1 gp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Blanket": {
+    "cost": "5 sp",
+    "weight": 3,
+    "category": "Utility"
+  },
+  "Block and Tackle": {
+    "cost": "1 gp",
+    "weight": 5,
+    "category": "Utility"
+  },
+  "Book": {
+    "cost": "25 gp",
+    "weight": 5,
+    "category": "Miscellaneous"
+  },
+  "Bottle, Glass": {
+    "cost": "2 gp",
+    "weight": 2,
+    "category": "Container"
+  },
+  "Bucket": {
+    "cost": "5 cp",
+    "weight": 2,
+    "category": "Container"
+  },
+  "Caltrops (bag of 20)": {
+    "cost": "1 gp",
+    "weight": 2,
+    "category": "Utility"
+  },
+  "Candle": {
+    "cost": "1 cp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Case, Crossbow Bolt": {
+    "cost": "1 gp",
+    "weight": 1,
+    "category": "Container"
+  },
+  "Case, Map or Scroll": {
+    "cost": "1 gp",
+    "weight": 1,
+    "category": "Container"
+  },
+  "Chain (10 feet)": {
+    "cost": "5 gp",
+    "weight": 10,
+    "category": "Utility"
+  },
+  "Chalk (1 piece)": {
+    "cost": "1 cp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Chest": {
+    "cost": "5 gp",
+    "weight": 25,
+    "category": "Container"
+  },
+  "Climber's Kit": {
+    "cost": "25 gp",
+    "weight": 12,
+    "category": "Utility"
+  },
+  "Clothes, Common": {
+    "cost": "5 sp",
+    "weight": 3,
+    "category": "Clothing"
+  },
+  "Clothes, Costume": {
+    "cost": "5 gp",
+    "weight": 4,
+    "category": "Clothing"
+  },
+  "Clothes, Fine": {
+    "cost": "15 gp",
+    "weight": 6,
+    "category": "Clothing"
+  },
+  "Clothes, Traveler's": {
+    "cost": "2 gp",
+    "weight": 4,
+    "category": "Clothing"
+  },
+  "Component Pouch": {
+    "cost": "25 gp",
+    "weight": 2,
+    "category": "Tool"
+  },
+  "Crowbar": {
+    "cost": "2 gp",
+    "weight": 5,
+    "category": "Utility"
+  },
+  "Fishing Tackle": {
+    "cost": "1 gp",
+    "weight": 4,
+    "category": "Utility"
+  },
+  "Flask or Tankard": {
+    "cost": "2 cp",
+    "weight": 1,
+    "category": "Container"
+  },
+  "Grappling Hook": {
+    "cost": "2 gp",
+    "weight": 4,
+    "category": "Utility"
+  },
+  "Hammer": {
+    "cost": "1 gp",
+    "weight": 3,
+    "category": "Utility"
+  },
+  "Hammer, Sledge": {
+    "cost": "2 gp",
+    "weight": 10,
+    "category": "Utility"
+  },
+  "Healer's Kit": {
+    "cost": "5 gp",
+    "weight": 3,
+    "category": "Tool"
+  },
+  "Holy Symbol (Amulet)": {
+    "cost": "5 gp",
+    "weight": 1,
+    "category": "Tool"
+  },
+  "Holy Symbol (Emblem)": {
+    "cost": "5 gp",
+    "weight": 0,
+    "category": "Tool"
+  },
+  "Holy Symbol (Reliquary)": {
+    "cost": "5 gp",
+    "weight": 2,
+    "category": "Tool"
+  },
+  "Holy Water (flask)": {
+    "cost": "25 gp",
+    "weight": 1,
+    "category": "Consumable"
+  },
+  "Hourglass": {
+    "cost": "25 gp",
+    "weight": 1,
+    "category": "Utility"
+  },
+  "Hunting Trap": {
+    "cost": "5 gp",
+    "weight": 25,
+    "category": "Utility"
+  },
+  "Ink (1 ounce bottle)": {
+    "cost": "10 gp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Ink Pen": {
+    "cost": "2 cp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Jug or Pitcher": {
+    "cost": "2 cp",
+    "weight": 4,
+    "category": "Container"
+  },
+  "Ladder (10-foot)": {
+    "cost": "1 sp",
+    "weight": 25,
+    "category": "Utility"
+  },
+  "Lamp": {
+    "cost": "5 sp",
+    "weight": 1,
+    "category": "Utility"
+  },
+  "Lantern, Bullseye": {
+    "cost": "10 gp",
+    "weight": 2,
+    "category": "Utility"
+  },
+  "Lantern, Hooded": {
+    "cost": "5 gp",
+    "weight": 2,
+    "category": "Utility"
+  },
+  "Lock": {
+    "cost": "10 gp",
+    "weight": 1,
+    "category": "Utility"
+  },
+  "Magnifying Glass": {
+    "cost": "100 gp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Manacles": {
+    "cost": "2 gp",
+    "weight": 6,
+    "category": "Utility"
+  },
+  "Mess Kit": {
+    "cost": "2 sp",
+    "weight": 1,
+    "category": "Utility"
+  },
+  "Mirror, Steel": {
+    "cost": "5 gp",
+    "weight": 0.5,
+    "category": "Utility"
+  },
+  "Oil (flask)": {
+    "cost": "1 sp",
+    "weight": 1,
+    "category": "Consumable"
+  },
+  "Paper (one sheet)": {
+    "cost": "2 sp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Parchment (one sheet)": {
+    "cost": "1 sp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Perfume (vial)": {
+    "cost": "5 gp",
+    "weight": 0,
+    "category": "Miscellaneous"
+  },
+  "Pick, Miner's": {
+    "cost": "2 gp",
+    "weight": 10,
+    "category": "Utility"
+  },
+  "Piton": {
+    "cost": "5 cp",
+    "weight": 0.25,
+    "category": "Utility"
+  },
+  "Poison, Basic (vial)": {
+    "cost": "100 gp",
+    "weight": 0,
+    "category": "Consumable"
+  },
+  "Pole (10-foot)": {
+    "cost": "5 cp",
+    "weight": 7,
+    "category": "Utility"
+  },
+  "Pot, Iron": {
+    "cost": "2 gp",
+    "weight": 10,
+    "category": "Utility"
+  },
+  "Potion of Healing": {
+    "cost": "50 gp",
+    "weight": 0.5,
+    "category": "Consumable"
+  },
+  "Pouch": {
+    "cost": "5 sp",
+    "weight": 1,
+    "category": "Container"
+  },
+  "Quiver": {
+    "cost": "1 gp",
+    "weight": 1,
+    "category": "Container"
+  },
+  "Ram, Portable": {
+    "cost": "4 gp",
+    "weight": 35,
+    "category": "Utility"
+  },
+  "Rations (1 day)": {
+    "cost": "5 sp",
+    "weight": 2,
+    "category": "Consumable"
+  },
+  "Robes": {
+    "cost": "1 gp",
+    "weight": 4,
+    "category": "Clothing"
+  },
+  "Rope, Hempen (50 feet)": {
+    "cost": "1 gp",
+    "weight": 10,
+    "category": "Utility"
+  },
+  "Rope, Silk (50 feet)": {
+    "cost": "10 gp",
+    "weight": 5,
+    "category": "Utility"
+  },
+  "Sack": {
+    "cost": "1 cp",
+    "weight": 0.5,
+    "category": "Container"
+  },
+  "Scale, Merchant's": {
+    "cost": "5 gp",
+    "weight": 3,
+    "category": "Utility"
+  },
+  "Sealing Wax": {
+    "cost": "5 sp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Shovel": {
+    "cost": "2 gp",
+    "weight": 5,
+    "category": "Utility"
+  },
+  "Signal Whistle": {
+    "cost": "5 cp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Signet Ring": {
+    "cost": "5 gp",
+    "weight": 0,
+    "category": "Miscellaneous"
+  },
+  "Soap": {
+    "cost": "2 cp",
+    "weight": 0,
+    "category": "Utility"
+  },
+  "Spellbook": {
+    "cost": "50 gp",
+    "weight": 3,
+    "category": "Tool"
+  },
+  "Spikes, Iron (10)": {
+    "cost": "1 gp",
+    "weight": 5,
+    "category": "Utility"
+  },
+  "Spyglass": {
+    "cost": "1000 gp",
+    "weight": 1,
+    "category": "Utility"
+  },
+  "Tent, Two-Person": {
+    "cost": "2 gp",
+    "weight": 20,
+    "category": "Utility"
+  },
+  "Tinderbox": {
+    "cost": "5 sp",
+    "weight": 1,
+    "category": "Utility"
+  },
+  "Torch": {
+    "cost": "1 cp",
+    "weight": 1,
+    "category": "Utility"
+  },
+  "Vial": {
+    "cost": "1 gp",
+    "weight": 0,
+    "category": "Container"
+  },
+  "Waterskin": {
+    "cost": "2 sp",
+    "weight": 5,
+    "category": "Container"
+  },
+  "Whetstone": {
+    "cost": "1 cp",
+    "weight": 1,
+    "category": "Utility"
+  },
+  "Artisan's Tools": {
+    "cost": "Variable",
+    "weight": 5,
+    "category": "Tool"
+  },
+  "Disguise Kit": {
+    "cost": "25 gp",
+    "weight": 3,
+    "category": "Tool"
+  },
+  "Forgery Kit": {
+    "cost": "15 gp",
+    "weight": 5,
+    "category": "Tool"
+  },
+  "Gaming Set": {
+    "cost": "Variable",
+    "weight": 0.5,
+    "category": "Tool"
+  },
+  "Herbalism Kit": {
+    "cost": "5 gp",
+    "weight": 3,
+    "category": "Tool"
+  },
+  "Musical Instrument": {
+    "cost": "Variable",
+    "weight": "Variable",
+    "category": "Tool"
+  },
+  "Navigator's Tools": {
+    "cost": "25 gp",
+    "weight": 2,
+    "category": "Tool"
+  },
+  "Poisoner's Kit": {
+    "cost": "50 gp",
+    "weight": 2,
+    "category": "Tool"
+  },
+  "Thieves' Tools": {
+    "cost": "25 gp",
+    "weight": 1,
+    "category": "Tool"
+  },
+  "Arcane Focus (Crystal)": {
+    "cost": "10 gp",
+    "weight": 1,
+    "category": "Tool"
+  },
+  "Arcane Focus (Orb)": {
+    "cost": "20 gp",
+    "weight": 3,
+    "category": "Tool"
+  },
+  "Arcane Focus (Rod)": {
+    "cost": "10 gp",
+    "weight": 2,
+    "category": "Tool"
+  },
+  "Arcane Focus (Staff)": {
+    "cost": "5 gp",
+    "weight": 4,
+    "category": "Tool"
+  },
+  "Arcane Focus (Wand)": {
+    "cost": "10 gp",
+    "weight": 1,
+    "category": "Tool"
+  },
+  "Druidic Focus (Sprig of Mistletoe)": {
+    "cost": "1 gp",
+    "weight": 0,
+    "category": "Tool"
+  },
+  "Druidic Focus (Totem)": {
+    "cost": "1 gp",
+    "weight": 0,
+    "category": "Tool"
+  },
+  "Druidic Focus (Wooden Staff)": {
+    "cost": "5 gp",
+    "weight": 4,
+    "category": "Tool"
+  },
+  "Druidic Focus (Yew Wand)": {
+    "cost": "10 gp",
+    "weight": 1,
+    "category": "Tool"
+  },
+  "Explorer's Pack": {
+    "cost": "10 gp",
+    "weight": 59,
+    "category": "Pack",
+    "contents": ["Backpack", "Bedroll", "Mess Kit", "Tinderbox", "10 Torches", "10 days of Rations", "Waterskin", "50 feet of Hempen Rope"]
+  },
+  "Burglar's Pack": {
+    "cost": "16 gp",
+    "weight": 44.5,
+    "category": "Pack",
+    "contents": ["Backpack", "1000 Ball Bearings", "10 feet of String", "Bell", "5 Candles", "Crowbar", "Hammer", "10 Pitons", "Hooded Lantern", "2 Flasks of Oil", "5 days of Rations", "Tinderbox", "Waterskin", "50 feet of Hempen Rope"]
+  },
+  "Diplomat's Pack": {
+    "cost": "39 gp",
+    "weight": 39,
+    "category": "Pack",
+    "contents": ["Chest", "2 Cases for Maps and Scrolls", "Fine Clothes", "Bottle of Ink", "Ink Pen", "Lamp", "2 Flasks of Oil", "5 sheets of Paper", "Vial of Perfume", "Sealing Wax", "Soap"]
+  },
+  "Dungeoneer's Pack": {
+    "cost": "12 gp",
+    "weight": 61.5,
+    "category": "Pack",
+    "contents": ["Backpack", "Crowbar", "Hammer", "10 Pitons", "10 Torches", "Tinderbox", "10 days of Rations", "Waterskin", "50 feet of Hempen Rope"]
+  },
+  "Entertainer's Pack": {
+    "cost": "40 gp",
+    "weight": 38,
+    "category": "Pack",
+    "contents": ["Backpack", "Bedroll", "2 Costumes", "5 Candles", "5 days of Rations", "Waterskin", "Disguise Kit"]
+  },
+  "Priest's Pack": {
+    "cost": "19 gp",
+    "weight": 24,
+    "category": "Pack",
+    "contents": ["Backpack", "Blanket", "10 Candles", "Tinderbox", "Alms Box", "2 Blocks of Incense", "Censer", "Vestments", "2 days of Rations", "Waterskin"]
+  },
+  "Scholar's Pack": {
+    "cost": "40 gp",
+    "weight": 22,
+    "category": "Pack",
+    "contents": ["Backpack", "Book of Lore", "Bottle of Ink", "Ink Pen", "10 sheets of Parchment", "Little Bag of Sand", "Small Knife"]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Choice",
+  "description": "A player-facing choice: pick one or more options from a fixed list or an external data file. See .github/instructions/choice-reference.instructions.md.",
+  "type": "object",
+  "required": ["type", "source"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["select_single", "select_multiple"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Stable key used in choice_effects and choices_made. Optional for inline single-trait choices (e.g. species traits with a sole choice block)."
+    },
+    "description": { "type": "string" },
+    "count": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of options the player selects. Required for select_multiple; implicit 1 for select_single."
+    },
+    "source": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["type", "options"],
+          "properties": {
+            "type": { "const": "fixed_list" },
+            "options": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "additionalProperties": true
+        },
+        {
+          "type": "object",
+          "required": ["type", "file", "list"],
+          "properties": {
+            "type": { "const": "external" },
+            "file": { "type": "string" },
+            "list": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "depends_on": { "type": "string" },
+    "depends_on_value": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ]
+    },
+    "optional": { "type": "boolean" }
+  },
+  "additionalProperties": true
+}

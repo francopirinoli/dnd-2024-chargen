@@ -1,0 +1,35 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "D&D Character Creator (Python + Node)",
+	"image": "mcr.microsoft.com/devcontainers/python:dev-3.14-bookworm",
+	"features": {
+		"ghcr.io/devcontainers/features/azure-cli:": {},
+		"ghcr.io/jsburckhardt/devcontainer-features/ruff:1": {},
+		"ghcr.io/va-h/devcontainers-features/uv:1": {},
+		"ghcr.io/devcontainers/features/node:": {
+			"version": "20"
+		}
+	},
+
+	"forwardPorts": [5000, 5173],
+	"portsAttributes": {
+		"5000": { "label": "Flask API" },
+		"5173": { "label": "Vite dev server" }
+	},
+
+	"postCreateCommand": "pip3 install --user -r requirements.txt && (cd frontend && npm install || echo 'frontend/ deps not installed; run: cd frontend && npm install')",
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"charliermarsh.ruff",
+				"bradlc.vscode-tailwindcss",
+				"esbenp.prettier-vscode",
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	}
+}

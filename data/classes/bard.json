@@ -1,0 +1,500 @@
+{
+  "name": "Bard",
+  "description": "Invoking magic through music, dance, and verse, Bards are expert at inspiring others, soothing hurts, disheartening foes, and creating illusions.",
+  "hit_die": 8,
+  "primary_ability": "Charisma",
+  "saving_throw_proficiencies": [
+    "Dexterity",
+    "Charisma"
+  ],
+  "standard_array_assignment": {
+    "Strength": 8,
+    "Dexterity": 14,
+    "Constitution": 12,
+    "Intelligence": 13,
+    "Wisdom": 10,
+    "Charisma": 15
+  },
+  "armor_proficiencies": [
+    "Light armor"
+  ],
+  "weapon_proficiencies": [
+    "Simple weapons"
+  ],
+  "tool_proficiencies_count": 3,
+  "tool_options": [
+    "Bagpipes",
+    "Drum",
+    "Dulcimer",
+    "Flute",
+    "Horn",
+    "Lute",
+    "Lyre",
+    "Pan Flute",
+    "Shawm",
+    "Viol"
+  ],
+  "skill_proficiencies_count": 3,
+  "skill_options": [
+    "Any"
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Leather Armor",
+        "Dagger",
+        "Dagger",
+        "Musical Instrument",
+        "Entertainer's Pack"
+      ],
+      "gold": 19
+    },
+    "option_b": {
+      "gold": 90
+    }
+  },
+  "subclass_selection_level": 3,
+  "spellcasting_ability": "Charisma",
+  "spellcasting_focus": [
+    "Musical Instrument"
+  ],
+  "spellcasting_type": "prepared",
+  "spell_preparation_formula": "level + charisma_modifier",
+  "cantrip_progression": "class_table",
+  "spell_list_restrictions": null,
+  "ritual_casting": true,
+  "proficiency_bonus_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 4,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 6,
+    "18": 6,
+    "19": 6,
+    "20": 6
+  },
+  "cantrips_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 3,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 4,
+    "14": 4,
+    "15": 4,
+    "16": 4,
+    "17": 4,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  },
+  "prepared_spells_by_level": {
+    "1": 4,
+    "2": 5,
+    "3": 6,
+    "4": 7,
+    "5": 9,
+    "6": 10,
+    "7": 11,
+    "8": 12,
+    "9": 14,
+    "10": 15,
+    "11": 16,
+    "12": 16,
+    "13": 17,
+    "14": 17,
+    "15": 18,
+    "16": 18,
+    "17": 19,
+    "18": 20,
+    "19": 21,
+    "20": 22
+  },
+  "spell_slots_by_level": {
+    "1": [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "2": [
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "3": [
+      4,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "4": [
+      4,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "5": [
+      4,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "6": [
+      4,
+      3,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "7": [
+      4,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "8": [
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "9": [
+      4,
+      3,
+      3,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "10": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      0,
+      0,
+      0,
+      0
+    ],
+    "11": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+    ],
+    "12": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      0,
+      0,
+      0
+    ],
+    "13": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+    ],
+    "14": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0
+    ],
+    "15": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+    ],
+    "16": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      0
+    ],
+    "17": [
+      4,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1,
+      1
+    ],
+    "18": [
+      4,
+      3,
+      3,
+      3,
+      3,
+      1,
+      1,
+      1,
+      1
+    ],
+    "19": [
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      1,
+      1,
+      1
+    ],
+    "20": [
+      4,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      1,
+      1
+    ]
+  },
+  "features_by_level": {
+    "1": {
+      "Bardic Inspiration": "As a Bonus Action, inspire a creature within 60 feet. They gain a Bardic Inspiration die (d6) to add to a failed D20 Test within 1 hour. Uses equal to Charisma modifier (min 1), regained on Long Rest. Die becomes d8 at level 5, d10 at level 10, d12 at level 15.",
+      "Spellcasting": {
+        "description": "Cast spells using Charisma. Know 2 cantrips, prepare 4 level 1+ spells from the Bard spell list. Use a Musical Instrument as a Spellcasting Focus.",
+        "feature_kind": "spellcasting_setup"
+      }
+    },
+    "2": {
+      "Expertise": "Gain Expertise in two skill proficiencies of your choice.",
+      "Jack of all Trades": "You can add half your Proficiency Bonus (round down) to any ability check you make that uses a skill proficiency you lack and that doesn't otherwise use your Proficiency Bonus."
+    },
+    "3": {
+      "Bard Subclass": {
+        "description": "Choose your Bard College subclass.",
+        "feature_kind": "subclass_pick"
+      }
+    },
+    "4": {
+      "Ability Score Improvement": {
+        "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+        "choices": {
+          "name": "class_feat_4",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "5": {
+      "Font of Inspiration": "Regain all expended uses of Bardic Inspiration on Short or Long Rest. Can expend a spell slot to regain one use."
+    },
+    "6": {
+      "Subclass Feature": {
+        "description": "Gain a feature from your Bard College subclass.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "7": {
+      "Countercharm": "When you or a creature within 30 feet fails a save against Charmed or Frightened, use Reaction to reroll with Advantage."
+    },
+    "8": {
+      "Ability Score Improvement": {
+        "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+        "choices": {
+          "name": "class_feat_8",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "9": {
+      "Expertise": "Gain Expertise in two more skill proficiencies of your choice."
+    },
+    "10": {
+      "Magical Secrets": "When gaining prepared spells, can choose from Bard, Cleric, Druid, or Wizard spell lists."
+    },
+    "11": {},
+    "12": {
+      "Ability Score Improvement": {
+        "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+        "choices": {
+          "name": "class_feat_12",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "13": {},
+    "14": {
+      "Subclass Feature": {
+        "description": "Gain a feature from your Bard College subclass.",
+        "feature_kind": "subclass_feature_slot"
+      }
+    },
+    "15": {},
+    "16": {
+      "Ability Score Improvement": {
+        "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+        "choices": {
+          "name": "class_feat_16",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
+    },
+    "17": {},
+    "18": {
+      "Superior Inspiration": "When you roll Initiative, regain expended uses of Bardic Inspiration until you have two."
+    },
+    "19": {
+      "Epic Boon": "Gain an Epic Boon feat or another feat of your choice."
+    },
+    "20": {
+      "Words of Creation": {
+        "description": "You have mastered two of the Words of Creation: the words of life and death. You always have the Power Word Heal and Power Word Kill spells prepared. When you cast either spell, you can target a second creature with it if that creature is within 10 feet of the first target.",
+        "effects": [
+          {
+            "type": "grant_spell",
+            "spell": "Power Word Heal",
+            "min_level": 20,
+            "counts_against_limit": false
+          },
+          {
+            "type": "grant_spell",
+            "spell": "Power Word Kill",
+            "min_level": 20,
+            "counts_against_limit": false
+          }
+        ]
+      }
+    }
+  },
+  "multiclassing": {
+    "hit_die_granted": 8,
+    "armor_training": [
+      "Light"
+    ],
+    "weapon_training": [],
+    "tool_training": [
+      "Musical Instrument (1 of your choice)"
+    ],
+    "skill_proficiencies": {
+      "count": 1,
+      "options": "any"
+    },
+    "saving_throw_proficiencies": [],
+    "other_proficiencies": [],
+    "notes": null,
+    "source_text": "As a Multiclass Character: Gain the following traits from the Core Bard Traits table: Hit Point Die, proficiency in one skill of your choice, proficiency with one Musical Instrument of your choice, and training with Light armor. Gain the Bard's level 1 features, which are listed in the Bard Features table. See the multiclassing rules in multiclassing to determine your available spell slots."
+  }
+}

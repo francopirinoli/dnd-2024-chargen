@@ -1,0 +1,19 @@
+{
+  "name": "Incendiary Cloud",
+  "level": 8,
+  "school": "Conjuration",
+  "casting_time": "1 action",
+  "range": "150 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "A swirling cloud of smoke shot through with white-hot embers appears in a 20-foot-radius Sphere centered on a point within range. The cloud spreads around corners and is Heavily Obscured. It lasts for the duration or until a strong wind disperses it. A creature takes 10d8 Fire damage when it enters the spell's area for the first time on a turn or starts its turn there. At the start of each of your turns after the spell is cast, the cloud moves 10 feet directly away from you.",
+  "classes": [
+    "Druid",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Cinzel", serif;
+    --font-body: "Inter";
+    --radius: 0.5rem;
+  }
+
+  /*
+   * Light shadcn theme with red accent. Values are HSL triplets (no
+   * hsl(...) wrapper) so Tailwind can compose opacity utilities on top.
+   *
+   * Brand palette:
+   *   primary = D&B red (#C8102E) used as the accent everywhere
+   */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 4%;
+
+    --primary: 351 85% 41%;             /* D&D Beyond red */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 40%;
+
+    --accent: 351 85% 41%;              /* red accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 351 85% 41%;
+  }
+
+  .dark {
+    --background: 240 9% 6%;
+    --foreground: 40 30% 92%;
+
+    --card: 240 8% 10%;
+    --card-foreground: 40 30% 92%;
+
+    --popover: 240 8% 10%;
+    --popover-foreground: 40 30% 92%;
+
+    --primary: 43 85% 54%;              /* fantasy gold for dark bg */
+    --primary-foreground: 240 10% 4%;
+
+    --secondary: 240 6% 18%;
+    --secondary-foreground: 40 30% 92%;
+
+    --muted: 240 6% 14%;
+    --muted-foreground: 40 12% 65%;
+
+    --accent: 351 85% 41%;
+    --accent-foreground: 40 30% 96%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 40 30% 96%;
+
+    --border: 240 6% 20%;
+    --input: 240 6% 20%;
+    --ring: 43 85% 54%;              /* gold to match dark-mode primary */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+
+@layer components {
+
+  .info-panel {
+    @apply rounded-xl border border-primary/25 bg-muted/60 shadow-inner
+           flex flex-col;
+    max-height: calc(100dvh - 3rem);
+  }
+
+  .info-panel-header {
+    @apply flex-none border-b border-border/70 px-4 py-3 sm:px-5;
+  }
+
+  .info-panel-kicker {
+    @apply text-[11px] uppercase tracking-[0.24em] text-muted-foreground;
+  }
+
+  .info-panel-title {
+    @apply mt-1 font-display text-lg text-primary font-semibold;
+  }
+
+  .info-panel-body {
+    @apply flex-1 min-h-0 overflow-y-auto px-4 py-4 sm:px-5;
+  }
+
+  /* Theme-aware custom scrollbar for the info panel */
+  .info-panel-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  .info-panel-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .info-panel-body::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  .info-panel-body::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.45);
+  }
+
+  /* Reusable themed scrollbar (matches info-panel-body) */
+  .themed-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  .themed-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .themed-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .themed-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  .themed-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.45);
+  }
+
+  .info-panel-block {
+    @apply rounded-lg border border-border/70 bg-background/80 p-3;
+  }
+
+  .feature-description table {
+    @apply w-full mt-2 border-collapse;
+  }
+  .feature-description th,
+  .feature-description td {
+    @apply border border-border px-2 py-1 text-left;
+  }
+  .feature-description thead th {
+    @apply bg-muted text-foreground font-semibold;
+  }
+  .feature-description tr.table-success td {
+    @apply bg-primary/10 text-foreground;
+  }
+  .feature-description tr.table-secondary td {
+    @apply bg-muted/60 text-muted-foreground;
+  }
+}

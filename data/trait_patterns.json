@@ -1,0 +1,247 @@
+{
+  "patterns": [
+    {
+      "name": "Dwarven Toughness",
+      "pattern_type": "exact_name",
+      "pattern": "dwarven toughness",
+      "feature": {
+        "effect_type": "hit_points",
+        "value": 1,
+        "scaling": "per_level",
+        "description_override": null
+      }
+    },
+    {
+      "name": "HP Per Level",
+      "pattern_type": "text_contains",
+      "pattern": ["hp", "level", "increases"],
+      "requires_all": true,
+      "feature": {
+        "effect_type": "hit_points",
+        "value": 1,
+        "scaling": "per_level",
+        "description_override": null
+      }
+    },
+    {
+      "name": "Darkvision",
+      "pattern_type": "text_contains",
+      "pattern": ["darkvision", "dark vision", "dim light"],
+      "requires_all": false,
+      "feature": {
+        "effect_type": "vision",
+        "value": "darkvision",
+        "scaling": null,
+        "description_override": null
+      }
+    },
+    {
+      "name": "Damage Resistance - Poison",
+      "pattern_type": "text_contains",
+      "pattern": ["resistance", "poison"],
+      "requires_all": true,
+      "feature": {
+        "effect_type": "damage_resistance",
+        "value": "poison",
+        "scaling": null,
+        "description_override": null
+      }
+    },
+    {
+      "name": "Damage Resistance - General",
+      "pattern_type": "text_contains",
+      "pattern": ["resistance"],
+      "requires_all": false,
+      "feature": {
+        "effect_type": "damage_resistance",
+        "value": "varies",
+        "scaling": null,
+        "description_override": null
+      }
+    },
+    {
+      "name": "Saving Throw Advantage - Poison",
+      "pattern_type": "text_contains",
+      "pattern": ["advantage", "saving throws", "poison"],
+      "requires_all": true,
+      "feature": {
+        "effect_type": "saving_throws",
+        "value": "poison",
+        "scaling": null,
+        "description_override": "Advantage on saving throws against poison"
+      }
+    },
+    {
+      "name": "Magic Resistance",
+      "pattern_type": "text_contains",
+      "pattern": ["advantage", "saving throws", "spell"],
+      "requires_all": true,
+      "feature": {
+        "effect_type": "saving_throws",
+        "value": "spells",
+        "scaling": null,
+        "description_override": "Advantage on saving throws against spells"
+      }
+    },
+    {
+      "name": "Lucky",
+      "pattern_type": "exact_name",
+      "pattern": "lucky",
+      "feature": {
+        "effect_type": "special",
+        "value": "reroll_ones",
+        "scaling": null,
+        "description_override": "Can reroll natural 1s on attack rolls, ability checks, and saving throws"
+      }
+    },
+    {
+      "name": "Brave",
+      "pattern_type": "text_contains",
+      "pattern": ["advantage", "frightened"],
+      "requires_all": true,
+      "feature": {
+        "effect_type": "condition_immunity",
+        "value": "frightened_advantage",
+        "scaling": null,
+        "description_override": "Advantage on saving throws against being frightened"
+      }
+    },
+    {
+      "name": "Fey Ancestry",
+      "pattern_type": "text_contains",
+      "pattern": ["advantage", "charmed", "magic", "sleep"],
+      "requires_all": false,
+      "feature": {
+        "effect_type": "condition_immunity",
+        "value": "charm_sleep_resistance",
+        "scaling": null,
+        "description_override": "Advantage against charm effects and immunity to magical sleep"
+      }
+    },
+    {
+      "name": "Celestial Resistance",
+      "pattern_type": "text_contains",
+      "pattern": ["resistance", "necrotic", "radiant"],
+      "requires_all": false,
+      "feature": {
+        "effect_type": "damage_resistance",
+        "value": "necrotic_radiant",
+        "scaling": null,
+        "description_override": "Resistance to necrotic and radiant damage"
+      }
+    },
+    {
+      "name": "Cold Resistance",
+      "pattern_type": "text_contains",
+      "pattern": ["resistance", "cold"],
+      "requires_all": true,
+      "feature": {
+        "effect_type": "damage_resistance",
+        "value": "cold",
+        "scaling": null,
+        "description_override": "Resistance to cold damage"
+      }
+    },
+    {
+      "name": "Healing Hands",
+      "pattern_type": "exact_name",
+      "pattern": "healing hands",
+      "feature": {
+        "effect_type": "special",
+        "value": "healing_touch",
+        "scaling": null,
+        "description_override": "Heal others equal to your level once per long rest"
+      }
+    },
+    {
+      "name": "Stone's Endurance",
+      "pattern_type": "exact_name",
+      "pattern": "stone's endurance",
+      "feature": {
+        "effect_type": "special",
+        "value": "damage_reduction",
+        "scaling": null,
+        "description_override": "Use reaction to reduce damage by d12 + Constitution modifier"
+      }
+    },
+    {
+      "name": "Powerful Build",
+      "pattern_type": "exact_name",
+      "pattern": "powerful build",
+      "feature": {
+        "effect_type": "special",
+        "value": "carrying_capacity",
+        "scaling": null,
+        "description_override": "Count as one size larger for carrying capacity"
+      }
+    },
+    {
+      "name": "Adrenaline Rush",
+      "pattern_type": "exact_name",
+      "pattern": "adrenaline rush",
+      "feature": {
+        "effect_type": "special",
+        "value": "bonus_dash",
+        "scaling": null,
+        "description_override": "Take Dash action as bonus action, proficiency bonus times per long rest"
+      }
+    },
+    {
+      "name": "Relentless Endurance", 
+      "pattern_type": "exact_name",
+      "pattern": "relentless endurance",
+      "feature": {
+        "effect_type": "special",
+        "value": "death_save",
+        "scaling": null,
+        "description_override": "Drop to 1 HP instead of 0 once per long rest"
+      }
+    },
+    {
+      "name": "Fire Resistance",
+      "pattern_type": "text_contains",
+      "pattern": ["resistance", "fire"],
+      "requires_all": true,
+      "feature": {
+        "effect_type": "damage_resistance",
+        "value": "fire",
+        "scaling": null,
+        "description_override": "Resistance to fire damage"
+      }
+    },
+    {
+      "name": "Natural Illusionist",
+      "pattern_type": "exact_name",
+      "pattern": "natural illusionist",
+      "feature": {
+        "effect_type": "special",
+        "value": "minor_illusion",
+        "scaling": null,
+        "description_override": "Know Minor Illusion cantrip"
+      }
+    },
+    {
+      "name": "Halfling Nimbleness",
+      "pattern_type": "exact_name", 
+      "pattern": "halfling nimbleness",
+      "feature": {
+        "effect_type": "special",
+        "value": "move_through",
+        "scaling": null,
+        "description_override": "Move through larger creatures' spaces"
+      }
+    }
+  ],
+  "fallback_patterns": [
+    {
+      "name": "Special Ability",
+      "pattern_type": "fallback",
+      "feature": {
+        "effect_type": "special",
+        "value": "unknown",
+        "scaling": null,
+        "description_override": null
+      }
+    }
+  ]
+}

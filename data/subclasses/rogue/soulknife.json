@@ -1,0 +1,21 @@
+{
+  "name": "Soulknife",
+  "class": "Rogue",
+  "description": "A Soulknife strikes with the mind, cutting through barriers both physical and psychic. These Rogues discover psionic power within themselves and channel it to do their roguish work.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Psionic Power": "You harbor a wellspring of psionic energy represented by Psionic Energy Dice. You start with 4 d6 dice. Psi-Bolstered Knack: If you fail an ability check using a skill or tool with proficiency, roll a Psionic Energy Die and add the number to the check. The die is expended only if the roll succeeds. Psychic Whispers: As a Magic action, choose up to a number of creatures equal to your Proficiency Bonus. Roll a Psionic Energy Die; for that many hours, you and chosen creatures can speak telepathically within 1 mile.",
+      "Psychic Blades": "Whenever you take the Attack action or make an Opportunity Attack, you can manifest a Psychic Blade (Simple Melee, 1d6 Psychic + ability modifier, Finesse, Thrown 60/120 ft, Vex mastery). The blade vanishes after hitting or missing. After attacking with the blade on your turn, you can make a bonus attack with a second psychic blade (1d4 instead of 1d6) if your other hand is free."
+    },
+    "9": {
+      "Soul Blades": "Homing Strikes: If you miss with your Psychic Blade, roll a Psionic Energy Die and add the number to the attack roll. The die is expended only if the attack then hits. Psychic Teleportation: As a Bonus Action, manifest a Psychic Blade, expend a Psionic Energy Die, and throw it to an unoccupied space you can see up to 10 times the number rolled feet away. You then teleport to that space."
+    },
+    "13": {
+      "Psychic Veil": "As a Magic action, you gain the Invisible condition for 1 hour or until you dismiss it. This invisibility ends early after you deal damage or force a saving throw. Once per Long Rest, or you can expend a Psionic Energy Die to use it again."
+    },
+    "17": {
+      "Rend Mind": "When you use your Psychic Blades to deal Sneak Attack damage, you can force the target to make a Wisdom saving throw (DC 8 + Dexterity modifier + Proficiency Bonus). On a failure, the target has the Stunned condition for 1 minute, repeating the save at the end of each of its turns. Once per Long Rest, or you can expend three Psionic Energy Dice to use it again."
+    }
+  }
+}

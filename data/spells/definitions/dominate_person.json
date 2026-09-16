@@ -1,0 +1,19 @@
+{
+  "name": "Dominate Person",
+  "level": 5,
+  "school": "Enchantment",
+  "casting_time": "1 action",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "You attempt to beguile a Humanoid that you can see within range. It must succeed on a Wisdom saving throw or have the Charmed condition for the duration. While the target is Charmed, you have a telepathic link with it as long as the two of you are on the same plane of existence. You can use this telepathic link to issue commands (no action required), which it does its best to obey. You can specify a simple and general course of action, such as 'Attack that creature,' 'Run over there,' or 'Fetch that object.' Each time the target takes damage, it makes a new Wisdom saving throw against the spell. On a success, the spell ends. At Higher Levels. When you cast this spell using a 6th-level slot, the duration is Concentration, up to 10 minutes. With a 7th-level slot, the duration is Concentration, up to 1 hour. With an 8th- or 9th-level slot, the duration is Concentration, up to 8 hours.",
+  "classes": [
+    "Bard",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

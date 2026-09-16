@@ -1,0 +1,40 @@
+{
+  "name": "War Domain",
+  "class": "Cleric",
+  "description": "Clerics who excel in battle, inspiring others and smiting enemies with divine power.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Guided Strike": "When you or a creature within 30 feet of you misses with an attack roll, you can expend one use of your Channel Divinity and give that roll a +10 bonus, potentially causing it to hit. When you use this feature to benefit another creature's attack roll, you must take a Reaction to do so.",
+      "War Domain Spells": {
+        "description": "You always have certain spells prepared.",
+        "effects": [
+          {"type": "grant_spell", "spell": "Guiding Bolt", "min_level": 3},
+          {"type": "grant_spell", "spell": "Magic Weapon", "min_level": 3},
+          {"type": "grant_spell", "spell": "Shield of Faith", "min_level": 3},
+          {"type": "grant_spell", "spell": "Spiritual Weapon", "min_level": 3},
+          {"type": "grant_spell", "spell": "Crusader's Mantle", "min_level": 5},
+          {"type": "grant_spell", "spell": "Spirit Guardians", "min_level": 5},
+          {"type": "grant_spell", "spell": "Fire Shield", "min_level": 7},
+          {"type": "grant_spell", "spell": "Freedom of Movement", "min_level": 7},
+          {"type": "grant_spell", "spell": "Hold Monster", "min_level": 9},
+          {"type": "grant_spell", "spell": "Steel Wind Strike", "min_level": 9}
+        ]
+      },
+      "War Priest": "As a Bonus Action, you can make one attack with a weapon or an Unarmed Strike. You can use this Bonus Action a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a Short or Long Rest."
+    },
+    "6": {
+      "War God's Blessing": "You can expend a use of your Channel Divinity to cast Shield of Faith or Spiritual Weapon rather than expending a spell slot. When you cast either spell in this way, the spell doesn't require Concentration. Instead the spell lasts for 1 minute, but it ends early if you cast that spell again, have the Incapacitated condition, or die."
+    },
+    "17": {
+      "Avatar of Battle": {
+        "description": "You gain Resistance to Bludgeoning, Piercing, and Slashing damage.",
+        "effects": [
+          {"type": "grant_damage_resistance", "damage_type": "Bludgeoning"},
+          {"type": "grant_damage_resistance", "damage_type": "Piercing"},
+          {"type": "grant_damage_resistance", "damage_type": "Slashing"}
+        ]
+      }
+    }
+  }
+}

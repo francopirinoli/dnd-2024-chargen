@@ -1,0 +1,18 @@
+{
+  "name": "Misty Step",
+  "level": 2,
+  "school": "Conjuration",
+  "casting_time": "1 bonus action",
+  "range": "Self",
+  "components": [
+    "V"
+  ],
+  "duration": "Instantaneous",
+  "description": "You teleport a short distance to an unoccupied space you can see.",
+  "classes": [
+    "Sorcerer",
+    "Warlock",
+    "Wizard"
+  ],
+  "ritual": false
+}

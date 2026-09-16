@@ -1,0 +1,46 @@
+{
+  "standard": [
+    "Common Sign Language",
+    "Draconic",
+    "Dwarvish",
+    "Elvish",
+    "Giant",
+    "Gnomish",
+    "Goblin",
+    "Halfling",
+    "Orc"
+  ],
+  "rare": [
+    "Abyssal",
+    "Celestial",
+    "Deep Speech",
+    "Druidic",
+    "Giant Owl",
+    "Gnoll",
+    "Primordial",
+    "Sylvan",
+    "Thieves' Cant",
+    "Undercommon"
+  ],
+  "all": [
+    "Common Sign Language",
+    "Draconic",
+    "Dwarvish",
+    "Elvish",
+    "Giant",
+    "Gnomish",
+    "Goblin",
+    "Halfling",
+    "Orc",
+    "Abyssal",
+    "Celestial",
+    "Deep Speech",
+    "Druidic",
+    "Giant Owl",
+    "Gnoll",
+    "Primordial",
+    "Sylvan",
+    "Thieves' Cant",
+    "Undercommon"
+  ]
+}

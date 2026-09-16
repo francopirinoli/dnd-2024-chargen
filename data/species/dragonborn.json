@@ -1,0 +1,66 @@
+{
+  "name": "Dragonborn",
+  "description": "The ancestors of dragonborn hatched from the eggs of chromatic and metallic dragons. Dragonborn look like wingless, bipedal dragons - scaly, bright-eyed, and thick-boned with horns on their heads - and their coloration and other features are reminiscent of their draconic ancestors.",
+  "creature_type": "Humanoid",
+  "size": "Medium",
+  "size_description": "about 5-7 feet tall",
+  "speed": 30,
+  "darkvision": 60,
+  "traits": {
+    "Draconic Ancestry": {
+      "description": "Your lineage stems from a dragon progenitor. Choose the kind of dragon from the list. Your choice affects your Breath Weapon and Damage Resistance traits as well as your appearance.",
+      "type": "choice",
+      "choices": {
+        "type": "select_single",
+        "count": 1,
+        "source": {
+          "type": "fixed_list",
+          "options": [
+            "Black (Acid)",
+            "Blue (Lightning)",
+            "Brass (Fire)",
+            "Bronze (Lightning)",
+            "Copper (Acid)",
+            "Gold (Fire)",
+            "Green (Poison)",
+            "Red (Fire)",
+            "Silver (Cold)",
+            "White (Cold)"
+          ]
+        }
+      }
+    },
+    "Breath Weapon": {
+      "description": "When you take the Attack action on your turn, you can replace one of your attacks with an exhalation of {damage_type} energy in either a 15-foot Cone or a 30-foot Line that is 5 feet wide. Each creature in that area must make a Dexterity saving throw (DC 8 + your Constitution modifier + Proficiency Bonus). On a failed save, a creature takes 1d10 {damage_type} damage. On a successful save, a creature takes half as much damage. This damage increases by 1d10 when you reach character levels 5 (2d10), 11 (3d10), and 17 (4d10). You can use this Breath Weapon a number of times equal to your Proficiency Bonus, and you regain all expended uses when you finish a Long Rest.",
+      "choice_substitutions": {
+        "damage_type": "Draconic Ancestry"
+      }
+    },
+    "Damage Resistance": {
+      "description": "You have Resistance to {damage_type} damage.",
+      "choice_substitutions": {
+        "damage_type": "Draconic Ancestry"
+      },
+      "effects": [
+        {
+          "type": "grant_damage_resistance",
+          "damage_type_from_choice": "Draconic Ancestry"
+        }
+      ]
+    },
+    "Darkvision": {
+      "description": "You have Darkvision with a range of 60 feet.",
+      "effects": [
+        {
+          "type": "grant_darkvision",
+          "range": 60
+        }
+      ]
+    },
+    "Draconic Flight": "When you reach character level 5, you can channel draconic magic to give yourself temporary flight. As a Bonus Action, you sprout spectral wings on your back that last for 10 minutes or until you retract the wings (no action required) or have the Incapacitated condition. During that time, you have a Fly Speed equal to your Speed. Your wings appear to be made of the same energy as your Breath Weapon. Once you use this trait, you can't use it again until you finish a Long Rest."
+  },
+  "languages": [
+    "Common",
+    "Draconic"
+  ]
+}

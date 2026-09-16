@@ -1,0 +1,20 @@
+{
+  "name": "Control Weather",
+  "level": 8,
+  "school": "Transmutation",
+  "casting_time": "10 minutes",
+  "range": "Self",
+  "components": [
+    "V",
+    "S",
+    "M (burning incense)"
+  ],
+  "duration": "Concentration, up to 8 hours",
+  "description": "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early. When you cast the spell, you change the current weather conditions, which are determined by the DM. You can change precipitation, temperature, and wind. It takes 1d4 x 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal.",
+  "classes": [
+    "Cleric",
+    "Druid",
+    "Wizard"
+  ],
+  "ritual": false
+}

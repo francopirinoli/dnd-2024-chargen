@@ -1,0 +1,20 @@
+{
+  "name": "Create Undead",
+  "level": 6,
+  "school": "Necromancy",
+  "casting_time": "1 minute",
+  "range": "10 feet",
+  "components": [
+    "V",
+    "S",
+    "M (one 150+ GP black onyx stone for each corpse)"
+  ],
+  "duration": "Instantaneous",
+  "description": "You can cast this spell only at night. Choose up to three corpses of Medium or Small humanoids within range. Each corpse becomes a Ghoul under your control. On each of your turns, you can take a Bonus Action to mentally command any creature you animated with this spell within 120 feet. The creature is under your control for 24 hours. To maintain control, you must cast this spell again within 24 hours. When using a higher-level spell slot, you can create or reassert control over more powerful undead: Ghasts (7th level), Wights (8th level), Mummies (9th level).",
+  "classes": [
+    "Cleric",
+    "Warlock",
+    "Wizard"
+  ],
+  "ritual": false
+}

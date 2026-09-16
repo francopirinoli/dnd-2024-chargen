@@ -1,0 +1,51 @@
+{
+  "name": "Acolyte",
+  "description": "You devoted yourself to service in a temple, either nestled in a town or secluded in a sacred grove. There you performed rites in honor of a god or pantheon. You served under a priest and studied religion. Thanks to your priest’s instruction and your own devotion, you also learned how to channel a modicum of divine power in service to your place of worship and the people who prayed there.",
+  "edition": "2024",
+  "status": "active",
+  "ability_score_increase": {
+    "total": 3,
+    "options": [
+      "Intelligence",
+      "Wisdom",
+      "Charisma"
+    ],
+    "suggested": {
+      "Intelligence": 1,
+      "Wisdom": 2
+    }
+  },
+  "effects": [
+    {
+      "type": "grant_skill_proficiency",
+      "skills": [
+        "Insight",
+        "Religion"
+      ]
+    },
+    {
+      "type": "grant_origin_feat",
+      "feat": "Magic Initiate (Cleric)"
+    },
+    {
+      "type": "grant_tool_proficiency",
+      "tools": [
+        "Calligrapher's Supplies"
+      ]
+    }
+  ],
+  "starting_equipment": {
+    "option_a": {
+      "items": [
+        "Calligrapher's Supplies",
+        "Book (prayers)",
+        "Incense (10 uses)",
+        "Traveler's Clothes"
+      ],
+      "gold": 22
+    },
+    "option_b": {
+      "gold": 50
+    }
+  }
+}

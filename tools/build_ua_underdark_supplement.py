@@ -1,0 +1,543 @@
+import json
+import os
+import sys
+from pathlib import Path
+
+# Set stdout encoding
+sys.stdout.reconfigure(encoding='utf-8')
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO_ROOT))
+
+OUTPUT_PATH = REPO_ROOT / "supplements" / "ua-2026-underdark-options.json"
+
+package = {
+    "manifest": {
+        "id": "ua-2026-underdark-options",
+        "title": "Unearthed Arcana: Underdark Options",
+        "publisher": "Wizards of the Coast (Playtest)",
+        "version": "1.0.0",
+        "compatibility": "2024",
+        "description": "Playtest character options from Unearthed Arcana 2026: Underdark Options (Articles 1 & 2): 6 subclasses (Path of Unlight Barbarian, Freedom Domain Cleric, Circle of Spores Druid, House Agent Rogue, Faerzress Sorcery Sorcerer, Imaskarcanist Wizard), 5 species (Deep Imaskari, Drider, Illithidkin, Kuo-Toa, Myconid), 5 Ceremorphosis feats, and the Mind Blast spell.",
+        "dependencies": [
+            "core-phb-2024"
+        ]
+    },
+    "subclasses": [
+        {
+            "name": "Path of Unlight",
+            "class": "Barbarian",
+            "description": "Barbarians infused with the radiant, destructive power of Unlight embrace uncontrollable brilliance in exchange for incredible physical prowess. The light burning inside them illuminates the dark while searing and blinding their enemies.",
+            "source": "Unearthed Arcana: Underdark Options",
+            "features_by_level": {
+                "3": {
+                    "Radiant Rage": "The Unlight coursing through you fuels your Rage. If a creature hits you with a melee attack roll while your Rage is active, the creature takes Radiant damage equal to your Rage Damage bonus.\nAdditionally, while your Rage is active, you shed Bright Light in a 20-foot radius."
+                },
+                "6": {
+                    "Unlight Revelation": "You have proficiency in the Perception skill, if you lack it. You also gain Expertise in that skill.\nWhile your rage is active, you have Blindsight with a range equal to that of the Bright Light provided by your Radiant Rage (20 feet)."
+                },
+                "10": {
+                    "Infectious Unlight": "Damage you deal with Brutal Strike can be Radiant or the usual type (your choice). The following effect is now among your Brutal Strike options.\nRadiant Infection. The target becomes infected with Unlight for 1 minute. While infected, it sheds Bright Light in a 10-foot radius. Additionally, at the start of each of its turns, the target takes 1d6 Radiant damage. The target makes a Constitution saving throw (DC 8 plus your Strength modifier and Proficiency Bonus) at the end of each of its turns, ending the effect on itself on a success.",
+                    "Harbinger of Unlight": "You have Resistance to Radiant damage."
+                },
+                "14": {
+                    "Brilliant Rage": "The aura of your Unlight is bolstered. While your Rage is active, you shed Bright Light in a 30-foot radius.\nAs a Bonus Action, you unleash blinding brilliance. When you do, each creature of your choice within 30 feet of you makes a Constitution saving throw (DC 8 plus your Strength modifier and Proficiency Bonus). On a failed save, a creature takes 1d12 Radiant damage and has the Blinded condition until the end of your next turn. On a successful save, a creature takes half damage only.\nOnce you use this feature, you can't use it again until you finish a Long Rest unless you expend a use of your Rage (no action required) to restore your use of it."
+                }
+            }
+        },
+        {
+            "name": "Freedom Domain",
+            "class": "Cleric",
+            "description": "The Freedom Domain provides magic of liberation, movement, and free thought. Clerics use this magic to inspire hope among the oppressed, to help prisoners break free from their cages, and to lead revolutions against oppressive tyrants.",
+            "source": "Unearthed Arcana: Underdark Options",
+            "features_by_level": {
+                "3": {
+                    "Freedom Domain Spells": {
+                        "description": "Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Freedom Domain Spells table, you thereafter always have the listed spells prepared.",
+                        "effects": [
+                            {"type": "grant_spell", "spell": "Expeditious Retreat", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Jump", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Knock", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Misty Step", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Fly", "min_level": 5, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Gaseous Form", "min_level": 5, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Dimension Door", "min_level": 7, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Freedom of Movement", "min_level": 7, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Passwall", "min_level": 9, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Tree Stride", "min_level": 9, "counts_against_limit": False}
+                        ]
+                    },
+                    "Invoke Liberty": "As a Magic Action, you present your Holy Symbol and expend a use of your Channel Divinity. Each allied creature within a 30-foot Emanation originating from you can end one of the following conditions on itself (its choice): Frightened, Grappled, Paralyzed, or Restrained. The creature can then use its Reaction to move up to its Speed without provoking Opportunity Attacks.\nWhen you reach Cleric level 9, the list of conditions your allies can choose to end expands to include Charmed and Petrified.",
+                    "Unencumbered Grace": "While you aren't wearing armor, your base Armor Class equals 10 plus your Dexterity and Wisdom modifiers. You can use a Shield and still gain this benefit.\nIn addition, you gain Proficiency in Acrobatics. If you already have Proficiency in Acrobatics, you gain Expertise in it instead."
+                },
+                "6": {
+                    "Unstoppable": "Your mystical connection to freedom allows you to swiftly navigate obstacles. Your movement is unaffected by Difficult Terrain.\nIn addition, you gain proficiency in Dexterity saving throws. If you already have this proficiency, you instead gain proficiency with one saving throw in which you lack it."
+                },
+                "17": {
+                    "Avatar of Freedom": "As a Bonus Action, you can manifest a 30-foot Emanation that surrounds you for 10 minutes. It ends early if you dismiss it (no action required) or have the Incapacitated condition. This Emanation has the following effects:\n- Whenever an ally enters the Emanation for the first time on a turn or starts its turn there, the ally's Speed increases by 30 feet until the end of the ally's next turn.\n- The movement of allies within the Emanation is unaffected by Difficult Terrain.\n- Allies within the Emanation have Advantage on Dexterity checks.\nOnce you use this ability, you can't do so again until you finish a Short or Long Rest."
+                }
+            }
+        },
+        {
+            "name": "Circle of Spores",
+            "class": "Druid",
+            "description": "Druids of the Circle of Spores find beauty in decay, revering mold and fungi for their ability to transform lifeless material into fertile growth. They embrace the grand cycle of life, death, and decay, viewing temporary undeath as a natural component of decomposition.",
+            "source": "Unearthed Arcana: Underdark Options",
+            "features_by_level": {
+                "3": {
+                    "Circle Spells": {
+                        "description": "When you reach a Druid level specified in the Circle of Spores Spells table, you thereafter always have the listed spells prepared.",
+                        "effects": [
+                            {"type": "grant_spell", "spell": "Blindness/Deafness", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Charm Person", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Chill Touch", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Animate Dead", "min_level": 5, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Confusion", "min_level": 7, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Contagion", "min_level": 9, "counts_against_limit": False}
+                        ]
+                    },
+                    "Halo of Spores": "Invisible spores fill a 10-foot Emanation originating from you, providing you with a telepathic link to those who step inside. You have telepathy with a range of 10 feet. If you already have telepathy, your range increases by 10 feet.\nAdditionally, when a creature you can see moves into your Emanation or starts its turn there, you can use your Reaction to infect the creature with your spores. The target makes a Constitution saving throw against your spell save DC. On a failed save, the target takes 1d4 Necrotic damage. On a success, the target has Disadvantage on its next attack roll before the end of its turn.\nThe Necrotic damage increases to 1d6 at 6th level, 1d8 at 10th level, and 1d10 at 14th level.",
+                    "Symbiotic Entity": "As a Bonus Action, you can expend a use of your Wild Shape feature to waken your spores, rather than for shape-shifting. When you waken your spores, you gain a number of Temporary Hit Points equal to four times your Druid level. This awakening lasts for 10 minutes. It ends early if you dismiss it (no action required), have the Incapacitated condition, or use this feature again. While your spores are awakened, you gain the following benefits:\n- Deadly Halo: When you deal your Halo of Spores damage, roll the damage die a second time and add the number rolled to the total.\n- Entropic Empowerment: Once per turn, you can deal an extra 1d6 Necrotic damage to a target you hit with a melee attack roll using a weapon or an Unarmed Strike."
+                },
+                "6": {
+                    "Fungal Infestation": "Your spores can infest a corpse and animate it. If a Beast or Humanoid that is Small or Medium dies within 10 feet of you, you can take a Reaction to reanimate it, causing it to stand up immediately with 1 Hit Point. If your Symbiotic Entity feature is active, you can transfer any number of Temporary Hit Points you have to your reanimated creature as part of this Reaction.\nThe creature uses the Zombie stat block in the Player's Handbook. It remains animate for 1 hour, at which time it dies. The animation ends early if you end it as a Bonus Action or if the zombie drops to 0 Hit Points.\nThe zombie is an ally to you and your allies. In combat, the zombie shares your Initiative count, but it takes its turn immediately after yours. It obeys your mental commands (no action required by you). If you don't issue any, it takes the Dodge action and uses its movement to avoid danger.\nYou can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses of it when you finish a Long Rest."
+                },
+                "10": {
+                    "Explosive Burst": "When an Undead creature you created dies, it explodes in a burst of spores. Each creature you choose within 10 feet of the dead creature makes a Constitution saving throw against your spell save DC, taking 2d8 Necrotic damage on a failure or half as much on a success."
+                },
+                "14": {
+                    "Fungal Body": "You have Immunity to the Blinded, Deafened, Frightened, and Poisoned conditions. Any Critical Hit against you counts as a normal hit instead, unless you have the Incapacitated condition.\nAdditionally, if you have the Unconscious condition, your spores take over your body's motor functions to steer you to safety. The Unconscious condition doesn't make your Speed 0. On your turn, your spores direct your movement, keeping you near allies and away from danger."
+                }
+            }
+        },
+        {
+            "name": "House Agent",
+            "class": "Rogue",
+            "description": "The drow houses of Menzoberranzan and clandestine factions across the Underdark conspire in games of status and sabotage. House agents are master infiltrators who insinuate themselves into their targets' lives, manipulating social hierarchies and striking when backs are turned.",
+            "source": "Unearthed Arcana: Underdark Options",
+            "features_by_level": {
+                "3": {
+                    "House Insignia": "You gain a magical token in the form of a brooch or coin that marks you as an agent of your sponsor and bears their heraldry. While you have this insignia, you can cast certain spells with it. Charisma is your spellcasting ability for spells you cast with your insignia.\n- Cantrips: You learn the Friends cantrip.\n- Find Familiar: You can cast the Find Familiar spell but only as a Ritual. Your sponsor provides the Material component for your first casting. You must choose the Spider form for your familiar.\n- Insignia Spells: When you reach a level specified in the Insignia Spells table, you learn the listed spells. Once you cast a spell using your insignia, you can't cast that spell again until you finish a Long Rest (Level 3: Charm Person; Level 5: Suggestion; Level 9: Hypnotic Pattern).\n- Losing Your Insignia: If you lose your insignia, your house delivers you a new one when you finish a Long Rest.",
+                    "Charming Presence": "You can take the Influence action as a Bonus Action. Additionally, choose one of the following skills: Deception, Intimidation, Performance, or Persuasion. You have proficiency in that skill."
+                },
+                "9": {
+                    "Backstab": "You have Advantage on attack rolls against creatures within 5 feet of you that are Friendly to you or have the Charmed Condition. You also gain the following Cunning Strike option:\n- Stunning Betrayal (Cost: 4d6): If your target was Friendly to you or had the Charmed condition when you hit it, the target has the Stunned condition until the start of your next turn."
+                },
+                "13": {
+                    "Infiltration Partner": "The familiar you have through the Find Familiar spell gains Darkvision with a range of 120 feet and Truesight with a range of 30 feet.\nAdditionally, when you cast the Find Familiar spell or finish a Short or Long Rest while you have a familiar, you can grant your familiar Temporary Hit Points equal to your Rogue level.",
+                    "Silver Tongue": "A creature's Hostile attitude doesn't impose Disadvantage on your Charisma checks to influence that creature."
+                },
+                "17": {
+                    "Subtle Manipulator": "You gain the following Cunning Strike option:\n- Confound (Cost: 5d6): The target must succeed on a Wisdom saving throw with a DC equal to your spellcasting DC or have the Charmed condition for 1 minute. The target can repeat the save when it takes any damage, ending the effect on itself on a success.\nAdditionally, you can cast the Friends spell as a Bonus Action. The target no longer automatically succeeds on the saving throw if it isn't a Humanoid or if you're fighting it.\nFinally, when a spell you cast that gives a target the Charmed condition ends, the target doesn't know it was Charmed by you."
+                }
+            }
+        },
+        {
+            "name": "Faerzress Sorcery",
+            "class": "Sorcerer",
+            "description": "You have been mutated by faerzress, the uncanny radiation used to shape the Underdark eons ago. Your body has adapted to this weird energy, which sizzles within you like fluid electricity, letting you bend space, scry through magical static, and irradiate your foes.",
+            "source": "Unearthed Arcana: Underdark Options",
+            "features_by_level": {
+                "3": {
+                    "Faerzress Spells": {
+                        "description": "When you reach a Sorcerer level specified in the Faerzress Spells table, you thereafter always have the listed spells prepared.",
+                        "effects": [
+                            {"type": "grant_spell", "spell": "Faerie Fire", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Magic Weapon", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Misty Step", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Witch Bolt", "min_level": 3, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Nondetection", "min_level": 5, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Sending", "min_level": 5, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Arcane Eye", "min_level": 7, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Stone Shape", "min_level": 7, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Passwall", "min_level": 9, "counts_against_limit": False},
+                            {"type": "grant_spell", "spell": "Scrying", "min_level": 9, "counts_against_limit": False}
+                        ]
+                    },
+                    "Faerzress Zone": "As a Magic action, you can spend 3 Sorcery Points to fill an area within 120 feet of you and no larger than a 40-foot Cube with faerzress. The faerzress lasts for 24 hours and has the effects in Faerzress Effects (creatures inside auto-succeed vs Divination, sensors cannot enter, teleportation of 1+ miles blocked, dim light illumination with color darkvision and Perception advantage). If you fill the same area with faerzress every day for 365 days, the faerzress becomes permanent.",
+                    "Immunity to Faerzress": "You ignore the detrimental effects of faerzress. Creatures within an area affected by faerzress don't automatically succeed on saving throws against your Divination spells. Magical sensors and invisible eyes created by spells you cast can enter an area affected by faerzress. When you teleport yourself or other creatures, the teleporting creatures can teleport into or out of an area affected by faerzress regardless of distance."
+                },
+                "6": {
+                    "Faerzress Affinity": "You gain Resistance to Lightning damage. You also gain Darkvision with a range of 60 feet. If you already have Darkvision, its range increases by 30 feet. Unlike with ordinary Darkvision, you discern color in Darkness.\nIn addition, you have Advantage on Wisdom (Perception) checks to see in Dim Light or Darkness.\nFinally, your Immunity to Faerzress feature also applies to allies within 30 feet of you."
+                },
+                "14": {
+                    "Faerzress Spell": "When one or more creatures fails a saving throw against a spell you cast, you can spend 1 Sorcery Point to lace one target that failed the save with faerzress for 1 minute: the creature can't teleport, can't cast Divination spells, and has Disadvantage on saving throws against Divination spells.",
+                    "Faerzress Step": "You always have the Teleport spell prepared and can cast it once without expending a spell slot. You regain the ability to cast the spell in this way when you finish a Long Rest.\nIn addition, whenever you roll on the Teleportation Outcome table, you can choose any outcome available for your familiarity."
+                },
+                "18": {
+                    "Faerzress Form": "When you use your Innate Sorcery, you can turn yourself into pure faerzress energy for 1 minute (or until you end it or die). While in this form:\n- Condition Immunities: Immunity to the Grappled, Paralyzed, Petrified, Poisoned, Prone, and Restrained conditions.\n- Damage Resistances: Resistance to every damage type except Force and Psychic.\n- Movement: Fly Speed equal to your Speed with hover. You can move through other creatures and objects as Difficult Terrain (taking 1d10 Force damage if you end your turn inside an object).\nOnce you use this ability, you can't do so again until you finish a Long Rest or spend 7 Sorcery Points (no action required) to restore your use of it."
+                }
+            }
+        },
+        {
+            "name": "Imaskarcanist",
+            "class": "Wizard",
+            "description": "Imaskarcanists master the ancient, eldritch secrets of Deep Imaskar, a civilization residing in the deepest depths of the Underdark. Taught by sentient artifacts called Imaskarcana, they wield Unlight—a brilliant, destructive, and infectious radiant force that can both heal and obliterate.",
+            "source": "Unearthed Arcana: Underdark Options",
+            "features_by_level": {
+                "3": {
+                    "Unlight Adept": "You know how to weave Unlight into your damaging spells. When you cast a spell that deals Acid, Cold, Fire, Lightning, or Thunder damage, you can change that damage type to Radiant.\nIn addition, Dim Light created by spells you cast is Bright Light instead.",
+                    "Unlight Invigoration": "You can imbue creatures with Unlight drawn from your own energy, making them stronger and fiercer. As a Bonus action, choose a willing creature you can see within 30 feet of you and roll one or two of your Hit Point Dice. Those dice are then expended. The target gains Temporary Hit Points equal to the total rolled plus your Intelligence modifier, and until the target has no Temporary Hit Points, it has Advantage on Strength checks and sheds Bright Light in a 10-foot radius."
+                },
+                "6": {
+                    "Unlight Restoration": "You can wield the restorative effects of Unlight to heal injuries and remove harmful effects. As a Bonus action, choose a creature you can see within 30 feet of you and roll one or two of your Hit Point Dice. Those dice are then expended. The target regains Hit Points equal to the total rolled and sheds Bright Light in a 10-foot radius until the end of its next turn.\nIf you expended two Hit Point Dice, you can choose to end one of the following conditions on the target: Blinded, Deafened, Paralyzed, or Poisoned. If you do, the target does not regain Hit Points."
+                },
+                "10": {
+                    "Secrets of Deep Imaskar": "Your research into the secrets of the Imaskarcana grants you the following benefits:\n- Imaskarcana Lore: You can attune yourself to a magic item as a Magic action (once per Long Rest).\n- Piercing Unlight: Your spells ignore Resistance to Radiant damage.\n- Unlight Resilience: You gain Resistance to Radiant damage.\n- Imaskar Seals: You always have the Glyph of Warding spell prepared and can cast it once without a spell slot or Material components, as if using a spell slot equal to the highest Wizard spell slot you have. Any previous glyph created in this way is broken. You regain this ability when you finish a Long Rest."
+                },
+                "14": {
+                    "Doom of Unlight": "You can curse your enemies with corrosive Unlight. When a creature takes Radiant damage from a spell you cast, you can take a Reaction to force that creature to make a Constitution save against your spell save DC. On a failure, the creature is cursed:\n- The target emits Bright Light in a 20-foot radius.\n- Attack rolls against the target have Advantage.\n- At the start of each of the target's turns, it takes Radiant damage equal to your character level.\n- The target has Advantage on Strength checks and melee attack rolls.\n- If the target hits another creature with a melee attack roll, it can repeat the Constitution save, ending the curse on a success.\n- If the target is reduced to 0 Hit Points, it explodes. Creatures in a 10-foot Emanation take Radiant damage equal to half your character level in d8s.\nOnce you attempt to curse a creature using this feature, you can't do so again until you finish a Long Rest or expend a level 6+ spell slot."
+                }
+            }
+        }
+    ],
+    "species": [
+        {
+            "name": "Deep Imaskari",
+            "description": "Descendants of the ancient human empire of Imaskar who fled into the deepest Underdark, deep imaskari have spent millennia basking in the synthetic radiant power of the Great Seal. Colorless glowing crystals protrude from their skin, and their eyes pierce the dark with golden-white illumination.",
+            "creature_type": "Humanoid",
+            "size": "Medium or Small",
+            "size_description": "Medium (about 4–6 feet tall) or Small (about 2–4 feet tall), chosen when you select this species",
+            "speed": 30,
+            "languages": [
+                "Common",
+                "Undercommon"
+            ],
+            "source": "Unearthed Arcana: Underdark Options",
+            "traits": {
+                "Photoresistant": {
+                    "description": "You have Resistance to Radiant damage.",
+                    "effects": [
+                        {
+                            "type": "grant_damage_resistance",
+                            "damage_type": "Radiant"
+                        }
+                    ]
+                },
+                "Resourceful": {
+                    "description": "You gain Heroic Inspiration whenever you finish a Long Rest."
+                },
+                "Unluminescent": {
+                    "description": "As an action, you can will the crystals protruding from your body to glow with Unlight. You shed Bright Light in a 5-foot radius until you use an action to stop the effect. Your crystals stop glowing if you die or have the Unconscious condition."
+                },
+                "Aura of Unlight": {
+                    "description": "When you reach character level 3, you can use a Bonus Action to create an Aura of Unlight that sheds Bright Light in a 10-foot Emanation originating from you for 1 minute (or until ended, 1/Long Rest). Choose one option each time you create the aura:\n- Abjuring Unlight: You and your allies in the aura gain a bonus to AC equal to half your Proficiency Bonus (round down).\n- Brilliant Unlight: Creatures other than your allies that start their turn within the Emanation must succeed on a Constitution saving throw (DC 8 + your Charisma modifier + Proficiency Bonus) or have the Blinded condition until the end of your next turn.\n- Corrupting Unlight: When you deal damage to a creature with an attack or a spell, you can change the damage type to Radiant. Additionally, you can roll one of your unexpended Hit Point Dice and deal extra Radiant damage equal to the number rolled (the die is expended)."
+                }
+            }
+        },
+        {
+            "name": "Drider",
+            "description": "Skulking through Underdark caverns on eight arachnid legs, driders bear the Spider Queen's curse. With the head and torso of a drow joined to the body of a giant spider, driders are agile hunters capable of clinging to ceilings, spinning webs, and spraying venomous magic.",
+            "creature_type": "Monstrosity",
+            "size": "Medium",
+            "size_description": "Medium (about 6–8 feet tall)",
+            "speed": 30,
+            "darkvision": 120,
+            "languages": [
+                "Common",
+                "Elvish",
+                "Undercommon"
+            ],
+            "source": "Unearthed Arcana: Underdark Options",
+            "traits": {
+                "Arachnid Build": {
+                    "description": "You count as one size larger when determining your carrying capacity."
+                },
+                "Darkvision": {
+                    "description": "You have Darkvision with a range of 120 feet.",
+                    "effects": [
+                        {
+                            "type": "grant_darkvision",
+                            "range": 120
+                        }
+                    ]
+                },
+                "Spells of the Spider Queen": {
+                    "description": "You know the Dancing Lights cantrip. When you reach character level 3, you always have the Faerie Fire spell prepared. When you reach character level 5, you always have the Web spell prepared. You can cast each of these spells once without a spell slot, regaining the ability when you finish a Long Rest. You can also cast these spells using any spell slots you have. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this species).",
+                    "effects": [
+                        {
+                            "type": "grant_cantrip",
+                            "spell": "Dancing Lights"
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Faerie Fire",
+                            "level": 1,
+                            "free_uses": 1,
+                            "recovery": "long_rest"
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Web",
+                            "level": 2,
+                            "free_uses": 1,
+                            "recovery": "long_rest"
+                        }
+                    ]
+                },
+                "Spider Climb": {
+                    "description": "You have a Climb Speed equal to your Speed. When you reach character level 3, you can move up, down, and across vertical surfaces and along ceilings while leaving your hands free."
+                },
+                "Web Walker": {
+                    "description": "You ignore movement restrictions caused by webs, and you know the location of any other creature in contact with the same web."
+                }
+            }
+        },
+        {
+            "name": "Illithidkin",
+            "description": "Illithidkin are the wretched byproduct of mind flayer experimentation on humanoid subjects. Retaining their bipedal form alongside mauve skin, facial tentacles, and nascent psionic gifts, they often struggle for autonomy against the psychic resonance of the elder brains.",
+            "creature_type": "Humanoid",
+            "size": "Medium or Small",
+            "size_description": "Medium (about 5–6 feet tall) or Small (about 2–4 feet tall), chosen when you select this species",
+            "speed": 30,
+            "darkvision": 120,
+            "languages": [
+                "Common",
+                "Deep Speech",
+                "Undercommon"
+            ],
+            "source": "Unearthed Arcana: Underdark Options",
+            "traits": {
+                "Darkvision": {
+                    "description": "You have Darkvision with a range of 120 feet.",
+                    "effects": [
+                        {
+                            "type": "grant_darkvision",
+                            "range": 120
+                        }
+                    ]
+                },
+                "Psionic Aptitude": {
+                    "description": "You know the Mage Hand cantrip, and you can make the spectral hand Invisible. When you reach character level 3, you always have the Command spell prepared. When you reach character level 5, you always have the Levitate spell prepared. You can cast each of these spells once without a spell slot per Long Rest, or using any spell slots you have. Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells (choose when you select this species).",
+                    "effects": [
+                        {
+                            "type": "grant_cantrip",
+                            "spell": "Mage Hand"
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Command",
+                            "level": 1,
+                            "free_uses": 1,
+                            "recovery": "long_rest"
+                        },
+                        {
+                            "type": "grant_spell",
+                            "spell": "Levitate",
+                            "level": 2,
+                            "free_uses": 1,
+                            "recovery": "long_rest"
+                        }
+                    ]
+                },
+                "Sharpened Mind": {
+                    "description": "You have Resistance to Psychic damage. You also have Advantage on saving throws you make to avoid or end the Charmed condition.",
+                    "effects": [
+                        {
+                            "type": "grant_damage_resistance",
+                            "damage_type": "Psychic"
+                        },
+                        {
+                            "type": "grant_save_advantage",
+                            "condition": "Charmed"
+                        }
+                    ]
+                },
+                "Telepathy": {
+                    "description": "You have telepathy with a range of 30 feet."
+                }
+            }
+        },
+        {
+            "name": "Kuo-Toa",
+            "description": "Fishlike humanoids with slimy scales and color-shifting hides, kuo-toa harbor ancestral memories of fallen coastal empires. Deeply religious and imaginative, they can coalesce bizarre divine manifestations through fervent worship and crafted idols.",
+            "creature_type": "Humanoid",
+            "size": "Medium",
+            "size_description": "Medium (about 5–6 feet tall)",
+            "speed": 30,
+            "languages": [
+                "Common",
+                "Undercommon"
+            ],
+            "source": "Unearthed Arcana: Underdark Options",
+            "traits": {
+                "Amphibious": {
+                    "description": "You can breathe both air and water. Additionally, you have a Swim speed equal to your Speed."
+                },
+                "Slippery": {
+                    "description": "You have advantage on saving throws to avoid or end the Grappled and Restrained conditions."
+                },
+                "Deific Manifestation": {
+                    "description": "You always have the Find Familiar spell prepared and can cast it without material components (once per Long Rest free, or using spell slots). When you cast the spell, you choose one of the normal forms for your familiar or one of the following special forms: Homunculus or Myconid Sprout (the familiar's creature type is Celestial). Additionally, your familiar's form is a divine blend of multiple creatures: choose a second form from the available options; your familiar gains one action, Reaction, or trait from that second form.",
+                    "effects": [
+                        {
+                            "type": "grant_spell",
+                            "spell": "Find Familiar",
+                            "level": 1,
+                            "free_uses": 1,
+                            "recovery": "long_rest"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Myconid",
+            "description": "Bipedal fungal folk native to communal Underdark circles, myconids communicate through empathic spore clouds. Peaceful stewards of decay and regeneration, they commune in melding ceremonies to share knowledge and coordinate their colonies.",
+            "creature_type": "Plant",
+            "size": "Medium or Small",
+            "size_description": "Medium (about 4–7 feet tall) or Small (about 2–4 feet tall), chosen when you select this species",
+            "speed": 30,
+            "darkvision": 120,
+            "languages": [
+                "Common",
+                "Undercommon"
+            ],
+            "source": "Unearthed Arcana: Underdark Options",
+            "traits": {
+                "Darkvision": {
+                    "description": "You have Darkvision with a range of 120 feet.",
+                    "effects": [
+                        {
+                            "type": "grant_darkvision",
+                            "range": 120
+                        }
+                    ]
+                },
+                "Telepathy": {
+                    "description": "You have telepathy with a range of 30 feet."
+                },
+                "Rapport Spores": {
+                    "description": "As an action, you expel spores in a 30-foot Emanation originating from yourself. Creatures in the area with an Intelligence score of 2 or higher that aren't Constructs, Elementals, or Undead gain telepathy within a range of 30 feet for 1 hour. Once you use this trait, you can't do so again until you finish a Long Rest."
+                },
+                "Skill Meld": {
+                    "description": "When you finish a Long Rest, you can perform a melding ritual to share knowledge and experiences. When you do so, choose up to six allies (which can include yourself) within 30 feet of yourself to partake in the ritual and a skill proficiency that at least one participant has proficiency in. The chosen creatures each have proficiency in that skill until they finish a Long Rest."
+                }
+            }
+        }
+    ],
+    "feats": {
+        "general_feats": {
+            "Tadpole Host": {
+                "description": "You begin a symbiotic relationship with the mind flayer tadpole in your body. You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Intelligence score by 1, to a maximum of 20.",
+                    "Mind Sliver. You learn the Mind Sliver cantrip. Intelligence is your spellcasting ability for this spell.",
+                    "Psionic Power. The wellspring of psionic energy provided to you by your tadpole is represented by Psionic Energy Dice, which fuel the powers you have from this feat path. You have a number of Psionic Energy Dice equal to your Proficiency Bonus. When you take this feat, your Psionic Energy Die is a d6. The die changes when you take feats along the Path of Ceremorphosis. You regain all expended Psionic Energy Dice when you finish a Long Rest.",
+                    "Psionic Overload. Whenever you deal Psychic damage, you can expend a Psionic Energy Die to roll the die and deal extra Psychic damage equal to the number rolled."
+                ],
+                "category": "General",
+                "prerequisite": "Level 4+",
+                "source": "Unearthed Arcana: Underdark Options",
+                "effects": [
+                    {
+                        "type": "grant_cantrip",
+                        "spell": "Mind Sliver"
+                    },
+                    {
+                        "type": "ability_bonus",
+                        "ability": "Intelligence",
+                        "bonus": 1
+                    }
+                ]
+            },
+            "Illithid Thrallmaker": {
+                "description": "You have honed your psionic ability to become a master manipulator. You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Intelligence or Charisma score by 1, to a maximum of 20.",
+                    "Psionic Energy Dice. The Psionic Energy Dice granted to you by this feat path become d8s.",
+                    "Telepathy. You have Telepathy with a range of 10 feet. If you already have Telepathy, your range increases by 10 feet.",
+                    "Persuasive Presence. You always have the Charm Person spell prepared. Intelligence is your spellcasting ability for this spell. You can cast it without expending a spell slot by expending a Psionic Energy Die. You can also cast the spell using any spell slots you have. When you expend a Psionic Energy Die to cast the spell, roll the expended die. One target of the spell subtracts half the number rolled (round up) from its saving throw against the spell."
+                ],
+                "category": "General",
+                "prerequisite": "Tadpole Host Feat",
+                "source": "Unearthed Arcana: Underdark Options",
+                "effects": [
+                    {
+                        "type": "grant_spell",
+                        "spell": "Charm Person",
+                        "level": 1
+                    }
+                ]
+            },
+            "Tadpole's Safeguard": {
+                "description": "Your tadpole has a vested interest in protecting its shell while it incubates. You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Constitution or Intelligence score by 1, to a maximum of 20.",
+                    "Psionic Energy Dice. The Psionic Energy Dice granted to you by this feat path become d8s.",
+                    "Telepathy. You have Telepathy with a range of 10 feet. If you already have Telepathy, your range increases by 10 feet.",
+                    "Warding Backlash. You always have the Shield spell prepared. Intelligence is your spellcasting ability for this spell. You can cast it without expending a spell slot by expending a Psionic Energy Die. You can also cast the spell using any spell slots you have. When you expend a Psionic Energy Die to cast the spell and cause the triggering attack to miss, roll the expended die. The attacker takes Psychic damage equal to the number rolled."
+                ],
+                "category": "General",
+                "prerequisite": "Tadpole Host Feat",
+                "source": "Unearthed Arcana: Underdark Options",
+                "effects": [
+                    {
+                        "type": "grant_spell",
+                        "spell": "Shield",
+                        "level": 1
+                    }
+                ]
+            },
+            "Ulitharid's Might": {
+                "description": "The tadpole you ingested is mutating you into an ulitharid, a rare type of illithid that boasts great physical strength and mental power, as well as two additional tentacles. You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.",
+                    "Psionic Energy Dice. The Psionic Energy Dice granted to you by this feat path become d8s.",
+                    "Telepathy. You have telepathy with a range of 10 feet. If you already have telepathy, the range increases by 10 feet.",
+                    "Extended Tentacles. Two long tentacles sprout from around your mouth. You can use these tentacles to make an Unarmed Strike. When you're using these tentacles, your reach increases by 5 feet."
+                ],
+                "category": "General",
+                "prerequisite": "Tadpole Host Feat",
+                "source": "Unearthed Arcana: Underdark Options"
+            },
+            "Full Ceremorphosis": {
+                "description": "You grow four tentacles around your mouth, your head elongates, and your skin becomes purple and slick with mucus. Your transformation into a mind flayer is complete. You gain the following benefits:",
+                "benefits": [
+                    "Ability Score Increase. Increase your Intelligence score by 1, to a maximum of 20.",
+                    "Psionic Energy Dice. The Psionic Energy Dice granted to you by this feat path become d10s. If they are already d10s, they instead become d12s.",
+                    "Aberration. Your creature type is Aberration.",
+                    "Illithid Specialization. You excel at a particular illithid talent. Choose Brain-Seeking Tentacles (use Damage and Grapple together on Unarmed Strike; expend Psionic die for extra Psychic damage and penalty to foe's save) or Mind Flayer Spells (always have Detect Thoughts, Levitate, and Mind Blast prepared, cast by expending Psionic die).",
+                    "Repeatable. You can take this feat more than once, but you must choose a different option for Illithid Specialization each time."
+                ],
+                "category": "General",
+                "prerequisite": "Level 12+, at least two Path of Ceremorphosis Feats",
+                "repeatable": True,
+                "source": "Unearthed Arcana: Underdark Options",
+                "effects": [
+                    {
+                        "type": "ability_bonus",
+                        "ability": "Intelligence",
+                        "bonus": 1
+                    }
+                ]
+            }
+        }
+    },
+    "spells": [
+        {
+            "name": "Mind Blast",
+            "level": 6,
+            "school": "Evocation",
+            "casting_time": "1 action",
+            "range": "Self (60-foot cone)",
+            "components": [
+                "S"
+            ],
+            "duration": "Instantaneous",
+            "description": "You unleash a concussive burst of psionic energy. Each creature in a 60-foot Cone originating from you makes an Intelligence saving throw. On a failed save, the creature takes 6d8 Psychic damage and has the Stunned condition until the start of your next turn. On a successful save, the creature takes half as much damage only.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 6.",
+            "classes": [
+                "Sorcerer",
+                "Warlock",
+                "Wizard"
+            ],
+            "ritual": False,
+            "source": "Unearthed Arcana: Underdark Options"
+        }
+    ]
+}
+
+with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
+    json.dump(package, f, indent=2, ensure_ascii=False)
+
+print(f"Successfully generated {OUTPUT_PATH}")

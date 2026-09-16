@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Arcane Shots",
+  "description": "Schema for data/arcane_shots.json. A one-key wrapper ('arcane_shots') around a map of shot_name -> entry, mirroring data/maneuvers.json.",
+  "type": "object",
+  "required": [
+    "arcane_shots"
+  ],
+  "properties": {
+    "arcane_shots": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "description"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "_shared/effect.json"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Elementalism",
+  "level": 0,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Instantaneous",
+  "description": "You exert control over the elements, creating one of the following effects within range: Beckon Air (create a breeze in a 5-foot Cube), Beckon Earth (create dust or write a word in dirt), Beckon Fire (create harmless embers and smoke in a 5-foot Cube that can light candles/torches), Beckon Water (create a spray of cool mist or 1 cup of clean water), or Sculpt Element (shape dirt, sand, fire, smoke, mist, or water in a 1-foot Cube for 1 hour).",
+  "classes": [
+    "Artificer",
+    "Druid",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

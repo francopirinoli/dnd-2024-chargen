@@ -1,0 +1,17 @@
+{
+  "name": "Storm of Vengeance",
+  "level": 9,
+  "school": "Conjuration",
+  "casting_time": "1 action",
+  "range": "Sight",
+  "components": [
+    "V",
+    "S"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "A churning storm cloud forms, centered on a point you can see and spreading to a radius of 360 feet. Each creature under the cloud when it appears must make a Constitution saving throw, taking 2d6 Thunder damage on a failed save, or half as much on a successful one. Each round you maintain concentration on this spell, the storm produces different effects on your turn. Round 2: Acidic rain falls. Each creature under the cloud makes a Dexterity saving throw, taking 4d6 Acid damage on a failed save, or half as much on a successful one. Round 3: You call six bolts of lightning from the cloud to strike six creatures or objects of your choice beneath it. Each target makes a Dexterity saving throw, taking 10d6 Lightning damage on a failed save, or half as much on a successful one. Round 4: Hailstones rain down. Each creature under the cloud makes a Dexterity saving throw, taking 2d6 Bludgeoning damage on a failed save, or half as much on a successful one. Round 5-10: Gusts and freezing rain assail the area under the cloud. The area is Difficult Terrain and Heavily Obscured. Each creature there takes 1d6 Cold damage. Ranged weapon attacks in the area are impossible. A creature must make a Constitution saving throw if it tries to cast a spell with a Verbal component; on a failure, the spell fails and the spell slot is wasted.",
+  "classes": [
+    "Druid"
+  ],
+  "ritual": false
+}

@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "python -m pytest tests/ -x -q --tb=line 2>&1 | tail -5",
+        "timeout": 60,
+        "description": "Run test suite after Python file edits to catch regressions"
+      }
+    ]
+  }
+}

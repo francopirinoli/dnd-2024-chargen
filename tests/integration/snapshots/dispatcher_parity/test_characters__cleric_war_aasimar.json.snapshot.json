@@ -1,0 +1,2244 @@
+{
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 2,
+      "saving_throw_proficient": true,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 13,
+      "modifier": 2,
+      "saving_throw": 2,
+      "saving_throw_proficient": false,
+      "score": 14,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 8,
+      "modifier": -1,
+      "saving_throw": -1,
+      "saving_throw_proficient": false,
+      "score": 8,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 12,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 12,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 14,
+      "modifier": 2,
+      "saving_throw": 2,
+      "saving_throw_proficient": false,
+      "score": 14,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 15,
+      "modifier": 3,
+      "saving_throw": 5,
+      "saving_throw_proficient": true,
+      "score": 17,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 10,
+    "Constitution": 14,
+    "Dexterity": 8,
+    "Intelligence": 12,
+    "Strength": 14,
+    "Wisdom": 17
+  },
+  "ac_options": [
+    {
+      "ac": 11,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (-1) + Shield (2)",
+      "notes": [],
+      "shield": true
+    },
+    {
+      "ac": 14,
+      "armor": "Chain Shirt",
+      "equipped_armor": "Chain Shirt",
+      "formula": "Armor base (13) + Dex modifier (-1) + Shield (2)",
+      "notes": [],
+      "shield": true
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [
+    "Light armor",
+    "Medium armor",
+    "Shields",
+    "Heavy armor"
+  ],
+  "attack_combinations": [],
+  "attacks": [
+    {
+      "ability": "STR",
+      "attack_bonus": 4,
+      "attack_bonus_display": "+4",
+      "avg_crit": 3.0,
+      "avg_damage": 3.0,
+      "damage": "3",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 4,
+      "attack_bonus_display": "+4",
+      "avg_crit": 9.0,
+      "avg_damage": 5.5,
+      "damage": "1d6 + 2",
+      "damage_bonus": 2,
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/mace.svg",
+      "mastery": "Sap",
+      "name": "Mace",
+      "proficient": true,
+      "properties": []
+    }
+  ],
+  "background": "Farmer",
+  "background_data": {
+    "ability_score_increase": {
+      "options": [
+        "Strength",
+        "Constitution",
+        "Wisdom"
+      ],
+      "suggested": {
+        "Constitution": 2,
+        "Strength": 1
+      },
+      "total": 3
+    },
+    "description": "You grew up close to the land. Years tending animals and cultivating the earth rewarded you with patience and good health. You have a keen appreciation for nature's bounty alongside a healthy respect for nature's wrath.",
+    "edition": "2024",
+    "effects": [
+      {
+        "feat": "Tough",
+        "type": "grant_origin_feat"
+      },
+      {
+        "skills": [
+          "Animal Handling",
+          "Nature"
+        ],
+        "type": "grant_skill_proficiency"
+      },
+      {
+        "tools": [
+          "Carpenter's Tools"
+        ],
+        "type": "grant_tool_proficiency"
+      }
+    ],
+    "name": "Farmer",
+    "starting_equipment": {
+      "option_a": {
+        "gold": 30,
+        "items": [
+          "Sickle",
+          "Carpenter's Tools",
+          "Healer's Kit",
+          "Iron Pot",
+          "Shovel",
+          "Traveler's Clothes"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "status": "active"
+  },
+  "choices_made": {
+    "ability_scores": {
+      "Charisma": 10,
+      "Constitution": 13,
+      "Dexterity": 8,
+      "Intelligence": 12,
+      "Strength": 14,
+      "Wisdom": 15
+    },
+    "ability_scores_method": "standard_array",
+    "background": "Farmer",
+    "background_bonuses": {
+      "Constitution": 1,
+      "Wisdom": 2
+    },
+    "class": "Cleric",
+    "classes": [
+      {
+        "class_name": "Cleric",
+        "level": 3,
+        "subclass": "War Domain"
+      }
+    ],
+    "divine_order": "Protector",
+    "equipment_selections": {
+      "background_equipment": "option_b",
+      "class_equipment": "option_a"
+    },
+    "languages": [
+      "Gnomish",
+      "Draconic"
+    ],
+    "level": 3,
+    "skill_choices": [
+      "History",
+      "Religion"
+    ],
+    "species": "Aasimar",
+    "spell_selections": {
+      "background_cantrips": [],
+      "background_spells": [],
+      "cantrips": [
+        "Toll the Dead",
+        "Word of Radiance",
+        "Guidance"
+      ],
+      "spells": [
+        "Healing Word",
+        "Detect Magic",
+        "Bless",
+        "Hold Person",
+        "Aid",
+        "Silence"
+      ]
+    },
+    "subclass": "War Domain"
+  },
+  "class": "Cleric",
+  "class_breakdown": [
+    {
+      "class_name": "Cleric",
+      "level": 3,
+      "subclass": "War Domain"
+    }
+  ],
+  "class_data": {
+    "armor_proficiencies": [
+      "Light armor",
+      "Medium armor",
+      "Shields"
+    ],
+    "blessed_strikes_options": {
+      "Divine Strike": {
+        "description": "Once on each of your turns when you hit a creature with an attack roll using a weapon, you can cause the target to take an extra {strike_dice} Necrotic or Radiant damage (your choice).",
+        "scaling": {
+          "strike_dice": [
+            {
+              "min_level": 14,
+              "value": "2d8"
+            },
+            {
+              "min_level": 7,
+              "value": "1d8"
+            }
+          ]
+        }
+      },
+      "Potent Spellcasting": {
+        "description": "Add your Wisdom modifier to the damage you deal with any Cleric cantrip. {improved_text}",
+        "scaling": {
+          "improved_text": [
+            {
+              "min_level": 14,
+              "value": "When you cast a Cleric cantrip and deal damage to a creature with it, you can give vitality to yourself or another creature within 60 feet of yourself, granting a number of Temporary Hit Points equal to twice your Wisdom modifier."
+            },
+            {
+              "min_level": 7,
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+    "cantrip_progression": "class_table",
+    "cantrips_by_level": {
+      "1": 3,
+      "10": 5,
+      "11": 5,
+      "12": 5,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 5,
+      "18": 5,
+      "19": 5,
+      "2": 3,
+      "20": 5,
+      "3": 3,
+      "4": 4,
+      "5": 4,
+      "6": 4,
+      "7": 4,
+      "8": 4,
+      "9": 4
+    },
+    "description": "Clerics are intermediaries between the mortal world and distant planes of the gods. They channel divine magic to heal, harm, and protect.",
+    "divine_orders": {
+      "Protector": {
+        "description": "You gain proficiency with Martial weapons and training with Heavy armor.",
+        "effects": [
+          {
+            "proficiencies": [
+              "Heavy armor"
+            ],
+            "type": "grant_armor_proficiency"
+          },
+          {
+            "proficiencies": [
+              "Martial weapons"
+            ],
+            "type": "grant_weapon_proficiency"
+          }
+        ]
+      },
+      "Thaumaturge": {
+        "choices": {
+          "count": 1,
+          "name": "thaumaturge_bonus_cantrip",
+          "optional": false,
+          "source": {
+            "file": "spells/class_lists/cleric.json",
+            "list": "cantrips",
+            "type": "external"
+          },
+          "type": "select_single"
+        },
+        "description": "You know one extra cantrip from the Cleric spell list. In addition, your mystical connection to the divine gives you a bonus to your Intelligence (Arcana or Religion) checks. The bonus equals your Wisdom modifier (minimum of +1).",
+        "effects": [
+          {
+            "ability": "Intelligence",
+            "minimum": 1,
+            "skills": [
+              "Arcana",
+              "Religion"
+            ],
+            "type": "ability_bonus",
+            "value": "wisdom_modifier"
+          },
+          {
+            "category": "always_prepared",
+            "count": 1,
+            "counts_against_limit": false,
+            "type": "grant_cantrip_choice"
+          }
+        ]
+      }
+    },
+    "features_by_level": {
+      "1": {
+        "Divine Order": {
+          "choices": {
+            "count": 1,
+            "name": "divine_order",
+            "optional": false,
+            "source": {
+              "list": "divine_orders",
+              "type": "internal"
+            },
+            "type": "select_single"
+          },
+          "description": "You have dedicated yourself to one of the following sacred roles of your choice."
+        },
+        "Spellcasting": {
+          "description": "You can cast spells using Wisdom as your spellcasting ability. You prepare a number of spells equal to your Wisdom modifier + your Cleric level (minimum of 1). You can change your list of prepared spells whenever you finish a Long Rest. You can use a Holy Symbol as your Spellcasting Focus.",
+          "feature_kind": "spellcasting_setup"
+        }
+      },
+      "10": {
+        "Divine Intervention": "Call on deity to intervene. Cast any level 5 or lower Cleric spell without expending a spell slot or needing material components. Once per Long Rest."
+      },
+      "11": {},
+      "12": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_12",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "13": {},
+      "14": {
+        "Improved Blessed Strikes": "The option you chose for Blessed Strikes grows more powerful. The effects are updated automatically based on your level."
+      },
+      "15": {},
+      "16": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_16",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "17": {
+        "Subclass Feature": {
+          "description": "Gain a feature from your Divine Domain subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "18": {},
+      "19": {
+        "Epic Boon": "Gain an Epic Boon feat or another feat of your choice."
+      },
+      "2": {
+        "Channel Divinity": {
+          "description": "You can channel divine energy directly from the Outer Planes to fuel magical effects. You start with two such effects: Divine Spark and Turn Undead. You can use this class's Channel Divinity {uses} per Short/Long Rest. Divine Spark: Point your Holy Symbol at a creature within 30 feet, roll {spark_dice} + Wisdom modifier, restore HP or deal Necrotic/Radiant damage (Constitution save for half). Turn Undead: Present Holy Symbol, Undead within 30 feet make Wisdom save or be Frightened and Incapacitated for 1 minute.",
+          "scaling": {
+            "spark_dice": [
+              {
+                "min_level": 13,
+                "value": "3d8"
+              },
+              {
+                "min_level": 18,
+                "value": "4d8"
+              },
+              {
+                "min_level": 2,
+                "value": "1d8"
+              },
+              {
+                "min_level": 7,
+                "value": "2d8"
+              }
+            ],
+            "uses": [
+              {
+                "min_level": 18,
+                "value": "4"
+              },
+              {
+                "min_level": 2,
+                "value": "2"
+              },
+              {
+                "min_level": 6,
+                "value": "3"
+              }
+            ]
+          }
+        }
+      },
+      "20": {
+        "Greater Divine Intervention": "Can use Divine Intervention to cast Wish once per week, or any level 8 or lower Cleric spell once per day."
+      },
+      "3": {
+        "Cleric Subclass": {
+          "description": "Choose your Divine Domain subclass.",
+          "feature_kind": "subclass_pick"
+        }
+      },
+      "4": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_4",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "5": {
+        "Sear Undead": "When you Turn Undead, affected undead also take 2d8 + Cleric level Radiant damage."
+      },
+      "6": {
+        "Subclass Feature": {
+          "description": "Gain a feature from your Divine Domain subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "7": {
+        "Blessed Strikes": {
+          "choices": {
+            "count": 1,
+            "name": "blessed_strikes",
+            "optional": false,
+            "source": {
+              "list": "blessed_strikes_options",
+              "type": "internal"
+            },
+            "type": "select_single"
+          },
+          "description": "Divine power infuses you in battle. Choose one of the following options."
+        }
+      },
+      "8": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_8",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "9": {}
+    },
+    "hit_die": 8,
+    "multiclassing": {
+      "armor_training": [
+        "Light",
+        "Medium",
+        "Shields"
+      ],
+      "hit_die_granted": 8,
+      "notes": null,
+      "other_proficiencies": [],
+      "saving_throw_proficiencies": [],
+      "skill_proficiencies": null,
+      "source_text": "As a Multiclass Character: Gain the following traits from the Core Cleric Traits table: Hit Point Die and training with Light and Medium armor and Shields. Gain the Cleric's level 1 features, which are listed in the Cleric Features table. See the multiclassing rules in multiclassing to determine your available spell slots.",
+      "tool_training": [],
+      "weapon_training": []
+    },
+    "name": "Cleric",
+    "prepared_spells_by_level": {
+      "1": 4,
+      "10": 15,
+      "11": 16,
+      "12": 16,
+      "13": 17,
+      "14": 17,
+      "15": 18,
+      "16": 18,
+      "17": 19,
+      "18": 20,
+      "19": 21,
+      "2": 5,
+      "20": 22,
+      "3": 6,
+      "4": 7,
+      "5": 9,
+      "6": 9,
+      "7": 11,
+      "8": 12,
+      "9": 14
+    },
+    "primary_ability": "Wisdom",
+    "proficiency_bonus_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 2,
+      "20": 6,
+      "3": 2,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 4
+    },
+    "ritual_casting": true,
+    "saving_throw_proficiencies": [
+      "Wisdom",
+      "Charisma"
+    ],
+    "skill_options": [
+      "History",
+      "Insight",
+      "Medicine",
+      "Persuasion",
+      "Religion"
+    ],
+    "skill_proficiencies_count": 2,
+    "spell_list_restrictions": null,
+    "spell_preparation_formula": "level + wisdom_modifier",
+    "spell_slots_by_level": {
+      "1": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "10": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "11": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "12": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "13": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        0,
+        0
+      ],
+      "14": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        0,
+        0
+      ],
+      "15": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        0
+      ],
+      "16": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        0
+      ],
+      "17": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "18": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      "19": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      "2": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "20": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        1,
+        1
+      ],
+      "3": [
+        4,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "4": [
+        4,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "5": [
+        4,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "6": [
+        4,
+        3,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "7": [
+        4,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "8": [
+        4,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "9": [
+        4,
+        3,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "spellcasting_ability": "Wisdom",
+    "spellcasting_focus": [
+      "Holy Symbol"
+    ],
+    "spellcasting_type": "prepared",
+    "standard_array_assignment": {
+      "Charisma": 12,
+      "Constitution": 13,
+      "Dexterity": 8,
+      "Intelligence": 10,
+      "Strength": 14,
+      "Wisdom": 15
+    },
+    "starting_equipment": {
+      "option_a": {
+        "gold": 7,
+        "items": [
+          "Chain Shirt",
+          "Shield",
+          "Mace",
+          "Holy Symbol",
+          "Priest's Pack"
+        ]
+      },
+      "option_b": {
+        "gold": 110
+      }
+    },
+    "subclass_selection_level": 3,
+    "weapon_proficiencies": [
+      "Simple weapons"
+    ]
+  },
+  "combat": {
+    "armor_class": 14,
+    "hit_dice": {
+      "spent": 0,
+      "total": "3d8"
+    },
+    "hit_point_maximum": 30,
+    "hit_points": {
+      "current": 30,
+      "maximum": 30,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 18,
+      "base_hp_breakdown": "Level 1: 8 (max d8) + Levels 2-3: 10 (avg d8)",
+      "class_name": "Cleric",
+      "constitution_bonus": 6,
+      "constitution_modifier": 2,
+      "constitution_score": 14,
+      "feature_bonus": 6,
+      "feature_breakdown": [
+        "Tough: +2 per level (+6 total)"
+      ],
+      "hit_die": 8,
+      "level": 3,
+      "total_hp": 30
+    },
+    "initiative": -1,
+    "initiative_bonus": -1,
+    "passive_perception": 13,
+    "speed": 30,
+    "uses_shield": true
+  },
+  "condition_immunities": [],
+  "darkvision": 60,
+  "effects": [
+    {
+      "damage_type": "Necrotic",
+      "source": "Celestial Resistance",
+      "source_type": "species",
+      "type": "grant_damage_resistance"
+    },
+    {
+      "damage_type": "Radiant",
+      "source": "Celestial Resistance",
+      "source_type": "species",
+      "type": "grant_damage_resistance"
+    },
+    {
+      "feat": "Tough",
+      "source": "Farmer",
+      "source_type": "background",
+      "type": "grant_origin_feat"
+    },
+    {
+      "min_level": 3,
+      "source": "War Domain Spells",
+      "source_class_name": "Cleric",
+      "source_type": "subclass",
+      "spell": "Guiding Bolt",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "War Domain Spells",
+      "source_class_name": "Cleric",
+      "source_type": "subclass",
+      "spell": "Magic Weapon",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "War Domain Spells",
+      "source_class_name": "Cleric",
+      "source_type": "subclass",
+      "spell": "Shield of Faith",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "War Domain Spells",
+      "source_class_name": "Cleric",
+      "source_type": "subclass",
+      "spell": "Spiritual Weapon",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "War Domain Spells",
+      "source_class_name": "Cleric",
+      "source_type": "subclass",
+      "spell": "Crusader's Mantle",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "War Domain Spells",
+      "source_class_name": "Cleric",
+      "source_type": "subclass",
+      "spell": "Spirit Guardians",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 7,
+      "source": "War Domain Spells",
+      "source_class_name": "Cleric",
+      "source_type": "subclass",
+      "spell": "Fire Shield",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 7,
+      "source": "War Domain Spells",
+      "source_class_name": "Cleric",
+      "source_type": "subclass",
+      "spell": "Freedom of Movement",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 9,
+      "source": "War Domain Spells",
+      "source_class_name": "Cleric",
+      "source_type": "subclass",
+      "spell": "Hold Monster",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 9,
+      "source": "War Domain Spells",
+      "source_class_name": "Cleric",
+      "source_type": "subclass",
+      "spell": "Steel Wind Strike",
+      "type": "grant_spell"
+    },
+    {
+      "proficiencies": [
+        "Heavy armor"
+      ],
+      "source": "Protector",
+      "source_type": "class_choice",
+      "type": "grant_armor_proficiency"
+    },
+    {
+      "proficiencies": [
+        "Martial weapons"
+      ],
+      "source": "Protector",
+      "source_type": "class_choice",
+      "type": "grant_weapon_proficiency"
+    },
+    {
+      "range": 60,
+      "source": "Darkvision",
+      "source_type": "species",
+      "type": "grant_darkvision"
+    },
+    {
+      "scaling": "per_level",
+      "source": "Tough",
+      "source_type": "feat",
+      "type": "bonus_hp",
+      "value": 2
+    },
+    {
+      "skills": [
+        "Animal Handling",
+        "Nature"
+      ],
+      "source": "Farmer",
+      "source_type": "background",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "source": "Farmer",
+      "source_type": "background",
+      "tools": [
+        "Carpenter's Tools"
+      ],
+      "type": "grant_tool_proficiency"
+    },
+    {
+      "source": "Light Bearer",
+      "source_type": "species",
+      "spell": "Light",
+      "type": "grant_cantrip"
+    }
+  ],
+  "eldritch_invocation_stats": {
+    "available_invocations": [],
+    "current_invocations": [],
+    "has_invocations": false,
+    "max_invocations": 0
+  },
+  "equipment": {
+    "armor": [
+      {
+        "name": "Chain Shirt",
+        "source": "Class"
+      },
+      {
+        "name": "Shield",
+        "source": "Class"
+      }
+    ],
+    "gold": 57,
+    "items": [
+      {
+        "name": "Holy Symbol",
+        "source": "Class"
+      },
+      {
+        "name": "Priest's Pack",
+        "source": "Class"
+      }
+    ],
+    "weapons": [
+      {
+        "display_name": "Mace",
+        "name": "Mace",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "5 gp",
+          "damage": "1d6",
+          "damage_type": "Bludgeoning",
+          "mastery": "Sap",
+          "proficiency_required": "Simple weapons",
+          "properties": [],
+          "weight": 4
+        },
+        "quantity": 1,
+        "source": "Class"
+      }
+    ]
+  },
+  "features": {
+    "background": [],
+    "class": [
+      {
+        "chosen_options": [
+          {
+            "choice_key": "divine_order",
+            "description": "You gain proficiency with Martial weapons and training with Heavy armor.",
+            "name": "Protector"
+          }
+        ],
+        "description": "You gain proficiency with Martial weapons and training with Heavy armor.",
+        "level": 1,
+        "name": "Divine Order: Protector",
+        "source": "Cleric"
+      },
+      {
+        "description": "You can cast spells using Wisdom as your spellcasting ability. You prepare a number of spells equal to your Wisdom modifier + your Cleric level (minimum of 1). You can change your list of prepared spells whenever you finish a Long Rest. You can use a Holy Symbol as your Spellcasting Focus.",
+        "level": 1,
+        "name": "Spellcasting",
+        "source": "Cleric"
+      },
+      {
+        "description": "You can channel divine energy directly from the Outer Planes to fuel magical effects. You start with two such effects: Divine Spark and Turn Undead. You can use this class's Channel Divinity 2 per Short/Long Rest. Divine Spark: Point your Holy Symbol at a creature within 30 feet, roll 1d8 + Wisdom modifier, restore HP or deal Necrotic/Radiant damage (Constitution save for half). Turn Undead: Present Holy Symbol, Undead within 30 feet make Wisdom save or be Frightened and Incapacitated for 1 minute.",
+        "level": 2,
+        "name": "Channel Divinity",
+        "source": "Cleric"
+      }
+    ],
+    "feats": [
+      {
+        "description": "Your hit point maximum increases by an amount equal to twice your character level when you gain this feat. Whenever you gain a level thereafter, your hit point maximum increases by an additional 2 hit points.",
+        "name": "Tough",
+        "source": "Farmer"
+      }
+    ],
+    "lineage": [],
+    "species": [
+      {
+        "description": "As a Magic action, you touch a creature and roll a number of d4s equal to your Proficiency Bonus. The creature regains a number of Hit Points equal to the total rolled. Once you use this trait, you can't use it again until you finish a Long Rest.",
+        "name": "Healing Hands",
+        "source": "Aasimar"
+      },
+      {
+        "description": "When you reach character level 3, you can transform as a Bonus Action using one of the options below (choose the option each time you transform). The transformation lasts for 1 minute or until you end it (no action required). Once you transform, you can't do so again until you finish a Long Rest. Once on each of your turns before the transformation ends, you can deal extra damage to one target when you deal damage to it with an attack or a spell. The extra damage equals your Proficiency Bonus, and the extra damage's type is either Necrotic for Necrotic Shroud or Radiant for Heavenly Wings and Inner Radiance.<div class=\"mt-2\"><div class=\"mt-1\"><strong class=\"text-secondary\">Heavenly Wings:</strong> <span>Two spectral wings sprout from your back temporarily. Until the transformation ends, you have a Fly Speed equal to your Speed.</span></div><div class=\"mt-1\"><strong class=\"text-secondary\">Inner Radiance:</strong> <span>Searing light temporarily radiates from your eyes and mouth. For the duration, you shed Bright Light in a 10-foot radius and Dim Light for an additional 10 feet, and at the end of each of your turns, each creature within 10 feet of you takes Radiant damage equal to your Proficiency Bonus.</span></div><div class=\"mt-1\"><strong class=\"text-secondary\">Necrotic Shroud:</strong> <span>Your eyes briefly become pools of darkness, and flightless wings sprout from your back temporarily. Creatures other than your allies within 10 feet of you must succeed on a Charisma saving throw (DC 8 plus your Charisma modifier and Proficiency Bonus) or have the Frightened condition until the end of your next turn.</span></div></div>",
+        "name": "Celestial Revelation",
+        "source": "Aasimar"
+      },
+      {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "name": "Darkvision",
+        "source": "Aasimar"
+      },
+      {
+        "description": "You have Resistance to Necrotic damage and Radiant damage.",
+        "name": "Celestial Resistance",
+        "source": "Aasimar"
+      },
+      {
+        "description": "You know the Light cantrip. Charisma is your spellcasting ability for it.",
+        "name": "Light Bearer",
+        "source": "Aasimar"
+      }
+    ],
+    "subclass": [
+      {
+        "description": "As a Bonus Action, you can make one attack with a weapon or an Unarmed Strike. You can use this Bonus Action a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a Short or Long Rest.",
+        "level": 3,
+        "name": "War Priest",
+        "source": "War Domain"
+      },
+      {
+        "description": "When you or a creature within 30 feet of you misses with an attack roll, you can expend one use of your Channel Divinity and give that roll a +10 bonus, potentially causing it to hit. When you use this feature to benefit another creature's attack roll, you must take a Reaction to do so.",
+        "level": 3,
+        "name": "Guided Strike",
+        "source": "War Domain"
+      },
+      {
+        "description": "You always have certain spells prepared.\n\n<table class=\"table table-sm table-bordered mt-2\">\n<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n<tbody>\n<tr class=\"table-success\"><td>3</td><td>\u2713 Guiding Bolt, Magic Weapon, Shield of Faith, Spiritual Weapon</td></tr>\n<tr class=\"table-secondary\"><td>5</td><td>\ud83d\udd12 Crusader's Mantle, Spirit Guardians</td></tr>\n<tr class=\"table-secondary\"><td>7</td><td>\ud83d\udd12 Fire Shield, Freedom of Movement</td></tr>\n<tr class=\"table-secondary\"><td>9</td><td>\ud83d\udd12 Hold Monster, Steel Wind Strike</td></tr>\n</tbody>\n</table>",
+        "level": 9,
+        "name": "War Domain Spells",
+        "source": "War Domain"
+      }
+    ]
+  },
+  "immunities": [],
+  "languages": [
+    "Common",
+    "Gnomish",
+    "Draconic"
+  ],
+  "level": 3,
+  "lineage": null,
+  "lineage_data": null,
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "name": "",
+  "proficiencies": {
+    "armor": [
+      "Light armor",
+      "Medium armor",
+      "Shields",
+      "Heavy armor"
+    ],
+    "languages": [
+      "Common",
+      "Gnomish",
+      "Draconic"
+    ],
+    "saving_throws": [
+      "Wisdom",
+      "Charisma"
+    ],
+    "skills": [
+      "History",
+      "Religion",
+      "Animal Handling",
+      "Nature"
+    ],
+    "tools": [
+      "Carpenter's Tools"
+    ],
+    "weapons": [
+      "Simple weapons",
+      "Martial weapons"
+    ]
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {
+      "Heavy armor": "Protector"
+    },
+    "languages": {
+      "Common": "base",
+      "Draconic": "user_choice",
+      "Gnomish": "user_choice"
+    },
+    "saving_throws": {},
+    "skills": {
+      "Animal Handling": "Farmer",
+      "History": "Cleric",
+      "Nature": "Farmer",
+      "Religion": "Cleric"
+    },
+    "tools": {
+      "Carpenter's Tools": "Farmer"
+    },
+    "weapons": {
+      "Martial weapons": "Protector"
+    }
+  },
+  "resistances": [
+    "Necrotic",
+    "Radiant"
+  ],
+  "save_advantages": [],
+  "skill_proficiencies": [
+    "History",
+    "Religion",
+    "Animal Handling",
+    "Nature"
+  ],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Farmer"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": 2,
+      "expertise": false,
+      "modifier": 2,
+      "proficient": false,
+      "source": "None"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Cleric"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Farmer"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Cleric"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    }
+  },
+  "species": "Aasimar",
+  "species_data": {
+    "creature_type": "Humanoid",
+    "darkvision": 60,
+    "description": "Aasimar are mortals who carry a spark of the Upper Planes within their souls. Whether descended from an angelic being or infused with celestial power, they can fan that spark to bring light, healing, and heavenly fury. Aasimar can arise among any population of mortals. They resemble their parents, but they live for up to 160 years and have features that hint at their celestial heritage, such as metallic freckles, luminous eyes, a halo, or the skin color of an angel (silver, opalescent green, or coppery red). These features start subtle and become obvious when the aasimar learns to reveal their full celestial nature.",
+    "languages": [
+      "Common",
+      "Celestial"
+    ],
+    "name": "Aasimar",
+    "size": "Medium or Small",
+    "size_description": "Medium (about 4-7 feet tall) or Small (about 2-4 feet tall), chosen when you select this species",
+    "speed": 30,
+    "traits": {
+      "Celestial Resistance": {
+        "description": "You have Resistance to Necrotic damage and Radiant damage.",
+        "effects": [
+          {
+            "damage_type": "Necrotic",
+            "type": "grant_damage_resistance"
+          },
+          {
+            "damage_type": "Radiant",
+            "type": "grant_damage_resistance"
+          }
+        ]
+      },
+      "Celestial Revelation": {
+        "description": "When you reach character level 3, you can transform as a Bonus Action using one of the options below (choose the option each time you transform). The transformation lasts for 1 minute or until you end it (no action required). Once you transform, you can't do so again until you finish a Long Rest. Once on each of your turns before the transformation ends, you can deal extra damage to one target when you deal damage to it with an attack or a spell. The extra damage equals your Proficiency Bonus, and the extra damage's type is either Necrotic for Necrotic Shroud or Radiant for Heavenly Wings and Inner Radiance.",
+        "options": {
+          "Heavenly Wings": "Two spectral wings sprout from your back temporarily. Until the transformation ends, you have a Fly Speed equal to your Speed.",
+          "Inner Radiance": "Searing light temporarily radiates from your eyes and mouth. For the duration, you shed Bright Light in a 10-foot radius and Dim Light for an additional 10 feet, and at the end of each of your turns, each creature within 10 feet of you takes Radiant damage equal to your Proficiency Bonus.",
+          "Necrotic Shroud": "Your eyes briefly become pools of darkness, and flightless wings sprout from your back temporarily. Creatures other than your allies within 10 feet of you must succeed on a Charisma saving throw (DC 8 plus your Charisma modifier and Proficiency Bonus) or have the Frightened condition until the end of your next turn."
+        }
+      },
+      "Darkvision": {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "effects": [
+          {
+            "range": 60,
+            "type": "grant_darkvision"
+          }
+        ]
+      },
+      "Healing Hands": "As a Magic action, you touch a creature and roll a number of d4s equal to your Proficiency Bonus. The creature regains a number of Hit Points equal to the total rolled. Once you use this trait, you can't use it again until you finish a Long Rest.",
+      "Light Bearer": {
+        "description": "You know the Light cantrip. Charisma is your spellcasting ability for it.",
+        "effects": [
+          {
+            "spell": "Light",
+            "type": "grant_cantrip"
+          }
+        ]
+      }
+    }
+  },
+  "speed": 30,
+  "speed_bonuses": {},
+  "spell_metadata": {
+    "Guiding Bolt": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "War Domain",
+      "source_type": "subclass"
+    },
+    "Light": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "source": "Aasimar",
+      "source_type": "species"
+    },
+    "Magic Weapon": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "War Domain",
+      "source_type": "subclass"
+    },
+    "Shield of Faith": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "War Domain",
+      "source_type": "subclass"
+    },
+    "Spiritual Weapon": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "War Domain",
+      "source_type": "subclass"
+    }
+  },
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {
+    "1st": 4,
+    "2nd": 2
+  },
+  "spellcasting_stats": {
+    "available_cantrips": [
+      "Guidance",
+      "Light",
+      "Mending",
+      "Resistance",
+      "Sacred Flame",
+      "Spare the Dying",
+      "Thaumaturgy",
+      "Toll the Dead",
+      "Word of Radiance"
+    ],
+    "available_spells": {
+      "1": [
+        "Bane",
+        "Bless",
+        "Command",
+        "Create or Destroy Water",
+        "Cure Wounds",
+        "Detect Evil and Good",
+        "Detect Magic",
+        "Detect Poison and Disease",
+        "Guiding Bolt",
+        "Healing Word",
+        "Inflict Wounds",
+        "Protection from Evil and Good",
+        "Purify Food and Drink",
+        "Sanctuary",
+        "Shield of Faith",
+        "Wardaway"
+      ],
+      "2": [
+        "Aid",
+        "Augury",
+        "Blindness/Deafness",
+        "Calm Emotions",
+        "Continual Flame",
+        "Deryan's Helpful Homunculi",
+        "Dueling Ground",
+        "Enhance Ability",
+        "Gentle Repose",
+        "Hold Person",
+        "Lesser Restoration",
+        "Locate Object",
+        "Prayer of Healing",
+        "Protection from Poison",
+        "Silence",
+        "Spiritual Weapon",
+        "Warding Bond",
+        "Zone of Truth"
+      ]
+    },
+    "background_cantrips_list": null,
+    "background_cantrips_needed": 0,
+    "background_spell_level": 1,
+    "background_spells_list": null,
+    "background_spells_needed": 0,
+    "cantrips_always_prepared": 1,
+    "cantrips_known": 4,
+    "cantrips_to_prepare": 3,
+    "effective_caster_level": 3,
+    "has_spellcasting": true,
+    "max_cantrips": 4,
+    "max_cantrips_prepared": 3,
+    "max_cantrips_to_prepare": 3,
+    "max_prepared_spells": 10,
+    "max_spells_prepared": 6,
+    "max_spells_to_prepare": 6,
+    "multiclass_notes": [],
+    "pact_magic_slots": [],
+    "preparation_formula": "level + wisdom_modifier",
+    "ritual_casting": true,
+    "spell_attack_bonus": 5,
+    "spell_save_dc": 13,
+    "spellcasting_ability": "Wisdom",
+    "spellcasting_modifier": 3,
+    "spellcasting_type": "prepared",
+    "spells_always_prepared": 4,
+    "spells_prepared": 10
+  },
+  "spells": {
+    "always_prepared": {
+      "Guiding Bolt": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "War Domain"
+      },
+      "Light": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 0,
+        "source": "Aasimar"
+      },
+      "Magic Weapon": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 2,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "War Domain"
+      },
+      "Shield of Faith": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "War Domain"
+      },
+      "Spiritual Weapon": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 2,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "War Domain"
+      }
+    },
+    "background_spells": {},
+    "cantrips": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 0,
+        "name": "Guidance",
+        "range": "Touch",
+        "ritual": false,
+        "school": "Divination",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You point at one creature you can see within range, and the sound of a dolorous bell fills the air around it for a moment. The target must succeed on a Wisdom saving throw or take 1d8 necrotic damage. If the target is missing any of its hit points, it instead takes 1d12 necrotic damage.",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Toll the Dead",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Necromancy",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric"
+        ],
+        "components": "V, M",
+        "concentration": false,
+        "description": "You utter a divine word, and burning radiance erupts from you. Each creature of your choice that you can see within range must succeed on a Constitution saving throw or take 1d6 radiant damage.",
+        "duration": "Instantaneous",
+        "level": 0,
+        "material": "a holy symbol",
+        "name": "Word of Radiance",
+        "range": "5 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, M",
+        "concentration": false,
+        "description": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet.",
+        "duration": "1 hour",
+        "level": 0,
+        "material": "a firefly or phosphorescent moss",
+        "name": "Light",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Aasimar"
+      }
+    ],
+    "known": {},
+    "level_1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Paladin",
+          "Ranger",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 1,
+        "name": "Detect Magic",
+        "range": "Self",
+        "ritual": true,
+        "school": "Divination",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V, S, M (a sprinkle of Holy Water)",
+        "concentration": true,
+        "description": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save. Using a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Bless",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d4 for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Healing Word",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You hurl a bolt of light toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 4d6 Radiant damage, and the next attack roll made against it before the end of your next turn has Advantage. Using a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
+        "duration": "1 round",
+        "level": 1,
+        "name": "Guiding Bolt",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "War Domain"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V, S, M",
+        "concentration": true,
+        "description": "A shimmering field appears and surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 1,
+        "name": "Shield of Faith",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "War Domain"
+      }
+    ],
+    "prepared": {
+      "cantrips": {
+        "Guidance": {},
+        "Toll the Dead": {},
+        "Word of Radiance": {}
+      },
+      "spells": {
+        "Aid": {},
+        "Bless": {},
+        "Detect Magic": {},
+        "Healing Word": {},
+        "Hold Person": {},
+        "Silence": {}
+      }
+    },
+    "slots": {}
+  },
+  "spells_by_level": {
+    "0": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 0,
+        "name": "Guidance",
+        "range": "Touch",
+        "ritual": false,
+        "school": "Divination",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You point at one creature you can see within range, and the sound of a dolorous bell fills the air around it for a moment. The target must succeed on a Wisdom saving throw or take 1d8 necrotic damage. If the target is missing any of its hit points, it instead takes 1d12 necrotic damage.",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Toll the Dead",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Necromancy",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric"
+        ],
+        "components": "V, M",
+        "concentration": false,
+        "description": "You utter a divine word, and burning radiance erupts from you. Each creature of your choice that you can see within range must succeed on a Constitution saving throw or take 1d6 radiant damage.",
+        "duration": "Instantaneous",
+        "level": 0,
+        "material": "a holy symbol",
+        "name": "Word of Radiance",
+        "range": "5 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, M",
+        "concentration": false,
+        "description": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet.",
+        "duration": "1 hour",
+        "level": 0,
+        "material": "a firefly or phosphorescent moss",
+        "name": "Light",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Aasimar"
+      }
+    ],
+    "1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Paladin",
+          "Ranger",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 1,
+        "name": "Detect Magic",
+        "range": "Self",
+        "ritual": true,
+        "school": "Divination",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V, S, M (a sprinkle of Holy Water)",
+        "concentration": true,
+        "description": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save. Using a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Bless",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d4 for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Healing Word",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You hurl a bolt of light toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 4d6 Radiant damage, and the next attack roll made against it before the end of your next turn has Advantage. Using a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
+        "duration": "1 round",
+        "level": 1,
+        "name": "Guiding Bolt",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "War Domain"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Cleric",
+          "Paladin"
+        ],
+        "components": "V, S, M",
+        "concentration": true,
+        "description": "A shimmering field appears and surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 1,
+        "name": "Shield of Faith",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "War Domain"
+      }
+    ],
+    "2": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action or Ritual",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Ranger"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "For the duration, no sound can be created within or pass through a 20-foot-radius Sphere centered on a point you choose within range. Any creature or object entirely inside the sphere is immune to Thunder damage, and creatures are Deafened while entirely inside it. Casting a spell that includes a verbal component is impossible there.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 2,
+        "name": "Silence",
+        "range": "120 feet",
+        "ritual": true,
+        "school": "Illusion",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Paladin",
+          "Ranger"
+        ],
+        "components": "V, S, M",
+        "concentration": false,
+        "description": "Choose up to three creatures within range. Each target's Hit Point maximum and current Hit Points increase by 5 for the duration. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, each target's Hit Points increase by 5 for each slot level above 2nd.",
+        "duration": "8 hours",
+        "level": 2,
+        "material": "a tiny strip of white cloth",
+        "name": "Aid",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S, M",
+        "concentration": true,
+        "description": "Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 2,
+        "material": "a small, straight piece of iron",
+        "name": "Hold Person",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Enchantment",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Artificer",
+          "Paladin",
+          "Ranger",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You touch a nonmagical weapon. Until the spell ends, that weapon becomes a +1 magic weapon. When using a higher-level spell slot: the bonus increases to +2 when you use a level 4 slot, or to +3 when you use a level 6+ slot.",
+        "duration": "1 hour",
+        "level": 2,
+        "name": "Magic Weapon",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "War Domain"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Cleric"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "You create a floating, spectral weapon within range that lasts for the duration. The weapon can take whatever form you choose. When you cast this spell, you can make a melee spell attack against a creature within 5 feet of the weapon. On a hit, the target takes Force damage equal to 1d8 plus your spellcasting ability modifier. As a Bonus Action on your later turns, you can move the weapon up to 20 feet and repeat the attack against a creature within 5 feet of it. Using a Higher-Level Spell Slot. The damage increases by 1d8 for every two spell slot levels above 2.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 2,
+        "name": "Spiritual Weapon",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "War Domain"
+      }
+    ]
+  },
+  "step": "complete",
+  "subclass": "War Domain",
+  "subclass_data": {
+    "class": "Cleric",
+    "description": "Clerics who excel in battle, inspiring others and smiting enemies with divine power.",
+    "features_by_level": {
+      "17": {
+        "Avatar of Battle": {
+          "description": "You gain Resistance to Bludgeoning, Piercing, and Slashing damage.",
+          "effects": [
+            {
+              "damage_type": "Bludgeoning",
+              "type": "grant_damage_resistance"
+            },
+            {
+              "damage_type": "Piercing",
+              "type": "grant_damage_resistance"
+            },
+            {
+              "damage_type": "Slashing",
+              "type": "grant_damage_resistance"
+            }
+          ]
+        }
+      },
+      "3": {
+        "Guided Strike": "When you or a creature within 30 feet of you misses with an attack roll, you can expend one use of your Channel Divinity and give that roll a +10 bonus, potentially causing it to hit. When you use this feature to benefit another creature's attack roll, you must take a Reaction to do so.",
+        "War Domain Spells": {
+          "description": "You always have certain spells prepared.",
+          "effects": [
+            {
+              "min_level": 3,
+              "spell": "Guiding Bolt",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 3,
+              "spell": "Magic Weapon",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 3,
+              "spell": "Shield of Faith",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 3,
+              "spell": "Spiritual Weapon",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 5,
+              "spell": "Crusader's Mantle",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 5,
+              "spell": "Spirit Guardians",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 7,
+              "spell": "Fire Shield",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 7,
+              "spell": "Freedom of Movement",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 9,
+              "spell": "Hold Monster",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 9,
+              "spell": "Steel Wind Strike",
+              "type": "grant_spell"
+            }
+          ]
+        },
+        "War Priest": "As a Bonus Action, you can make one attack with a weapon or an Unarmed Strike. You can use this Bonus Action a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a Short or Long Rest."
+      },
+      "6": {
+        "War God's Blessing": "You can expend a use of your Channel Divinity to cast Shield of Faith or Spiritual Weapon rather than expending a spell slot. When you cast either spell in this way, the spell doesn't require Concentration. Instead the spell lasts for 1 minute, but it ends early if you cast that spell again, have the Incapacitated condition, or die."
+      }
+    },
+    "name": "War Domain",
+    "source": "Player's Handbook 2024"
+  },
+  "superiority_dice": {},
+  "tool_proficiencies": [
+    "Carpenter's Tools"
+  ],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [],
+    "current_masteries": [],
+    "has_mastery": false,
+    "max_masteries": 0
+  },
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons"
+  ]
+}

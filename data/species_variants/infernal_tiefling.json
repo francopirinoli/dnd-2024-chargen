@@ -1,0 +1,31 @@
+{
+  "name": "Infernal Tiefling",
+  "parent_species": "Tiefling",
+  "description": "The infernal legacy connects tieflings not only to Gehenna but also the Nine Hells and the raging battlefields of Acheron. Horns, spines, tails, golden eyes, and a faint odor of sulfur or smoke are common physical features of such tieflings, most of whom trace their ancestry to devils.",
+  "traits": {
+    "Infernal Legacy": {
+      "description": "You have Resistance to Fire damage. You know the Fire Bolt cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+      "effects": [
+        {
+          "type": "grant_damage_resistance",
+          "damage_type": "Fire"
+        },
+        {
+          "type": "grant_cantrip",
+          "spell": "Fire Bolt"
+        },
+        {
+          "type": "grant_spell",
+          "spell": "Hellish Rebuke",
+          "min_level": 3
+        },
+        {
+          "type": "grant_spell",
+          "spell": "Darkness",
+          "min_level": 5
+        }
+      ]
+    }
+  },
+  "spellcasting_ability_choice": ["Intelligence", "Wisdom", "Charisma"]
+}

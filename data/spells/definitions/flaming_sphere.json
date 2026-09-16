@@ -1,0 +1,20 @@
+{
+  "name": "Flaming Sphere",
+  "level": 2,
+  "school": "Conjuration",
+  "casting_time": "1 action",
+  "range": "60 feet",
+  "components": [
+    "V",
+    "S",
+    "M (a ball of wax)"
+  ],
+  "duration": "Concentration, up to 1 minute",
+  "description": "You create a 5-foot-diameter sphere of fire in an unoccupied space on the ground within range. Any creature that ends its turn within 5 feet of the sphere makes a Dexterity saving throw, taking 2d6 Fire damage on a failed save or half as much on a successful one. As a Bonus Action, you can move the sphere up to 30 feet. If it enters a creature's space, the creature makes the saving throw against the sphere's damage. When using a higher-level spell slot, the damage increases by 1d6 for each slot level above 2.",
+  "classes": [
+    "Druid",
+    "Sorcerer",
+    "Wizard"
+  ],
+  "ritual": false
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Species Variant (Lineage)",
+  "description": "Schema for files in data/species_variants/ (also called lineages). A variant layers additional traits on a parent species; the parent's name is recorded in parent_species and resolved by the data loader. Phase 9 (D1-1) forbids top-level convenience keys for darkvision and speed — these must be encoded as ``grant_darkvision``/``increase_speed`` effects on the relevant trait. ``cantrip_replacement`` and ``spellcasting_ability_choice`` remain as structural lineage metadata: they constrain wizard prompts (cantrip swap source, spell ability choice) rather than granting a sheet-affecting mechanical benefit, and have no equivalent effect type today.",
+  "type": "object",
+  "required": ["name", "parent_species", "description", "traits"],
+  "properties": {
+    "name": { "type": "string" },
+    "parent_species": { "type": "string" },
+    "description": { "type": "string" },
+    "traits": {
+      "type": "object",
+      "additionalProperties": { "$ref": "_shared/trait_entry.json" }
+    },
+    "spells_by_level": {
+      "type": "object",
+      "description": "Legacy convenience map (cantrip/3/5/...). Canonical grant is grant_cantrip/grant_spell effects inside the trait. Phase 9 deleted these blocks from the elf lineages; the key is kept in the schema for back-compat on saved data.",
+      "patternProperties": {
+        "^(cantrip|[1-9]|1[0-9]|20)$": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "cantrip_replacement": {
+      "type": "string",
+      "description": "Structural lineage metadata. Names the class spell list from which the variant's cantrip may be swapped on long rest (e.g. High Elf -> Wizard). Constrains the cantrip-replacement prompt and has no sheet-affecting effect type."
+    },
+    "spellcasting_ability_choice": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Intelligence", "Wisdom", "Charisma"]
+      },
+      "description": "Structural lineage metadata. If present, the player chooses one of these abilities as the spellcasting ability for variant-granted spells. Constrains a wizard prompt; not a sheet effect."
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Background",
+  "description": "Schema for files in data/backgrounds/. Each background grants an ability score increase (total 3 across two or three abilities), an Origin feat, two skill proficiencies, one tool proficiency, and one of two starting equipment packages. Phase 9 (D1-1) canonicalized every mechanical grant onto the ``effects`` array — flat top-level fields ``feat``, ``skill_proficiencies``, and ``tool_proficiencies`` are no longer recognized. The origin feat is encoded as ``{type: grant_origin_feat, feat: \"<feat name>\"}``, skill proficiencies as ``{type: grant_skill_proficiency, skills: [...]}``, and tool proficiencies as ``{type: grant_tool_proficiency, tools: [...]}``. ``ability_score_increase`` and ``starting_equipment`` remain structural metadata for the wizard. Phase 10 (D6-5) will add strict count/existence constraints on top of this canonical surface.",
+  "type": "object",
+  "required": [
+    "name",
+    "description",
+    "edition",
+    "status",
+    "ability_score_increase",
+    "effects",
+    "starting_equipment"
+  ],
+  "properties": {
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "edition": {
+      "type": "string",
+      "enum": ["2024", "2014"],
+      "description": "Rules edition for catalog filtering. Active default backgrounds must be D&D 2024; retained 2014 entries are legacy only."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "legacy"],
+      "description": "Catalog status. Only active 2024 backgrounds appear in the default catalog."
+    },
+    "ability_score_increase": {
+      "type": "object",
+      "required": ["total", "options"],
+      "properties": {
+        "total": {
+          "type": "integer",
+          "const": 3,
+          "description": "D6-5: Backgrounds must grant exactly 3 ability score points total (2024 rules)."
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+          }
+        },
+        "suggested": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "effects": {
+      "type": "array",
+      "description": "All mechanical grants from the background (origin feat, skill proficiencies, tool proficiencies, etc.). Each entry must conform to the shared effect schema. Phase 9 (D1-1) canonicalized the entire background mechanical surface onto this array — flat top-level fields like ``feat``, ``skill_proficiencies``, and ``tool_proficiencies`` are no longer recognized.",
+      "items": { "$ref": "_shared/effect.json" }
+    },
+    "starting_equipment": {
+      "type": "object",
+      "required": ["option_a", "option_b"],
+      "properties": {
+        "option_a": {
+          "type": "object",
+          "required": ["items", "gold"],
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "gold": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "option_b": {
+          "type": "object",
+          "required": ["gold"],
+          "properties": {
+            "gold": {
+              "type": "number",
+              "minimum": 0
+            },
+            "items": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "string",
+      "description": "Source book or supplement"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "edition": { "const": "2024" } },
+        "required": ["edition"]
+      },
+      "then": {
+        "properties": { "status": { "const": "active" } },
+        "required": ["status"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "edition": { "const": "2014" } },
+        "required": ["edition"]
+      },
+      "then": {
+        "properties": { "status": { "const": "legacy" } },
+        "required": ["status"]
+      }
+    }
+  ],
+  "additionalProperties": false
+}

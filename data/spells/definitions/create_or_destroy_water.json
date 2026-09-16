@@ -1,0 +1,19 @@
+{
+  "name": "Create or Destroy Water",
+  "level": 1,
+  "school": "Transmutation",
+  "casting_time": "1 action",
+  "range": "30 feet",
+  "components": [
+    "V",
+    "S",
+    "M (a drop of water if creating water or a few grains of sand if destroying it)"
+  ],
+  "duration": "Instantaneous",
+  "description": "You either create or destroy water. Create Water. You create up to 10 gallons of clean water within range in an open container. Alternatively, the water falls as rain in a 30-foot Cube within range, extinguishing exposed flames. Destroy Water. You destroy up to 10 gallons of water in an open container within range. Alternatively, you destroy fog in a 30-foot Cube within range. Using a Higher-Level Spell Slot. You create or destroy 10 additional gallons of water, or the size of the Cube increases by 5 feet, for each spell slot level above 1.",
+  "classes": [
+    "Cleric",
+    "Druid"
+  ],
+  "ritual": false
+}

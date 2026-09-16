@@ -1,0 +1,21 @@
+{
+  "name": "Magic Circle",
+  "level": 3,
+  "school": "Abjuration",
+  "casting_time": "1 minute",
+  "range": "10 feet",
+  "components": [
+    "V",
+    "S",
+    "M (salt and powdered silver worth 100+ GP, which the spell consumes)"
+  ],
+  "duration": "1 hour",
+  "description": "You create a 10-foot-radius, 20-foot-tall Cylinder of magical energy centered on a point on the ground that you can see within range. Glowing runes appear wherever the Cylinder intersects with the floor or other surface. Choose one or more of the following types of creatures: Celestials, Elementals, Fey, Fiends, or Undead. The circle affects a creature of the chosen type in the following ways: the creature can't willingly enter the Cylinder by nonmagical means. If the creature tries to use teleportation or interplanar travel, it must first succeed on a Charisma saving throw. The creature has Disadvantage on attack rolls against targets within the Cylinder. Targets within the Cylinder can't be charmed, frightened, or possessed by the creature.",
+  "classes": [
+    "Cleric",
+    "Paladin",
+    "Warlock",
+    "Wizard"
+  ],
+  "ritual": false
+}

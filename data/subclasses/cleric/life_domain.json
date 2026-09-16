@@ -1,0 +1,33 @@
+{
+  "name": "Life Domain",
+  "class": "Cleric",
+  "description": "Clerics who focus on healing and protecting life, channeling vitality to sustain their allies.",
+  "source": "Player's Handbook 2024",
+  "features_by_level": {
+    "3": {
+      "Disciple of Life": "When a spell you cast with a spell slot restores Hit Points to a creature, that creature regains additional Hit Points on the turn you cast the spell. The additional Hit Points equal 2 plus the spell slot's level.",
+      "Domain Spells": {
+        "description": "You always have certain spells prepared. They don't count against your number of prepared spells.",
+        "effects": [
+          {"type": "grant_spell", "spell": "Aid", "min_level": 3},
+          {"type": "grant_spell", "spell": "Bless", "min_level": 3},
+          {"type": "grant_spell", "spell": "Cure Wounds", "min_level": 3},
+          {"type": "grant_spell", "spell": "Lesser Restoration", "min_level": 3},
+          {"type": "grant_spell", "spell": "Mass Healing Word", "min_level": 5},
+          {"type": "grant_spell", "spell": "Revivify", "min_level": 5},
+          {"type": "grant_spell", "spell": "Aura of Life", "min_level": 7},
+          {"type": "grant_spell", "spell": "Death Ward", "min_level": 7},
+          {"type": "grant_spell", "spell": "Greater Restoration", "min_level": 9},
+          {"type": "grant_spell", "spell": "Mass Cure Wounds", "min_level": 9}
+        ]
+      },
+      "Preserve Life": "As a Magic action, you present your Holy Symbol and expend a use of your Channel Divinity to evoke healing energy that can restore a number of Hit Points equal to five times your Cleric level. Choose Bloodied creatures within 30 feet of yourself (which can include you), and divide those Hit Points among them. This feature can restore a creature to no more than half its Hit Point maximum."
+    },
+    "6": {
+      "Blessed Healer": "The healing spells you cast on others heal you as well. Immediately after you cast a spell with a spell slot that restores Hit Points to one or more creatures other than yourself, you regain Hit Points equal to 2 plus the spell slot's level."
+    },
+    "17": {
+      "Supreme Healing": "When you would normally roll one or more dice to restore Hit Points with a spell, instead use the highest number possible for each die. Example: instead of restoring 2d6 HP, restore 12 HP."
+    }
+  }
+}

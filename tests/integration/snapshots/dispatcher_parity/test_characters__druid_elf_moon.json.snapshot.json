@@ -1,0 +1,2479 @@
+{
+  "_lineage_traits": {
+    "Increased Speed": {
+      "description": "Your Speed increases to 35 feet.",
+      "effects": [
+        {
+          "feature_group": "wood_elf_increased_speed",
+          "type": "increase_speed",
+          "value": 5
+        }
+      ]
+    },
+    "Wood Elf Spells": {
+      "description": "You know the Druidcraft cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+      "effects": [
+        {
+          "min_level": 3,
+          "spell": "Longstrider",
+          "type": "grant_spell"
+        },
+        {
+          "min_level": 5,
+          "spell": "Pass without Trace",
+          "type": "grant_spell"
+        },
+        {
+          "spell": "Druidcraft",
+          "type": "grant_cantrip"
+        }
+      ]
+    }
+  },
+  "abilities": {
+    "charisma": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 10,
+      "modifier": 0,
+      "saving_throw": 0,
+      "saving_throw_proficient": false,
+      "score": 10,
+      "species_bonus": 0
+    },
+    "constitution": {
+      "additional_modifier": 0,
+      "background_bonus": 1,
+      "base_score": 14,
+      "modifier": 2,
+      "saving_throw": 2,
+      "saving_throw_proficient": false,
+      "score": 15,
+      "species_bonus": 0
+    },
+    "dexterity": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 12,
+      "modifier": 1,
+      "saving_throw": 1,
+      "saving_throw_proficient": false,
+      "score": 12,
+      "species_bonus": 0
+    },
+    "intelligence": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 13,
+      "modifier": 1,
+      "saving_throw": 3,
+      "saving_throw_proficient": true,
+      "score": 13,
+      "species_bonus": 0
+    },
+    "strength": {
+      "additional_modifier": 0,
+      "background_bonus": 0,
+      "base_score": 8,
+      "modifier": -1,
+      "saving_throw": -1,
+      "saving_throw_proficient": false,
+      "score": 8,
+      "species_bonus": 0
+    },
+    "wisdom": {
+      "additional_modifier": 0,
+      "background_bonus": 2,
+      "base_score": 15,
+      "modifier": 3,
+      "saving_throw": 5,
+      "saving_throw_proficient": true,
+      "score": 17,
+      "species_bonus": 0
+    }
+  },
+  "ability_scores": {
+    "Charisma": 10,
+    "Constitution": 15,
+    "Dexterity": 12,
+    "Intelligence": 13,
+    "Strength": 8,
+    "Wisdom": 17
+  },
+  "ac_options": [
+    {
+      "ac": 13,
+      "armor": null,
+      "equipped_armor": null,
+      "formula": "10 + Dex modifier (1) + Shield (2)",
+      "notes": [],
+      "shield": true
+    },
+    {
+      "ac": 14,
+      "armor": "Leather Armor",
+      "equipped_armor": "Leather Armor",
+      "formula": "Armor base (11) + Dex modifier (1) + Shield (2)",
+      "notes": [],
+      "shield": true
+    }
+  ],
+  "alignment": "",
+  "armor_proficiencies": [
+    "Light armor",
+    "Shields",
+    "Medium armor"
+  ],
+  "attack_combinations": [],
+  "attacks": [
+    {
+      "ability": "STR",
+      "attack_bonus": 1,
+      "attack_bonus_display": "+1",
+      "avg_crit": 0.0,
+      "avg_damage": 0.0,
+      "damage": "0",
+      "damage_notes": [],
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/strike.svg",
+      "mastery": null,
+      "name": "Unarmed Strike",
+      "proficient": true,
+      "properties": []
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 1,
+      "attack_bonus_display": "+1",
+      "avg_crit": 4.0,
+      "avg_damage": 1.5,
+      "damage": "1d4 - 1",
+      "damage_bonus": -1,
+      "damage_notes": [],
+      "damage_type": "Slashing",
+      "icon": "/static/images/weapons/sickle.svg",
+      "mastery": "Nick",
+      "name": "Sickle",
+      "proficient": true,
+      "properties": [
+        "Light"
+      ]
+    },
+    {
+      "ability": "STR",
+      "attack_bonus": 1,
+      "attack_bonus_display": "+1",
+      "avg_crit": 6.0,
+      "avg_damage": 2.5,
+      "avg_one_handed": 2.5,
+      "avg_two_handed": 3.5,
+      "damage": "1d6 - 1",
+      "damage_bonus": -1,
+      "damage_notes": [],
+      "damage_one_handed": "1d6 - 1",
+      "damage_two_handed": "1d8 - 1",
+      "damage_type": "Bludgeoning",
+      "icon": "/static/images/weapons/staff.svg",
+      "mastery": "Topple",
+      "name": "Quarterstaff",
+      "proficient": true,
+      "properties": [
+        "Versatile (1d8)"
+      ]
+    }
+  ],
+  "background": "Farmer",
+  "background_data": {
+    "ability_score_increase": {
+      "options": [
+        "Strength",
+        "Constitution",
+        "Wisdom"
+      ],
+      "suggested": {
+        "Constitution": 2,
+        "Strength": 1
+      },
+      "total": 3
+    },
+    "description": "You grew up close to the land. Years tending animals and cultivating the earth rewarded you with patience and good health. You have a keen appreciation for nature's bounty alongside a healthy respect for nature's wrath.",
+    "edition": "2024",
+    "effects": [
+      {
+        "feat": "Tough",
+        "type": "grant_origin_feat"
+      },
+      {
+        "skills": [
+          "Animal Handling",
+          "Nature"
+        ],
+        "type": "grant_skill_proficiency"
+      },
+      {
+        "tools": [
+          "Carpenter's Tools"
+        ],
+        "type": "grant_tool_proficiency"
+      }
+    ],
+    "name": "Farmer",
+    "starting_equipment": {
+      "option_a": {
+        "gold": 30,
+        "items": [
+          "Sickle",
+          "Carpenter's Tools",
+          "Healer's Kit",
+          "Iron Pot",
+          "Shovel",
+          "Traveler's Clothes"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "status": "active"
+  },
+  "choices_made": {
+    "ability_scores": {
+      "Charisma": 10,
+      "Constitution": 14,
+      "Dexterity": 12,
+      "Intelligence": 13,
+      "Strength": 8,
+      "Wisdom": 15
+    },
+    "ability_scores_method": "recommended",
+    "background": "Farmer",
+    "background_bonuses": {
+      "Constitution": 1,
+      "Wisdom": 2
+    },
+    "character_name": "Sylara Dawnwhisper",
+    "class": "Druid",
+    "classes": [
+      {
+        "class_name": "Druid",
+        "level": 3,
+        "subclass": "Circle of the Moon"
+      }
+    ],
+    "equipment_selections": {
+      "background_equipment": "option_b",
+      "class_equipment": "option_a"
+    },
+    "languages": [
+      "Orc",
+      "Elvish"
+    ],
+    "level": 3,
+    "lineage": "Wood Elf",
+    "primal_order": "Warden",
+    "skill_choices": [
+      "Insight",
+      "Perception"
+    ],
+    "species": "Elf",
+    "species_trait_choices": {
+      "Elven Lineage": "Wisdom",
+      "Keen Senses": "Survival"
+    },
+    "spell_selections": {
+      "background_cantrips": [],
+      "background_spells": [],
+      "cantrips": [
+        "Guidance",
+        "Produce Flame"
+      ],
+      "spells": [
+        "Detect Magic",
+        "Entangle",
+        "Faerie Fire",
+        "Healing Word",
+        "Goodberry",
+        "Spike Growth"
+      ]
+    },
+    "subclass": "Circle of the Moon"
+  },
+  "class": "Druid",
+  "class_breakdown": [
+    {
+      "class_name": "Druid",
+      "level": 3,
+      "subclass": "Circle of the Moon"
+    }
+  ],
+  "class_data": {
+    "armor_proficiencies": [
+      "Light armor",
+      "Shields"
+    ],
+    "cantrip_progression": "class_table",
+    "cantrips_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 4,
+      "14": 4,
+      "15": 4,
+      "16": 4,
+      "17": 4,
+      "18": 4,
+      "19": 4,
+      "2": 2,
+      "20": 4,
+      "3": 2,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 3
+    },
+    "description": "Druids revere nature above all, gaining their spells and powers from the force of nature itself or from nature deities. They wield primal magic and can transform into beasts.",
+    "elemental_fury_options": {
+      "Potent Spellcasting": {
+        "description": "Add your Wisdom modifier to the damage you deal with any Druid cantrip. {improved_text}",
+        "scaling": {
+          "improved_text": [
+            {
+              "min_level": 15,
+              "value": "When you cast a Druid cantrip with a range of 10 feet or greater, the spell's range increases by 300 feet."
+            },
+            {
+              "min_level": 7,
+              "value": ""
+            }
+          ]
+        }
+      },
+      "Primal Strike": {
+        "description": "Once on each of your turns when you hit a creature with an attack roll using a weapon or a Beast form's attack in Wild Shape, you can cause the target to take an extra {strike_dice} Cold, Fire, Lightning, or Thunder damage (choose when you hit).",
+        "scaling": {
+          "strike_dice": [
+            {
+              "min_level": 15,
+              "value": "2d8"
+            },
+            {
+              "min_level": 7,
+              "value": "1d8"
+            }
+          ]
+        }
+      }
+    },
+    "features_by_level": {
+      "1": {
+        "Druidic": {
+          "description": "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You always have the Speak with Animals spell prepared.",
+          "effects": [
+            {
+              "languages": [
+                "Druidic"
+              ],
+              "type": "grant_language"
+            },
+            {
+              "min_level": 1,
+              "spell": "Speak with Animals",
+              "type": "grant_spell"
+            }
+          ]
+        },
+        "Primal Order": {
+          "choices": {
+            "count": 1,
+            "name": "primal_order",
+            "optional": false,
+            "source": {
+              "list": "primal_orders",
+              "type": "internal"
+            },
+            "type": "select_single"
+          },
+          "description": "You have dedicated yourself to one of the following primal roles of your choice."
+        },
+        "Spellcasting": {
+          "description": "You can cast spells using Wisdom as your spellcasting ability. You prepare a number of spells from the Druid spell list each day. You can use a Druidic Focus as your Spellcasting Focus. You can cast any prepared Druid spell as a ritual if it has the Ritual tag.",
+          "feature_kind": "spellcasting_setup"
+        }
+      },
+      "10": {
+        "Subclass Feature": {
+          "description": "Gain a feature from your Druid Circle subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "11": {},
+      "12": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_12",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "13": {},
+      "14": {
+        "Subclass Feature": {
+          "description": "Gain a feature from your Druid Circle subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "15": {
+        "Improved Elemental Fury": "The option you chose for Elemental Fury grows more powerful. The effects are updated automatically based on your level."
+      },
+      "16": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_16",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "17": {},
+      "18": {
+        "Beast Spells": "While using Wild Shape, you can cast spells in Beast form, except for any spell that has a Material component with a cost specified or that consumes its Material component."
+      },
+      "19": {
+        "Epic Boon": "Gain an Epic Boon feat or another feat of your choice."
+      },
+      "2": {
+        "Wild Companion": "You can expend a spell slot or a use of Wild Shape (no action required) to cast Find Familiar without Material components. The familiar is a Fey and disappears after a number of hours equal to half your Druid level.",
+        "Wild Shape": "As a Bonus Action, you magically assume the shape of a beast you have seen. You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. You stay in beast form for a number of hours equal to half your Druid level (rounded down). Your temporary hit points in beast form equal your Druid level. You revert if you drop to 0 temporary hit points, use a Bonus Action, or are incapacitated. While in beast form, your game statistics are replaced by the beast's, but you retain your alignment, personality, Intelligence, Wisdom, and Charisma scores. You can't cast spells in beast form (until Beast Spells at level 18). Known forms start at a limited number and grow as you level."
+      },
+      "20": {
+        "Archdruid": "The vitality of nature constantly blooms within you, granting you the following benefits. Evergreen Wild Shape: Whenever you roll Initiative and have no uses of Wild Shape left, you regain one expended use. Nature Magician: You can convert uses of Wild Shape into a spell slot (no action required), with each use contributing 2 spell levels. Once per Long Rest. Longevity: For every ten years that pass, your body ages only one year."
+      },
+      "3": {
+        "Druid Subclass": {
+          "description": "Choose your Druid Circle subclass.",
+          "feature_kind": "subclass_pick"
+        }
+      },
+      "4": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_4",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "5": {
+        "Wild Resurgence": "Once on each of your turns, if you have no uses of Wild Shape left, you can give yourself one use by expending a spell slot (no action required). In addition, you can expend one use of Wild Shape (no action required) to give yourself a level 1 spell slot, but you can't do so again until you finish a Long Rest."
+      },
+      "6": {
+        "Subclass Feature": {
+          "description": "Gain a feature from your Druid Circle subclass.",
+          "feature_kind": "subclass_feature_slot"
+        }
+      },
+      "7": {
+        "Elemental Fury": {
+          "choices": {
+            "count": 1,
+            "name": "elemental_fury",
+            "optional": false,
+            "source": {
+              "list": "elemental_fury_options",
+              "type": "internal"
+            },
+            "type": "select_single"
+          },
+          "description": "The might of the elements flows through you. Choose one of the following options."
+        }
+      },
+      "8": {
+        "Ability Score Improvement": {
+          "choices": {
+            "name": "class_feat_8",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "Increase one ability score by 2, or increase two ability scores by 1.",
+          "feature_kind": "asi"
+        }
+      },
+      "9": {}
+    },
+    "hit_die": 8,
+    "multiclassing": {
+      "armor_training": [
+        "Light",
+        "Shields"
+      ],
+      "hit_die_granted": 8,
+      "notes": null,
+      "other_proficiencies": [],
+      "saving_throw_proficiencies": [],
+      "skill_proficiencies": null,
+      "source_text": "As a Multiclass Druid: Gain the following traits from the Core Druid Traits table: Hit Point Die and training with Light armor and Shields. Gain the Druid's level 1 features, which are listed in the Druid Features table. See the multiclassing rules in multiclassing to determine your available spell slots.",
+      "tool_training": [],
+      "weapon_training": []
+    },
+    "name": "Druid",
+    "prepared_spells_by_level": {
+      "1": 4,
+      "10": 15,
+      "11": 16,
+      "12": 16,
+      "13": 17,
+      "14": 17,
+      "15": 18,
+      "16": 18,
+      "17": 19,
+      "18": 20,
+      "19": 21,
+      "2": 5,
+      "20": 22,
+      "3": 6,
+      "4": 7,
+      "5": 9,
+      "6": 10,
+      "7": 11,
+      "8": 12,
+      "9": 14
+    },
+    "primal_orders": {
+      "Magician": {
+        "choices": {
+          "count": 1,
+          "name": "magician_bonus_cantrip",
+          "optional": false,
+          "source": {
+            "file": "spells/class_lists/druid.json",
+            "list": "cantrips",
+            "type": "external"
+          },
+          "type": "select_single"
+        },
+        "description": "You know one extra cantrip from the Druid spell list. In addition, your mystical connection to nature gives you a bonus to your Intelligence (Arcana or Nature) checks. The bonus equals your Wisdom modifier (minimum bonus of +1).",
+        "effects": [
+          {
+            "ability": "Intelligence",
+            "minimum": 1,
+            "skills": [
+              "Arcana",
+              "Nature"
+            ],
+            "type": "ability_bonus",
+            "value": "wisdom_modifier"
+          },
+          {
+            "category": "always_prepared",
+            "count": 1,
+            "counts_against_limit": false,
+            "type": "grant_cantrip_choice"
+          }
+        ]
+      },
+      "Warden": {
+        "description": "Trained for battle, you gain proficiency with Martial weapons and training with Medium armor.",
+        "effects": [
+          {
+            "proficiencies": [
+              "Martial weapons"
+            ],
+            "type": "grant_weapon_proficiency"
+          },
+          {
+            "proficiencies": [
+              "Medium armor"
+            ],
+            "type": "grant_armor_proficiency"
+          }
+        ]
+      }
+    },
+    "primary_ability": "Wisdom",
+    "proficiency_bonus_by_level": {
+      "1": 2,
+      "10": 4,
+      "11": 4,
+      "12": 4,
+      "13": 5,
+      "14": 5,
+      "15": 5,
+      "16": 5,
+      "17": 6,
+      "18": 6,
+      "19": 6,
+      "2": 2,
+      "20": 6,
+      "3": 2,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 4
+    },
+    "ritual_casting": true,
+    "saving_throw_proficiencies": [
+      "Intelligence",
+      "Wisdom"
+    ],
+    "skill_options": [
+      "Arcana",
+      "Animal Handling",
+      "Insight",
+      "Medicine",
+      "Nature",
+      "Perception",
+      "Religion",
+      "Survival"
+    ],
+    "skill_proficiencies_count": 2,
+    "spell_list_restrictions": null,
+    "spell_preparation_formula": "level + wisdom_modifier",
+    "spell_slots_by_level": {
+      "1": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "10": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "11": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "12": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        0,
+        0,
+        0
+      ],
+      "13": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        0,
+        0
+      ],
+      "14": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        0,
+        0
+      ],
+      "15": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        0
+      ],
+      "16": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        0
+      ],
+      "17": [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "18": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      "19": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      "2": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "20": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        1,
+        1
+      ],
+      "3": [
+        4,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "4": [
+        4,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "5": [
+        4,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "6": [
+        4,
+        3,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "7": [
+        4,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "8": [
+        4,
+        3,
+        3,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "9": [
+        4,
+        3,
+        3,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "spellcasting_ability": "Wisdom",
+    "spellcasting_focus": [
+      "Druidic Focus"
+    ],
+    "spellcasting_type": "prepared",
+    "standard_array_assignment": {
+      "Charisma": 10,
+      "Constitution": 14,
+      "Dexterity": 12,
+      "Intelligence": 13,
+      "Strength": 8,
+      "Wisdom": 15
+    },
+    "starting_equipment": {
+      "option_a": {
+        "gold": 9,
+        "items": [
+          "Leather Armor",
+          "Shield",
+          "Sickle",
+          "Druidic Focus (Quarterstaff)",
+          "Explorer's Pack",
+          "Herbalism Kit"
+        ]
+      },
+      "option_b": {
+        "gold": 50
+      }
+    },
+    "subclass_selection_level": 3,
+    "tool_proficiencies": [
+      "Herbalism Kit"
+    ],
+    "weapon_proficiencies": [
+      "Simple weapons"
+    ]
+  },
+  "combat": {
+    "armor_class": 14,
+    "hit_dice": {
+      "spent": 0,
+      "total": "3d8"
+    },
+    "hit_point_maximum": 30,
+    "hit_points": {
+      "current": 30,
+      "maximum": 30,
+      "temporary": 0
+    },
+    "hp_breakdown": {
+      "base_hp": 18,
+      "base_hp_breakdown": "Level 1: 8 (max d8) + Levels 2-3: 10 (avg d8)",
+      "class_name": "Druid",
+      "constitution_bonus": 6,
+      "constitution_modifier": 2,
+      "constitution_score": 15,
+      "feature_bonus": 6,
+      "feature_breakdown": [
+        "Tough: +2 per level (+6 total)"
+      ],
+      "hit_die": 8,
+      "level": 3,
+      "total_hp": 30
+    },
+    "initiative": 1,
+    "initiative_bonus": 1,
+    "passive_perception": 15,
+    "speed": 35,
+    "uses_shield": true
+  },
+  "condition_immunities": [],
+  "darkvision": 60,
+  "effects": [
+    {
+      "condition": "Charmed",
+      "display": "Advantage vs Charmed condition",
+      "source": "Fey Ancestry",
+      "source_type": "species",
+      "type": "grant_save_advantage"
+    },
+    {
+      "feat": "Tough",
+      "source": "Farmer",
+      "source_type": "background",
+      "type": "grant_origin_feat"
+    },
+    {
+      "feature_group": "wood_elf_increased_speed",
+      "source": "Increased Speed",
+      "source_type": "lineage",
+      "type": "increase_speed",
+      "value": 5
+    },
+    {
+      "feature_group": "wood_elf_increased_speed",
+      "source": "Increased Speed",
+      "source_type": "lineage",
+      "type": "increase_speed",
+      "value": 5
+    },
+    {
+      "languages": [
+        "Druidic"
+      ],
+      "source": "Druidic",
+      "source_class_name": "Druid",
+      "source_type": "class",
+      "type": "grant_language"
+    },
+    {
+      "min_level": 1,
+      "source": "Druidic",
+      "source_class_name": "Druid",
+      "source_type": "class",
+      "spell": "Speak with Animals",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Circle of the Moon Spells",
+      "source_class_name": "Druid",
+      "source_type": "subclass",
+      "spell": "Cure Wounds",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Circle of the Moon Spells",
+      "source_class_name": "Druid",
+      "source_type": "subclass",
+      "spell": "Moonbeam",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Longstrider",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 3,
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Longstrider",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Circle of the Moon Spells",
+      "source_class_name": "Druid",
+      "source_type": "subclass",
+      "spell": "Conjure Animals",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Pass without Trace",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 5,
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Pass without Trace",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 7,
+      "source": "Circle of the Moon Spells",
+      "source_class_name": "Druid",
+      "source_type": "subclass",
+      "spell": "Fount of Moonlight",
+      "type": "grant_spell"
+    },
+    {
+      "min_level": 9,
+      "source": "Circle of the Moon Spells",
+      "source_class_name": "Druid",
+      "source_type": "subclass",
+      "spell": "Mass Cure Wounds",
+      "type": "grant_spell"
+    },
+    {
+      "proficiencies": [
+        "Martial weapons"
+      ],
+      "source": "Warden",
+      "source_type": "class_choice",
+      "type": "grant_weapon_proficiency"
+    },
+    {
+      "proficiencies": [
+        "Medium armor"
+      ],
+      "source": "Warden",
+      "source_type": "class_choice",
+      "type": "grant_armor_proficiency"
+    },
+    {
+      "range": 60,
+      "source": "Darkvision",
+      "source_type": "species",
+      "type": "grant_darkvision"
+    },
+    {
+      "scaling": "per_level",
+      "source": "Tough",
+      "source_type": "feat",
+      "type": "bonus_hp",
+      "value": 2
+    },
+    {
+      "skills": [
+        "Animal Handling",
+        "Nature"
+      ],
+      "source": "Farmer",
+      "source_type": "background",
+      "type": "grant_skill_proficiency"
+    },
+    {
+      "source": "Circle of the Moon Spells",
+      "source_class_name": "Druid",
+      "source_type": "subclass",
+      "spell": "Starry Wisp",
+      "type": "grant_cantrip"
+    },
+    {
+      "source": "Farmer",
+      "source_type": "background",
+      "tools": [
+        "Carpenter's Tools"
+      ],
+      "type": "grant_tool_proficiency"
+    },
+    {
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Druidcraft",
+      "type": "grant_cantrip"
+    },
+    {
+      "source": "Wood Elf Spells",
+      "source_type": "lineage",
+      "spell": "Druidcraft",
+      "type": "grant_cantrip"
+    }
+  ],
+  "eldritch_invocation_stats": {
+    "available_invocations": [],
+    "current_invocations": [],
+    "has_invocations": false,
+    "max_invocations": 0
+  },
+  "equipment": {
+    "armor": [
+      {
+        "name": "Leather Armor",
+        "source": "Class"
+      },
+      {
+        "name": "Shield",
+        "source": "Class"
+      }
+    ],
+    "gold": 59,
+    "items": [
+      {
+        "name": "Explorer's Pack",
+        "source": "Class"
+      },
+      {
+        "name": "Herbalism Kit",
+        "source": "Class"
+      }
+    ],
+    "weapons": [
+      {
+        "display_name": "Druidic Focus (Quarterstaff)",
+        "name": "Quarterstaff",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "2 sp",
+          "damage": "1d6",
+          "damage_type": "Bludgeoning",
+          "mastery": "Topple",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Versatile (1d8)"
+          ],
+          "weight": 4
+        },
+        "quantity": 1,
+        "source": "Class"
+      },
+      {
+        "display_name": "Sickle",
+        "name": "Sickle",
+        "properties": {
+          "category": "Simple Melee",
+          "cost": "1 gp",
+          "damage": "1d4",
+          "damage_type": "Slashing",
+          "mastery": "Nick",
+          "proficiency_required": "Simple weapons",
+          "properties": [
+            "Light"
+          ],
+          "weight": 2
+        },
+        "quantity": 1,
+        "source": "Class"
+      }
+    ]
+  },
+  "features": {
+    "background": [],
+    "class": [
+      {
+        "chosen_options": [
+          {
+            "choice_key": "primal_order",
+            "description": "Trained for battle, you gain proficiency with Martial weapons and training with Medium armor.",
+            "name": "Warden"
+          }
+        ],
+        "description": "Trained for battle, you gain proficiency with Martial weapons and training with Medium armor.",
+        "level": 1,
+        "name": "Primal Order: Warden",
+        "source": "Druid"
+      },
+      {
+        "description": "As a Bonus Action, you magically assume the shape of a beast you have seen. You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. You stay in beast form for a number of hours equal to half your Druid level (rounded down). Your temporary hit points in beast form equal your Druid level. You revert if you drop to 0 temporary hit points, use a Bonus Action, or are incapacitated. While in beast form, your game statistics are replaced by the beast's, but you retain your alignment, personality, Intelligence, Wisdom, and Charisma scores. You can't cast spells in beast form (until Beast Spells at level 18). Known forms start at a limited number and grow as you level.",
+        "level": 2,
+        "name": "Wild Shape",
+        "source": "Druid"
+      },
+      {
+        "description": "You can cast spells using Wisdom as your spellcasting ability. You prepare a number of spells from the Druid spell list each day. You can use a Druidic Focus as your Spellcasting Focus. You can cast any prepared Druid spell as a ritual if it has the Ritual tag.",
+        "level": 1,
+        "name": "Spellcasting",
+        "source": "Druid"
+      },
+      {
+        "description": "You can expend a spell slot or a use of Wild Shape (no action required) to cast Find Familiar without Material components. The familiar is a Fey and disappears after a number of hours equal to half your Druid level.",
+        "level": 2,
+        "name": "Wild Companion",
+        "source": "Druid"
+      },
+      {
+        "description": "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You always have the Speak with Animals spell prepared.\n\nSpells Always Prepared: Speak with Animals",
+        "level": 1,
+        "name": "Druidic",
+        "source": "Druid"
+      }
+    ],
+    "feats": [
+      {
+        "description": "Your hit point maximum increases by an amount equal to twice your character level when you gain this feat. Whenever you gain a level thereafter, your hit point maximum increases by an additional 2 hit points.",
+        "name": "Tough",
+        "source": "Farmer"
+      }
+    ],
+    "lineage": [
+      {
+        "description": "You know the Druidcraft cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.\n\n<table class=\"table table-sm table-bordered mt-2\">\n<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n<tbody>\n<tr class=\"table-success\"><td>3</td><td>\u2713 Longstrider</td></tr>\n<tr class=\"table-secondary\"><td>5</td><td>\ud83d\udd12 Pass without Trace</td></tr>\n</tbody>\n</table>",
+        "level": 5,
+        "name": "Wood Elf Spells",
+        "source": "Wood Elf"
+      },
+      {
+        "description": "Your Speed increases to 35 feet.",
+        "name": "Increased Speed",
+        "source": "Wood Elf"
+      }
+    ],
+    "species": [
+      {
+        "description": "You are part of a lineage that grants you supernatural abilities. Intelligence, Wisdom of Charisma is your spellcasting ability for the spells you cast with this trait.",
+        "name": "Elven Lineage",
+        "source": "Elf"
+      },
+      {
+        "description": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness.",
+        "name": "Trance",
+        "source": "Elf"
+      },
+      {
+        "description": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+        "name": "Fey Ancestry",
+        "source": "Elf"
+      },
+      {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "name": "Darkvision",
+        "source": "Elf"
+      },
+      {
+        "description": "You have proficiency in the Insight, Perception, or Survival skill.",
+        "name": "Keen Senses: Survival",
+        "source": "Elf"
+      }
+    ],
+    "subclass": [
+      {
+        "description": "When you assume a Wild Shape form, the following rules apply. Challenge Rating: The maximum CR for the form equals your Druid level divided by 3 (round down). Armor Class: Your AC equals 13 plus your Wisdom modifier if that total is higher than the Beast's AC. Temporary Hit Points: You gain Temporary Hit Points equal to three times your Druid level.",
+        "level": 3,
+        "name": "Circle Forms",
+        "source": "Circle of the Moon"
+      },
+      {
+        "description": "You always have certain spells prepared. These spells can also be cast while in Wild Shape form.\n\n<table class=\"table table-sm table-bordered mt-2\">\n<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n<tbody>\n<tr class=\"table-success\"><td>3</td><td>\u2713 Cure Wounds, Moonbeam</td></tr>\n<tr class=\"table-secondary\"><td>5</td><td>\ud83d\udd12 Conjure Animals</td></tr>\n<tr class=\"table-secondary\"><td>7</td><td>\ud83d\udd12 Fount of Moonlight</td></tr>\n<tr class=\"table-secondary\"><td>9</td><td>\ud83d\udd12 Mass Cure Wounds</td></tr>\n</tbody>\n</table>",
+        "level": 9,
+        "name": "Circle of the Moon Spells",
+        "source": "Circle of the Moon"
+      }
+    ]
+  },
+  "immunities": [],
+  "languages": [
+    "Common",
+    "Druidic",
+    "Orc",
+    "Elvish"
+  ],
+  "level": 3,
+  "lineage": "Wood Elf",
+  "lineage_data": {
+    "description": "Wood elves are reclusive and deeply attuned to the natural world. They are known for their exceptional agility and stealth, often dwelling in dense forests where they can move unseen. Their connection to nature grants them unique magical abilities that aid them in protecting their woodland homes.",
+    "name": "Wood Elf",
+    "parent_species": "Elf",
+    "traits": {
+      "Increased Speed": {
+        "description": "Your Speed increases to 35 feet.",
+        "effects": [
+          {
+            "feature_group": "wood_elf_increased_speed",
+            "type": "increase_speed",
+            "value": 5
+          }
+        ]
+      },
+      "Wood Elf Spells": {
+        "description": "You know the Druidcraft cantrip. You also always have certain spells prepared and can cast them once per day without expending a spell slot. You can also cast them using spell slots you have of the appropriate level.",
+        "effects": [
+          {
+            "min_level": 3,
+            "spell": "Longstrider",
+            "type": "grant_spell"
+          },
+          {
+            "min_level": 5,
+            "spell": "Pass without Trace",
+            "type": "grant_spell"
+          },
+          {
+            "spell": "Druidcraft",
+            "type": "grant_cantrip"
+          }
+        ]
+      }
+    }
+  },
+  "magical_darkness_sight": {},
+  "maneuvers_known": [],
+  "name": "Sylara Dawnwhisper",
+  "proficiencies": {
+    "armor": [
+      "Light armor",
+      "Shields",
+      "Medium armor"
+    ],
+    "languages": [
+      "Common",
+      "Druidic",
+      "Orc",
+      "Elvish"
+    ],
+    "saving_throws": [
+      "Intelligence",
+      "Wisdom"
+    ],
+    "skills": [
+      "Insight",
+      "Perception",
+      "Animal Handling",
+      "Nature"
+    ],
+    "tools": [
+      "Carpenter's Tools"
+    ],
+    "weapons": [
+      "Simple weapons",
+      "Martial weapons"
+    ]
+  },
+  "proficiency_bonus": 2,
+  "proficiency_sources": {
+    "armor": {
+      "Medium armor": "Warden"
+    },
+    "languages": {
+      "Common": "base",
+      "Druidic": "Druidic",
+      "Elvish": "user_choice",
+      "Orc": "user_choice"
+    },
+    "saving_throws": {},
+    "skills": {
+      "Animal Handling": "Farmer",
+      "Insight": "Druid",
+      "Nature": "Farmer",
+      "Perception": "Druid"
+    },
+    "tools": {
+      "Carpenter's Tools": "Farmer"
+    },
+    "weapons": {
+      "Martial weapons": "Warden"
+    }
+  },
+  "resistances": [],
+  "save_advantages": [],
+  "skill_proficiencies": [
+    "Insight",
+    "Perception",
+    "Animal Handling",
+    "Nature"
+  ],
+  "skills": {
+    "acrobatics": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "animal_handling": {
+      "ability": "wisdom",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Farmer"
+    },
+    "arcana": {
+      "ability": "intelligence",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "athletics": {
+      "ability": "strength",
+      "bonus": -1,
+      "expertise": false,
+      "modifier": -1,
+      "proficient": false,
+      "source": "None"
+    },
+    "deception": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "history": {
+      "ability": "intelligence",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "insight": {
+      "ability": "wisdom",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Druid"
+    },
+    "intimidation": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "investigation": {
+      "ability": "intelligence",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "medicine": {
+      "ability": "wisdom",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    },
+    "nature": {
+      "ability": "intelligence",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": true,
+      "source": "Farmer"
+    },
+    "perception": {
+      "ability": "wisdom",
+      "bonus": 5,
+      "expertise": false,
+      "modifier": 5,
+      "proficient": true,
+      "source": "Druid"
+    },
+    "performance": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "persuasion": {
+      "ability": "charisma",
+      "bonus": 0,
+      "expertise": false,
+      "modifier": 0,
+      "proficient": false,
+      "source": "None"
+    },
+    "religion": {
+      "ability": "intelligence",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "sleight_of_hand": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "stealth": {
+      "ability": "dexterity",
+      "bonus": 1,
+      "expertise": false,
+      "modifier": 1,
+      "proficient": false,
+      "source": "None"
+    },
+    "survival": {
+      "ability": "wisdom",
+      "bonus": 3,
+      "expertise": false,
+      "modifier": 3,
+      "proficient": false,
+      "source": "None"
+    }
+  },
+  "species": "Elf",
+  "species_data": {
+    "creature_type": "Humanoid",
+    "description": "Created by the god Corellon, elves have pointed ears and lack facial and body hair. They live for around 750 years, and they don't sleep but instead enter a trance when they need to rest. An environment subtly transforms elves after they inhabit it for a millennium or more, granting them certain kinds of magic.",
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
+    "lineages": [
+      "Drow",
+      "High Elf",
+      "Wood Elf"
+    ],
+    "name": "Elf",
+    "size": "Medium",
+    "size_description": "about 5-6 feet tall",
+    "speed": 30,
+    "traits": {
+      "Darkvision": {
+        "description": "You have Darkvision with a range of 60 feet.",
+        "effects": [
+          {
+            "range": 60,
+            "type": "grant_darkvision"
+          }
+        ]
+      },
+      "Elven Lineage": {
+        "choices": {
+          "count": 1,
+          "source": {
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ],
+            "type": "fixed_list"
+          },
+          "type": "select_single"
+        },
+        "description": "You are part of a lineage that grants you supernatural abilities. Intelligence, Wisdom of Charisma is your spellcasting ability for the spells you cast with this trait.",
+        "type": "choice"
+      },
+      "Fey Ancestry": {
+        "description": "You have Advantage on saving throws you make to avoid or end the Charmed condition.",
+        "effects": [
+          {
+            "condition": "Charmed",
+            "display": "Advantage vs Charmed condition",
+            "type": "grant_save_advantage"
+          }
+        ]
+      },
+      "Keen Senses": {
+        "choice_effects": {
+          "Insight": [
+            {
+              "skills": [
+                "Insight"
+              ],
+              "type": "grant_skill_proficiency"
+            }
+          ],
+          "Perception": [
+            {
+              "skills": [
+                "Perception"
+              ],
+              "type": "grant_skill_proficiency"
+            }
+          ],
+          "Survival": [
+            {
+              "skills": [
+                "Survival"
+              ],
+              "type": "grant_skill_proficiency"
+            }
+          ]
+        },
+        "choices": {
+          "count": 1,
+          "source": {
+            "options": [
+              "Insight",
+              "Perception",
+              "Survival"
+            ],
+            "type": "fixed_list"
+          },
+          "type": "select_single"
+        },
+        "description": "You have proficiency in the Insight, Perception, or Survival skill.",
+        "type": "choice"
+      },
+      "Trance": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 4 hours if you spend those hours in a trancelike meditation, during which you retain consciousness."
+    }
+  },
+  "speed": 35,
+  "speed_bonuses": {
+    "wood_elf_increased_speed": 5
+  },
+  "spell_metadata": {
+    "Cure Wounds": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Circle of the Moon",
+      "source_type": "subclass"
+    },
+    "Druidcraft": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "source": "Wood Elf",
+      "source_type": "lineage"
+    },
+    "Longstrider": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": true,
+      "once_per_long_rest": false,
+      "source": "Wood Elf",
+      "source_type": "lineage"
+    },
+    "Moonbeam": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Circle of the Moon",
+      "source_type": "subclass"
+    },
+    "Speak with Animals": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "once_per_long_rest": false,
+      "source": "Druid",
+      "source_type": "class"
+    },
+    "Starry Wisp": {
+      "always_prepared": true,
+      "counts_against_limit": false,
+      "once_per_day": false,
+      "source": "Circle of the Moon",
+      "source_type": "subclass"
+    }
+  },
+  "spell_selections_needed": {
+    "background_cantrips": {
+      "count": 0,
+      "spell_list": null
+    },
+    "background_spells": {
+      "count": 0,
+      "level": 1,
+      "spell_list": null
+    },
+    "cantrips": 0,
+    "prepared_spells": 0
+  },
+  "spell_slots": {
+    "1st": 4,
+    "2nd": 2
+  },
+  "spellcasting_ability": "Wisdom",
+  "spellcasting_stats": {
+    "available_cantrips": [
+      "Druidcraft",
+      "Elementalism",
+      "Guidance",
+      "Mending",
+      "Message",
+      "Poison Spray",
+      "Produce Flame",
+      "Resistance",
+      "Shillelagh",
+      "Spare the Dying",
+      "Starry Wisp",
+      "Thorn Whip",
+      "Thunderclap"
+    ],
+    "available_spells": {
+      "1": [
+        "Animal Friendship",
+        "Charm Person",
+        "Create or Destroy Water",
+        "Cure Wounds",
+        "Detect Magic",
+        "Detect Poison and Disease",
+        "Entangle",
+        "Faerie Fire",
+        "Fog Cloud",
+        "Goodberry",
+        "Healing Word",
+        "Ice Knife",
+        "Jump",
+        "Longstrider",
+        "Protection from Evil and Good",
+        "Purify Food and Drink",
+        "Speak with Animals",
+        "Thunderwave"
+      ],
+      "2": [
+        "Animal Messenger",
+        "Barkskin",
+        "Battle Familiar",
+        "Beast Sense",
+        "Continual Flame",
+        "Darkvision",
+        "Dueling Ground",
+        "Enhance Ability",
+        "Enlarge/Reduce",
+        "Find Traps",
+        "Flame Blade",
+        "Flaming Sphere",
+        "Gust of Wind",
+        "Heat Metal",
+        "Hold Person",
+        "Lesser Restoration",
+        "Locate Animals or Plants",
+        "Locate Object",
+        "Moonbeam",
+        "Pass without Trace",
+        "Protection from Poison",
+        "Spike Growth",
+        "Wither and Bloom"
+      ]
+    },
+    "background_cantrips_list": null,
+    "background_cantrips_needed": 0,
+    "background_spell_level": 1,
+    "background_spells_list": null,
+    "background_spells_needed": 0,
+    "cantrips_always_prepared": 2,
+    "cantrips_known": 4,
+    "cantrips_to_prepare": 2,
+    "effective_caster_level": 3,
+    "has_spellcasting": true,
+    "max_cantrips": 4,
+    "max_cantrips_prepared": 2,
+    "max_cantrips_to_prepare": 2,
+    "max_prepared_spells": 10,
+    "max_spells_prepared": 6,
+    "max_spells_to_prepare": 6,
+    "multiclass_notes": [],
+    "pact_magic_slots": [],
+    "preparation_formula": "level + wisdom_modifier",
+    "ritual_casting": true,
+    "spell_attack_bonus": 5,
+    "spell_save_dc": 13,
+    "spellcasting_ability": "Wisdom",
+    "spellcasting_modifier": 3,
+    "spellcasting_type": "prepared",
+    "spells_always_prepared": 4,
+    "spells_prepared": 10
+  },
+  "spells": {
+    "always_prepared": {
+      "Cure Wounds": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Circle of the Moon"
+      },
+      "Druidcraft": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 0,
+        "source": "Wood Elf"
+      },
+      "Longstrider": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "source": "Wood Elf"
+      },
+      "Moonbeam": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 2,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Circle of the Moon"
+      },
+      "Speak with Animals": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 1,
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "source": "Druid"
+      },
+      "Starry Wisp": {
+        "always_prepared": true,
+        "counts_against_limit": false,
+        "level": 0,
+        "source": "Circle of the Moon"
+      }
+    },
+    "background_spells": {},
+    "cantrips": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 0,
+        "name": "Guidance",
+        "range": "Touch",
+        "ritual": false,
+        "school": "Divination",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A flickering flame appears in your hand and remains there for the duration. While there, the flame emits no heat and ignites nothing, and it sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The spell ends if you cast it again. Until the spell ends, you can take a Magic action to hurl fire at a creature or an object within 60 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 Fire damage. Cantrip Upgrade. The damage increases by 1d8 when you reach levels 5 (2d8), 11 (3d8), and 17 (4d8).",
+        "duration": "10 minutes",
+        "level": 0,
+        "name": "Produce Flame",
+        "range": "Self",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You launch a mote of light at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 Radiant damage, and until the end of your next turn, it emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition. The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Starry Wisp",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Circle of the Moon"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You create a small nature-themed magical effect (predict weather, make a flower bloom, light/snuff a small flame, etc.).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Druidcraft",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Wood Elf"
+      }
+    ],
+    "known": {},
+    "level_1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Paladin",
+          "Ranger",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 1,
+        "name": "Detect Magic",
+        "range": "Self",
+        "ritual": true,
+        "school": "Divination",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "Each creature/object in an area is outlined with light on a failed save; attacks against affected targets have advantage and affected creatures can't benefit from being Invisible.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Faerie Fire",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid",
+          "Ranger"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "Grasping weeds and vines sprout from the ground in a 20-foot square starting from a point within range. For the duration, these plants turn the ground in the area into Difficult Terrain. A creature in the area when you cast the spell must succeed on a Strength saving throw or be Restrained until the spell ends. A creature Restrained by the plants can take an action to make a Strength check against your spell save DC. On a success, it frees itself.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Entangle",
+        "range": "90 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid",
+          "Ranger"
+        ],
+        "components": "V, S, M (a sprig of mistletoe)",
+        "concentration": false,
+        "description": "Ten berries appear in your hand and are infused with magic for the duration. A creature can take a Bonus Action to eat one berry. Eating a berry restores 1 Hit Point, and the berry provides enough nourishment to sustain a creature for one day. Uneaten berries disappear when the spell ends.",
+        "duration": "24 hours",
+        "level": 1,
+        "name": "Goodberry",
+        "range": "Self",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d4 for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Healing Word",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Paladin",
+          "Ranger"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A creature you touch regains a number of Hit Points equal to 2d8 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d8 for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Cure Wounds",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Circle of the Moon"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid",
+          "Ranger",
+          "Warlock"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them. Most Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.",
+        "duration": "10 minutes",
+        "level": 1,
+        "name": "Speak with Animals",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Self",
+        "ritual": true,
+        "school": "Divination",
+        "source": "Druid"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid",
+          "Ranger",
+          "Wizard"
+        ],
+        "components": "V, S, M",
+        "concentration": false,
+        "description": "You touch a creature. The target's Speed increases by 10 feet until the spell ends. You can target one additional creature for each spell slot above 1.",
+        "duration": "1 hour",
+        "level": 1,
+        "material": "a pinch of dirt",
+        "name": "Longstrider",
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Wood Elf"
+      }
+    ],
+    "prepared": {
+      "cantrips": {
+        "Guidance": {},
+        "Produce Flame": {}
+      },
+      "spells": {
+        "Detect Magic": {},
+        "Entangle": {},
+        "Faerie Fire": {},
+        "Goodberry": {},
+        "Healing Word": {},
+        "Spike Growth": {}
+      }
+    },
+    "slots": {}
+  },
+  "spells_by_level": {
+    "0": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Cleric",
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 0,
+        "name": "Guidance",
+        "range": "Touch",
+        "ritual": false,
+        "school": "Divination",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A flickering flame appears in your hand and remains there for the duration. While there, the flame emits no heat and ignites nothing, and it sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The spell ends if you cast it again. Until the spell ends, you can take a Magic action to hurl fire at a creature or an object within 60 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 Fire damage. Cantrip Upgrade. The damage increases by 1d8 when you reach levels 5 (2d8), 11 (3d8), and 17 (4d8).",
+        "duration": "10 minutes",
+        "level": 0,
+        "name": "Produce Flame",
+        "range": "Self",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You launch a mote of light at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 Radiant damage, and until the end of your next turn, it emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition. The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Starry Wisp",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Circle of the Moon"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You create a small nature-themed magical effect (predict weather, make a flower bloom, light/snuff a small flame, etc.).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Druidcraft",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Wood Elf"
+      }
+    ],
+    "1": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Paladin",
+          "Ranger",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 1,
+        "name": "Detect Magic",
+        "range": "Self",
+        "ritual": true,
+        "school": "Divination",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid"
+        ],
+        "components": "V",
+        "concentration": true,
+        "description": "Each creature/object in an area is outlined with light on a failed save; attacks against affected targets have advantage and affected creatures can't benefit from being Invisible.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Faerie Fire",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid",
+          "Ranger"
+        ],
+        "components": "V, S",
+        "concentration": true,
+        "description": "Grasping weeds and vines sprout from the ground in a 20-foot square starting from a point within range. For the duration, these plants turn the ground in the area into Difficult Terrain. A creature in the area when you cast the spell must succeed on a Strength saving throw or be Restrained until the spell ends. A creature Restrained by the plants can take an action to make a Strength check against your spell save DC. On a success, it frees itself.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 1,
+        "name": "Entangle",
+        "range": "90 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid",
+          "Ranger"
+        ],
+        "components": "V, S, M (a sprig of mistletoe)",
+        "concentration": false,
+        "description": "Ten berries appear in your hand and are infused with magic for the duration. A creature can take a Bonus Action to eat one berry. Eating a berry restores 1 Hit Point, and the berry provides enough nourishment to sustain a creature for one day. Uneaten berries disappear when the spell ends.",
+        "duration": "24 hours",
+        "level": 1,
+        "name": "Goodberry",
+        "range": "Self",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "1 bonus action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d4 for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Healing Word",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Paladin",
+          "Ranger"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A creature you touch regains a number of Hit Points equal to 2d8 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d8 for each slot level above 1st.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Cure Wounds",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Circle of the Moon"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid",
+          "Ranger",
+          "Warlock"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them. Most Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.",
+        "duration": "10 minutes",
+        "level": 1,
+        "name": "Speak with Animals",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Self",
+        "ritual": true,
+        "school": "Divination",
+        "source": "Druid"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Bard",
+          "Druid",
+          "Ranger",
+          "Wizard"
+        ],
+        "components": "V, S, M",
+        "concentration": false,
+        "description": "You touch a creature. The target's Speed increases by 10 feet until the spell ends. You can target one additional creature for each spell slot above 1.",
+        "duration": "1 hour",
+        "level": 1,
+        "material": "a pinch of dirt",
+        "name": "Longstrider",
+        "once_per_day": true,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Wood Elf"
+      }
+    ],
+    "2": [
+      {
+        "always_prepared": false,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid",
+          "Ranger"
+        ],
+        "components": "V, S, M (seven sharp thorns or seven small twigs, each sharpened to a point)",
+        "concentration": true,
+        "description": "The ground in a 20-foot-radius Sphere centered on a point within range twists and sprouts hard spikes and thorns. The area becomes Difficult Terrain for the duration. When a creature moves into or within the area, it takes 2d4 Piercing damage for every 5 feet it travels. The transformation of the ground is camouflaged to look natural. Any creature that can't see the area when the spell is cast must succeed on a Wisdom (Perception) check against your spell save DC to recognize the terrain as hazardous.",
+        "duration": "Concentration, up to 10 minutes",
+        "level": 2,
+        "name": "Spike Growth",
+        "range": "150 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "1 action",
+        "classes": [
+          "Druid"
+        ],
+        "components": "V, S, M (several seeds of any moonseed plant and a piece of opalescent feldspar)",
+        "concentration": true,
+        "description": "A silvery beam of pale light shines down in a 5-foot-radius, 40-foot-high Cylinder centered on a point within range. Until the spell ends, Dim Light fills the Cylinder, and you can take a Magic action on later turns to move the Cylinder up to 60 feet. When a creature enters the Cylinder for the first time on a turn or starts its turn there, it makes a Constitution saving throw, taking 2d10 Radiant damage on a failed save or half as much damage on a successful one. Using a Higher-Level Spell Slot. The damage increases by 1d10 for each spell slot level above 2.",
+        "duration": "Concentration, up to 1 minute",
+        "level": 2,
+        "name": "Moonbeam",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "120 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Circle of the Moon"
+      }
+    ]
+  },
+  "step": "complete",
+  "subclass": "Circle of the Moon",
+  "subclass_data": {
+    "class": "Druid",
+    "description": "Druids of the Circle of the Moon draw on lunar magic to transform themselves. Their order gathers under the moon to share news and perform rituals.",
+    "features_by_level": {
+      "10": {
+        "Moonlight Step": "As a Bonus Action, you can teleport up to 30 feet to an unoccupied space you can see, and you have Advantage on the next attack roll you make before the end of the turn. You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. You can also restore one use by expending a spell slot of level 2 or higher (no action required)."
+      },
+      "14": {
+        "Lunar Form": "Improved Lunar Radiance: Once per turn when you hit a target with a Wild Shape form's attack, you can deal an extra 2d10 Radiant damage to the target. Shared Moonlight: Whenever you use Moonlight Step, you can also teleport one willing creature within 10 feet of you. That creature teleports to an unoccupied space of your choice within 10 feet of your destination."
+      },
+      "3": {
+        "Circle Forms": "When you assume a Wild Shape form, the following rules apply. Challenge Rating: The maximum CR for the form equals your Druid level divided by 3 (round down). Armor Class: Your AC equals 13 plus your Wisdom modifier if that total is higher than the Beast's AC. Temporary Hit Points: You gain Temporary Hit Points equal to three times your Druid level.",
+        "Circle of the Moon Spells": {
+          "description": "You always have certain spells prepared. These spells can also be cast while in Wild Shape form.",
+          "effects": [
+            {
+              "min_level": 3,
+              "spell": "Cure Wounds",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 3,
+              "spell": "Moonbeam",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 5,
+              "spell": "Conjure Animals",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 7,
+              "spell": "Fount of Moonlight",
+              "type": "grant_spell"
+            },
+            {
+              "min_level": 9,
+              "spell": "Mass Cure Wounds",
+              "type": "grant_spell"
+            },
+            {
+              "spell": "Starry Wisp",
+              "type": "grant_cantrip"
+            }
+          ]
+        }
+      },
+      "6": {
+        "Improved Circle Forms": "While in Wild Shape form, you gain the following benefits. Lunar Radiance: Each of your attacks in Wild Shape can deal its normal damage type or Radiant damage. You make this choice each time you hit. Increased Toughness: You can add your Wisdom modifier to your Constitution saving throws."
+      }
+    },
+    "name": "Circle of the Moon",
+    "source": "Player's Handbook 2024"
+  },
+  "superiority_dice": {},
+  "tool_proficiencies": [
+    "Carpenter's Tools"
+  ],
+  "weapon_masteries": {
+    "available": [],
+    "max_count": 0,
+    "selected": []
+  },
+  "weapon_mastery_stats": {
+    "available_weapons": [],
+    "current_masteries": [],
+    "has_mastery": false,
+    "max_masteries": 0
+  },
+  "weapon_proficiencies": [
+    "Simple weapons",
+    "Martial weapons"
+  ]
+}
