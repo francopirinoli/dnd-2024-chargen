@@ -22,7 +22,7 @@ ALL_GENERAL_FEATS = [
     "Crossbow Expert", "Crusher", "Defensive Duelist", "Dual Wielder", "Durable",
     "Elemental Adept", "Fey Touched", "Grappler", "Great Weapon Master",
     "Heavily Armored", "Heavy Armor Master", "Inspiring Leader", "Keen Mind",
-    "Lightly Armored", "Lucky", "Mage Slayer", "Martial Weapon Training",
+    "Lightly Armored", "Mage Slayer", "Martial Weapon Training",
     "Medium Armor Master", "Moderately Armored", "Mounted Combatant", "Observant",
     "Piercer", "Poisoner", "Polearm Master", "Resilient", "Ritual Caster",
     "Sentinel", "Shadow Touched", "Sharpshooter", "Shield Master", "Skill Expert",
@@ -31,12 +31,12 @@ ALL_GENERAL_FEATS = [
 ]
 
 ABILITY_CHOICE_GENERAL_FEATS = [
-    "Athlete", "Charger", "Chef", "Crusher", "Elemental Adept", "Fey Touched",
+    "Athlete", "Charger", "Chef", "Crusher", "Dual Wielder", "Elemental Adept", "Fey Touched",
     "Grappler", "Heavily Armored", "Heavy Armor Master", "Inspiring Leader",
     "Lightly Armored", "Mage Slayer", "Martial Weapon Training", "Medium Armor Master",
-    "Moderately Armored", "Mounted Combatant", "Piercer", "Poisoner", "Ritual Caster",
-    "Shadow Touched", "Slasher", "Speedy", "Spell Sniper", "Telekinetic", "Telepathic",
-    "Weapon Master",
+    "Moderately Armored", "Mounted Combatant", "Piercer", "Poisoner", "Polearm Master",
+    "Ritual Caster", "Sentinel", "Shadow Touched", "Slasher", "Speedy", "Spell Sniper",
+    "Telekinetic", "Telepathic", "War Caster", "Weapon Master",
 ]
 
 REQUIRED_FEAT_FIELDS = ["description", "benefits", "category", "prerequisite", "source"]
@@ -99,7 +99,8 @@ class TestGeneralFeatsData:
         """All 44 general feats must exist."""
         for feat_name in ALL_GENERAL_FEATS:
             assert feat_name in general_feats, f"Missing general feat: {feat_name}"
-        assert len(general_feats) == len(ALL_GENERAL_FEATS)
+        general_only = [k for k, v in general_feats.items() if v.get("category") == "General" and not k.startswith("Fey-") and not k.startswith("Shadow-")]
+        assert len(general_only) == len(ALL_GENERAL_FEATS)
 
     @pytest.mark.parametrize("feat_name", ALL_GENERAL_FEATS)
     def test_general_feats_required_fields(self, general_feats, feat_name):
@@ -1153,61 +1154,31 @@ class TestSelectedOriginFeatToolEffects:
         assert unchosen_tool not in tools
 
 
-class TestDualWielderArmorClass:
-    """Dual Wielder's AC bonus is conditional on actually wielding two weapons."""
+class TestDualWielderFeat:
+    """2024 RAW: Dual Wielder provides an ability score increase (+1 Str or Dex)."""
 
-    @staticmethod
-    def _build_dual_wielder(class_equipment, include_feat):
-        choices = {
-            "character_name": "Dual Wielder AC Test",
+    def test_dual_wielder_asi_applies(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Dual Wielder ASI Test",
             "level": 4,
             "species": "Human",
             "class": "Fighter",
             "background": "Soldier",
             "ability_scores": {
                 "Strength": 14,
-                "Dexterity": 14,
+                "Dexterity": 16,
                 "Constitution": 14,
                 "Intelligence": 10,
                 "Wisdom": 10,
                 "Charisma": 10,
             },
-            "equipment_selections": {
-                "class_equipment": class_equipment,
-                "background_equipment": "option_a",
-            },
-        }
-        if include_feat:
-            choices["class_feat_4"] = "Dual Wielder"
-        builder = CharacterBuilder()
-        builder.apply_choices(choices)
-        return builder.to_character()
-
-    @staticmethod
-    def _unarmored_option(character):
-        return next(
-            option
-            for option in character["ac_options"]
-            if option["equipped_armor"] is None
-            and option["formula"].startswith("10 + Dex modifier")
-        )
-
-    def test_bonus_applies_to_unarmored_option_while_dual_wielding(self):
-        without_feat = self._build_dual_wielder("option_b", include_feat=False)
-        with_feat = self._build_dual_wielder("option_b", include_feat=True)
-
-        unarmored_without_feat = self._unarmored_option(without_feat)
-        unarmored_with_feat = self._unarmored_option(with_feat)
-        assert unarmored_with_feat["ac"] == unarmored_without_feat["ac"] + 1
-        assert "Dual Wielder" in unarmored_with_feat["formula"]
-
-    def test_bonus_does_not_apply_with_only_one_melee_weapon(self):
-        without_feat = self._build_dual_wielder("option_c", include_feat=False)
-        with_feat = self._build_dual_wielder("option_c", include_feat=True)
-
-        assert self._unarmored_option(with_feat)["ac"] == self._unarmored_option(
-            without_feat
-        )["ac"]
+            "class_feat_4": "Dual Wielder",
+            "class_feat_4_ability": "Strength",
+        })
+        char = builder.to_character()
+        assert char["abilities"]["strength"]["score"] == 15
+        assert char["abilities"]["dexterity"]["score"] == 16
 
 
 # ==================== 5. Choice-Dependent Effects (General Feats) ====================

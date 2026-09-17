@@ -7,11 +7,10 @@
   "components": [
     "V",
     "S",
-    "M"
+    "M (two lodestones)"
   ],
-  "material": "two lodestones",
   "duration": "Instantaneous",
-  "description": "This spell repairs a single break or tear in an object you touch, such as a broken chain link, two halves of a broken key, a torn cloak, or a leaking wineskin.",
+  "description": "This spell repairs a single break or tear in an object you touch, such as a broken chain link, two halves of a broken key, a torn cloak, or a leaking wineskin. As long as the break or tear is no larger than 1 foot in any dimension, you mend it, leaving no trace of the former damage.\n\nThis spell can physically repair a magic item, but it can't restore magic to such an object.",
   "classes": [
     "Bard",
     "Cleric",
@@ -19,5 +18,6 @@
     "Sorcerer",
     "Wizard"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "two lodestones"
 }

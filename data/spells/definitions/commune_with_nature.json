@@ -2,17 +2,17 @@
   "name": "Commune with Nature",
   "level": 5,
   "school": "Divination",
-  "casting_time": "1 minute",
-  "ritual": true,
+  "casting_time": "1 minute or Ritual",
   "range": "Self",
   "components": [
     "V",
     "S"
   ],
-  "duration": "Instantaneous",
-  "description": "You briefly become one with nature. In the outdoors, the spell gives you knowledge of the surrounding land within 3 miles of you. In caves and other natural underground settings, the radius is limited to 300 feet. The spell does not function where nature has been replaced by construction, such as in castles and settlements. You instantly gain knowledge of up to three of the following facts of your choice about the surrounding area: (a) locations of communities and bodies of water, (b) prevailing plants, minerals, animals, or peoples, (c) powerful Celestials, Fey, Fiends, Elementals, or Undead, (d) influence from other planes of existence, (e) buildings.",
+  "duration": "1 minute",
+  "description": "You commune with nature spirits and gain knowledge of the surrounding area. In the outdoors, the spell gives you knowledge of the area within 3 miles of you. In caves and other natural underground settings, the radius is limited to 300 feet. The spell doesn't function where nature has been replaced by construction, such as in castles and settlements.\n\nChoose three of the following facts; you learn those facts as they pertain to the spell's area:\n\nLocations of settlements\nLocations of portals to other planes of existence\nLocation of one Challenge Rating 10+ creature (DM's choice) that is a Celestial, an Elemental, a Fey, a Fiend, or an Undead\nThe most prevalent kind of plant, mineral, or Beast (you choose which to learn)\nLocations of bodies of water\nFor example, you could determine the location of a powerful monster in the area, the locations of bodies of water, and the locations of any towns.",
   "classes": [
     "Druid",
     "Ranger"
-  ]
+  ],
+  "ritual": true
 }

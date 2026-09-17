@@ -2,7 +2,7 @@
   "name": "Fire Shield",
   "level": 4,
   "school": "Evocation",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Self",
   "components": [
     "V",
@@ -10,11 +10,12 @@
     "M (a bit of phosphorus or a firefly)"
   ],
   "duration": "10 minutes",
-  "description": "Flames wreathe your body for the duration, shedding Bright Light in a 10-foot radius and Dim Light for an additional 10 feet. You can end the spell early by using an action to dismiss it. The flames grant you a Warm Shield or a Cold Shield, as you choose. The Warm Shield grants you Resistance to Cold damage, and the Cold Shield grants you Resistance to Fire damage. In addition, whenever a creature within 5 feet of you hits you with a melee attack, the shield erupts with flame. The attacker takes 2d8 Fire damage from a Warm Shield, or 2d8 Cold damage from a Cold Shield.",
+  "description": "Wispy flames wreathe your body for the duration, shedding Bright Light in a 10-foot radius and Dim Light for an additional 10 feet.\n\nThe flames provide you with a warm shield or a chill shield, as you choose. The warm shield grants you Resistance to Cold damage, and the chill shield grants you Resistance to Fire damage.\n\nIn addition, whenever a creature within 5 feet of you hits you with a melee attack roll, the shield erupts with flame. The attacker takes 2d8 Fire damage from a warm shield or 2d8 Cold damage from a chill shield.",
   "classes": [
     "Druid",
     "Sorcerer",
     "Wizard"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "a bit of phosphorus or a firefly"
 }

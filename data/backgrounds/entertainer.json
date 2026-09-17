@@ -6,9 +6,9 @@
   "ability_score_increase": {
     "total": 3,
     "options": [
-      "Charisma",
+      "Strength",
       "Dexterity",
-      "Constitution"
+      "Charisma"
     ],
     "suggested": {
       "Charisma": 2,

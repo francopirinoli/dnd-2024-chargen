@@ -2,20 +2,20 @@
   "name": "Sleep",
   "level": 1,
   "school": "Enchantment",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "60 feet",
   "components": [
     "V",
     "S",
-    "M"
+    "M (a pinch of sand or rose petals)"
   ],
-  "material": "a pinch of sand or rose petals",
   "duration": "Concentration, up to 1 minute",
-  "description": "You send a soporific magical energy toward creatures in a 5-foot-radius Sphere centered on a point within range. Each creature in that area must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target falls Unconscious until the spell ends, the sleeper takes damage, or someone within 5 feet of the sleeper takes an action to shake or slap the sleeper awake. Constructs and Undead aren't affected by this spell. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the Sphere's radius increases by 5 feet for each slot level above 1st.",
+  "description": "Each creature of your choice in a 5-foot-radius Sphere centered on a point within range must succeed on a Wisdom saving throw or have the Incapacitated condition until the end of its next turn, at which point it must repeat the save. If the target fails the second save, the target has the Unconscious condition for the duration. The spell ends on a target if it takes damage or someone within 5 feet of it takes an action to shake it out of the spell's effect.\n\nCreatures that don't sleep, such as elves, or that have Immunity to the Exhaustion condition automatically succeed on saves against this spell.",
   "classes": [
     "Bard",
     "Sorcerer",
     "Wizard"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "a pinch of sand or rose petals"
 }

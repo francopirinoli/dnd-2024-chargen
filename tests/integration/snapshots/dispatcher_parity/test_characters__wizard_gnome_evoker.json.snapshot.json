@@ -1653,6 +1653,8 @@
       "2": [
         "Alter Self",
         "Arcane Lock",
+        "Arcane Vigor",
+        "Augury",
         "Battle Familiar",
         "Blindness/Deafness",
         "Blur",
@@ -1681,6 +1683,7 @@
         "Magic Mouth",
         "Magic Weapon",
         "Melf's Acid Arrow",
+        "Mind Spike",
         "Mirror Image",
         "Misty Step",
         "Nystul's Magic Aura",
@@ -1746,27 +1749,9 @@
     "cantrips": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Artificer",
-          "Sorcerer",
-          "Wizard"
-        ],
-        "components": "V, S",
-        "concentration": false,
-        "description": "You create a bubbling glob of acid and hurl it. Choose one or two creatures you can see within range. If you choose two, they must be within 5 feet of each other. A target must succeed on a Dexterity saving throw or take 1d6 Acid damage. This spell's damage increases by 1d6 when you reach levels 5 (2d6), 11 (3d6), and 17 (4d6).",
-        "duration": "Instantaneous",
-        "level": 0,
-        "name": "Acid Splash",
-        "range": "60 feet",
-        "ritual": false,
-        "school": "Evocation",
-        "source": "Selected"
-      },
-      {
-        "always_prepared": false,
-        "casting_time": "1 action",
-        "classes": [
           "Bard",
           "Sorcerer",
           "Warlock",
@@ -1774,7 +1759,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can't attack, activate magic items, or carry more than 10 pounds.",
+        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nWhen you cast the spell, you can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial.\n\nAs a Magic action on your later turns, you can control the hand thus again. As part of that action, you can move the hand up to 30 feet.\n\nThe hand can't attack, activate magic items, or carry more than 10 pounds.",
         "duration": "1 minute",
         "level": 0,
         "name": "Mage Hand",
@@ -1785,14 +1770,34 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+        "description": "You create an acidic bubble at a point within range, where it explodes in a 5-foot-radius Sphere. Each creature in that Sphere must succeed on a Dexterity saving throw or take 1d6 Acid damage.\n\nCantrip Upgrade. The damage increases by 1d6 when you reach levels 5 (2d6), 11 (3d6), and 17 (4d6).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Acid Splash",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "Action",
+        "classes": [
+          "Artificer",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You hurl a mote of fire at a creature or an object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Fire damage. A flammable object hit by this spell starts burning if it isn't being worn or carried.\n\nCantrip Upgrade. The damage increases by 1d10 when you reach levels 5 (2d10), 11 (3d10), and 17 (4d10).",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Fire Bolt",
@@ -1803,16 +1808,16 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Sorcerer",
           "Warlock",
           "Wizard"
         ],
-        "components": "S, M",
+        "components": "S, M (a bit of fleece)",
         "concentration": false,
-        "description": "You create a sound or an image of an object within range that lasts for the duration. The illusion ends if you cast this spell again. If a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
+        "description": "You create a sound or an image of an object within range that lasts for the duration. See the descriptions below for the effects of each. The illusion ends if you cast this spell again.\n\nIf a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.\n\nSound. If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends.\n\nImage. If you create an image of an object\u00e2\u20ac\u201dsuch as a chair, muddy footprints, or a small chest\u00e2\u20ac\u201dit must be no larger than a 5-foot Cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, since things can pass through it.",
         "duration": "1 minute",
         "level": 0,
         "material": "a bit of fleece",
@@ -1829,19 +1834,41 @@
     "level_1": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "1 minute or Ritual",
         "classes": [
+          "Artificer",
+          "Ranger",
+          "Wizard"
+        ],
+        "components": "V, S, M (a bell and silver wire)",
+        "concentration": false,
+        "description": "You set an alarm against intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot Cube. Until the spell ends, an alarm alerts you whenever a creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is audible or mental:\n\nAudible Alarm. The alarm produces the sound of a handbell for 10 seconds within 60 feet of the warded area.\n\nMental Alarm. You are alerted by a mental ping if you are within 1 mile of the warded area. This ping awakens you if you're asleep.",
+        "duration": "8 hours",
+        "level": 1,
+        "material": "a bell and silver wire",
+        "name": "Alarm",
+        "range": "30 feet",
+        "ritual": true,
+        "school": "Abjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "Action or Ritual",
+        "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
           "Paladin",
           "Ranger",
           "Sorcerer",
+          "Warlock",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+        "description": "For the duration, you sense the presence of magical effects within 30 feet of yourself. If you sense such effects, you can take the Magic action to see a faint aura around any visible creature or object in the area that bears the magic, and if an effect was created by a spell, you learn the spell's school of magic.\n\nThe spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead.",
         "duration": "Concentration, up to 10 minutes",
         "level": 1,
         "name": "Detect Magic",
@@ -1852,34 +1879,35 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+        "description": "A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.\n\nFlammable objects in the Cone that aren't being worn or carried start burning.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Burning Hands",
-        "range": "Self (15-foot cone)",
+        "range": "Self",
         "ritual": false,
         "school": "Evocation",
         "source": "Selected"
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S, M (a diamond worth 50+ GP)",
         "concentration": false,
-        "description": "You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type. If you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again unless you cast the spell with a level 2+ spell slot.",
+        "description": "You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type.\n\nIf you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again unless you cast the spell with a level 2+ spell slot.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 1. The orb can leap a maximum number of times equal to the level of the slot expended, and a creature can be targeted only once by each casting of this spell.",
         "duration": "Instantaneous",
         "level": 1,
+        "material": "a diamond worth 50+ GP",
         "name": "Chromatic Orb",
         "range": "90 feet",
         "ritual": false,
@@ -1887,27 +1915,8 @@
         "source": "Selected"
       },
       {
-        "always_prepared": false,
-        "casting_time": "1 minute or Ritual",
-        "classes": [
-          "Artificer",
-          "Ranger",
-          "Wizard"
-        ],
-        "components": "V, S, M (a bell and silver wire)",
-        "concentration": false,
-        "description": "You set an alarm against intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot Cube. Until the spell ends, an alarm alerts you whenever a creature touches or enters the warded area. You can designate creatures that won't set off the alarm. You choose whether the alarm is audible (handbell sound for 10 seconds within 60 feet) or mental (a ping if you are within 1 mile, which awakens you if asleep).",
-        "duration": "8 hours",
-        "level": 1,
-        "name": "Alarm",
-        "range": "30 feet",
-        "ritual": true,
-        "school": "Abjuration",
-        "source": "Selected"
-      },
-      {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action or Ritual",
         "classes": [
           "Bard",
           "Druid",
@@ -1916,7 +1925,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them. Most Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.",
+        "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them.\n\nMost Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.",
         "duration": "10 minutes",
         "level": 1,
         "name": "Speak with Animals",
@@ -1981,27 +1990,9 @@
     "0": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Artificer",
-          "Sorcerer",
-          "Wizard"
-        ],
-        "components": "V, S",
-        "concentration": false,
-        "description": "You create a bubbling glob of acid and hurl it. Choose one or two creatures you can see within range. If you choose two, they must be within 5 feet of each other. A target must succeed on a Dexterity saving throw or take 1d6 Acid damage. This spell's damage increases by 1d6 when you reach levels 5 (2d6), 11 (3d6), and 17 (4d6).",
-        "duration": "Instantaneous",
-        "level": 0,
-        "name": "Acid Splash",
-        "range": "60 feet",
-        "ritual": false,
-        "school": "Evocation",
-        "source": "Selected"
-      },
-      {
-        "always_prepared": false,
-        "casting_time": "1 action",
-        "classes": [
           "Bard",
           "Sorcerer",
           "Warlock",
@@ -2009,7 +2000,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can't attack, activate magic items, or carry more than 10 pounds.",
+        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nWhen you cast the spell, you can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial.\n\nAs a Magic action on your later turns, you can control the hand thus again. As part of that action, you can move the hand up to 30 feet.\n\nThe hand can't attack, activate magic items, or carry more than 10 pounds.",
         "duration": "1 minute",
         "level": 0,
         "name": "Mage Hand",
@@ -2020,14 +2011,34 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+        "description": "You create an acidic bubble at a point within range, where it explodes in a 5-foot-radius Sphere. Each creature in that Sphere must succeed on a Dexterity saving throw or take 1d6 Acid damage.\n\nCantrip Upgrade. The damage increases by 1d6 when you reach levels 5 (2d6), 11 (3d6), and 17 (4d6).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Acid Splash",
+        "range": "60 feet",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "Action",
+        "classes": [
+          "Artificer",
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You hurl a mote of fire at a creature or an object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Fire damage. A flammable object hit by this spell starts burning if it isn't being worn or carried.\n\nCantrip Upgrade. The damage increases by 1d10 when you reach levels 5 (2d10), 11 (3d10), and 17 (4d10).",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Fire Bolt",
@@ -2038,16 +2049,16 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Sorcerer",
           "Warlock",
           "Wizard"
         ],
-        "components": "S, M",
+        "components": "S, M (a bit of fleece)",
         "concentration": false,
-        "description": "You create a sound or an image of an object within range that lasts for the duration. The illusion ends if you cast this spell again. If a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
+        "description": "You create a sound or an image of an object within range that lasts for the duration. See the descriptions below for the effects of each. The illusion ends if you cast this spell again.\n\nIf a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.\n\nSound. If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends.\n\nImage. If you create an image of an object\u00e2\u20ac\u201dsuch as a chair, muddy footprints, or a small chest\u00e2\u20ac\u201dit must be no larger than a 5-foot Cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, since things can pass through it.",
         "duration": "1 minute",
         "level": 0,
         "material": "a bit of fleece",
@@ -2063,19 +2074,41 @@
     "1": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "1 minute or Ritual",
         "classes": [
+          "Artificer",
+          "Ranger",
+          "Wizard"
+        ],
+        "components": "V, S, M (a bell and silver wire)",
+        "concentration": false,
+        "description": "You set an alarm against intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot Cube. Until the spell ends, an alarm alerts you whenever a creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is audible or mental:\n\nAudible Alarm. The alarm produces the sound of a handbell for 10 seconds within 60 feet of the warded area.\n\nMental Alarm. You are alerted by a mental ping if you are within 1 mile of the warded area. This ping awakens you if you're asleep.",
+        "duration": "8 hours",
+        "level": 1,
+        "material": "a bell and silver wire",
+        "name": "Alarm",
+        "range": "30 feet",
+        "ritual": true,
+        "school": "Abjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "Action or Ritual",
+        "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
           "Paladin",
           "Ranger",
           "Sorcerer",
+          "Warlock",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+        "description": "For the duration, you sense the presence of magical effects within 30 feet of yourself. If you sense such effects, you can take the Magic action to see a faint aura around any visible creature or object in the area that bears the magic, and if an effect was created by a spell, you learn the spell's school of magic.\n\nThe spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead.",
         "duration": "Concentration, up to 10 minutes",
         "level": 1,
         "name": "Detect Magic",
@@ -2086,34 +2119,35 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+        "description": "A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.\n\nFlammable objects in the Cone that aren't being worn or carried start burning.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Burning Hands",
-        "range": "Self (15-foot cone)",
+        "range": "Self",
         "ritual": false,
         "school": "Evocation",
         "source": "Selected"
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S, M (a diamond worth 50+ GP)",
         "concentration": false,
-        "description": "You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type. If you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again unless you cast the spell with a level 2+ spell slot.",
+        "description": "You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type.\n\nIf you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again unless you cast the spell with a level 2+ spell slot.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 1. The orb can leap a maximum number of times equal to the level of the slot expended, and a creature can be targeted only once by each casting of this spell.",
         "duration": "Instantaneous",
         "level": 1,
+        "material": "a diamond worth 50+ GP",
         "name": "Chromatic Orb",
         "range": "90 feet",
         "ritual": false,
@@ -2121,27 +2155,8 @@
         "source": "Selected"
       },
       {
-        "always_prepared": false,
-        "casting_time": "1 minute or Ritual",
-        "classes": [
-          "Artificer",
-          "Ranger",
-          "Wizard"
-        ],
-        "components": "V, S, M (a bell and silver wire)",
-        "concentration": false,
-        "description": "You set an alarm against intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot Cube. Until the spell ends, an alarm alerts you whenever a creature touches or enters the warded area. You can designate creatures that won't set off the alarm. You choose whether the alarm is audible (handbell sound for 10 seconds within 60 feet) or mental (a ping if you are within 1 mile, which awakens you if asleep).",
-        "duration": "8 hours",
-        "level": 1,
-        "name": "Alarm",
-        "range": "30 feet",
-        "ritual": true,
-        "school": "Abjuration",
-        "source": "Selected"
-      },
-      {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action or Ritual",
         "classes": [
           "Bard",
           "Druid",
@@ -2150,7 +2165,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them. Most Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.",
+        "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them.\n\nMost Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.",
         "duration": "10 minutes",
         "level": 1,
         "name": "Speak with Animals",
@@ -2165,7 +2180,7 @@
     "2": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -2174,7 +2189,7 @@
         ],
         "components": "V",
         "concentration": false,
-        "description": "You can blind or deafen a foe. Choose one creature that you can see within range to make a Constitution saving throw. If it fails, the target has the Blinded or Deafened condition (your choice) for the duration. At the end of each of its turns, the target can make a Constitution saving throw. On a success, the spell ends. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
+        "description": "One creature that you can see within range must succeed on a Constitution saving throw, or it has the Blinded or Deafened condition (your choice) for the duration. At the end of each of its turns, the target repeats the save, ending the spell on itself on a success.\n\nUsing a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 2.",
         "duration": "1 minute",
         "level": 2,
         "name": "Blindness/Deafness",
@@ -2185,16 +2200,16 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Sorcerer",
           "Warlock",
           "Wizard"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a sliver of glass)",
         "concentration": true,
-        "description": "You fill the air with spinning daggers in a cube 5 feet on each side, centered on a point you choose within range. A creature takes 4d4 Slashing damage when it enters the spell's area for the first time on a turn or starts its turn there. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 2d4 for each slot level above 2nd.",
+        "description": "You conjure spinning daggers in a 5-foot Cube centered on a point within range. Each creature in that area takes 4d4 Slashing damage. A creature also takes this damage if it enters the Cube or ends its turn there or if the Cube moves into its space. A creature takes this damage only once per turn.\n\nOn your later turns, you can take a Magic action to teleport the Cube up to 30 feet.\n\nUsing a Higher-Level Spell Slot. The damage increases by 2d4 for each spell slot level above 2.",
         "duration": "Concentration, up to 1 minute",
         "level": 2,
         "material": "a sliver of glass",

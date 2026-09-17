@@ -2254,10 +2254,11 @@ class CharacterBuilder:
 
             required_casting_time = effect.get("casting_time")
             if required_casting_time:
+                req_norm = str(required_casting_time).lower().replace("1 ", "").strip()
                 if any(
                     not isinstance(name, str)
-                    or self._load_spell_definition(name).get("casting_time")
-                    != required_casting_time
+                    or str(self._load_spell_definition(name).get("casting_time", "")).lower().replace("1 ", "").strip()
+                    != req_norm
                     for name in spell_names
                 ):
                     spell_names = []
@@ -8422,7 +8423,7 @@ class CharacterBuilder:
         current_level = int(level or self.character_data.get("level", 1) or 1)
         messages: List[str] = []
 
-        for part in [p.strip() for p in prerequisite.split(",") if p.strip()]:
+        for part in [p.strip() for p in re.split(r"[,;]", prerequisite) if p.strip()]:
             level_match = re.search(r"(?:(\d+)(?:st|nd|rd|th)?\s+level|level\s+(\d+)\+?)", part, re.IGNORECASE)
             if level_match:
                 required_level = int(level_match.group(1) or level_match.group(2))

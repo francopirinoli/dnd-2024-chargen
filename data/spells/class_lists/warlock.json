@@ -28,6 +28,7 @@
       "Illusory Script",
       "Protection from Evil and Good",
       "Speak with Animals",
+      "Tasha's Hideous Laughter",
       "Unseen Servant",
       "Witch Bolt"
     ],
@@ -35,7 +36,6 @@
       "Cloud of Daggers",
       "Crown of Madness",
       "Darkness",
-      "Detect Thoughts",
       "Enthrall",
       "Hold Person",
       "Invisibility",
@@ -43,7 +43,6 @@
       "Mirror Image",
       "Misty Step",
       "Ray of Enfeeblement",
-      "Shatter",
       "Spider Climb",
       "Suggestion"
     ],
@@ -75,6 +74,7 @@
       "Contact Other Plane",
       "Dream",
       "Hold Monster",
+      "Jallarzi's Storm of Radiance",
       "Mislead",
       "Planar Binding",
       "Scrying",
@@ -84,11 +84,10 @@
     "6": [
       "Arcane Gate",
       "Circle of Death",
-      "Conjure Fey",
       "Create Undead",
       "Eyebite",
-      "Flesh to Stone",
-      "Mass Suggestion",
+      "Summon Fiend",
+      "Tasha's Bubbling Cauldron",
       "True Seeing"
     ],
     "7": [
@@ -98,9 +97,9 @@
       "Plane Shift"
     ],
     "8": [
+      "Befuddlement",
       "Demiplane",
       "Dominate Monster",
-      "Feeblemind",
       "Glibness",
       "Power Word Stun"
     ],

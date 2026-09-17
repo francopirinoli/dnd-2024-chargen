@@ -2,13 +2,13 @@
   "name": "Aura of Vitality",
   "level": 3,
   "school": "Abjuration",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Self",
   "components": [
     "V"
   ],
   "duration": "Concentration, up to 1 minute",
-  "description": "An aura of healing energy radiates from you in a 30-foot Emanation for the duration. Until the spell ends, the aura moves with you, centered on you. You can take a Bonus Action to cause one creature in the aura (including yourself) to regain 2d6 Hit Points.",
+  "description": "An aura radiates from you in a 30-foot Emanation for the duration. When you create the aura and at the start of each of your turns while it persists, you can restore 2d6 Hit Points to one creature in it.",
   "classes": [
     "Cleric",
     "Druid",

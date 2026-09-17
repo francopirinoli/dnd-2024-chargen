@@ -2,14 +2,14 @@
   "name": "Conjure Celestial",
   "level": 7,
   "school": "Conjuration",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "90 feet",
   "components": [
     "V",
     "S"
   ],
   "duration": "Concentration, up to 10 minutes",
-  "description": "You conjure a spirit from the Upper Planes, which flares to life in a space you can see within range. Choose the Expel Fiends or the Heal Allies effect. Expel Fiends: Each creature that is not a Celestial in the spirit's space or within 10 feet of it must make a Charisma saving throw. On a failed save, the creature takes 8d12 Radiant damage and is teleported to a random location on the Astral Plane. On a successful save, the creature takes half damage and isn't teleported. Heal Allies: Each creature of your choice in the spirit's space or within 10 feet of it regains 4d12 Hit Points and is freed from one condition among the following: Blinded, Deafened, or Poisoned. On your later turns, you can take a Magic action to move the spirit up to 30 feet and repeat the chosen effect. Using a Higher-Level Spell Slot. Each die of the effect increases to a d20 when using a level 9 spell slot.",
+  "description": "You conjure a spirit from the Upper Planes, which manifests as a pillar of light in a 10-foot-radius, 40-foot-high Cylinder centered on a point within range. For each creature you can see in the Cylinder, choose which of these lights shines on it:\n\nHealing Light. The target regains Hit Points equal to 4d12 plus your spellcasting ability modifier.\n\nSearing Light. The target makes a Dexterity saving throw, taking 6d12 Radiant damage on a failed save or half as much damage on a successful one.\n\nUntil the spell ends, Bright Light fills the Cylinder, and when you move on your turn, you can also move the Cylinder up to 30 feet.\n\nWhenever the Cylinder moves into the space of a creature you can see and whenever a creature you can see enters the Cylinder or ends its turn there, you can bathe it in one of the lights. A creature can be affected by this spell only once per turn.\n\nUsing a Higher-Level Spell Slot. The healing and damage increase by 1d12 for each spell slot level above 7.",
   "classes": [
     "Cleric"
   ],

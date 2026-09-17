@@ -2,14 +2,14 @@
   "name": "Expeditious Retreat",
   "level": 1,
   "school": "Transmutation",
-  "casting_time": "1 bonus action",
+  "casting_time": "Bonus Action",
   "range": "Self",
   "components": [
     "V",
     "S"
   ],
   "duration": "Concentration, up to 10 minutes",
-  "description": "You take the Dash action, and until the spell ends, you can take the Dash action as a Bonus Action.",
+  "description": "You take the Dash action, and until the spell ends, you can take that action again as a Bonus Action.",
   "classes": [
     "Artificer",
     "Sorcerer",

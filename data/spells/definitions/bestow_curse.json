@@ -2,14 +2,14 @@
   "name": "Bestow Curse",
   "level": 3,
   "school": "Necromancy",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Touch",
   "components": [
     "V",
     "S"
   ],
   "duration": "Concentration, up to 1 minute",
-  "description": "You touch a creature, and that creature must succeed on a Wisdom saving throw or become cursed for the duration of the spell. When you cast this spell, choose the nature of the curse from the following options: Choose one ability score. While cursed, the target has Disadvantage on ability checks and saving throws made with that ability score. While cursed, the target has Disadvantage on attack rolls against you. While cursed, the target must make a Wisdom saving throw at the start of each of its turns. If it fails, it wastes its action that turn doing nothing. While the target is cursed, your attacks and spells deal an extra 1d8 Necrotic damage to the target. A Remove Curse spell ends this effect. At Higher Levels. When you cast this spell using a 4th-level slot, the duration is Concentration, up to 10 minutes. With a 5th-level slot, the duration is 8 hours. With a 7th- or 8th-level slot, the duration is 24 hours. With a 9th-level slot, the duration is until dispelled.",
+  "description": "You touch a creature, which must succeed on a Wisdom saving throw or become cursed for the duration. Until the curse ends, the target suffers one of the following effects of your choice:\n\nChoose one ability. The target has Disadvantage on ability checks and saving throws made with that ability.\nThe target has Disadvantage on attack rolls against you.\nIn combat, the target must succeed on a Wisdom saving throw at the start of each of its turns or be forced to take the Dodge action on that turn.\nIf you deal damage to the target with an attack roll or a spell, the target takes an extra 1d8 Necrotic damage.\nUsing a Higher-Level Spell Slot. If you cast this spell using a level 4 spell slot, you can maintain Concentration on it for up to 10 minutes. If you use a level 5+ spell slot, the spell doesn't require Concentration, and the duration becomes 8 hours (level 5-6 slot) or 24 hours (level 7-8 slot). If you use a level 9 spell slot, the spell lasts until dispelled.",
   "classes": [
     "Bard",
     "Cleric",

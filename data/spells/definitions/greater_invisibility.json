@@ -2,14 +2,14 @@
   "name": "Greater Invisibility",
   "level": 4,
   "school": "Illusion",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Touch",
   "components": [
     "V",
     "S"
   ],
   "duration": "Concentration, up to 1 minute",
-  "description": "The target of this spell, which can be you, has the Invisible condition until the spell ends. Unlike the Invisibility spell, this spell doesn't end early if the target attacks or casts a spell.",
+  "description": "A creature you touch has the Invisible condition until the spell ends.",
   "classes": [
     "Bard",
     "Sorcerer",

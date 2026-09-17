@@ -37,7 +37,9 @@
       "Thunderwave"
     ],
     "2": [
+      "Aid",
       "Animal Messenger",
+      "Augury",
       "Barkskin",
       "Beast Sense",
       "Continual Flame",
@@ -56,9 +58,11 @@
       "Moonbeam",
       "Pass without Trace",
       "Protection from Poison",
-      "Spike Growth"
+      "Spike Growth",
+      "Summon Beast"
     ],
     "3": [
+      "Aura of Vitality",
       "Call Lightning",
       "Conjure Animals",
       "Daylight",
@@ -71,6 +75,7 @@
       "Revivify",
       "Sleet Storm",
       "Speak with Plants",
+      "Summon Fey",
       "Water Breathing",
       "Water Walk",
       "Wind Wall"
@@ -82,8 +87,10 @@
       "Conjure Minor Elementals",
       "Conjure Woodland Beings",
       "Control Water",
+      "Divination",
       "Dominate Beast",
       "Fire Shield",
+      "Fount of Moonlight",
       "Freedom of Movement",
       "Giant Insect",
       "Grasping Vine",
@@ -93,6 +100,7 @@
       "Polymorph",
       "Stone Shape",
       "Stoneskin",
+      "Summon Elemental",
       "Wall of Fire"
     ],
     "5": [
@@ -115,6 +123,7 @@
     "6": [
       "Conjure Fey",
       "Find the Path",
+      "Flesh to Stone",
       "Heal",
       "Heroes' Feast",
       "Move Earth",
@@ -134,9 +143,9 @@
     "8": [
       "Animal Shapes",
       "Antipathy/Sympathy",
+      "Befuddlement",
       "Control Weather",
       "Earthquake",
-      "Feeblemind",
       "Incendiary Cloud",
       "Sunburst",
       "Tsunami"

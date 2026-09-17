@@ -7,14 +7,15 @@
   "components": [
     "V",
     "S",
-    "M (a gem worth 25+ GP, which the spell consumes)"
+    "M (a paintbrush)"
   ],
   "duration": "Special",
-  "description": "You pull wisps of shadow material from the Shadowfell to create a nonliving object of vegetable matter within range: soft goods, rope, wood, or something similar. You can also use this spell to create mineral objects such as stone, crystal, or metal. The object created must be no larger than a 5-foot Cube, and the object must be of a form and material that you have seen before. The duration depends on the object's material: vegetable matter (1 day), stone or crystal (12 hours), precious metals (1 hour), gems (10 minutes), adamantine or mithral (1 minute). When using a higher-level spell slot, the Cube increases by 5 feet for each slot level above 5.",
+  "description": "You pull wisps of shadow material from the Shadowfell to create an object within range. It is either an object of vegetable matter (soft goods, rope, wood, and the like) or mineral matter (stone, crystal, metal, and the like). The object must be no larger than a 5-foot Cube, and the object must be of a form and material that you have seen.\n\nThe spell's duration depends on the object's material, as shown in the Materials table. If the object is composed of multiple materials, use the shortest duration. Using any object created by this spell as another spell's Material component causes the other spell to fail.\n\nMaterials\nMaterial\tDuration\nVegetable matter\t24 hours\nStone or crystal\t12 hours\nPrecious metals\t1 hour\nGems\t10 minutes\nAdamantine or mithral\t1 minute\nUsing a Higher-Level Spell Slot. The Cube increases by 5 feet for each spell slot level above 5.",
   "classes": [
     "Artificer",
     "Sorcerer",
     "Wizard"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "a paintbrush"
 }

@@ -2,7 +2,7 @@
   "name": "Mage Armor",
   "level": 1,
   "school": "Abjuration",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Touch",
   "components": [
     "V",
@@ -15,5 +15,6 @@
     "Sorcerer",
     "Wizard"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "a piece of cured leather"
 }

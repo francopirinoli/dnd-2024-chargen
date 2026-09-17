@@ -2,15 +2,16 @@
   "name": "Lesser Restoration",
   "level": 2,
   "school": "Abjuration",
-  "casting_time": "1 action",
+  "casting_time": "Bonus Action",
   "range": "Touch",
   "components": [
     "V",
     "S"
   ],
   "duration": "Instantaneous",
-  "description": "You touch a creature and can end either one disease or one condition afflicting it. The condition can be Blinded, Deafened, Paralyzed, or Poisoned.",
+  "description": "You touch a creature and end one condition on it: Blinded, Deafened, Paralyzed, or Poisoned.",
   "classes": [
+    "Artificer",
     "Bard",
     "Cleric",
     "Druid",

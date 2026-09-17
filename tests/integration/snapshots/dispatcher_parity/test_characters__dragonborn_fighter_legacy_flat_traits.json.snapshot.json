@@ -134,8 +134,7 @@
       },
       {
         "tools": [
-          "Gaming Set",
-          "Vehicles (Land)"
+          "Gaming Set"
         ],
         "type": "grant_tool_proficiency"
       }
@@ -642,8 +641,7 @@
       "source": "Soldier",
       "source_type": "background",
       "tools": [
-        "Gaming Set",
-        "Vehicles (Land)"
+        "Gaming Set"
       ],
       "type": "grant_tool_proficiency"
     }
@@ -753,8 +751,7 @@
       "Intimidation"
     ],
     "tools": [
-      "Gaming Set",
-      "Vehicles (Land)"
+      "Gaming Set"
     ],
     "weapons": [
       "Simple weapons",
@@ -775,8 +772,7 @@
       "Intimidation": "Fighter"
     },
     "tools": {
-      "Gaming Set": "Soldier",
-      "Vehicles (Land)": "Soldier"
+      "Gaming Set": "Soldier"
     },
     "weapons": {}
   },
@@ -1062,8 +1058,7 @@
   "subclass_data": null,
   "superiority_dice": {},
   "tool_proficiencies": [
-    "Gaming Set",
-    "Vehicles (Land)"
+    "Gaming Set"
   ],
   "weapon_masteries": {
     "available": [],

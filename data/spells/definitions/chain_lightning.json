@@ -2,7 +2,7 @@
   "name": "Chain Lightning",
   "level": 6,
   "school": "Evocation",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "150 feet",
   "components": [
     "V",
@@ -10,10 +10,11 @@
     "M (three silver pins)"
   ],
   "duration": "Instantaneous",
-  "description": "You create a bolt of lightning that arcs toward a target of your choice that you can see within range. Three bolts then leap from that target to as many as three other targets, each of which must be within 30 feet of the first target. A target can be a creature or an object and can be targeted by only one of the bolts. A target makes a Dexterity saving throw, taking 10d8 Lightning damage on a failed save or half as much damage on a successful one. When using a higher-level spell slot, one additional bolt leaps from the first target to another target for each slot level above 6.",
+  "description": "You launch a lightning bolt toward a target you can see within range. Three bolts then leap from that target to as many as three other targets of your choice, each of which must be within 30 feet of the first target. A target can be a creature or an object and can be targeted by only one of the bolts.\n\nEach target makes a Dexterity saving throw, taking 10d8 Lightning damage on a failed save or half as much damage on a successful one.\n\nUsing a Higher-Level Spell Slot. One additional bolt leaps from the first target to another target for each spell slot level above 6.",
   "classes": [
     "Sorcerer",
     "Wizard"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "three silver pins"
 }

@@ -2,13 +2,13 @@
   "name": "Divine Word",
   "level": 7,
   "school": "Evocation",
-  "casting_time": "1 bonus action",
+  "casting_time": "Bonus Action",
   "range": "30 feet",
   "components": [
     "V"
   ],
   "duration": "Instantaneous",
-  "description": "You utter a divine word, imbued with the power that shaped the world at the dawn of creation. Choose any number of creatures you can see within range. Each creature that can hear you makes a Charisma saving throw. On a failed save, a creature suffers an effect determined by its current Hit Points: 50 HP or fewer: Deafened for 1 minute; 40 HP or fewer: Deafened and Blinded for 10 minutes; 30 HP or fewer: Deafened, Blinded, and Stunned for 1 hour; 20 HP or fewer: killed outright. Regardless of its current Hit Points, a Celestial, an Elemental, a Fey, or a Fiend that fails its save is forced back to its plane of origin (if it isn't there already) and can't return to your current plane for 24 hours by any means short of a Wish spell.",
+  "description": "You utter a word imbued with power from the Upper Planes. Each creature of your choice in range makes a Charisma saving throw. On a failed save, a target that has 50 Hit Points or fewer suffers an effect based on its current Hit Points, as shown in the Divine Word Effects table. Regardless of its Hit Points, a Celestial, an Elemental, a Fey, or a Fiend target that fails its save is forced back to its plane of origin (if it isn't there already) and can't return to the current plane for 24 hours by any means short of a Wish spell.\n\nDivine Word Effects\nHit Points\tEffect\n0-20\tThe target dies.\n21-30\tThe target has the Blinded, Deafened, and Stunned conditions for 1 hour.\n31-40\tThe target has the Blinded and Deafened conditions for 10 minutes.\n41-50\tThe target has the Deafened condition for 1 minute.",
   "classes": [
     "Cleric"
   ],

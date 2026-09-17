@@ -10,9 +10,10 @@
     "M (rare oils worth 1,000+ GP, which the spell consumes)"
   ],
   "duration": "Instantaneous",
-  "description": "You touch a dead Humanoid or a piece of one. If the creature has been dead for no longer than 10 days, the spell creates a new adult body for it and calls the soul to enter that body. If the target's soul isn't free or willing, the spell fails. The DM rolls on the Reincarnate table to determine what form the creature takes when restored to life, or the DM chooses the form. The reincarnated creature recalls its former life and experiences. It retains the capabilities it had in its original form, except it exchanges its species traits for those of its new form.",
+  "description": "You touch a dead Humanoid or a piece of one. If the creature has been dead no longer than 10 days, the spell forms a new body for it and calls the soul to enter that body. Roll 1d10 and consult the table below to determine the body's species, or the DM chooses another playable species.\n\n1d10\tSpecies\n1\tAasimar\n2\tDragonborn\n3\tDwarf\n4\tElf\n5\tGnome\n6\tGoliath\n7\tHalfling\n8\tHuman\n9\tOrc\n10\tTiefling\nThe reincarnated creature makes any choices that a species' description offers, and the creature recalls its former life. It retains the capabilities it had in its original form, except it loses the traits of its previous species and gains the traits of its new one.",
   "classes": [
     "Druid"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "rare oils worth 1,000+ GP, which the spell consumes"
 }

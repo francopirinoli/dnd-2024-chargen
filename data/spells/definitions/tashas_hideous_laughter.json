@@ -2,19 +2,20 @@
   "name": "Tasha's Hideous Laughter",
   "level": 1,
   "school": "Enchantment",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "30 feet",
   "components": [
     "V",
     "S",
-    "M"
+    "M (a tart and a feather)"
   ],
-  "material": "a small feather and a bit of sugar",
   "duration": "Concentration, up to 1 minute",
-  "description": "One creature of your choice that you can see within range perceives everything as hilariously funny and falls into fits of laughter if this spell affects it. The target must succeed on a Wisdom saving throw or have the Incapacitated and Prone conditions for the duration. A creature with an Intelligence score of 4 or less isn't affected. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends.",
+  "description": "One creature of your choice that you can see within range makes a Wisdom saving throw. On a failed save, it has the Prone and Incapacitated conditions for the duration. During that time, it laughs uncontrollably if it's capable of laughter, and it can't end the Prone condition on itself.\n\nAt the end of each of its turns and each time it takes damage, it makes another Wisdom saving throw. The target has Advantage on the save if the save is triggered by damage. On a successful save, the spell ends.\n\nUsing a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
   "classes": [
     "Bard",
+    "Warlock",
     "Wizard"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "a tart and a feather"
 }

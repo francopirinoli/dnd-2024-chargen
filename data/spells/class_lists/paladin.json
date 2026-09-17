@@ -1,5 +1,6 @@
 {
   "class": "Paladin",
+  "cantrips": [],
   "spells_by_level": {
     "1": [
       "Bless",
@@ -21,7 +22,6 @@
     ],
     "2": [
       "Aid",
-      "Branding Smite",
       "Find Steed",
       "Gentle Repose",
       "Lesser Restoration",
@@ -29,6 +29,7 @@
       "Magic Weapon",
       "Prayer of Healing",
       "Protection from Poison",
+      "Shining Smite",
       "Warding Bond",
       "Zone of Truth"
     ],
@@ -42,15 +43,13 @@
       "Elemental Weapon",
       "Magic Circle",
       "Remove Curse",
-      "Revivify",
-      "Spirit Shroud"
+      "Revivify"
     ],
     "4": [
       "Aura of Life",
       "Aura of Purity",
       "Banishment",
       "Death Ward",
-      "Find Greater Steed",
       "Locate Creature",
       "Staggering Smite"
     ],
@@ -61,9 +60,12 @@
       "Dispel Evil and Good",
       "Geas",
       "Greater Restoration",
-      "Holy Weapon",
       "Raise Dead",
       "Summon Celestial"
-    ]
+    ],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": []
   }
 }

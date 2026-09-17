@@ -2,14 +2,15 @@
   "name": "Faerie Fire",
   "level": 1,
   "school": "Evocation",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "60 feet",
   "components": [
     "V"
   ],
   "duration": "Concentration, up to 1 minute",
-  "description": "Each creature/object in an area is outlined with light on a failed save; attacks against affected targets have advantage and affected creatures can't benefit from being Invisible.",
+  "description": "Objects in a 20-foot Cube within range are outlined in blue, green, or violet light (your choice). Each creature in the Cube is also outlined if it fails a Dexterity saving throw. For the duration, objects and affected creatures shed Dim Light in a 10-foot radius and can't benefit from the Invisible condition.\n\nAttack rolls against an affected creature or object have Advantage if the attacker can see it.",
   "classes": [
+    "Artificer",
     "Bard",
     "Druid"
   ],

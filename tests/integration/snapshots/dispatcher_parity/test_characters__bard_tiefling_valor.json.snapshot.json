@@ -210,13 +210,13 @@
   "background_data": {
     "ability_score_increase": {
       "options": [
-        "Charisma",
         "Dexterity",
-        "Intelligence"
+        "Constitution",
+        "Charisma"
       ],
       "suggested": {
         "Charisma": 2,
-        "Dexterity": 1
+        "Constitution": 1
       },
       "total": 3
     },
@@ -1579,6 +1579,7 @@
         "Locate Object",
         "Magic Mouth",
         "Mirror Image",
+        "Phantasmal Force",
         "See Invisibility",
         "Shatter",
         "Silence",
@@ -1642,16 +1643,37 @@
     "cantrips": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
+        "classes": [
+          "Artificer",
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You create a magical effect within range. Choose the effect from the options below. If you cast this spell multiple times, you can have up to three of its non-instantaneous effects active at a time.\n\nSensory Effect. You create an instantaneous, harmless sensory effect, such as a shower of sparks, a puff of wind, faint musical notes, or an odd odor.\n\nFire Play. You instantaneously light or snuff out a candle, a torch, or a small campfire.\n\nClean or Soil. You instantaneously clean or soil an object no larger than 1 cubic foot.\n\nMinor Sensation. You chill, warm, or flavor up to 1 cubic foot of nonliving material for 1 hour.\n\nMagic Mark. You make a color, a small mark, or a symbol appear on an object or a surface for 1 hour.\n\nMinor Creation. You create a nonmagical trinket or an illusory image that can fit in your hand. It lasts until the end of your next turn. A trinket can deal no damage and has no monetary worth.",
+        "duration": "1 hour",
+        "level": 0,
+        "name": "Prestidigitation",
+        "range": "10 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Sorcerer",
           "Warlock",
           "Wizard"
         ],
-        "components": "S, M",
+        "components": "S, M (a bit of fleece)",
         "concentration": false,
-        "description": "You create a sound or an image of an object within range that lasts for the duration. The illusion ends if you cast this spell again. If a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
+        "description": "You create a sound or an image of an object within range that lasts for the duration. See the descriptions below for the effects of each. The illusion ends if you cast this spell again.\n\nIf a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.\n\nSound. If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends.\n\nImage. If you create an image of an object\u00e2\u20ac\u201dsuch as a chair, muddy footprints, or a small chest\u00e2\u20ac\u201dit must be no larger than a 5-foot Cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, since things can pass through it.",
         "duration": "1 minute",
         "level": 0,
         "material": "a bit of fleece",
@@ -1662,54 +1684,16 @@
         "source": "Selected"
       },
       {
-        "always_prepared": false,
-        "casting_time": "1 action",
-        "classes": [
-          "Bard",
-          "Sorcerer",
-          "Warlock",
-          "Wizard"
-        ],
-        "components": "V, S",
-        "concentration": false,
-        "description": "You perform minor magical tricks: create a harmless sensory effect, clean or soil a small object, chill/warm/flavor a small amount of material, light or snuff a small flame, or create a small nonmagical trinket/mark. The exact effect is cosmetic and at the DM's discretion.",
-        "duration": "Up to 1 hour",
-        "level": 0,
-        "name": "Prestidigitation",
-        "range": "10 feet",
-        "ritual": false,
-        "school": "Transmutation",
-        "source": "Selected"
-      },
-      {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
-          "Cleric"
-        ],
-        "components": "V",
-        "concentration": false,
-        "description": "You manifest a minor wonder, a sign of supernatural power, within range. You create one of several effects: your voice booms, flames flicker, tremors shake the ground, or other minor magical effects.",
-        "duration": "Up to 1 minute",
-        "level": 0,
-        "name": "Thaumaturgy",
-        "once_per_day": false,
-        "once_per_long_rest": false,
-        "range": "30 feet",
-        "ritual": false,
-        "school": "Transmutation",
-        "source": "Tiefling"
-      },
-      {
-        "always_prepared": true,
-        "casting_time": "1 action",
-        "classes": [
+          "Artificer",
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+        "description": "You hurl a mote of fire at a creature or an object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Fire damage. A flammable object hit by this spell starts burning if it isn't being worn or carried.\n\nCantrip Upgrade. The damage increases by 1d10 when you reach levels 5 (2d10), 11 (3d10), and 17 (4d10).",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Fire Bolt",
@@ -1719,14 +1703,34 @@
         "ritual": false,
         "school": "Evocation",
         "source": "Infernal Tiefling"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "Action",
+        "classes": [
+          "Cleric"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "You manifest a minor wonder within range. You create one of the effects below within range. If you cast this spell multiple times, you can have up to three of its 1-minute effects active at a time.\n\nAltered Eyes. You alter the appearance of your eyes for 1 minute.\n\nBooming Voice. Your voice booms up to three times as loud as normal for 1 minute. For the duration, you have Advantage on Charisma (Intimidation) checks.\n\nFire Play. You cause flames to flicker, brighten, dim, or change color for 1 minute.\n\nInvisible Hand. You instantaneously cause an unlocked door or window to fly open or slam shut.\n\nPhantom Sound. You create an instantaneous sound that originates from a point of your choice within range, such as a rumble of thunder, the cry of a raven, or ominous whispers.\n\nTremors. You cause harmless tremors in the ground for 1 minute.",
+        "duration": "1 minute",
+        "level": 0,
+        "name": "Thaumaturgy",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Tiefling"
       }
     ],
     "known": {},
     "level_1": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
@@ -1735,7 +1739,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "A creature you touch regains a number of Hit Points equal to 2d8 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d8 for each slot level above 1st.",
+        "description": "A creature you touch regains a number of Hit Points equal to 2d8 plus your spellcasting ability modifier.\n\nUsing a Higher-Level Spell Slot. The healing increases by 2d8 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Cure Wounds",
@@ -1746,7 +1750,7 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Druid",
@@ -1756,7 +1760,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You attempt to charm a Humanoid you can see within range. It must make a Wisdom saving throw, and it does so with Advantage if you or your allies are fighting it. On a failed save, the creature has the Charmed condition until the spell ends or until you or your allies do anything harmful to it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.",
+        "description": "One Humanoid you can see within range makes a Wisdom saving throw. It does so with Advantage if you or your allies are fighting it. On a failed save, the target has the Charmed condition until the spell ends or until you or your allies damage it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you.\n\nUsing a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
         "duration": "1 hour",
         "level": 1,
         "name": "Charm Person",
@@ -1767,7 +1771,7 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Druid",
@@ -1776,24 +1780,24 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "A wave of thunderous force sweeps out from you. Each creature in a 15-foot Cube originating from you must make a Constitution saving throw. On a failed save, a creature takes 2d8 Thunder damage and is pushed 10 feet away from you. On a successful save, the creature takes half as much damage and isn't pushed. In addition, unsecured objects that are completely within the area of effect are automatically pushed 10 feet away from you by the spell's effect, and the spell emits a thunderous boom audible out to 300 feet. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.",
+        "description": "You unleash a wave of thunderous energy. Each creature in a 15-foot Cube originating from you makes a Constitution saving throw. On a failed save, a creature takes 2d8 Thunder damage and is pushed 10 feet away from you. On a successful save, a creature takes half as much damage only.\n\nIn addition, unsecured objects that are entirely within the Cube are pushed 10 feet away from you, and a thunderous boom is audible within 300 feet.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Thunderwave",
-        "range": "Self (15-foot cube)",
+        "range": "Self",
         "ritual": false,
-        "school": "Transmutation",
+        "school": "Evocation",
         "source": "Selected"
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard"
         ],
         "components": "V",
         "concentration": false,
-        "description": "You whisper a discordant melody that only one creature of your choice within range can hear, wracking it with terrible pain. The target must make a Wisdom saving throw. On a failed save, it takes 3d6 Psychic damage and must immediately use its Reaction, if available, to move as far as its speed allows away from you. The creature doesn't move into obviously dangerous ground, such as a fire or a pit. On a successful save, the target takes half as much damage and doesn't have to move away. A Deafened creature automatically succeeds on the save. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+        "description": "One creature of your choice that you can see within range hears a discordant melody in its mind. The target makes a Wisdom saving throw. On a failed save, it takes 3d6 Psychic damage and must immediately use its Reaction, if available, to move as far away from you as it can, using the safest route. On a successful save, the target takes half as much damage only.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Dissonant Whispers",
@@ -1804,13 +1808,13 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see",
+        "casting_time": "Reaction, which you take in response to taking damage from a creature that you can see within 60 feet of yourself",
         "classes": [
           "Warlock"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.",
+        "description": "The creature that damaged you is momentarily surrounded by green flames. It makes a Dexterity saving throw, taking 2d10 Fire damage on a failed save or half as much damage on a successful one.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d10 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Hellish Rebuke",
@@ -1842,16 +1846,37 @@
     "0": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
+        "classes": [
+          "Artificer",
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "You create a magical effect within range. Choose the effect from the options below. If you cast this spell multiple times, you can have up to three of its non-instantaneous effects active at a time.\n\nSensory Effect. You create an instantaneous, harmless sensory effect, such as a shower of sparks, a puff of wind, faint musical notes, or an odd odor.\n\nFire Play. You instantaneously light or snuff out a candle, a torch, or a small campfire.\n\nClean or Soil. You instantaneously clean or soil an object no larger than 1 cubic foot.\n\nMinor Sensation. You chill, warm, or flavor up to 1 cubic foot of nonliving material for 1 hour.\n\nMagic Mark. You make a color, a small mark, or a symbol appear on an object or a surface for 1 hour.\n\nMinor Creation. You create a nonmagical trinket or an illusory image that can fit in your hand. It lasts until the end of your next turn. A trinket can deal no damage and has no monetary worth.",
+        "duration": "1 hour",
+        "level": 0,
+        "name": "Prestidigitation",
+        "range": "10 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Sorcerer",
           "Warlock",
           "Wizard"
         ],
-        "components": "S, M",
+        "components": "S, M (a bit of fleece)",
         "concentration": false,
-        "description": "You create a sound or an image of an object within range that lasts for the duration. The illusion ends if you cast this spell again. If a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
+        "description": "You create a sound or an image of an object within range that lasts for the duration. See the descriptions below for the effects of each. The illusion ends if you cast this spell again.\n\nIf a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.\n\nSound. If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends.\n\nImage. If you create an image of an object\u00e2\u20ac\u201dsuch as a chair, muddy footprints, or a small chest\u00e2\u20ac\u201dit must be no larger than a 5-foot Cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, since things can pass through it.",
         "duration": "1 minute",
         "level": 0,
         "material": "a bit of fleece",
@@ -1862,54 +1887,16 @@
         "source": "Selected"
       },
       {
-        "always_prepared": false,
-        "casting_time": "1 action",
-        "classes": [
-          "Bard",
-          "Sorcerer",
-          "Warlock",
-          "Wizard"
-        ],
-        "components": "V, S",
-        "concentration": false,
-        "description": "You perform minor magical tricks: create a harmless sensory effect, clean or soil a small object, chill/warm/flavor a small amount of material, light or snuff a small flame, or create a small nonmagical trinket/mark. The exact effect is cosmetic and at the DM's discretion.",
-        "duration": "Up to 1 hour",
-        "level": 0,
-        "name": "Prestidigitation",
-        "range": "10 feet",
-        "ritual": false,
-        "school": "Transmutation",
-        "source": "Selected"
-      },
-      {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
-          "Cleric"
-        ],
-        "components": "V",
-        "concentration": false,
-        "description": "You manifest a minor wonder, a sign of supernatural power, within range. You create one of several effects: your voice booms, flames flicker, tremors shake the ground, or other minor magical effects.",
-        "duration": "Up to 1 minute",
-        "level": 0,
-        "name": "Thaumaturgy",
-        "once_per_day": false,
-        "once_per_long_rest": false,
-        "range": "30 feet",
-        "ritual": false,
-        "school": "Transmutation",
-        "source": "Tiefling"
-      },
-      {
-        "always_prepared": true,
-        "casting_time": "1 action",
-        "classes": [
+          "Artificer",
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+        "description": "You hurl a mote of fire at a creature or an object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Fire damage. A flammable object hit by this spell starts burning if it isn't being worn or carried.\n\nCantrip Upgrade. The damage increases by 1d10 when you reach levels 5 (2d10), 11 (3d10), and 17 (4d10).",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Fire Bolt",
@@ -1919,13 +1906,33 @@
         "ritual": false,
         "school": "Evocation",
         "source": "Infernal Tiefling"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "Action",
+        "classes": [
+          "Cleric"
+        ],
+        "components": "V",
+        "concentration": false,
+        "description": "You manifest a minor wonder within range. You create one of the effects below within range. If you cast this spell multiple times, you can have up to three of its 1-minute effects active at a time.\n\nAltered Eyes. You alter the appearance of your eyes for 1 minute.\n\nBooming Voice. Your voice booms up to three times as loud as normal for 1 minute. For the duration, you have Advantage on Charisma (Intimidation) checks.\n\nFire Play. You cause flames to flicker, brighten, dim, or change color for 1 minute.\n\nInvisible Hand. You instantaneously cause an unlocked door or window to fly open or slam shut.\n\nPhantom Sound. You create an instantaneous sound that originates from a point of your choice within range, such as a rumble of thunder, the cry of a raven, or ominous whispers.\n\nTremors. You cause harmless tremors in the ground for 1 minute.",
+        "duration": "1 minute",
+        "level": 0,
+        "name": "Thaumaturgy",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Transmutation",
+        "source": "Tiefling"
       }
     ],
     "1": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
@@ -1934,7 +1941,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "A creature you touch regains a number of Hit Points equal to 2d8 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d8 for each slot level above 1st.",
+        "description": "A creature you touch regains a number of Hit Points equal to 2d8 plus your spellcasting ability modifier.\n\nUsing a Higher-Level Spell Slot. The healing increases by 2d8 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Cure Wounds",
@@ -1945,7 +1952,7 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Druid",
@@ -1955,7 +1962,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You attempt to charm a Humanoid you can see within range. It must make a Wisdom saving throw, and it does so with Advantage if you or your allies are fighting it. On a failed save, the creature has the Charmed condition until the spell ends or until you or your allies do anything harmful to it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.",
+        "description": "One Humanoid you can see within range makes a Wisdom saving throw. It does so with Advantage if you or your allies are fighting it. On a failed save, the target has the Charmed condition until the spell ends or until you or your allies damage it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you.\n\nUsing a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
         "duration": "1 hour",
         "level": 1,
         "name": "Charm Person",
@@ -1966,7 +1973,7 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Druid",
@@ -1975,24 +1982,24 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "A wave of thunderous force sweeps out from you. Each creature in a 15-foot Cube originating from you must make a Constitution saving throw. On a failed save, a creature takes 2d8 Thunder damage and is pushed 10 feet away from you. On a successful save, the creature takes half as much damage and isn't pushed. In addition, unsecured objects that are completely within the area of effect are automatically pushed 10 feet away from you by the spell's effect, and the spell emits a thunderous boom audible out to 300 feet. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.",
+        "description": "You unleash a wave of thunderous energy. Each creature in a 15-foot Cube originating from you makes a Constitution saving throw. On a failed save, a creature takes 2d8 Thunder damage and is pushed 10 feet away from you. On a successful save, a creature takes half as much damage only.\n\nIn addition, unsecured objects that are entirely within the Cube are pushed 10 feet away from you, and a thunderous boom is audible within 300 feet.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Thunderwave",
-        "range": "Self (15-foot cube)",
+        "range": "Self",
         "ritual": false,
-        "school": "Transmutation",
+        "school": "Evocation",
         "source": "Selected"
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard"
         ],
         "components": "V",
         "concentration": false,
-        "description": "You whisper a discordant melody that only one creature of your choice within range can hear, wracking it with terrible pain. The target must make a Wisdom saving throw. On a failed save, it takes 3d6 Psychic damage and must immediately use its Reaction, if available, to move as far as its speed allows away from you. The creature doesn't move into obviously dangerous ground, such as a fire or a pit. On a successful save, the target takes half as much damage and doesn't have to move away. A Deafened creature automatically succeeds on the save. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.",
+        "description": "One creature of your choice that you can see within range hears a discordant melody in its mind. The target makes a Wisdom saving throw. On a failed save, it takes 3d6 Psychic damage and must immediately use its Reaction, if available, to move as far away from you as it can, using the safest route. On a successful save, the target takes half as much damage only.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Dissonant Whispers",
@@ -2003,13 +2010,13 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see",
+        "casting_time": "Reaction, which you take in response to taking damage from a creature that you can see within 60 feet of yourself",
         "classes": [
           "Warlock"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.",
+        "description": "The creature that damaged you is momentarily surrounded by green flames. It makes a Dexterity saving throw, taking 2d10 Fire damage on a failed save or half as much damage on a successful one.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d10 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Hellish Rebuke",
@@ -2024,20 +2031,21 @@
     "2": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
           "Paladin",
           "Ranger"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a strip of white cloth)",
         "concentration": false,
-        "description": "Choose up to three creatures within range. Each target's Hit Point maximum and current Hit Points increase by 5 for the duration. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, each target's Hit Points increase by 5 for each slot level above 2nd.",
+        "description": "Choose up to three creatures within range. Each target's Hit Point maximum and current Hit Points increase by 5 for the duration.\n\nUsing a Higher-Level Spell Slot. Each target's Hit Points increase by 5 for each spell slot level above 2.",
         "duration": "8 hours",
         "level": 2,
-        "material": "a tiny strip of white cloth",
+        "material": "a strip of white cloth",
         "name": "Aid",
         "range": "30 feet",
         "ritual": false,
@@ -2046,8 +2054,9 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
@@ -2055,12 +2064,12 @@
           "Sorcerer",
           "Wizard"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (fur or a feather)",
         "concentration": true,
-        "description": "You touch a creature and give it a magical enhancement. Choose one of the following effects: Bear's Endurance (Constitution checks have Advantage; also gain 2d6 Temporary Hit Points), Bull's Strength (Strength checks have Advantage; carrying capacity doubles), Cat's Grace (Dexterity checks have Advantage; no damage from falling 20 feet or less if not Incapacitated), Eagle's Splendor (Charisma checks have Advantage), Fox's Cunning (Intelligence checks have Advantage), Owl's Wisdom (Wisdom checks have Advantage). At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional creature for each slot level above 2nd.",
+        "description": "You touch a creature and choose Strength, Dexterity, Intelligence, Wisdom, or Charisma. For the duration, the target has Advantage on ability checks using the chosen ability.\n\nUsing a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 2. You can choose a different ability for each target.",
         "duration": "Concentration, up to 1 hour",
         "level": 2,
-        "material": "fur or a feather from a beast",
+        "material": "fur or a feather",
         "name": "Enhance Ability",
         "range": "Touch",
         "ritual": false,

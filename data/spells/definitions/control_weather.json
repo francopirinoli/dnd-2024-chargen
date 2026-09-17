@@ -10,11 +10,12 @@
     "M (burning incense)"
   ],
   "duration": "Concentration, up to 8 hours",
-  "description": "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell. Moving to a place where you don't have a clear path to the sky ends the spell early. When you cast the spell, you change the current weather conditions, which are determined by the DM. You can change precipitation, temperature, and wind. It takes 1d4 x 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal.",
+  "description": "You take control of the weather within 5 miles of you for the duration. You must be outdoors to cast this spell, and it ends early if you go indoors.\n\nWhen you cast the spell, you change the current weather conditions, which are determined by the DM. You can change precipitation, temperature, and wind. It takes 1d4 × 10 minutes for the new conditions to take effect. Once they do so, you can change the conditions again. When the spell ends, the weather gradually returns to normal.\n\nWhen you change the weather conditions, find a current condition on the following tables and change its stage by one, up or down. When changing the wind, you can change its direction.\n\nPrecipitation\nStage\tCondition\n1\tClear\n2\tLight clouds\n3\tOvercast or ground fog\n4\tRain, hail, or snow\n5\tTorrential rain, driving hail, or blizzard\nTemperature\nStage\tCondition\n1\tHeat wave\n2\tHot\n3\tWarm\n4\tCool\n5\tCold\n6\tFreezing\nWind\nStage\tCondition\n1\tCalm\n2\tModerate wind\n3\tStrong wind\n4\tGale\n5\tStorm",
   "classes": [
     "Cleric",
     "Druid",
     "Wizard"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "burning incense"
 }

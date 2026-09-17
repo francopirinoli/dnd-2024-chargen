@@ -2,14 +2,14 @@
   "name": "Eyebite",
   "level": 6,
   "school": "Necromancy",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Self",
   "components": [
     "V",
     "S"
   ],
   "duration": "Concentration, up to 1 minute",
-  "description": "For the spell's duration, your eyes become an inky void imbued with dread power. One creature of your choice within 60 feet of you that you can see must succeed on a Wisdom saving throw or be affected by one of the following effects of your choice for the duration. On each of your turns until the spell ends, you can use your action to target another creature but can't target a creature again if it has succeeded on a saving throw against this casting of Eyebite. Asleep: The target falls Unconscious. It wakes up if it takes any damage or if another creature uses its action to shake the sleeper awake. Panicked: The target is Frightened. On each of its turns, the Frightened creature must take the Dash action and move away from you by the safest and shortest available route, unless there is nowhere to move. Sickened: The target has Disadvantage on attack rolls and ability checks. At the end of each of its turns, it can make another Wisdom saving throw. On a success, the effect ends.",
+  "description": "For the duration, your eyes become an inky void. One creature of your choice within 60 feet of you that you can see must succeed on a Wisdom saving throw or be affected by one of the following effects of your choice for the duration.\n\nOn each of your turns until the spell ends, you can take a Magic action to target another creature but can't target a creature again if it has succeeded on a save against this casting of the spell.\n\nAsleep. The target has the Unconscious condition. It wakes up if it takes any damage or if another creature takes an action to shake it awake.\n\nPanicked. The target has the Frightened condition. On each of its turns, the Frightened target must take the Dash action and move away from you by the safest and shortest route available. If the target moves to a space at least 60 feet away from you where it can't see you, this effect ends.\n\nSickened. The target has the Poisoned condition.",
   "classes": [
     "Bard",
     "Sorcerer",

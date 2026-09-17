@@ -2,7 +2,7 @@
   "name": "Aura of Life",
   "level": 4,
   "school": "Abjuration",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Self",
   "components": [
     "V"

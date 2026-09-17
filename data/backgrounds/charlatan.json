@@ -6,13 +6,13 @@
   "ability_score_increase": {
     "total": 3,
     "options": [
-      "Charisma",
       "Dexterity",
-      "Intelligence"
+      "Constitution",
+      "Charisma"
     ],
     "suggested": {
       "Charisma": 2,
-      "Dexterity": 1
+      "Constitution": 1
     }
   },
   "effects": [

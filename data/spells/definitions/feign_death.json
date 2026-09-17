@@ -2,21 +2,21 @@
   "name": "Feign Death",
   "level": 3,
   "school": "Necromancy",
-  "casting_time": "1 action or Ritual",
+  "casting_time": "Action or Ritual",
   "range": "Touch",
   "components": [
     "V",
     "S",
-    "M"
+    "M (a pinch of graveyard dirt)"
   ],
-  "material": "a pinch of graveyard dirt",
   "duration": "1 hour",
-  "description": "You touch a willing creature and put it into a cataleptic state that is indistinguishable from death. For the spell's duration, or until you use an action to touch the target and dismiss the spell, the target appears dead to all outward inspection and to spells used to determine the target's status. The target is Blinded and Incapacitated, and its Speed drops to 0. The target has Resistance to all damage except Psychic damage. If the target is diseased or Poisoned when you cast the spell, or becomes diseased or Poisoned while under the spell's effect, the disease and poison have no effect until the spell ends.",
+  "description": "You touch a willing creature and put it into a cataleptic state that is indistinguishable from death.\n\nFor the duration, the target appears dead to outward inspection and to spells used to determine the target's status. The target has the Blinded and Incapacitated conditions, and its Speed is 0.\n\nThe target also has Resistance to all damage except Psychic damage, and it has Immunity to the Poisoned condition.",
   "classes": [
     "Bard",
     "Cleric",
     "Druid",
     "Wizard"
   ],
-  "ritual": true
+  "ritual": true,
+  "material": "a pinch of graveyard dirt"
 }

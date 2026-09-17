@@ -186,9 +186,9 @@
   "background_data": {
     "ability_score_increase": {
       "options": [
-        "Charisma",
+        "Strength",
         "Intelligence",
-        "Wisdom"
+        "Charisma"
       ],
       "suggested": {
         "Charisma": 1,
@@ -1589,6 +1589,7 @@
       ],
       "2": [
         "Alter Self",
+        "Arcane Vigor",
         "Blindness/Deafness",
         "Blur",
         "Cloud of Daggers",
@@ -1696,8 +1697,9 @@
     "cantrips": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Sorcerer",
           "Warlock",
@@ -1705,7 +1707,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can't attack, activate magic items, or carry more than 10 pounds.",
+        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nWhen you cast the spell, you can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial.\n\nAs a Magic action on your later turns, you can control the hand thus again. As part of that action, you can move the hand up to 30 feet.\n\nThe hand can't attack, activate magic items, or carry more than 10 pounds.",
         "duration": "1 minute",
         "level": 0,
         "name": "Mage Hand",
@@ -1716,33 +1718,15 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
-          "Sorcerer",
-          "Warlock",
-          "Wizard"
-        ],
-        "components": "V, S",
-        "concentration": false,
-        "description": "You create a ghostly, skeletal hand in the space of a creature within range. Make a ranged spell attack against the creature to assail it with the chill of the grave. On a hit, the target takes 1d8 necrotic damage, and it can't regain hit points until the start of your next turn. If you hit an undead target, it also has disadvantage on attack rolls against you until the end of your next turn. This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
-        "duration": "1 round",
-        "level": 0,
-        "name": "Chill Touch",
-        "range": "120 feet",
-        "ritual": false,
-        "school": "Necromancy",
-        "source": "Selected"
-      },
-      {
-        "always_prepared": false,
-        "casting_time": "1 action",
-        "classes": [
+          "Artificer",
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+        "description": "You hurl a mote of fire at a creature or an object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Fire damage. A flammable object hit by this spell starts burning if it isn't being worn or carried.\n\nCantrip Upgrade. The damage increases by 1d10 when you reach levels 5 (2d10), 11 (3d10), and 17 (4d10).",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Fire Bolt",
@@ -1752,17 +1736,37 @@
         "source": "Selected"
       },
       {
-        "always_prepared": true,
-        "casting_time": "1 action",
+        "always_prepared": false,
+        "casting_time": "Action",
         "classes": [
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "Channeling the chill of the grave, make a melee spell attack against a target within reach. On a hit, the target takes 1d10 Necrotic damage, and it can't regain Hit Points until the end of your next turn.\n\nCantrip Upgrade. The damage increases by 1d10 when you reach levels 5 (2d10), 11 (3d10), and 17 (4d10).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Chill Touch",
+        "range": "Touch",
+        "ritual": false,
+        "school": "Necromancy",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "Action",
+        "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Sorcerer",
           "Wizard"
         ],
-        "components": "V, M",
+        "components": "V, M (a firefly or phosphorescent moss)",
         "concentration": false,
-        "description": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet.",
+        "description": "You touch one Large or smaller object that isn't being worn or carried by someone else. Until the spell ends, the object sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The light can be colored as you like.\n\nCovering the object with something opaque blocks the light. The spell ends if you cast it again.",
         "duration": "1 hour",
         "level": 0,
         "material": "a firefly or phosphorescent moss",
@@ -1779,35 +1783,18 @@
     "level_1": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Sorcerer",
           "Wizard"
         ],
-        "components": "V, S",
+        "components": "V, S, M (a drop of alcohol)",
         "concentration": false,
-        "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+        "description": "You gain 2d4 + 4 Temporary Hit Points.\n\nUsing a Higher-Level Spell Slot. You gain 5 additional Temporary Hit Points for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
-        "name": "Burning Hands",
-        "range": "Self (15-foot cone)",
-        "ritual": false,
-        "school": "Evocation",
-        "source": "Selected"
-      },
-      {
-        "always_prepared": false,
-        "casting_time": "1 action",
-        "classes": [
-          "Sorcerer",
-          "Wizard"
-        ],
-        "components": "V, S, M",
-        "concentration": false,
-        "description": "Bolstering yourself with a necromantic facsimile of life, you gain 1d4 + 4 temporary hit points for the duration. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you gain 5 additional temporary hit points for each slot level above 1st.",
-        "duration": "1 hour",
-        "level": 1,
-        "material": "a small amount of alcohol or distilled spirits",
+        "material": "a drop of alcohol",
         "name": "False Life",
         "range": "Self",
         "ritual": false,
@@ -1815,8 +1802,26 @@
         "source": "Selected"
       },
       {
+        "always_prepared": false,
+        "casting_time": "Action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.\n\nFlammable objects in the Cone that aren't being worn or carried start burning.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Burning Hands",
+        "range": "Self",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -1824,7 +1829,7 @@
         ],
         "components": "V",
         "concentration": false,
-        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is Undead, if the target doesn't understand your language, or if the command is directly harmful to it. Some typical commands and their effects follow. Approach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you. Drop. The target drops whatever it is holding and then ends its turn. Flee. The target spends its turn moving away from you by the fastest available means. Grovel. The target falls Prone and then ends its turn. Halt. The target doesn't move and takes no action. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st.",
+        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. Choose the command from these options:\n\nApproach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you.\n\nDrop. The target drops whatever it is holding and then ends its turn.\n\nFlee. The target spends its turn moving away from you by the fastest available means.\n\nGrovel. The target has the Prone condition and then ends its turn.\n\nHalt. On its turn, the target doesn't move and takes no action or Bonus Action.\n\nUsing a Higher-Level Spell Slot. You can affect one additional creature for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Command",
@@ -1837,16 +1842,17 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S, M (a diamond worth 50+ GP)",
         "concentration": false,
-        "description": "You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type. If you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again unless you cast the spell with a level 2+ spell slot.",
+        "description": "You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type.\n\nIf you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again unless you cast the spell with a level 2+ spell slot.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 1. The orb can leap a maximum number of times equal to the level of the slot expended, and a creature can be targeted only once by each casting of this spell.",
         "duration": "Instantaneous",
         "level": 1,
+        "material": "a diamond worth 50+ GP",
         "name": "Chromatic Orb",
         "once_per_day": false,
         "once_per_long_rest": false,
@@ -1874,8 +1880,9 @@
     "0": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Sorcerer",
           "Warlock",
@@ -1883,7 +1890,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can't attack, activate magic items, or carry more than 10 pounds.",
+        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nWhen you cast the spell, you can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial.\n\nAs a Magic action on your later turns, you can control the hand thus again. As part of that action, you can move the hand up to 30 feet.\n\nThe hand can't attack, activate magic items, or carry more than 10 pounds.",
         "duration": "1 minute",
         "level": 0,
         "name": "Mage Hand",
@@ -1894,33 +1901,15 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
-          "Sorcerer",
-          "Warlock",
-          "Wizard"
-        ],
-        "components": "V, S",
-        "concentration": false,
-        "description": "You create a ghostly, skeletal hand in the space of a creature within range. Make a ranged spell attack against the creature to assail it with the chill of the grave. On a hit, the target takes 1d8 necrotic damage, and it can't regain hit points until the start of your next turn. If you hit an undead target, it also has disadvantage on attack rolls against you until the end of your next turn. This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
-        "duration": "1 round",
-        "level": 0,
-        "name": "Chill Touch",
-        "range": "120 feet",
-        "ritual": false,
-        "school": "Necromancy",
-        "source": "Selected"
-      },
-      {
-        "always_prepared": false,
-        "casting_time": "1 action",
-        "classes": [
+          "Artificer",
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+        "description": "You hurl a mote of fire at a creature or an object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 Fire damage. A flammable object hit by this spell starts burning if it isn't being worn or carried.\n\nCantrip Upgrade. The damage increases by 1d10 when you reach levels 5 (2d10), 11 (3d10), and 17 (4d10).",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Fire Bolt",
@@ -1930,17 +1919,37 @@
         "source": "Selected"
       },
       {
-        "always_prepared": true,
-        "casting_time": "1 action",
+        "always_prepared": false,
+        "casting_time": "Action",
         "classes": [
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "Channeling the chill of the grave, make a melee spell attack against a target within reach. On a hit, the target takes 1d10 Necrotic damage, and it can't regain Hit Points until the end of your next turn.\n\nCantrip Upgrade. The damage increases by 1d10 when you reach levels 5 (2d10), 11 (3d10), and 17 (4d10).",
+        "duration": "Instantaneous",
+        "level": 0,
+        "name": "Chill Touch",
+        "range": "Touch",
+        "ritual": false,
+        "school": "Necromancy",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "Action",
+        "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Sorcerer",
           "Wizard"
         ],
-        "components": "V, M",
+        "components": "V, M (a firefly or phosphorescent moss)",
         "concentration": false,
-        "description": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet.",
+        "description": "You touch one Large or smaller object that isn't being worn or carried by someone else. Until the spell ends, the object sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The light can be colored as you like.\n\nCovering the object with something opaque blocks the light. The spell ends if you cast it again.",
         "duration": "1 hour",
         "level": 0,
         "material": "a firefly or phosphorescent moss",
@@ -1956,35 +1965,18 @@
     "1": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Sorcerer",
           "Wizard"
         ],
-        "components": "V, S",
+        "components": "V, S, M (a drop of alcohol)",
         "concentration": false,
-        "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+        "description": "You gain 2d4 + 4 Temporary Hit Points.\n\nUsing a Higher-Level Spell Slot. You gain 5 additional Temporary Hit Points for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
-        "name": "Burning Hands",
-        "range": "Self (15-foot cone)",
-        "ritual": false,
-        "school": "Evocation",
-        "source": "Selected"
-      },
-      {
-        "always_prepared": false,
-        "casting_time": "1 action",
-        "classes": [
-          "Sorcerer",
-          "Wizard"
-        ],
-        "components": "V, S, M",
-        "concentration": false,
-        "description": "Bolstering yourself with a necromantic facsimile of life, you gain 1d4 + 4 temporary hit points for the duration. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you gain 5 additional temporary hit points for each slot level above 1st.",
-        "duration": "1 hour",
-        "level": 1,
-        "material": "a small amount of alcohol or distilled spirits",
+        "material": "a drop of alcohol",
         "name": "False Life",
         "range": "Self",
         "ritual": false,
@@ -1992,8 +1984,26 @@
         "source": "Selected"
       },
       {
+        "always_prepared": false,
+        "casting_time": "Action",
+        "classes": [
+          "Sorcerer",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.\n\nFlammable objects in the Cone that aren't being worn or carried start burning.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Burning Hands",
+        "range": "Self",
+        "ritual": false,
+        "school": "Evocation",
+        "source": "Selected"
+      },
+      {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -2001,7 +2011,7 @@
         ],
         "components": "V",
         "concentration": false,
-        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is Undead, if the target doesn't understand your language, or if the command is directly harmful to it. Some typical commands and their effects follow. Approach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you. Drop. The target drops whatever it is holding and then ends its turn. Flee. The target spends its turn moving away from you by the fastest available means. Grovel. The target falls Prone and then ends its turn. Halt. The target doesn't move and takes no action. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st.",
+        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. Choose the command from these options:\n\nApproach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you.\n\nDrop. The target drops whatever it is holding and then ends its turn.\n\nFlee. The target spends its turn moving away from you by the fastest available means.\n\nGrovel. The target has the Prone condition and then ends its turn.\n\nHalt. On its turn, the target doesn't move and takes no action or Bonus Action.\n\nUsing a Higher-Level Spell Slot. You can affect one additional creature for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Command",
@@ -2014,16 +2024,17 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S, M (a diamond worth 50+ GP)",
         "concentration": false,
-        "description": "You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type. If you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again unless you cast the spell with a level 2+ spell slot.",
+        "description": "You hurl an orb of energy at a target within range. Choose Acid, Cold, Fire, Lightning, Poison, or Thunder for the type of orb you create, and then make a ranged spell attack against the target. On a hit, the target takes 3d8 damage of the chosen type.\n\nIf you roll the same number on two or more of the d8s, the orb leaps to a different target of your choice within 30 feet of the target. Make an attack roll against the new target, and make a new damage roll. The orb can't leap again unless you cast the spell with a level 2+ spell slot.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 1. The orb can leap a maximum number of times equal to the level of the slot expended, and a creature can be targeted only once by each casting of this spell.",
         "duration": "Instantaneous",
         "level": 1,
+        "material": "a diamond worth 50+ GP",
         "name": "Chromatic Orb",
         "once_per_day": false,
         "once_per_long_rest": false,
@@ -2036,7 +2047,7 @@
     "2": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Artificer",
           "Sorcerer",
@@ -2055,7 +2066,7 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Artificer",
           "Sorcerer",
@@ -2063,7 +2074,7 @@
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "You alter your physical form. Choose one of the following options, whose effects last for the duration. You can take a Magic action to change your choice. Aquatic Adaptation: you gain gills and grow webbing, gaining a Swim Speed equal to your Speed, and you can breathe underwater. Change Appearance: you change your appearance, including height, weight, features, voice, hair, coloring, and distinguishing characteristics. Natural Weapons: you grow claws, fangs, spines, horns, or a different natural weapon of your choice, which deals 1d6 + your Strength or Dexterity modifier Bludgeoning, Piercing, or Slashing damage (your choice), you are proficient with it, and it has the Light property.",
+        "description": "You alter your physical form. Choose one of the following options. Its effects last for the duration, during which you can take a Magic action to replace the option you chose with a different one.\n\nAquatic Adaptation. You sprout gills and grow webs between your fingers. You can breathe underwater and gain a Swim Speed equal to your Speed.\n\nChange Appearance. You alter your appearance. You decide what you look like, including your height, weight, facial features, sound of your voice, hair length, coloration, and other distinguishing characteristics. You can make yourself appear as a member of another species, though none of your statistics change. You can't appear as a creature of a different size, and your basic shape stays the same; if you're bipedal, you can't use this spell to become quadrupedal, for instance. For the duration, you can take a Magic action to change your appearance in this way again.\n\nNatural Weapons. You grow claws (Slashing), fangs (Piercing), horns (Piercing), or hooves (Bludgeoning). When you use your Unarmed Strike to deal damage with that new growth, it deals 1d6 damage of the type in parentheses instead of dealing the normal damage for your Unarmed Strike, and you use your spellcasting ability modifier for the attack and damage rolls rather than using Strength.",
         "duration": "Concentration, up to 1 hour",
         "level": 2,
         "name": "Alter Self",
@@ -2076,16 +2087,18 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
+          "Artificer",
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S, M (a hot pepper)",
         "concentration": true,
-        "description": "You touch one willing creature and imbue it with the power to spew magical energy from its mouth. Choose Acid, Cold, Fire, Lightning, or Poison. Until the spell ends, the creature can take a Magic action to exhale energy of the chosen type in a 15-foot Cone. Each creature in that area makes a Dexterity saving throw, taking 3d6 damage of the chosen type on a failed save, or half as much damage on a successful one. When using a higher-level spell slot, the damage increases by 1d6 for each slot level above 2.",
+        "description": "You touch one willing creature, and choose Acid, Cold, Fire, Lightning, or Poison. Until the spell ends, the target can take a Magic action to exhale a 15-foot Cone. Each creature in that area makes a Dexterity saving throw, taking 3d6 damage of the chosen type on a failed save or half as much damage on a successful one.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 2.",
         "duration": "Concentration, up to 1 minute",
         "level": 2,
+        "material": "a hot pepper",
         "name": "Dragon's Breath",
         "once_per_day": false,
         "once_per_long_rest": false,

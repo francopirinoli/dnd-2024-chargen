@@ -1,14 +1,14 @@
 {
   "name": "Staggering Smite",
   "level": 4,
-  "school": "Evocation",
-  "casting_time": "1 bonus action, which you take immediately after hitting a target with a Melee weapon or an Unarmed Strike",
+  "school": "Enchantment",
+  "casting_time": "Bonus Action, which you take immediately after hitting a creature with a Melee weapon or an Unarmed Strike",
   "range": "Self",
   "components": [
     "V"
   ],
   "duration": "Instantaneous",
-  "description": "The target takes an extra 4d6 Psychic damage from the attack, and the target must succeed on a Wisdom saving throw or have the Stunned condition until the end of your next turn.",
+  "description": "The target takes an extra 4d6 Psychic damage from the attack, and the target must succeed on a Wisdom saving throw or have the Stunned condition until the end of your next turn.\n\nUsing a Higher-Level Spell Slot. The extra damage increases by 1d6 for each spell slot level above 4.",
   "classes": [
     "Paladin"
   ],

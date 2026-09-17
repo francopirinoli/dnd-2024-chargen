@@ -1559,6 +1559,7 @@
         "Deryan's Helpful Homunculi",
         "Dueling Ground",
         "Enhance Ability",
+        "Find Traps",
         "Gentle Repose",
         "Hold Person",
         "Lesser Restoration",
@@ -1644,14 +1645,15 @@
     "cantrips": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Cleric",
           "Druid"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice.",
+        "description": "You touch a willing creature and choose a skill. Until the spell ends, the creature adds 1d4 to any ability check using the chosen skill.",
         "duration": "Concentration, up to 1 minute",
         "level": 0,
         "name": "Guidance",
@@ -1662,7 +1664,7 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Cleric",
           "Warlock",
@@ -1670,7 +1672,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You point at one creature you can see within range, and the sound of a dolorous bell fills the air around it for a moment. The target must succeed on a Wisdom saving throw or take 1d8 necrotic damage. If the target is missing any of its hit points, it instead takes 1d12 necrotic damage.",
+        "description": "You point at one creature you can see within range, and the single chime of a dolorous bell is audible within 10 feet of the target. The target must succeed on a Wisdom saving throw or take 1d8 Necrotic damage. If the target is missing any of its Hit Points, it instead takes 1d12 Necrotic damage.\n\nCantrip Upgrade. The damage increases by one die when you reach levels 5 (2d8 or 2d12), 11 (3d8 or 3d12), and 17 (4d8 or 4d12).",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Toll the Dead",
@@ -1681,34 +1683,35 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Cleric"
         ],
-        "components": "V, M",
+        "components": "V, M (a sunburst token)",
         "concentration": false,
-        "description": "You utter a divine word, and burning radiance erupts from you. Each creature of your choice that you can see within range must succeed on a Constitution saving throw or take 1d6 radiant damage.",
+        "description": "Burning radiance erupts from you in a 5-foot Emanation. Each creature of your choice that you can see in it must succeed on a Constitution saving throw or take 1d6 Radiant damage.\n\nCantrip Upgrade. The damage increases by 1d6 when you reach levels 5 (2d6), 11 (3d6), and 17 (4d6).",
         "duration": "Instantaneous",
         "level": 0,
-        "material": "a holy symbol",
+        "material": "a sunburst token",
         "name": "Word of Radiance",
-        "range": "5 feet",
+        "range": "Self",
         "ritual": false,
         "school": "Evocation",
         "source": "Selected"
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Sorcerer",
           "Wizard"
         ],
-        "components": "V, M",
+        "components": "V, M (a firefly or phosphorescent moss)",
         "concentration": false,
-        "description": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet.",
+        "description": "You touch one Large or smaller object that isn't being worn or carried by someone else. Until the spell ends, the object sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The light can be colored as you like.\n\nCovering the object with something opaque blocks the light. The spell ends if you cast it again.",
         "duration": "1 hour",
         "level": 0,
         "material": "a firefly or phosphorescent moss",
@@ -1725,19 +1728,21 @@
     "level_1": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action or Ritual",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
           "Paladin",
           "Ranger",
           "Sorcerer",
+          "Warlock",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+        "description": "For the duration, you sense the presence of magical effects within 30 feet of yourself. If you sense such effects, you can take the Magic action to see a faint aura around any visible creature or object in the area that bears the magic, and if an effect was created by a spell, you learn the spell's school of magic.\n\nThe spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead.",
         "duration": "Concentration, up to 10 minutes",
         "level": 1,
         "name": "Detect Magic",
@@ -1748,16 +1753,17 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Cleric",
           "Paladin"
         ],
-        "components": "V, S, M (a sprinkle of Holy Water)",
+        "components": "V, S, M (a Holy Symbol worth 5+ GP)",
         "concentration": true,
-        "description": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save. Using a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
+        "description": "You bless up to three creatures within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save.\n\nUsing a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
         "duration": "Concentration, up to 1 minute",
         "level": 1,
+        "material": "a Holy Symbol worth 5+ GP",
         "name": "Bless",
         "range": "30 feet",
         "ritual": false,
@@ -1766,7 +1772,7 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -1774,7 +1780,7 @@
         ],
         "components": "V",
         "concentration": false,
-        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d4 for each slot level above 1st.",
+        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier.\n\nUsing a Higher-Level Spell Slot. The healing increases by 2d4 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Healing Word",
@@ -1785,13 +1791,13 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Cleric"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You hurl a bolt of light toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 4d6 Radiant damage, and the next attack roll made against it before the end of your next turn has Advantage. Using a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
+        "description": "You hurl a bolt of light toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 4d6 Radiant damage, and the next attack roll made against it before the end of your next turn has Advantage.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
         "duration": "1 round",
         "level": 1,
         "name": "Guiding Bolt",
@@ -1804,16 +1810,17 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Cleric",
           "Paladin"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a prayer scroll)",
         "concentration": true,
-        "description": "A shimmering field appears and surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration.",
+        "description": "A shimmering field surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration.",
         "duration": "Concentration, up to 10 minutes",
         "level": 1,
+        "material": "a prayer scroll",
         "name": "Shield of Faith",
         "once_per_day": false,
         "once_per_long_rest": false,
@@ -1844,14 +1851,15 @@
     "0": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Cleric",
           "Druid"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice.",
+        "description": "You touch a willing creature and choose a skill. Until the spell ends, the creature adds 1d4 to any ability check using the chosen skill.",
         "duration": "Concentration, up to 1 minute",
         "level": 0,
         "name": "Guidance",
@@ -1862,7 +1870,7 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Cleric",
           "Warlock",
@@ -1870,7 +1878,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You point at one creature you can see within range, and the sound of a dolorous bell fills the air around it for a moment. The target must succeed on a Wisdom saving throw or take 1d8 necrotic damage. If the target is missing any of its hit points, it instead takes 1d12 necrotic damage.",
+        "description": "You point at one creature you can see within range, and the single chime of a dolorous bell is audible within 10 feet of the target. The target must succeed on a Wisdom saving throw or take 1d8 Necrotic damage. If the target is missing any of its Hit Points, it instead takes 1d12 Necrotic damage.\n\nCantrip Upgrade. The damage increases by one die when you reach levels 5 (2d8 or 2d12), 11 (3d8 or 3d12), and 17 (4d8 or 4d12).",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Toll the Dead",
@@ -1881,34 +1889,35 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Cleric"
         ],
-        "components": "V, M",
+        "components": "V, M (a sunburst token)",
         "concentration": false,
-        "description": "You utter a divine word, and burning radiance erupts from you. Each creature of your choice that you can see within range must succeed on a Constitution saving throw or take 1d6 radiant damage.",
+        "description": "Burning radiance erupts from you in a 5-foot Emanation. Each creature of your choice that you can see in it must succeed on a Constitution saving throw or take 1d6 Radiant damage.\n\nCantrip Upgrade. The damage increases by 1d6 when you reach levels 5 (2d6), 11 (3d6), and 17 (4d6).",
         "duration": "Instantaneous",
         "level": 0,
-        "material": "a holy symbol",
+        "material": "a sunburst token",
         "name": "Word of Radiance",
-        "range": "5 feet",
+        "range": "Self",
         "ritual": false,
         "school": "Evocation",
         "source": "Selected"
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Sorcerer",
           "Wizard"
         ],
-        "components": "V, M",
+        "components": "V, M (a firefly or phosphorescent moss)",
         "concentration": false,
-        "description": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet.",
+        "description": "You touch one Large or smaller object that isn't being worn or carried by someone else. Until the spell ends, the object sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The light can be colored as you like.\n\nCovering the object with something opaque blocks the light. The spell ends if you cast it again.",
         "duration": "1 hour",
         "level": 0,
         "material": "a firefly or phosphorescent moss",
@@ -1924,19 +1933,21 @@
     "1": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action or Ritual",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
           "Paladin",
           "Ranger",
           "Sorcerer",
+          "Warlock",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+        "description": "For the duration, you sense the presence of magical effects within 30 feet of yourself. If you sense such effects, you can take the Magic action to see a faint aura around any visible creature or object in the area that bears the magic, and if an effect was created by a spell, you learn the spell's school of magic.\n\nThe spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead.",
         "duration": "Concentration, up to 10 minutes",
         "level": 1,
         "name": "Detect Magic",
@@ -1947,16 +1958,17 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Cleric",
           "Paladin"
         ],
-        "components": "V, S, M (a sprinkle of Holy Water)",
+        "components": "V, S, M (a Holy Symbol worth 5+ GP)",
         "concentration": true,
-        "description": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save. Using a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
+        "description": "You bless up to three creatures within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save.\n\nUsing a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
         "duration": "Concentration, up to 1 minute",
         "level": 1,
+        "material": "a Holy Symbol worth 5+ GP",
         "name": "Bless",
         "range": "30 feet",
         "ritual": false,
@@ -1965,7 +1977,7 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -1973,7 +1985,7 @@
         ],
         "components": "V",
         "concentration": false,
-        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d4 for each slot level above 1st.",
+        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier.\n\nUsing a Higher-Level Spell Slot. The healing increases by 2d4 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Healing Word",
@@ -1984,13 +1996,13 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Cleric"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You hurl a bolt of light toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 4d6 Radiant damage, and the next attack roll made against it before the end of your next turn has Advantage. Using a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
+        "description": "You hurl a bolt of light toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 4d6 Radiant damage, and the next attack roll made against it before the end of your next turn has Advantage.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
         "duration": "1 round",
         "level": 1,
         "name": "Guiding Bolt",
@@ -2003,16 +2015,17 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Cleric",
           "Paladin"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a prayer scroll)",
         "concentration": true,
-        "description": "A shimmering field appears and surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration.",
+        "description": "A shimmering field surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration.",
         "duration": "Concentration, up to 10 minutes",
         "level": 1,
+        "material": "a prayer scroll",
         "name": "Shield of Faith",
         "once_per_day": false,
         "once_per_long_rest": false,
@@ -2025,7 +2038,7 @@
     "2": [
       {
         "always_prepared": false,
-        "casting_time": "1 action or Ritual",
+        "casting_time": "Action or Ritual",
         "classes": [
           "Bard",
           "Cleric",
@@ -2033,7 +2046,7 @@
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "For the duration, no sound can be created within or pass through a 20-foot-radius Sphere centered on a point you choose within range. Any creature or object entirely inside the sphere is immune to Thunder damage, and creatures are Deafened while entirely inside it. Casting a spell that includes a verbal component is impossible there.",
+        "description": "For the duration, no sound can be created within or pass through a 20-foot-radius Sphere centered on a point you choose within range. Any creature or object entirely inside the Sphere has Immunity to Thunder damage, and creatures have the Deafened condition while entirely inside it. Casting a spell that includes a Verbal component is impossible there.",
         "duration": "Concentration, up to 10 minutes",
         "level": 2,
         "name": "Silence",
@@ -2044,20 +2057,21 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
           "Paladin",
           "Ranger"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a strip of white cloth)",
         "concentration": false,
-        "description": "Choose up to three creatures within range. Each target's Hit Point maximum and current Hit Points increase by 5 for the duration. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, each target's Hit Points increase by 5 for each slot level above 2nd.",
+        "description": "Choose up to three creatures within range. Each target's Hit Point maximum and current Hit Points increase by 5 for the duration.\n\nUsing a Higher-Level Spell Slot. Each target's Hit Points increase by 5 for each spell slot level above 2.",
         "duration": "8 hours",
         "level": 2,
-        "material": "a tiny strip of white cloth",
+        "material": "a strip of white cloth",
         "name": "Aid",
         "range": "30 feet",
         "ritual": false,
@@ -2066,7 +2080,7 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -2075,12 +2089,12 @@
           "Warlock",
           "Wizard"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a straight piece of iron)",
         "concentration": true,
-        "description": "Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them.",
+        "description": "Choose a Humanoid that you can see within range. The target must succeed on a Wisdom saving throw or have the Paralyzed condition for the duration. At the end of each of its turns, the target repeats the save, ending the spell on itself on a success.\n\nUsing a Higher-Level Spell Slot. You can target one additional Humanoid for each spell slot level above 2.",
         "duration": "Concentration, up to 1 minute",
         "level": 2,
-        "material": "a small, straight piece of iron",
+        "material": "a straight piece of iron",
         "name": "Hold Person",
         "range": "60 feet",
         "ritual": false,
@@ -2089,7 +2103,7 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Artificer",
           "Paladin",
@@ -2099,7 +2113,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You touch a nonmagical weapon. Until the spell ends, that weapon becomes a +1 magic weapon. When using a higher-level spell slot: the bonus increases to +2 when you use a level 4 slot, or to +3 when you use a level 6+ slot.",
+        "description": "You touch a nonmagical weapon. Until the spell ends, that weapon becomes a magic weapon with a +1 bonus to attack rolls and damage rolls. The spell ends early if you cast it again.\n\nUsing a Higher-Level Spell Slot. The bonus increases to +2 with a level 3-5 spell slot. The bonus increases to +3 with a level 6+ spell slot.",
         "duration": "1 hour",
         "level": 2,
         "name": "Magic Weapon",
@@ -2112,13 +2126,13 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Cleric"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "You create a floating, spectral weapon within range that lasts for the duration. The weapon can take whatever form you choose. When you cast this spell, you can make a melee spell attack against a creature within 5 feet of the weapon. On a hit, the target takes Force damage equal to 1d8 plus your spellcasting ability modifier. As a Bonus Action on your later turns, you can move the weapon up to 20 feet and repeat the attack against a creature within 5 feet of it. Using a Higher-Level Spell Slot. The damage increases by 1d8 for every two spell slot levels above 2.",
+        "description": "You create a floating, spectral force that resembles a weapon of your choice and lasts for the duration. The force appears within range in a space of your choice, and you can immediately make one melee spell attack against one creature within 5 feet of the force. On a hit, the target takes Force damage equal to 1d8 plus your spellcasting ability modifier.\n\nAs a Bonus Action on your later turns, you can move the force up to 20 feet and repeat the attack against a creature within 5 feet of it.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d8 for every slot level above 2.",
         "duration": "Concentration, up to 1 minute",
         "level": 2,
         "name": "Spiritual Weapon",

@@ -201,8 +201,7 @@
       },
       {
         "tools": [
-          "Gaming Set",
-          "Vehicles (Land)"
+          "Gaming Set"
         ],
         "type": "grant_tool_proficiency"
       }
@@ -791,8 +790,7 @@
       "source": "Soldier",
       "source_type": "background",
       "tools": [
-        "Gaming Set",
-        "Vehicles (Land)"
+        "Gaming Set"
       ],
       "type": "grant_tool_proficiency"
     }
@@ -1033,8 +1031,7 @@
       "Investigation"
     ],
     "tools": [
-      "Gaming Set",
-      "Vehicles (Land)"
+      "Gaming Set"
     ],
     "weapons": [
       "Simple weapons",
@@ -1058,8 +1055,7 @@
       "Perception": "Soldier"
     },
     "tools": {
-      "Gaming Set": "Soldier",
-      "Vehicles (Land)": "Soldier"
+      "Gaming Set": "Soldier"
     },
     "weapons": {}
   },
@@ -1486,6 +1482,8 @@
         "choices": {
           "count": 1,
           "source": {
+            "file": "origin_feats.json",
+            "list": "origin_feats",
             "options": [
               "Alert",
               "Crafter",
@@ -1500,7 +1498,7 @@
               "Tavern Brawler",
               "Tough"
             ],
-            "type": "fixed_list"
+            "type": "external"
           },
           "type": "select_single"
         },
@@ -1697,8 +1695,7 @@
     "source": "Combat Superiority"
   },
   "tool_proficiencies": [
-    "Gaming Set",
-    "Vehicles (Land)"
+    "Gaming Set"
   ],
   "weapon_masteries": {
     "available": [],

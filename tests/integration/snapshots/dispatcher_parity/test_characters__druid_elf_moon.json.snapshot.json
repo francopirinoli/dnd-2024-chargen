@@ -1758,7 +1758,9 @@
         "Thunderwave"
       ],
       "2": [
+        "Aid",
         "Animal Messenger",
+        "Augury",
         "Barkskin",
         "Battle Familiar",
         "Beast Sense",
@@ -1780,6 +1782,7 @@
         "Pass without Trace",
         "Protection from Poison",
         "Spike Growth",
+        "Summon Beast",
         "Wither and Bloom"
       ]
     },
@@ -1862,14 +1865,15 @@
     "cantrips": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Cleric",
           "Druid"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice.",
+        "description": "You touch a willing creature and choose a skill. Until the spell ends, the creature adds 1d4 to any ability check using the chosen skill.",
         "duration": "Concentration, up to 1 minute",
         "level": 0,
         "name": "Guidance",
@@ -1880,13 +1884,13 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Druid"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "A flickering flame appears in your hand and remains there for the duration. While there, the flame emits no heat and ignites nothing, and it sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The spell ends if you cast it again. Until the spell ends, you can take a Magic action to hurl fire at a creature or an object within 60 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 Fire damage. Cantrip Upgrade. The damage increases by 1d8 when you reach levels 5 (2d8), 11 (3d8), and 17 (4d8).",
+        "description": "A flickering flame appears in your hand and remains there for the duration. While there, the flame emits no heat and ignites nothing, and it sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The spell ends if you cast it again.\n\nUntil the spell ends, you can take a Magic action to hurl fire at a creature or an object within 60 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 Fire damage.\n\nCantrip Upgrade. The damage increases by 1d8 when you reach levels 5 (2d8), 11 (3d8), and 17 (4d8).",
         "duration": "10 minutes",
         "level": 0,
         "name": "Produce Flame",
@@ -1897,14 +1901,14 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Druid"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You launch a mote of light at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 Radiant damage, and until the end of your next turn, it emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition. The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
+        "description": "You launch a mote of light at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 Radiant damage, and until the end of your next turn, it emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition.\n\nCantrip Upgrade. The damage increases by 1d8 when you reach levels 5 (2d8), 11 (3d8), and 17 (4d8).",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Starry Wisp",
@@ -1917,13 +1921,13 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Druid"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You create a small nature-themed magical effect (predict weather, make a flower bloom, light/snuff a small flame, etc.).",
+        "description": "Whispering to the spirits of nature, you create one of the following effects within range.\n\nWeather Sensor. You create a Tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.\n\nBloom. You instantly make a flower blossom, a seed pod open, or a leaf bud bloom.\n\nSensory Effect. You create a harmless sensory effect, such as falling leaves, spectral dancing fairies, a gentle breeze, the sound of an animal, or the faint odor of skunk. The effect must fit in a 5-foot Cube.\n\nFire Play. You light or snuff out a candle, a torch, or a campfire.",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Druidcraft",
@@ -1939,19 +1943,21 @@
     "level_1": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action or Ritual",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
           "Paladin",
           "Ranger",
           "Sorcerer",
+          "Warlock",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+        "description": "For the duration, you sense the presence of magical effects within 30 feet of yourself. If you sense such effects, you can take the Magic action to see a faint aura around any visible creature or object in the area that bears the magic, and if an effect was created by a spell, you learn the spell's school of magic.\n\nThe spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead.",
         "duration": "Concentration, up to 10 minutes",
         "level": 1,
         "name": "Detect Magic",
@@ -1962,14 +1968,15 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Druid"
         ],
         "components": "V",
         "concentration": true,
-        "description": "Each creature/object in an area is outlined with light on a failed save; attacks against affected targets have advantage and affected creatures can't benefit from being Invisible.",
+        "description": "Objects in a 20-foot Cube within range are outlined in blue, green, or violet light (your choice). Each creature in the Cube is also outlined if it fails a Dexterity saving throw. For the duration, objects and affected creatures shed Dim Light in a 10-foot radius and can't benefit from the Invisible condition.\n\nAttack rolls against an affected creature or object have Advantage if the attacker can see it.",
         "duration": "Concentration, up to 1 minute",
         "level": 1,
         "name": "Faerie Fire",
@@ -1980,14 +1987,14 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Druid",
           "Ranger"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "Grasping weeds and vines sprout from the ground in a 20-foot square starting from a point within range. For the duration, these plants turn the ground in the area into Difficult Terrain. A creature in the area when you cast the spell must succeed on a Strength saving throw or be Restrained until the spell ends. A creature Restrained by the plants can take an action to make a Strength check against your spell save DC. On a success, it frees itself.",
+        "description": "Grasping plants sprout from the ground in a 20-foot square within range. For the duration, these plants turn the ground in the area into Difficult Terrain. They disappear when the spell ends.\n\nEach creature (other than you) in the area when you cast the spell must succeed on a Strength saving throw or have the Restrained condition until the spell ends. A Restrained creature can take an action to make a Strength (Athletics) check against your spell save DC. On a success, it frees itself from the grasping plants and is no longer Restrained by them.",
         "duration": "Concentration, up to 1 minute",
         "level": 1,
         "name": "Entangle",
@@ -1998,25 +2005,26 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Druid",
           "Ranger"
         ],
         "components": "V, S, M (a sprig of mistletoe)",
         "concentration": false,
-        "description": "Ten berries appear in your hand and are infused with magic for the duration. A creature can take a Bonus Action to eat one berry. Eating a berry restores 1 Hit Point, and the berry provides enough nourishment to sustain a creature for one day. Uneaten berries disappear when the spell ends.",
+        "description": "Ten berries appear in your hand and are infused with magic for the duration. A creature can take a Bonus Action to eat one berry. Eating a berry restores 1 Hit Point, and the berry provides enough nourishment to sustain a creature for one day.\n\nUneaten berries disappear when the spell ends.",
         "duration": "24 hours",
         "level": 1,
+        "material": "a sprig of mistletoe",
         "name": "Goodberry",
-        "range": "Self",
+        "range": "Touch",
         "ritual": false,
         "school": "Conjuration",
         "source": "Selected"
       },
       {
         "always_prepared": false,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -2024,7 +2032,7 @@
         ],
         "components": "V",
         "concentration": false,
-        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d4 for each slot level above 1st.",
+        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier.\n\nUsing a Higher-Level Spell Slot. The healing increases by 2d4 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Healing Word",
@@ -2035,30 +2043,7 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
-        "classes": [
-          "Bard",
-          "Cleric",
-          "Druid",
-          "Paladin",
-          "Ranger"
-        ],
-        "components": "V, S",
-        "concentration": false,
-        "description": "A creature you touch regains a number of Hit Points equal to 2d8 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d8 for each slot level above 1st.",
-        "duration": "Instantaneous",
-        "level": 1,
-        "name": "Cure Wounds",
-        "once_per_day": false,
-        "once_per_long_rest": false,
-        "range": "Touch",
-        "ritual": false,
-        "school": "Abjuration",
-        "source": "Circle of the Moon"
-      },
-      {
-        "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action or Ritual",
         "classes": [
           "Bard",
           "Druid",
@@ -2067,7 +2052,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them. Most Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.",
+        "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them.\n\nMost Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.",
         "duration": "10 minutes",
         "level": 1,
         "name": "Speak with Animals",
@@ -2080,16 +2065,41 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Paladin",
+          "Ranger"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A creature you touch regains a number of Hit Points equal to 2d8 plus your spellcasting ability modifier.\n\nUsing a Higher-Level Spell Slot. The healing increases by 2d8 for each spell slot level above 1.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Cure Wounds",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Circle of the Moon"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "Action",
+        "classes": [
+          "Artificer",
           "Bard",
           "Druid",
           "Ranger",
           "Wizard"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a pinch of dirt)",
         "concentration": false,
-        "description": "You touch a creature. The target's Speed increases by 10 feet until the spell ends. You can target one additional creature for each spell slot above 1.",
+        "description": "You touch a creature. The target's Speed increases by 10 feet until the spell ends.\n\nUsing a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
         "duration": "1 hour",
         "level": 1,
         "material": "a pinch of dirt",
@@ -2122,14 +2132,15 @@
     "0": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Cleric",
           "Druid"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice.",
+        "description": "You touch a willing creature and choose a skill. Until the spell ends, the creature adds 1d4 to any ability check using the chosen skill.",
         "duration": "Concentration, up to 1 minute",
         "level": 0,
         "name": "Guidance",
@@ -2140,13 +2151,13 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Druid"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "A flickering flame appears in your hand and remains there for the duration. While there, the flame emits no heat and ignites nothing, and it sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The spell ends if you cast it again. Until the spell ends, you can take a Magic action to hurl fire at a creature or an object within 60 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 Fire damage. Cantrip Upgrade. The damage increases by 1d8 when you reach levels 5 (2d8), 11 (3d8), and 17 (4d8).",
+        "description": "A flickering flame appears in your hand and remains there for the duration. While there, the flame emits no heat and ignites nothing, and it sheds Bright Light in a 20-foot radius and Dim Light for an additional 20 feet. The spell ends if you cast it again.\n\nUntil the spell ends, you can take a Magic action to hurl fire at a creature or an object within 60 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 Fire damage.\n\nCantrip Upgrade. The damage increases by 1d8 when you reach levels 5 (2d8), 11 (3d8), and 17 (4d8).",
         "duration": "10 minutes",
         "level": 0,
         "name": "Produce Flame",
@@ -2157,14 +2168,14 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Druid"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You launch a mote of light at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 Radiant damage, and until the end of your next turn, it emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition. The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
+        "description": "You launch a mote of light at one creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 Radiant damage, and until the end of your next turn, it emits Dim Light in a 10-foot radius and can't benefit from the Invisible condition.\n\nCantrip Upgrade. The damage increases by 1d8 when you reach levels 5 (2d8), 11 (3d8), and 17 (4d8).",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Starry Wisp",
@@ -2177,13 +2188,13 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Druid"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You create a small nature-themed magical effect (predict weather, make a flower bloom, light/snuff a small flame, etc.).",
+        "description": "Whispering to the spirits of nature, you create one of the following effects within range.\n\nWeather Sensor. You create a Tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.\n\nBloom. You instantly make a flower blossom, a seed pod open, or a leaf bud bloom.\n\nSensory Effect. You create a harmless sensory effect, such as falling leaves, spectral dancing fairies, a gentle breeze, the sound of an animal, or the faint odor of skunk. The effect must fit in a 5-foot Cube.\n\nFire Play. You light or snuff out a candle, a torch, or a campfire.",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Druidcraft",
@@ -2198,19 +2209,21 @@
     "1": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action or Ritual",
         "classes": [
+          "Artificer",
           "Bard",
           "Cleric",
           "Druid",
           "Paladin",
           "Ranger",
           "Sorcerer",
+          "Warlock",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "For the duration, you can sense the presence of magic nearby and learn its general nature.",
+        "description": "For the duration, you sense the presence of magical effects within 30 feet of yourself. If you sense such effects, you can take the Magic action to see a faint aura around any visible creature or object in the area that bears the magic, and if an effect was created by a spell, you learn the spell's school of magic.\n\nThe spell is blocked by 1 foot of stone, dirt, or wood; 1 inch of metal; or a thin sheet of lead.",
         "duration": "Concentration, up to 10 minutes",
         "level": 1,
         "name": "Detect Magic",
@@ -2221,14 +2234,15 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Druid"
         ],
         "components": "V",
         "concentration": true,
-        "description": "Each creature/object in an area is outlined with light on a failed save; attacks against affected targets have advantage and affected creatures can't benefit from being Invisible.",
+        "description": "Objects in a 20-foot Cube within range are outlined in blue, green, or violet light (your choice). Each creature in the Cube is also outlined if it fails a Dexterity saving throw. For the duration, objects and affected creatures shed Dim Light in a 10-foot radius and can't benefit from the Invisible condition.\n\nAttack rolls against an affected creature or object have Advantage if the attacker can see it.",
         "duration": "Concentration, up to 1 minute",
         "level": 1,
         "name": "Faerie Fire",
@@ -2239,14 +2253,14 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Druid",
           "Ranger"
         ],
         "components": "V, S",
         "concentration": true,
-        "description": "Grasping weeds and vines sprout from the ground in a 20-foot square starting from a point within range. For the duration, these plants turn the ground in the area into Difficult Terrain. A creature in the area when you cast the spell must succeed on a Strength saving throw or be Restrained until the spell ends. A creature Restrained by the plants can take an action to make a Strength check against your spell save DC. On a success, it frees itself.",
+        "description": "Grasping plants sprout from the ground in a 20-foot square within range. For the duration, these plants turn the ground in the area into Difficult Terrain. They disappear when the spell ends.\n\nEach creature (other than you) in the area when you cast the spell must succeed on a Strength saving throw or have the Restrained condition until the spell ends. A Restrained creature can take an action to make a Strength (Athletics) check against your spell save DC. On a success, it frees itself from the grasping plants and is no longer Restrained by them.",
         "duration": "Concentration, up to 1 minute",
         "level": 1,
         "name": "Entangle",
@@ -2257,25 +2271,26 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Druid",
           "Ranger"
         ],
         "components": "V, S, M (a sprig of mistletoe)",
         "concentration": false,
-        "description": "Ten berries appear in your hand and are infused with magic for the duration. A creature can take a Bonus Action to eat one berry. Eating a berry restores 1 Hit Point, and the berry provides enough nourishment to sustain a creature for one day. Uneaten berries disappear when the spell ends.",
+        "description": "Ten berries appear in your hand and are infused with magic for the duration. A creature can take a Bonus Action to eat one berry. Eating a berry restores 1 Hit Point, and the berry provides enough nourishment to sustain a creature for one day.\n\nUneaten berries disappear when the spell ends.",
         "duration": "24 hours",
         "level": 1,
+        "material": "a sprig of mistletoe",
         "name": "Goodberry",
-        "range": "Self",
+        "range": "Touch",
         "ritual": false,
         "school": "Conjuration",
         "source": "Selected"
       },
       {
         "always_prepared": false,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -2283,7 +2298,7 @@
         ],
         "components": "V",
         "concentration": false,
-        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d4 for each slot level above 1st.",
+        "description": "A creature of your choice that you can see within range regains Hit Points equal to 2d4 plus your spellcasting ability modifier.\n\nUsing a Higher-Level Spell Slot. The healing increases by 2d4 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Healing Word",
@@ -2294,30 +2309,7 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
-        "classes": [
-          "Bard",
-          "Cleric",
-          "Druid",
-          "Paladin",
-          "Ranger"
-        ],
-        "components": "V, S",
-        "concentration": false,
-        "description": "A creature you touch regains a number of Hit Points equal to 2d8 plus your spellcasting ability modifier. This spell has no effect on Undead or Constructs. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 2d8 for each slot level above 1st.",
-        "duration": "Instantaneous",
-        "level": 1,
-        "name": "Cure Wounds",
-        "once_per_day": false,
-        "once_per_long_rest": false,
-        "range": "Touch",
-        "ritual": false,
-        "school": "Abjuration",
-        "source": "Circle of the Moon"
-      },
-      {
-        "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action or Ritual",
         "classes": [
           "Bard",
           "Druid",
@@ -2326,7 +2318,7 @@
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them. Most Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.",
+        "description": "For the duration, you can comprehend and verbally communicate with Beasts, and you can use any of the Influence action's skill options with them.\n\nMost Beasts have little to say about topics that don't pertain to survival or companionship, but at minimum, a Beast can give you information about nearby locations and monsters, including whatever it has perceived within the past day.",
         "duration": "10 minutes",
         "level": 1,
         "name": "Speak with Animals",
@@ -2339,16 +2331,41 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Paladin",
+          "Ranger"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A creature you touch regains a number of Hit Points equal to 2d8 plus your spellcasting ability modifier.\n\nUsing a Higher-Level Spell Slot. The healing increases by 2d8 for each spell slot level above 1.",
+        "duration": "Instantaneous",
+        "level": 1,
+        "name": "Cure Wounds",
+        "once_per_day": false,
+        "once_per_long_rest": false,
+        "range": "Touch",
+        "ritual": false,
+        "school": "Abjuration",
+        "source": "Circle of the Moon"
+      },
+      {
+        "always_prepared": true,
+        "casting_time": "Action",
+        "classes": [
+          "Artificer",
           "Bard",
           "Druid",
           "Ranger",
           "Wizard"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a pinch of dirt)",
         "concentration": false,
-        "description": "You touch a creature. The target's Speed increases by 10 feet until the spell ends. You can target one additional creature for each spell slot above 1.",
+        "description": "You touch a creature. The target's Speed increases by 10 feet until the spell ends.\n\nUsing a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
         "duration": "1 hour",
         "level": 1,
         "material": "a pinch of dirt",
@@ -2364,16 +2381,17 @@
     "2": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Druid",
           "Ranger"
         ],
-        "components": "V, S, M (seven sharp thorns or seven small twigs, each sharpened to a point)",
+        "components": "V, S, M (seven thorns)",
         "concentration": true,
-        "description": "The ground in a 20-foot-radius Sphere centered on a point within range twists and sprouts hard spikes and thorns. The area becomes Difficult Terrain for the duration. When a creature moves into or within the area, it takes 2d4 Piercing damage for every 5 feet it travels. The transformation of the ground is camouflaged to look natural. Any creature that can't see the area when the spell is cast must succeed on a Wisdom (Perception) check against your spell save DC to recognize the terrain as hazardous.",
+        "description": "The ground in a 20-foot-radius Sphere centered on a point within range sprouts hard spikes and thorns. The area becomes Difficult Terrain for the duration. When a creature moves into or within the area, it takes 2d4 Piercing damage for every 5 feet it travels.\n\nThe transformation of the ground is camouflaged to look natural. Any creature that can't see the area when the spell is cast must take a Search action and succeed on a Wisdom (Perception or Survival) check against your spell save DC to recognize the terrain as hazardous before entering it.",
         "duration": "Concentration, up to 10 minutes",
         "level": 2,
+        "material": "seven thorns",
         "name": "Spike Growth",
         "range": "150 feet",
         "ritual": false,
@@ -2382,15 +2400,16 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Druid"
         ],
-        "components": "V, S, M (several seeds of any moonseed plant and a piece of opalescent feldspar)",
+        "components": "V, S, M (a moonseed leaf)",
         "concentration": true,
-        "description": "A silvery beam of pale light shines down in a 5-foot-radius, 40-foot-high Cylinder centered on a point within range. Until the spell ends, Dim Light fills the Cylinder, and you can take a Magic action on later turns to move the Cylinder up to 60 feet. When a creature enters the Cylinder for the first time on a turn or starts its turn there, it makes a Constitution saving throw, taking 2d10 Radiant damage on a failed save or half as much damage on a successful one. Using a Higher-Level Spell Slot. The damage increases by 1d10 for each spell slot level above 2.",
+        "description": "A silvery beam of pale light shines down in a 5-foot-radius, 40-foot-high Cylinder centered on a point within range. Until the spell ends, Dim Light fills the Cylinder, and you can take a Magic action on later turns to move the Cylinder up to 60 feet.\n\nWhen the Cylinder appears, each creature in it makes a Constitution saving throw. On a failed save, a creature takes 2d10 Radiant damage, and if the creature is shape-shifted (as a result of the Polymorph spell, for example), it reverts to its true form and can't shape-shift until it leaves the Cylinder. On a successful save, a creature takes half as much damage only. A creature also makes this save when the spell's area moves into its space and when it enters the spell's area or ends its turn there. A creature makes this save only once per turn.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d10 for each spell slot level above 2.",
         "duration": "Concentration, up to 1 minute",
         "level": 2,
+        "material": "a moonseed leaf",
         "name": "Moonbeam",
         "once_per_day": false,
         "once_per_long_rest": false,

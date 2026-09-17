@@ -2,14 +2,14 @@
   "name": "Ray of Sickness",
   "level": 1,
   "school": "Necromancy",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "60 feet",
   "components": [
     "V",
     "S"
   ],
   "duration": "Instantaneous",
-  "description": "A ray of sickening green energy lashes out toward a creature within range. On a hit, the target must make a Constitution saving throw or be poisoned until the end of your next turn.",
+  "description": "You shoot a greenish ray at a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 2d8 Poison damage and has the Poisoned condition until the end of your next turn.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d8 for each spell slot level above 1.",
   "classes": [
     "Sorcerer",
     "Wizard"

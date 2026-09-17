@@ -2,15 +2,18 @@
   "name": "Circle of Power",
   "level": 5,
   "school": "Abjuration",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Self",
   "components": [
     "V"
   ],
   "duration": "Concentration, up to 10 minutes",
-  "description": "An aura radiates from you in a 30-foot Emanation for the duration. Until the spell ends, the Emanation moves with you, centered on you. Each nonhostile creature in the Emanation (including you) has Advantage on saving throws against spells and other magical effects. Additionally, when an affected creature succeeds on a saving throw against a spell or magical effect that allows a save to take only half damage, it takes no damage instead.",
+  "description": "An aura radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Advantage on saving throws against spells and other magical effects. When an affected creature makes a saving throw against a spell or magical effect that allows a save to take only half damage, it takes no damage if it succeeds on the save.",
   "classes": [
-    "Paladin"
+    "Artificer",
+    "Cleric",
+    "Paladin",
+    "Wizard"
   ],
   "ritual": false
 }

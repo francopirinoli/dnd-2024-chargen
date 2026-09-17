@@ -2,14 +2,14 @@
   "name": "Compulsion",
   "level": 4,
   "school": "Enchantment",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "30 feet",
   "components": [
     "V",
     "S"
   ],
   "duration": "Concentration, up to 1 minute",
-  "description": "Each creature of your choice that you can see within range must make a Wisdom saving throw. On a failed save, a target has the Charmed condition until the spell ends. On each of your turns, you can use a Bonus Action to designate a direction that isn't directly toward you. Each Charmed target must use as much of its movement as possible to move in that direction on its next turn. It can take its action before it moves. After moving in this way, it can make another Wisdom saving throw to try to end the effect.",
+  "description": "Each creature of your choice that you can see within range must succeed on a Wisdom saving throw or have the Charmed condition until the spell ends.\n\nFor the duration, you can take a Bonus Action to designate a direction that is horizontal to you. Each Charmed target must use as much of its movement as possible to move in that direction on its next turn, taking the safest route. After moving in this way, a target repeats the save, ending the spell on itself on a success.",
   "classes": [
     "Bard"
   ],

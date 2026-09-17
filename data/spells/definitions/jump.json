@@ -2,7 +2,7 @@
   "name": "Jump",
   "level": 1,
   "school": "Transmutation",
-  "casting_time": "1 bonus action",
+  "casting_time": "Bonus Action",
   "range": "Touch",
   "components": [
     "V",
@@ -10,7 +10,7 @@
     "M (a grasshopper's hind leg)"
   ],
   "duration": "1 minute",
-  "description": "You touch a willing creature. Once on each of its turns until the spell ends, that creature can jump up to 30 feet by spending 10 feet of movement.",
+  "description": "You touch a willing creature. Once on each of its turns until the spell ends, that creature can jump up to 30 feet by spending 10 feet of movement.\n\nUsing a Higher-Level Spell Slot. You can target one additional creature for each spell slot level above 1.",
   "classes": [
     "Artificer",
     "Druid",
@@ -18,5 +18,6 @@
     "Sorcerer",
     "Wizard"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "a grasshopper's hind leg"
 }

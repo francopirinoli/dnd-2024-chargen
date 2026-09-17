@@ -2,16 +2,16 @@
   "name": "Beast Sense",
   "level": 2,
   "school": "Divination",
-  "casting_time": "1 action",
-  "ritual": true,
+  "casting_time": "Action or Ritual",
   "range": "Touch",
   "components": [
     "S"
   ],
   "duration": "Concentration, up to 1 hour",
-  "description": "You touch a willing Beast. For the duration, you can use your action to see through the Beast's eyes and hear what it hears, and you continue to do so until you use your action to return to your normal senses. While perceiving through the Beast's senses, you benefit from any special senses possessed by that creature, though you have the Blinded and Deafened conditions with regard to your own senses.",
+  "description": "You touch a willing Beast. For the duration, you can perceive through the Beast's senses as well as your own. When perceiving through the Beast's senses, you benefit from any special senses it has.",
   "classes": [
     "Druid",
     "Ranger"
-  ]
+  ],
+  "ritual": true
 }

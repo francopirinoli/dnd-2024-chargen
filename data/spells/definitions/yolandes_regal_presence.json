@@ -1,12 +1,20 @@
 {
   "name": "Yolande's Regal Presence",
-  "level": 6,
+  "level": 5,
   "school": "Enchantment",
-  "casting_time": "1 action",
-  "range": "Self (60-foot emanation)",
-  "components": ["V", "S"],
+  "casting_time": "Action",
+  "range": "Self",
+  "components": [
+    "V",
+    "S",
+    "M (a miniature tiara)"
+  ],
   "duration": "Concentration, up to 1 minute",
-  "description": "You surround yourself with unearthly majesty for the duration. Whenever you or a creature you choose within 60 feet of you ends its turn, you can force each creature of your choice in that area to make a Wisdom saving throw. On a failed save, a creature takes 4d12 Psychic damage and has the Prone condition. On a successful save, it takes half as much damage only. Cantrip upgrade: The spell's emanation increases to 120 feet when you reach 10th level.",
-  "classes": [],
-  "ritual": false
+  "description": "You surround yourself with unearthly majesty in a 10-foot Emanation. Whenever the Emanation enters the space of a creature you can see and whenever a creature you can see enters the Emanation or ends its turn there, you can force that creature to make a Wisdom saving throw. On a failed save, the target takes 4d6 Psychic damage and has the Prone condition, and you can push it up to 10 feet away. On a successful save, the target takes half as much damage only. A creature makes this save only once per turn.",
+  "classes": [
+    "Bard",
+    "Wizard"
+  ],
+  "ritual": false,
+  "material": "a miniature tiara"
 }

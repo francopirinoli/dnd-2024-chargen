@@ -61,6 +61,7 @@
       "Locate Object",
       "Magic Mouth",
       "Mirror Image",
+      "Phantasmal Force",
       "See Invisibility",
       "Shatter",
       "Silence",
@@ -81,6 +82,7 @@
       "Nondetection",
       "Plant Growth",
       "Sending",
+      "Slow",
       "Speak with Dead",
       "Speak with Plants",
       "Stinking Cloud",
@@ -91,6 +93,7 @@
       "Compulsion",
       "Confusion",
       "Dimension Door",
+      "Fount of Moonlight",
       "Freedom of Movement",
       "Greater Invisibility",
       "Hallucinatory Terrain",
@@ -110,11 +113,14 @@
       "Mass Cure Wounds",
       "Mislead",
       "Modify Memory",
+      "Planar Binding",
       "Raise Dead",
       "Rary's Telepathic Bond",
       "Scrying",
       "Seeming",
-      "Teleportation Circle"
+      "Synaptic Static",
+      "Teleportation Circle",
+      "Yolande's Regal Presence"
     ],
     "6": [
       "Eyebite",
@@ -131,6 +137,9 @@
       "Forcecage",
       "Mirage Arcane",
       "Mordenkainen's Magnificent Mansion",
+      "Mordenkainen's Sword",
+      "Power Word Fortify",
+      "Prismatic Spray",
       "Project Image",
       "Regenerate",
       "Resurrection",
@@ -139,8 +148,8 @@
     ],
     "8": [
       "Antipathy/Sympathy",
+      "Befuddlement",
       "Dominate Monster",
-      "Feeblemind",
       "Glibness",
       "Mind Blank",
       "Power Word Stun"
@@ -149,8 +158,8 @@
       "Foresight",
       "Power Word Heal",
       "Power Word Kill",
-      "True Polymorph",
-      "Weird"
+      "Prismatic Wall",
+      "True Polymorph"
     ]
   }
 }

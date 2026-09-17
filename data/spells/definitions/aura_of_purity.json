@@ -2,13 +2,13 @@
   "name": "Aura of Purity",
   "level": 4,
   "school": "Abjuration",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Self",
   "components": [
     "V"
   ],
   "duration": "Concentration, up to 10 minutes",
-  "description": "An aura radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Resistance to Poison damage and Advantage on saving throws to avoid or end the Blinded, Charmed, Deafened, Frightened, Paralyzed, Poisoned, and Stunned conditions.",
+  "description": "An aura radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Resistance to Poison damage and Advantage on saving throws to avoid or end effects that include the Blinded, Charmed, Deafened, Frightened, Paralyzed, Poisoned, or Stunned condition.",
   "classes": [
     "Cleric",
     "Paladin"

@@ -1,5 +1,6 @@
 {
   "class": "Ranger",
+  "cantrips": [],
   "spells_by_level": {
     "1": [
       "Alarm",
@@ -22,6 +23,7 @@
       "Animal Messenger",
       "Barkskin",
       "Beast Sense",
+      "Cordon of Arrows",
       "Darkvision",
       "Enhance Ability",
       "Find Traps",
@@ -43,11 +45,13 @@
       "Dispel Magic",
       "Elemental Weapon",
       "Lightning Arrow",
+      "Meld into Stone",
       "Nondetection",
       "Plant Growth",
       "Protection from Energy",
       "Revivify",
       "Speak with Plants",
+      "Summon Fey",
       "Water Breathing",
       "Water Walk",
       "Wind Wall"
@@ -58,7 +62,8 @@
       "Freedom of Movement",
       "Grasping Vine",
       "Locate Creature",
-      "Stoneskin"
+      "Stoneskin",
+      "Summon Elemental"
     ],
     "5": [
       "Commune with Nature",
@@ -67,6 +72,10 @@
       "Steel Wind Strike",
       "Swift Quiver",
       "Tree Stride"
-    ]
+    ],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": []
   }
 }

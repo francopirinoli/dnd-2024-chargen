@@ -2,20 +2,21 @@
   "name": "True Strike",
   "level": 0,
   "school": "Divination",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Self",
   "components": [
     "S",
-    "M"
+    "M (a weapon with which you have proficiency and that is worth 1+ CP)"
   ],
-  "material": "a weapon with which you have proficiency",
   "duration": "Instantaneous",
-  "description": "Guided by a flash of magical insight, you make one attack with a weapon or an Unarmed Strike against one creature or object within reach or within range if the weapon has the Thrown property. On a hit, the target takes an extra 1d6 Radiant damage. You can use your spellcasting ability modifier, instead of Strength or Dexterity, for the attack and damage rolls. The damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).",
+  "description": "Guided by a flash of magical insight, you make one attack with the weapon used in the spell's casting. The attack uses your spellcasting ability for the attack and damage rolls instead of using Strength or Dexterity. If the attack deals damage, it can be Radiant damage or the weapon's normal damage type (your choice).\n\nCantrip Upgrade. Whether you deal Radiant damage or the weapon's normal damage type, the attack deals extra Radiant damage when you reach levels 5 (1d6), 11 (2d6), and 17 (3d6).",
   "classes": [
+    "Artificer",
     "Bard",
     "Sorcerer",
     "Warlock",
     "Wizard"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "a weapon with which you have proficiency and that is worth 1+ CP"
 }

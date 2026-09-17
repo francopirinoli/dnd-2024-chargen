@@ -204,13 +204,13 @@
   "background_data": {
     "ability_score_increase": {
       "options": [
-        "Charisma",
         "Dexterity",
-        "Intelligence"
+        "Constitution",
+        "Charisma"
       ],
       "suggested": {
         "Charisma": 2,
-        "Dexterity": 1
+        "Constitution": 1
       },
       "total": 3
     },
@@ -1463,6 +1463,7 @@
         "Illusory Script",
         "Protection from Evil and Good",
         "Speak with Animals",
+        "Tasha's Hideous Laughter",
         "Unseen Servant",
         "Witch Bolt"
       ],
@@ -1471,7 +1472,6 @@
         "Cloud of Daggers",
         "Crown of Madness",
         "Darkness",
-        "Detect Thoughts",
         "Dueling Ground",
         "Enthrall",
         "Hold Person",
@@ -1480,7 +1480,6 @@
         "Mirror Image",
         "Misty Step",
         "Ray of Enfeeblement",
-        "Shatter",
         "Spider Climb",
         "Suggestion",
         "Uncertain Footing"
@@ -1561,16 +1560,37 @@
     "cantrips": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
+        "classes": [
+          "Artificer",
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nWhen you cast the spell, you can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial.\n\nAs a Magic action on your later turns, you can control the hand thus again. As part of that action, you can move the hand up to 30 feet.\n\nThe hand can't attack, activate magic items, or carry more than 10 pounds.",
+        "duration": "1 minute",
+        "level": 0,
+        "name": "Mage Hand",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Sorcerer",
           "Warlock",
           "Wizard"
         ],
-        "components": "S, M",
+        "components": "S, M (a bit of fleece)",
         "concentration": false,
-        "description": "You create a sound or an image of an object within range that lasts for the duration. The illusion ends if you cast this spell again. If a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
+        "description": "You create a sound or an image of an object within range that lasts for the duration. See the descriptions below for the effects of each. The illusion ends if you cast this spell again.\n\nIf a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.\n\nSound. If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends.\n\nImage. If you create an image of an object\u00e2\u20ac\u201dsuch as a chair, muddy footprints, or a small chest\u00e2\u20ac\u201dit must be no larger than a 5-foot Cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, since things can pass through it.",
         "duration": "1 minute",
         "level": 0,
         "material": "a bit of fleece",
@@ -1582,33 +1602,13 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
-        "classes": [
-          "Bard",
-          "Sorcerer",
-          "Warlock",
-          "Wizard"
-        ],
-        "components": "V, S",
-        "concentration": false,
-        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can't attack, activate magic items, or carry more than 10 pounds.",
-        "duration": "1 minute",
-        "level": 0,
-        "name": "Mage Hand",
-        "range": "30 feet",
-        "ritual": false,
-        "school": "Conjuration",
-        "source": "Selected"
-      },
-      {
-        "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Warlock"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You hurl a beam of crackling energy. Make a ranged spell attack against one creature or object in range. On a hit, the target takes 1d10 Force damage. Cantrip Upgrade. The spell creates two beams at level 5, three beams at level 11, and four beams at level 17. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
+        "description": "You hurl a beam of crackling energy. Make a ranged spell attack against one creature or object in range. On a hit, the target takes 1d10 Force damage.\n\nCantrip Upgrade. The spell creates two beams at level 5, three beams at level 11, and four beams at level 17. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Eldritch Blast",
@@ -1622,15 +1622,16 @@
     "level_1": [
       {
         "always_prepared": false,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Warlock"
         ],
         "components": "V, S, M (a shard of blue glass)",
         "concentration": false,
-        "description": "A protective magical force surrounds you, manifesting as a spectral frost that covers you and your gear. You gain 5 Temporary Hit Points. If a creature hits you with a melee attack roll while you have these Hit Points, the creature takes 5 Cold damage. Using a Higher-Level Spell Slot. The Temporary Hit Points and the Cold damage both increase by 5 for each spell slot level above 1.",
+        "description": "Protective magical frost surrounds you. You gain 5 Temporary Hit Points. If a creature hits you with a melee attack roll before the spell ends, the creature takes 5 Cold damage. The spell ends early if you have no Temporary Hit Points.\n\nUsing a Higher-Level Spell Slot. The Temporary Hit Points and the Cold damage both increase by 5 for each spell slot level above 1.",
         "duration": "1 hour",
         "level": 1,
+        "material": "a shard of blue glass",
         "name": "Armor of Agathys",
         "range": "Self",
         "ritual": false,
@@ -1639,15 +1640,16 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Warlock"
         ],
         "components": "V, S, M (the petrified eye of a newt)",
         "concentration": true,
-        "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 Necrotic damage to the target whenever you hit it with an attack roll. Also, choose one ability when you cast the spell. The target has Disadvantage on ability checks made with the chosen ability. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action on a later turn to curse a new creature. Using a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 2 (up to 4 hours), 3-4 (up to 8 hours), or 5+ (24 hours).",
+        "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 Necrotic damage to the target whenever you hit it with an attack roll. Also, choose one ability when you cast the spell. The target has Disadvantage on ability checks made with the chosen ability.\n\nIf the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action on a later turn to curse a new creature.\n\nUsing a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 2 (up to 4 hours), 3-4 (up to 8 hours), or 5+ (24 hours).",
         "duration": "Concentration, up to 1 hour",
         "level": 1,
+        "material": "the petrified eye of a newt",
         "name": "Hex",
         "range": "90 feet",
         "ritual": false,
@@ -1656,13 +1658,13 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see",
+        "casting_time": "Reaction, which you take in response to taking damage from a creature that you can see within 60 feet of yourself",
         "classes": [
           "Warlock"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.",
+        "description": "The creature that damaged you is momentarily surrounded by green flames. It makes a Dexterity saving throw, taking 2d10 Fire damage on a failed save or half as much damage on a successful one.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d10 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Hellish Rebuke",
@@ -1673,7 +1675,7 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -1681,7 +1683,7 @@
         ],
         "components": "V",
         "concentration": false,
-        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is Undead, if the target doesn't understand your language, or if the command is directly harmful to it. Some typical commands and their effects follow. Approach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you. Drop. The target drops whatever it is holding and then ends its turn. Flee. The target spends its turn moving away from you by the fastest available means. Grovel. The target falls Prone and then ends its turn. Halt. The target doesn't move and takes no action. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st.",
+        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. Choose the command from these options:\n\nApproach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you.\n\nDrop. The target drops whatever it is holding and then ends its turn.\n\nFlee. The target spends its turn moving away from you by the fastest available means.\n\nGrovel. The target has the Prone condition and then ends its turn.\n\nHalt. On its turn, the target doesn't move and takes no action or Bonus Action.\n\nUsing a Higher-Level Spell Slot. You can affect one additional creature for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Command",
@@ -1694,20 +1696,20 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+        "description": "A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.\n\nFlammable objects in the Cone that aren't being worn or carried start burning.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Burning Hands",
         "once_per_day": false,
         "once_per_long_rest": false,
-        "range": "Self (15-foot cone)",
+        "range": "Self",
         "ritual": false,
         "school": "Evocation",
         "source": "The Fiend"
@@ -1733,16 +1735,37 @@
     "0": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
+        "classes": [
+          "Artificer",
+          "Bard",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ],
+        "components": "V, S",
+        "concentration": false,
+        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nWhen you cast the spell, you can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial.\n\nAs a Magic action on your later turns, you can control the hand thus again. As part of that action, you can move the hand up to 30 feet.\n\nThe hand can't attack, activate magic items, or carry more than 10 pounds.",
+        "duration": "1 minute",
+        "level": 0,
+        "name": "Mage Hand",
+        "range": "30 feet",
+        "ritual": false,
+        "school": "Conjuration",
+        "source": "Selected"
+      },
+      {
+        "always_prepared": false,
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Sorcerer",
           "Warlock",
           "Wizard"
         ],
-        "components": "S, M",
+        "components": "S, M (a bit of fleece)",
         "concentration": false,
-        "description": "You create a sound or an image of an object within range that lasts for the duration. The illusion ends if you cast this spell again. If a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
+        "description": "You create a sound or an image of an object within range that lasts for the duration. See the descriptions below for the effects of each. The illusion ends if you cast this spell again.\n\nIf a creature takes a Study action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.\n\nSound. If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends.\n\nImage. If you create an image of an object\u00e2\u20ac\u201dsuch as a chair, muddy footprints, or a small chest\u00e2\u20ac\u201dit must be no larger than a 5-foot Cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, since things can pass through it.",
         "duration": "1 minute",
         "level": 0,
         "material": "a bit of fleece",
@@ -1754,33 +1777,13 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
-        "classes": [
-          "Bard",
-          "Sorcerer",
-          "Warlock",
-          "Wizard"
-        ],
-        "components": "V, S",
-        "concentration": false,
-        "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it. The hand can't attack, activate magic items, or carry more than 10 pounds.",
-        "duration": "1 minute",
-        "level": 0,
-        "name": "Mage Hand",
-        "range": "30 feet",
-        "ritual": false,
-        "school": "Conjuration",
-        "source": "Selected"
-      },
-      {
-        "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Warlock"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You hurl a beam of crackling energy. Make a ranged spell attack against one creature or object in range. On a hit, the target takes 1d10 Force damage. Cantrip Upgrade. The spell creates two beams at level 5, three beams at level 11, and four beams at level 17. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
+        "description": "You hurl a beam of crackling energy. Make a ranged spell attack against one creature or object in range. On a hit, the target takes 1d10 Force damage.\n\nCantrip Upgrade. The spell creates two beams at level 5, three beams at level 11, and four beams at level 17. You can direct the beams at the same target or at different ones. Make a separate attack roll for each beam.",
         "duration": "Instantaneous",
         "level": 0,
         "name": "Eldritch Blast",
@@ -1793,15 +1796,16 @@
     "1": [
       {
         "always_prepared": false,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Warlock"
         ],
         "components": "V, S, M (a shard of blue glass)",
         "concentration": false,
-        "description": "A protective magical force surrounds you, manifesting as a spectral frost that covers you and your gear. You gain 5 Temporary Hit Points. If a creature hits you with a melee attack roll while you have these Hit Points, the creature takes 5 Cold damage. Using a Higher-Level Spell Slot. The Temporary Hit Points and the Cold damage both increase by 5 for each spell slot level above 1.",
+        "description": "Protective magical frost surrounds you. You gain 5 Temporary Hit Points. If a creature hits you with a melee attack roll before the spell ends, the creature takes 5 Cold damage. The spell ends early if you have no Temporary Hit Points.\n\nUsing a Higher-Level Spell Slot. The Temporary Hit Points and the Cold damage both increase by 5 for each spell slot level above 1.",
         "duration": "1 hour",
         "level": 1,
+        "material": "a shard of blue glass",
         "name": "Armor of Agathys",
         "range": "Self",
         "ritual": false,
@@ -1810,15 +1814,16 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 bonus action",
+        "casting_time": "Bonus Action",
         "classes": [
           "Warlock"
         ],
         "components": "V, S, M (the petrified eye of a newt)",
         "concentration": true,
-        "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 Necrotic damage to the target whenever you hit it with an attack roll. Also, choose one ability when you cast the spell. The target has Disadvantage on ability checks made with the chosen ability. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action on a later turn to curse a new creature. Using a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 2 (up to 4 hours), 3-4 (up to 8 hours), or 5+ (24 hours).",
+        "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 Necrotic damage to the target whenever you hit it with an attack roll. Also, choose one ability when you cast the spell. The target has Disadvantage on ability checks made with the chosen ability.\n\nIf the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action on a later turn to curse a new creature.\n\nUsing a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 2 (up to 4 hours), 3-4 (up to 8 hours), or 5+ (24 hours).",
         "duration": "Concentration, up to 1 hour",
         "level": 1,
+        "material": "the petrified eye of a newt",
         "name": "Hex",
         "range": "90 feet",
         "ritual": false,
@@ -1827,13 +1832,13 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 reaction, which you take in response to being damaged by a creature within 60 feet of you that you can see",
+        "casting_time": "Reaction, which you take in response to taking damage from a creature that you can see within 60 feet of yourself",
         "classes": [
           "Warlock"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.",
+        "description": "The creature that damaged you is momentarily surrounded by green flames. It makes a Dexterity saving throw, taking 2d10 Fire damage on a failed save or half as much damage on a successful one.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d10 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Hellish Rebuke",
@@ -1844,7 +1849,7 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -1852,7 +1857,7 @@
         ],
         "components": "V",
         "concentration": false,
-        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is Undead, if the target doesn't understand your language, or if the command is directly harmful to it. Some typical commands and their effects follow. Approach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you. Drop. The target drops whatever it is holding and then ends its turn. Flee. The target spends its turn moving away from you by the fastest available means. Grovel. The target falls Prone and then ends its turn. Halt. The target doesn't move and takes no action. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st.",
+        "description": "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. Choose the command from these options:\n\nApproach. The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you.\n\nDrop. The target drops whatever it is holding and then ends its turn.\n\nFlee. The target spends its turn moving away from you by the fastest available means.\n\nGrovel. The target has the Prone condition and then ends its turn.\n\nHalt. On its turn, the target doesn't move and takes no action or Bonus Action.\n\nUsing a Higher-Level Spell Slot. You can affect one additional creature for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Command",
@@ -1865,20 +1870,20 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one. The fire ignites any flammable objects in the area that aren't being worn or carried.",
+        "description": "A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.\n\nFlammable objects in the Cone that aren't being worn or carried start burning.\n\nUsing a Higher-Level Spell Slot. The damage increases by 1d6 for each spell slot level above 1.",
         "duration": "Instantaneous",
         "level": 1,
         "name": "Burning Hands",
         "once_per_day": false,
         "once_per_long_rest": false,
-        "range": "Self (15-foot cone)",
+        "range": "Self",
         "ritual": false,
         "school": "Evocation",
         "source": "The Fiend"
@@ -1887,7 +1892,7 @@
     "2": [
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Cleric",
@@ -1896,12 +1901,12 @@
           "Warlock",
           "Wizard"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a straight piece of iron)",
         "concentration": true,
-        "description": "Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them.",
+        "description": "Choose a Humanoid that you can see within range. The target must succeed on a Wisdom saving throw or have the Paralyzed condition for the duration. At the end of each of its turns, the target repeats the save, ending the spell on itself on a success.\n\nUsing a Higher-Level Spell Slot. You can target one additional Humanoid for each spell slot level above 2.",
         "duration": "Concentration, up to 1 minute",
         "level": 2,
-        "material": "a small, straight piece of iron",
+        "material": "a straight piece of iron",
         "name": "Hold Person",
         "range": "60 feet",
         "ritual": false,
@@ -1910,18 +1915,18 @@
       },
       {
         "always_prepared": false,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Sorcerer",
           "Warlock",
           "Wizard"
         ],
-        "components": "V, M",
+        "components": "V, M (bat fur and a piece of coal)",
         "concentration": true,
-        "description": "Magical darkness spreads from a point within range, heavily obscuring the area and blocking nonmagical light.",
+        "description": "For the duration, magical Darkness spreads from a point within range and fills a 15-foot-radius Sphere. Darkvision can't see through it, and nonmagical light can't illuminate it.\n\nAlternatively, you cast the spell on an object that isn't being worn or carried, causing the Darkness to fill a 15-foot Emanation originating from that object. Covering that object with something opaque, such as a bowl or helm, blocks the Darkness.\n\nIf any of this spell's area overlaps with an area of Bright Light or Dim Light created by a spell of level 2 or lower, that other spell is dispelled.",
         "duration": "Concentration, up to 10 minutes",
         "level": 2,
-        "material": "bat fur and a drop of pitch or piece of coal",
+        "material": "bat fur and a piece of coal",
         "name": "Darkness",
         "range": "60 feet",
         "ritual": false,
@@ -1930,19 +1935,19 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Bard",
           "Sorcerer",
           "Warlock",
           "Wizard"
         ],
-        "components": "V, M",
+        "components": "V, M (a drop of honey)",
         "concentration": true,
-        "description": "You suggest a course of activity (limited to a sentence or two) and magically influence a creature you can see within range that can hear and understand you. Creatures that can't be Charmed are immune to this effect. The suggestion must be worded in such a manner as to make the activity sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself, or do some other obviously harmful act automatically negates the effect of the spell. The target must make a Wisdom saving throw. On a failed save, it pursues the course of action you described to the best of its ability. The suggested course of action can continue for the entire duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do. You can also specify conditions that will trigger a special activity during the duration.",
+        "description": "You suggest a course of activity\u00e2\u20ac\u201ddescribed in no more than 25 words\u00e2\u20ac\u201dto one creature you can see within range that can hear and understand you. The suggestion must sound achievable and not involve anything that would obviously deal damage to the target or its allies. For example, you could say, \"Fetch the key to the cult's treasure vault, and give the key to me.\" Or you could say, \"Stop fighting, leave this library peacefully, and don't return.\"\n\nThe target must succeed on a Wisdom saving throw or have the Charmed condition for the duration or until you or your allies deal damage to the target. The Charmed target pursues the suggestion to the best of its ability. The suggested activity can continue for the entire duration, but if the suggested activity can be completed in a shorter time, the spell ends for the target upon completing it.",
         "duration": "Concentration, up to 8 hours",
         "level": 2,
-        "material": "a snake's tongue and either a bit of honeycomb or a drop of sweet oil",
+        "material": "a drop of honey",
         "name": "Suggestion",
         "once_per_day": false,
         "once_per_long_rest": false,
@@ -1953,14 +1958,14 @@
       },
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
           "Sorcerer",
           "Wizard"
         ],
         "components": "V, S",
         "concentration": false,
-        "description": "You create three rays of fire and hurl them at targets within range. You can hurl them at one target or several. Make a ranged spell attack for each ray. On a hit, the target takes 2d6 fire damage.",
+        "description": "You hurl three fiery rays. You can hurl them at one target within range or at several. Make a ranged spell attack for each ray. On a hit, the target takes 2d6 Fire damage.\n\nUsing a Higher-Level Spell Slot. You create one additional ray for each spell slot level above 2.",
         "duration": "Instantaneous",
         "level": 2,
         "name": "Scorching Ray",

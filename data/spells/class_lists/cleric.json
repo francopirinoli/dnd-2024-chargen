@@ -36,6 +36,7 @@
       "Calm Emotions",
       "Continual Flame",
       "Enhance Ability",
+      "Find Traps",
       "Gentle Repose",
       "Hold Person",
       "Lesser Restoration",
@@ -49,6 +50,7 @@
     ],
     "3": [
       "Animate Dead",
+      "Aura of Vitality",
       "Beacon of Hope",
       "Bestow Curse",
       "Clairvoyance",
@@ -70,6 +72,8 @@
       "Water Walk"
     ],
     "4": [
+      "Aura of Life",
+      "Aura of Purity",
       "Banishment",
       "Control Water",
       "Death Ward",
@@ -80,6 +84,7 @@
       "Stone Shape"
     ],
     "5": [
+      "Circle of Power",
       "Commune",
       "Contagion",
       "Dispel Evil and Good",
@@ -92,7 +97,8 @@
       "Mass Cure Wounds",
       "Planar Binding",
       "Raise Dead",
-      "Scrying"
+      "Scrying",
+      "Summon Celestial"
     ],
     "6": [
       "Blade Barrier",
@@ -113,6 +119,7 @@
       "Etherealness",
       "Fire Storm",
       "Plane Shift",
+      "Power Word Fortify",
       "Regenerate",
       "Resurrection",
       "Symbol"
@@ -129,8 +136,7 @@
       "Gate",
       "Mass Heal",
       "Power Word Heal",
-      "True Resurrection",
-      "Wish"
+      "True Resurrection"
     ]
   }
 }

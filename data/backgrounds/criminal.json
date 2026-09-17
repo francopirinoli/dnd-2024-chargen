@@ -7,19 +7,19 @@
     "total": 3,
     "options": [
       "Dexterity",
-      "Intelligence",
-      "Charisma"
+      "Constitution",
+      "Intelligence"
     ],
     "suggested": {
       "Dexterity": 2,
-      "Intelligence": 1
+      "Constitution": 1
     }
   },
   "effects": [
     {
       "type": "grant_skill_proficiency",
       "skills": [
-        "Deception",
+        "Sleight of Hand",
         "Stealth"
       ]
     },

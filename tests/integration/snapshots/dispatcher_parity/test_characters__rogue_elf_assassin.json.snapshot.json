@@ -229,12 +229,12 @@
     "ability_score_increase": {
       "options": [
         "Dexterity",
-        "Intelligence",
-        "Charisma"
+        "Constitution",
+        "Intelligence"
       ],
       "suggested": {
-        "Dexterity": 2,
-        "Intelligence": 1
+        "Constitution": 1,
+        "Dexterity": 2
       },
       "total": 3
     },
@@ -247,7 +247,7 @@
       },
       {
         "skills": [
-          "Deception",
+          "Sleight of Hand",
           "Stealth"
         ],
         "type": "grant_skill_proficiency"
@@ -873,7 +873,7 @@
     },
     {
       "skills": [
-        "Deception",
+        "Sleight of Hand",
         "Stealth"
       ],
       "source": "Criminal",
@@ -1560,24 +1560,25 @@
     "cantrips": [
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Sorcerer",
           "Wizard"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a bit of phosphorus)",
         "concentration": true,
-        "description": "You create up to four torch-sized lights within range and can move them while the spell lasts.",
+        "description": "You create up to four torch-size lights within range, making them appear as torches, lanterns, or glowing orbs that hover for the duration. Alternatively, you combine the four lights into one glowing Medium form that is vaguely humanlike. Whichever form you choose, each light sheds Dim Light in a 10-foot radius.\n\nAs a Bonus Action, you can move the lights up to 60 feet to a space within range. A light must be within 20 feet of another light created by this spell, and a light vanishes if it exceeds the spell's range.",
         "duration": "Concentration, up to 1 minute",
         "level": 0,
-        "material": "a bit of phosphorus or wychwood, or a glowworm",
+        "material": "a bit of phosphorus",
         "name": "Dancing Lights",
         "once_per_day": false,
         "once_per_long_rest": false,
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation",
+        "school": "Illusion",
         "source": "Drow"
       }
     ],
@@ -1585,14 +1586,15 @@
     "level_1": [
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Druid"
         ],
         "components": "V",
         "concentration": true,
-        "description": "Each creature/object in an area is outlined with light on a failed save; attacks against affected targets have advantage and affected creatures can't benefit from being Invisible.",
+        "description": "Objects in a 20-foot Cube within range are outlined in blue, green, or violet light (your choice). Each creature in the Cube is also outlined if it fails a Dexterity saving throw. For the duration, objects and affected creatures shed Dim Light in a 10-foot radius and can't benefit from the Invisible condition.\n\nAttack rolls against an affected creature or object have Advantage if the attacker can see it.",
         "duration": "Concentration, up to 1 minute",
         "level": 1,
         "name": "Faerie Fire",
@@ -1614,38 +1616,40 @@
     "0": [
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Sorcerer",
           "Wizard"
         ],
-        "components": "V, S, M",
+        "components": "V, S, M (a bit of phosphorus)",
         "concentration": true,
-        "description": "You create up to four torch-sized lights within range and can move them while the spell lasts.",
+        "description": "You create up to four torch-size lights within range, making them appear as torches, lanterns, or glowing orbs that hover for the duration. Alternatively, you combine the four lights into one glowing Medium form that is vaguely humanlike. Whichever form you choose, each light sheds Dim Light in a 10-foot radius.\n\nAs a Bonus Action, you can move the lights up to 60 feet to a space within range. A light must be within 20 feet of another light created by this spell, and a light vanishes if it exceeds the spell's range.",
         "duration": "Concentration, up to 1 minute",
         "level": 0,
-        "material": "a bit of phosphorus or wychwood, or a glowworm",
+        "material": "a bit of phosphorus",
         "name": "Dancing Lights",
         "once_per_day": false,
         "once_per_long_rest": false,
         "range": "120 feet",
         "ritual": false,
-        "school": "Evocation",
+        "school": "Illusion",
         "source": "Drow"
       }
     ],
     "1": [
       {
         "always_prepared": true,
-        "casting_time": "1 action",
+        "casting_time": "Action",
         "classes": [
+          "Artificer",
           "Bard",
           "Druid"
         ],
         "components": "V",
         "concentration": true,
-        "description": "Each creature/object in an area is outlined with light on a failed save; attacks against affected targets have advantage and affected creatures can't benefit from being Invisible.",
+        "description": "Objects in a 20-foot Cube within range are outlined in blue, green, or violet light (your choice). Each creature in the Cube is also outlined if it fails a Dexterity saving throw. For the duration, objects and affected creatures shed Dim Light in a 10-foot radius and can't benefit from the Invisible condition.\n\nAttack rolls against an affected creature or object have Advantage if the attacker can see it.",
         "duration": "Concentration, up to 1 minute",
         "level": 1,
         "name": "Faerie Fire",

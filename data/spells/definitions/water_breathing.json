@@ -2,7 +2,7 @@
   "name": "Water Breathing",
   "level": 3,
   "school": "Transmutation",
-  "casting_time": "1 action or Ritual",
+  "casting_time": "Action or Ritual",
   "range": "30 feet",
   "components": [
     "V",
@@ -10,7 +10,7 @@
     "M (a short reed)"
   ],
   "duration": "24 hours",
-  "description": "This spell grants up to ten willing creatures you can see within range the ability to breathe underwater until the spell ends. Affected creatures also retain their normal mode of respiration.",
+  "description": "This spell grants up to ten willing creatures of your choice within range the ability to breathe underwater until the spell ends. Affected creatures also retain their normal mode of respiration.",
   "classes": [
     "Artificer",
     "Druid",
@@ -18,5 +18,6 @@
     "Sorcerer",
     "Wizard"
   ],
-  "ritual": true
+  "ritual": true,
+  "material": "a short reed"
 }

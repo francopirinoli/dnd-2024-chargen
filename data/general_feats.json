@@ -27,7 +27,14 @@
           "depends_on_value": "+2 to one ability",
           "source": {
             "type": "fixed_list",
-            "options": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
           },
           "optional": true
         },
@@ -40,27 +47,106 @@
           "depends_on_value": "+1 to two abilities",
           "source": {
             "type": "fixed_list",
-            "options": ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
           },
           "optional": true
         }
       ],
       "choice_effects": {
         "ability_plus_2": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 2}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 2}],
-          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 2}],
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 2}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 2}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 2}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 2
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 2
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 2
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 2
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 2
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 2
+            }
+          ]
         },
         "abilities_plus_1": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}],
-          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}],
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -75,7 +161,11 @@
       "prerequisite": "4th Level, Charisma 13+",
       "source": "Player's Handbook 2024",
       "effects": [
-        {"type": "ability_bonus", "ability": "Charisma", "value": 1}
+        {
+          "type": "ability_bonus",
+          "ability": "Charisma",
+          "value": 1
+        }
       ]
     },
     "Athlete": {
@@ -105,8 +195,20 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -135,8 +237,20 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -165,12 +279,29 @@
         }
       ],
       "effects": [
-        {"type": "grant_tool_proficiency", "tools": ["Cook's Utensils"]}
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Cook's Utensils"
+          ]
+        }
       ],
       "choice_effects": {
         "ability": {
-          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}]
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -186,7 +317,11 @@
       "prerequisite": "4th Level, Dexterity 13+",
       "source": "Player's Handbook 2024",
       "effects": [
-        {"type": "ability_bonus", "ability": "Dexterity", "value": 1}
+        {
+          "type": "ability_bonus",
+          "ability": "Dexterity",
+          "value": 1
+        }
       ]
     },
     "Crusher": {
@@ -214,8 +349,20 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -229,26 +376,55 @@
       "prerequisite": "4th Level, Dexterity 13+",
       "source": "Player's Handbook 2024",
       "effects": [
-        {"type": "ability_bonus", "ability": "Dexterity", "value": 1}
+        {
+          "type": "ability_bonus",
+          "ability": "Dexterity",
+          "value": 1
+        }
       ]
     },
     "Dual Wielder": {
       "description": "You master fighting with two weapons, gaining the following benefits:",
       "benefits": [
-        "Enhanced Defense: While you are holding a separate weapon in each hand, you gain a +1 bonus to Armor Class.",
-        "Quick Draw: You can draw or stow two weapons that lack the Two-Handed property when you would normally be able to draw or stow only one.",
-        "Two-Weapon Fighting: When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn."
+        "Ability Score Increase: Increase your Strength or Dexterity by 1, to a maximum of 20.",
+        "Enhanced Dual Wielding: When you take the Attack action on your turn and attack with a weapon that has the Light property, you can make one extra attack as a Bonus Action later on the same turn with a different weapon, which must be a Melee weapon that lacks the Two-Handed property. You don't add your ability modifier to the extra attack's damage unless that modifier is negative.",
+        "Quick Draw: You can draw or stow two weapons that lack the Two-Handed property when you would normally be able to draw or stow only one."
       ],
       "category": "General",
-      "prerequisite": "4th Level, Strength or Dexterity 13+",
+      "prerequisite": "Level 4+, Strength or Dexterity 13+",
       "source": "Player's Handbook 2024",
-      "effects": [
+      "choices": [
         {
-          "type": "bonus_ac",
-          "value": 1,
-          "condition": "wielding two weapons"
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
         }
-      ]
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
+        }
+      }
     },
     "Durable": {
       "description": "Hardy and resilient, you gain the following benefits:",
@@ -261,7 +437,11 @@
       "prerequisite": "4th Level",
       "source": "Player's Handbook 2024",
       "effects": [
-        {"type": "ability_bonus", "ability": "Constitution", "value": 1}
+        {
+          "type": "ability_bonus",
+          "ability": "Constitution",
+          "value": 1
+        }
       ]
     },
     "Elemental Adept": {
@@ -306,9 +486,27 @@
       ],
       "choice_effects": {
         "ability": {
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -359,7 +557,10 @@
               "Tasha's Hideous Laughter"
             ]
           },
-          "restrictions": ["Divination", "Enchantment"]
+          "restrictions": [
+            "Divination",
+            "Enchantment"
+          ]
         }
       ],
       "effects": [
@@ -371,9 +572,27 @@
       ],
       "choice_effects": {
         "ability": {
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -403,20 +622,40 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
         }
       }
     },
     "Great Weapon Master": {
       "description": "You've learned to use the weight and momentum of a weapon to your advantage. You gain the following benefits:",
       "benefits": [
+        "Ability Score Increase: Increase your Strength score by 1, to a maximum of 20.",
         "Heavy Weapon Mastery: When you hit a creature with a weapon that has the Heavy property as part of the Attack action on your turn, you can cause the weapon to deal extra damage to the target. The extra damage equals your Proficiency Bonus.",
-        "Bonus Attack: If you reduce a creature to 0 hit points with an attack using a Heavy weapon, you can make one attack with the same weapon as a Bonus Action."
+        "Hew: Immediately after you score a Critical Hit with a Melee weapon or reduce a creature to 0 Hit Points with one, you can make one attack with the same weapon as a Bonus Action."
       ],
       "category": "General",
-      "prerequisite": "4th Level, Strength 13+",
-      "source": "Player's Handbook 2024"
+      "prerequisite": "Level 4+, Strength 13+",
+      "source": "Player's Handbook 2024",
+      "effects": [
+        {
+          "type": "ability_bonus",
+          "ability": "Strength",
+          "value": 1
+        }
+      ]
     },
     "Heavily Armored": {
       "description": "You have trained to master the use of heavy armor, gaining the following benefits:",
@@ -443,13 +682,27 @@
       "effects": [
         {
           "type": "grant_armor_proficiency",
-          "proficiencies": ["Heavy armor"]
+          "proficiencies": [
+            "Heavy armor"
+          ]
         }
       ],
       "choice_effects": {
         "ability": {
-          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}],
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}]
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -477,8 +730,20 @@
       ],
       "choice_effects": {
         "ability": {
-          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}],
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}]
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -506,8 +771,20 @@
       ],
       "choice_effects": {
         "ability": {
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -538,7 +815,11 @@
         }
       ],
       "effects": [
-        {"type": "ability_bonus", "ability": "Intelligence", "value": 1}
+        {
+          "type": "ability_bonus",
+          "ability": "Intelligence",
+          "value": 1
+        }
       ]
     },
     "Lightly Armored": {
@@ -566,26 +847,30 @@
       "effects": [
         {
           "type": "grant_armor_proficiency",
-          "proficiencies": ["Light armor", "Shields"]
+          "proficiencies": [
+            "Light armor",
+            "Shields"
+          ]
         }
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
         }
       }
-    },
-    "Lucky": {
-      "description": "You have inexplicable luck that can kick in at just the right moment. You have a number of Luck Points equal to your Proficiency Bonus. You can spend the points on the following benefits:",
-      "benefits": [
-        "Advantage: Immediately after you roll a d20 for a d20 Test, you can spend 1 Luck Point to give yourself Advantage on the roll.",
-        "Disadvantage on Foe: When a creature you can see makes an attack roll against you, you can spend 1 Luck Point to impose Disadvantage on that roll.",
-        "You regain all expended Luck Points when you finish a Long Rest."
-      ],
-      "category": "General",
-      "prerequisite": "4th Level",
-      "source": "Player's Handbook 2024"
     },
     "Mage Slayer": {
       "description": "You have practiced techniques useful in melee combat against spellcasters, gaining the following benefits:",
@@ -612,8 +897,20 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -642,13 +939,27 @@
       "effects": [
         {
           "type": "grant_weapon_proficiency",
-          "proficiencies": ["Martial weapons"]
+          "proficiencies": [
+            "Martial weapons"
+          ]
         }
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -676,8 +987,20 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -706,13 +1029,27 @@
       "effects": [
         {
           "type": "grant_armor_proficiency",
-          "proficiencies": ["Medium armor"]
+          "proficiencies": [
+            "Medium armor"
+          ]
         }
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -743,9 +1080,27 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -788,13 +1143,46 @@
       ],
       "choice_effects": {
         "ability": {
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}]
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ]
         },
         "keen_observer_skill": {
-          "Insight": [{"type": "grant_skill_proficiency_or_expertise", "skills": ["Insight"]}],
-          "Investigation": [{"type": "grant_skill_proficiency_or_expertise", "skills": ["Investigation"]}],
-          "Perception": [{"type": "grant_skill_proficiency_or_expertise", "skills": ["Perception"]}]
+          "Insight": [
+            {
+              "type": "grant_skill_proficiency_or_expertise",
+              "skills": [
+                "Insight"
+              ]
+            }
+          ],
+          "Investigation": [
+            {
+              "type": "grant_skill_proficiency_or_expertise",
+              "skills": [
+                "Investigation"
+              ]
+            }
+          ],
+          "Perception": [
+            {
+              "type": "grant_skill_proficiency_or_expertise",
+              "skills": [
+                "Perception"
+              ]
+            }
+          ]
         }
       }
     },
@@ -823,8 +1211,20 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -852,24 +1252,74 @@
         }
       ],
       "effects": [
-        {"type": "grant_tool_proficiency", "tools": ["Poisoner's Kit"]}
+        {
+          "type": "grant_tool_proficiency",
+          "tools": [
+            "Poisoner's Kit"
+          ]
+        }
       ],
       "choice_effects": {
         "ability": {
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}],
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}]
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ]
         }
       }
     },
     "Polearm Master": {
       "description": "You've trained extensively with pole weapons. You gain the following benefits:",
       "benefits": [
-        "Bonus Attack: When you take the Attack action on your turn and attack with a weapon that has the Heavy and Reach properties, you can use a Bonus Action to make a melee attack with the opposite end of the weapon. This attack uses the same ability modifier as the main attack. The weapon's damage die for this attack is a d4, and it deals Bludgeoning damage.",
-        "Reactive Strike: While you are holding a weapon with the Heavy and Reach properties, you can use your Reaction to make one melee attack against a creature that enters the reach you have with that weapon."
+        "Ability Score Increase: Increase your Dexterity or Strength by 1, to a maximum of 20.",
+        "Pole Strike: Immediately after you take the Attack action and attack with a Quarterstaff, a Spear, or a weapon that has the Heavy and Reach properties, you can use a Bonus Action to make a melee attack with the opposite end of the weapon. The weapon deals Bludgeoning damage, and the weapon's damage die for this attack is a d4.",
+        "Reactive Strike: While you're holding a Quarterstaff, a Spear, or a weapon that has the Heavy and Reach properties, you can take a Reaction to make one melee attack against a creature that enters the reach you have with that weapon."
       ],
       "category": "General",
-      "prerequisite": "4th Level, Strength or Dexterity 13+",
-      "source": "Player's Handbook 2024"
+      "prerequisite": "Level 4+, Strength or Dexterity 13+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
+        }
+      }
     },
     "Resilient": {
       "description": "Choose one ability score. You gain the following benefits:",
@@ -900,28 +1350,82 @@
       "choice_effects": {
         "ability": {
           "Strength": [
-            {"type": "ability_bonus", "ability": "Strength", "value": 1},
-            {"type": "grant_save_proficiency", "abilities": ["Strength"]}
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            },
+            {
+              "type": "grant_save_proficiency",
+              "abilities": [
+                "Strength"
+              ]
+            }
           ],
           "Dexterity": [
-            {"type": "ability_bonus", "ability": "Dexterity", "value": 1},
-            {"type": "grant_save_proficiency", "abilities": ["Dexterity"]}
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            },
+            {
+              "type": "grant_save_proficiency",
+              "abilities": [
+                "Dexterity"
+              ]
+            }
           ],
           "Constitution": [
-            {"type": "ability_bonus", "ability": "Constitution", "value": 1},
-            {"type": "grant_save_proficiency", "abilities": ["Constitution"]}
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            },
+            {
+              "type": "grant_save_proficiency",
+              "abilities": [
+                "Constitution"
+              ]
+            }
           ],
           "Intelligence": [
-            {"type": "ability_bonus", "ability": "Intelligence", "value": 1},
-            {"type": "grant_save_proficiency", "abilities": ["Intelligence"]}
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            },
+            {
+              "type": "grant_save_proficiency",
+              "abilities": [
+                "Intelligence"
+              ]
+            }
           ],
           "Wisdom": [
-            {"type": "ability_bonus", "ability": "Wisdom", "value": 1},
-            {"type": "grant_save_proficiency", "abilities": ["Wisdom"]}
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            },
+            {
+              "type": "grant_save_proficiency",
+              "abilities": [
+                "Wisdom"
+              ]
+            }
           ],
           "Charisma": [
-            {"type": "ability_bonus", "ability": "Charisma", "value": 1},
-            {"type": "grant_save_proficiency", "abilities": ["Charisma"]}
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            },
+            {
+              "type": "grant_save_proficiency",
+              "abilities": [
+                "Charisma"
+              ]
+            }
           ]
         }
       }
@@ -952,22 +1456,72 @@
       ],
       "choice_effects": {
         "ability": {
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         }
       }
     },
     "Sentinel": {
       "description": "You've mastered techniques to take advantage of every drop in any enemy's guard. You gain the following benefits:",
       "benefits": [
-        "Guardian: When you hit a creature with an Opportunity Attack, the creature's Speed becomes 0 for the rest of the turn.",
-        "Halt: Creatures provoke Opportunity Attacks from you even if they take the Disengage action before leaving your reach.",
-        "Reprisal: When a creature within 5 feet of you hits a target other than you with an attack, you can use your Reaction to make a melee weapon attack against the attacking creature."
+        "Ability Score Increase: Increase your Strength or Dexterity by 1, to a maximum of 20.",
+        "Guardian: Immediately after a creature within 5 feet of you takes the Disengage action or hits a target other than you with an attack, you can make an Opportunity Attack against that creature.",
+        "Halt: When you hit a creature with an Opportunity Attack, the creature's Speed becomes 0 for the rest of the current turn."
       ],
       "category": "General",
-      "prerequisite": "4th Level, Strength or Dexterity 13+",
-      "source": "Player's Handbook 2024"
+      "prerequisite": "Level 4+, Strength or Dexterity 13+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
+        }
+      }
     },
     "Shadow Touched": {
       "description": "Your exposure to the Shadowfell's magic has changed you, granting you the following benefits:",
@@ -1008,7 +1562,10 @@
               "Silent Image"
             ]
           },
-          "restrictions": ["Illusion", "Necromancy"]
+          "restrictions": [
+            "Illusion",
+            "Necromancy"
+          ]
         }
       ],
       "effects": [
@@ -1020,22 +1577,48 @@
       ],
       "choice_effects": {
         "ability": {
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         }
       }
     },
     "Sharpshooter": {
       "description": "You've mastered ranged weapons and can make shots that others find impossible. You gain the following benefits:",
       "benefits": [
-        "Steady Aim: As a Bonus Action, you can take careful aim, giving yourself Advantage on your next attack roll with a ranged weapon. You can't use this feature if you've moved this turn, and using it reduces your Speed to 0 until the end of the current turn.",
-        "Ignore Cover: Your ranged weapon attacks ignore Half Cover and Three-Quarters Cover.",
-        "Long Shots: Attacking at long range doesn't impose Disadvantage on your ranged weapon attack rolls."
+        "Ability Score Increase: Increase your Dexterity score by 1, to a maximum of 20.",
+        "Bypass Cover: Your ranged attacks with weapons ignore Half Cover and Three-Quarters Cover.",
+        "Firing in Melee: Being within 5 feet of an enemy doesn't impose Disadvantage on your attack rolls with Ranged weapons.",
+        "Long Shots: Attacking at long range doesn't impose Disadvantage on your attack rolls with Ranged weapons."
       ],
       "category": "General",
-      "prerequisite": "4th Level, Dexterity 13+",
-      "source": "Player's Handbook 2024"
+      "prerequisite": "Level 4+, Dexterity 13+",
+      "source": "Player's Handbook 2024",
+      "effects": [
+        {
+          "type": "ability_bonus",
+          "ability": "Dexterity",
+          "value": 1
+        }
+      ]
     },
     "Shield Master": {
       "description": "You use shields not just for protection but also for offense, gaining the following benefits:",
@@ -1048,7 +1631,11 @@
       "prerequisite": "4th Level, Shield Training",
       "source": "Player's Handbook 2024",
       "effects": [
-        {"type": "ability_bonus", "ability": "Strength", "value": 1}
+        {
+          "type": "ability_bonus",
+          "ability": "Strength",
+          "value": 1
+        }
       ]
     },
     "Skill Expert": {
@@ -1137,52 +1724,340 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}],
-          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}],
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         },
         "skill_proficiency": {
-          "Acrobatics": [{"type": "grant_skill_proficiency", "skills": ["Acrobatics"]}],
-          "Animal Handling": [{"type": "grant_skill_proficiency", "skills": ["Animal Handling"]}],
-          "Arcana": [{"type": "grant_skill_proficiency", "skills": ["Arcana"]}],
-          "Athletics": [{"type": "grant_skill_proficiency", "skills": ["Athletics"]}],
-          "Deception": [{"type": "grant_skill_proficiency", "skills": ["Deception"]}],
-          "History": [{"type": "grant_skill_proficiency", "skills": ["History"]}],
-          "Insight": [{"type": "grant_skill_proficiency", "skills": ["Insight"]}],
-          "Intimidation": [{"type": "grant_skill_proficiency", "skills": ["Intimidation"]}],
-          "Investigation": [{"type": "grant_skill_proficiency", "skills": ["Investigation"]}],
-          "Medicine": [{"type": "grant_skill_proficiency", "skills": ["Medicine"]}],
-          "Nature": [{"type": "grant_skill_proficiency", "skills": ["Nature"]}],
-          "Perception": [{"type": "grant_skill_proficiency", "skills": ["Perception"]}],
-          "Performance": [{"type": "grant_skill_proficiency", "skills": ["Performance"]}],
-          "Persuasion": [{"type": "grant_skill_proficiency", "skills": ["Persuasion"]}],
-          "Religion": [{"type": "grant_skill_proficiency", "skills": ["Religion"]}],
-          "Sleight of Hand": [{"type": "grant_skill_proficiency", "skills": ["Sleight of Hand"]}],
-          "Stealth": [{"type": "grant_skill_proficiency", "skills": ["Stealth"]}],
-          "Survival": [{"type": "grant_skill_proficiency", "skills": ["Survival"]}]
+          "Acrobatics": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Acrobatics"
+              ]
+            }
+          ],
+          "Animal Handling": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Animal Handling"
+              ]
+            }
+          ],
+          "Arcana": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Arcana"
+              ]
+            }
+          ],
+          "Athletics": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Athletics"
+              ]
+            }
+          ],
+          "Deception": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Deception"
+              ]
+            }
+          ],
+          "History": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "History"
+              ]
+            }
+          ],
+          "Insight": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Insight"
+              ]
+            }
+          ],
+          "Intimidation": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Intimidation"
+              ]
+            }
+          ],
+          "Investigation": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Investigation"
+              ]
+            }
+          ],
+          "Medicine": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Medicine"
+              ]
+            }
+          ],
+          "Nature": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Nature"
+              ]
+            }
+          ],
+          "Perception": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Perception"
+              ]
+            }
+          ],
+          "Performance": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Performance"
+              ]
+            }
+          ],
+          "Persuasion": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Persuasion"
+              ]
+            }
+          ],
+          "Religion": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Religion"
+              ]
+            }
+          ],
+          "Sleight of Hand": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Sleight of Hand"
+              ]
+            }
+          ],
+          "Stealth": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Stealth"
+              ]
+            }
+          ],
+          "Survival": [
+            {
+              "type": "grant_skill_proficiency",
+              "skills": [
+                "Survival"
+              ]
+            }
+          ]
         },
         "skill_expertise": {
-          "Acrobatics": [{"type": "grant_skill_expertise", "skills": ["Acrobatics"]}],
-          "Animal Handling": [{"type": "grant_skill_expertise", "skills": ["Animal Handling"]}],
-          "Arcana": [{"type": "grant_skill_expertise", "skills": ["Arcana"]}],
-          "Athletics": [{"type": "grant_skill_expertise", "skills": ["Athletics"]}],
-          "Deception": [{"type": "grant_skill_expertise", "skills": ["Deception"]}],
-          "History": [{"type": "grant_skill_expertise", "skills": ["History"]}],
-          "Insight": [{"type": "grant_skill_expertise", "skills": ["Insight"]}],
-          "Intimidation": [{"type": "grant_skill_expertise", "skills": ["Intimidation"]}],
-          "Investigation": [{"type": "grant_skill_expertise", "skills": ["Investigation"]}],
-          "Medicine": [{"type": "grant_skill_expertise", "skills": ["Medicine"]}],
-          "Nature": [{"type": "grant_skill_expertise", "skills": ["Nature"]}],
-          "Perception": [{"type": "grant_skill_expertise", "skills": ["Perception"]}],
-          "Performance": [{"type": "grant_skill_expertise", "skills": ["Performance"]}],
-          "Persuasion": [{"type": "grant_skill_expertise", "skills": ["Persuasion"]}],
-          "Religion": [{"type": "grant_skill_expertise", "skills": ["Religion"]}],
-          "Sleight of Hand": [{"type": "grant_skill_expertise", "skills": ["Sleight of Hand"]}],
-          "Stealth": [{"type": "grant_skill_expertise", "skills": ["Stealth"]}],
-          "Survival": [{"type": "grant_skill_expertise", "skills": ["Survival"]}]
+          "Acrobatics": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Acrobatics"
+              ]
+            }
+          ],
+          "Animal Handling": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Animal Handling"
+              ]
+            }
+          ],
+          "Arcana": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Arcana"
+              ]
+            }
+          ],
+          "Athletics": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Athletics"
+              ]
+            }
+          ],
+          "Deception": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Deception"
+              ]
+            }
+          ],
+          "History": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "History"
+              ]
+            }
+          ],
+          "Insight": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Insight"
+              ]
+            }
+          ],
+          "Intimidation": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Intimidation"
+              ]
+            }
+          ],
+          "Investigation": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Investigation"
+              ]
+            }
+          ],
+          "Medicine": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Medicine"
+              ]
+            }
+          ],
+          "Nature": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Nature"
+              ]
+            }
+          ],
+          "Perception": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Perception"
+              ]
+            }
+          ],
+          "Performance": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Performance"
+              ]
+            }
+          ],
+          "Persuasion": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Persuasion"
+              ]
+            }
+          ],
+          "Religion": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Religion"
+              ]
+            }
+          ],
+          "Sleight of Hand": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Sleight of Hand"
+              ]
+            }
+          ],
+          "Stealth": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Stealth"
+              ]
+            }
+          ],
+          "Survival": [
+            {
+              "type": "grant_skill_expertise",
+              "skills": [
+                "Survival"
+              ]
+            }
+          ]
         }
       }
     },
@@ -1198,7 +2073,11 @@
       "prerequisite": "4th Level, Dexterity 13+",
       "source": "Player's Handbook 2024",
       "effects": [
-        {"type": "ability_bonus", "ability": "Dexterity", "value": 1}
+        {
+          "type": "ability_bonus",
+          "ability": "Dexterity",
+          "value": 1
+        }
       ]
     },
     "Slasher": {
@@ -1226,8 +2105,20 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -1263,8 +2154,20 @@
       ],
       "choice_effects": {
         "ability": {
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}],
-          "Constitution": [{"type": "ability_bonus", "ability": "Constitution", "value": 1}]
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -1295,9 +2198,27 @@
       ],
       "choice_effects": {
         "ability": {
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -1333,9 +2254,27 @@
       ],
       "choice_effects": {
         "ability": {
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         }
       }
     },
@@ -1372,22 +2311,81 @@
       ],
       "choice_effects": {
         "ability": {
-          "Intelligence": [{"type": "ability_bonus", "ability": "Intelligence", "value": 1}],
-          "Wisdom": [{"type": "ability_bonus", "ability": "Wisdom", "value": 1}],
-          "Charisma": [{"type": "ability_bonus", "ability": "Charisma", "value": 1}]
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         }
       }
     },
     "War Caster": {
       "description": "You've practiced casting spells in the midst of combat, learning techniques that grant you advantages. You gain the following benefits:",
       "benefits": [
-        "Advantage on Constitution saving throws that you make to maintain Concentration on a spell when you take damage.",
-        "You can perform the somatic components of spells even when you have weapons or a Shield in one or both hands.",
-        "When a creature provokes an Opportunity Attack from you by moving out of your reach, you can use your Reaction to cast a spell at the creature rather than making an Opportunity Attack. The spell must have a casting time of 1 Action and must target only that creature."
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma by 1, to a maximum of 20.",
+        "Concentration: You have Advantage on Constitution saving throws that you make to maintain Concentration.",
+        "Reactive Spell: When a creature provokes an Opportunity Attack from you by leaving your reach, you can take a Reaction to cast a spell at the creature rather than making an Opportunity Attack. The spell must have a casting time of one action and must target only that creature.",
+        "Somatic Components: You can perform the Somatic components of spells even when you have weapons or a Shield in one or both hands."
       ],
       "category": "General",
-      "prerequisite": "4th Level, Spellcasting or Pact Magic feature",
-      "source": "Player's Handbook 2024"
+      "prerequisite": "Level 4+, Spellcasting or Pact Magic feature",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
     },
     "Weapon Master": {
       "description": "You have practiced extensively with a variety of weapons, gaining the following benefits:",
@@ -1413,8 +2411,1034 @@
       ],
       "choice_effects": {
         "ability": {
-          "Strength": [{"type": "ability_bonus", "ability": "Strength", "value": 1}],
-          "Dexterity": [{"type": "ability_bonus", "ability": "Dexterity", "value": 1}]
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Fey-Touched": {
+      "description": "Your exposure to the Feywild's magic has changed you, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+        "Fey Magic: You learn the Misty Step spell and one 1st-level spell of your choice. The 1st-level spell must be from the Divination or Enchantment school of magic. You always have these spells prepared. You can cast each of these spells without expending a spell slot once per Long Rest. You can also cast these spells using spell slots you have of the appropriate level."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose one 1st-level spell from the Divination or Enchantment school of magic. You always have it prepared and can cast it once per Long Rest without a spell slot.",
+          "name": "fey_touched_spell",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Animal Friendship",
+              "Bane",
+              "Bless",
+              "Charm Person",
+              "Command",
+              "Comprehend Languages",
+              "Detect Evil and Good",
+              "Detect Magic",
+              "Detect Poison and Disease",
+              "Heroism",
+              "Hunter's Mark",
+              "Identify",
+              "Sleep",
+              "Speak with Animals",
+              "Tasha's Hideous Laughter"
+            ]
+          },
+          "restrictions": [
+            "Divination",
+            "Enchantment"
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "type": "grant_spell",
+          "spell": "Misty Step",
+          "level": 2
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Shadow-Touched": {
+      "description": "Your exposure to the Shadowfell's magic has changed you, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+        "Shadow Magic: You learn the Invisibility spell and one 1st-level spell of your choice. The 1st-level spell must be from the Illusion or Necromancy school of magic. You always have these spells prepared. You can cast each of these spells without expending a spell slot once per Long Rest. You can also cast these spells using spell slots you have of the appropriate level."
+      ],
+      "category": "General",
+      "prerequisite": "4th Level",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose one 1st-level spell from the Illusion or Necromancy school of magic. You always have it prepared and can cast it once per Long Rest without a spell slot.",
+          "name": "shadow_touched_spell",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Cause Fear",
+              "Color Spray",
+              "Disguise Self",
+              "False Life",
+              "Inflict Wounds",
+              "Ray of Sickness",
+              "Silent Image"
+            ]
+          },
+          "restrictions": [
+            "Illusion",
+            "Necromancy"
+          ]
+        }
+      ],
+      "effects": [
+        {
+          "type": "grant_spell",
+          "spell": "Invisibility",
+          "level": 2
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Boon of Combat Prowess": {
+      "description": "You have honed your combat prowess to superhuman levels. You gain the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+        "Peerless Aim: When you miss with an attack roll, you can hit instead. Once you use this benefit, you can't use it again until the start of your next turn."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Boon of Dimensional Travel": {
+      "description": "You can slip through the seams of space, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+        "Blink Steps: Immediately after you take the Attack action or the Magic action, you can teleport up to 30 feet to an unoccupied space you can see."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Boon of Energy Resistance": {
+      "description": "You can channel energy resistance through your body, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+        "Energy Resistances: You gain Resistance to two of the following damage types of your choice: Acid, Cold, Fire, Lightning, Necrotic, Poison, Psychic, Radiant, or Thunder. Whenever you finish a Long Rest, you can change your choices.",
+        "Energy Redirection: When you take damage of one of the types chosen for the Energy Resistances benefit, you can take a Reaction to direct damage of the same type toward another creature you can see within 60 feet of yourself that isn't behind Total Cover. If you do so, that creature must succeed on a Dexterity saving throw (DC 8 plus your Constitution modifier and Proficiency Bonus) or take damage equal to 2d12 plus your Constitution modifier."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Boon of Fate": {
+      "description": "You can bend the fabric of fate in your favor, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+        "Improve Fate: When you or another creature within 60 feet of you succeeds on or fails a D20 Test, you can roll 2d4 and apply the total rolled as a bonus or penalty to the d20 roll. Once you use this benefit, you can't use it again until you roll Initiative or finish a Short or Long Rest."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Boon of Fortitude": {
+      "description": "Your body has attained legendary resilience, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+        "Fortified Health: Your Hit Point maximum increases by 40. In addition, whenever you regain Hit Points, you can regain additional Hit Points equal to your Constitution modifier. Once you've regained these additional Hit Points, you can't do so again until the start of your next turn."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "effects": [
+        {
+          "type": "bonus_hp",
+          "value": 40
+        }
+      ]
+    },
+    "Boon of Irresistible Offense": {
+      "description": "Your attacks strike with unyielding force, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Strength or Dexterity by 1, to a maximum of 30.",
+        "Overcome Defenses: The Bludgeoning, Piercing, and Slashing damage you deal always ignores Resistance.",
+        "Overwhelming Strike: When you roll a 20 on the d20 for an attack roll, you can deal extra damage to the target equal to the ability score increased by this feat. The extra damage's type is the same as the attack's type."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Boon of Recovery": {
+      "description": "You can bounce back from the brink of defeat, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+        "Last Stand: When you would be reduced to 0 Hit Points, you can drop to 1 Hit Point instead and regain a number of Hit Points equal to half your Hit Point maximum. Once you use this benefit, you can't use it again until you finish a Long Rest.",
+        "Recover Vitality: You have a pool of ten d10s. As a Bonus Action, you can expend dice from the pool, roll those dice, and regain a number of Hit Points equal to the roll's total. You regain all the expended dice when you finish a Long Rest."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Boon of Skill": {
+      "description": "You have mastered all fields of study and trade, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+        "All-Around Adept: You gain proficiency in all skills.",
+        "Expertise: Choose one skill in which you lack Expertise. You gain Expertise in that skill."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Boon of Speed": {
+      "description": "You move with blinding swiftness, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+        "Escape Artist: As a Bonus Action, you can take the Disengage action, which also ends the Grappled condition on you.",
+        "Quickness: Your Speed increases by 30 feet."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "effects": [
+        {
+          "type": "increase_speed",
+          "value": 30
+        }
+      ]
+    },
+    "Boon of Spell Recall": {
+      "description": "You have unlocked the secrets of magical conservation, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase your Intelligence, Wisdom, or Charisma by 1, to a maximum of 30.",
+        "Free Casting: Whenever you cast a spell with a level 1-4 spell slot, roll 1d4. If the number you roll is the same as the slot's level, the slot isn't expended."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+; Spellcasting or Pact Magic Feature",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Boon of the Night Spirit": {
+      "description": "You can melt into shadow, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+        "Merge with Shadows: While within Dim Light or Darkness, you can give yourself the Invisible condition as a Bonus Action. The condition ends on you immediately after you take an action, a Bonus Action, or a Reaction.",
+        "Shadowy Form: While within Dim Light or Darkness, you have Resistance to all damage except Psychic and Radiant."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
+        }
+      }
+    },
+    "Boon of Truesight": {
+      "description": "Your eyes pierce all illusions and deceptions, granting you the following benefits:",
+      "benefits": [
+        "Ability Score Increase: Increase one ability score of your choice by 1, to a maximum of 30.",
+        "Truesight: You have Truesight with a range of 60 feet."
+      ],
+      "category": "Epic Boon",
+      "prerequisite": "Level 19+",
+      "source": "Player's Handbook 2024",
+      "choices": [
+        {
+          "type": "select_single",
+          "description": "Choose which ability score to increase.",
+          "name": "ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Strength",
+              "Dexterity",
+              "Constitution",
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
+        }
+      ],
+      "choice_effects": {
+        "ability": {
+          "Strength": [
+            {
+              "type": "ability_bonus",
+              "ability": "Strength",
+              "value": 1
+            }
+          ],
+          "Dexterity": [
+            {
+              "type": "ability_bonus",
+              "ability": "Dexterity",
+              "value": 1
+            }
+          ],
+          "Constitution": [
+            {
+              "type": "ability_bonus",
+              "ability": "Constitution",
+              "value": 1
+            }
+          ],
+          "Intelligence": [
+            {
+              "type": "ability_bonus",
+              "ability": "Intelligence",
+              "value": 1
+            }
+          ],
+          "Wisdom": [
+            {
+              "type": "ability_bonus",
+              "ability": "Wisdom",
+              "value": 1
+            }
+          ],
+          "Charisma": [
+            {
+              "type": "ability_bonus",
+              "ability": "Charisma",
+              "value": 1
+            }
+          ]
         }
       }
     }

@@ -229,8 +229,7 @@
       },
       {
         "tools": [
-          "Gaming Set",
-          "Vehicles (Land)"
+          "Gaming Set"
         ],
         "type": "grant_tool_proficiency"
       }
@@ -723,8 +722,7 @@
       "source": "Soldier",
       "source_type": "background",
       "tools": [
-        "Gaming Set",
-        "Vehicles (Land)"
+        "Gaming Set"
       ],
       "type": "grant_tool_proficiency"
     }
@@ -911,8 +909,7 @@
       "Animal Handling"
     ],
     "tools": [
-      "Gaming Set",
-      "Vehicles (Land)"
+      "Gaming Set"
     ],
     "weapons": [
       "Simple weapons",
@@ -935,8 +932,7 @@
       "Survival": "Soldier"
     },
     "tools": {
-      "Gaming Set": "Soldier",
-      "Vehicles (Land)": "Soldier"
+      "Gaming Set": "Soldier"
     },
     "weapons": {}
   },
@@ -1218,8 +1214,7 @@
   },
   "superiority_dice": {},
   "tool_proficiencies": [
-    "Gaming Set",
-    "Vehicles (Land)"
+    "Gaming Set"
   ],
   "weapon_masteries": {
     "available": [],

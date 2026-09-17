@@ -2,14 +2,14 @@
   "name": "Prismatic Spray",
   "level": 7,
   "school": "Evocation",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Self",
   "components": [
     "V",
     "S"
   ],
   "duration": "Instantaneous",
-  "description": "Eight multicolored rays of light flash from your hand. Each ray is a different color and has a different power and purpose. Each creature in a 60-foot Cone makes a Dexterity saving throw. For each target, roll 1d8 to determine which color ray affects it: 1-Red (10d6 Fire damage, half on save), 2-Orange (10d6 Acid damage, half on save), 3-Yellow (10d6 Lightning damage, half on save), 4-Green (10d6 Poison damage, half on save), 5-Blue (10d6 Cold damage, half on save), 6-Indigo (on fail Restrained then Petrified), 7-Violet (on fail Blinded then transported to another plane), 8-Special (struck by two rays, roll twice, rerolling 8s).",
+  "description": "Eight rays of light flash from you in a 60-foot Cone. Each creature in the Cone makes a Dexterity saving throw. For each target, roll 1d8 to determine which color ray affects it, consulting the Prismatic Rays table.\n\nPrismatic Rays\n1d8\tRay\n1\tRed. Failed Save: 12d6 Fire damage. Successful Save: Half as much damage.\n2\tOrange. Failed Save: 12d6 Acid damage. Successful Save: Half as much damage.\n3\tYellow. Failed Save: 12d6 Lightning damage. Successful Save: Half as much damage.\n4\tGreen. Failed Save: 12d6 Poison damage. Successful Save: Half as much damage.\n5\tBlue. Failed Save: 12d6 Cold damage. Successful Save: Half as much damage.\n6\tIndigo. Failed Save: The target has the Restrained condition and makes a Constitution saving throw at the end of each of its turns. If it successfully saves three times, the condition ends. If it fails three times, it has the Petrified condition until it is freed by an effect like the Greater Restoration spell. The successes and failures needn't be consecutive; keep track of both until the target collects three of a kind.\n7\tViolet. Failed Save: The target has the Blinded condition and makes a Wisdom saving throw at the start of your next turn. On a successful save, the condition ends. On a failed save, the condition ends, and the creature teleports to another plane of existence (DM's choice).\n8\tSpecial. The target is struck by two rays. Roll twice, rerolling any 8.",
   "classes": [
     "Bard",
     "Sorcerer",

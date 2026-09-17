@@ -2,7 +2,7 @@
   "name": "Hex",
   "level": 1,
   "school": "Enchantment",
-  "casting_time": "1 bonus action",
+  "casting_time": "Bonus Action",
   "range": "90 feet",
   "components": [
     "V",
@@ -10,9 +10,10 @@
     "M (the petrified eye of a newt)"
   ],
   "duration": "Concentration, up to 1 hour",
-  "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 Necrotic damage to the target whenever you hit it with an attack roll. Also, choose one ability when you cast the spell. The target has Disadvantage on ability checks made with the chosen ability. If the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action on a later turn to curse a new creature. Using a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 2 (up to 4 hours), 3-4 (up to 8 hours), or 5+ (24 hours).",
+  "description": "You place a curse on a creature that you can see within range. Until the spell ends, you deal an extra 1d6 Necrotic damage to the target whenever you hit it with an attack roll. Also, choose one ability when you cast the spell. The target has Disadvantage on ability checks made with the chosen ability.\n\nIf the target drops to 0 Hit Points before this spell ends, you can take a Bonus Action on a later turn to curse a new creature.\n\nUsing a Higher-Level Spell Slot. Your Concentration can last longer with a spell slot of level 2 (up to 4 hours), 3-4 (up to 8 hours), or 5+ (24 hours).",
   "classes": [
     "Warlock"
   ],
-  "ritual": false
+  "ritual": false,
+  "material": "the petrified eye of a newt"
 }

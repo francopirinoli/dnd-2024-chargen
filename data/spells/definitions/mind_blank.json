@@ -2,14 +2,14 @@
   "name": "Mind Blank",
   "level": 8,
   "school": "Abjuration",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Touch",
   "components": [
     "V",
     "S"
   ],
   "duration": "24 hours",
-  "description": "Until the spell ends, one willing creature you touch has immunity to Psychic damage, the Charmed condition, and any effect that would sense its emotions or read its thoughts, as well as all divination spells.",
+  "description": "Until the spell ends, one willing creature you touch has Immunity to Psychic damage and the Charmed condition. The target is also unaffected by anything that would sense its emotions or alignment, read its thoughts, or magically detect its location, and no spell—not even Wish—can gather information about the target, observe it remotely, or control its mind.",
   "classes": [
     "Bard",
     "Wizard"

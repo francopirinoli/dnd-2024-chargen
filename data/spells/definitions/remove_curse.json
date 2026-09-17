@@ -2,7 +2,7 @@
   "name": "Remove Curse",
   "level": 3,
   "school": "Abjuration",
-  "casting_time": "1 action",
+  "casting_time": "Action",
   "range": "Touch",
   "components": [
     "V",

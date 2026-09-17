@@ -2,7 +2,7 @@
   "name": "Counterspell",
   "level": 3,
   "school": "Abjuration",
-  "casting_time": "1 reaction, which you take when you see a creature within 60 feet of yourself casting a spell with Verbal, Somatic, or Material components",
+  "casting_time": "Reaction, which you take when you see a creature within 60 feet of yourself casting a spell with Verbal, Somatic, or Material components",
   "range": "60 feet",
   "components": [
     "S"
