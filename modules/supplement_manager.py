@@ -347,22 +347,27 @@ class SupplementManager:
         """Get all subclasses for a given class from active sources."""
         subclasses: Dict[str, Dict[str, Any]] = {}
         c_name_norm = _normalize_name(class_name)
+        if not c_name_norm:
+            return {}
 
         # Core
         if self._is_active(self.CORE_ID, active_sources):
-            sc_dir = self.data_dir / "subclasses" / class_name.lower()
-            if sc_dir.exists():
-                for f in sorted(sc_dir.glob("*.json")):
-                    try:
-                        with open(f, "r", encoding="utf-8") as jf:
-                            data = json.load(jf)
-                            name = data.get("name")
-                            if name:
-                                data["source_id"] = self.CORE_ID
-                                data["source_title"] = self.manifests[self.CORE_ID]["title"]
-                                subclasses[name] = data
-                    except Exception:
-                        pass
+            sc_dir = self.data_dir / "subclasses" / c_name_norm
+            try:
+                if sc_dir.is_dir():
+                    for f in sorted(sc_dir.glob("*.json")):
+                        try:
+                            with open(f, "r", encoding="utf-8") as jf:
+                                data = json.load(jf)
+                                name = data.get("name")
+                                if name:
+                                    data["source_id"] = self.CORE_ID
+                                    data["source_title"] = self.manifests[self.CORE_ID]["title"]
+                                    subclasses[name] = data
+                        except Exception:
+                            pass
+            except OSError:
+                pass
 
         # Supplements
         for pkg_id, pkg in self.packages.items():

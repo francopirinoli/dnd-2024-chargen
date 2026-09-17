@@ -325,6 +325,7 @@ export interface BackgroundSummary {
   source?: string;
   source_id?: string;
   source_title?: string;
+  starting_equipment?: unknown;
 }
 
 export interface SpeciesSummary {

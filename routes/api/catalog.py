@@ -185,13 +185,21 @@ def list_backgrounds():
             feat = _extract_background_feat(data)
             if feat is not None:
                 enriched["feat"] = feat
-        items.append(_summarize(name, enriched, ["skill_proficiencies", "ability_scores", "feat", "edition", "status"]))
+        items.append(_summarize(name, enriched, ["skill_proficiencies", "ability_scores", "feat", "edition", "status", "starting_equipment"]))
     return jsonify({"backgrounds": items})
 
 
 @catalog_bp.get("/backgrounds/<background_name>")
 def get_background(background_name: str):
-    data = _dl().supplement_manager.get_background(background_name)
+    sources = _get_active_sources()
+    data = _dl().supplement_manager.get_background(background_name, sources)
+    if data is None:
+        data = _dl().supplement_manager.get_background(background_name)
+    if data is None:
+        all_bgs = _dl().get_backgrounds(sources)
+        match = next((b for b in all_bgs if b.lower() == background_name.lower()), None)
+        if match:
+            data = all_bgs[match]
     if data is None:
         abort(404, description=f"Unknown background: {background_name}")
     enriched = dict(data)

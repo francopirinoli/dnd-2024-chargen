@@ -18,6 +18,11 @@ interface SkillReplacement {
 
 const BG_SKILL_REPLACEMENT_KEY = "background_skill_replacement";
 
+interface StartingEquipmentOption {
+  items?: string[];
+  gold?: number;
+}
+
 interface FullBackground {
   name?: string;
   description?: string;
@@ -29,6 +34,10 @@ interface FullBackground {
     total?: number;
     options?: string[];
     suggested?: Record<string, number>;
+  };
+  starting_equipment?: {
+    option_a?: StartingEquipmentOption;
+    option_b?: StartingEquipmentOption;
   };
 }
 
@@ -451,6 +460,46 @@ function BackgroundInfoPanel({
                 </div>
                 <div className="mt-1 font-medium text-foreground text-sm">
                   {fullData.feat ?? summary.feat}
+                </div>
+              </div>
+            )}
+
+            {fullData.starting_equipment && (
+              <div className="info-panel-block">
+                <div className="text-xs uppercase tracking-wide text-muted-foreground">
+                  Starting Equipment
+                </div>
+                <div className="mt-1 space-y-2 text-xs">
+                  {fullData.starting_equipment.option_a && (
+                    <div className="rounded-lg bg-background/60 p-2 border border-border/50">
+                      <span className="font-semibold text-primary">Option A: </span>
+                      <span className="text-muted-foreground">
+                        {[
+                          ...(fullData.starting_equipment.option_a.items ?? []),
+                          fullData.starting_equipment.option_a.gold
+                            ? `${fullData.starting_equipment.option_a.gold} GP`
+                            : null,
+                        ]
+                          .filter(Boolean)
+                          .join(", ")}
+                      </span>
+                    </div>
+                  )}
+                  {fullData.starting_equipment.option_b && (
+                    <div className="rounded-lg bg-background/60 p-2 border border-border/50">
+                      <span className="font-semibold text-primary">Option B: </span>
+                      <span className="text-muted-foreground">
+                        {[
+                          ...(fullData.starting_equipment.option_b.items ?? []),
+                          fullData.starting_equipment.option_b.gold
+                            ? `${fullData.starting_equipment.option_b.gold} GP`
+                            : null,
+                        ]
+                          .filter(Boolean)
+                          .join(", ")}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

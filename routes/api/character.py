@@ -1259,8 +1259,22 @@ def preview_step():
             from modules.data_loader import DataLoader
             from pathlib import Path
             dl = DataLoader(data_dir=str(Path(__file__).resolve().parent.parent.parent / "data"))
-            result["class_equipment"] = dl.classes.get(class_name, {}).get("starting_equipment", {})
-            result["background_equipment"] = dl.backgrounds.get(background_name, {}).get("starting_equipment", {})
+            request_choices = body.get("choices_made") or {}
+            active_sources = request_choices.get("active_sources") or request_choices.get("sources")
+
+            # Class starting equipment
+            class_data = builder._load_class_data(class_name) if hasattr(builder, "_load_class_data") else None
+            if not class_data:
+                all_classes = dl.get_classes(active_sources)
+                class_data = all_classes.get(class_name) or next((c for k, c in all_classes.items() if k.lower() == class_name.lower()), {})
+            result["class_equipment"] = class_data.get("starting_equipment", {})
+
+            # Background starting equipment
+            bg_data = builder._load_background_data(background_name) if hasattr(builder, "_load_background_data") else None
+            if not bg_data:
+                all_bgs = dl.get_backgrounds(active_sources)
+                bg_data = all_bgs.get(background_name) or next((b for k, b in all_bgs.items() if k.lower() == background_name.lower()), {})
+            result["background_equipment"] = bg_data.get("starting_equipment", {})
 
         return jsonify(result)
     except ValueError as exc:

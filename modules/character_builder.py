@@ -91,7 +91,7 @@ _CONTENT_SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
 # Substitutions applied before validation. Content names are title-cased
 # display strings ("Wood Elf", "Fighter: Champion"), so a small, fixed set of
 # separators maps onto the canonical filename form.
-CONTENT_SLUG_SUBSTITUTIONS = ((" ", "_"), (":", "-"))
+CONTENT_SLUG_SUBSTITUTIONS = ((" ", "_"), (":", "-"), ("'", ""))
 SPELL_SLUG_SUBSTITUTIONS = ((" ", "_"), ("'", ""), ("/", "_"))
 
 
@@ -442,9 +442,7 @@ class CharacterBuilder:
     def _load_species_data(self, species_name: str) -> Optional[Dict[str, Any]]:
         """Load species data from JSON file."""
         file_path = self._content_file_path("species", species_name)
-        if file_path is None:
-            return None
-        if file_path.exists():
+        if file_path is not None and file_path.exists():
             return self._load_json_file(file_path)
         from .supplement_manager import get_supplement_manager
         data = get_supplement_manager(data_dir=str(self.data_dir)).get_species_detail(species_name)
@@ -455,9 +453,7 @@ class CharacterBuilder:
     ) -> Optional[Dict[str, Any]]:
         """Load lineage/variant data from JSON file."""
         file_path = self._content_file_path("species_variants", lineage_name)
-        if file_path is None:
-            return None
-        if file_path.exists():
+        if file_path is not None and file_path.exists():
             return self._load_json_file(file_path)
         from .supplement_manager import get_supplement_manager
         data = get_supplement_manager(data_dir=str(self.data_dir)).get_lineage(lineage_name)
@@ -466,9 +462,7 @@ class CharacterBuilder:
     def _load_class_data(self, class_name: str) -> Optional[Dict[str, Any]]:
         """Load class data from JSON file."""
         file_path = self._content_file_path("classes", class_name)
-        if file_path is None:
-            return None
-        if file_path.exists():
+        if file_path is not None and file_path.exists():
             return self._load_json_file(file_path)
         from .supplement_manager import get_supplement_manager
         data = get_supplement_manager(data_dir=str(self.data_dir)).get_classes().get(class_name)
@@ -485,12 +479,10 @@ class CharacterBuilder:
         Finally falls back to installed modular supplements.
         """
         file_path = self._content_file_path("subclasses", class_name, subclass_name)
-        if file_path is None:
-            return None
-        if file_path.exists():
+        if file_path is not None and file_path.exists():
             return self._load_json_file(file_path)
         # Fallback: scan folder and match by the "name" field or file stem
-        if file_path.parent.exists():
+        if file_path is not None and file_path.parent.exists():
             try:
                 for json_file in sorted(file_path.parent.glob("*.json")):
                     data = self._load_json_file(json_file)
@@ -514,9 +506,7 @@ class CharacterBuilder:
     def _load_background_data(self, background_name: str) -> Optional[Dict[str, Any]]:
         """Load background data from JSON file."""
         file_path = self._content_file_path("backgrounds", background_name)
-        if file_path is None:
-            return None
-        if file_path.exists():
+        if file_path is not None and file_path.exists():
             return self._load_json_file(file_path)
         from .supplement_manager import get_supplement_manager
         data = get_supplement_manager(data_dir=str(self.data_dir)).get_background(background_name)
@@ -533,9 +523,7 @@ class CharacterBuilder:
         if subdir is None:
             raise ValueError(f"Unknown content kind: {kind}")
         file_path = self._content_file_path(subdir, identifier)
-        if file_path is None:
-            return False
-        if file_path.is_file():
+        if file_path is not None and file_path.is_file():
             return True
         from .supplement_manager import get_supplement_manager
         mgr = get_supplement_manager(data_dir=str(self.data_dir))
