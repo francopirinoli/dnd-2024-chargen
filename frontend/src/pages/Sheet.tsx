@@ -26,6 +26,7 @@ import {
 import { PrepareSpellsDialog } from "@/components/sheet/PrepareSpellsDialog";
 import { ChooseMasteriesDialog } from "@/components/sheet/ChooseMasteriesDialog";
 import { InvocationsDialog } from "@/components/sheet/InvocationsDialog";
+import { ReplicateMagicItemDialog } from "@/components/sheet/ReplicateMagicItemDialog";
 import { LevelUpDialog } from "@/components/sheet/LevelUpDialog";
 import { InventorySection } from "@/components/sheet/InventorySection";
 
@@ -107,6 +108,7 @@ export function Sheet() {
   const [spellDialogOpen, setSpellDialogOpen] = useState(false);
   const [masteryDialogOpen, setMasteryDialogOpen] = useState(false);
   const [invocationDialogOpen, setInvocationDialogOpen] = useState(false);
+  const [replicateDialogOpen, setReplicateDialogOpen] = useState(false);
   const [levelUpOpen, setLevelUpOpen] = useState(false);
   const [levelUpFlash, setLevelUpFlash] = useState<string | null>(null);
   const [showSpellPrompt, setShowSpellPrompt] = useState(false);
@@ -212,9 +214,55 @@ export function Sheet() {
     retry: false,
   });
 
+  const replicateDerived = useQuery({
+    queryKey: [
+      "character", "derived", "replicate_magic_item_management",
+      choicesMade.class,
+      choicesMade.level,
+      choicesMade.subclass,
+      choicesMade.classes,
+      choicesMade.artificer_replicate_plans,
+      choicesMade.artificer_active_replications,
+    ],
+    queryFn: () => api.character.derived(choicesMade, "replicate_magic_item_management"),
+    enabled: Boolean(
+      choicesMade.class === "Artificer" ||
+        (Array.isArray(choicesMade["classes"]) &&
+          (choicesMade["classes"] as Array<{ class_name?: string }>).some(
+            (c) => c?.class_name === "Artificer",
+          )),
+    ),
+    retry: false,
+  });
+
   const spellApplicable = spellDerived.data?.applicable === true;
   const masteryApplicable = masteryDerived.data?.applicable === true;
   const invocationApplicable = invocationDerived.data?.applicable === true;
+  const replicateApplicable = replicateDerived.data?.applicable === true;
+  const repData =
+    replicateDerived.data?.data != null &&
+    typeof replicateDerived.data.data === "object"
+      ? (replicateDerived.data.data as Record<string, unknown>)
+      : null;
+  const activeReplicationsList: Array<{
+    name: string;
+    level?: number;
+    rarity?: string;
+    attunement?: boolean;
+    description?: string;
+    type?: string;
+  }> = Array.isArray(repData?.active_items_details)
+    ? (repData!.active_items_details as Array<{
+        name: string;
+        level?: number;
+        rarity?: string;
+        attunement?: boolean;
+        description?: string;
+        type?: string;
+      }>)
+    : [];
+  const maxActiveReplications = typeof repData?.max_active === "number" ? repData.max_active : 0;
+  const knownPlansCount = Array.isArray(repData?.known_plans) ? repData.known_plans.length : 0;
   const invData =
     invocationDerived.data?.data != null &&
     typeof invocationDerived.data.data === "object"
@@ -547,7 +595,7 @@ export function Sheet() {
         </CollapsibleCard>
 
         {/* 4. Magic & Spells */}
-        {(spellApplicable || invocationApplicable) && (
+        {(spellApplicable || invocationApplicable || replicateApplicable) && (
           <CollapsibleCard
             id="section-magic"
             title="Spells & Magic"
@@ -556,6 +604,62 @@ export function Sheet() {
             onToggle={() => toggleSection("magic")}
           >
             <div className="space-y-6">
+              {replicateApplicable && (
+                <Section
+                  title="Replicate Magic Item (Infusions)"
+                  titleRight={
+                    <Button size="sm" onClick={() => setReplicateDialogOpen(true)}>
+                      Change Loadout (Long Rest)
+                    </Button>
+                  }
+                >
+                  {activeReplicationsList.length === 0 ? (
+                    <p className="text-sm text-muted-foreground">
+                      No replicated magic items currently active ({activeReplicationsList.length}/{maxActiveReplications} infused).
+                    </p>
+                  ) : (
+                    <div className="space-y-3">
+                      <p className="text-xs text-muted-foreground">
+                        Active Infused Items: <span className="font-semibold text-foreground">{activeReplicationsList.length} / {maxActiveReplications}</span> (from {knownPlansCount} known plans)
+                      </p>
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {activeReplicationsList.map((item, idx) => (
+                          <li
+                            key={`${item.name}-${idx}`}
+                            className="rounded border border-border bg-background/50 p-3 shadow-sm flex flex-col justify-between"
+                          >
+                            <div>
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="text-sm font-semibold text-primary">{item.name}</span>
+                                <div className="flex items-center gap-1.5">
+                                  {item.rarity && (
+                                    <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-secondary/80 text-muted-foreground">
+                                      {item.rarity}
+                                    </span>
+                                  )}
+                                  {item.attunement && (
+                                    <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 border border-amber-500/20">
+                                      Attunement
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              {item.type && (
+                                <p className="text-[11px] text-muted-foreground mt-0.5">{item.type}</p>
+                              )}
+                              {item.description && (
+                                <p className="mt-1.5 text-xs text-foreground/90 whitespace-pre-line leading-relaxed">
+                                  {item.description}
+                                </p>
+                              )}
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </Section>
+              )}
               {invocationApplicable && (
                 <Section
                   title="Eldritch Invocations"
@@ -632,6 +736,10 @@ export function Sheet() {
       <InvocationsDialog
         open={invocationDialogOpen}
         onClose={() => setInvocationDialogOpen(false)}
+      />
+      <ReplicateMagicItemDialog
+        open={replicateDialogOpen}
+        onClose={() => setReplicateDialogOpen(false)}
       />
       <LevelUpDialog
         open={levelUpOpen}

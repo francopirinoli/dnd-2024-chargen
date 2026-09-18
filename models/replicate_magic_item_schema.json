@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "D&D 2024 Replicate Magic Item Plans",
+  "description": "Schema for data/replicate_magic_item_plans.json. Top-level keys are item plan names.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": [
+      "name",
+      "level",
+      "rarity",
+      "attunement",
+      "type",
+      "description"
+    ],
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "level": {
+        "type": "integer",
+        "enum": [2, 6, 10, 14]
+      },
+      "rarity": {
+        "type": "string",
+        "enum": ["Common", "Uncommon", "Rare", "Very Rare", "Varies"]
+      },
+      "attunement": {
+        "type": "boolean"
+      },
+      "type": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "notes": {
+        "type": "string"
+      },
+      "effects": {
+        "type": "array",
+        "items": {
+          "$ref": "_shared/effect.json"
+        }
+      }
+    },
+    "additionalProperties": false
+  }
+}

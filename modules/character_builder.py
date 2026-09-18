@@ -1542,7 +1542,22 @@ class CharacterBuilder:
 
         # If trait_data is a dict, check for effects
         if isinstance(trait_data, dict):
-            effects = trait_data.get("effects", [])
+            effects = list(trait_data.get("effects", []))
+            if "spells" in trait_data and isinstance(trait_data["spells"], dict):
+                for min_lvl_str, spell_list in trait_data["spells"].items():
+                    try:
+                        min_lvl = int(min_lvl_str)
+                    except (ValueError, TypeError):
+                        min_lvl = 1
+                    if isinstance(spell_list, list):
+                        for sp in spell_list:
+                            if isinstance(sp, str) and not any(isinstance(e, dict) and e.get("type") == "grant_spell" and e.get("spell") == sp for e in effects):
+                                effects.append({
+                                    "type": "grant_spell",
+                                    "spell": sp,
+                                    "min_level": min_lvl,
+                                    "counts_against_limit": False
+                                })
             # For class/subclass effects, capture which class the effect came from
             # so per-level scaling (e.g., Draconic Resilience) can be scoped to that
             # class's level in multiclass builds rather than total character level.
@@ -1681,7 +1696,7 @@ class CharacterBuilder:
                     or self._resolve_choice_value(choice_key)
                 )
             else:
-                spell_name = effect.get("spell")
+                spell_name = effect.get("spell") or effect.get("cantrip")
             counts_against_limit = effect.get("counts_against_limit", False)
 
             # Resolve choice reference if present
@@ -1753,7 +1768,13 @@ class CharacterBuilder:
             else:
                 resolved_spell = spell_name
 
-            if resolved_spell and self.character_data["level"] >= min_level:
+            effective_level = self.character_data["level"]
+            if source_class_name and source_type in ("class", "subclass"):
+                class_levels = self.character_data.get("class_levels", {})
+                if source_class_name in class_levels:
+                    effective_level = class_levels[source_class_name]
+
+            if resolved_spell and effective_level >= min_level:
                 # Load spell definition to get actual spell level
                 spell_def = self._load_spell_definition(resolved_spell)
                 spell_level = spell_def.get("level", 1)
@@ -2822,6 +2843,13 @@ class CharacterBuilder:
         for prof in weapon_profs:
             if prof not in self.character_data["proficiencies"]["weapons"]:
                 self.character_data["proficiencies"]["weapons"].append(prof)
+
+        # Tool proficiencies (e.g. Artificer, Bard, Rogue, Monk)
+        tool_profs = class_data.get("tool_proficiencies", [])
+        for prof in tool_profs:
+            if isinstance(prof, str) and prof and prof not in self.character_data["proficiencies"]["tools"]:
+                self.character_data["proficiencies"]["tools"].append(prof)
+                self.character_data["proficiency_sources"]["tools"][prof] = class_data.get("name", "Class")
 
         # Features by level
         features_by_level = class_data.get("features_by_level", {})
@@ -4302,6 +4330,179 @@ class CharacterBuilder:
             )
         return selected
 
+    def _load_replicate_magic_item_plans(self) -> Dict[str, Any]:
+        """Load all replicate magic item plans from core data and supplements."""
+        try:
+            from modules.supplement_manager import get_supplement_manager
+            mgr = get_supplement_manager()
+            return mgr.get_replicate_magic_item_plans(getattr(self, "active_sources", None))
+        except Exception:
+            plans_file = self.data_dir / "replicate_magic_item_plans.json"
+            if not plans_file.exists():
+                return {}
+            try:
+                with open(plans_file, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    return data if isinstance(data, dict) else {}
+            except (json.JSONDecodeError, IOError):
+                return {}
+
+    def _validate_artificer_replicate_plans(self, choice_value: Any) -> List[str]:
+        family = "artificer_replicate_plans"
+        selected = self._validate_selection_list(
+            family=family,
+            field="artificer_replicate_plans",
+            value=choice_value,
+        )
+        stats = self.calculate_artificer_replications_stats()
+        if not stats.get("has_replications"):
+            if selected:
+                raise SelectionValidationError(
+                    family=family,
+                    code="not_available_for_character",
+                    message="Character cannot select Replicate Magic Item plans",
+                    violations=[{"field": "artificer_replicate_plans", "reason": "not_available_for_character"}],
+                )
+            return []
+
+        max_plans = int(stats.get("max_plans", 0) or 0)
+        artificer_level = int(stats.get("artificer_level", 0) or 0)
+        all_plans = self._load_replicate_magic_item_plans()
+
+        violations: List[Dict[str, Any]] = []
+        if len(selected) > max_plans:
+            violations.append(
+                {
+                    "field": "artificer_replicate_plans",
+                    "reason": "max_exceeded",
+                    "submitted_count": len(selected),
+                    "max_allowed": max_plans,
+                }
+            )
+
+        for name in selected:
+            plan_data = all_plans.get(name)
+            if not isinstance(plan_data, dict):
+                violations.append(
+                    {
+                        "field": "artificer_replicate_plans",
+                        "reason": "unknown_plan",
+                        "selection": name,
+                    }
+                )
+                continue
+            required_level = int(plan_data.get("level", 2) or 2)
+            if artificer_level < required_level:
+                violations.append(
+                    {
+                        "field": "artificer_replicate_plans",
+                        "reason": "prerequisite_level_not_met",
+                        "selection": name,
+                        "required_level": required_level,
+                        "current_level": artificer_level,
+                    }
+                )
+
+        if violations:
+            if getattr(self, "_fail_on_error", True):
+                raise SelectionValidationError(
+                    family=family,
+                    code="invalid_selection",
+                    message="Submitted Replicate Magic Item plan selections are not valid for this character",
+                    violations=violations,
+                )
+            valid = []
+            for name in selected:
+                p = all_plans.get(name)
+                if isinstance(p, dict) and int(p.get("level", 2) or 2) <= artificer_level:
+                    valid.append(name)
+            return valid[:max_plans]
+
+        return selected
+
+    def _validate_artificer_active_replications(self, choice_value: Any) -> List[str]:
+        family = "artificer_active_replications"
+        selected = self._validate_selection_list(
+            family=family,
+            field="artificer_active_replications",
+            value=choice_value,
+        )
+        stats = self.calculate_artificer_replications_stats()
+        if not stats.get("has_replications"):
+            if selected:
+                raise SelectionValidationError(
+                    family=family,
+                    code="not_available_for_character",
+                    message="Character cannot replicate magic items",
+                    violations=[{"field": "artificer_active_replications", "reason": "not_available_for_character"}],
+                )
+            return []
+
+        max_active = int(stats.get("max_active", 0) or 0)
+        artificer_level = int(stats.get("artificer_level", 0) or 0)
+        all_plans = self._load_replicate_magic_item_plans()
+        known_plans = set(stats.get("known_plans", []))
+
+        violations: List[Dict[str, Any]] = []
+        if len(selected) > max_active:
+            violations.append(
+                {
+                    "field": "artificer_active_replications",
+                    "reason": "max_exceeded",
+                    "submitted_count": len(selected),
+                    "max_allowed": max_active,
+                }
+            )
+
+        for name in selected:
+            plan_data = all_plans.get(name)
+            if not isinstance(plan_data, dict):
+                violations.append(
+                    {
+                        "field": "artificer_active_replications",
+                        "reason": "unknown_plan",
+                        "selection": name,
+                    }
+                )
+                continue
+            required_level = int(plan_data.get("level", 2) or 2)
+            if artificer_level < required_level:
+                violations.append(
+                    {
+                        "field": "artificer_active_replications",
+                        "reason": "prerequisite_level_not_met",
+                        "selection": name,
+                        "required_level": required_level,
+                        "current_level": artificer_level,
+                    }
+                )
+            if known_plans and name not in known_plans:
+                violations.append(
+                    {
+                        "field": "artificer_active_replications",
+                        "reason": "plan_not_known",
+                        "selection": name,
+                    }
+                )
+
+        if violations:
+            if getattr(self, "_fail_on_error", True):
+                raise SelectionValidationError(
+                    family=family,
+                    code="invalid_selection",
+                    message="Submitted active replicated items are not valid for this character",
+                    violations=violations,
+                )
+            valid = []
+            for name in selected:
+                p = all_plans.get(name)
+                if isinstance(p, dict) and int(p.get("level", 2) or 2) <= artificer_level:
+                    if not known_plans or name in known_plans:
+                        valid.append(name)
+            return valid[:max_active]
+
+        return selected
+
     def apply_choice(self, choice_key: str, choice_value: Any) -> bool:
         """
         Apply a single choice and its effects to the character.
@@ -4650,6 +4851,34 @@ class CharacterBuilder:
                 invocation_selections["cantrip_choices"],
                 invocation_selections["choices"],
             )
+            return True
+
+        # Artificer Replicate Magic Item plans
+        elif choice_key_lower in ("artificer_replicate_plans", "artificer_plans"):
+            plans = self._validate_artificer_replicate_plans(choice_value)
+            self.character_data["choices_made"][choice_key] = plans
+            self.character_data["artificer_replicate_plans"] = plans
+            return True
+
+        # Artificer Active Replicated Items loadout
+        elif choice_key_lower in ("artificer_active_replications", "artificer_active_items"):
+            active = self._validate_artificer_active_replications(choice_value)
+            self.character_data["choices_made"][choice_key] = active
+            self.character_data["artificer_active_replications"] = active
+            return True
+
+        # Artificer Replications composite (plans + active)
+        elif choice_key_lower == "artificer_replications":
+            if isinstance(choice_value, dict):
+                if "plans" in choice_value:
+                    plans = self._validate_artificer_replicate_plans(choice_value["plans"])
+                    self.character_data["choices_made"]["artificer_replicate_plans"] = plans
+                    self.character_data["artificer_replicate_plans"] = plans
+                if "active" in choice_value:
+                    active = self._validate_artificer_active_replications(choice_value["active"])
+                    self.character_data["choices_made"]["artificer_active_replications"] = active
+                    self.character_data["artificer_active_replications"] = active
+                self.character_data["choices_made"][choice_key] = choice_value
             return True
 
         # Nested bonus choices (e.g., Thaumaturge_bonus_cantrip)
@@ -5609,6 +5838,30 @@ class CharacterBuilder:
                 return 1
         return 0
 
+    def _get_class_subclass(self, class_name: str) -> str:
+        """Look up the subclass for a specific class across multiclass breakdown or single class."""
+        if not class_name:
+            return ""
+        rows = self.character_data.get("class_breakdown")
+        if isinstance(rows, list) and rows:
+            for row in rows:
+                if isinstance(row, dict) and row.get("class_name") == class_name:
+                    sub = row.get("subclass")
+                    if sub:
+                        return str(sub)
+        choices_classes = self.character_data.get("choices_made", {}).get("classes")
+        if isinstance(choices_classes, list) and choices_classes:
+            for row in choices_classes:
+                if isinstance(row, dict) and row.get("class_name") == class_name:
+                    sub = row.get("subclass")
+                    if sub:
+                        return str(sub)
+        if self.character_data.get("class") == class_name:
+            sub = self.character_data.get("subclass") or self.character_data.get("choices_made", {}).get("subclass")
+            if sub:
+                return str(sub)
+        return ""
+
     def _get_total_character_level(self) -> int:
         """Return total character level across all classes."""
         rows = self.character_data.get("class_breakdown")
@@ -6306,6 +6559,9 @@ class CharacterBuilder:
             "weapon mastery",
             "weapon_mastery_selections",  # Restore mastery selections after class applied
             "eldritch_invocation_selections",  # Restore invocation selections after class applied
+            "artificer_replicate_plans",  # Restore artificer replicate plans after class applied
+            "artificer_active_replications",  # Restore active replications after class applied
+            "artificer_replications",  # Composite plans + active if provided
             "alignment",
             "inventory",
         ]
@@ -7255,6 +7511,125 @@ class CharacterBuilder:
             if dependents:
                 dependency_map[name] = dependents
         stats["dependency_map"] = dependency_map
+
+        return stats
+
+    def calculate_artificer_replications_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Replicate Magic Item statistics for Artificer characters.
+
+        Returns:
+            Dictionary with available plans, max plans known, max active replications,
+            known plans, and active items.
+        """
+        stats: Dict[str, Any] = {
+            "has_replications": False,
+            "artificer_level": 0,
+            "subclass": "",
+            "max_plans": 0,
+            "max_active": 0,
+            "available_plans": [],
+            "known_plans": [],
+            "known_plans_details": [],
+            "active_items": [],
+            "active_items_details": [],
+        }
+
+        artificer_level = self._get_class_level("Artificer")
+        stats["artificer_level"] = artificer_level
+        subclass_name = self._get_class_subclass("Artificer")
+        stats["subclass"] = subclass_name
+
+        if artificer_level < 2:
+            return stats
+
+        # Determine max plans known
+        if artificer_level < 6:
+            max_plans = 4
+        elif artificer_level < 10:
+            max_plans = 6
+        elif artificer_level < 14:
+            max_plans = 8
+        elif artificer_level < 18:
+            max_plans = 10
+        else:
+            max_plans = 12
+
+        # Advanced Artifice (14th level) adds +1 known plan
+        if artificer_level >= 14:
+            max_plans += 1
+
+        # Determine max active infused items
+        if artificer_level < 6:
+            max_active = 2
+        elif artificer_level < 10:
+            max_active = 3
+        elif artificer_level < 14:
+            max_active = 4
+        elif artificer_level < 18:
+            max_active = 5
+        else:
+            max_active = 6
+
+        # Improved Armorer (Armorer level 9+) adds +2 active items
+        if artificer_level >= 9 and "armorer" in subclass_name.lower():
+            max_active += 2
+
+        stats["has_replications"] = True
+        stats["max_plans"] = max_plans
+        stats["max_active"] = max_active
+
+        # Load catalog
+        all_plans = self._load_replicate_magic_item_plans()
+
+        # Available plans for this artificer level
+        available = []
+        for name, plan in all_plans.items():
+            req_level = int(plan.get("level", 2) or 2)
+            if req_level <= artificer_level:
+                item = dict(plan)
+                item["name"] = name
+                available.append(item)
+        available.sort(key=lambda p: (int(p.get("level", 2) or 2), p["name"]))
+        stats["available_plans"] = available
+
+        # Resolve known plans
+        known = (
+            self.character_data.get("artificer_replicate_plans")
+            or self.character_data.get("choices_made", {}).get("artificer_replicate_plans")
+        )
+        rep_dict = self.character_data.get("choices_made", {}).get("artificer_replications")
+        if not known and isinstance(rep_dict, dict) and "plans" in rep_dict:
+            known = rep_dict["plans"]
+
+        known_plans: List[str] = []
+        if isinstance(known, list):
+            for p in known:
+                name_str = str(p)
+                if name_str in all_plans and int(all_plans[name_str].get("level", 2) or 2) <= artificer_level:
+                    if name_str not in known_plans:
+                        known_plans.append(name_str)
+        stats["known_plans"] = known_plans[:max_plans]
+        stats["known_plans_details"] = [dict(all_plans[name], name=name) for name in stats["known_plans"] if name in all_plans]
+
+        # Resolve active items
+        active = (
+            self.character_data.get("artificer_active_replications")
+            or self.character_data.get("choices_made", {}).get("artificer_active_replications")
+        )
+        if not active and isinstance(rep_dict, dict) and "active" in rep_dict:
+            active = rep_dict["active"]
+
+        active_items: List[str] = []
+        if isinstance(active, list):
+            for p in active:
+                name_str = str(p)
+                if name_str in all_plans and int(all_plans[name_str].get("level", 2) or 2) <= artificer_level:
+                    if not known_plans or name_str in known_plans:
+                        if name_str not in active_items:
+                            active_items.append(name_str)
+        stats["active_items"] = active_items[:max_active]
+        stats["active_items_details"] = [dict(all_plans[name], name=name) for name in stats["active_items"] if name in all_plans]
 
         return stats
 
@@ -9027,6 +9402,11 @@ class CharacterBuilder:
         # Add Eldritch Invocation stats (Warlock only)
         character_data["eldritch_invocation_stats"] = self.calculate_eldritch_invocation_stats()
 
+        # Add Replicate Magic Item stats (Artificer only)
+        artificer_replications = self.calculate_artificer_replications_stats()
+        if artificer_replications.get("has_replications"):
+            character_data["artificer_replications"] = artificer_replications
+
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:
             effects_for_export = []
@@ -9099,6 +9479,14 @@ class CharacterBuilder:
                 "cantrip_choices": eldritch_invocations["cantrip_choices"],
                 "choices": eldritch_invocations["choices"],
             }
+
+        # Include Replicate Magic Item selections in choices_made for export/import
+        replications = character_data.get("artificer_replications")
+        if replications and replications.get("has_replications"):
+            if replications.get("known_plans"):
+                character_data["choices_made"]["artificer_replicate_plans"] = list(replications["known_plans"])
+            if replications.get("active_items"):
+                character_data["choices_made"]["artificer_active_replications"] = list(replications["active_items"])
 
         # Enrich all feature choices with option descriptions, calculated stats, and selections
         self._enrich_all_feature_choices(character_data)

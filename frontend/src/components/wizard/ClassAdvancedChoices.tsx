@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { AlertCircle, BookOpen, Check, ChevronDown, ChevronUp, Info, Sparkles, Wand2 } from "lucide-react";
+import { AlertCircle, BookOpen, Check, ChevronDown, ChevronUp, Info, Package, Search, Sparkles, Wand2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { cn } from "@/lib/utils";
@@ -133,11 +133,13 @@ export function ClassAdvancedChoices({
   const spellsQ = useDerived(sourceChoices, "spell_management");
   const masteryQ = useDerived(sourceChoices, "mastery_management");
   const invocationsQ = useDerived(sourceChoices, "invocation_management");
+  const replicationsQ = useDerived(sourceChoices, "replicate_magic_item_management");
   const spellsData = hideSpells ? null : getApplicableData(spellsQ, sourceChoices);
   const masteryData = onlySpells ? null : getApplicableData(masteryQ, sourceChoices);
   const invocationsData = onlySpells ? null : getApplicableData(invocationsQ, sourceChoices);
+  const replicationsData = onlySpells ? null : getApplicableData(replicationsQ, sourceChoices);
 
-  const anyVisible = Boolean(spellsData || masteryData || invocationsData);
+  const anyVisible = Boolean(spellsData || masteryData || invocationsData || replicationsData);
   const isLoading =
     (!spellsQ.error &&
       !spellsData &&
@@ -150,7 +152,11 @@ export function ClassAdvancedChoices({
     (!invocationsQ.error &&
       !invocationsData &&
       !onlySpells &&
-      invocationsQ.fetchStatus === "fetching");
+      invocationsQ.fetchStatus === "fetching") ||
+    (!replicationsQ.error &&
+      !replicationsData &&
+      !onlySpells &&
+      replicationsQ.fetchStatus === "fetching");
   if (!anyVisible && !isLoading) return null;
 
   return (
@@ -194,6 +200,9 @@ export function ClassAdvancedChoices({
             {invocationsData && (
               <InvocationPicker data={invocationsData} />
             )}
+            {replicationsData && (
+              <ReplicateMagicItemPicker data={replicationsData} />
+            )}
           </>
         )}
       </div>
@@ -213,6 +222,8 @@ function useDerived(choicesMade: Loose, view: string) {
       choicesMade.subclass,
       choicesMade.classes,
       choicesMade.eldritch_invocation_selections,
+      choicesMade.artificer_replicate_plans,
+      choicesMade.artificer_active_replications,
     ],
     queryFn: () => api.character.derived(choicesMade, view),
     enabled: Array.isArray(choicesMade["classes"]) && (choicesMade["classes"] as unknown[]).length > 0,
@@ -1387,6 +1398,342 @@ export function InvocationPicker({ data }: { data: Loose }) {
           );
         })}
       </div>
+    </div>
+  );
+}
+
+export function ReplicateMagicItemPicker({
+  data,
+  onlyActive = false,
+}: {
+  data: Loose;
+  onlyActive?: boolean;
+}) {
+  const setChoice = useCharacterStore((s) => s.setChoice);
+  const choicesMade = useCharacterStore((s) => s.choicesMade);
+  const maxPlans = num(data.max_plans) ?? 0;
+  const maxActive = num(data.max_active) ?? 0;
+  const available = arr<Loose>(data.available_plans);
+
+  const currentKnown: string[] = Array.isArray(choicesMade.artificer_replicate_plans)
+    ? (choicesMade.artificer_replicate_plans as string[])
+    : arr<string>(data.known_plans);
+
+  const currentActive: string[] = Array.isArray(choicesMade.artificer_active_replications)
+    ? (choicesMade.artificer_active_replications as string[])
+    : arr<string>(data.active_items);
+
+  const [activeTab, setActiveTab] = useState<"active" | "plans">(onlyActive ? "active" : "plans");
+  const [search, setSearch] = useState("");
+  const [tierFilter, setTierFilter] = useState<number | "all">("all");
+  const [expandedPlan, setExpandedPlan] = useState<string | null>(null);
+
+  if (maxPlans === 0) return null;
+
+  function toggleKnownPlan(name: string) {
+    const isSelected = currentKnown.includes(name);
+    if (!isSelected && currentKnown.length >= maxPlans) return;
+
+    const nextKnown = isSelected
+      ? currentKnown.filter((p) => p !== name)
+      : [...currentKnown, name];
+
+    // If removing a plan that is active, deactivate it
+    const nextActive = currentActive.filter((p) => nextKnown.includes(p));
+
+    setChoice("artificer_replicate_plans", nextKnown);
+    if (nextActive.length !== currentActive.length) {
+      setChoice("artificer_active_replications", nextActive);
+    }
+  }
+
+  function toggleActiveItem(name: string) {
+    const isActive = currentActive.includes(name);
+    if (!isActive && currentActive.length >= maxActive) return;
+
+    const nextActive = isActive
+      ? currentActive.filter((p) => p !== name)
+      : [...currentActive, name];
+
+    setChoice("artificer_active_replications", nextActive);
+  }
+
+  // Filter available plans for the Plans tab
+  const filteredPlans = available.filter((p) => {
+    const name = str(p.name) ?? "";
+    const type = str(p.type) ?? "";
+    const matchesSearch =
+      search === "" ||
+      name.toLowerCase().includes(search.toLowerCase()) ||
+      type.toLowerCase().includes(search.toLowerCase());
+    const matchesTier = tierFilter === "all" || num(p.level) === tierFilter;
+    return matchesSearch && matchesTier;
+  });
+
+  return (
+    <div className="rounded-xl border border-border/70 bg-background/70 p-4 shadow-sm sm:p-5">
+      <header className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <h4 className="flex items-center gap-2 font-display text-base text-primary font-semibold">
+            <Package className="h-4 w-4" />
+            Replicate Magic Item
+          </h4>
+          <p className="text-xs text-muted-foreground">
+            {currentKnown.length}/{maxPlans} Plans Known • {currentActive.length}/{maxActive} Infusions Active
+          </p>
+        </div>
+
+        {/* Tab switcher */}
+        <div className="inline-flex rounded-lg border border-border/80 bg-muted/40 p-0.5 text-xs">
+          <button
+            type="button"
+            onClick={() => setActiveTab("plans")}
+            className={cn(
+              "px-3 py-1 rounded-md font-medium transition-colors",
+              activeTab === "plans"
+                ? "bg-background text-primary shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            Known Plans ({currentKnown.length}/{maxPlans})
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab("active")}
+            className={cn(
+              "px-3 py-1 rounded-md font-medium transition-colors",
+              activeTab === "active"
+                ? "bg-background text-primary shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            Active Loadout ({currentActive.length}/{maxActive})
+          </button>
+        </div>
+      </header>
+
+      {activeTab === "active" ? (
+        <div className="space-y-3">
+          <div className="rounded-lg bg-muted/30 border border-border/60 p-3 text-xs text-muted-foreground flex items-center justify-between">
+            <span>
+              Choose up to <strong>{maxActive}</strong> active items to infuse from your known plans on each Long Rest.
+            </span>
+            <span className="font-semibold text-primary">
+              {currentActive.length} / {maxActive}
+            </span>
+          </div>
+
+          {currentKnown.length === 0 ? (
+            <div className="p-6 text-center text-xs text-muted-foreground border border-dashed rounded-lg">
+              No known plans selected yet. Switch to the <strong>Known Plans</strong> tab to select up to {maxPlans} plans.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              {currentKnown.map((name) => {
+                const plan = available.find((p) => str(p.name) === name) || {};
+                const isActive = currentActive.includes(name);
+                const rarity = str(plan.rarity);
+                const attunement = Boolean(plan.attunement);
+                const desc = str(plan.description);
+                const itemType = str(plan.type);
+                const isExpanded = expandedPlan === name;
+
+                return (
+                  <div
+                    key={name}
+                    className={cn(
+                      "rounded-lg border p-3 transition-colors flex flex-col justify-between gap-2",
+                      isActive
+                        ? "border-primary bg-primary/5 ring-1 ring-primary/20"
+                        : "border-border bg-background/50"
+                    )}
+                  >
+                    <div>
+                      <div className="flex items-start justify-between gap-2">
+                        <span className="text-sm font-medium text-foreground">{name}</span>
+                        <div className="flex items-center gap-1 shrink-0">
+                          {rarity && (
+                            <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-secondary/80 text-muted-foreground">
+                              {rarity}
+                            </span>
+                          )}
+                          {attunement && (
+                            <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 border border-amber-500/20">
+                              Attune
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      {itemType && (
+                        <p className="text-[11px] text-muted-foreground mt-0.5">{itemType}</p>
+                      )}
+                      {desc && isExpanded && (
+                        <p className="mt-2 text-xs text-foreground/90 whitespace-pre-line leading-relaxed border-t pt-2 border-border/50">
+                          {desc}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between gap-2 pt-1 border-t border-border/40 mt-1">
+                      {desc ? (
+                        <button
+                          type="button"
+                          onClick={() => setExpandedPlan(isExpanded ? null : name)}
+                          className="text-[11px] text-muted-foreground hover:text-primary inline-flex items-center gap-0.5"
+                        >
+                          {isExpanded ? "Hide Details" : "Details"}
+                          {isExpanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+                        </button>
+                      ) : <span />}
+
+                      <button
+                        type="button"
+                        onClick={() => toggleActiveItem(name)}
+                        disabled={!isActive && currentActive.length >= maxActive}
+                        className={cn(
+                          "px-2.5 py-1 text-xs rounded font-medium transition-colors inline-flex items-center gap-1",
+                          isActive
+                            ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                            : currentActive.length >= maxActive
+                              ? "bg-muted text-muted-foreground cursor-not-allowed opacity-50"
+                              : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                        )}
+                      >
+                        {isActive ? (
+                          <>
+                            <Check className="h-3 w-3" />
+                            Infused
+                          </>
+                        ) : (
+                          "Infuse Item"
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {/* Controls: Search and Tier Filter */}
+          <div className="flex flex-col sm:flex-row gap-2 items-center justify-between">
+            <div className="relative w-full sm:w-64">
+              <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search magic items..."
+                className="w-full rounded-md border border-input bg-background/80 pl-8 pr-3 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
+
+            <div className="flex items-center gap-1 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
+              {(["all", 2, 6, 10, 14] as const).map((lvl) => (
+                <button
+                  key={String(lvl)}
+                  type="button"
+                  onClick={() => setTierFilter(lvl)}
+                  className={cn(
+                    "px-2.5 py-1 rounded text-xs font-medium shrink-0 transition-colors",
+                    tierFilter === lvl
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted/60 text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {lvl === "all" ? "All Tiers" : `Lvl ${lvl}+`}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1 max-h-[480px] overflow-y-auto pr-1">
+            {filteredPlans.map((plan, i) => {
+              const name = str(plan.name) ?? `Plan ${i}`;
+              const desc = str(plan.description);
+              const lvl = num(plan.level) ?? 2;
+              const rarity = str(plan.rarity);
+              const attunement = Boolean(plan.attunement);
+              const itemType = str(plan.type);
+              const isSelected = currentKnown.includes(name);
+              const isExpanded = expandedPlan === name;
+
+              return (
+                <div
+                  key={`${name}-${i}`}
+                  className={cn(
+                    "rounded-lg border transition-colors",
+                    isSelected
+                      ? "border-primary bg-muted/60 ring-1 ring-primary/20"
+                      : "border-border bg-background/70 hover:bg-muted/30"
+                  )}
+                >
+                  <div className="flex items-center gap-2 px-3 py-2">
+                    <button
+                      type="button"
+                      onClick={() => toggleKnownPlan(name)}
+                      disabled={!isSelected && currentKnown.length >= maxPlans}
+                      aria-pressed={isSelected}
+                      className={cn(
+                        "inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-colors",
+                        !isSelected && currentKnown.length >= maxPlans && "cursor-not-allowed opacity-40",
+                        isSelected
+                          ? "border-primary bg-background text-primary"
+                          : "border-border bg-background text-transparent hover:border-primary/50"
+                      )}
+                    >
+                      <Check className="h-3 w-3" />
+                    </button>
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-sm font-medium text-foreground">{name}</span>
+                        {itemType && (
+                          <span className="text-xs text-muted-foreground">({itemType})</span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span className="text-[10px] rounded px-1.5 py-0.5 bg-secondary/70 text-muted-foreground font-mono">
+                        Lv {lvl}+
+                      </span>
+                      {rarity && (
+                        <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-secondary/80 text-muted-foreground">
+                          {rarity}
+                        </span>
+                      )}
+                      {attunement && (
+                        <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-600 border border-amber-500/20">
+                          Attune
+                        </span>
+                      )}
+                      {desc && (
+                        <button
+                          type="button"
+                          onClick={() => setExpandedPlan(isExpanded ? null : name)}
+                          className="p-1 rounded text-muted-foreground hover:text-foreground"
+                          title="Toggle description"
+                        >
+                          {isExpanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  {desc && isExpanded && (
+                    <div className="px-3 pb-3 pt-1 border-t border-border/40 text-xs text-foreground/90 whitespace-pre-line leading-relaxed bg-background/40">
+                      {desc}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

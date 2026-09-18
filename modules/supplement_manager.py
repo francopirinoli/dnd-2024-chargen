@@ -17,8 +17,10 @@ import jsonschema
 from jsonschema import Draft7Validator, RefResolver
 
 
-def _normalize_name(name: str) -> str:
+def _normalize_name(name: Optional[str]) -> str:
     """Normalize string for case-insensitive matching."""
+    if not name or not isinstance(name, str):
+        return ""
     return name.strip().lower()
 
 
@@ -388,8 +390,12 @@ class SupplementManager:
         self, class_name: str, subclass_name: str, active_sources: Optional[List[str]] = None
     ) -> Optional[Dict[str, Any]]:
         """Find a specific subclass by name and class."""
+        if not class_name or not subclass_name:
+            return None
         sc_map = self.get_subclasses_for_class(class_name, active_sources)
         sc_name_norm = _normalize_name(subclass_name)
+        if not sc_name_norm:
+            return None
         for name, data in sc_map.items():
             if _normalize_name(name) == sc_name_norm:
                 return data
@@ -638,6 +644,36 @@ class SupplementManager:
                     invocations[k] = item
 
         return invocations
+
+    def get_replicate_magic_item_plans(
+        self, active_sources: Optional[List[str]] = None
+    ) -> Dict[str, Dict[str, Any]]:
+        """Get replicate magic item plans from active sources."""
+        plans: Dict[str, Dict[str, Any]] = {}
+
+        # Core
+        if self._is_active(self.CORE_ID, active_sources):
+            core_file = self.data_dir / "replicate_magic_item_plans.json"
+            if core_file.exists():
+                try:
+                    with open(core_file, "r", encoding="utf-8") as f:
+                        for k, v in json.load(f).items():
+                            item = dict(v)
+                            item["source_id"] = self.CORE_ID
+                            plans[k] = item
+                except Exception:
+                    pass
+
+        # Supplements
+        for pkg_id, pkg in self.packages.items():
+            if self._is_active(pkg_id, active_sources):
+                pkg_plans = pkg.get("replicate_magic_item_plans", {})
+                for k, v in pkg_plans.items():
+                    item = dict(v)
+                    item["source_id"] = pkg_id
+                    plans[k] = item
+
+        return plans
 
     def get_spell_definition(
         self, spell_name: str, active_sources: Optional[List[str]] = None

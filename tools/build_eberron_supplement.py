@@ -50,6 +50,7 @@ artificer_class = {
     ],
     "subclass_selection_level": 3,
     "spellcasting_ability": "Intelligence",
+    "spellcasting_type": "half",
     "spellcasting_focus": ["Thieves' Tools", "Tinker's Tools", "Artisan's Tools"],
     "proficiency_bonus_by_level": {
         "1": 2, "2": 2, "3": 2, "4": 2,
@@ -100,7 +101,13 @@ artificer_class = {
                 "description": "You produce your Artificer spells through tools. You can use Thieves' Tools, Tinker's Tools, or another kind of Artisan's Tools with which you have proficiency as a Spellcasting Focus. You prepare the list of level 1+ spells available to cast, starting with two level 1 Artificer spells, and know two Artificer cantrips. You can change your cantrips whenever you finish a Long Rest.",
                 "feature_kind": "spellcasting_setup"
             },
-            "Tinker's Magic": "You learn the Prestidigitation and Mending cantrips. In addition, you can touch a Tiny nonmagical object as a Magic action and invest it with a minor magical property that lasts indefinitely: emitting light (5 ft bright/5 ft dim), playing a recorded message of up to 6 seconds on tap, emitting an odor or sound, or displaying a static visual effect. You can have active objects equal to your Intelligence modifier (minimum 1)."
+            "Tinker's Magic": {
+                "description": "You learn the Prestidigitation and Mending cantrips. In addition, you can touch a Tiny nonmagical object as a Magic action and invest it with a minor magical property that lasts indefinitely: emitting light (5 ft bright/5 ft dim), playing a recorded message of up to 6 seconds on tap, emitting an odor or sound, or displaying a static visual effect. You can have active objects equal to your Intelligence modifier (minimum 1).",
+                "effects": [
+                    {"type": "grant_cantrip", "spell": "Prestidigitation", "counts_against_limit": False},
+                    {"type": "grant_cantrip", "spell": "Mending", "counts_against_limit": False}
+                ]
+            }
         },
         "2": {
             "Replicate Magic Item": "You learn how to replicate certain magic items. You know four plans from the Replicate Magic Item Plans table. Whenever you finish a Long Rest, you can touch a number of nonmagical objects equal to the number in the Magic Items column of the Artificer Features table and turn them into your chosen magic items. The items remain magical until you die or end the effect."
@@ -221,7 +228,12 @@ subclasses = [
         "source": "Eberron: Forge of the Artificer",
         "features_by_level": {
             "3": {
-                "Tools of the Trade": "You gain proficiency with Alchemist's Supplies. If you already have this proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.",
+                "Tools of the Trade": {
+                    "description": "You gain proficiency with Alchemist's Supplies. If you already have this proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.",
+                    "effects": [
+                        {"type": "grant_tool_proficiency", "tools": ["Alchemist's Supplies"]}
+                    ]
+                },
                 "Alchemist Spells": {
                     "description": "You always have certain spells prepared after you reach particular levels in this class: Healing Word, Ray of Sickness (Level 3); Flaming Sphere, Melf's Acid Arrow (Level 5); Gaseous Form, Mass Healing Word (Level 9); Death Ward, Vitriolic Sphere (Level 13); Cloudkill, Raise Dead (Level 17).",
                     "spells": {
@@ -230,7 +242,19 @@ subclasses = [
                         "9": ["Gaseous Form", "Mass Healing Word"],
                         "13": ["Death Ward", "Vitriolic Sphere"],
                         "17": ["Cloudkill", "Raise Dead"]
-                    }
+                    },
+                    "effects": [
+                        {"type": "grant_spell", "spell": "Healing Word", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Ray of Sickness", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Flaming Sphere", "min_level": 5, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Melf's Acid Arrow", "min_level": 5, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Gaseous Form", "min_level": 9, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Mass Healing Word", "min_level": 9, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Death Ward", "min_level": 13, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Vitriolic Sphere", "min_level": 13, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Cloudkill", "min_level": 17, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Raise Dead", "min_level": 17, "counts_against_limit": False}
+                    ]
                 },
                 "Experimental Elixir": "Whenever you finish a Long Rest while holding Alchemist's Supplies, you can use that tool to magically produce two elixirs in empty flasks you touch. Roll on the Experimental Elixir table for each elixir's effect (Healing, Swiftness, Resilience, Boldness, Flight, Transformation). You can create additional elixirs by expending a spell slot of level 1 or higher for each one."
             },
@@ -252,7 +276,13 @@ subclasses = [
         "source": "Eberron: Forge of the Artificer",
         "features_by_level": {
             "3": {
-                "Tools of the Trade": "You gain proficiency with Heavy armor and Smith's Tools. If you already have Smith's Tools proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.",
+                "Tools of the Trade": {
+                    "description": "You gain proficiency with Heavy armor and Smith's Tools. If you already have Smith's Tools proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.",
+                    "effects": [
+                        {"type": "grant_armor_proficiency", "proficiencies": ["Heavy armor"]},
+                        {"type": "grant_tool_proficiency", "tools": ["Smith's Tools"]}
+                    ]
+                },
                 "Armorer Spells": {
                     "description": "You always have certain spells prepared after you reach particular levels in this class: Magic Missile, Thunderwave (Level 3); Mirror Image, Shatter (Level 5); Hypnotic Pattern, Lightning Bolt (Level 9); Fire Shield, Greater Invisibility (Level 13); Passwall, Wall of Force (Level 17).",
                     "spells": {
@@ -261,7 +291,19 @@ subclasses = [
                         "9": ["Hypnotic Pattern", "Lightning Bolt"],
                         "13": ["Fire Shield", "Greater Invisibility"],
                         "17": ["Passwall", "Wall of Force"]
-                    }
+                    },
+                    "effects": [
+                        {"type": "grant_spell", "spell": "Magic Missile", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Thunderwave", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Mirror Image", "min_level": 5, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Shatter", "min_level": 5, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Hypnotic Pattern", "min_level": 9, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Lightning Bolt", "min_level": 9, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Fire Shield", "min_level": 13, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Greater Invisibility", "min_level": 13, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Passwall", "min_level": 17, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Wall of Force", "min_level": 17, "counts_against_limit": False}
+                    ]
                 },
                 "Arcane Armor": "As a Magic action while holding Smith's Tools, you can turn a suit of armor you are wearing into Arcane Armor. While you wear it, you gain the following benefits: if the armor normally has a Strength requirement, the arcane armor lacks this requirement; you can use the arcane armor as a Spellcasting Focus for your Artificer spells; the armor attaches to you and can't be removed against your will; it expands to cover your entire body; and you can don or doff it as an action.",
                 "Armor Model": "You can customize your Arcane Armor into one of two models: Guardian (Thunder Gauntlets, Defensive Field) or Infiltrator (Lightning Launcher, Powered Steps, Dampening Field). You can change the model whenever you finish a Short or Long Rest."
@@ -284,7 +326,12 @@ subclasses = [
         "source": "Eberron: Forge of the Artificer",
         "features_by_level": {
             "3": {
-                "Tools of the Trade": "You gain proficiency with Woodcarver's Tools. If you already have this proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.",
+                "Tools of the Trade": {
+                    "description": "You gain proficiency with Woodcarver's Tools. If you already have this proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.",
+                    "effects": [
+                        {"type": "grant_tool_proficiency", "tools": ["Woodcarver's Tools"]}
+                    ]
+                },
                 "Artillerist Spells": {
                     "description": "You always have certain spells prepared after you reach particular levels in this class: Shield, Thunderwave (Level 3); Scorching Ray, Shatter (Level 5); Fireball, Wind Wall (Level 9); Ice Storm, Wall of Fire (Level 13); Cone of Cold, Wall of Force (Level 17).",
                     "spells": {
@@ -293,7 +340,19 @@ subclasses = [
                         "9": ["Fireball", "Wind Wall"],
                         "13": ["Ice Storm", "Wall of Fire"],
                         "17": ["Cone of Cold", "Wall of Force"]
-                    }
+                    },
+                    "effects": [
+                        {"type": "grant_spell", "spell": "Shield", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Thunderwave", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Scorching Ray", "min_level": 5, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Shatter", "min_level": 5, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Fireball", "min_level": 9, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Wind Wall", "min_level": 9, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Ice Storm", "min_level": 13, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Wall of Fire", "min_level": 13, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Cone of Cold", "min_level": 17, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Wall of Force", "min_level": 17, "counts_against_limit": False}
+                    ]
                 },
                 "Eldritch Cannon": "Using Smith's Tools or Woodcarver's Tools, you can take a Magic action to create a Small or Tiny Eldritch Cannon. The cannon lasts for 1 hour or until it is destroyed or you dismiss it. On each of your turns, you can take a Bonus Action to command the cannon to activate (Flamethrower, Force Ballista, or Protector)."
             },
@@ -315,7 +374,13 @@ subclasses = [
         "source": "Eberron: Forge of the Artificer",
         "features_by_level": {
             "3": {
-                "Tools of the Trade": "You gain proficiency with Martial weapons and Smith's Tools. If you already have Smith's Tools proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.",
+                "Tools of the Trade": {
+                    "description": "You gain proficiency with Martial weapons and Smith's Tools. If you already have Smith's Tools proficiency, you gain proficiency with one other type of Artisan's Tools of your choice.",
+                    "effects": [
+                        {"type": "grant_weapon_proficiency", "proficiencies": ["Martial weapons"]},
+                        {"type": "grant_tool_proficiency", "tools": ["Smith's Tools"]}
+                    ]
+                },
                 "Battle Smith Spells": {
                     "description": "You always have certain spells prepared after you reach particular levels in this class: Heroism, Shield (Level 3); Shining Smite, Warding Bond (Level 5); Aura of Vitality, Conjure Barrage (Level 9); Aura of Purity, Fire Shield (Level 13); Banishing Smite, Mass Cure Wounds (Level 17).",
                     "spells": {
@@ -324,7 +389,19 @@ subclasses = [
                         "9": ["Aura of Vitality", "Conjure Barrage"],
                         "13": ["Aura of Purity", "Fire Shield"],
                         "17": ["Banishing Smite", "Mass Cure Wounds"]
-                    }
+                    },
+                    "effects": [
+                        {"type": "grant_spell", "spell": "Heroism", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Shield", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Shining Smite", "min_level": 5, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Warding Bond", "min_level": 5, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Aura of Vitality", "min_level": 9, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Conjure Barrage", "min_level": 9, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Aura of Purity", "min_level": 13, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Fire Shield", "min_level": 13, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Banishing Smite", "min_level": 17, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Mass Cure Wounds", "min_level": 17, "counts_against_limit": False}
+                    ]
                 },
                 "Battle Ready": "When you attack with a magic weapon, you can use your Intelligence modifier, instead of Strength or Dexterity, for the attack and damage rolls.",
                 "Steel Defender": "Your tinkering produces a faithful automaton companion: the Steel Defender. It obeys your commands and takes its turn immediately after yours in combat. You can command it to attack or take other actions as a Bonus Action."
@@ -347,7 +424,12 @@ subclasses = [
         "source": "Eberron: Forge of the Artificer",
         "features_by_level": {
             "3": {
-                "Tools of the Trade": "You gain proficiency with Calligrapher's Supplies and Cartographer's Tools. If you already have one of these proficiencies, you gain proficiency with one other type of Artisan's Tools of your choice (or with two other types if you have both). In addition, when you scribe a Spell Scroll using the crafting rules, the amount of time required is halved.",
+                "Tools of the Trade": {
+                    "description": "You gain proficiency with Calligrapher's Supplies and Cartographer's Tools. If you already have one of these proficiencies, you gain proficiency with one other type of Artisan's Tools of your choice (or with two other types if you have both). In addition, when you scribe a Spell Scroll using the crafting rules, the amount of time required is halved.",
+                    "effects": [
+                        {"type": "grant_tool_proficiency", "tools": ["Calligrapher's Supplies", "Cartographer's Tools"]}
+                    ]
+                },
                 "Cartographer Spells": {
                     "description": "You always have certain spells prepared after you reach particular levels in this class: Faerie Fire, Guiding Bolt, Healing Word (Level 3); Locate Object, Mind Spike (Level 5); Call Lightning, Clairvoyance (Level 9); Banishment, Locate Creature (Level 13); Scrying, Teleportation Circle (Level 17).",
                     "spells": {
@@ -356,7 +438,20 @@ subclasses = [
                         "9": ["Call Lightning", "Clairvoyance"],
                         "13": ["Banishment", "Locate Creature"],
                         "17": ["Scrying", "Teleportation Circle"]
-                    }
+                    },
+                    "effects": [
+                        {"type": "grant_spell", "spell": "Faerie Fire", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Guiding Bolt", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Healing Word", "min_level": 3, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Locate Object", "min_level": 5, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Mind Spike", "min_level": 5, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Call Lightning", "min_level": 9, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Clairvoyance", "min_level": 9, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Banishment", "min_level": 13, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Locate Creature", "min_level": 13, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Scrying", "min_level": 17, "counts_against_limit": False},
+                        {"type": "grant_spell", "spell": "Teleportation Circle", "min_level": 17, "counts_against_limit": False}
+                    ]
                 },
                 "Adventurer's Atlas": "Whenever you finish a Long Rest while holding Cartographer's Tools, you can use that tool to create a set of magical maps by touching at least two creatures (one of whom can be yourself), up to a maximum number of creatures equal to 1 plus your Intelligence modifier (minimum of two creatures). Each target receives a magical map that constantly updates to show the relative position of all map holders. Map holders add 1d4 to Initiative rolls and can target each other regardless of sight or cover if within range.",
                 "Mapping Magic": "You can cast Faerie Fire without expending a spell slot a number of times equal to your Intelligence modifier per Long Rest. In addition, you can spend half your Speed to teleport up to 10 feet or within 5 feet of a creature within 30 feet holding one of your Adventurer's Atlas maps."

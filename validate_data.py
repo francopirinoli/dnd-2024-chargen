@@ -57,6 +57,7 @@ CATEGORIES = [
     {"name": "eldritch_invocations", "glob": "data/eldritch_invocations.json",       "schema": "models/eldritch_invocation_schema.json"},
     {"name": "languages",            "glob": "data/languages.json",                  "schema": "models/languages_schema.json"},
     {"name": "trait_patterns",       "glob": "data/trait_patterns.json",             "schema": "models/trait_patterns_schema.json"},
+    {"name": "replicate_magic_item_plans", "glob": "data/replicate_magic_item_plans.json", "schema": "models/replicate_magic_item_schema.json"},
 ]
 
 

@@ -1,0 +1,564 @@
+{
+  "Alchemy Jug": {
+    "name": "Alchemy Jug",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "This ceramic jug can produce liquids such as acid, basic poison, beer, honey, mayonnaise, oil, vinegar, fresh water, or wine once per day."
+  },
+  "Armblade": {
+    "name": "Armblade",
+    "level": 2,
+    "rarity": "Common",
+    "attunement": true,
+    "type": "Weapon",
+    "notes": "Requires attunement by a Warforged",
+    "description": "An armblade is a one-handed melee weapon that attaches to your arm and cannot be disarmed. You can retract or deploy the weapon as a Bonus Action."
+  },
+  "Bag of Holding": {
+    "name": "Bag of Holding",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "This bag has an interior space considerably larger than its outside dimensions (roughly 2 feet in diameter at the mouth and 4 feet deep). It can hold up to 500 pounds and 64 cubic feet."
+  },
+  "Cap of Water Breathing": {
+    "name": "Cap of Water Breathing",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "While wearing this cap underwater, you can speak its command word as an action to create a bubble of air around your head that lets you breathe underwater indefinitely."
+  },
+  "Clockwork Amulet": {
+    "name": "Clockwork Amulet",
+    "level": 2,
+    "rarity": "Common",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "When you make an attack roll while wearing this amulet, you can forgo rolling the d20 to treat the roll as a 10. Once used, this property cannot be used again until the next dawn."
+  },
+  "Enhanced Defense (+1)": {
+    "name": "Enhanced Defense (+1)",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Armor or Shield",
+    "description": "A creature gains a +1 bonus to Armor Class while wearing this suit of armor or wielding this shield."
+  },
+  "Enhanced Weapon (+1)": {
+    "name": "Enhanced Weapon (+1)",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Weapon",
+    "description": "This magic weapon grants a +1 bonus to attack and damage rolls made with it."
+  },
+  "Goggles of Night": {
+    "name": "Goggles of Night",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "While wearing these dark lenses, you have Darkvision out to a range of 60 feet. If you already have Darkvision, wearing the goggles increases its range by 60 feet."
+  },
+  "Homunculus Servant": {
+    "name": "Homunculus Servant",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "You fashion a faithful mechanical companion out of clay, metal, and wood. In combat, the homunculus obeys your commands and takes its turn immediately after yours."
+  },
+  "Mind Sharpener": {
+    "name": "Mind Sharpener",
+    "level": 2,
+    "rarity": "Common",
+    "attunement": false,
+    "type": "Armor or Robes",
+    "description": "The infused item has 4 charges. When the wearer fails a Constitution saving throw to maintain Concentration on a spell, the wearer can use a Reaction to spend 1 charge and succeed instead."
+  },
+  "Prosthetic Limb": {
+    "name": "Prosthetic Limb",
+    "level": 2,
+    "rarity": "Common",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "This artificial limb replaces a missing appendage. While attached, it functions identically to the body part it was created to replace."
+  },
+  "Repeating Shot": {
+    "name": "Repeating Shot",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Ranged Weapon",
+    "description": "This magic weapon grants a +1 bonus to attack and damage rolls, ignores the Loading property if it has it, and magically creates its own ammunition if none is loaded."
+  },
+  "Returning Weapon": {
+    "name": "Returning Weapon",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Thrown Weapon",
+    "description": "This magic weapon grants a +1 bonus to attack and damage rolls. Immediately after being thrown in a ranged attack, the weapon flies back to your hand."
+  },
+  "Rope of Climbing": {
+    "name": "Rope of Climbing",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "This 60-foot silk rope can hold up to 3,000 pounds. As a Bonus Action, you can command the rope to move up to 50 feet and tie itself off to an object."
+  },
+  "Ruby of the War Mage": {
+    "name": "Ruby of the War Mage",
+    "level": 2,
+    "rarity": "Common",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "Etched with eldritch runes, this 1-inch ruby attaches to a simple or martial weapon, allowing you to use that weapon as a Spellcasting Focus for your spells."
+  },
+  "Sending Stones": {
+    "name": "Sending Stones",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "A pair of carved smooth stones. While touching one stone, you can cast the Sending spell targeting whoever holds the paired stone."
+  },
+  "Wand of Magic Detection": {
+    "name": "Wand of Magic Detection",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wand",
+    "description": "This wand has 3 charges. While holding it, you can expend 1 charge to cast the Detect Magic spell. Regains 1d3 expended charges daily at dawn."
+  },
+  "Wand of Secrets": {
+    "name": "Wand of Secrets",
+    "level": 2,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wand",
+    "description": "This wand has 3 charges. While holding it, you can take a Magic action to expend 1 charge to locate the nearest secret door or trap within 30 feet."
+  },
+  "Wand Sheath": {
+    "name": "Wand Sheath",
+    "level": 2,
+    "rarity": "Common",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "notes": "Requires attunement by a Warforged",
+    "description": "This sheath attaches to your arm and cannot be removed against your will. You can insert a wand and draw or retract it as a Bonus Action."
+  },
+  "Boots of Elvenkind": {
+    "name": "Boots of Elvenkind",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "While you wear these boots, your steps make no sound. You have Advantage on Dexterity (Stealth) checks that rely on moving silently."
+  },
+  "Cloak of Elvenkind": {
+    "name": "Cloak of Elvenkind",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While you wear this cloak with its hood up, Wisdom (Perception) checks made to see you have Disadvantage, and you have Advantage on Dexterity (Stealth) checks made to hide."
+  },
+  "Cloak of the Manta Ray": {
+    "name": "Cloak of the Manta Ray",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "While wearing this cloak with its hood up, you can breathe underwater and you have a swimming speed of 60 feet."
+  },
+  "Eyes of Minute Seeing": {
+    "name": "Eyes of Minute Seeing",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "These crystal lenses fit over the eyes. While looking through them, you have Advantage on Intelligence (Investigation) checks to examine details within 1 foot of you."
+  },
+  "Gloves of Thievery": {
+    "name": "Gloves of Thievery",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "These gloves are invisible while worn. While wearing them, you gain a +5 bonus to Dexterity (Sleight of Hand) checks and Dexterity checks made to pick locks."
+  },
+  "Helm of Awareness": {
+    "name": "Helm of Awareness",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing this helmet, you have Advantage on Initiative rolls, and you can't be Surprised as long as you are conscious."
+  },
+  "Lantern of Revealing": {
+    "name": "Lantern of Revealing",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "While lit, this hooded lantern burns for 6 hours on a pint of oil, casting bright light in a 30-foot radius. Invisible creatures and objects are visible as long as they are in the bright light."
+  },
+  "Pipes of Haunting": {
+    "name": "Pipes of Haunting",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "You can play these pipes using a Magic action to expend 1 of its 3 charges. Non-hostile creatures within 30 feet who hear the tune must succeed on a DC 15 Wisdom save or become Frightened for 1 minute."
+  },
+  "Pipes of the Sewers": {
+    "name": "Pipes of the Sewers",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "You can play these pipes as a Magic action to call up to three swarms of rats. While playing, you can influence the behavior of the swarms."
+  },
+  "Radiant Weapon": {
+    "name": "Radiant Weapon",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Weapon",
+    "description": "This weapon grants a +1 bonus to attack and damage rolls and sheds bright light. As a Reaction after being hit by an attack, you can blind the attacker until the end of its next turn on a failed Constitution save."
+  },
+  "Repulsion Shield": {
+    "name": "Repulsion Shield",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Shield",
+    "description": "A creature gains a +1 bonus to Armor Class while wielding this shield. As a Reaction after being hit by a melee attack, the wielder can push the attacker up to 15 feet away (4 charges per day)."
+  },
+  "Resistant Armor": {
+    "name": "Resistant Armor",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Armor",
+    "description": "While wearing this armor, you have Resistance to one of the following damage types chosen when the armor is infused: Acid, Cold, Fire, Force, Lightning, Necrotic, Poison, Psychic, Radiant, or Thunder."
+  },
+  "Ring of Water Walking": {
+    "name": "Ring of Water Walking",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Ring",
+    "description": "While wearing this ring, you can stand on and move across any liquid surface (such as water, acid, mud, snow, or quicksand) as if it were harmless solid ground."
+  },
+  "Spell-Refueling Ring": {
+    "name": "Spell-Refueling Ring",
+    "level": 6,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Ring",
+    "description": "While wearing this ring, you can use an action to recover one expended spell slot of level 3 or lower. Once used, the ring can't be used again until the next dawn."
+  },
+  "Boots of Striding and Springing": {
+    "name": "Boots of Striding and Springing",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While you wear these boots, your walking speed becomes 30 feet (unless your speed is higher), and you can jump three times the normal distance."
+  },
+  "Boots of the Winterlands": {
+    "name": "Boots of the Winterlands",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing these boots, you have Resistance to Cold damage, ignore difficult terrain created by ice or snow, and can tolerate temperatures as low as -50 degrees Fahrenheit."
+  },
+  "Bracers of Archery": {
+    "name": "Bracers of Archery",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing these bracers, you have proficiency with longbows and shortbows, and you gain a +2 bonus to damage rolls on ranged attacks made with such bows."
+  },
+  "Brooch of Shielding": {
+    "name": "Brooch of Shielding",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing this brooch, you have Resistance to Force damage, and you have Immunity to damage from the Magic Missile spell."
+  },
+  "Cloak of Protection": {
+    "name": "Cloak of Protection",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "You gain a +1 bonus to Armor Class and saving throws while you wear this cloak."
+  },
+  "Enhanced Defense (+2)": {
+    "name": "Enhanced Defense (+2)",
+    "level": 10,
+    "rarity": "Rare",
+    "attunement": false,
+    "type": "Armor or Shield",
+    "description": "A creature gains a +2 bonus to Armor Class while wearing this suit of armor or wielding this shield."
+  },
+  "Enhanced Weapon (+2)": {
+    "name": "Enhanced Weapon (+2)",
+    "level": 10,
+    "rarity": "Rare",
+    "attunement": false,
+    "type": "Weapon",
+    "description": "This magic weapon grants a +2 bonus to attack and damage rolls made with it."
+  },
+  "Eyes of the Eagle": {
+    "name": "Eyes of the Eagle",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "These crystal lenses fit over your eyes. While wearing them, you have Advantage on Wisdom (Perception) checks that rely on sight."
+  },
+  "Gauntlets of Ogre Power": {
+    "name": "Gauntlets of Ogre Power",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "Your Strength score is 19 while you wear these gauntlets. They have no effect on you if your Strength is already 19 or higher without them."
+  },
+  "Gloves of Missile Snare": {
+    "name": "Gloves of Missile Snare",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "When a ranged weapon attack hits you while you are wearing these gloves, you can take a Reaction to reduce the damage by 1d10 plus your Dexterity modifier."
+  },
+  "Gloves of Swimming and Climbing": {
+    "name": "Gloves of Swimming and Climbing",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing these gloves, climbing and swimming do not cost you extra movement, and you gain a +5 bonus to Strength (Athletics) checks made to climb or swim."
+  },
+  "Hat of Disguise": {
+    "name": "Hat of Disguise",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing this hat, you can cast the Disguise Self spell from it at will. The spell ends if the hat is removed."
+  },
+  "Headband of Intellect": {
+    "name": "Headband of Intellect",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "Your Intelligence score is 19 while you wear this headband. It has no effect on you if your Intelligence is already 19 or higher without it."
+  },
+  "Helm of Telepathy": {
+    "name": "Helm of Telepathy",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing this helmet, you can cast Detect Thoughts at will. As an action while reading a creature's thoughts, you can cast Suggestion on that creature (DC 13)."
+  },
+  "Medallion of Thoughts": {
+    "name": "Medallion of Thoughts",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "This medallion has 3 charges. While wearing it, you can expend 1 charge to cast the Detect Thoughts spell (save DC 13)."
+  },
+  "Necklace of Adaptation": {
+    "name": "Necklace of Adaptation",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing this necklace, you can breathe normally in any environment, and you have Advantage on saving throws made against harmful gases and vapors."
+  },
+  "Periapt of Wound Closure": {
+    "name": "Periapt of Wound Closure",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing this pendant, you stabilize automatically if you are Dying at the start of your turn. Whenever you roll a Hit Die to regain Hit Points, double the number of Hit Points restored."
+  },
+  "Pipes of Pain": {
+    "name": "Pipes of Pain",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "You can play these pipes as an action. Each creature within 30 feet that hears you must succeed on a DC 15 Constitution save or take 2d10 psychic damage and be Incapacitated by pain for 1 minute."
+  },
+  "Quiver of Ehlonna": {
+    "name": "Quiver of Ehlonna",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "This quiver has three extradimensional compartments that can hold up to sixty arrows, eighteen javelins, and six bows or staves, always weighing only 2 pounds."
+  },
+  "Ring of Jumping": {
+    "name": "Ring of Jumping",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Ring",
+    "description": "While wearing this ring, you can cast the Jump spell from it as a Bonus Action at will, targeting only yourself."
+  },
+  "Ring of Mind Shielding": {
+    "name": "Ring of Mind Shielding",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Ring",
+    "description": "While wearing this ring, you are immune to magic that allows other creatures to read your thoughts, determine if you are lying, or know your alignment."
+  },
+  "Slippers of Spider Climbing": {
+    "name": "Slippers of Spider Climbing",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While you wear these slippers, you have a climbing speed equal to your walking speed, and you can move up, down, and across vertical surfaces and upside down along ceilings."
+  },
+  "Ventilating Lungs": {
+    "name": "Ventilating Lungs",
+    "level": 10,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "These metallic lungs attach to your chest. You can breathe normally in any atmosphere and exhale a 20-foot cone of gusting wind or toxic vapor once per day."
+  },
+  "Winged Boots": {
+    "name": "Winged Boots",
+    "level": 10,
+    "rarity": "Uncommon",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While you wear these boots, you have a flying speed equal to your walking speed for up to 4 hours, all at once or in several shorter flights."
+  },
+  "Amulet of Health": {
+    "name": "Amulet of Health",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "Your Constitution score is 19 while you wear this amulet. It has no effect on you if your Constitution is already 19 or higher without it."
+  },
+  "Arcane Propulsion Armor": {
+    "name": "Arcane Propulsion Armor",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Armor",
+    "description": "The wearer's walking speed increases by 5 feet. The armor includes gauntlet rocket fists that deal 1d8 Force damage (melee or thrown 20/60 ft), and the wearer cannot be knocked Prone against their will."
+  },
+  "Belt of Hill Giant Strength": {
+    "name": "Belt of Hill Giant Strength",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing this belt, your Strength score is 21. It has no effect on you if your Strength is already 21 or higher without it."
+  },
+  "Boots of Levitation": {
+    "name": "Boots of Levitation",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While you wear these boots, you can cast Levitate on yourself at will as a Magic action."
+  },
+  "Boots of Speed": {
+    "name": "Boots of Speed",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While you wear these boots, you can click the heels together as a Bonus Action to double your walking speed and give attackers Disadvantage on opportunity attacks against you for 10 minutes."
+  },
+  "Bracers of Defense": {
+    "name": "Bracers of Defense",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing these bracers, you gain a +2 bonus to Armor Class if you are wearing no armor and using no shield."
+  },
+  "Cloak of the Bat": {
+    "name": "Cloak of the Bat",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "While wearing this cloak, you have Advantage on Dexterity (Stealth) checks. In Dim Light or Darkness, you can grip the edges of the cloak to fly with a speed of 40 feet or transform into a Bat."
+  },
+  "Dimensional Shackles": {
+    "name": "Dimensional Shackles",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "You can take a Magic action to shackle an Incapacitated creature. The shackles prevent the creature from using any form of extradimensional movement, teleportation, or planar travel."
+  },
+  "Gem of Seeing": {
+    "name": "Gem of Seeing",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Wondrous Item",
+    "description": "This gem has 3 charges. While holding it, you can take a Magic action to expend 1 charge to gain Truesight out to 120 feet for 10 minutes."
+  },
+  "Horn of Blasting": {
+    "name": "Horn of Blasting",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": false,
+    "type": "Wondrous Item",
+    "description": "You can use an action to blow this horn, emitting a 30-foot cone of sound. Each creature in the cone must succeed on a DC 15 Constitution save or take 5d6 Thunder damage and be Deafened for 1 minute."
+  },
+  "Ring of Free Action": {
+    "name": "Ring of Free Action",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Ring",
+    "description": "While you wear this ring, difficult terrain doesn't cost you extra movement. In addition, magic can neither reduce your speed nor cause you to be Paralyzed or Restrained."
+  },
+  "Ring of Protection": {
+    "name": "Ring of Protection",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Ring",
+    "description": "You gain a +1 bonus to Armor Class and saving throws while wearing this ring."
+  },
+  "Ring of the Ram": {
+    "name": "Ring of the Ram",
+    "level": 14,
+    "rarity": "Rare",
+    "attunement": true,
+    "type": "Ring",
+    "description": "This ring has 3 charges. While wearing it, you can expend 1 to 3 charges as an action to strike a creature within 60 feet with a ghostly ram, dealing 2d10 to 6d10 Force damage and pushing it up to 20 feet."
+  }
+}

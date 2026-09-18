@@ -28,6 +28,7 @@ from modules.derived_stats import (
     build_invocation_management_view,
     build_level_up_preview,
     build_mastery_management_view,
+    build_replicate_magic_item_view,
     build_spell_management_view,
 )
 
@@ -39,6 +40,7 @@ _DERIVED_VIEWS = {
     "spell_management",
     "mastery_management",
     "invocation_management",
+    "replicate_magic_item_management",
 }
 _CORE_TRAIT_PROFICIENCY_KEYS = {"skill_choices", "tool_choices"}
 
@@ -698,7 +700,15 @@ def _validate_and_canonicalize_choices(
                 f"choices_made.{key}",
             )
 
-    for key in ("languages", "skill_choices", "tools", "tool_choices", "rare_languages"):
+    for key in (
+        "languages",
+        "skill_choices",
+        "tools",
+        "tool_choices",
+        "rare_languages",
+        "artificer_replicate_plans",
+        "artificer_active_replications",
+    ):
         if key in normalized:
             value = normalized[key]
             if (not isinstance(value, list) or any(not isinstance(item, str) for item in value)
@@ -1350,6 +1360,8 @@ def derived_view():
             data = build_spell_management_view(builder)
         elif view == "mastery_management":
             data = build_mastery_management_view(builder)
+        elif view == "replicate_magic_item_management":
+            data = build_replicate_magic_item_view(builder)
         else:  # invocation_management
             data = build_invocation_management_view(builder)
         return jsonify({

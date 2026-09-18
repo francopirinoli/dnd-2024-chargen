@@ -64,6 +64,8 @@ export function ClassImageBackground() {
           const img = e.currentTarget;
           if (img.src !== window.location.origin + fallbackSrc) {
             img.src = fallbackSrc;
+          } else {
+            img.style.display = "none";
           }
         }}
       />

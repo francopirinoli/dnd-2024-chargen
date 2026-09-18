@@ -497,6 +497,17 @@ def build_invocation_management_view(builder) -> Dict[str, Any]:
     return view
 
 
+def build_replicate_magic_item_view(builder) -> Dict[str, Any]:
+    """Return the Replicate Magic Item modal view as a plain dict.
+
+    Raises `ValueError` if the character does not have Replicate Magic Item.
+    """
+    stats = builder.calculate_artificer_replications_stats()
+    if not stats or not stats.get("has_replications"):
+        raise ValueError("Character does not have Replicate Magic Item")
+    return stats
+
+
 # ---------------------------------------------------------------------------
 # Level Up Preview view-model
 # ---------------------------------------------------------------------------
@@ -802,6 +813,22 @@ def build_level_up_preview(
         "dependency_map": inv_next.get("dependency_map", {}),
     }
 
+    rep_curr = builder_current.calculate_artificer_replications_stats()
+    rep_next = builder_next.calculate_artificer_replications_stats()
+    is_artificer = target_class_name.lower() == "artificer"
+    replication_changes = {
+        "has_replications": bool(rep_next.get("has_replications")),
+        "is_artificer": is_artificer,
+        "current_max_plans": int(rep_curr.get("max_plans", 0) or 0),
+        "next_max_plans": int(rep_next.get("max_plans", 0) or 0),
+        "plans_gained": max(0, int(rep_next.get("max_plans", 0) or 0) - int(rep_curr.get("max_plans", 0) or 0)),
+        "current_max_active": int(rep_curr.get("max_active", 0) or 0),
+        "next_max_active": int(rep_next.get("max_active", 0) or 0),
+        "active_gained": max(0, int(rep_next.get("max_active", 0) or 0) - int(rep_curr.get("max_active", 0) or 0)),
+        "known_plans": rep_curr.get("known_plans", []),
+        "available_plans": rep_next.get("available_plans", []),
+    }
+
     return {
         "can_level_up": True,
         "class_name": target_class_name,
@@ -858,4 +885,5 @@ def build_level_up_preview(
         },
         "mastery_changes": mastery_changes,
         "invocation_changes": invocation_changes,
+        "replication_changes": replication_changes,
     }

@@ -1366,6 +1366,7 @@
       "Nature"
     ],
     "tools": [
+      "Herbalism Kit",
       "Carpenter's Tools"
     ],
     "weapons": [
@@ -1392,7 +1393,8 @@
       "Perception": "Druid"
     },
     "tools": {
-      "Carpenter's Tools": "Farmer"
+      "Carpenter's Tools": "Farmer",
+      "Herbalism Kit": "Druid"
     },
     "weapons": {
       "Martial weapons": "Warden"
@@ -2478,6 +2480,7 @@
   },
   "superiority_dice": {},
   "tool_proficiencies": [
+    "Herbalism Kit",
     "Carpenter's Tools"
   ],
   "weapon_masteries": {

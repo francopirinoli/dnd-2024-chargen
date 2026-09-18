@@ -190,6 +190,12 @@ KNOWN_CHOICE_KEYS: frozenset = frozenset({
     "maneuvers",
     "arcane_shots",
     "arcane_shot",
+    # Artificer Replicate Magic Item
+    "artificer_replicate_plans",
+    "artificer_plans",
+    "artificer_active_replications",
+    "artificer_active_items",
+    "artificer_replications",
     # Equipment
     "equipment_selections",
     "inventory",

@@ -1186,9 +1186,9 @@
       "Investigation"
     ],
     "tools": [
+      "Thieves' Tools",
       "Disguise Kit",
-      "Poisoner's Kit",
-      "Thieves' Tools"
+      "Poisoner's Kit"
     ],
     "weapons": [
       "Simple weapons",
@@ -1217,7 +1217,7 @@
     "tools": {
       "Disguise Kit": "Assassin's Tools",
       "Poisoner's Kit": "Assassin's Tools",
-      "Thieves' Tools": "Criminal"
+      "Thieves' Tools": "Rogue"
     },
     "weapons": {}
   },
@@ -1698,9 +1698,9 @@
   },
   "superiority_dice": {},
   "tool_proficiencies": [
+    "Thieves' Tools",
     "Disguise Kit",
-    "Poisoner's Kit",
-    "Thieves' Tools"
+    "Poisoner's Kit"
   ],
   "weapon_masteries": {
     "available": [],
