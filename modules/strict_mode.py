@@ -193,6 +193,8 @@ KNOWN_CHOICE_KEYS: frozenset = frozenset({
     "primal_knowledge_skill",
     "aspect_of_the_wilds",
     "subclass_aspect_of_the_wilds",
+    # Bard / Supplements
+    "primal_lore_skill",
     # Artificer Replicate Magic Item
     "artificer_replicate_plans",
     "artificer_plans",
@@ -241,6 +243,8 @@ _DYNAMIC_KEY_PATTERNS = tuple(re.compile(p) for p in (
     # Nested bonus-cantrip choice emitted by _add_nested_choices_from_effects,
     # e.g. "Thaumaturge_bonus_cantrip", "Druidic Warrior_bonus_cantrip".
     r"^.+_bonus_cantrip$",
+    # Class expertise choices, e.g. "bard_expertise_skills_2", "rogue_expertise_skills_1"
+    r"^.+_expertise_skills_\d+$",
 ))
 
 

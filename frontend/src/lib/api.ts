@@ -313,6 +313,31 @@ export interface LevelUpPreviewResponse {
     cantrip_choice_descriptors?: Array<Record<string, unknown>>;
     dependency_map?: Record<string, string[]>;
   };
+  barbarian_changes?: {
+    has_rage: boolean;
+    is_barbarian: boolean;
+    current_rage_uses: number | string;
+    next_rage_uses: number | string;
+    current_rage_damage: number;
+    next_rage_damage: number;
+    rage_damage_increased: boolean;
+    current_brutal_strike?: string | null;
+    next_brutal_strike?: string | null;
+    brutal_strike_unlocked: boolean;
+    brutal_strike_effects: string[];
+  };
+  bard_changes?: {
+    has_bardic_inspiration: boolean;
+    is_bard: boolean;
+    current_inspiration_die?: string | null;
+    next_inspiration_die?: string | null;
+    die_increased: boolean;
+    current_inspiration_uses: number;
+    next_inspiration_uses: number;
+    current_recharge?: string;
+    next_recharge?: string;
+    recharge_improved: boolean;
+  };
 }
 
 export interface BackgroundSummary {

@@ -1856,8 +1856,12 @@ class CharacterBuilder:
                     effect["from_choice"]
                 )
                 tools = chosen if isinstance(chosen, list) else [chosen] if chosen else []
-            else:
+            elif "tools" in effect:
                 tools = effect.get("tools", [])
+            elif "tool" in effect:
+                tools = [effect["tool"]] if effect["tool"] else []
+            else:
+                tools = []
             for tool in tools:
                 if not isinstance(tool, str) or not tool:
                     continue
@@ -1877,6 +1881,17 @@ class CharacterBuilder:
         elif effect_type == "grant_skill_proficiency":
             if "from_choice" in effect:
                 choice_key = effect["from_choice"]
+                clean_key = choice_key[9:] if choice_key.startswith("subclass_") else choice_key
+                short_key = choice_key.split("_")[-1]
+                chosen = (
+                    self.character_data.get("choices_made", {}).get(choice_key)
+                    or self.character_data.get("choices_made", {}).get(clean_key)
+                    or self.character_data.get("choices_made", {}).get(short_key)
+                    or self._resolve_choice_value(choice_key)
+                )
+                skills = chosen if isinstance(chosen, list) else [chosen] if chosen else []
+            elif isinstance(effect.get("skills"), str) and effect["skills"].startswith("$"):
+                choice_key = effect["skills"][1:]
                 clean_key = choice_key[9:] if choice_key.startswith("subclass_") else choice_key
                 short_key = choice_key.split("_")[-1]
                 chosen = (
@@ -2176,8 +2191,12 @@ class CharacterBuilder:
                     languages = [chosen]
                 else:
                     languages = []
-            else:
+            elif "languages" in effect:
                 languages = effect.get("languages", [])
+            elif "language" in effect:
+                languages = [effect["language"]] if effect["language"] else []
+            else:
+                languages = []
             for lang in languages:
                 if lang not in self.character_data["proficiencies"]["languages"]:
                     self.character_data["proficiencies"]["languages"].append(lang)
@@ -4741,6 +4760,16 @@ class CharacterBuilder:
                     )
             return True
 
+        # Bard College of the Moon Primal Lore skill choice
+        elif choice_key_lower in ("primal_lore_skill", "subclass_primal_lore_skill"):
+            if isinstance(choice_value, str) and choice_value:
+                if choice_value not in self.character_data["proficiencies"]["skills"]:
+                    self.character_data["proficiencies"]["skills"].append(choice_value)
+                    self.character_data["proficiency_sources"]["skills"][choice_value] = (
+                        "College of the Moon (Primal Lore)"
+                    )
+            return True
+
         # Barbarian Wild Heart Aspect of the Wilds choice
         elif choice_key_lower in ("aspect_of_the_wilds", "subclass_aspect_of_the_wilds"):
             if choice_value == "Owl":
@@ -6584,6 +6613,7 @@ class CharacterBuilder:
             "artificer_active_replications",  # Restore active replications after class applied
             "artificer_replications",  # Composite plans + active if provided
             "primal_knowledge_skill",
+            "primal_lore_skill",
             "aspect_of_the_wilds",
             "subclass_aspect_of_the_wilds",
             "alignment",
@@ -7825,6 +7855,198 @@ class CharacterBuilder:
 
         return stats
 
+    def calculate_bard_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Bardic Inspiration, Font of Inspiration, and subclass statistics for Bard characters.
+
+        Returns:
+            Dictionary with has_bardic_inspiration, bard_level, subclass, inspiration_die,
+            inspiration_uses, recharge, font_of_inspiration, countercharm, magical_secrets,
+            superior_inspiration, words_of_creation, subclass_resources, active_perks.
+        """
+        stats: Dict[str, Any] = {
+            "has_bardic_inspiration": False,
+            "bard_level": 0,
+            "subclass": "",
+            "inspiration_die": None,
+            "inspiration_uses": 0,
+            "recharge": "Long Rest",
+            "font_of_inspiration": False,
+            "countercharm": False,
+            "magical_secrets": False,
+            "superior_inspiration": False,
+            "words_of_creation": False,
+            "subclass_resources": {},
+            "active_perks": [],
+        }
+
+        bard_level = self._get_class_level("Bard")
+        stats["bard_level"] = bard_level
+        if bard_level < 1:
+            return stats
+
+        stats["has_bardic_inspiration"] = True
+        subclass_name = self._get_class_subclass("Bard") or ""
+        stats["subclass"] = subclass_name
+
+        # Inspiration Die (PHB 2024 Bard Table)
+        # Levels 1-4: d6, Levels 5-9: d8, Levels 10-14: d10, Levels 15-20: d12
+        if bard_level >= 15:
+            stats["inspiration_die"] = "d12"
+        elif bard_level >= 10:
+            stats["inspiration_die"] = "d10"
+        elif bard_level >= 5:
+            stats["inspiration_die"] = "d8"
+        else:
+            stats["inspiration_die"] = "d6"
+
+        # Inspiration Uses = Charisma modifier (min 1)
+        raw_cha = self.ability_scores.final_scores.get("Charisma", 10)
+        cha_mod = self.calculate_ability_modifier(raw_cha)
+        stats["inspiration_uses"] = max(1, cha_mod)
+
+        # Recharge: Long Rest (levels 1-4); Short or Long Rest (levels 5+ via Font of Inspiration)
+        if bard_level >= 5:
+            stats["recharge"] = "Short or Long Rest"
+            stats["font_of_inspiration"] = True
+        else:
+            stats["recharge"] = "Long Rest"
+
+        if bard_level >= 7:
+            stats["countercharm"] = True
+        if bard_level >= 10:
+            stats["magical_secrets"] = True
+        if bard_level >= 18:
+            stats["superior_inspiration"] = True
+        if bard_level >= 20:
+            stats["words_of_creation"] = True
+
+        # Active Perks
+        die = stats["inspiration_die"]
+        perks = [
+            f"Bardic Inspiration: Bonus Action, give {die} die to a creature within 60 ft; add to failed D20 Test within 1 hour ({stats['inspiration_uses']} uses/{stats['recharge']})",
+        ]
+        if bard_level >= 2:
+            perks.append("Jack of All Trades: Add half Proficiency Bonus (round down) to ability checks using a skill proficiency you lack")
+            perks.append("Expertise: Double Proficiency Bonus for 2 chosen skills")
+        if bard_level >= 5:
+            perks.append("Font of Inspiration: Regain all Bardic Inspiration uses on Short or Long Rest; can expend any spell slot to regain 1 use")
+        if bard_level >= 7:
+            perks.append("Countercharm: Reaction when you or a creature within 30 ft fails a save against Charmed or Frightened to reroll with Advantage")
+        if bard_level >= 9:
+            perks.append("Expertise: Double Proficiency Bonus for 2 additional skills")
+        if bard_level >= 10:
+            perks.append("Magical Secrets: Choose prepared spells from Bard, Cleric, Druid, and Wizard spell lists")
+        if bard_level >= 18:
+            perks.append("Superior Inspiration: Regain expended Bardic Inspiration uses until you have at least 2 when rolling Initiative")
+        if bard_level >= 20:
+            perks.append("Words of Creation: Power Word Heal and Power Word Kill always prepared; can target a second creature within 10 ft")
+        stats["active_perks"] = perks
+
+        # Subclass Resources
+        if subclass_name == "College of Dance" and bard_level >= 3:
+            stats["subclass_resources"]["dazzling_footwork"] = {
+                "name": "Dazzling Footwork",
+                "unarmored_ac": "10 + DEX + CHA (no armor, no shield)",
+                "agile_strikes": "When expending Bardic Inspiration, make 1 Unarmed Strike as part of the action/bonus action/reaction",
+                "bardic_damage": f"Unarmed Strikes can use DEX and deal 1{die} + DEX Bludgeoning damage without expending the die",
+            }
+            if bard_level >= 6:
+                stats["subclass_resources"]["inspiring_movement"] = {
+                    "name": "Inspiring Movement",
+                    "description": "Reaction + 1 Bardic Inspiration use to move half Speed without OA; ally within 30 ft can also move half Speed",
+                }
+                stats["subclass_resources"]["tandem_footwork"] = {
+                    "name": "Tandem Footwork",
+                    "description": f"Expend 1 Bardic Inspiration use on Initiative: you and allies within 30 ft gain +1{die} bonus to Initiative",
+                }
+            if bard_level >= 14:
+                stats["subclass_resources"]["leading_evasion"] = {
+                    "name": "Leading Evasion",
+                    "description": "Dex save half damage -> 0 on success, half on failure. Can share with creatures within 5 ft",
+                }
+        elif subclass_name == "College of Glamour" and bard_level >= 3:
+            stats["subclass_resources"]["beguiling_magic"] = {
+                "name": "Beguiling Magic",
+                "description": "After casting Enchantment/Illusion spell with spell slot, target within 60 ft makes Wis save or Charmed/Frightened 1 min. 1/Long Rest or expend 1 Bardic Inspiration",
+            }
+            stats["subclass_resources"]["mantle_of_inspiration"] = {
+                "name": "Mantle of Inspiration",
+                "description": f"Bonus Action + 1 Bardic Inspiration use: up to {stats['inspiration_uses']} creatures within 60 ft gain 2x 1{die} Temp HP and reaction move Speed without OA",
+            }
+            if bard_level >= 6:
+                stats["subclass_resources"]["mantle_of_majesty"] = {
+                    "name": "Mantle of Majesty",
+                    "description": "Bonus Action free cast Command, 1 min concentration, repeat BA Command each turn. 1/Long Rest or expend level 3+ slot",
+                }
+            if bard_level >= 14:
+                stats["subclass_resources"]["unbreakable_majesty"] = {
+                    "name": "Unbreakable Majesty",
+                    "description": "Bonus Action 1 min majesty: first attacker each turn makes Cha save or attack misses. 1/Short or Long Rest",
+                }
+        elif subclass_name == "College of Lore" and bard_level >= 3:
+            stats["subclass_resources"]["cutting_words"] = {
+                "name": "Cutting Words",
+                "description": f"Reaction + 1 Bardic Inspiration use: subtract 1{die} from creature's damage roll, ability check, or attack roll within 60 ft",
+            }
+            if bard_level >= 6:
+                stats["subclass_resources"]["magical_discoveries"] = {
+                    "name": "Magical Discoveries",
+                    "description": "Learn 2 spells of choice from Cleric, Druid, or Wizard lists (cantrip or spell slot level), always prepared",
+                }
+            if bard_level >= 14:
+                stats["subclass_resources"]["peerless_skill"] = {
+                    "name": "Peerless Skill",
+                    "description": f"Add 1{die} to failed ability check or missed attack roll; if still fails, Bardic Inspiration is not expended",
+                }
+        elif subclass_name == "College of Valor" and bard_level >= 3:
+            stats["subclass_resources"]["combat_inspiration"] = {
+                "name": "Combat Inspiration",
+                "description": f"Creature with your Bardic Inspiration die can add 1{die} to AC as Reaction against an attack, or add 1{die} to damage roll after hitting",
+            }
+            if bard_level >= 6:
+                stats["subclass_resources"]["extra_attack"] = {
+                    "name": "Extra Attack",
+                    "description": "Attack twice when taking Attack action, and can replace one attack with an action cantrip",
+                }
+            if bard_level >= 14:
+                stats["subclass_resources"]["battle_magic"] = {
+                    "name": "Battle Magic",
+                    "description": "Make 1 weapon attack as Bonus Action after casting an action spell",
+                }
+        elif subclass_name == "College of the Moon" and bard_level >= 3:
+            stats["subclass_resources"]["moons_inspiration"] = {
+                "name": "Moon's Inspiration",
+                "description": f"Inspired Eclipse: Invisibility + 30 ft teleport when giving Bardic Inspiration. Lunar Vitality: 1/turn add 1{die} to spell healing and +10 ft speed",
+            }
+            if bard_level >= 6:
+                stats["subclass_resources"]["blessing_of_moonlight"] = {
+                    "name": "Blessing of Moonlight",
+                    "description": "When casting Moonbeam, shed Dim Light 5 ft; creature fails save -> ally within 60 ft heals 2d4 (1/Long Rest)",
+                }
+            if bard_level >= 14:
+                stats["subclass_resources"]["eventides_splendor"] = {
+                    "name": "Eventide's Splendor",
+                    "description": "Inspired Eclipse shares invisibility + 30 ft reaction teleport with recipient; Lunar Vitality rolls 1d6 instead of expending Bardic Inspiration die",
+                }
+        elif subclass_name == "College of Spirits" and bard_level >= 3:
+            stats["subclass_resources"]["spirits_from_beyond"] = {
+                "name": "Spirits from Beyond",
+                "description": f"Channel spirits on Bardic Inspiration die roll (1-{die[1:]}); Controlled Channeling (BA expend BI to choose spirit); Unleash Spirit as Magic action within 30 ft",
+            }
+            if bard_level >= 6:
+                stats["subclass_resources"]["empowered_channeling"] = {
+                    "name": "Empowered Channeling",
+                    "description": "Power from Beyond: +1d6 to damage or healing of Bard spell with slot 1/turn. Spiritual Manifestation: Spirit Guardians 1/Long Rest free cast; Half Cover for allies in emanation 1/Short or Long Rest",
+                }
+            if bard_level >= 14:
+                stats["subclass_resources"]["mystical_connection"] = {
+                    "name": "Mystical Connection",
+                    "description": "Roll twice on Spirits from Beyond table and choose; if duplicate rolls, choose any spirit on the table",
+                }
+
+        return stats
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -7906,6 +8128,8 @@ class CharacterBuilder:
         proficiency_bonus = self.calculate_proficiency_bonus(
             self.character_data.get("level", 1)
         )
+        bard_level = self._get_class_level("Bard")
+        has_jack_of_all_trades = bard_level >= 2
 
         # Build normalized (lowercase, space-separated) lookup sets so that
         # "Sleight of Hand", "Sleight Of Hand", and "sleight_of_hand" all match
@@ -7932,10 +8156,14 @@ class CharacterBuilder:
             # Calculate bonus
             ability_modifier = ability_scores[ability]["modifier"]
             prof_bonus = 0
+            jack_of_all_trades = False
             if expertise:
                 prof_bonus = proficiency_bonus * 2
             elif proficient:
                 prof_bonus = proficiency_bonus
+            elif has_jack_of_all_trades:
+                prof_bonus = proficiency_bonus // 2
+                jack_of_all_trades = True
 
             bonus = ability_modifier + prof_bonus
 
@@ -7947,6 +8175,8 @@ class CharacterBuilder:
                 "ability": ability,
                 "source": source,
             }
+            if jack_of_all_trades:
+                skills[skill]["jack_of_all_trades"] = True
 
         return skills
 
@@ -8274,6 +8504,7 @@ class CharacterBuilder:
         # Base unarmed strike: 1 + STR modifier
         # With Unarmed Fighting: 1d6 + STR (or 1d8 + STR if no weapons/shield)
         # With Martial Arts (Monk): martial_arts_die + max(STR, DEX)
+        # With College of Dance (Bard): 1{inspiration_die} + max(STR, DEX)
         str_mod = ability_scores.get("strength", {}).get("modifier", 0)
         dex_mod = ability_scores.get("dexterity", {}).get("modifier", 0)
         # Phase 6: read from structured fighting-style flags.
@@ -8282,11 +8513,22 @@ class CharacterBuilder:
         )
         martial_arts_die = self.character_data.get("martial_arts_die")
 
+        bard_level = self._get_class_level("Bard")
+        bard_subclass = self._get_class_subclass("Bard") or ""
+        is_dance_bard = bard_subclass == "College of Dance" and bard_level >= 3
+        dance_die = None
+        if is_dance_bard:
+            dance_die = "d12" if bard_level >= 15 else ("d10" if bard_level >= 10 else ("d8" if bard_level >= 5 else "d6"))
+
         # Determine the damage die and ability modifier for the unarmed strike
         if martial_arts_die:
             # Monk: Martial Arts die + max(STR, DEX) (Dexterous Attacks)
             unarmed_mod = max(str_mod, dex_mod)
             unarmed_damage_dice = martial_arts_die
+        elif is_dance_bard and dance_die:
+            # College of Dance Bard: Bardic Damage 1{die} + max(STR, DEX)
+            unarmed_mod = max(str_mod, dex_mod)
+            unarmed_damage_dice = f"1{dance_die}"
         elif has_unarmed_fighting:
             unarmed_mod = str_mod
             has_weapons_or_shield = len(all_weapons) > 0
@@ -8326,14 +8568,16 @@ class CharacterBuilder:
         unarmed_attack_bonus = unarmed_mod + proficiency_bonus
 
         unarmed_notes = []
-        if has_unarmed_fighting and not martial_arts_die:
+        if is_dance_bard and dance_die:
+            unarmed_notes.append("Bardic Damage (roll BI die without expending)")
+        if has_unarmed_fighting and not martial_arts_die and not is_dance_bard:
             if has_weapons_or_shield or has_shield:
                 unarmed_notes.append("1d8 if no weapons or shield equipped")
             else:
                 unarmed_notes.append("1d6 if wielding weapons or shield")
             unarmed_notes.append("1d4 damage to grappled creature (start of turn)")
 
-        unarmed_ability = "DEX" if martial_arts_die and dex_mod > str_mod else "STR"
+        unarmed_ability = "DEX" if ((martial_arts_die or is_dance_bard) and dex_mod > str_mod) else "STR"
         unarmed_rage_bonus = barbarian_rage_damage if (barbarian_rage_damage > 0 and unarmed_ability == "STR") else 0
         if unarmed_rage_bonus > 0:
             unarmed_notes.append(f"+{unarmed_rage_bonus} while Raging")
@@ -9634,6 +9878,11 @@ class CharacterBuilder:
         barbarian_stats = self.calculate_barbarian_stats()
         if barbarian_stats.get("has_rage"):
             character_data["barbarian_stats"] = barbarian_stats
+
+        # Add Bard stats (Bard only)
+        bard_stats = self.calculate_bard_stats()
+        if bard_stats.get("has_bardic_inspiration"):
+            character_data["bard_stats"] = bard_stats
 
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:

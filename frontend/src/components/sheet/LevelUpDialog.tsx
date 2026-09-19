@@ -37,6 +37,7 @@ import {
   ChevronDown,
   ChevronUp,
   Wand2,
+  Music,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -422,8 +423,8 @@ export function LevelUpDialog({ open, onClose, onSuccess }: LevelUpDialogProps) 
               </div>
             </div>
 
-            {/* Spellcasting & Weapon Mastery callouts */}
-            {(preview.spellcasting_changes?.has_spellcasting || preview.mastery_changes?.increased) && (
+            {/* Spellcasting, Weapon Mastery & Bardic Inspiration callouts */}
+            {(preview.spellcasting_changes?.has_spellcasting || preview.mastery_changes?.increased || (preview.bard_changes?.has_bardic_inspiration && (preview.bard_changes.die_increased || preview.bard_changes.recharge_improved))) && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {preview.spellcasting_changes?.has_spellcasting && (
                   <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm space-y-1.5">
@@ -459,6 +460,26 @@ export function LevelUpDialog({ open, onClose, onSuccess }: LevelUpDialogProps) 
                       Masteries Known: {preview.mastery_changes.current_max} →{" "}
                       <span className="font-semibold text-foreground">{preview.mastery_changes.next_max}</span>
                     </p>
+                  </div>
+                )}
+
+                {preview.bard_changes?.has_bardic_inspiration && (preview.bard_changes.die_increased || preview.bard_changes.recharge_improved) && (
+                  <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 text-sm space-y-1.5">
+                    <div className="flex items-center gap-2 font-semibold text-amber-700 dark:text-amber-300">
+                      <Music className="h-4 w-4" />
+                      Bardic Inspiration Enhanced
+                    </div>
+                    {preview.bard_changes.die_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Inspiration Die: {preview.bard_changes.current_inspiration_die} →{" "}
+                        <span className="font-semibold text-foreground">{preview.bard_changes.next_inspiration_die}</span>
+                      </p>
+                    )}
+                    {preview.bard_changes.recharge_improved && (
+                      <p className="text-xs text-muted-foreground">
+                        Font of Inspiration: Regain uses on <span className="font-semibold text-foreground">Short or Long Rest</span> (plus spell slot recovery)!
+                      </p>
+                    )}
                   </div>
                 )}
               </div>

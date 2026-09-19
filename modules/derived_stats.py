@@ -852,6 +852,28 @@ def build_level_up_preview(
         "brutal_strike_effects": barb_next.get("brutal_strike_effects", []),
     }
 
+    bard_curr = builder_current.calculate_bard_stats()
+    bard_next = builder_next.calculate_bard_stats()
+    is_bard = target_class_name.lower() == "bard"
+    bard_changes = {
+        "has_bardic_inspiration": bool(bard_next.get("has_bardic_inspiration")),
+        "is_bard": is_bard,
+        "current_inspiration_die": bard_curr.get("inspiration_die"),
+        "next_inspiration_die": bard_next.get("inspiration_die"),
+        "die_increased": (
+            bard_curr.get("inspiration_die") is not None
+            and bard_next.get("inspiration_die") != bard_curr.get("inspiration_die")
+        ),
+        "current_inspiration_uses": bard_curr.get("inspiration_uses", 0),
+        "next_inspiration_uses": bard_next.get("inspiration_uses", 0),
+        "current_recharge": bard_curr.get("recharge"),
+        "next_recharge": bard_next.get("recharge"),
+        "recharge_improved": (
+            bard_curr.get("recharge") == "Long Rest"
+            and bard_next.get("recharge") == "Short or Long Rest"
+        ),
+    }
+
     return {
         "can_level_up": True,
         "class_name": target_class_name,
@@ -910,4 +932,5 @@ def build_level_up_preview(
         "invocation_changes": invocation_changes,
         "replication_changes": replication_changes,
         "barbarian_changes": barbarian_changes,
+        "bard_changes": bard_changes,
     }

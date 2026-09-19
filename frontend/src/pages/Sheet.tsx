@@ -23,6 +23,7 @@ import {
   ChevronsUpDown,
   Printer,
   Flame,
+  Music,
 } from "lucide-react";
 import { PrepareSpellsDialog } from "@/components/sheet/PrepareSpellsDialog";
 import { ChooseMasteriesDialog } from "@/components/sheet/ChooseMasteriesDialog";
@@ -1285,15 +1286,18 @@ function Skills({ c }: { c: Char }) {
                 const ability = str(d.ability);
                 const proficient = d.proficient === true;
                 const expertise = d.expertise === true;
+                const jackOfAllTrades = d.jack_of_all_trades === true;
                 const marked = proficient || expertise;
                 const source = str(d.source);
                 const showSource = marked && source && source !== "None";
-                const marker = expertise ? "★" : proficient ? "★" : "○";
+                const marker = expertise ? "★" : proficient ? "★" : jackOfAllTrades ? "◑" : "○";
                 const markerClass = expertise
                   ? "text-blue-400"
                   : proficient
                     ? "text-primary"
-                    : "text-muted-foreground/60";
+                    : jackOfAllTrades
+                      ? "text-amber-400"
+                      : "text-muted-foreground/60";
                 return (
                   <li
                     key={name}
@@ -1308,7 +1312,9 @@ function Skills({ c }: { c: Char }) {
                           "truncate " +
                           (marked
                             ? "font-semibold text-foreground"
-                            : "text-muted-foreground")
+                            : jackOfAllTrades
+                              ? "font-medium text-foreground"
+                              : "text-muted-foreground")
                         }
                       >
                         {formatName(name)}
@@ -1323,11 +1329,16 @@ function Skills({ c }: { c: Char }) {
                           {source}
                         </span>
                       )}
+                      {jackOfAllTrades && (
+                        <span className="shrink-0 rounded border border-amber-500/40 bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-amber-400">
+                          JoAT
+                        </span>
+                      )}
                     </span>
                     <span
                       className={
                         "shrink-0 tabular-nums " +
-                        (marked ? "text-foreground" : "text-muted-foreground")
+                        (marked || jackOfAllTrades ? "text-foreground" : "text-muted-foreground")
                       }
                     >
                       {signed(bonus)}
@@ -1338,7 +1349,8 @@ function Skills({ c }: { c: Char }) {
           </ul>
           <div className="mt-3 border-t border-border/60 pt-2 text-[10px] uppercase tracking-wide text-muted-foreground/80">
             <span className="text-primary">★</span> Proficient ·{" "}
-            <span className="text-blue-400">★</span> Expertise
+            <span className="text-blue-400">★</span> Expertise ·{" "}
+            <span className="text-amber-400">◑</span> Jack of All Trades
           </div>
         </>
       )}
@@ -1406,6 +1418,8 @@ function Attacks({
   const attacks = arr<Record<string, unknown>>(c.attacks);
   const barbarianStats = rec(c.barbarian_stats);
   const hasRage = Boolean(barbarianStats.has_rage);
+  const bardStats = rec(c.bard_stats);
+  const hasBardicInspiration = Boolean(bardStats.has_bardic_inspiration);
   const combinations = arr<Record<string, unknown>>(c.attack_combinations);
 
   const serverBestCombination = rec(c.best_attack_combination);
@@ -1737,6 +1751,26 @@ function Attacks({
                 {typeof barbarianStats.rage_uses === "string"
                   ? barbarianStats.rage_uses
                   : `${num(barbarianStats.rage_uses)} uses / Long Rest`}
+              </span>
+            </div>
+          )}
+
+          {hasBardicInspiration && bardStats.inspiration_die !== undefined && (
+            <div className="mt-3 flex items-center justify-between rounded border border-border/80 bg-background/40 p-3 text-xs">
+              <div className="flex items-center gap-2">
+                <Music className="h-4 w-4 text-amber-400" />
+                <span className="font-semibold uppercase tracking-wide text-amber-400">
+                  Bardic Inspiration
+                </span>
+                <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                  {str(bardStats.inspiration_die)}
+                </span>
+                <span className="text-muted-foreground hidden sm:inline">
+                  (Bonus Action to inspire creature within 60 ft)
+                </span>
+              </div>
+              <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                {num(bardStats.inspiration_uses)} uses / {str(bardStats.recharge) ?? "Long Rest"}
               </span>
             </div>
           )}

@@ -85,6 +85,28 @@
     "19": 6,
     "20": 6
   },
+  "bardic_inspiration_die_by_level": {
+    "1": "d6",
+    "2": "d6",
+    "3": "d6",
+    "4": "d6",
+    "5": "d8",
+    "6": "d8",
+    "7": "d8",
+    "8": "d8",
+    "9": "d8",
+    "10": "d10",
+    "11": "d10",
+    "12": "d10",
+    "13": "d10",
+    "14": "d10",
+    "15": "d12",
+    "16": "d12",
+    "17": "d12",
+    "18": "d12",
+    "19": "d12",
+    "20": "d12"
+  },
   "cantrips_by_level": {
     "1": 2,
     "2": 2,
@@ -360,7 +382,23 @@
       }
     },
     "2": {
-      "Expertise": "Gain Expertise in two skill proficiencies of your choice.",
+      "Expertise": {
+        "description": "Gain Expertise in two skills of your choice.",
+        "choices": {
+          "type": "select_multiple",
+          "count": 2,
+          "name": "bard_expertise_skills_2",
+          "source": {
+            "type": "proficient_skills"
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_skill_expertise",
+            "from_choice": "bard_expertise_skills_2"
+          }
+        ]
+      },
       "Jack of all Trades": "You can add half your Proficiency Bonus (round down) to any ability check you make that uses a skill proficiency you lack and that doesn't otherwise use your Proficiency Bonus."
     },
     "3": {
@@ -410,7 +448,23 @@
       }
     },
     "9": {
-      "Expertise": "Gain Expertise in two more skill proficiencies of your choice."
+      "Expertise": {
+        "description": "Gain Expertise in two more skill proficiencies of your choice.",
+        "choices": {
+          "type": "select_multiple",
+          "count": 2,
+          "name": "bard_expertise_skills_9",
+          "source": {
+            "type": "proficient_skills"
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_skill_expertise",
+            "from_choice": "bard_expertise_skills_9"
+          }
+        ]
+      }
     },
     "10": {
       "Magical Secrets": "When gaining prepared spells, can choose from Bard, Cleric, Druid, or Wizard spell lists."
@@ -457,7 +511,18 @@
       "Superior Inspiration": "When you roll Initiative, regain expended uses of Bardic Inspiration until you have two."
     },
     "19": {
-      "Epic Boon": "Gain an Epic Boon feat or another feat of your choice."
+      "Epic Boon": {
+        "description": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Spell Recall is recommended.",
+        "choices": {
+          "name": "class_feat_19",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
     },
     "20": {
       "Words of Creation": {

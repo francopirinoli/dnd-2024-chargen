@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 from modules.character_builder import CharacterBuilder
+from modules.derived_stats import build_level_up_preview
 
 
 @pytest.fixture
@@ -485,3 +486,303 @@ class TestBardToolProficiencyChoice:
         assert "Lute" in tools
         assert "Flute" in tools
         assert "Drum" in tools
+
+
+# ==================== Bardic Inspiration & Stats ====================
+
+
+class TestBardicInspirationAndStats:
+
+    def test_bardic_inspiration_stats_level_1(self):
+        """Level 1 Bard: die is d6, uses equal CHA mod (min 1), recharge Long Rest."""
+        builder = _build_full_bard(
+            level=1,
+            ability_scores={"Strength": 8, "Dexterity": 14, "Constitution": 12, "Intelligence": 13, "Wisdom": 10, "Charisma": 14},
+            background_bonuses={"Charisma": 2, "Dexterity": 1},  # CHA 16 (+3)
+        )
+        stats = builder.calculate_bard_stats()
+        assert stats["has_bardic_inspiration"] is True
+        assert stats["bard_level"] == 1
+        assert stats["inspiration_die"] == "d6"
+        assert stats["inspiration_uses"] == 3
+        assert stats["recharge"] == "Long Rest"
+        assert stats["font_of_inspiration"] is False
+
+    def test_bardic_inspiration_scaling(self):
+        """Die scales d6 (1-4) -> d8 (5-9) -> d10 (10-14) -> d12 (15-20); Font of Inspiration at lv 5."""
+        levels_to_die = {
+            1: "d6", 4: "d6",
+            5: "d8", 9: "d8",
+            10: "d10", 14: "d10",
+            15: "d12", 20: "d12",
+        }
+        for lvl, expected_die in levels_to_die.items():
+            builder = _build_bard(level=lvl)
+            stats = builder.calculate_bard_stats()
+            assert stats["inspiration_die"] == expected_die, f"Expected {expected_die} at level {lvl}, got {stats['inspiration_die']}"
+            if lvl >= 5:
+                assert stats["recharge"] == "Short or Long Rest"
+                assert stats["font_of_inspiration"] is True
+            else:
+                assert stats["recharge"] == "Long Rest"
+                assert stats["font_of_inspiration"] is False
+
+        # Level 7 Countercharm
+        assert _build_bard(level=7).calculate_bard_stats()["countercharm"] is True
+        # Level 10 Magical Secrets
+        assert _build_bard(level=10).calculate_bard_stats()["magical_secrets"] is True
+        # Level 18 Superior Inspiration
+        assert _build_bard(level=18).calculate_bard_stats()["superior_inspiration"] is True
+        # Level 20 Words of Creation
+        assert _build_bard(level=20).calculate_bard_stats()["words_of_creation"] is True
+
+    def test_bardic_inspiration_minimum_uses(self):
+        """Bardic Inspiration uses is minimum 1 even if Charisma modifier is <= 0."""
+        builder = _build_full_bard(
+            level=1,
+            ability_scores={"Strength": 10, "Dexterity": 14, "Constitution": 12, "Intelligence": 13, "Wisdom": 10, "Charisma": 8},
+            background_bonuses={"Strength": 2, "Dexterity": 1},  # CHA 8 (-1)
+        )
+        stats = builder.calculate_bard_stats()
+        assert stats["inspiration_uses"] == 1
+
+    def test_bard_stats_in_to_character(self):
+        """to_character() includes bard_stats for Bard characters."""
+        builder = _build_full_bard(level=5)
+        char = builder.to_character()
+        assert "bard_stats" in char
+        assert char["bard_stats"]["has_bardic_inspiration"] is True
+        assert char["bard_stats"]["inspiration_die"] == "d8"
+        assert char["bard_stats"]["recharge"] == "Short or Long Rest"
+
+
+# ==================== Jack of All Trades ====================
+
+
+class TestJackOfAllTrades:
+
+    def test_jack_of_all_trades_inactive_at_level_1(self):
+        """Level 1 Bard does NOT gain Jack of All Trades on non-proficient skills."""
+        builder = _build_full_bard(level=1)
+        skills = builder.calculate_skills()
+        # Non-proficient skill (e.g. Athletics) should not have jack_of_all_trades
+        athletics = skills.get("athletics", {})
+        if not athletics.get("proficient"):
+            assert not athletics.get("jack_of_all_trades")
+            # STR 8 (-1), PB 2; without JoAT, bonus is -1
+            assert athletics["bonus"] == -1
+
+    def test_jack_of_all_trades_active_at_level_2(self):
+        """Level 2 Bard adds half PB (rounded down) to non-proficient skills."""
+        builder = _build_full_bard(level=2)
+        skills = builder.calculate_skills()
+        # Level 2 PB is 2 -> half PB is 1
+        # STR 8 (-1) -> with JoAT (+1), bonus is 0
+        athletics = skills.get("athletics", {})
+        if not athletics.get("proficient"):
+            assert athletics.get("jack_of_all_trades") is True
+            assert athletics["bonus"] == 0  # -1 + 1 = 0
+
+    def test_jack_of_all_trades_with_higher_pb(self):
+        """Level 9 Bard (PB 4, half PB 2) adds +2 to non-proficient skills."""
+        builder = _build_full_bard(level=9)
+        skills = builder.calculate_skills()
+        athletics = skills.get("athletics", {})
+        if not athletics.get("proficient"):
+            assert athletics.get("jack_of_all_trades") is True
+            assert athletics["bonus"] == 1  # -1 + 2 = 1
+
+    def test_jack_of_all_trades_does_not_apply_to_proficient_skills(self):
+        """Proficient skills use full PB and do not mark jack_of_all_trades."""
+        builder = _build_full_bard(level=2)
+        skills = builder.calculate_skills()
+        # Find a proficient skill
+        prof_skills = [s for s in skills.values() if s.get("proficient")]
+        assert len(prof_skills) > 0
+        for s in prof_skills:
+            assert not s.get("jack_of_all_trades")
+
+
+# ==================== Expertise Choices ====================
+
+
+class TestBardExpertiseChoices:
+
+    def test_bard_expertise_level_2_choice(self):
+        """Applying bard_expertise_skills_2 at level 2 grants Expertise in chosen skills."""
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Test Bard",
+            "level": 2,
+            "species": "Human",
+            "class": "Bard",
+            "background": "Entertainer",
+            "ability_scores": {
+                "Strength": 8, "Dexterity": 14, "Constitution": 12,
+                "Intelligence": 13, "Wisdom": 10, "Charisma": 15,
+            },
+            "background_bonuses": {"Charisma": 2, "Dexterity": 1},
+            "skill_choices": ["Performance", "Persuasion", "Deception"],
+            "bard_expertise_skills_2": ["Performance", "Persuasion"],
+        })
+        character = builder.to_character()
+        skills = character["skills"]
+        assert skills["performance"]["expertise"] is True
+        assert skills["persuasion"]["expertise"] is True
+        # Deception was only proficient, not expertise
+        assert skills["deception"]["proficient"] is True
+        assert skills["deception"]["expertise"] is False
+
+    def test_bard_expertise_level_9_choice(self):
+        """Applying bard_expertise_skills_9 at level 9 grants two more Expertises."""
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Test Bard",
+            "level": 9,
+            "species": "Human",
+            "class": "Bard",
+            "background": "Entertainer",
+            "ability_scores": {
+                "Strength": 8, "Dexterity": 14, "Constitution": 12,
+                "Intelligence": 13, "Wisdom": 10, "Charisma": 15,
+            },
+            "background_bonuses": {"Charisma": 2, "Dexterity": 1},
+            "skill_choices": ["Performance", "Persuasion", "Deception", "Insight"],
+            "bard_expertise_skills_2": ["Performance", "Persuasion"],
+            "bard_expertise_skills_9": ["Deception", "Insight"],
+        })
+        character = builder.to_character()
+        skills = character["skills"]
+        assert skills["performance"]["expertise"] is True
+        assert skills["persuasion"]["expertise"] is True
+        assert skills["deception"]["expertise"] is True
+        assert skills["insight"]["expertise"] is True
+
+
+# ==================== Epic Boon Choice ====================
+
+
+class TestBardEpicBoon:
+
+    def test_bard_level_19_has_class_feat_19_choice(self):
+        """Level 19 Bard has class_feat_19 ASI/Epic Boon choice slot."""
+        builder = CharacterBuilder()
+        class_data = builder._load_class_data("Bard")
+        feat_19 = class_data["features_by_level"]["19"]["Epic Boon"]
+        assert isinstance(feat_19, dict)
+        assert feat_19.get("feature_kind") == "asi"
+        assert feat_19["choices"]["name"] == "class_feat_19"
+
+
+# ==================== College of Dance Unarmed Strike ====================
+
+
+class TestCollegeOfDanceUnarmedStrike:
+
+    def test_dance_unarmed_strike_uses_dex_and_bi_die(self):
+        """College of Dance Bard (level 3) uses DEX for Unarmed Strike and deals 1d6 + DEX."""
+        builder = _build_full_bard(
+            level=3,
+            subclass="College of Dance",
+            ability_scores={"Strength": 8, "Dexterity": 16, "Constitution": 12, "Intelligence": 10, "Wisdom": 10, "Charisma": 16},
+        )
+        attacks = builder.calculate_weapon_attacks()["attacks"]
+        unarmed = next((a for a in attacks if a["name"] == "Unarmed Strike"), None)
+        assert unarmed is not None
+        assert unarmed["ability"] == "DEX"
+        assert unarmed["damage"] == "1d6 + 3"
+        assert any("Bardic Damage" in note for note in unarmed.get("damage_notes", []))
+
+    def test_dance_unarmed_strike_scales_with_bi_die(self):
+        """College of Dance Bard (level 15) deals 1d12 + DEX on Unarmed Strike."""
+        builder = _build_full_bard(
+            level=15,
+            subclass="College of Dance",
+            ability_scores={"Strength": 8, "Dexterity": 18, "Constitution": 12, "Intelligence": 10, "Wisdom": 10, "Charisma": 16},
+        )
+        attacks = builder.calculate_weapon_attacks()["attacks"]
+        unarmed = next((a for a in attacks if a["name"] == "Unarmed Strike"), None)
+        assert unarmed is not None
+        assert unarmed["damage"] == "1d12 + 4"
+
+
+# ==================== Supplement Subclasses ====================
+
+
+class TestSupplementBardSubclasses:
+
+    def test_college_of_spirits_channeler_and_spiritual_manifestation(self):
+        """College of Spirits grants Guidance, Playing Cards at L3, and Spirit Guardians at L6."""
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Test Spirits Bard",
+            "level": 6,
+            "species": "Human",
+            "class": "Bard",
+            "subclass": "College of Spirits",
+            "background": "Entertainer",
+            "active_sources": ["ravenloft-the-horrors-within"],
+            "ability_scores": {"Strength": 8, "Dexterity": 14, "Constitution": 12, "Intelligence": 13, "Wisdom": 10, "Charisma": 15},
+            "background_bonuses": {"Charisma": 2, "Dexterity": 1},
+        })
+        char = builder.to_character()
+        # Playing Cards tool proficiency
+        assert "Playing Cards" in char["proficiencies"]["tools"]
+        # Always prepared spells
+        always_prepared = char["spells"]["always_prepared"]
+        assert "Guidance" in always_prepared
+        assert "Spirit Guardians" in always_prepared
+
+    def test_college_of_the_moon_primal_lore_and_moonbeam(self):
+        """College of the Moon grants Druidic, primal_lore_skill at L3, and Moonbeam at L6."""
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Test Moon Bard",
+            "level": 6,
+            "species": "Human",
+            "class": "Bard",
+            "subclass": "College of the Moon",
+            "background": "Entertainer",
+            "active_sources": ["forgotten-realms-heroes-of-faerun"],
+            "primal_lore_skill": "Nature",
+            "ability_scores": {"Strength": 8, "Dexterity": 14, "Constitution": 12, "Intelligence": 13, "Wisdom": 10, "Charisma": 15},
+            "background_bonuses": {"Charisma": 2, "Dexterity": 1},
+        })
+        char = builder.to_character()
+        # Druidic language
+        assert "Druidic" in char["proficiencies"]["languages"]
+        # Nature skill proficiency
+        assert "Nature" in char["proficiencies"]["skills"]
+        # Moonbeam always prepared
+        always_prepared = char["spells"]["always_prepared"]
+        assert "Moonbeam" in always_prepared
+
+
+# ==================== Level Up Preview ====================
+
+
+class TestBardLevelUpPreview:
+
+    def test_bard_level_up_preview_contains_bard_changes(self):
+        """build_level_up_preview() contains bard_changes with die increase and recharge improvement."""
+        choices = {
+            "character_name": "Test Bard",
+            "level": 4,
+            "species": "Human",
+            "class": "Bard",
+            "background": "Entertainer",
+            "ability_scores": {"Strength": 8, "Dexterity": 14, "Constitution": 12, "Intelligence": 13, "Wisdom": 10, "Charisma": 15},
+            "background_bonuses": {"Charisma": 2, "Dexterity": 1},
+        }
+        preview = build_level_up_preview(choices)
+        assert "bard_changes" in preview
+        bc = preview["bard_changes"]
+        assert bc["is_bard"] is True
+        assert bc["has_bardic_inspiration"] is True
+        assert bc["current_inspiration_die"] == "d6"
+        assert bc["next_inspiration_die"] == "d8"
+        assert bc["die_increased"] is True
+        assert bc["current_recharge"] == "Long Rest"
+        assert bc["next_recharge"] == "Short or Long Rest"
+        assert bc["recharge_improved"] is True
+

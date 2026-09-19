@@ -257,6 +257,30 @@
     },
     "status": "active"
   },
+  "bard_stats": {
+    "active_perks": [
+      "Bardic Inspiration: Bonus Action, give d6 die to a creature within 60 ft; add to failed D20 Test within 1 hour (3 uses/Long Rest)",
+      "Jack of All Trades: Add half Proficiency Bonus (round down) to ability checks using a skill proficiency you lack",
+      "Expertise: Double Proficiency Bonus for 2 chosen skills"
+    ],
+    "bard_level": 3,
+    "countercharm": false,
+    "font_of_inspiration": false,
+    "has_bardic_inspiration": true,
+    "inspiration_die": "d6",
+    "inspiration_uses": 3,
+    "magical_secrets": false,
+    "recharge": "Long Rest",
+    "subclass": "College of Valor",
+    "subclass_resources": {
+      "combat_inspiration": {
+        "description": "Creature with your Bardic Inspiration die can add 1d6 to AC as Reaction against an attack, or add 1d6 to damage roll after hitting",
+        "name": "Combat Inspiration"
+      }
+    },
+    "superior_inspiration": false,
+    "words_of_creation": false
+  },
   "best_attack_combination": {
     "mainhand": {
       "attack_bonus": 4,
@@ -365,6 +389,28 @@
     "armor_proficiencies": [
       "Light armor"
     ],
+    "bardic_inspiration_die_by_level": {
+      "1": "d6",
+      "10": "d10",
+      "11": "d10",
+      "12": "d10",
+      "13": "d10",
+      "14": "d10",
+      "15": "d12",
+      "16": "d12",
+      "17": "d12",
+      "18": "d12",
+      "19": "d12",
+      "2": "d6",
+      "20": "d12",
+      "3": "d6",
+      "4": "d6",
+      "5": "d8",
+      "6": "d8",
+      "7": "d8",
+      "8": "d8",
+      "9": "d8"
+    },
     "cantrip_progression": "class_table",
     "cantrips_by_level": {
       "1": 2,
@@ -442,10 +488,37 @@
         "Superior Inspiration": "When you roll Initiative, regain expended uses of Bardic Inspiration until you have two."
       },
       "19": {
-        "Epic Boon": "Gain an Epic Boon feat or another feat of your choice."
+        "Epic Boon": {
+          "choices": {
+            "name": "class_feat_19",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Spell Recall is recommended.",
+          "feature_kind": "asi"
+        }
       },
       "2": {
-        "Expertise": "Gain Expertise in two skill proficiencies of your choice.",
+        "Expertise": {
+          "choices": {
+            "count": 2,
+            "name": "bard_expertise_skills_2",
+            "source": {
+              "type": "proficient_skills"
+            },
+            "type": "select_multiple"
+          },
+          "description": "Gain Expertise in two skills of your choice.",
+          "effects": [
+            {
+              "from_choice": "bard_expertise_skills_2",
+              "type": "grant_skill_expertise"
+            }
+          ]
+        },
         "Jack of all Trades": "You can add half your Proficiency Bonus (round down) to any ability check you make that uses a skill proficiency you lack and that doesn't otherwise use your Proficiency Bonus."
       },
       "20": {
@@ -514,7 +587,23 @@
         }
       },
       "9": {
-        "Expertise": "Gain Expertise in two more skill proficiencies of your choice."
+        "Expertise": {
+          "choices": {
+            "count": 2,
+            "name": "bard_expertise_skills_9",
+            "source": {
+              "type": "proficient_skills"
+            },
+            "type": "select_multiple"
+          },
+          "description": "Gain Expertise in two more skill proficiencies of your choice.",
+          "effects": [
+            {
+              "from_choice": "bard_expertise_skills_9",
+              "type": "grant_skill_expertise"
+            }
+          ]
+        }
       }
     },
     "hit_die": 8,
@@ -914,6 +1003,19 @@
       "type": "grant_origin_feat"
     },
     {
+      "from_choice": "bard_expertise_skills_2",
+      "source": "Expertise",
+      "source_class_name": "Bard",
+      "source_type": "class",
+      "type": "grant_skill_expertise"
+    },
+    {
+      "from_choice": "bard_expertise_skills_2",
+      "source": "Expertise",
+      "source_type": "class",
+      "type": "grant_skill_expertise"
+    },
+    {
       "min_level": 3,
       "source": "Infernal Legacy",
       "source_type": "lineage",
@@ -1085,7 +1187,7 @@
         "source": "Bard"
       },
       {
-        "description": "Gain Expertise in two skill proficiencies of your choice.",
+        "description": "Gain Expertise in two skills of your choice.",
         "level": 2,
         "name": "Expertise",
         "source": "Bard"
@@ -1262,6 +1364,7 @@
     "Fire"
   ],
   "save_advantages": [],
+  "skill_expertise": [],
   "skill_proficiencies": [
     "Acrobatics",
     "Performance",
@@ -1282,25 +1385,28 @@
     },
     "animal_handling": {
       "ability": "wisdom",
-      "bonus": 1,
+      "bonus": 2,
       "expertise": false,
-      "modifier": 1,
+      "jack_of_all_trades": true,
+      "modifier": 2,
       "proficient": false,
       "source": "None"
     },
     "arcana": {
       "ability": "intelligence",
-      "bonus": -1,
+      "bonus": 0,
       "expertise": false,
-      "modifier": -1,
+      "jack_of_all_trades": true,
+      "modifier": 0,
       "proficient": false,
       "source": "None"
     },
     "athletics": {
       "ability": "strength",
-      "bonus": 0,
+      "bonus": 1,
       "expertise": false,
-      "modifier": 0,
+      "jack_of_all_trades": true,
+      "modifier": 1,
       "proficient": false,
       "source": "None"
     },
@@ -1314,9 +1420,10 @@
     },
     "history": {
       "ability": "intelligence",
-      "bonus": -1,
+      "bonus": 0,
       "expertise": false,
-      "modifier": -1,
+      "jack_of_all_trades": true,
+      "modifier": 0,
       "proficient": false,
       "source": "None"
     },
@@ -1330,33 +1437,37 @@
     },
     "intimidation": {
       "ability": "charisma",
-      "bonus": 3,
+      "bonus": 4,
       "expertise": false,
-      "modifier": 3,
+      "jack_of_all_trades": true,
+      "modifier": 4,
       "proficient": false,
       "source": "None"
     },
     "investigation": {
       "ability": "intelligence",
-      "bonus": -1,
+      "bonus": 0,
       "expertise": false,
-      "modifier": -1,
+      "jack_of_all_trades": true,
+      "modifier": 0,
       "proficient": false,
       "source": "None"
     },
     "medicine": {
       "ability": "wisdom",
-      "bonus": 1,
+      "bonus": 2,
       "expertise": false,
-      "modifier": 1,
+      "jack_of_all_trades": true,
+      "modifier": 2,
       "proficient": false,
       "source": "None"
     },
     "nature": {
       "ability": "intelligence",
-      "bonus": -1,
+      "bonus": 0,
       "expertise": false,
-      "modifier": -1,
+      "jack_of_all_trades": true,
+      "modifier": 0,
       "proficient": false,
       "source": "None"
     },
@@ -1386,9 +1497,10 @@
     },
     "religion": {
       "ability": "intelligence",
-      "bonus": -1,
+      "bonus": 0,
       "expertise": false,
-      "modifier": -1,
+      "jack_of_all_trades": true,
+      "modifier": 0,
       "proficient": false,
       "source": "None"
     },
@@ -1402,17 +1514,19 @@
     },
     "stealth": {
       "ability": "dexterity",
-      "bonus": 2,
+      "bonus": 3,
       "expertise": false,
-      "modifier": 2,
+      "jack_of_all_trades": true,
+      "modifier": 3,
       "proficient": false,
       "source": "None"
     },
     "survival": {
       "ability": "wisdom",
-      "bonus": 1,
+      "bonus": 2,
       "expertise": false,
-      "modifier": 1,
+      "jack_of_all_trades": true,
+      "modifier": 2,
       "proficient": false,
       "source": "None"
     }
