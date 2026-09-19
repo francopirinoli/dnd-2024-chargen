@@ -69,8 +69,11 @@ def _matches_filter(entry: dict, filters: object) -> bool:
 def is_unresolved_placeholder(skill_value: object) -> bool:
     return (
         isinstance(skill_value, str)
-        and skill_value.startswith("__")
-        and skill_value.endswith("__")
+        and (
+            (skill_value.startswith("__") and skill_value.endswith("__"))
+            or skill_value.startswith("$")
+            or len(skill_value) <= 1
+        )
     )
 
 

@@ -40,7 +40,7 @@
             "effects": [
               {
                 "type": "grant_skill_proficiency",
-                "skills": "$primal_lore_skill"
+                "from_choice": "primal_lore_skill"
               },
               {
                 "type": "grant_language",

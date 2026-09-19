@@ -1902,9 +1902,16 @@ class CharacterBuilder:
                 )
                 skills = chosen if isinstance(chosen, list) else [chosen] if chosen else []
             else:
-                skills = effect.get("skills", [])
+                raw_skills = effect.get("skills", [])
+                skills = [raw_skills] if isinstance(raw_skills, str) else (raw_skills if isinstance(raw_skills, list) else [])
             for skill in skills:
-                if not isinstance(skill, str) or is_unresolved_placeholder(skill):
+                if (
+                    not isinstance(skill, str)
+                    or not skill
+                    or is_unresolved_placeholder(skill)
+                    or skill.startswith("$")
+                    or len(skill) <= 1
+                ):
                     continue
                 if skill not in self.character_data["proficiencies"]["skills"]:
                     self.character_data["proficiencies"]["skills"].append(skill)

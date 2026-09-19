@@ -31,6 +31,9 @@ _STEPS = [
             "artificer_active_replications",
             "primal_knowledge_skill",
             "aspect_of_the_wilds",
+            "bard_expertise_skills_2",
+            "bard_expertise_skills_9",
+            "primal_lore_skill",
         ],
     },
     {
