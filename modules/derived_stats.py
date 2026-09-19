@@ -829,6 +829,29 @@ def build_level_up_preview(
         "available_plans": rep_next.get("available_plans", []),
     }
 
+    barb_curr = builder_current.calculate_barbarian_stats()
+    barb_next = builder_next.calculate_barbarian_stats()
+    is_barbarian = target_class_name.lower() == "barbarian"
+    barbarian_changes = {
+        "has_rage": bool(barb_next.get("has_rage")),
+        "is_barbarian": is_barbarian,
+        "current_rage_uses": barb_curr.get("rage_uses", 0),
+        "next_rage_uses": barb_next.get("rage_uses", 0),
+        "current_rage_damage": barb_curr.get("rage_damage", 0),
+        "next_rage_damage": barb_next.get("rage_damage", 0),
+        "rage_damage_increased": (
+            (barb_next.get("rage_damage", 0) or 0)
+            > (barb_curr.get("rage_damage", 0) or 0)
+        ),
+        "current_brutal_strike": barb_curr.get("brutal_strike_dice"),
+        "next_brutal_strike": barb_next.get("brutal_strike_dice"),
+        "brutal_strike_unlocked": (
+            barb_next.get("brutal_strike_dice") is not None
+            and barb_curr.get("brutal_strike_dice") is None
+        ),
+        "brutal_strike_effects": barb_next.get("brutal_strike_effects", []),
+    }
+
     return {
         "can_level_up": True,
         "class_name": target_class_name,
@@ -886,4 +909,5 @@ def build_level_up_preview(
         "mastery_changes": mastery_changes,
         "invocation_changes": invocation_changes,
         "replication_changes": replication_changes,
+        "barbarian_changes": barbarian_changes,
     }

@@ -4731,6 +4731,27 @@ class CharacterBuilder:
             self.apply_species_skill_replacement(normalized_replacements)
             return True
 
+        # Barbarian Primal Knowledge skill choice
+        elif choice_key_lower in ("primal_knowledge_skill", "subclass_primal_knowledge_skill"):
+            if isinstance(choice_value, str) and choice_value:
+                if choice_value not in self.character_data["proficiencies"]["skills"]:
+                    self.character_data["proficiencies"]["skills"].append(choice_value)
+                    self.character_data["proficiency_sources"]["skills"][choice_value] = (
+                        "Barbarian (Primal Knowledge)"
+                    )
+            return True
+
+        # Barbarian Wild Heart Aspect of the Wilds choice
+        elif choice_key_lower in ("aspect_of_the_wilds", "subclass_aspect_of_the_wilds"):
+            if choice_value == "Owl":
+                current_dv = int(self.character_data.get("darkvision", 0) or 0)
+                self.character_data["darkvision"] = current_dv + 60 if current_dv > 0 else 60
+            elif choice_value == "Panther":
+                self.character_data["climb_speed"] = self.character_data.get("speed", 30)
+            elif choice_value == "Salmon":
+                self.character_data["swim_speed"] = self.character_data.get("speed", 30)
+            return True
+
         # Spells - Legacy handler (cantrip selection removed from creation wizard)
         elif choice_key_lower == "spellcasting":
             # Silently skipped: "spellcasting" is listed in the Pass 1 ordered
@@ -6562,6 +6583,9 @@ class CharacterBuilder:
             "artificer_replicate_plans",  # Restore artificer replicate plans after class applied
             "artificer_active_replications",  # Restore active replications after class applied
             "artificer_replications",  # Composite plans + active if provided
+            "primal_knowledge_skill",
+            "aspect_of_the_wilds",
+            "subclass_aspect_of_the_wilds",
             "alignment",
             "inventory",
         ]
@@ -7633,6 +7657,174 @@ class CharacterBuilder:
 
         return stats
 
+    def calculate_barbarian_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Rage, Brutal Strike, and subclass statistics for Barbarian characters.
+
+        Returns:
+            Dictionary with has_rage, barbarian_level, subclass, rage_uses, rage_damage,
+            brutal_strike_dice, brutal_strike_effects, subclass_resources, active_perks.
+        """
+        stats: Dict[str, Any] = {
+            "has_rage": False,
+            "barbarian_level": 0,
+            "subclass": "",
+            "rage_uses": 0,
+            "rage_damage": 0,
+            "brutal_strike_dice": None,
+            "brutal_strike_effects": [],
+            "subclass_resources": {},
+            "active_perks": [],
+        }
+
+        barbarian_level = self._get_class_level("Barbarian")
+        stats["barbarian_level"] = barbarian_level
+        if barbarian_level < 1:
+            return stats
+
+        stats["has_rage"] = True
+        subclass_name = self._get_class_subclass("Barbarian") or ""
+        stats["subclass"] = subclass_name
+
+        # Rage Uses (PHB 2024 Barbarian Table)
+        # Level 1-2: 2, Level 3-5: 3, Level 6-11: 4, Level 12-16: 5, Level 17-19: 6, Level 20: Unlimited
+        if barbarian_level >= 20:
+            stats["rage_uses"] = "Unlimited"
+            stats["rage_uses_numeric"] = 999
+        elif barbarian_level >= 17:
+            stats["rage_uses"] = 6
+            stats["rage_uses_numeric"] = 6
+        elif barbarian_level >= 12:
+            stats["rage_uses"] = 5
+            stats["rage_uses_numeric"] = 5
+        elif barbarian_level >= 6:
+            stats["rage_uses"] = 4
+            stats["rage_uses_numeric"] = 4
+        elif barbarian_level >= 3:
+            stats["rage_uses"] = 3
+            stats["rage_uses_numeric"] = 3
+        else:
+            stats["rage_uses"] = 2
+            stats["rage_uses_numeric"] = 2
+
+        # Rage Damage (PHB 2024 Barbarian Table)
+        # Level 1-8: +2, Level 9-15: +3, Level 16-20: +4
+        if barbarian_level >= 16:
+            stats["rage_damage"] = 4
+        elif barbarian_level >= 9:
+            stats["rage_damage"] = 3
+        else:
+            stats["rage_damage"] = 2
+
+        # Active Rage Perks / Features
+        perks = [
+            "Damage Resistance: Bludgeoning, Piercing, and Slashing while Raging",
+            "Advantage on Strength checks and Strength saving throws while Raging",
+            f"+{stats['rage_damage']} bonus damage on melee attacks using Strength while Raging",
+        ]
+        if barbarian_level >= 2:
+            perks.append("Reckless Attack (Advantage on attack rolls using Strength; attacks against you have Advantage)")
+            perks.append("Danger Sense (Advantage on Dexterity saving throws unless Incapacitated)")
+        if barbarian_level >= 3:
+            perks.append("Primal Knowledge (Make Acrobatics, Intimidation, Perception, Stealth, or Survival as Strength checks while Raging)")
+        if barbarian_level >= 5:
+            perks.append("Fast Movement (+10 ft Speed while not wearing Heavy armor)")
+        if barbarian_level >= 7:
+            perks.append("Feral Instinct (Advantage on Initiative rolls)")
+            perks.append("Instinctive Pounce (Move up to half Speed when entering Rage)")
+        if barbarian_level >= 11:
+            perks.append("Relentless Rage (Con save DC 10 + 5/use to drop to 2x level HP instead of 0)")
+        if barbarian_level >= 15:
+            perks.append("Persistent Rage (Rage lasts 10 minutes without dropping; regain all uses on Initiative 1/Long Rest)")
+        if barbarian_level >= 18:
+            perks.append("Indomitable Might (Minimum total for Strength check/save equals Strength score)")
+        if barbarian_level >= 20:
+            perks.append("Primal Champion (+4 Strength, +4 Constitution, max 25)")
+        stats["active_perks"] = perks
+
+        # Brutal Strike (PHB 2024 Level 9+)
+        if barbarian_level >= 9:
+            stats["brutal_strike_dice"] = "2d10" if barbarian_level >= 17 else "1d10"
+            effects = [
+                "Forceful Blow (Push target 15 ft straight away and move up to half Speed toward it without OA)",
+                "Hamstring Blow (Reduce target's Speed by 15 ft until start of your next turn)",
+            ]
+            if barbarian_level >= 13:
+                effects.append("Staggering Blow (Target has Disadvantage on next saving throw and cannot make OA)")
+                effects.append("Sundering Blow (Next attack roll by another creature against target gains +5 bonus)")
+            if subclass_name == "Path of Unlight" and barbarian_level >= 10:
+                effects.append("Radiant Infection (Target takes 1d6 Radiant/turn, sheds 10 ft bright light, DC Con save ends)")
+            stats["brutal_strike_effects"] = effects
+            stats["brutal_strike_options_count"] = 2 if barbarian_level >= 17 else 1
+
+        # Subclass Resources
+        choices_made = self.character_data.get("choices_made", {})
+        if subclass_name == "Path of the Zealot" and barbarian_level >= 3:
+            zealot_dice_count = 7 if barbarian_level >= 17 else (6 if barbarian_level >= 12 else (5 if barbarian_level >= 6 else 4))
+            stats["subclass_resources"]["warrior_of_the_gods"] = {
+                "name": "Warrior of the Gods",
+                "pool": f"{zealot_dice_count}d12",
+                "dice_count": zealot_dice_count,
+                "die": "d12",
+                "description": "Bonus Action healing pool for yourself. Regain all dice on Long Rest.",
+            }
+            stats["subclass_resources"]["divine_fury"] = {
+                "name": "Divine Fury",
+                "damage": f"1d6 + {barbarian_level // 2}",
+                "damage_types": ["Necrotic", "Radiant"],
+                "description": "First creature hit each turn with weapon/unarmed strike while Raging takes extra damage.",
+            }
+        elif subclass_name == "Path of the Berserker" and barbarian_level >= 3:
+            stats["subclass_resources"]["frenzy"] = {
+                "name": "Frenzy",
+                "damage": f"{stats['rage_damage']}d6",
+                "description": "Extra damage of weapon type to first target hit on turn with Strength attack while Reckless & Raging.",
+            }
+        elif subclass_name == "Path of the Wild Heart":
+            aspect = (
+                choices_made.get("aspect_of_the_wilds")
+                or choices_made.get("subclass_aspect_of_the_wilds")
+            )
+            if barbarian_level >= 6 and aspect:
+                stats["subclass_resources"]["aspect_of_the_wilds"] = {
+                    "name": "Aspect of the Wilds",
+                    "choice": aspect,
+                    "description": (
+                        "Darkvision +60 ft." if aspect == "Owl"
+                        else "Climb Speed equal to your Speed." if aspect == "Panther"
+                        else "Swim Speed equal to your Speed." if aspect == "Salmon"
+                        else ""
+                    ),
+                }
+        elif subclass_name == "Path of the World Tree" and barbarian_level >= 3:
+            stats["subclass_resources"]["vitality_surge"] = {
+                "name": "Vitality Surge",
+                "temp_hp": barbarian_level,
+                "description": f"Gain {barbarian_level} Temporary HP when activating Rage.",
+            }
+            stats["subclass_resources"]["life_giving_force"] = {
+                "name": "Life-Giving Force",
+                "temp_hp_dice": f"{stats['rage_damage']}d6",
+                "description": f"Grant {stats['rage_damage']}d6 Temp HP to another creature within 10 ft at start of each turn while Raging.",
+            }
+        elif subclass_name == "Path of Lament" and barbarian_level >= 3:
+            raw_con = self.ability_scores.final_scores.get("Constitution", 10)
+            con_mod = self.calculate_ability_modifier(raw_con)
+            stats["subclass_resources"]["banshees_wail"] = {
+                "name": "Banshee's Wail",
+                "uses": max(1, con_mod),
+                "damage": f"{stats['rage_damage']}d12 Psychic",
+                "description": "30-ft emanation, Con save DC or Psychic damage & Deafened. Regain on Long Rest or expend 1 Rage.",
+            }
+        elif subclass_name == "Path of Unlight" and barbarian_level >= 3:
+            stats["subclass_resources"]["radiant_rage"] = {
+                "name": "Radiant Rage",
+                "damage": stats["rage_damage"],
+                "description": f"When hit with melee attack while Raging, attacker takes {stats['rage_damage']} Radiant damage. Shed 20 ft bright light.",
+            }
+
+        return stats
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -7782,6 +7974,15 @@ class CharacterBuilder:
         weapon_profs = proficiencies.get("weapons", [])
         level = self.character_data.get("level", 1)
         proficiency_bonus = self.calculate_proficiency_bonus(level)
+
+        barbarian_level = self._get_class_level("Barbarian")
+        barbarian_rage_damage = 0
+        if barbarian_level >= 16:
+            barbarian_rage_damage = 4
+        elif barbarian_level >= 9:
+            barbarian_rage_damage = 3
+        elif barbarian_level >= 1:
+            barbarian_rage_damage = 2
 
         for weapon in active_weapons:
             weapon_name = (
@@ -8023,6 +8224,13 @@ class CharacterBuilder:
             # Get quantity from weapon equipment entry
             weapon_quantity = weapon.get("quantity", 1)
 
+            # If Barbarian, Strength-based melee attacks gain Rage Damage bonus while Raging
+            is_melee = "Ranged" not in category
+            uses_strength = "STR" in ability_name and not ability_name.endswith("(DEX)")
+            rage_bonus_value = barbarian_rage_damage if (barbarian_rage_damage > 0 and is_melee and uses_strength) else 0
+            if rage_bonus_value > 0:
+                damage_notes.append(f"+{rage_bonus_value} while Raging")
+
             attack_info = {
                 "name": weapon_name,
                 "attack_bonus": attack_bonus,
@@ -8045,6 +8253,8 @@ class CharacterBuilder:
                 "_ability_mod": ability_mod,  # Store for offhand calculation
                 "_one_handed_melee_bonus": one_handed_melee_bonus,  # Excluded from dual-wield
             }
+            if rage_bonus_value > 0:
+                attack_info["rage_damage_bonus"] = rage_bonus_value
 
             # Add thrown damage if applicable
             if throw_damage_str:
@@ -8123,6 +8333,11 @@ class CharacterBuilder:
                 unarmed_notes.append("1d6 if wielding weapons or shield")
             unarmed_notes.append("1d4 damage to grappled creature (start of turn)")
 
+        unarmed_ability = "DEX" if martial_arts_die and dex_mod > str_mod else "STR"
+        unarmed_rage_bonus = barbarian_rage_damage if (barbarian_rage_damage > 0 and unarmed_ability == "STR") else 0
+        if unarmed_rage_bonus > 0:
+            unarmed_notes.append(f"+{unarmed_rage_bonus} while Raging")
+
         unarmed_attack = {
             "name": "Unarmed Strike",
             "attack_bonus": unarmed_attack_bonus,
@@ -8134,12 +8349,14 @@ class CharacterBuilder:
             "avg_damage": unarmed_avg,
             "avg_crit": unarmed_crit_avg,
             "properties": [],
-            "ability": "DEX" if martial_arts_die and dex_mod > str_mod else "STR",
+            "ability": unarmed_ability,
             "proficient": True,  # Everyone is proficient with unarmed strikes
             "mastery": None,
             "icon": "/static/images/weapons/strike.svg",
             "damage_notes": unarmed_notes,
         }
+        if unarmed_rage_bonus > 0:
+            unarmed_attack["rage_damage_bonus"] = unarmed_rage_bonus
 
         attacks.append(unarmed_attack)
 
@@ -9220,6 +9437,12 @@ class CharacterBuilder:
 
         # Add calculated combat stats
         character_data["combat"] = self.calculate_combat_stats()
+        if "climb_speed" in self.character_data:
+            character_data["climb_speed"] = self.character_data["climb_speed"]
+            character_data["combat"]["climb_speed"] = self.character_data["climb_speed"]
+        if "swim_speed" in self.character_data:
+            character_data["swim_speed"] = self.character_data["swim_speed"]
+            character_data["combat"]["swim_speed"] = self.character_data["swim_speed"]
 
         # Add calculated weapon attacks and combinations
         weapon_data = self.calculate_weapon_attacks()
@@ -9406,6 +9629,11 @@ class CharacterBuilder:
         artificer_replications = self.calculate_artificer_replications_stats()
         if artificer_replications.get("has_replications"):
             character_data["artificer_replications"] = artificer_replications
+
+        # Add Barbarian stats (Barbarian only)
+        barbarian_stats = self.calculate_barbarian_stats()
+        if barbarian_stats.get("has_rage"):
+            character_data["barbarian_stats"] = barbarian_stats
 
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:

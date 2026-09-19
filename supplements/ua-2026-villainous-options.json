@@ -22,7 +22,16 @@
           "Path of Lament Origins": "A Barbarian may choose the Path of Lament, but more often the path is thrust on the Barbarian by unhappy accident. At the heart of the Barbarian's rage are great trauma and unresolved grief\u2014painful emotions fueled by haunting memories that rise to the surface during adrenaline-filled moments."
         },
         "6": {
-          "Commune with the Dead": "You can cast the Speak with Dead spell but only as a Ritual. Wisdom is your spellcasting ability for it.",
+          "Commune with the Dead": {
+            "description": "You can cast the Speak with Dead spell but only as a Ritual. Wisdom is your spellcasting ability for it.",
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Speak with Dead",
+                "spell_list": "Barbarian"
+              }
+            ]
+          },
           "Horrifying Strike": "Once per turn when you hit a creature with a Strength-based attack roll while your Rage is active, you can attempt to horrify the target. The target must succeed on a Wisdom saving throw (DC 8 plus your Constitution modifier and Proficiency Bonus) or have the Frightened condition until the start of your next turn."
         },
         "10": {

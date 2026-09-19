@@ -21,11 +21,31 @@
           "Radiant Rage": "The Unlight coursing through you fuels your Rage. If a creature hits you with a melee attack roll while your Rage is active, the creature takes Radiant damage equal to your Rage Damage bonus.\nAdditionally, while your Rage is active, you shed Bright Light in a 20-foot radius."
         },
         "6": {
-          "Unlight Revelation": "You have proficiency in the Perception skill, if you lack it. You also gain Expertise in that skill.\nWhile your rage is active, you have Blindsight with a range equal to that of the Bright Light provided by your Radiant Rage (20 feet)."
+          "Unlight Revelation": {
+            "description": "You have proficiency in the Perception skill, if you lack it. You also gain Expertise in that skill.\nWhile your rage is active, you have Blindsight with a range equal to that of the Bright Light provided by your Radiant Rage (20 feet).",
+            "effects": [
+              {
+                "type": "grant_skill_proficiency",
+                "skills": ["Perception"]
+              },
+              {
+                "type": "grant_skill_expertise",
+                "skills": ["Perception"]
+              }
+            ]
+          }
         },
         "10": {
           "Infectious Unlight": "Damage you deal with Brutal Strike can be Radiant or the usual type (your choice). The following effect is now among your Brutal Strike options.\nRadiant Infection. The target becomes infected with Unlight for 1 minute. While infected, it sheds Bright Light in a 10-foot radius. Additionally, at the start of each of its turns, the target takes 1d6 Radiant damage. The target makes a Constitution saving throw (DC 8 plus your Strength modifier and Proficiency Bonus) at the end of each of its turns, ending the effect on itself on a success.",
-          "Harbinger of Unlight": "You have Resistance to Radiant damage."
+          "Harbinger of Unlight": {
+            "description": "You have Resistance to Radiant damage.",
+            "effects": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_type": "Radiant"
+              }
+            ]
+          }
         },
         "14": {
           "Brilliant Rage": "The aura of your Unlight is bolstered. While your Rage is active, you shed Bright Light in a 30-foot radius.\nAs a Bonus Action, you unleash blinding brilliance. When you do, each creature of your choice within 30 feet of you makes a Constitution saving throw (DC 8 plus your Strength modifier and Proficiency Bonus). On a failed save, a creature takes 1d12 Radiant damage and has the Blinded condition until the end of your next turn. On a successful save, a creature takes half damage only.\nOnce you use this feature, you can't use it again until you finish a Long Rest unless you expend a use of your Rage (no action required) to restore your use of it."

@@ -511,3 +511,182 @@ class TestZealotFullBuild:
         assert "Fanatical Focus" in subclass_features
         assert "Zealous Presence" in subclass_features
         assert "Rage of the Gods" in subclass_features
+
+
+# ==================== 2024 Overhaul Tests ====================
+
+
+class TestBarbarian2024Overhaul:
+    """Tests for 2024 RAW Barbarian stats, choices, Brutal Strike, and supplements."""
+
+    def test_primal_knowledge_choice_and_effects(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Knowledge Barbarian",
+            "species": "Human",
+            "class": "Barbarian",
+            "level": 3,
+            "background": "Soldier",
+            "skill_choices": ["Athletics", "Intimidation"],
+            "primal_knowledge_skill": "Perception",
+        })
+        char = builder.to_character()
+        assert "Perception" in char["proficiencies"]["skills"]
+        assert "barbarian_stats" in char
+        assert char["barbarian_stats"]["has_rage"] is True
+
+    def test_aspect_of_the_wilds_owl_darkvision(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Wild Heart Barbarian",
+            "species": "Human",
+            "class": "Barbarian",
+            "level": 6,
+            "subclass": "Path of the Wild Heart",
+            "background": "Farmer",
+            "aspect_of_the_wilds": "Owl",
+        })
+        char = builder.to_character()
+        assert char["darkvision"] >= 60
+        res = char["barbarian_stats"]["subclass_resources"]
+        assert "aspect_of_the_wilds" in res
+        assert res["aspect_of_the_wilds"]["choice"] == "Owl"
+
+    def test_barbarian_stats_progression(self):
+        levels_to_test = [
+            (1, 2, 2, None),
+            (3, 3, 2, None),
+            (6, 4, 2, None),
+            (9, 4, 3, "1d10"),
+            (12, 5, 3, "1d10"),
+            (13, 5, 3, "1d10"),
+            (16, 5, 4, "1d10"),
+            (17, 6, 4, "2d10"),
+            (20, "Unlimited", 4, "2d10"),
+        ]
+        for lvl, exp_uses, exp_dmg, exp_brutal in levels_to_test:
+            builder = CharacterBuilder()
+            builder.apply_choices({
+                "species": "Human",
+                "class": "Barbarian",
+                "level": lvl,
+                "background": "Soldier",
+            })
+            stats = builder.calculate_barbarian_stats()
+            assert stats["has_rage"] is True
+            assert stats["rage_uses"] == exp_uses, f"Lvl {lvl} uses mismatch"
+            assert stats["rage_damage"] == exp_dmg, f"Lvl {lvl} dmg mismatch"
+            assert stats["brutal_strike_dice"] == exp_brutal, f"Lvl {lvl} brutal mismatch"
+            if lvl >= 13:
+                assert any("Staggering Blow" in eff for eff in stats["brutal_strike_effects"])
+                assert any("Sundering Blow" in eff for eff in stats["brutal_strike_effects"])
+            if lvl >= 17:
+                assert stats["brutal_strike_options_count"] == 2
+
+    def test_zealot_warrior_of_the_gods_scaling(self):
+        zealot_dice = [(3, 4), (6, 5), (12, 6), (17, 7)]
+        for lvl, exp_dice in zealot_dice:
+            builder = CharacterBuilder()
+            builder.apply_choices({
+                "species": "Human",
+                "class": "Barbarian",
+                "level": lvl,
+                "subclass": "Path of the Zealot",
+                "background": "Acolyte",
+            })
+            stats = builder.calculate_barbarian_stats()
+            res = stats["subclass_resources"]["warrior_of_the_gods"]
+            assert res["dice_count"] == exp_dice
+            assert res["die"] == "d12"
+
+    def test_weapon_attacks_rage_damage_bonus(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "species": "Human",
+            "class": "Barbarian",
+            "level": 1,
+            "background": "Soldier",
+            "ability_scores": {
+                "Strength": 16, "Dexterity": 14, "Constitution": 14,
+                "Intelligence": 10, "Wisdom": 12, "Charisma": 8
+            },
+        })
+        builder.character_data["equipment"] = {
+            "weapons": [{"name": "Greataxe", "equipped": True}],
+            "armor": [],
+            "items": [],
+            "gold": 0,
+        }
+        char = builder.to_character()
+        attacks = char["attacks"]
+        greataxe = next((a for a in attacks if a["name"] == "Greataxe"), None)
+        assert greataxe is not None
+        assert greataxe["rage_damage_bonus"] == 2
+        assert any("while Raging" in n for n in greataxe["damage_notes"])
+
+        unarmed = next((a for a in attacks if a["name"] == "Unarmed Strike"), None)
+        assert unarmed is not None
+        assert unarmed["rage_damage_bonus"] == 2
+        assert any("while Raging" in n for n in unarmed["damage_notes"])
+
+    def test_epic_boon_choice_slot_at_level_19(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "species": "Human",
+            "class": "Barbarian",
+            "level": 19,
+            "background": "Soldier",
+        })
+        feature_data = builder.get_class_features_and_choices()
+        choice_keys = [c.get("choice_key") for c in feature_data.get("choices", [])]
+        assert "class_feat_19" in choice_keys
+
+    def test_path_of_lament_commune_with_dead(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "active_sources": ["ua-2026-villainous-options"],
+            "species": "Human",
+            "class": "Barbarian",
+            "level": 6,
+            "subclass": "Path of Lament",
+            "background": "Soldier",
+        })
+        char = builder.to_character()
+        always_prep = char.get("spells", {}).get("always_prepared", {})
+        assert "Speak with Dead" in always_prep
+
+    def test_path_of_unlight_revelation_and_harbinger(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "active_sources": ["ua-2026-underdark-options"],
+            "species": "Human",
+            "class": "Barbarian",
+            "level": 10,
+            "subclass": "Path of Unlight",
+            "background": "Soldier",
+        })
+        char = builder.to_character()
+        assert "Perception" in char["proficiencies"]["skills"]
+        assert "Perception" in char.get("skill_expertise", [])
+        assert "Radiant" in char["resistances"]
+
+        stats = char["barbarian_stats"]
+        assert any("Radiant Infection" in eff for eff in stats["brutal_strike_effects"])
+
+    def test_barbarian_level_up_preview(self):
+        from modules.derived_stats import build_level_up_preview
+        choices = {
+            "species": "Human",
+            "class": "Barbarian",
+            "level": 8,
+            "background": "Soldier",
+        }
+        preview = build_level_up_preview(choices)
+        assert preview["can_level_up"] is True
+        b_changes = preview["barbarian_changes"]
+        assert b_changes["is_barbarian"] is True
+        assert b_changes["current_rage_damage"] == 2
+        assert b_changes["next_rage_damage"] == 3
+        assert b_changes["rage_damage_increased"] is True
+        assert b_changes["brutal_strike_unlocked"] is True
+

@@ -189,7 +189,10 @@ KNOWN_CHOICE_KEYS: frozenset = frozenset({
     "pact_weapon",
     "maneuvers",
     "arcane_shots",
-    "arcane_shot",
+    # Barbarian
+    "primal_knowledge_skill",
+    "aspect_of_the_wilds",
+    "subclass_aspect_of_the_wilds",
     # Artificer Replicate Magic Item
     "artificer_replicate_plans",
     "artificer_plans",

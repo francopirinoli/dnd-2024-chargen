@@ -22,12 +22,14 @@ import {
   Backpack,
   ChevronsUpDown,
   Printer,
+  Flame,
 } from "lucide-react";
 import { PrepareSpellsDialog } from "@/components/sheet/PrepareSpellsDialog";
 import { ChooseMasteriesDialog } from "@/components/sheet/ChooseMasteriesDialog";
 import { InvocationsDialog } from "@/components/sheet/InvocationsDialog";
 import { ReplicateMagicItemDialog } from "@/components/sheet/ReplicateMagicItemDialog";
 import { LevelUpDialog } from "@/components/sheet/LevelUpDialog";
+import { AspectOfTheWildsDialog } from "@/components/sheet/AspectOfTheWildsDialog";
 import { InventorySection } from "@/components/sheet/InventorySection";
 
 // `to_character()` is too sprawling to fully type at the boundary.
@@ -109,6 +111,7 @@ export function Sheet() {
   const [masteryDialogOpen, setMasteryDialogOpen] = useState(false);
   const [invocationDialogOpen, setInvocationDialogOpen] = useState(false);
   const [replicateDialogOpen, setReplicateDialogOpen] = useState(false);
+  const [aspectDialogOpen, setAspectDialogOpen] = useState(false);
   const [levelUpOpen, setLevelUpOpen] = useState(false);
   const [levelUpFlash, setLevelUpFlash] = useState<string | null>(null);
   const [showSpellPrompt, setShowSpellPrompt] = useState(false);
@@ -322,6 +325,19 @@ export function Sheet() {
     num(c.level) ??
     (typeof choicesMade.level === "number" ? choicesMade.level : 1);
   const canLevelUp = currentLevel < 20;
+
+  const barbarianStats = rec(c.barbarian_stats);
+  const isWildHeartBarbarian =
+    barbarianStats.has_rage === true &&
+    str(barbarianStats.subclass) === "Path of the Wild Heart" &&
+    (num(barbarianStats.barbarian_level) ?? 0) >= 6;
+  const currentAspect =
+    str(rec(rec(barbarianStats.subclass_resources).aspect_of_the_wilds).choice) ??
+    (typeof choicesMade.aspect_of_the_wilds === "string"
+      ? choicesMade.aspect_of_the_wilds
+      : typeof choicesMade.subclass_aspect_of_the_wilds === "string"
+        ? choicesMade.subclass_aspect_of_the_wilds
+        : undefined);
 
   const defaultName =
     (typeof choicesMade.character_name === "string" &&
@@ -711,7 +727,12 @@ export function Sheet() {
           isOpen={openSections.features}
           onToggle={() => toggleSection("features")}
         >
-          <Features c={c} />
+          <Features
+            c={c}
+            isWildHeartBarbarian={isWildHeartBarbarian}
+            currentAspect={currentAspect}
+            onOpenAspectDialog={() => setAspectDialogOpen(true)}
+          />
         </CollapsibleCard>
 
         {/* 6. Inventory & Equipment */}
@@ -740,6 +761,11 @@ export function Sheet() {
       <ReplicateMagicItemDialog
         open={replicateDialogOpen}
         onClose={() => setReplicateDialogOpen(false)}
+      />
+      <AspectOfTheWildsDialog
+        open={aspectDialogOpen}
+        onClose={() => setAspectDialogOpen(false)}
+        currentAspect={currentAspect}
       />
       <LevelUpDialog
         open={levelUpOpen}
@@ -980,6 +1006,16 @@ function CoreStats({ c }: { c: Char }) {
   const combat = rec(c.combat);
   const hp = rec(combat.hit_points);
   const speed = num(c.speed) ?? num(combat.speed);
+  const climbSpeed = num(c.climb_speed) ?? num(combat.climb_speed);
+  const swimSpeed = num(c.swim_speed) ?? num(combat.swim_speed);
+  const speedDisplay =
+    speed !== undefined
+      ? climbSpeed
+        ? `${speed} ft (Climb: ${climbSpeed} ft)`
+        : swimSpeed
+          ? `${speed} ft (Swim: ${swimSpeed} ft)`
+          : `${speed} ft`
+      : "—";
   const init = num(combat.initiative_bonus) ?? num(combat.initiative);
   const passive = num(combat.passive_perception);
   const pb = num(c.proficiency_bonus);
@@ -991,7 +1027,7 @@ function CoreStats({ c }: { c: Char }) {
       <dl className="grid grid-cols-2 sm:grid-cols-3 gap-y-3 gap-x-6 text-sm">
         <Stat label="Hit Points" value={hpMax} />
         <Stat label="Initiative" value={signed(init)} />
-        <Stat label="Speed" value={speed !== undefined ? `${speed} ft` : "—"} />
+        <Stat label="Speed" value={speedDisplay} />
         <Stat label="Passive Perception" value={passive} />
         <Stat label="Proficiency Bonus" value={signed(pb)} />
         <Stat
@@ -1368,6 +1404,8 @@ function Attacks({
   onChooseMasteries?: () => void;
 }) {
   const attacks = arr<Record<string, unknown>>(c.attacks);
+  const barbarianStats = rec(c.barbarian_stats);
+  const hasRage = Boolean(barbarianStats.has_rage);
   const combinations = arr<Record<string, unknown>>(c.attack_combinations);
 
   const serverBestCombination = rec(c.best_attack_combination);
@@ -1678,6 +1716,28 @@ function Attacks({
                   ))}
                 </div>
               )}
+            </div>
+          )}
+
+          {hasRage && num(barbarianStats.rage_damage) !== undefined && (
+            <div className="mt-3 flex items-center justify-between rounded border border-border/80 bg-background/40 p-3 text-xs">
+              <div className="flex items-center gap-2">
+                <Flame className="h-4 w-4 text-red-400" />
+                <span className="font-semibold uppercase tracking-wide text-red-400">
+                  Rage Damage
+                </span>
+                <span className="rounded bg-red-500/20 px-2 py-0.5 text-xs font-semibold text-red-300">
+                  +{num(barbarianStats.rage_damage)}
+                </span>
+                <span className="text-muted-foreground hidden sm:inline">
+                  (Strength melee attacks while Raging)
+                </span>
+              </div>
+              <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                {typeof barbarianStats.rage_uses === "string"
+                  ? barbarianStats.rage_uses
+                  : `${num(barbarianStats.rage_uses)} uses / Long Rest`}
+              </span>
             </div>
           )}
         </>
@@ -2002,7 +2062,17 @@ function formatFeatureDescription(desc: string): string {
   return desc.replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>');
 }
 
-function Features({ c }: { c: Char }) {
+function Features({
+  c,
+  isWildHeartBarbarian,
+  currentAspect,
+  onOpenAspectDialog,
+}: {
+  c: Char;
+  isWildHeartBarbarian?: boolean;
+  currentAspect?: string;
+  onOpenAspectDialog?: () => void;
+}) {
   const features = rec(c.features);
   const entries = Object.entries(features);
   if (entries.length === 0) return null;
@@ -2019,31 +2089,61 @@ function Features({ c }: { c: Char }) {
                   {category}
                 </div>
                 <ul className="space-y-2">
-                  {items.map((f, i) => (
-                    <li
-                      key={i}
-                      className="rounded border border-border bg-background/40 p-3"
-                    >
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="font-medium text-primary">
-                          {str(f.name) ?? "Feature"}
-                        </span>
-                        {num(f.level) !== undefined && (
-                          <span className="shrink-0 rounded bg-secondary/80 px-1.5 py-0.5 text-[10px] text-muted-foreground uppercase tracking-wide">
-                            Level {num(f.level)}
+                  {items.map((f, i) => {
+                    const featName = str(f.name) ?? "Feature";
+                    const isAspect =
+                      featName === "Aspect of the Wilds" && isWildHeartBarbarian;
+
+                    return (
+                      <li
+                        key={i}
+                        className="rounded border border-border bg-background/40 p-3"
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="font-medium text-primary">
+                            {featName}
                           </span>
+                          <div className="flex items-center gap-1.5">
+                            {isAspect && currentAspect && (
+                              <span className="rounded border border-primary/40 bg-primary/15 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                                Active: {currentAspect}
+                              </span>
+                            )}
+                            {num(f.level) !== undefined && (
+                              <span className="shrink-0 rounded bg-secondary/80 px-1.5 py-0.5 text-[10px] text-muted-foreground uppercase tracking-wide">
+                                Level {num(f.level)}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        {str(f.description) && (
+                          <div
+                            className="feature-description text-xs text-muted-foreground mt-2 whitespace-pre-line leading-relaxed"
+                            dangerouslySetInnerHTML={{
+                              __html: formatFeatureDescription(
+                                str(f.description) as string,
+                              ),
+                            }}
+                          />
                         )}
-                      </div>
-                      {str(f.description) && (
-                        <div
-                          className="feature-description text-xs text-muted-foreground mt-2 whitespace-pre-line leading-relaxed"
-                          dangerouslySetInnerHTML={{
-                            __html: formatFeatureDescription(str(f.description) as string),
-                          }}
-                        />
-                      )}
-                    </li>
-                  ))}
+                        {isAspect && onOpenAspectDialog && (
+                          <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-border/50 pt-2.5">
+                            <span className="text-xs text-muted-foreground">
+                              Change your aspect whenever you finish a Long Rest:
+                            </span>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 text-xs"
+                              onClick={onOpenAspectDialog}
+                            >
+                              Change Aspect (Long Rest)
+                            </Button>
+                          </div>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             );

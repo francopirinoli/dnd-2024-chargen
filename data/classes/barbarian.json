@@ -92,6 +92,64 @@
     "19": 4,
     "20": 4
   },
+  "rage_uses_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 3,
+    "4": 3,
+    "5": 3,
+    "6": 4,
+    "7": 4,
+    "8": 4,
+    "9": 4,
+    "10": 4,
+    "11": 4,
+    "12": 5,
+    "13": 5,
+    "14": 5,
+    "15": 5,
+    "16": 5,
+    "17": 6,
+    "18": 6,
+    "19": 6,
+    "20": "Unlimited"
+  },
+  "rage_damage_by_level": {
+    "1": 2,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 2,
+    "7": 2,
+    "8": 2,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 4,
+    "17": 4,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  },
+  "brutal_strike_by_level": {
+    "9": "1d10",
+    "10": "1d10",
+    "11": "1d10",
+    "12": "1d10",
+    "13": "1d10",
+    "14": "1d10",
+    "15": "1d10",
+    "16": "1d10",
+    "17": "2d10",
+    "18": "2d10",
+    "19": "2d10",
+    "20": "2d10"
+  },
   "masterable_weapons": [
     "Battleaxe",
     "Club",
@@ -162,7 +220,24 @@
         "description": "You gain a Barbarian subclass of your choice: Path of the Berserker, Path of the Wild Heart, Path of the World Tree, or Path of the Zealot.",
         "feature_kind": "subclass_pick"
       },
-      "Primal Knowledge": "You gain proficiency in another skill of your choice from the Barbarian skill list. In addition, while your Rage is active, you can channel primal power when you attempt certain tasks; whenever you make an ability check using one of the following skills, you can make it as a Strength check even if it normally uses a different ability: Acrobatics, Intimidation, Perception, Stealth, or Survival."
+      "Primal Knowledge": {
+        "description": "You gain proficiency in another skill of your choice from the Barbarian skill list. In addition, while your Rage is active, you can channel primal power when you attempt certain tasks; whenever you make an ability check using one of the following skills, you can make it as a Strength check even if it normally uses a different ability: Acrobatics, Intimidation, Perception, Stealth, or Survival.",
+        "choices": {
+          "type": "select_single",
+          "count": 1,
+          "name": "primal_knowledge_skill",
+          "source": {
+            "type": "internal",
+            "list": "skill_options"
+          }
+        },
+        "effects": [
+          {
+            "type": "grant_skill_proficiency",
+            "from_choice": "primal_knowledge_skill"
+          }
+        ]
+      }
     },
     "4": {
       "Ability Score Improvement": {
@@ -273,7 +348,18 @@
       "Indomitable Might": "If your total for a Strength check or Strength saving throw is less than your Strength score, you can use that score in place of the total."
     },
     "19": {
-      "Epic Boon": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Irresistible Offense is recommended."
+      "Epic Boon": {
+        "description": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Irresistible Offense is recommended.",
+        "choices": {
+          "name": "class_feat_19",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
     },
     "20": {
       "Primal Champion": {
