@@ -24,6 +24,7 @@ import {
   Printer,
   Flame,
   Music,
+  PawPrint,
 } from "lucide-react";
 import { PrepareSpellsDialog } from "@/components/sheet/PrepareSpellsDialog";
 import { ChooseMasteriesDialog } from "@/components/sheet/ChooseMasteriesDialog";
@@ -1422,6 +1423,8 @@ function Attacks({
   const hasBardicInspiration = Boolean(bardStats.has_bardic_inspiration);
   const clericStats = rec(c.cleric_stats);
   const hasChannelDivinity = Boolean(clericStats.has_channel_divinity);
+  const druidStats = rec(c.druid_stats);
+  const hasWildShape = Boolean(druidStats.has_wild_shape);
   const combinations = arr<Record<string, unknown>>(c.attack_combinations);
 
   const serverBestCombination = rec(c.best_attack_combination);
@@ -1804,6 +1807,65 @@ function Attacks({
               {arr<Record<string, unknown>>(clericStats.channel_divinity_options).length > 0 && (
                 <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
                   {arr<Record<string, unknown>>(clericStats.channel_divinity_options).map((opt, idx) => (
+                    <div
+                      key={idx}
+                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                    >
+                      <div className="font-medium text-foreground">
+                        {str(opt.name)} <span className="text-[10px] text-muted-foreground">({str(opt.action)})</span>
+                      </div>
+                      <div className="text-[11px] text-muted-foreground line-clamp-2">
+                        {str(opt.effect)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {hasWildShape && druidStats.wild_shape_max !== undefined && (
+            <div className="mt-3 flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <PawPrint className="h-4 w-4 text-emerald-400" />
+                  <span className="font-semibold uppercase tracking-wide text-emerald-400">
+                    Wild Shape
+                  </span>
+                  {druidStats.wild_shape_max_cr !== undefined && (
+                    <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300">
+                      Max CR {str(druidStats.wild_shape_max_cr)}
+                    </span>
+                  )}
+                  {druidStats.wild_shape_temp_hp !== undefined && (
+                    <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-200">
+                      +{num(druidStats.wild_shape_temp_hp)} Temp HP
+                    </span>
+                  )}
+                  {druidStats.save_dc !== undefined && (
+                    <span className="text-muted-foreground hidden sm:inline">
+                      (Save DC {num(druidStats.save_dc)})
+                    </span>
+                  )}
+                </div>
+                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                  {num(druidStats.wild_shape_max)} uses / Short or Long Rest
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-2 text-[11px] text-muted-foreground">
+                <span>Known Forms: <strong className="text-foreground">{num(druidStats.wild_shape_known_forms)}</strong></span>
+                <span>·</span>
+                <span>Duration: <strong className="text-foreground">{num(druidStats.wild_shape_duration_hours)} hrs</strong></span>
+                <span>·</span>
+                <span>Fly Speed: <strong className="text-foreground">{druidStats.fly_speed_allowed ? "Yes" : "No (Lv 8+)"}</strong></span>
+                <span>·</span>
+                <span>Swim Speed: <strong className="text-foreground">Yes</strong></span>
+              </div>
+
+              {arr<Record<string, unknown>>(druidStats.wild_shape_options).length > 0 && (
+                <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {arr<Record<string, unknown>>(druidStats.wild_shape_options).map((opt, idx) => (
                     <div
                       key={idx}
                       className="rounded border border-border/50 bg-background/50 px-2 py-1.5"

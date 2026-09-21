@@ -222,7 +222,27 @@
           "Explosive Burst": "When an Undead creature you created dies, it explodes in a burst of spores. Each creature you choose within 10 feet of the dead creature makes a Constitution saving throw against your spell save DC, taking 2d8 Necrotic damage on a failure or half as much on a success."
         },
         "14": {
-          "Fungal Body": "You have Immunity to the Blinded, Deafened, Frightened, and Poisoned conditions. Any Critical Hit against you counts as a normal hit instead, unless you have the Incapacitated condition.\nAdditionally, if you have the Unconscious condition, your spores take over your body's motor functions to steer you to safety. The Unconscious condition doesn't make your Speed 0. On your turn, your spores direct your movement, keeping you near allies and away from danger."
+          "Fungal Body": {
+            "description": "You have Immunity to the Blinded, Deafened, Frightened, and Poisoned conditions. Any Critical Hit against you counts as a normal hit instead, unless you have the Incapacitated condition.\nAdditionally, if you have the Unconscious condition, your spores take over your body's motor functions to steer you to safety. The Unconscious condition doesn't make your Speed 0. On your turn, your spores direct your movement, keeping you near allies and away from danger.",
+            "effects": [
+              {
+                "type": "grant_condition_immunity",
+                "condition": "Blinded"
+              },
+              {
+                "type": "grant_condition_immunity",
+                "condition": "Deafened"
+              },
+              {
+                "type": "grant_condition_immunity",
+                "condition": "Frightened"
+              },
+              {
+                "type": "grant_condition_immunity",
+                "condition": "Poisoned"
+              }
+            ]
+          }
         }
       }
     },

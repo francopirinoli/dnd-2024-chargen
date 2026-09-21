@@ -715,3 +715,214 @@ class TestCircleOfTheLandSpells:
             f"Land type '{land_type}' should grant '{cantrip}', "
             f"got: {list(always_prepared.keys()) if isinstance(always_prepared, dict) else always_prepared}"
         )
+
+
+# ==================== 2024 RAW Audit Tests ====================
+
+
+class TestDruid2024Audit:
+    """Comprehensive tests for 2024 RAW Druid features, progression, and subclasses."""
+
+    def test_druid_stats_level_progression(self):
+        """Test Wild Shape uses, Max CR, known forms, and movement progression."""
+        # Level 1: No Wild Shape, Warden Primal Order
+        b1 = _build_full_druid(level=1, extra_choices={"primal_order": "Warden"})
+        s1 = b1.calculate_druid_stats()
+        assert s1["has_wild_shape"] is False
+        assert s1["druid_level"] == 1
+        assert s1["primal_order"]["name"] == "Warden"
+        assert "Primal Order: Warden" in s1["active_perks"]
+
+        # Level 2: 2 uses, CR 1/4, 4 forms, no fly, swim allowed
+        b2 = _build_full_druid(level=2, extra_choices={"primal_order": "Magician"})
+        s2 = b2.calculate_druid_stats()
+        assert s2["has_wild_shape"] is True
+        assert s2["wild_shape_max"] == 2
+        assert s2["wild_shape_max_cr"] == "1/4"
+        assert s2["wild_shape_known_forms"] == 4
+        assert s2["wild_shape_temp_hp"] == 2
+        assert s2["wild_shape_duration_hours"] == 1.0
+        assert s2["swim_speed_allowed"] is True
+        assert s2["fly_speed_allowed"] is False
+        assert any(opt["name"] == "Beast Shapes" for opt in s2["wild_shape_options"])
+        assert any(opt["name"] == "Wild Companion" for opt in s2["wild_shape_options"])
+
+        # Level 4: 2 uses, CR 1/2, 6 forms
+        b4 = _build_full_druid(level=4)
+        s4 = b4.calculate_druid_stats()
+        assert s4["wild_shape_max"] == 2
+        assert s4["wild_shape_max_cr"] == "1/2"
+        assert s4["wild_shape_known_forms"] == 6
+        assert s4["wild_shape_temp_hp"] == 4
+        assert s4["fly_speed_allowed"] is False
+
+        # Level 6: 3 uses
+        b6 = _build_full_druid(level=6)
+        s6 = b6.calculate_druid_stats()
+        assert s6["wild_shape_max"] == 3
+
+        # Level 8: 3 uses, CR 1, 8 forms, fly speed allowed
+        b8 = _build_full_druid(level=8)
+        s8 = b8.calculate_druid_stats()
+        assert s8["wild_shape_max"] == 3
+        assert s8["wild_shape_max_cr"] == "1"
+        assert s8["wild_shape_known_forms"] == 8
+        assert s8["fly_speed_allowed"] is True
+
+        # Level 17: 4 uses
+        b17 = _build_full_druid(level=17)
+        s17 = b17.calculate_druid_stats()
+        assert s17["wild_shape_max"] == 4
+
+        # Level 20: Archdruid active
+        b20 = _build_full_druid(level=20)
+        s20 = b20.calculate_druid_stats()
+        assert s20["archdruid"] is True
+        assert any("Archdruid" in perk for perk in s20["active_perks"])
+
+    def test_circle_of_the_moon_progression(self):
+        """Test Circle of the Moon CR = level/3, Temp HP = 3x level, and subclass perks."""
+        # Level 3: CR 1, Temp HP 9
+        b3 = _build_full_druid(level=3, subclass="Circle of the Moon")
+        s3 = b3.calculate_druid_stats()
+        assert s3["wild_shape_max_cr"] == "1"
+        assert s3["wild_shape_temp_hp"] == 9
+        assert any(opt["name"] == "Circle Forms" for opt in s3["wild_shape_options"])
+
+        # Level 6: CR 2, Temp HP 18, Increased Toughness
+        b6 = _build_full_druid(level=6, subclass="Circle of the Moon")
+        s6 = b6.calculate_druid_stats()
+        assert s6["wild_shape_max_cr"] == "2"
+        assert s6["wild_shape_temp_hp"] == 18
+        assert any("Increased Toughness" in p for p in s6["active_perks"])
+
+        # Level 10: CR 3, Temp HP 30, Moonlight Step resource
+        b10 = _build_full_druid(level=10, subclass="Circle of the Moon")
+        s10 = b10.calculate_druid_stats()
+        assert s10["wild_shape_max_cr"] == "3"
+        assert s10["wild_shape_temp_hp"] == 30
+        assert "moonlight_step" in s10["subclass_resources"]
+
+        # Level 14: CR 4, Temp HP 42, Lunar Form
+        b14 = _build_full_druid(level=14, subclass="Circle of the Moon")
+        s14 = b14.calculate_druid_stats()
+        assert s14["wild_shape_max_cr"] == "4"
+        assert s14["wild_shape_temp_hp"] == 42
+        assert any("Lunar Form" in p for p in s14["active_perks"])
+
+    def test_circle_of_the_sea_features(self):
+        """Test Circle of the Sea Wrath of the Sea, Aquatic Affinity, and Stormborn."""
+        b3 = _build_full_druid(level=3, subclass="Circle of the Sea")
+        s3 = b3.calculate_druid_stats()
+        assert any(opt["name"] == "Wrath of the Sea" for opt in s3["wild_shape_options"])
+
+        b6 = _build_full_druid(level=6, subclass="Circle of the Sea")
+        s6 = b6.calculate_druid_stats()
+        assert any("Aquatic Affinity" in p for p in s6["active_perks"])
+
+        b10 = _build_full_druid(level=10, subclass="Circle of the Sea")
+        s10 = b10.calculate_druid_stats()
+        assert any("Stormborn" in p for p in s10["active_perks"])
+
+    def test_circle_of_the_stars_features(self):
+        """Test Circle of the Stars Star Map, Starry Form, and Cosmic Omen."""
+        b3 = _build_full_druid(level=3, subclass="Circle of the Stars")
+        s3 = b3.calculate_druid_stats()
+        assert "star_map" in s3["subclass_resources"]
+        assert any(opt["name"] == "Starry Form" for opt in s3["wild_shape_options"])
+
+        b6 = _build_full_druid(level=6, subclass="Circle of the Stars")
+        s6 = b6.calculate_druid_stats()
+        assert "cosmic_omen" in s6["subclass_resources"]
+
+    def test_circle_of_spores_supplement(self):
+        """Test Circle of Spores Symbiotic Entity (4x level Temp HP) and Fungal Body."""
+        b3 = _build_full_druid(level=3, subclass="Circle of Spores")
+        s3 = b3.calculate_druid_stats()
+        assert s3["wild_shape_temp_hp"] == 12  # 4 * 3
+        assert any(opt["name"] == "Symbiotic Entity" for opt in s3["wild_shape_options"])
+        assert "halo_of_spores" in s3["subclass_resources"]
+
+        # Level 14: Fungal Body condition immunities
+        b14 = _build_full_druid(level=14, subclass="Circle of Spores")
+        char14 = b14.to_character()
+        immunities = char14.get("condition_immunities", [])
+        assert "Blinded" in immunities
+        assert "Deafened" in immunities
+        assert "Frightened" in immunities
+        assert "Poisoned" in immunities
+
+    def test_circle_of_the_titan_supplement(self):
+        """Test Circle of the Titan Titan Form (4x level Temp HP and Rend)."""
+        b3 = _build_full_druid(level=3, subclass="Circle of the Titan")
+        s3 = b3.calculate_druid_stats()
+        assert s3["wild_shape_temp_hp"] == 12  # 4 * 3
+        assert any(opt["name"] == "Titan Form" for opt in s3["wild_shape_options"])
+
+    def test_elemental_fury_and_weapon_attacks(self):
+        """Test Elemental Fury Primal Strike adds dice to weapon attacks."""
+        b7 = _build_full_druid(level=7, extra_choices={"elemental_fury": "Primal Strike"})
+        b7.character_data["equipment"] = {
+            "weapons": [
+                {
+                    "name": "Quarterstaff",
+                    "properties": {"category": "Simple Melee", "properties": ["Versatile (1d8)"]},
+                    "equipped": True,
+                }
+            ],
+            "armor": [],
+            "items": [],
+            "gold": 10,
+        }
+        attacks = b7.calculate_weapon_attacks().get("attacks", [])
+        staff = next((a for a in attacks if a["name"] == "Quarterstaff"), None)
+        assert staff is not None
+        assert any("Primal Strike" in note and "+1d8" in note for note in staff["damage_notes"])
+
+        # Level 15 scales to 2d8
+        b15 = _build_full_druid(level=15, extra_choices={"elemental_fury": "Primal Strike"})
+        b15.character_data["equipment"] = {
+            "weapons": [
+                {
+                    "name": "Quarterstaff",
+                    "properties": {"category": "Simple Melee", "properties": ["Versatile (1d8)"]},
+                    "equipped": True,
+                }
+            ],
+            "armor": [],
+            "items": [],
+            "gold": 10,
+        }
+        attacks15 = b15.calculate_weapon_attacks().get("attacks", [])
+        staff15 = next((a for a in attacks15 if a["name"] == "Quarterstaff"), None)
+        assert staff15 is not None
+        assert any("Primal Strike" in note and "+2d8" in note for note in staff15["damage_notes"])
+
+    def test_druid_level_up_preview(self):
+        """Test level up preview druid_changes."""
+        from modules.derived_stats import build_level_up_preview
+
+        choices = {
+            "character_name": "Sylara",
+            "level": 3,
+            "species": "Elf",
+            "class": "Druid",
+            "background": "Farmer",
+            "primal_order": "Warden",
+            "subclass": "Circle of the Moon",
+            "ability_scores": {
+                "Strength": 8, "Dexterity": 12, "Constitution": 14,
+                "Intelligence": 13, "Wisdom": 16, "Charisma": 10,
+            },
+            "background_bonuses": {"Wisdom": 2, "Constitution": 1},
+        }
+        preview = build_level_up_preview(choices)
+        assert "druid_changes" in preview
+        d_ch = preview["druid_changes"]
+        assert d_ch["has_wild_shape"] is True
+        assert d_ch["is_druid"] is True
+        # Going from level 3 to 4: known forms increases from 4 to 6
+        assert d_ch["current_known_forms"] == 4
+        assert d_ch["next_known_forms"] == 6
+        assert d_ch["known_forms_increased"] is True
+

@@ -200,6 +200,11 @@ KNOWN_CHOICE_KEYS: frozenset = frozenset({
     "blessed_strikes",
     "knowledge_artisan_tool",
     "knowledge_skills",
+    # Druid
+    "primal_order",
+    "magician_bonus_cantrip",
+    "elemental_fury",
+    "land_type",
     # Artificer Replicate Magic Item
     "artificer_replicate_plans",
     "artificer_plans",

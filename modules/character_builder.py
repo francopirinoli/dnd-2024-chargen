@@ -8356,6 +8356,292 @@ class CharacterBuilder:
 
         return stats
 
+    def calculate_druid_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Wild Shape uses, Max CR, known forms, movement capabilities,
+        Primal Order, Elemental Fury, and subclass statistics for Druid characters.
+
+        Returns:
+            Dictionary with has_wild_shape, druid_level, subclass,
+            wild_shape_uses, wild_shape_max, recharge, wild_shape_duration_hours,
+            wild_shape_temp_hp, wild_shape_max_cr, wild_shape_known_forms,
+            fly_speed_allowed, swim_speed_allowed, save_dc, primal_order,
+            elemental_fury, primal_strike_dice, wild_resurgence, beast_spells,
+            archdruid, wild_shape_options, subclass_resources, active_perks.
+        """
+        stats: Dict[str, Any] = {
+            "has_wild_shape": False,
+            "druid_level": 0,
+            "subclass": "",
+            "wild_shape_uses": 0,
+            "wild_shape_max": 0,
+            "recharge": "Short or Long Rest (regain 1 on Short Rest, all on Long Rest)",
+            "wild_shape_duration_hours": 0.0,
+            "wild_shape_temp_hp": 0,
+            "wild_shape_max_cr": "0",
+            "wild_shape_known_forms": 0,
+            "fly_speed_allowed": False,
+            "swim_speed_allowed": False,
+            "save_dc": 0,
+            "primal_order": None,
+            "elemental_fury": None,
+            "primal_strike_dice": None,
+            "wild_resurgence": False,
+            "beast_spells": False,
+            "archdruid": False,
+            "wild_shape_options": [],
+            "subclass_resources": {},
+            "active_perks": [],
+        }
+
+        druid_level = self._get_class_level("Druid")
+        stats["druid_level"] = druid_level
+        if druid_level < 1:
+            return stats
+
+        subclass_name = self._get_class_subclass("Druid") or ""
+        stats["subclass"] = subclass_name
+
+        ability_scores = getattr(self.ability_scores, "final_scores", {}) if hasattr(self, "ability_scores") else {}
+        wis_score = ability_scores.get("Wisdom", 10) if isinstance(ability_scores, dict) else 10
+        wis_mod = (wis_score - 10) // 2
+        prof_bonus = self.calculate_proficiency_bonus(druid_level)
+        save_dc = 8 + prof_bonus + wis_mod
+        stats["save_dc"] = save_dc
+
+        choices_made = self.character_data.get("choices_made", {})
+
+        # Level 1: Primal Order
+        primal_order = choices_made.get("primal_order")
+        if not primal_order:
+            for choice_key, val in choices_made.items():
+                if "primal_order" in choice_key.lower() and isinstance(val, str):
+                    primal_order = val
+                    break
+        if primal_order:
+            stats["primal_order"] = {
+                "name": primal_order,
+                "description": (
+                    "Martial weapon proficiency & Medium armor training"
+                    if primal_order == "Warden"
+                    else "Bonus cantrip & add Wisdom modifier (min +1) to Arcana and Nature checks"
+                ),
+            }
+            stats["active_perks"].append(f"Primal Order: {primal_order}")
+
+        # Level 2+: Wild Shape
+        if druid_level >= 2:
+            stats["has_wild_shape"] = True
+            if druid_level >= 17:
+                ws_uses = 4
+            elif druid_level >= 6:
+                ws_uses = 3
+            else:
+                ws_uses = 2
+            stats["wild_shape_uses"] = ws_uses
+            stats["wild_shape_max"] = ws_uses
+            stats["wild_shape_duration_hours"] = druid_level / 2.0
+            stats["swim_speed_allowed"] = True
+            stats["fly_speed_allowed"] = druid_level >= 8
+
+            # Known forms: 4 (lv 2-3), 6 (lv 4-7), 8 (lv 8+)
+            if druid_level >= 8:
+                stats["wild_shape_known_forms"] = 8
+            elif druid_level >= 4:
+                stats["wild_shape_known_forms"] = 6
+            else:
+                stats["wild_shape_known_forms"] = 4
+
+            # Max CR & Temp HP
+            if subclass_name == "Circle of the Moon":
+                moon_cr = max(1, druid_level // 3)
+                stats["wild_shape_max_cr"] = str(moon_cr)
+                stats["wild_shape_temp_hp"] = 3 * druid_level
+            elif subclass_name in ["Circle of Spores", "Circle of the Titan"]:
+                stats["wild_shape_temp_hp"] = 4 * druid_level
+                if druid_level >= 8:
+                    stats["wild_shape_max_cr"] = "1"
+                elif druid_level >= 4:
+                    stats["wild_shape_max_cr"] = "1/2"
+                else:
+                    stats["wild_shape_max_cr"] = "1/4"
+            else:
+                stats["wild_shape_temp_hp"] = druid_level
+                if druid_level >= 8:
+                    stats["wild_shape_max_cr"] = "1"
+                elif druid_level >= 4:
+                    stats["wild_shape_max_cr"] = "1/2"
+                else:
+                    stats["wild_shape_max_cr"] = "1/4"
+
+            # Base Wild Shape options
+            fly_note = " (Fly Speed allowed)" if stats["fly_speed_allowed"] else " (No Fly Speed until Lv 8)"
+            stats["wild_shape_options"].append({
+                "name": "Beast Shapes",
+                "action": "Bonus Action (Known Beast Forms)",
+                "effect": f"Assume known Beast form (Max CR {stats['wild_shape_max_cr']}{fly_note}). Gain {stats['wild_shape_temp_hp']} Temp HP. Retain Int/Wis/Cha. Lasts {stats['wild_shape_duration_hours']:.1f} hrs.",
+            })
+            stats["wild_shape_options"].append({
+                "name": "Wild Companion",
+                "action": "No action (expend Wild Shape or spell slot)",
+                "effect": f"Cast Find Familiar without Material components. Familiar is Fey and disappears after {stats['wild_shape_duration_hours']:.1f} hrs.",
+            })
+
+        # Level 5+: Wild Resurgence
+        if druid_level >= 5:
+            stats["wild_resurgence"] = True
+            stats["active_perks"].append("Wild Resurgence (Convert spell slot to Wild Shape; 1/LR convert Wild Shape to Lv 1 slot)")
+
+        # Level 7+: Elemental Fury
+        if druid_level >= 7:
+            elemental_fury = choices_made.get("elemental_fury")
+            if not elemental_fury:
+                for choice_key, val in choices_made.items():
+                    if "elemental_fury" in choice_key.lower() and isinstance(val, str):
+                        elemental_fury = val
+                        break
+            if elemental_fury == "Potent Spellcasting":
+                desc = f"Add Wisdom modifier (+{wis_mod}) to Druid cantrip damage"
+                if druid_level >= 15:
+                    desc += "; cantrips with 10+ ft range have +300 ft range"
+                stats["elemental_fury"] = {
+                    "name": "Potent Spellcasting",
+                    "description": desc,
+                }
+                stats["active_perks"].append(f"Elemental Fury: Potent Spellcasting (+{wis_mod} cantrip damage)")
+            elif elemental_fury == "Primal Strike":
+                strike_dice = "2d8" if druid_level >= 15 else "1d8"
+                stats["primal_strike_dice"] = strike_dice
+                stats["elemental_fury"] = {
+                    "name": "Primal Strike",
+                    "description": f"+{strike_dice} Cold, Fire, Lightning, or Thunder damage on 1 weapon or beast attack per turn",
+                }
+                stats["active_perks"].append(f"Elemental Fury: Primal Strike (+{strike_dice})")
+
+        # Level 18+: Beast Spells
+        if druid_level >= 18:
+            stats["beast_spells"] = True
+            stats["active_perks"].append("Beast Spells (Cast spells in Beast form lacking costly Material components)")
+
+        # Level 20+: Archdruid
+        if druid_level >= 20:
+            stats["archdruid"] = True
+            stats["active_perks"].append("Archdruid (Regain 1 Wild Shape on Initiative; convert Wild Shape to spell slot; 10x slower aging)")
+
+        # Subclass options & resources
+        if subclass_name == "Circle of the Moon" and druid_level >= 3:
+            stats["wild_shape_options"].append({
+                "name": "Circle Forms",
+                "action": "Bonus Action",
+                "effect": f"Wild Shape Max CR = {stats['wild_shape_max_cr']}; AC = {13 + wis_mod} if higher than beast; Temp HP = {3 * druid_level}; attacks deal normal or Radiant damage.",
+            })
+            if druid_level >= 6:
+                stats["active_perks"].append(f"Increased Toughness (+{wis_mod} Wisdom bonus to Constitution saving throws in Wild Shape)")
+            if druid_level >= 10:
+                stats["subclass_resources"]["moonlight_step"] = {
+                    "name": "Moonlight Step",
+                    "uses": max(1, wis_mod),
+                    "recharge": "Long Rest (regain 1 by expending Lv 2+ slot)",
+                    "description": "Bonus Action: Teleport 30 ft and gain Advantage on next attack roll before turn ends",
+                }
+            if druid_level >= 14:
+                stats["active_perks"].append("Lunar Form (+2d10 Radiant on 1 attack/turn; share Moonlight Step with ally)")
+
+        elif subclass_name == "Circle of the Land" and druid_level >= 3:
+            land_type = choices_made.get("land_type") or "Arid"
+            aid_dice = "4d6" if druid_level >= 14 else ("3d6" if druid_level >= 10 else "2d6")
+            stats["wild_shape_options"].append({
+                "name": "Land's Aid",
+                "action": "Magic Action (60 ft, 10-ft sphere)",
+                "effect": f"Expend 1 Wild Shape use. Con save (DC {save_dc}) for {aid_dice} Necrotic damage (half on save); 1 creature heals {aid_dice} HP.",
+            })
+            if druid_level >= 6:
+                max_rec = (druid_level + 1) // 2
+                stats["subclass_resources"]["natural_recovery"] = {
+                    "name": "Natural Recovery",
+                    "description": f"Free cast 1 Circle spell / Long Rest; recover spell slots on Short Rest up to level {max_rec} (1/Long Rest)",
+                }
+            if druid_level >= 10:
+                res_map = {"Arid": "Fire", "Polar": "Cold", "Temperate": "Lightning", "Tropical": "Poison"}
+                res_type = res_map.get(land_type, "Fire")
+                stats["active_perks"].append(f"Nature's Ward (Immune to Poisoned condition & {res_type} damage resistance)")
+            if druid_level >= 14:
+                stats["wild_shape_options"].append({
+                    "name": "Nature's Sanctuary",
+                    "action": "Magic Action (120 ft, 15-ft cube)",
+                    "effect": "Expend 1 Wild Shape use. Spectral grove for 1 min grants allies Half Cover and Nature's Ward resistance; move 60 ft as Bonus Action.",
+                })
+
+        elif subclass_name == "Circle of the Sea" and druid_level >= 3:
+            emanation_size = 10 if druid_level >= 6 else 5
+            stats["wild_shape_options"].append({
+                "name": "Wrath of the Sea",
+                "action": f"Bonus Action ({emanation_size}-ft emanation, 10 min)",
+                "effect": f"Expend 1 Wild Shape use. Con save (DC {save_dc}) or take {max(1, wis_mod)}d6 Cold damage and pushed 15 ft away.",
+            })
+            if druid_level >= 6:
+                stats["active_perks"].append("Aquatic Affinity (Swim speed equal to Speed; 10-ft Wrath emanation)")
+            if druid_level >= 10:
+                stats["active_perks"].append("Stormborn (Fly speed equal to Speed & Resistance to Cold, Lightning, Thunder while Wrath active)")
+            if druid_level >= 14:
+                stats["active_perks"].append("Oceanic Gift (Manifest Wrath of the Sea around ally within 60 ft, or both for 2 Wild Shape uses)")
+
+        elif subclass_name == "Circle of the Stars" and druid_level >= 3:
+            stats["subclass_resources"]["star_map"] = {
+                "name": "Star Map",
+                "uses": max(1, wis_mod),
+                "recharge": "Long Rest",
+                "description": f"Guidance cantrip; cast Guiding Bolt without spell slot {max(1, wis_mod)} times per Long Rest",
+            }
+            form_dice = "2d8" if druid_level >= 10 else "1d8"
+            stats["wild_shape_options"].append({
+                "name": "Starry Form",
+                "action": "Bonus Action (10 min, 10-ft bright / 10-ft dim light)",
+                "effect": f"Archer (BA 60 ft ranged spell attack for {form_dice}+{wis_mod} Radiant), Chalice (healing spell heals extra {form_dice}+{wis_mod} HP within 30 ft), Dragon (treat roll <= 9 as 10 on Int/Wis checks & Con concentration saves; Fly 20 ft hover at Lv 10).",
+            })
+            if druid_level >= 6:
+                stats["subclass_resources"]["cosmic_omen"] = {
+                    "name": "Cosmic Omen",
+                    "uses": max(1, wis_mod),
+                    "recharge": "Long Rest",
+                    "description": f"Weal/Woe reaction to add or subtract 1d6 from d20 test within 30 ft ({max(1, wis_mod)}/LR)",
+                }
+            if druid_level >= 14:
+                stats["active_perks"].append("Full of Stars (Resistance to Bludgeoning, Piercing, and Slashing damage in Starry Form)")
+
+        elif subclass_name == "Circle of Spores" and druid_level >= 3:
+            halo_die = "1d10" if druid_level >= 14 else ("1d8" if druid_level >= 10 else ("1d6" if druid_level >= 6 else "1d4"))
+            stats["subclass_resources"]["halo_of_spores"] = {
+                "name": "Halo of Spores",
+                "description": f"Reaction when creature enters or starts turn in 10-ft emanation: Con save (DC {save_dc}) or take {halo_die} Necrotic (or disadvantage on next attack on save)",
+            }
+            stats["wild_shape_options"].append({
+                "name": "Symbiotic Entity",
+                "action": "Bonus Action (10 min)",
+                "effect": f"Expend 1 Wild Shape use. Gain {4 * druid_level} Temp HP; Halo of Spores damage is doubled; deal +1d6 Necrotic on 1 melee attack per turn.",
+            })
+            if druid_level >= 6:
+                stats["subclass_resources"]["fungal_infestation"] = {
+                    "name": "Fungal Infestation",
+                    "uses": max(1, wis_mod),
+                    "recharge": "Long Rest",
+                    "description": f"Reaction to animate Small/Medium Beast or Humanoid corpse within 10 ft as Zombie for 1 hour ({max(1, wis_mod)}/LR)",
+                }
+            if druid_level >= 10:
+                stats["active_perks"].append(f"Explosive Burst (Created undead explodes on death: 10 ft Con save DC {save_dc} for 2d8 Necrotic)")
+            if druid_level >= 14:
+                stats["active_perks"].append("Fungal Body (Immunity to Blinded, Deafened, Frightened, Poisoned; immune to Critical Hits; spores steer body when Unconscious)")
+
+        elif subclass_name == "Circle of the Titan" and druid_level >= 3:
+            rend_dice = "3d8" if druid_level >= 12 else ("2d8" if druid_level >= 6 else "1d8")
+            stats["wild_shape_options"].append({
+                "name": "Titan Form",
+                "action": "Bonus Action (10 min)",
+                "effect": f"Transform into Large Behemoth, Leviathan, or Insectoid. AC = {13 + wis_mod}; Temp HP = {4 * druid_level}; Speed 40 ft (Climb/Swim/Fly 40 ft); Rend deals {rend_dice}+{wis_mod} damage.",
+            })
+
+        return stats
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -8535,6 +8821,19 @@ class CharacterBuilder:
                         break
             if blessed_strike == "Divine Strike":
                 cleric_divine_strike_dice = "2d8" if cleric_level >= 14 else "1d8"
+
+        druid_level = self._get_class_level("Druid")
+        druid_primal_strike_dice = None
+        if druid_level >= 7:
+            choices_made = self.character_data.get("choices_made", {})
+            elemental_fury = choices_made.get("elemental_fury")
+            if not elemental_fury:
+                for k, v in choices_made.items():
+                    if "elemental_fury" in k.lower() and isinstance(v, str):
+                        elemental_fury = v
+                        break
+            if elemental_fury == "Primal Strike":
+                druid_primal_strike_dice = "2d8" if druid_level >= 15 else "1d8"
 
         for weapon in active_weapons:
             weapon_name = (
@@ -8784,6 +9083,10 @@ class CharacterBuilder:
                 damage_notes.append(f"+{rage_bonus_value} while Raging")
             if cleric_divine_strike_dice:
                 damage_notes.append(f"+{cleric_divine_strike_dice} Divine Strike (Radiant or Necrotic, 1/turn)")
+            if druid_primal_strike_dice:
+                damage_notes.append(f"+{druid_primal_strike_dice} Primal Strike (Cold, Fire, Lightning, or Thunder, 1/turn)")
+            if self._get_class_subclass("Druid") == "Circle of Spores" and druid_level >= 3:
+                damage_notes.append("+1d6 Necrotic (Symbiotic Entity while active, 1/turn)")
 
             attack_info = {
                 "name": weapon_name,
@@ -10212,6 +10515,11 @@ class CharacterBuilder:
         cleric_stats = self.calculate_cleric_stats()
         if cleric_stats.get("cleric_level", 0) > 0:
             character_data["cleric_stats"] = cleric_stats
+
+        # Add Druid stats (Druid only)
+        druid_stats = self.calculate_druid_stats()
+        if druid_stats.get("druid_level", 0) > 0:
+            character_data["druid_stats"] = druid_stats
 
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:

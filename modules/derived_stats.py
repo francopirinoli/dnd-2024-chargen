@@ -902,6 +902,48 @@ def build_level_up_preview(
         ),
     }
 
+    druid_curr = builder_current.calculate_druid_stats()
+    druid_next = builder_next.calculate_druid_stats()
+    is_druid = target_class_name.lower() == "druid"
+    druid_changes = {
+        "has_wild_shape": bool(druid_next.get("has_wild_shape")),
+        "is_druid": is_druid,
+        "current_ws_uses": druid_curr.get("wild_shape_max", 0),
+        "next_ws_uses": druid_next.get("wild_shape_max", 0),
+        "ws_uses_increased": (
+            druid_next.get("wild_shape_max", 0) > druid_curr.get("wild_shape_max", 0)
+        ),
+        "current_max_cr": druid_curr.get("wild_shape_max_cr"),
+        "next_max_cr": druid_next.get("wild_shape_max_cr"),
+        "max_cr_increased": (
+            druid_curr.get("wild_shape_max_cr") != druid_next.get("wild_shape_max_cr")
+            and druid_next.get("wild_shape_max_cr") not in (None, "0")
+        ),
+        "current_known_forms": druid_curr.get("wild_shape_known_forms", 0),
+        "next_known_forms": druid_next.get("wild_shape_known_forms", 0),
+        "known_forms_increased": (
+            druid_next.get("wild_shape_known_forms", 0) > druid_curr.get("wild_shape_known_forms", 0)
+        ),
+        "fly_speed_unlocked": (
+            bool(druid_next.get("fly_speed_allowed")) and not bool(druid_curr.get("fly_speed_allowed"))
+        ),
+        "wild_resurgence_unlocked": (
+            bool(druid_next.get("wild_resurgence")) and not bool(druid_curr.get("wild_resurgence"))
+        ),
+        "elemental_fury_unlocked": (
+            druid_next.get("elemental_fury") is not None and druid_curr.get("elemental_fury") is None
+        ),
+        "improved_elemental_fury_unlocked": (
+            druid_next.get("druid_level", 0) >= 15 and druid_curr.get("druid_level", 0) < 15
+        ),
+        "beast_spells_unlocked": (
+            bool(druid_next.get("beast_spells")) and not bool(druid_curr.get("beast_spells"))
+        ),
+        "archdruid_unlocked": (
+            bool(druid_next.get("archdruid")) and not bool(druid_curr.get("archdruid"))
+        ),
+    }
+
     return {
         "can_level_up": True,
         "class_name": target_class_name,
@@ -962,4 +1004,5 @@ def build_level_up_preview(
         "barbarian_changes": barbarian_changes,
         "bard_changes": bard_changes,
         "cleric_changes": cleric_changes,
+        "druid_changes": druid_changes,
     }

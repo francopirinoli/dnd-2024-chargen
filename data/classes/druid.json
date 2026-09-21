@@ -350,6 +350,94 @@
       1
     ]
   },
+  "wild_shape_uses_by_level": {
+    "1": 0,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 3,
+    "17": 4,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  },
+  "wild_shape_known_forms_by_level": {
+    "1": 0,
+    "2": 4,
+    "3": 4,
+    "4": 6,
+    "5": 6,
+    "6": 6,
+    "7": 6,
+    "8": 8,
+    "9": 8,
+    "10": 8,
+    "11": 8,
+    "12": 8,
+    "13": 8,
+    "14": 8,
+    "15": 8,
+    "16": 8,
+    "17": 8,
+    "18": 8,
+    "19": 8,
+    "20": 8
+  },
+  "wild_shape_max_cr_by_level": {
+    "1": "0",
+    "2": "1/4",
+    "3": "1/4",
+    "4": "1/2",
+    "5": "1/2",
+    "6": "1/2",
+    "7": "1/2",
+    "8": "1",
+    "9": "1",
+    "10": "1",
+    "11": "1",
+    "12": "1",
+    "13": "1",
+    "14": "1",
+    "15": "1",
+    "16": "1",
+    "17": "1",
+    "18": "1",
+    "19": "1",
+    "20": "1"
+  },
+  "wild_shape_fly_speed_by_level": {
+    "1": false,
+    "2": false,
+    "3": false,
+    "4": false,
+    "5": false,
+    "6": false,
+    "7": false,
+    "8": true,
+    "9": true,
+    "10": true,
+    "11": true,
+    "12": true,
+    "13": true,
+    "14": true,
+    "15": true,
+    "16": true,
+    "17": true,
+    "18": true,
+    "19": true,
+    "20": true
+  },
   "primal_orders": {
     "Magician": {
       "description": "You know one extra cantrip from the Druid spell list. In addition, your mystical connection to nature gives you a bonus to your Intelligence (Arcana or Nature) checks. The bonus equals your Wisdom modifier (minimum bonus of +1).",
@@ -470,7 +558,7 @@
       }
     },
     "2": {
-      "Wild Shape": "As a Bonus Action, you magically assume the shape of a beast you have seen. You can use this feature a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. You stay in beast form for a number of hours equal to half your Druid level (rounded down). Your temporary hit points in beast form equal your Druid level. You revert if you drop to 0 temporary hit points, use a Bonus Action, or are incapacitated. While in beast form, your game statistics are replaced by the beast's, but you retain your alignment, personality, Intelligence, Wisdom, and Charisma scores. You can't cast spells in beast form (until Beast Spells at level 18). Known forms start at a limited number and grow as you level.",
+      "Wild Shape": "As a Bonus Action, you magically assume the shape of a beast you have seen, choosing from your known forms. You start with 2 uses of Wild Shape, and gain more at higher levels. You regain one expended use when you finish a Short Rest and all expended uses when you finish a Long Rest. You stay in beast form for a number of hours equal to half your Druid level (rounded down). When you transform, you gain Temporary Hit Points equal to your Druid level. You revert if your Temporary Hit Points drop to 0, if you end it as a Bonus Action, or if you have the Incapacitated condition. While transformed, your game statistics are replaced by the beast's, but you retain your alignment, personality, Intelligence, Wisdom, and Charisma scores. You can't cast spells in beast form (until Beast Spells at level 18). You know 4 beast forms at level 2 (increasing to 6 at level 4, and 8 at level 8), and can replace one known form when you finish a Long Rest.",
       "Wild Companion": "You can expend a spell slot or a use of Wild Shape (no action required) to cast Find Familiar without Material components. The familiar is a Fey and disappears after a number of hours equal to half your Druid level."
     },
     "3": {
@@ -582,7 +670,18 @@
       "Beast Spells": "While using Wild Shape, you can cast spells in Beast form, except for any spell that has a Material component with a cost specified or that consumes its Material component."
     },
     "19": {
-      "Epic Boon": "Gain an Epic Boon feat or another feat of your choice."
+      "Epic Boon": {
+        "description": "You gain an Epic Boon feat or another feat of your choice for which you qualify.",
+        "choices": {
+          "name": "class_feat_19",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
     },
     "20": {
       "Archdruid": "The vitality of nature constantly blooms within you, granting you the following benefits. Evergreen Wild Shape: Whenever you roll Initiative and have no uses of Wild Shape left, you regain one expended use. Nature Magician: You can convert uses of Wild Shape into a spell slot (no action required), with each use contributing 2 spell levels. Once per Long Rest. Longevity: For every ten years that pass, your body ages only one year."

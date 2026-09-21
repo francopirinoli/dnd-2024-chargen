@@ -351,6 +351,25 @@ export interface LevelUpPreviewResponse {
     divine_intervention_unlocked: boolean;
     greater_divine_intervention_unlocked: boolean;
   };
+  druid_changes?: {
+    has_wild_shape: boolean;
+    is_druid: boolean;
+    current_ws_uses: number;
+    next_ws_uses: number;
+    ws_uses_increased: boolean;
+    current_max_cr?: string | null;
+    next_max_cr?: string | null;
+    max_cr_increased: boolean;
+    current_known_forms: number;
+    next_known_forms: number;
+    known_forms_increased: boolean;
+    fly_speed_unlocked: boolean;
+    wild_resurgence_unlocked: boolean;
+    elemental_fury_unlocked: boolean;
+    improved_elemental_fury_unlocked: boolean;
+    beast_spells_unlocked: boolean;
+    archdruid_unlocked: boolean;
+  };
 }
 
 export interface BackgroundSummary {

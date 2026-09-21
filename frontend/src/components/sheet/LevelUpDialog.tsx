@@ -38,6 +38,7 @@ import {
   ChevronUp,
   Wand2,
   Music,
+  PawPrint,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -423,8 +424,8 @@ export function LevelUpDialog({ open, onClose, onSuccess }: LevelUpDialogProps) 
               </div>
             </div>
 
-            {/* Spellcasting, Weapon Mastery, Bardic Inspiration & Channel Divinity callouts */}
-            {(preview.spellcasting_changes?.has_spellcasting || preview.mastery_changes?.increased || (preview.bard_changes?.has_bardic_inspiration && (preview.bard_changes.die_increased || preview.bard_changes.recharge_improved)) || (preview.cleric_changes?.has_channel_divinity && (preview.cleric_changes.cd_uses_increased || preview.cleric_changes.spark_dice_increased || preview.cleric_changes.divine_intervention_unlocked))) && (
+            {/* Spellcasting, Weapon Mastery, Bardic Inspiration, Channel Divinity & Wild Shape callouts */}
+            {(preview.spellcasting_changes?.has_spellcasting || preview.mastery_changes?.increased || (preview.bard_changes?.has_bardic_inspiration && (preview.bard_changes.die_increased || preview.bard_changes.recharge_improved)) || (preview.cleric_changes?.has_channel_divinity && (preview.cleric_changes.cd_uses_increased || preview.cleric_changes.spark_dice_increased || preview.cleric_changes.divine_intervention_unlocked)) || (preview.druid_changes?.has_wild_shape && (preview.druid_changes.ws_uses_increased || preview.druid_changes.max_cr_increased || preview.druid_changes.known_forms_increased || preview.druid_changes.fly_speed_unlocked || preview.druid_changes.wild_resurgence_unlocked || preview.druid_changes.elemental_fury_unlocked || preview.druid_changes.beast_spells_unlocked || preview.druid_changes.archdruid_unlocked))) && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {preview.spellcasting_changes?.has_spellcasting && (
                   <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm space-y-1.5">
@@ -504,6 +505,58 @@ export function LevelUpDialog({ open, onClose, onSuccess }: LevelUpDialogProps) 
                     {preview.cleric_changes.divine_intervention_unlocked && (
                       <p className="text-xs text-muted-foreground">
                         Divine Intervention: <span className="font-semibold text-foreground">Unlocked (Level 5 or lower Cleric spell without slot)</span>
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {preview.druid_changes?.has_wild_shape && (preview.druid_changes.ws_uses_increased || preview.druid_changes.max_cr_increased || preview.druid_changes.known_forms_increased || preview.druid_changes.fly_speed_unlocked || preview.druid_changes.wild_resurgence_unlocked || preview.druid_changes.elemental_fury_unlocked || preview.druid_changes.beast_spells_unlocked || preview.druid_changes.archdruid_unlocked) && (
+                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-sm space-y-1.5">
+                    <div className="flex items-center gap-2 font-semibold text-emerald-700 dark:text-emerald-300">
+                      <PawPrint className="h-4 w-4" />
+                      Wild Shape Enhanced
+                    </div>
+                    {preview.druid_changes.ws_uses_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Uses: {preview.druid_changes.current_ws_uses} →{" "}
+                        <span className="font-semibold text-foreground">{preview.druid_changes.next_ws_uses} per Short/Long Rest</span>
+                      </p>
+                    )}
+                    {preview.druid_changes.max_cr_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Max Beast CR: {preview.druid_changes.current_max_cr} →{" "}
+                        <span className="font-semibold text-foreground">{preview.druid_changes.next_max_cr}</span>
+                      </p>
+                    )}
+                    {preview.druid_changes.known_forms_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Known Forms: {preview.druid_changes.current_known_forms} →{" "}
+                        <span className="font-semibold text-foreground">{preview.druid_changes.next_known_forms} forms</span>
+                      </p>
+                    )}
+                    {preview.druid_changes.fly_speed_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Fly Speed: <span className="font-semibold text-foreground">Unlocked (Forms with Fly Speed allowed)</span>
+                      </p>
+                    )}
+                    {preview.druid_changes.wild_resurgence_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Wild Resurgence: <span className="font-semibold text-foreground">Convert spell slots to Wild Shape uses</span>
+                      </p>
+                    )}
+                    {preview.druid_changes.elemental_fury_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Elemental Fury: <span className="font-semibold text-foreground">Potent Spellcasting or Primal Strike unlocked</span>
+                      </p>
+                    )}
+                    {preview.druid_changes.beast_spells_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Beast Spells: <span className="font-semibold text-foreground">Cast spells while transformed in Beast form</span>
+                      </p>
+                    )}
+                    {preview.druid_changes.archdruid_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Archdruid: <span className="font-semibold text-foreground">Evergreen Wild Shape, spell slot conversion & Longevity</span>
                       </p>
                     )}
                   </div>
