@@ -370,6 +370,30 @@ export interface LevelUpPreviewResponse {
     beast_spells_unlocked: boolean;
     archdruid_unlocked: boolean;
   };
+  fighter_changes?: {
+    is_fighter: boolean;
+    current_second_wind_uses: number;
+    next_second_wind_uses: number;
+    second_wind_increased: boolean;
+    tactical_mind_unlocked: boolean;
+    tactical_shift_unlocked: boolean;
+    action_surge_unlocked: boolean;
+    action_surge_increased: boolean;
+    current_action_surge_uses: number;
+    next_action_surge_uses: number;
+    indomitable_unlocked: boolean;
+    indomitable_increased: boolean;
+    current_indomitable_uses: number;
+    next_indomitable_uses: number;
+    attacks_per_action_increased: boolean;
+    current_attacks_per_action: number;
+    next_attacks_per_action: number;
+    tactical_master_unlocked: boolean;
+    studied_attacks_unlocked: boolean;
+    masteries_increased: boolean;
+    current_masteries: number;
+    next_masteries: number;
+  };
 }
 
 export interface BackgroundSummary {

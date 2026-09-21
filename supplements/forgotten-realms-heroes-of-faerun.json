@@ -207,7 +207,49 @@
       "source": "Forgotten Realms: Heroes of Faer\u00fbn",
       "features_by_level": {
         "3": {
-          "Knightly Envoy": "You know how to conduct yourself with grace as a noble ambassador. You gain the following benefits.\nComprehension. You can cast the Comprehend Languages spell but only as a Ritual. Charisma is your spellcasting ability for it.\nPolyglot. You learn one language from the language tables in the Player's Handbook or chapter 2 of this book. When you finish a Long Rest, you can replace a language learned from this benefit with another language you have heard, seen signed, or read in the past 24 hours.\nWell Spoken. You gain proficiency in one of the following skills of your choice: Insight, Intimidation, Persuasion, or Performance.",
+          "Knightly Envoy": {
+            "description": "You know how to conduct yourself with grace as a noble ambassador. You gain the following benefits.\nComprehension. You can cast the Comprehend Languages spell but only as a Ritual. Charisma is your spellcasting ability for it.\nPolyglot. You learn one language from the language tables in the Player's Handbook or chapter 2 of this book. When you finish a Long Rest, you can replace a language learned from this benefit with another language you have heard, seen signed, or read in the past 24 hours.\nWell Spoken. You gain proficiency in one of the following skills of your choice: Insight, Intimidation, Persuasion, or Performance.",
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Comprehend Languages"
+              },
+              {
+                "type": "grant_language",
+                "from_choice": "subclass_Knightly Envoy_language"
+              },
+              {
+                "type": "grant_skill_proficiency",
+                "from_choice": "subclass_Knightly Envoy_skill"
+              }
+            ],
+            "choices": [
+              {
+                "type": "select_single",
+                "name": "language",
+                "source": {
+                  "type": "external",
+                  "file": "languages.json",
+                  "list": "all"
+                },
+                "optional": false
+              },
+              {
+                "type": "select_single",
+                "name": "skill",
+                "source": {
+                  "type": "fixed_list",
+                  "options": [
+                    "Insight",
+                    "Intimidation",
+                    "Persuasion",
+                    "Performance"
+                  ]
+                },
+                "optional": false
+              }
+            ]
+          },
           "Group Recovery": "When you use your Second Wind to regain Hit Points, you can choose a number of allies within a 30-foot Emanation originating from yourself, up to a number of allies equal to your Charisma modifier (minimum of one). Each of those allies regains Hit Points equal to 1d4 plus your Fighter level. Once you use this ability, you can't use it again until you finish a Short or Long Rest."
         },
         "7": {

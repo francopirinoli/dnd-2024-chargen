@@ -204,7 +204,34 @@
       "source": "Unearthed Arcana: Villainous Options",
       "features_by_level": {
         "3": {
-          "Diabolical Gift": "As a soldier for the agents of the Nine Hells, you've been given fiendish powers:\n- Devil's Sight: You can see normally in Dim Light and Darkness\u2014both magical and nonmagical\u2014within 120 feet of yourself.\n- Devil's Talents: You know Infernal, the language of devils. If you already know Infernal, you learn another language of your choice. You also gain proficiency in one of these skills of your choice: Deception, Performance, or Sleight of Hand.",
+          "Diabolical Gift": {
+            "description": "As a soldier for the agents of the Nine Hells, you've been given fiendish powers:\n- Devil's Sight: You can see normally in Dim Light and Darkness—both magical and nonmagical—within 120 feet of yourself.\n- Devil's Talents: You know Infernal, the language of devils. If you already know Infernal, you learn another language of your choice. You also gain proficiency in one of these skills of your choice: Deception, Performance, or Sleight of Hand.",
+            "effects": [
+              {
+                "type": "grant_language",
+                "language": "Infernal"
+              },
+              {
+                "type": "grant_skill_proficiency",
+                "from_choice": "subclass_Diabolical Gift_skill"
+              }
+            ],
+            "choices": [
+              {
+                "type": "select_single",
+                "name": "skill",
+                "source": {
+                  "type": "fixed_list",
+                  "options": [
+                    "Deception",
+                    "Performance",
+                    "Sleight of Hand"
+                  ]
+                },
+                "optional": false
+              }
+            ]
+          },
           "Hell-Forged Weapon": "When you take the Attack action, you can imbue each weapon that you are holding with hellfire, transforming it into a Hell-Forged Weapon. It remains transformed until you use this feature again, have the Unconscious condition, or the weapon is more than 5 feet away for 1 minute or more.\nWhile you wield a Hell-Forged Weapon, it sheds Dim Light in a 5-foot radius, and whenever you deal damage with the weapon, it can deal your choice of Cold, Fire, or Necrotic damage or its normal damage type (choose when you imbue the weapon).",
           "Infernal Wound": "Your Hell-Forged Weapon can inflict infernal wounds.\n- Infernal Wound Die: You have an Infernal Wound Die, which is a d6.\n- Inflicting Infernal Wounds: When you hit a creature with your Hell-Forged Weapon, you can deal extra damage equal to one roll of your Infernal Wound Die (same type as chosen for the weapon). You also give the target an infernal wound if it doesn't already have one.\n- Wounded Effect: The target takes damage equal to one roll of your Infernal Wound Die at the start of each of its turns. Lasts 1 minute, until healed, or until an action is taken to stanch the wound.\n- Uses: Equal to your Constitution modifier (minimum of once) per Short or Long Rest."
         },

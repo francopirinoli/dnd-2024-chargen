@@ -8642,6 +8642,388 @@ class CharacterBuilder:
 
         return stats
 
+    def calculate_fighter_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Fighter 2024 RAW statistics including:
+        - Second Wind uses and scaling, Tactical Mind (lv 2), Tactical Shift (lv 5)
+        - Action Surge uses (lv 2, lv 17) and 2024 restrictions
+        - Indomitable uses and bonus scaling (lv 9, lv 13, lv 17)
+        - Attacks per Action (1, 2, 3, 4)
+        - Tactical Master (lv 9) Push/Sap/Slow
+        - Studied Attacks (lv 13)
+        - Weapon Mastery count
+        - Subclass mechanics for Battle Master, Champion, Eldritch Knight,
+          Psi Warrior, Banneret, Hell Knight, Arcane Archer
+        """
+        stats: Dict[str, Any] = {
+            "is_fighter": False,
+            "fighter_level": 0,
+            "subclass": None,
+            "second_wind_uses": 0,
+            "second_wind_max": 0,
+            "second_wind_die": "1d10",
+            "second_wind_healing": "1d10",
+            "second_wind_recharge": "Short or Long Rest (regain 1 on Short Rest, all on Long Rest)",
+            "tactical_mind": False,
+            "tactical_shift": False,
+            "has_action_surge": False,
+            "action_surge_uses": 0,
+            "action_surge_max": 0,
+            "action_surge_recharge": "Short or Long Rest",
+            "action_surge_restriction": "Take one additional action on your turn (except the Magic action). Only once per turn.",
+            "has_indomitable": False,
+            "indomitable_uses": 0,
+            "indomitable_max": 0,
+            "indomitable_bonus": 0,
+            "indomitable_recharge": "Long Rest",
+            "attacks_per_action": 1,
+            "extra_attacks_label": "None",
+            "has_tactical_master": False,
+            "tactical_master_properties": [],
+            "has_studied_attacks": False,
+            "weapon_mastery_count": 0,
+            "subclass_details": {},
+            "active_perks": [],
+            "actions": [],
+        }
+
+        fighter_level = self._get_class_level("Fighter")
+        if fighter_level <= 0:
+            return stats
+
+        stats["is_fighter"] = True
+        stats["fighter_level"] = fighter_level
+        subclass_name = self._get_class_subclass("Fighter")
+        stats["subclass"] = subclass_name
+
+        level = self.character_data.get("level", fighter_level)
+        pb = self.calculate_proficiency_bonus(level)
+        scores = self.calculate_processed_ability_scores()
+        str_mod = scores.get("strength", {}).get("modifier", 0)
+        dex_mod = scores.get("dexterity", {}).get("modifier", 0)
+        con_mod = scores.get("constitution", {}).get("modifier", 0)
+        int_mod = scores.get("intelligence", {}).get("modifier", 0)
+        wis_mod = scores.get("wisdom", {}).get("modifier", 0)
+        cha_mod = scores.get("charisma", {}).get("modifier", 0)
+
+        # Second Wind (Level 1+)
+        # 2 uses (lv 1-3), 3 uses (lv 4-9), 4 uses (lv 10-20)
+        sw_uses = 4 if fighter_level >= 10 else (3 if fighter_level >= 4 else 2)
+        stats["second_wind_uses"] = sw_uses
+        stats["second_wind_max"] = sw_uses
+        stats["second_wind_healing"] = f"1d10 + {fighter_level}"
+        stats["actions"].append({
+            "name": "Second Wind",
+            "action": "Bonus Action",
+            "uses": sw_uses,
+            "recharge": "1 on Short Rest, all on Long Rest",
+            "effect": f"Regain 1d10+{fighter_level} HP.",
+        })
+
+        # Tactical Mind (Level 2+)
+        if fighter_level >= 2:
+            stats["tactical_mind"] = True
+            stats["actions"].append({
+                "name": "Tactical Mind",
+                "action": "Special",
+                "effect": "When you fail an ability check, expend a Second Wind use to add 1d10 to the check. If the check still fails, the use is not expended.",
+            })
+
+        # Tactical Shift (Level 5+)
+        if fighter_level >= 5:
+            stats["tactical_shift"] = True
+            stats["active_perks"].append("Tactical Shift (move up to half speed without Opportunity Attacks when using Second Wind)")
+
+        # Action Surge (Level 2+)
+        if fighter_level >= 2:
+            as_uses = 2 if fighter_level >= 17 else 1
+            stats["has_action_surge"] = True
+            stats["action_surge_uses"] = as_uses
+            stats["action_surge_max"] = as_uses
+            stats["actions"].append({
+                "name": "Action Surge",
+                "action": "Free Action (on your turn)",
+                "uses": as_uses,
+                "recharge": "Short or Long Rest",
+                "effect": "Take one additional action on your turn (except the Magic action). Only once per turn.",
+            })
+
+        # Indomitable (Level 9+)
+        if fighter_level >= 9:
+            indom_uses = 3 if fighter_level >= 17 else (2 if fighter_level >= 13 else 1)
+            stats["has_indomitable"] = True
+            stats["indomitable_uses"] = indom_uses
+            stats["indomitable_max"] = indom_uses
+            stats["indomitable_bonus"] = fighter_level
+            stats["actions"].append({
+                "name": "Indomitable",
+                "action": "Reaction",
+                "uses": indom_uses,
+                "recharge": "Long Rest",
+                "effect": f"Reroll a failed saving throw with a +{fighter_level} bonus.",
+            })
+
+        # Attacks per Action (Extra Attack)
+        if fighter_level >= 20:
+            stats["attacks_per_action"] = 4
+            stats["extra_attacks_label"] = "Three Extra Attacks (4 attacks/action)"
+        elif fighter_level >= 11:
+            stats["attacks_per_action"] = 3
+            stats["extra_attacks_label"] = "Two Extra Attacks (3 attacks/action)"
+        elif fighter_level >= 5:
+            stats["attacks_per_action"] = 2
+            stats["extra_attacks_label"] = "Extra Attack (2 attacks/action)"
+        else:
+            stats["attacks_per_action"] = 1
+            stats["extra_attacks_label"] = "1 attack/action"
+
+        # Tactical Master (Level 9+)
+        if fighter_level >= 9:
+            stats["has_tactical_master"] = True
+            stats["tactical_master_properties"] = ["Push", "Sap", "Slow"]
+            stats["active_perks"].append("Tactical Master (can replace mastery property with Push, Sap, or Slow)")
+
+        # Studied Attacks (Level 13+)
+        if fighter_level >= 13:
+            stats["has_studied_attacks"] = True
+            stats["active_perks"].append("Studied Attacks (Advantage on next attack roll if you miss a creature)")
+
+        # Weapon Masteries count
+        if fighter_level >= 16:
+            stats["weapon_mastery_count"] = 6
+        elif fighter_level >= 10:
+            stats["weapon_mastery_count"] = 5
+        elif fighter_level >= 4:
+            stats["weapon_mastery_count"] = 4
+        else:
+            stats["weapon_mastery_count"] = 3
+
+        # Subclass Specifics
+        subclass_details: Dict[str, Any] = {}
+
+        # 1. Battle Master
+        if subclass_name == "Battle Master" and fighter_level >= 3:
+            sup_count = 6 if fighter_level >= 15 else (5 if fighter_level >= 7 else 4)
+            sup_die = "d12" if fighter_level >= 18 else ("d10" if fighter_level >= 10 else "d8")
+            save_dc = 8 + pb + max(str_mod, dex_mod)
+            maneuvers_list = self.character_data.get("maneuvers_known", []) or self.character_data.get("maneuvers", [])
+            subclass_details["battle_master"] = {
+                "superiority_dice_count": sup_count,
+                "superiority_die": sup_die,
+                "save_dc": save_dc,
+                "recharge": "Short or Long Rest",
+                "maneuvers": maneuvers_list,
+                "know_your_enemy": fighter_level >= 7,
+                "relentless": fighter_level >= 15,
+            }
+            stats["actions"].append({
+                "name": "Superiority Dice",
+                "action": "Special (Maneuver)",
+                "uses": sup_count,
+                "recharge": "Short or Long Rest",
+                "effect": f"{sup_count}{sup_die} superiority dice. DC {save_dc} (STR/DEX).",
+            })
+            if fighter_level >= 7:
+                stats["actions"].append({
+                    "name": "Know Your Enemy",
+                    "action": "Bonus Action",
+                    "effect": "Discern Immunities, Resistances, and Vulnerabilities of creature within 30 ft (1/LR or 1 Superiority Die).",
+                })
+            if fighter_level >= 15:
+                stats["active_perks"].append("Relentless (1/turn, roll 1d8 instead of expending a Superiority Die)")
+
+        # 2. Champion
+        elif subclass_name == "Champion" and fighter_level >= 3:
+            crit_threshold = 18 if fighter_level >= 15 else 19
+            subclass_details["champion"] = {
+                "crit_threshold": crit_threshold,
+                "crit_range": f"{crit_threshold}-20",
+                "remarkable_athlete": True,
+                "additional_fighting_style": fighter_level >= 7,
+                "heroic_warrior": fighter_level >= 10,
+                "survivor": fighter_level >= 18,
+            }
+            stats["active_perks"].append(f"Critical Hit on {crit_threshold}-20")
+            stats["active_perks"].append("Remarkable Athlete (Advantage on Initiative and Athletics; half speed move on Crit without OA)")
+            if fighter_level >= 10:
+                stats["active_perks"].append("Heroic Warrior (gain Heroic Inspiration at start of your turn in combat if you lack it)")
+            if fighter_level >= 18:
+                stats["active_perks"].append(f"Survivor (Advantage on Death Saves, 18-20 counts as 20; regain {5 + con_mod} HP at turn start if Bloodied)")
+
+        # 3. Eldritch Knight
+        elif subclass_name == "Eldritch Knight" and fighter_level >= 3:
+            ek_dc = 8 + pb + int_mod
+            ek_attack = pb + int_mod
+            subclass_details["eldritch_knight"] = {
+                "spellcasting_ability": "Intelligence",
+                "spell_save_dc": ek_dc,
+                "spell_attack_bonus": ek_attack,
+                "war_bond": True,
+                "war_magic": fighter_level >= 7,
+                "eldritch_strike": fighter_level >= 10,
+                "arcane_charge": fighter_level >= 15,
+                "improved_war_magic": fighter_level >= 18,
+            }
+            stats["actions"].append({
+                "name": "War Bond",
+                "action": "Bonus Action",
+                "effect": "Summon bonded weapon instantly to your hand (up to 2 bonded weapons; cannot be disarmed).",
+            })
+            if fighter_level >= 7:
+                stats["active_perks"].append("War Magic (replace 1 attack in Attack action with an action Wizard cantrip)")
+            if fighter_level >= 10:
+                stats["active_perks"].append("Eldritch Strike (weapon hit imposes Disadvantage on save vs your spell before end of next turn)")
+            if fighter_level >= 15:
+                stats["active_perks"].append("Arcane Charge (teleport up to 30 ft when using Action Surge)")
+            if fighter_level >= 18:
+                stats["active_perks"].append("Improved War Magic (replace 2 attacks in Attack action with a level 1-2 Wizard spell)")
+
+        # 4. Psi Warrior
+        elif subclass_name == "Psi Warrior" and fighter_level >= 3:
+            psi_count = 2 * pb
+            psi_die = "d12" if fighter_level >= 17 else ("d10" if fighter_level >= 11 else ("d8" if fighter_level >= 5 else "d6"))
+            psi_dc = 8 + pb + int_mod
+            subclass_details["psi_warrior"] = {
+                "psionic_dice_count": psi_count,
+                "psionic_die": psi_die,
+                "save_dc": psi_dc,
+                "recharge": "Long Rest (regain 1 as Bonus Action once per Short/Long Rest)",
+            }
+            stats["actions"].append({
+                "name": "Psionic Energy Dice",
+                "action": "Special",
+                "uses": psi_count,
+                "recharge": "Long Rest (1/SR)",
+                "effect": f"{psi_count}{psi_die} psionic energy dice. DC {psi_dc} (INT).",
+            })
+            stats["actions"].append({
+                "name": "Protective Field",
+                "action": "Reaction",
+                "effect": f"Expend 1 Psionic Die to reduce damage to self or ally in 30 ft by 1{psi_die}+{int_mod}.",
+            })
+            stats["actions"].append({
+                "name": "Psionic Strike",
+                "action": "Special (1/turn)",
+                "effect": f"Deal extra 1{psi_die}+{int_mod} Force damage on weapon hit within 30 ft.",
+            })
+            stats["actions"].append({
+                "name": "Telekinetic Movement",
+                "action": "Magic Action",
+                "effect": "Move loose object or willing creature within 30 ft up to 30 ft (1/SR or expend 1 Psionic Die).",
+            })
+            if fighter_level >= 7:
+                stats["actions"].append({
+                    "name": "Psi-Powered Leap",
+                    "action": "Bonus Action",
+                    "effect": "Gain Fly Speed equal to 2x Speed until end of turn (1/SR or expend 1 Psionic Die).",
+                })
+                stats["active_perks"].append(f"Telekinetic Thrust (on Psionic Strike, target makes DC {psi_dc} STR save or is knocked Prone or pushed 10 ft)")
+            if fighter_level >= 10:
+                stats["active_perks"].append("Guarded Mind (Psychic resistance; expend 1 Psionic Die to end Charmed/Frightened)")
+            if fighter_level >= 15:
+                stats["actions"].append({
+                    "name": "Bulwark of Force",
+                    "action": "Bonus Action",
+                    "effect": f"Give Half Cover to up to {max(1, int_mod)} creatures in 30 ft for 1 min (1/LR or expend 1 Psionic Die).",
+                })
+            if fighter_level >= 18:
+                stats["actions"].append({
+                    "name": "Telekinetic Master",
+                    "action": "Magic Action",
+                    "effect": "Cast Telekinesis without slot; bonus action weapon attack while concentrating (1/LR or expend 1 Psionic Die).",
+                })
+
+        # 5. Banneret (FR Supplement)
+        elif subclass_name == "Banneret" and fighter_level >= 3:
+            allies_count = max(1, cha_mod)
+            subclass_details["banneret"] = {
+                "group_recovery_allies": allies_count,
+                "group_recovery_heal": f"1d4 + {fighter_level}",
+                "team_tactics": fighter_level >= 7,
+                "rallying_surge": fighter_level >= 10,
+                "shared_resilience": fighter_level >= 15,
+                "inspiring_commander": fighter_level >= 18,
+            }
+            stats["actions"].append({
+                "name": "Group Recovery",
+                "action": "Special (with Second Wind)",
+                "recharge": "Short or Long Rest",
+                "effect": f"Heal up to {allies_count} allies within 30 ft for 1d4+{fighter_level} HP when using Second Wind.",
+            })
+            if fighter_level >= 7:
+                stats["active_perks"].append("Team Tactics (Group Recovery grants chosen allies Advantage on D20 Tests until start of next turn)")
+            if fighter_level >= 10:
+                stats["actions"].append({
+                    "name": "Rallying Surge",
+                    "action": "Special (with Action Surge)",
+                    "effect": f"Up to {allies_count} allies in 30 ft can use Reaction to make 1 attack or move half speed without OA.",
+                })
+            if fighter_level >= 15:
+                stats["actions"].append({
+                    "name": "Shared Resilience",
+                    "action": "Reaction",
+                    "effect": f"Expend Indomitable when ally in 60 ft fails a save to let them reroll with +{fighter_level}.",
+                })
+            if fighter_level >= 18:
+                stats["active_perks"].append("Inspiring Commander (Group Recovery & Rallying Surge range is 60 ft; immune to Charmed & Frightened)")
+
+        # 6. Hell Knight (UA Supplement)
+        elif subclass_name == "Hell Knight" and fighter_level >= 3:
+            wound_uses = max(1, con_mod)
+            subclass_details["hell_knight"] = {
+                "infernal_wound_uses": wound_uses,
+                "infernal_wound_die": "d6",
+                "damage_types": ["Cold", "Fire", "Necrotic"],
+                "devils_sight": True,
+            }
+            stats["actions"].append({
+                "name": "Hell-Forged Weapon",
+                "action": "Special (on Attack)",
+                "effect": "Imbue weapons with Cold, Fire, or Necrotic damage and shed 5 ft Dim Light.",
+            })
+            stats["actions"].append({
+                "name": "Infernal Wound",
+                "action": "Special (on hit)",
+                "uses": wound_uses,
+                "recharge": "Short or Long Rest",
+                "effect": "Deal extra 1d6 damage and cause target to bleed 1d6 damage at start of its turns for 1 min.",
+            })
+            stats["active_perks"].append("Devil's Sight (see in normal and magical darkness up to 120 ft)")
+            if fighter_level >= 7:
+                stats["active_perks"].append("Advanced Wounds (Purulence of Minauros, Rupture of Cania, Stygian Gangrene + Devil's Luck on 6)")
+                stats["active_perks"].append("Infernal Resilience (Resistance to Cold, Fire, or Necrotic while wearing Heavy armor or Shield)")
+            if fighter_level >= 10:
+                stats["actions"].append({
+                    "name": "Hellfire Surge",
+                    "action": "Special (with Action Surge)",
+                    "effect": "20-ft infernal emanation; wounded creatures take 2d6 instead of 1d6.",
+                })
+            if fighter_level >= 15:
+                stats["actions"].append({
+                    "name": "Devil's Misfortune",
+                    "action": "Reaction",
+                    "effect": "Reduce damage by 1d6 (reroll up to 3x on 6); negate Critical Hits.",
+                })
+
+        # 7. Arcane Archer (AU Supplement)
+        elif subclass_name == "Arcane Archer" and fighter_level >= 3:
+            aa_dc = 8 + pb + int_mod
+            subclass_details["arcane_archer"] = {
+                "arcane_shot_dice": 2,
+                "save_dc": aa_dc,
+                "recharge": "Short or Long Rest",
+            }
+            stats["actions"].append({
+                "name": "Arcane Shot",
+                "action": "Special (1/turn on attack)",
+                "uses": 2,
+                "recharge": "Short or Long Rest",
+                "effect": f"Apply special magical shot. Save DC {aa_dc} (INT).",
+            })
+
+        stats["subclass_details"] = subclass_details
+        return stats
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -8834,6 +9216,12 @@ class CharacterBuilder:
                         break
             if elemental_fury == "Primal Strike":
                 druid_primal_strike_dice = "2d8" if druid_level >= 15 else "1d8"
+
+        fighter_level = self._get_class_level("Fighter")
+        fighter_subclass = self._get_class_subclass("Fighter")
+        fighter_crit_threshold = 20
+        if fighter_subclass == "Champion" and fighter_level >= 3:
+            fighter_crit_threshold = 18 if fighter_level >= 15 else 19
 
         for weapon in active_weapons:
             weapon_name = (
@@ -9087,6 +9475,15 @@ class CharacterBuilder:
                 damage_notes.append(f"+{druid_primal_strike_dice} Primal Strike (Cold, Fire, Lightning, or Thunder, 1/turn)")
             if self._get_class_subclass("Druid") == "Circle of Spores" and druid_level >= 3:
                 damage_notes.append("+1d6 Necrotic (Symbiotic Entity while active, 1/turn)")
+            if fighter_crit_threshold < 20:
+                damage_notes.append(f"Crit on {fighter_crit_threshold}-20")
+            if fighter_subclass == "Psi Warrior" and fighter_level >= 3:
+                psi_die = "d12" if fighter_level >= 17 else ("d10" if fighter_level >= 11 else ("d8" if fighter_level >= 5 else "d6"))
+                int_mod = ability_scores.get("intelligence", {}).get("modifier", 0)
+                int_str = f"+{int_mod}" if int_mod >= 0 else str(int_mod)
+                damage_notes.append(f"+1{psi_die}{int_str} Force (Psionic Strike, 1/turn)")
+            if fighter_subclass == "Hell Knight" and fighter_level >= 3:
+                damage_notes.append("+1d6 Infernal Wound (Cold, Fire, or Necrotic, 1/turn)")
 
             attack_info = {
                 "name": weapon_name,
@@ -9110,6 +9507,8 @@ class CharacterBuilder:
                 "_ability_mod": ability_mod,  # Store for offhand calculation
                 "_one_handed_melee_bonus": one_handed_melee_bonus,  # Excluded from dual-wield
             }
+            if fighter_crit_threshold < 20:
+                attack_info["crit_threshold"] = fighter_crit_threshold
             if rage_bonus_value > 0:
                 attack_info["rage_damage_bonus"] = rage_bonus_value
 
@@ -9208,6 +9607,8 @@ class CharacterBuilder:
         unarmed_rage_bonus = barbarian_rage_damage if (barbarian_rage_damage > 0 and unarmed_ability == "STR") else 0
         if unarmed_rage_bonus > 0:
             unarmed_notes.append(f"+{unarmed_rage_bonus} while Raging")
+        if fighter_crit_threshold < 20:
+            unarmed_notes.append(f"Crit on {fighter_crit_threshold}-20")
 
         unarmed_attack = {
             "name": "Unarmed Strike",
@@ -9226,6 +9627,8 @@ class CharacterBuilder:
             "icon": "/static/images/weapons/strike.svg",
             "damage_notes": unarmed_notes,
         }
+        if fighter_crit_threshold < 20:
+            unarmed_attack["crit_threshold"] = fighter_crit_threshold
         if unarmed_rage_bonus > 0:
             unarmed_attack["rage_damage_bonus"] = unarmed_rage_bonus
 
@@ -10520,6 +10923,11 @@ class CharacterBuilder:
         druid_stats = self.calculate_druid_stats()
         if druid_stats.get("druid_level", 0) > 0:
             character_data["druid_stats"] = druid_stats
+
+        # Add Fighter stats (Fighter only)
+        fighter_stats = self.calculate_fighter_stats()
+        if fighter_stats.get("fighter_level", 0) > 0:
+            character_data["fighter_stats"] = fighter_stats
 
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:

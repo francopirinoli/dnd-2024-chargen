@@ -142,7 +142,6 @@ class TestFighterClass:
         [
             (11, "Two Extra Attacks"),
             (17, "Action Surge (Two Uses)"),
-            (19, "Epic Boon"),
             (20, "Three Extra Attacks"),
         ],
     )
@@ -157,6 +156,17 @@ class TestFighterClass:
         feature_names = [f.get("name", "unnamed") for f in class_features]
 
         assert feature_name in feature_names
+
+    def test_level_19_epic_boon_slot(self):
+        """Test that Level 19 Epic Boon is a structured ASI/feat choice slot."""
+        builder = CharacterBuilder()
+        builder.set_species("Human")
+        builder.set_class("Fighter", 19)
+        class_data = builder.character_data.get("class_data", {})
+        boon = class_data["features_by_level"]["19"]["Epic Boon"]
+        assert isinstance(boon, dict)
+        assert boon.get("feature_kind") == "asi"
+        assert boon["choices"]["name"] == "class_feat_19"
 
     @pytest.mark.parametrize("level", [4, 6, 8, 12, 14, 16])
     def test_ability_score_improvement_hidden_from_class_features(self, level):

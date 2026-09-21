@@ -205,6 +205,14 @@ KNOWN_CHOICE_KEYS: frozenset = frozenset({
     "magician_bonus_cantrip",
     "elemental_fury",
     "land_type",
+    # Fighter / Subclasses
+    "fighting_style",
+    "additional_fighting_style",
+    "student_of_war_artisan_tool",
+    "student_of_war_fighter_skill",
+    "knightly_envoy_language",
+    "knightly_envoy_skill",
+    "diabolical_gift_skill",
     # Artificer Replicate Magic Item
     "artificer_replicate_plans",
     "artificer_plans",

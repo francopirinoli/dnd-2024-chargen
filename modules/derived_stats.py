@@ -944,6 +944,56 @@ def build_level_up_preview(
         ),
     }
 
+    fighter_curr = builder_current.calculate_fighter_stats()
+    fighter_next = builder_next.calculate_fighter_stats()
+    is_fighter = target_class_name.lower() == "fighter"
+    fighter_changes = {
+        "is_fighter": is_fighter,
+        "current_second_wind_uses": fighter_curr.get("second_wind_max", 0),
+        "next_second_wind_uses": fighter_next.get("second_wind_max", 0),
+        "second_wind_increased": (
+            fighter_next.get("second_wind_max", 0) > fighter_curr.get("second_wind_max", 0)
+        ),
+        "tactical_mind_unlocked": (
+            bool(fighter_next.get("tactical_mind")) and not bool(fighter_curr.get("tactical_mind"))
+        ),
+        "tactical_shift_unlocked": (
+            bool(fighter_next.get("tactical_shift")) and not bool(fighter_curr.get("tactical_shift"))
+        ),
+        "action_surge_unlocked": (
+            bool(fighter_next.get("has_action_surge")) and not bool(fighter_curr.get("has_action_surge"))
+        ),
+        "current_action_surge_uses": fighter_curr.get("action_surge_max", 0),
+        "next_action_surge_uses": fighter_next.get("action_surge_max", 0),
+        "action_surge_increased": (
+            fighter_next.get("action_surge_max", 0) > fighter_curr.get("action_surge_max", 0)
+        ),
+        "indomitable_unlocked": (
+            bool(fighter_next.get("has_indomitable")) and not bool(fighter_curr.get("has_indomitable"))
+        ),
+        "current_indomitable_uses": fighter_curr.get("indomitable_max", 0),
+        "next_indomitable_uses": fighter_next.get("indomitable_max", 0),
+        "indomitable_increased": (
+            fighter_next.get("indomitable_max", 0) > fighter_curr.get("indomitable_max", 0)
+        ),
+        "current_attacks_per_action": fighter_curr.get("attacks_per_action", 1),
+        "next_attacks_per_action": fighter_next.get("attacks_per_action", 1),
+        "attacks_per_action_increased": (
+            fighter_next.get("attacks_per_action", 1) > fighter_curr.get("attacks_per_action", 1)
+        ),
+        "tactical_master_unlocked": (
+            bool(fighter_next.get("has_tactical_master")) and not bool(fighter_curr.get("has_tactical_master"))
+        ),
+        "studied_attacks_unlocked": (
+            bool(fighter_next.get("has_studied_attacks")) and not bool(fighter_curr.get("has_studied_attacks"))
+        ),
+        "current_masteries": fighter_curr.get("weapon_mastery_count", 0),
+        "next_masteries": fighter_next.get("weapon_mastery_count", 0),
+        "masteries_increased": (
+            fighter_next.get("weapon_mastery_count", 0) > fighter_curr.get("weapon_mastery_count", 0)
+        ),
+    }
+
     return {
         "can_level_up": True,
         "class_name": target_class_name,
@@ -1005,4 +1055,5 @@ def build_level_up_preview(
         "bard_changes": bard_changes,
         "cleric_changes": cleric_changes,
         "druid_changes": druid_changes,
+        "fighter_changes": fighter_changes,
     }

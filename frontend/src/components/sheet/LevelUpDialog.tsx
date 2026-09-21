@@ -424,8 +424,8 @@ export function LevelUpDialog({ open, onClose, onSuccess }: LevelUpDialogProps) 
               </div>
             </div>
 
-            {/* Spellcasting, Weapon Mastery, Bardic Inspiration, Channel Divinity & Wild Shape callouts */}
-            {(preview.spellcasting_changes?.has_spellcasting || preview.mastery_changes?.increased || (preview.bard_changes?.has_bardic_inspiration && (preview.bard_changes.die_increased || preview.bard_changes.recharge_improved)) || (preview.cleric_changes?.has_channel_divinity && (preview.cleric_changes.cd_uses_increased || preview.cleric_changes.spark_dice_increased || preview.cleric_changes.divine_intervention_unlocked)) || (preview.druid_changes?.has_wild_shape && (preview.druid_changes.ws_uses_increased || preview.druid_changes.max_cr_increased || preview.druid_changes.known_forms_increased || preview.druid_changes.fly_speed_unlocked || preview.druid_changes.wild_resurgence_unlocked || preview.druid_changes.elemental_fury_unlocked || preview.druid_changes.beast_spells_unlocked || preview.druid_changes.archdruid_unlocked))) && (
+            {/* Spellcasting, Weapon Mastery, Bardic Inspiration, Channel Divinity, Wild Shape & Fighter Martial Exploits callouts */}
+            {(preview.spellcasting_changes?.has_spellcasting || preview.mastery_changes?.increased || (preview.bard_changes?.has_bardic_inspiration && (preview.bard_changes.die_increased || preview.bard_changes.recharge_improved)) || (preview.cleric_changes?.has_channel_divinity && (preview.cleric_changes.cd_uses_increased || preview.cleric_changes.spark_dice_increased || preview.cleric_changes.divine_intervention_unlocked)) || (preview.druid_changes?.has_wild_shape && (preview.druid_changes.ws_uses_increased || preview.druid_changes.max_cr_increased || preview.druid_changes.known_forms_increased || preview.druid_changes.fly_speed_unlocked || preview.druid_changes.wild_resurgence_unlocked || preview.druid_changes.elemental_fury_unlocked || preview.druid_changes.beast_spells_unlocked || preview.druid_changes.archdruid_unlocked)) || (preview.fighter_changes?.is_fighter && (preview.fighter_changes.second_wind_increased || preview.fighter_changes.tactical_mind_unlocked || preview.fighter_changes.tactical_shift_unlocked || preview.fighter_changes.action_surge_unlocked || preview.fighter_changes.action_surge_increased || preview.fighter_changes.indomitable_unlocked || preview.fighter_changes.indomitable_increased || preview.fighter_changes.attacks_per_action_increased || preview.fighter_changes.tactical_master_unlocked || preview.fighter_changes.studied_attacks_unlocked))) && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {preview.spellcasting_changes?.has_spellcasting && (
                   <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm space-y-1.5">
@@ -557,6 +557,69 @@ export function LevelUpDialog({ open, onClose, onSuccess }: LevelUpDialogProps) 
                     {preview.druid_changes.archdruid_unlocked && (
                       <p className="text-xs text-muted-foreground">
                         Archdruid: <span className="font-semibold text-foreground">Evergreen Wild Shape, spell slot conversion & Longevity</span>
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {preview.fighter_changes?.is_fighter && (preview.fighter_changes.second_wind_increased || preview.fighter_changes.tactical_mind_unlocked || preview.fighter_changes.tactical_shift_unlocked || preview.fighter_changes.action_surge_unlocked || preview.fighter_changes.action_surge_increased || preview.fighter_changes.indomitable_unlocked || preview.fighter_changes.indomitable_increased || preview.fighter_changes.attacks_per_action_increased || preview.fighter_changes.tactical_master_unlocked || preview.fighter_changes.studied_attacks_unlocked) && (
+                  <div className="rounded-xl border border-orange-500/20 bg-orange-500/5 p-4 text-sm space-y-1.5">
+                    <div className="flex items-center gap-2 font-semibold text-orange-700 dark:text-orange-300">
+                      <Sword className="h-4 w-4" />
+                      Martial Exploits Enhanced
+                    </div>
+                    {preview.fighter_changes.second_wind_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Second Wind: {preview.fighter_changes.current_second_wind_uses} →{" "}
+                        <span className="font-semibold text-foreground">{preview.fighter_changes.next_second_wind_uses} uses per Short/Long Rest</span>
+                      </p>
+                    )}
+                    {preview.fighter_changes.tactical_mind_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Tactical Mind: <span className="font-semibold text-foreground">Add 1d10 to failed ability checks using Second Wind</span>
+                      </p>
+                    )}
+                    {preview.fighter_changes.tactical_shift_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Tactical Shift: <span className="font-semibold text-foreground">Move half speed without OA on bonus action Second Wind</span>
+                      </p>
+                    )}
+                    {preview.fighter_changes.action_surge_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Action Surge: <span className="font-semibold text-foreground">Take one additional action (except Magic action) per rest</span>
+                      </p>
+                    )}
+                    {preview.fighter_changes.action_surge_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Action Surge: {preview.fighter_changes.current_action_surge_uses} →{" "}
+                        <span className="font-semibold text-foreground">{preview.fighter_changes.next_action_surge_uses} uses per Short/Long Rest (1/turn)</span>
+                      </p>
+                    )}
+                    {preview.fighter_changes.indomitable_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Indomitable: <span className="font-semibold text-foreground">Reroll failed saving throw with +{preview.next_class_level} bonus</span>
+                      </p>
+                    )}
+                    {preview.fighter_changes.indomitable_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Indomitable: {preview.fighter_changes.current_indomitable_uses} →{" "}
+                        <span className="font-semibold text-foreground">{preview.fighter_changes.next_indomitable_uses} uses per Long Rest (+{preview.next_class_level})</span>
+                      </p>
+                    )}
+                    {preview.fighter_changes.attacks_per_action_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Attacks per Action: {preview.fighter_changes.current_attacks_per_action} →{" "}
+                        <span className="font-semibold text-foreground">{preview.fighter_changes.next_attacks_per_action} attacks with the Attack action</span>
+                      </p>
+                    )}
+                    {preview.fighter_changes.tactical_master_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Tactical Master: <span className="font-semibold text-foreground">Replace weapon mastery with Push, Sap, or Slow</span>
+                      </p>
+                    )}
+                    {preview.fighter_changes.studied_attacks_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Studied Attacks: <span className="font-semibold text-foreground">Gain Advantage on next attack if an attack roll misses</span>
                       </p>
                     )}
                   </div>

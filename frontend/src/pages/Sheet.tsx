@@ -1425,6 +1425,8 @@ function Attacks({
   const hasChannelDivinity = Boolean(clericStats.has_channel_divinity);
   const druidStats = rec(c.druid_stats);
   const hasWildShape = Boolean(druidStats.has_wild_shape);
+  const fighterStats = rec(c.fighter_stats);
+  const isFighter = Boolean(fighterStats.is_fighter);
   const combinations = arr<Record<string, unknown>>(c.attack_combinations);
 
   const serverBestCombination = rec(c.best_attack_combination);
@@ -1875,6 +1877,86 @@ function Attacks({
                       </div>
                       <div className="text-[11px] text-muted-foreground line-clamp-2">
                         {str(opt.effect)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {isFighter && fighterStats.fighter_level !== undefined && (
+            <div className="mt-3 flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Swords className="h-4 w-4 text-orange-400" />
+                  <span className="font-semibold uppercase tracking-wide text-orange-400">
+                    Tactical Martial Exploits
+                  </span>
+                  <span className="rounded bg-orange-500/20 px-2 py-0.5 text-xs font-semibold text-orange-300">
+                    {str(fighterStats.extra_attacks_label) ?? `${num(fighterStats.attacks_per_action)} attack/action`}
+                  </span>
+                </div>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Second Wind: {num(fighterStats.second_wind_uses)} / {num(fighterStats.second_wind_max)}
+                  </span>
+                  {Boolean(fighterStats.has_action_surge) && (
+                    <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                      Action Surge: {num(fighterStats.action_surge_uses)} / {num(fighterStats.action_surge_max)}
+                    </span>
+                  )}
+                  {Boolean(fighterStats.has_indomitable) && (
+                    <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                      Indomitable: {num(fighterStats.indomitable_uses)} / {num(fighterStats.indomitable_max)} (+{num(fighterStats.indomitable_bonus)})
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+                <span>Second Wind: <strong className="text-foreground">{str(fighterStats.second_wind_healing)} HP</strong></span>
+                {Boolean(fighterStats.tactical_mind) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-emerald-400 font-medium">Tactical Mind: +1d10 to failed check</span>
+                  </>
+                )}
+                {Boolean(fighterStats.tactical_shift) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-sky-400 font-medium">Tactical Shift: Half Speed move w/o OA</span>
+                  </>
+                )}
+                {Boolean(fighterStats.has_tactical_master) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-amber-400 font-medium">Tactical Master (Push, Sap, Slow)</span>
+                  </>
+                )}
+                {Boolean(fighterStats.has_studied_attacks) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-purple-400 font-medium">Studied Attacks (Advantage on miss)</span>
+                  </>
+                )}
+              </div>
+
+              {arr<Record<string, unknown>>(fighterStats.actions).length > 0 && (
+                <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {arr<Record<string, unknown>>(fighterStats.actions).map((act, idx) => (
+                    <div
+                      key={idx}
+                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                    >
+                      <div className="font-medium text-foreground">
+                        {str(act.name)} <span className="text-[10px] text-muted-foreground">({str(act.action)})</span>
+                        {act.recharge !== undefined && (
+                          <span className="ml-1 text-[10px] text-muted-foreground">· {str(act.recharge)}</span>
+                        )}
+                      </div>
+                      <div className="text-[11px] text-muted-foreground line-clamp-2">
+                        {str(act.effect)}
                       </div>
                     </div>
                   ))}
