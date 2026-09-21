@@ -49,7 +49,18 @@
       "source": "Unearthed Arcana: Villainous Options",
       "features_by_level": {
         "3": {
-          "Blight Weaver": "You gain the following benefits:\n- Inoculated Soul: You have Resistance to Necrotic and Poison damage, and you can't be infected by magical contagions.\n- Rot and Fester: Damage from your Cleric spells and Cleric features ignores Resistance to Necrotic and Poison damage. Additionally, when you cast a Cleric spell or use a Cleric feature that deals either Necrotic or Poison damage, you can change that damage to the other type.",
+          "Blight Weaver": {
+            "description": "You gain the following benefits:\n- Inoculated Soul: You have Resistance to Necrotic and Poison damage, and you can't be infected by magical contagions.\n- Rot and Fester: Damage from your Cleric spells and Cleric features ignores Resistance to Necrotic and Poison damage. Additionally, when you cast a Cleric spell or use a Cleric feature that deals either Necrotic or Poison damage, you can change that damage to the other type.",
+            "effects": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_types": [
+                  "Necrotic",
+                  "Poison"
+                ]
+              }
+            ]
+          },
           "Pestilence Domain Spells": {
             "description": "Your connection to this divine domain ensures you always have certain spells ready. When you reach a Cleric level specified in the Pestilence Domain Spells table, you thereafter always have the listed spells prepared.",
             "effects": [

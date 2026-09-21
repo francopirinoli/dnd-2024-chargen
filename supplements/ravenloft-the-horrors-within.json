@@ -217,7 +217,16 @@
               }
             ]
           },
-          "Circle of Mortality": "You learn the Spare the Dying cantrip, and you can cast it as a Bonus Action. When you cast a spell or use Channel Divinity to restore Hit Points to a creature with 0 Hit Points, you maximize any dice rolled to restore HP.\nIn addition, once per turn when you deal damage to a creature that is missing any of its Hit Points, the creature takes extra Necrotic damage equal to 1d4 (increasing to 1d6 at 11th level).",
+          "Circle of Mortality": {
+            "description": "You learn the Spare the Dying cantrip, and you can cast it as a Bonus Action. When you cast a spell or use Channel Divinity to restore Hit Points to a creature with 0 Hit Points, you maximize any dice rolled to restore HP.\nIn addition, once per turn when you deal damage to a creature that is missing any of its Hit Points, the creature takes extra Necrotic damage equal to 1d4 (increasing to 1d6 at 11th level).",
+            "effects": [
+              {
+                "type": "grant_cantrip",
+                "spell": "Spare the Dying",
+                "counts_against_limit": false
+              }
+            ]
+          },
           "Channel Divinity: Path to the Grave": "As a Bonus Action, you can expend one use of Channel Divinity to mark a creature you can see within 30 feet with a curse of mortality. Until the start of your next turn, the creature has Disadvantage on attack rolls and saving throws. When you or an ally hits the cursed creature with an attack, you can end the curse early (no action required) to cause the attack to deal extra Necrotic or Radiant damage (your choice) equal to your Cleric level."
         },
         "6": {

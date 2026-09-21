@@ -344,6 +344,50 @@
       1
     ]
   },
+  "channel_divinity_uses_by_level": {
+    "1": 0,
+    "2": 2,
+    "3": 2,
+    "4": 2,
+    "5": 2,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3,
+    "10": 3,
+    "11": 3,
+    "12": 3,
+    "13": 3,
+    "14": 3,
+    "15": 3,
+    "16": 3,
+    "17": 3,
+    "18": 4,
+    "19": 4,
+    "20": 4
+  },
+  "divine_spark_dice_by_level": {
+    "1": "0",
+    "2": "1d8",
+    "3": "1d8",
+    "4": "1d8",
+    "5": "1d8",
+    "6": "1d8",
+    "7": "2d8",
+    "8": "2d8",
+    "9": "2d8",
+    "10": "2d8",
+    "11": "2d8",
+    "12": "2d8",
+    "13": "3d8",
+    "14": "3d8",
+    "15": "3d8",
+    "16": "3d8",
+    "17": "3d8",
+    "18": "4d8",
+    "19": "4d8",
+    "20": "4d8"
+  },
   "divine_orders": {
     "Protector": {
       "description": "You gain proficiency with Martial weapons and training with Heavy armor.",
@@ -590,7 +634,18 @@
     },
     "18": {},
     "19": {
-      "Epic Boon": "Gain an Epic Boon feat or another feat of your choice."
+      "Epic Boon": {
+        "description": "You gain an Epic Boon feat or another feat of your choice for which you qualify.",
+        "choices": {
+          "name": "class_feat_19",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
     },
     "20": {
       "Greater Divine Intervention": "Can use Divine Intervention to cast Wish once per week, or any level 8 or lower Cleric spell once per day."

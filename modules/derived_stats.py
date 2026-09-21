@@ -874,6 +874,34 @@ def build_level_up_preview(
         ),
     }
 
+    cleric_curr = builder_current.calculate_cleric_stats()
+    cleric_next = builder_next.calculate_cleric_stats()
+    is_cleric = target_class_name.lower() == "cleric"
+    cleric_changes = {
+        "has_channel_divinity": bool(cleric_next.get("has_channel_divinity")),
+        "is_cleric": is_cleric,
+        "current_cd_uses": cleric_curr.get("channel_divinity_max", 0),
+        "next_cd_uses": cleric_next.get("channel_divinity_max", 0),
+        "cd_uses_increased": (
+            cleric_next.get("channel_divinity_max", 0) > cleric_curr.get("channel_divinity_max", 0)
+        ),
+        "current_spark_dice": cleric_curr.get("divine_spark_dice"),
+        "next_spark_dice": cleric_next.get("divine_spark_dice"),
+        "spark_dice_increased": (
+            cleric_curr.get("divine_spark_dice") is not None
+            and cleric_next.get("divine_spark_dice") != cleric_curr.get("divine_spark_dice")
+        ),
+        "sear_undead_unlocked": (
+            bool(cleric_next.get("sear_undead")) and not bool(cleric_curr.get("sear_undead"))
+        ),
+        "divine_intervention_unlocked": (
+            bool(cleric_next.get("divine_intervention")) and not bool(cleric_curr.get("divine_intervention"))
+        ),
+        "greater_divine_intervention_unlocked": (
+            bool(cleric_next.get("greater_divine_intervention")) and not bool(cleric_curr.get("greater_divine_intervention"))
+        ),
+    }
+
     return {
         "can_level_up": True,
         "class_name": target_class_name,
@@ -933,4 +961,5 @@ def build_level_up_preview(
         "replication_changes": replication_changes,
         "barbarian_changes": barbarian_changes,
         "bard_changes": bard_changes,
+        "cleric_changes": cleric_changes,
     }

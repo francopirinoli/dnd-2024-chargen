@@ -125,10 +125,39 @@
             ]
           },
           "Invoke Liberty": "As a Magic Action, you present your Holy Symbol and expend a use of your Channel Divinity. Each allied creature within a 30-foot Emanation originating from you can end one of the following conditions on itself (its choice): Frightened, Grappled, Paralyzed, or Restrained. The creature can then use its Reaction to move up to its Speed without provoking Opportunity Attacks.\nWhen you reach Cleric level 9, the list of conditions your allies can choose to end expands to include Charmed and Petrified.",
-          "Unencumbered Grace": "While you aren't wearing armor, your base Armor Class equals 10 plus your Dexterity and Wisdom modifiers. You can use a Shield and still gain this benefit.\nIn addition, you gain Proficiency in Acrobatics. If you already have Proficiency in Acrobatics, you gain Expertise in it instead."
+          "Unencumbered Grace": {
+            "description": "While you aren't wearing armor, your base Armor Class equals 10 plus your Dexterity and Wisdom modifiers. You can use a Shield and still gain this benefit.\nIn addition, you gain Proficiency in Acrobatics. If you already have Proficiency in Acrobatics, you gain Expertise in it instead.",
+            "effects": [
+              {
+                "type": "alternative_ac",
+                "base": 10,
+                "modifiers": [
+                  "dexterity",
+                  "wisdom"
+                ],
+                "condition": "no_armor"
+              },
+              {
+                "type": "grant_skill_proficiency_or_expertise",
+                "skills": [
+                  "Acrobatics"
+                ]
+              }
+            ]
+          }
         },
         "6": {
-          "Unstoppable": "Your mystical connection to freedom allows you to swiftly navigate obstacles. Your movement is unaffected by Difficult Terrain.\nIn addition, you gain proficiency in Dexterity saving throws. If you already have this proficiency, you instead gain proficiency with one saving throw in which you lack it."
+          "Unstoppable": {
+            "description": "Your mystical connection to freedom allows you to swiftly navigate obstacles. Your movement is unaffected by Difficult Terrain.\nIn addition, you gain proficiency in Dexterity saving throws. If you already have this proficiency, you instead gain proficiency with one saving throw in which you lack it.",
+            "effects": [
+              {
+                "type": "grant_save_proficiency",
+                "abilities": [
+                  "Dexterity"
+                ]
+              }
+            ]
+          }
         },
         "17": {
           "Avatar of Freedom": "As a Bonus Action, you can manifest a 30-foot Emanation that surrounds you for 10 minutes. It ends early if you dismiss it (no action required) or have the Incapacitated condition. This Emanation has the following effects:\n- Whenever an ally enters the Emanation for the first time on a turn or starts its turn there, the ally's Speed increases by 30 feet until the end of the ally's next turn.\n- The movement of allies within the Emanation is unaffected by Difficult Terrain.\n- Allies within the Emanation have Advantage on Dexterity checks.\nOnce you use this ability, you can't do so again until you finish a Short or Long Rest."

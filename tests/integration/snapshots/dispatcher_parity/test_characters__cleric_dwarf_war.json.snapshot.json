@@ -308,6 +308,28 @@
       "8": 4,
       "9": 4
     },
+    "channel_divinity_uses_by_level": {
+      "1": 0,
+      "10": 3,
+      "11": 3,
+      "12": 3,
+      "13": 3,
+      "14": 3,
+      "15": 3,
+      "16": 3,
+      "17": 3,
+      "18": 4,
+      "19": 4,
+      "2": 2,
+      "20": 4,
+      "3": 2,
+      "4": 2,
+      "5": 2,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 3
+    },
     "description": "Clerics are intermediaries between the mortal world and distant planes of the gods. They channel divine magic to heal, harm, and protect.",
     "divine_orders": {
       "Protector": {
@@ -359,6 +381,28 @@
           }
         ]
       }
+    },
+    "divine_spark_dice_by_level": {
+      "1": "0",
+      "10": "2d8",
+      "11": "2d8",
+      "12": "2d8",
+      "13": "3d8",
+      "14": "3d8",
+      "15": "3d8",
+      "16": "3d8",
+      "17": "3d8",
+      "18": "4d8",
+      "19": "4d8",
+      "2": "1d8",
+      "20": "4d8",
+      "3": "1d8",
+      "4": "1d8",
+      "5": "1d8",
+      "6": "1d8",
+      "7": "2d8",
+      "8": "2d8",
+      "9": "2d8"
     },
     "features_by_level": {
       "1": {
@@ -425,7 +469,18 @@
       },
       "18": {},
       "19": {
-        "Epic Boon": "Gain an Epic Boon feat or another feat of your choice."
+        "Epic Boon": {
+          "choices": {
+            "name": "class_feat_19",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain an Epic Boon feat or another feat of your choice for which you qualify.",
+          "feature_kind": "asi"
+        }
       },
       "2": {
         "Channel Divinity": {
@@ -860,6 +915,52 @@
     "weapon_proficiencies": [
       "Simple weapons"
     ]
+  },
+  "cleric_stats": {
+    "active_perks": [
+      "Divine Order: Protector"
+    ],
+    "blessed_strikes": null,
+    "channel_divinity_max": 2,
+    "channel_divinity_options": [
+      {
+        "action": "Magic Action (Holy Symbol, 30 ft)",
+        "effect": "Roll 1d8 + 3 (Wisdom). Restore HP to a creature, or target makes Con save (DC 13) taking that much Radiant or Necrotic damage (half on save).",
+        "name": "Divine Spark"
+      },
+      {
+        "action": "Magic Action (Holy Symbol, 30 ft)",
+        "effect": "Undead within 30 ft make Wis save (DC 13) or be Frightened & Incapacitated for 1 minute (ends on damage).",
+        "name": "Turn Undead"
+      },
+      {
+        "action": "No action (Reaction if used for ally within 30 ft)",
+        "effect": "Give a missed attack roll a +10 bonus, potentially causing it to hit.",
+        "name": "Guided Strike"
+      }
+    ],
+    "channel_divinity_uses": 2,
+    "cleric_level": 3,
+    "divine_intervention": false,
+    "divine_order": {
+      "description": "Martial weapon proficiency & Heavy armor training",
+      "name": "Protector"
+    },
+    "divine_spark_dice": "1d8",
+    "greater_divine_intervention": false,
+    "has_channel_divinity": true,
+    "recharge": "Short or Long Rest (regain 1 on Short Rest, all on Long Rest)",
+    "save_dc": 13,
+    "sear_undead": false,
+    "subclass": "War Domain",
+    "subclass_resources": {
+      "war_priest": {
+        "description": "Bonus Action to make 1 weapon or Unarmed attack (3/Short or Long Rest).",
+        "name": "War Priest",
+        "recharge": "Short or Long Rest",
+        "uses": 3
+      }
+    }
   },
   "combat": {
     "armor_class": 15,

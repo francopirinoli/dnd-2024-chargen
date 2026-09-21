@@ -367,3 +367,216 @@ class TestClericFeatureEffects:
         always_prepared = char_data["spells"]["always_prepared"]
         assert "Bless" in always_prepared
         assert "Cure Wounds" in always_prepared
+
+
+class TestCleric2024Audit:
+    """Comprehensive tests for the 2024 RAW Cleric class audit and upgrades."""
+
+    def test_cleric_progression_tables(self, cleric_builder):
+        """Verify progression tables in cleric.json."""
+        cleric_builder.set_class("Cleric", 1)
+        cd_uses = cleric_builder.character_data["class_data"].get("channel_divinity_uses_by_level", {})
+        spark_dice = cleric_builder.character_data["class_data"].get("divine_spark_dice_by_level", {})
+
+        assert cd_uses["2"] == 2
+        assert cd_uses["6"] == 3
+        assert cd_uses["18"] == 4
+
+        assert spark_dice["2"] == "1d8"
+        assert spark_dice["7"] == "2d8"
+        assert spark_dice["13"] == "3d8"
+        assert spark_dice["18"] == "4d8"
+
+    def test_cleric_stats_calculation(self):
+        """Test calculate_cleric_stats at multiple levels."""
+        # Level 1
+        b1 = CharacterBuilder()
+        b1.set_class("Cleric", 1)
+        b1.apply_choice("divine_order", "Protector")
+        s1 = b1.calculate_cleric_stats()
+        assert s1["cleric_level"] == 1
+        assert s1["has_channel_divinity"] is False
+        assert s1["divine_order"]["name"] == "Protector"
+
+        # Level 2
+        b2 = CharacterBuilder()
+        b2.set_class("Cleric", 2)
+        s2 = b2.calculate_cleric_stats()
+        assert s2["has_channel_divinity"] is True
+        assert s2["channel_divinity_max"] == 2
+        assert s2["divine_spark_dice"] == "1d8"
+        assert s2["sear_undead"] is False
+
+        # Level 5
+        b5 = CharacterBuilder()
+        b5.set_class("Cleric", 5)
+        s5 = b5.calculate_cleric_stats()
+        assert s5["sear_undead"] is True
+
+        # Level 6
+        b6 = CharacterBuilder()
+        b6.set_class("Cleric", 6)
+        s6 = b6.calculate_cleric_stats()
+        assert s6["channel_divinity_max"] == 3
+
+        # Level 7
+        b7 = CharacterBuilder()
+        b7.set_class("Cleric", 7)
+        b7.apply_choice("blessed_strikes", "Divine Strike")
+        s7 = b7.calculate_cleric_stats()
+        assert s7["divine_spark_dice"] == "2d8"
+        assert s7["blessed_strikes"]["name"] == "Divine Strike"
+        assert s7["blessed_strikes"]["dice"] == "1d8"
+
+        # Level 10
+        b10 = CharacterBuilder()
+        b10.set_class("Cleric", 10)
+        s10 = b10.calculate_cleric_stats()
+        assert s10["divine_intervention"] is True
+        assert s10["greater_divine_intervention"] is False
+
+        # Level 14
+        b14 = CharacterBuilder()
+        b14.set_class("Cleric", 14)
+        b14.apply_choice("blessed_strikes", "Divine Strike")
+        s14 = b14.calculate_cleric_stats()
+        assert s14["blessed_strikes"]["dice"] == "2d8"
+
+        # Level 18
+        b18 = CharacterBuilder()
+        b18.set_class("Cleric", 18)
+        s18 = b18.calculate_cleric_stats()
+        assert s18["channel_divinity_max"] == 4
+        assert s18["divine_spark_dice"] == "4d8"
+
+        # Level 20
+        b20 = CharacterBuilder()
+        b20.set_class("Cleric", 20)
+        s20 = b20.calculate_cleric_stats()
+        assert s20["greater_divine_intervention"] is True
+
+    def test_cleric_level_19_epic_boon_structure(self, cleric_builder):
+        """Test that Level 19 Epic Boon is a structured ASI/feat choice slot."""
+        cleric_builder.set_class("Cleric", 19)
+        class_data = cleric_builder.character_data["class_data"]
+        boon_feature = class_data["features_by_level"]["19"]["Epic Boon"]
+        assert isinstance(boon_feature, dict)
+        assert boon_feature["choices"]["name"] == "class_feat_19"
+        assert boon_feature["feature_kind"] == "asi"
+
+    def test_divine_strike_weapon_attack_notes(self):
+        """Test that Divine Strike adds damage notes to weapon attacks."""
+        builder = CharacterBuilder()
+        builder.set_species("Human")
+        builder.set_class("Cleric", 7)
+        builder.apply_choice("divine_order", "Protector")
+        builder.apply_choice("blessed_strikes", "Divine Strike")
+        builder.character_data["equipment"] = {"weapons": [{"name": "Mace"}]}
+
+        char = builder.to_character()
+        attacks = char.get("attacks", [])
+        mace_attack = next((a for a in attacks if a["name"] == "Mace"), None)
+        assert mace_attack is not None
+        assert any("Divine Strike" in note for note in mace_attack.get("damage_notes", []))
+
+    def test_subclass_knowledge_domain_choices_and_effects(self):
+        """Test Knowledge Domain choices for Artisan's Tool and skills with expertise."""
+        builder = CharacterBuilder()
+        builder.set_species("Human")
+        builder.set_class("Cleric", 3)
+        builder.set_subclass("Knowledge Domain")
+
+        # Apply Artisan tool and skills choices
+        builder.apply_choice("subclass_Blessings of Knowledge_artisan_tool", "Alchemist's Supplies")
+        builder.apply_choice("subclass_Blessings of Knowledge_knowledge_skills", ["Arcana", "History"])
+
+        char = builder.to_character()
+        assert "Alchemist's Supplies" in char["proficiencies"]["tools"]
+        assert "Arcana" in char["proficiencies"]["skills"]
+        assert "History" in char["proficiencies"]["skills"]
+        assert "Arcana" in char.get("skill_expertise", [])
+        assert "History" in char.get("skill_expertise", [])
+
+        # Subclass spells granted
+        always_prep = char["spells"]["always_prepared"]
+        assert "Command" in always_prep
+        assert "Identify" in always_prep
+
+        # Check Unfettered Mind at level 6 grants Intelligence save proficiency
+        builder_lv6 = CharacterBuilder()
+        builder_lv6.set_species("Human")
+        builder_lv6.set_class("Cleric", 6)
+        builder_lv6.set_subclass("Knowledge Domain")
+        builder_lv6.apply_choice("subclass_Blessings of Knowledge_artisan_tool", "Alchemist's Supplies")
+        builder_lv6.apply_choice("subclass_Blessings of Knowledge_knowledge_skills", ["Arcana", "History"])
+        char6 = builder_lv6.to_character()
+        assert "Intelligence" in char6["proficiencies"]["saving_throws"]
+
+    def test_subclass_grave_domain_circle_of_mortality(self):
+        """Test Grave Domain Circle of Mortality grants Spare the Dying."""
+        builder = CharacterBuilder()
+        builder.set_species("Human")
+        builder.set_class("Cleric", 3)
+        builder.set_subclass("Grave Domain")
+        char = builder.to_character()
+
+        cantrips = [c["name"] for c in char["spells"]["cantrips"]]
+        assert "Spare the Dying" in cantrips
+
+    def test_subclass_pestilence_domain_resistances(self):
+        """Test Pestilence Domain Blight Weaver grants Necrotic and Poison resistance."""
+        builder = CharacterBuilder()
+        builder.set_species("Human")
+        builder.set_class("Cleric", 3)
+        builder.set_subclass("Pestilence Domain")
+        char = builder.to_character()
+
+        resistances = char.get("resistances", [])
+        assert "Necrotic" in resistances
+        assert "Poison" in resistances
+
+    def test_subclass_freedom_domain_ac_and_skills(self):
+        """Test Freedom Domain Unencumbered Grace alternative AC and Acrobatics."""
+        builder = CharacterBuilder()
+        builder.set_species("Human")
+        builder.set_class("Cleric", 3)
+        builder.set_subclass("Freedom Domain")
+        char = builder.to_character()
+
+        assert "Acrobatics" in char["proficiencies"]["skills"]
+        # Verify alternative AC option recorded
+        ac_options = builder.character_data.get("alternative_ac_options", [])
+        freedom_ac = next((opt for opt in ac_options if opt.get("source") == "Unencumbered Grace"), None)
+        assert freedom_ac is not None
+        assert "wisdom" in freedom_ac.get("modifiers", [])
+
+    def test_cleric_level_up_preview(self):
+        """Test level up preview cleric_changes."""
+        from modules.derived_stats import build_level_up_preview
+
+        choices = {
+            "character_name": "Eldrin",
+            "level": 5,
+            "species": "Human",
+            "class": "Cleric",
+            "background": "Acolyte",
+            "divine_order": "Protector",
+            "ability_scores": {
+                "Strength": 14,
+                "Dexterity": 10,
+                "Constitution": 14,
+                "Intelligence": 10,
+                "Wisdom": 16,
+                "Charisma": 12,
+            },
+            "background_bonuses": {"Wisdom": 2, "Constitution": 1},
+        }
+
+        # Level 5 -> 6: Channel Divinity uses increase from 2 to 3
+        preview = build_level_up_preview(choices)
+        cleric_changes = preview.get("cleric_changes", {})
+        assert cleric_changes["is_cleric"] is True
+        assert cleric_changes["has_channel_divinity"] is True
+        assert cleric_changes["current_cd_uses"] == 2
+        assert cleric_changes["next_cd_uses"] == 3
+        assert cleric_changes["cd_uses_increased"] is True

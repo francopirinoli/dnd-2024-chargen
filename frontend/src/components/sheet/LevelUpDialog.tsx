@@ -423,8 +423,8 @@ export function LevelUpDialog({ open, onClose, onSuccess }: LevelUpDialogProps) 
               </div>
             </div>
 
-            {/* Spellcasting, Weapon Mastery & Bardic Inspiration callouts */}
-            {(preview.spellcasting_changes?.has_spellcasting || preview.mastery_changes?.increased || (preview.bard_changes?.has_bardic_inspiration && (preview.bard_changes.die_increased || preview.bard_changes.recharge_improved))) && (
+            {/* Spellcasting, Weapon Mastery, Bardic Inspiration & Channel Divinity callouts */}
+            {(preview.spellcasting_changes?.has_spellcasting || preview.mastery_changes?.increased || (preview.bard_changes?.has_bardic_inspiration && (preview.bard_changes.die_increased || preview.bard_changes.recharge_improved)) || (preview.cleric_changes?.has_channel_divinity && (preview.cleric_changes.cd_uses_increased || preview.cleric_changes.spark_dice_increased || preview.cleric_changes.divine_intervention_unlocked))) && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {preview.spellcasting_changes?.has_spellcasting && (
                   <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm space-y-1.5">
@@ -478,6 +478,32 @@ export function LevelUpDialog({ open, onClose, onSuccess }: LevelUpDialogProps) 
                     {preview.bard_changes.recharge_improved && (
                       <p className="text-xs text-muted-foreground">
                         Font of Inspiration: Regain uses on <span className="font-semibold text-foreground">Short or Long Rest</span> (plus spell slot recovery)!
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {preview.cleric_changes?.has_channel_divinity && (preview.cleric_changes.cd_uses_increased || preview.cleric_changes.spark_dice_increased || preview.cleric_changes.divine_intervention_unlocked) && (
+                  <div className="rounded-xl border border-sky-500/20 bg-sky-500/5 p-4 text-sm space-y-1.5">
+                    <div className="flex items-center gap-2 font-semibold text-sky-700 dark:text-sky-300">
+                      <Sparkles className="h-4 w-4" />
+                      Channel Divinity Enhanced
+                    </div>
+                    {preview.cleric_changes.cd_uses_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Uses: {preview.cleric_changes.current_cd_uses} →{" "}
+                        <span className="font-semibold text-foreground">{preview.cleric_changes.next_cd_uses} per Short/Long Rest</span>
+                      </p>
+                    )}
+                    {preview.cleric_changes.spark_dice_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Divine Spark: {preview.cleric_changes.current_spark_dice} →{" "}
+                        <span className="font-semibold text-foreground">{preview.cleric_changes.next_spark_dice}</span>
+                      </p>
+                    )}
+                    {preview.cleric_changes.divine_intervention_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Divine Intervention: <span className="font-semibold text-foreground">Unlocked (Level 5 or lower Cleric spell without slot)</span>
                       </p>
                     )}
                   </div>

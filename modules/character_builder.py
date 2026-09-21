@@ -1852,8 +1852,14 @@ class CharacterBuilder:
 
         elif effect_type == "grant_tool_proficiency":
             if "from_choice" in effect:
-                chosen = self.character_data.get("choices_made", {}).get(
-                    effect["from_choice"]
+                choice_key = effect["from_choice"]
+                clean_key = choice_key[9:] if choice_key.startswith("subclass_") else choice_key
+                short_key = choice_key.split("_")[-1]
+                chosen = (
+                    self.character_data.get("choices_made", {}).get(choice_key)
+                    or self.character_data.get("choices_made", {}).get(clean_key)
+                    or self.character_data.get("choices_made", {}).get(short_key)
+                    or self._resolve_choice_value(choice_key)
                 )
                 tools = chosen if isinstance(chosen, list) else [chosen] if chosen else []
             elif "tools" in effect:
@@ -1952,7 +1958,14 @@ class CharacterBuilder:
             # Resolve skills from a choice key if specified, otherwise use direct list
             if "from_choice" in effect:
                 choice_key = effect["from_choice"]
-                chosen = self.character_data.get("choices_made", {}).get(choice_key)
+                clean_key = choice_key[9:] if choice_key.startswith("subclass_") else choice_key
+                short_key = choice_key.split("_")[-1]
+                chosen = (
+                    self.character_data.get("choices_made", {}).get(choice_key)
+                    or self.character_data.get("choices_made", {}).get(clean_key)
+                    or self.character_data.get("choices_made", {}).get(short_key)
+                    or self._resolve_choice_value(choice_key)
+                )
                 if isinstance(chosen, list):
                     skills = chosen
                 elif isinstance(chosen, str) and chosen:
@@ -8054,6 +8067,295 @@ class CharacterBuilder:
 
         return stats
 
+    def calculate_cleric_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Channel Divinity, Divine Spark, Divine Order, Blessed Strikes,
+        Divine Intervention, and subclass statistics for Cleric characters.
+
+        Returns:
+            Dictionary with has_channel_divinity, cleric_level, subclass,
+            channel_divinity_uses, channel_divinity_max, recharge,
+            divine_spark_dice, save_dc, divine_order, blessed_strikes,
+            sear_undead, divine_intervention, greater_divine_intervention,
+            channel_divinity_options, subclass_resources, active_perks.
+        """
+        stats: Dict[str, Any] = {
+            "has_channel_divinity": False,
+            "cleric_level": 0,
+            "subclass": "",
+            "channel_divinity_uses": 0,
+            "channel_divinity_max": 0,
+            "recharge": "Short or Long Rest (regain 1 on Short Rest, all on Long Rest)",
+            "divine_spark_dice": None,
+            "save_dc": 0,
+            "divine_order": None,
+            "blessed_strikes": None,
+            "sear_undead": False,
+            "divine_intervention": False,
+            "greater_divine_intervention": False,
+            "channel_divinity_options": [],
+            "subclass_resources": {},
+            "active_perks": [],
+        }
+
+        cleric_level = self._get_class_level("Cleric")
+        stats["cleric_level"] = cleric_level
+        if cleric_level < 1:
+            return stats
+
+        subclass_name = self._get_class_subclass("Cleric") or ""
+        stats["subclass"] = subclass_name
+
+        ability_scores = getattr(self.ability_scores, "final_scores", {}) if hasattr(self, "ability_scores") else {}
+        wis_score = ability_scores.get("Wisdom", 10) if isinstance(ability_scores, dict) else 10
+        wis_mod = self.calculate_ability_modifier(wis_score)
+        pb = self.calculate_proficiency_bonus(self.character_data.get("level", cleric_level))
+        save_dc = 8 + pb + wis_mod
+        stats["save_dc"] = save_dc
+
+        # Divine Order (Level 1)
+        choices_made = self.character_data.get("choices_made", {})
+        divine_order = choices_made.get("divine_order")
+        if not divine_order:
+            for choice_key, val in choices_made.items():
+                if "divine_order" in choice_key.lower() and isinstance(val, str):
+                    divine_order = val
+                    break
+        if divine_order:
+            stats["divine_order"] = {
+                "name": divine_order,
+                "description": (
+                    "Martial weapon proficiency & Heavy armor training"
+                    if divine_order == "Protector"
+                    else f"1 extra Cleric cantrip & +{max(1, wis_mod)} bonus to Arcana and Religion checks"
+                ),
+            }
+            stats["active_perks"].append(f"Divine Order: {divine_order}")
+
+        # Channel Divinity (Level 2+)
+        if cleric_level >= 2:
+            stats["has_channel_divinity"] = True
+            # Uses: 2 at 2-5, 3 at 6-17, 4 at 18-20
+            max_uses = 4 if cleric_level >= 18 else (3 if cleric_level >= 6 else 2)
+            stats["channel_divinity_uses"] = max_uses
+            stats["channel_divinity_max"] = max_uses
+
+            # Divine Spark dice: 1d8 at 2-6, 2d8 at 7-12, 3d8 at 13-17, 4d8 at 18-20
+            spark_dice = "4d8" if cleric_level >= 18 else ("3d8" if cleric_level >= 13 else ("2d8" if cleric_level >= 7 else "1d8"))
+            stats["divine_spark_dice"] = spark_dice
+
+            # Standard Channel Divinity options
+            stats["channel_divinity_options"].append({
+                "name": "Divine Spark",
+                "action": "Magic Action (Holy Symbol, 30 ft)",
+                "effect": f"Roll {spark_dice} + {wis_mod} (Wisdom). Restore HP to a creature, or target makes Con save (DC {save_dc}) taking that much Radiant or Necrotic damage (half on save).",
+            })
+            turn_undead_desc = f"Undead within 30 ft make Wis save (DC {save_dc}) or be Frightened & Incapacitated for 1 minute (ends on damage)."
+            if cleric_level >= 5:
+                stats["sear_undead"] = True
+                turn_undead_desc += f" Sear Undead: Affected undead also take {spark_dice} Radiant damage on failed save (half on success)."
+                stats["active_perks"].append(f"Sear Undead ({spark_dice} Radiant)")
+            stats["channel_divinity_options"].append({
+                "name": "Turn Undead",
+                "action": "Magic Action (Holy Symbol, 30 ft)",
+                "effect": turn_undead_desc,
+            })
+
+        # Blessed Strikes (Level 7+)
+        if cleric_level >= 7:
+            blessed_strike = choices_made.get("blessed_strikes")
+            if not blessed_strike:
+                for k, v in choices_made.items():
+                    if "blessed_strikes" in k.lower() and isinstance(v, str):
+                        blessed_strike = v
+                        break
+            strike_dice = "2d8" if cleric_level >= 14 else "1d8"
+            if blessed_strike == "Divine Strike":
+                desc = f"1/turn when you hit with a weapon, deal extra {strike_dice} Radiant or Necrotic damage."
+                stats["blessed_strikes"] = {"name": "Divine Strike", "dice": strike_dice, "description": desc}
+                stats["active_perks"].append(f"Divine Strike (+{strike_dice})")
+            elif blessed_strike == "Potent Spellcasting":
+                desc = f"Add +{max(1, wis_mod)} (Wisdom) to damage dealt with any Cleric cantrip."
+                if cleric_level >= 14:
+                    desc += f" When dealing cantrip damage, grant {2 * max(1, wis_mod)} Temp HP to self or ally within 60 ft."
+                stats["blessed_strikes"] = {"name": "Potent Spellcasting", "bonus": max(1, wis_mod), "description": desc}
+                stats["active_perks"].append(f"Potent Spellcasting (+{max(1, wis_mod)})")
+            elif not blessed_strike:
+                stats["blessed_strikes"] = {"name": "Pending Selection", "description": f"Choose Divine Strike (+{strike_dice}) or Potent Spellcasting (+{max(1, wis_mod)})"}
+
+        # Divine Intervention (Level 10+)
+        if cleric_level >= 10:
+            stats["divine_intervention"] = True
+            if cleric_level >= 20:
+                stats["greater_divine_intervention"] = True
+                stats["active_perks"].append("Greater Divine Intervention (Wish or Lv 8- spell, 2d4 LR)")
+            else:
+                stats["active_perks"].append("Divine Intervention (Lv 5- spell, 1/Long Rest)")
+
+        # Subclass Channel Divinity & Features
+        if subclass_name == "Life Domain" and cleric_level >= 3:
+            stats["subclass_resources"]["disciple_of_life"] = {
+                "name": "Disciple of Life",
+                "description": "When casting healing spell with slot, creature regains additional 2 + spell slot level HP",
+            }
+            stats["channel_divinity_options"].append({
+                "name": "Preserve Life",
+                "action": "Magic Action (Holy Symbol, 30 ft)",
+                "effect": f"Restore up to {5 * cleric_level} HP divided among Bloodied creatures within 30 ft (max half max HP).",
+            })
+            if cleric_level >= 6:
+                stats["subclass_resources"]["blessed_healer"] = {
+                    "name": "Blessed Healer",
+                    "description": "When healing others with spell slot, you regain 2 + spell slot level HP",
+                }
+            if cleric_level >= 17:
+                stats["subclass_resources"]["supreme_healing"] = {
+                    "name": "Supreme Healing",
+                    "description": "Maximize all dice rolled for healing spells",
+                }
+
+        elif subclass_name == "Light Domain" and cleric_level >= 3:
+            stats["channel_divinity_options"].append({
+                "name": "Radiance of the Dawn",
+                "action": "Magic Action (Holy Symbol, 30 ft)",
+                "effect": f"Dispel magical darkness; 30-ft emanation, Con save (DC {save_dc}) or 2d10 + {cleric_level} Radiant damage (half on save).",
+            })
+            flare_uses = max(1, wis_mod)
+            recharge_flare = "Short or Long Rest" if cleric_level >= 6 else "Long Rest"
+            flare_desc = f"Reaction to impose Disadvantage on attack roll against you/ally within 30 ft ({flare_uses}/LR)."
+            if cleric_level >= 6:
+                flare_desc += f" Target also gains 2d6 + {wis_mod} Temp HP. Regain on Short or Long Rest."
+            stats["subclass_resources"]["warding_flare"] = {
+                "name": "Warding Flare",
+                "uses": flare_uses,
+                "recharge": recharge_flare,
+                "description": flare_desc,
+            }
+            if cleric_level >= 17:
+                stats["subclass_resources"]["corona_of_light"] = {
+                    "name": "Corona of Light",
+                    "uses": max(1, wis_mod),
+                    "recharge": "Long Rest",
+                    "description": "Aura of sunlight 60 ft bright / 30 ft dim for 1 min. Enemies in bright light have Disadvantage on saves vs Radiance of the Dawn and Fire/Radiant spells.",
+                }
+
+        elif subclass_name == "Trickery Domain" and cleric_level >= 3:
+            stats["subclass_resources"]["blessing_of_the_trickster"] = {
+                "name": "Blessing of the Trickster",
+                "description": "Magic Action: Give self or willing creature within 30 ft Advantage on Stealth checks until Long Rest or used again",
+            }
+            stats["channel_divinity_options"].append({
+                "name": "Invoke Duplicity",
+                "action": "Bonus Action (30 ft)",
+                "effect": "Create visual illusion for 1 min. Cast spells from its space; Advantage on attacks when you and illusion are within 5 ft of target; move 30 ft as Bonus Action (up to 120 ft).",
+            })
+            if cleric_level >= 6:
+                stats["subclass_resources"]["tricksters_transposition"] = {
+                    "name": "Trickster's Transposition",
+                    "description": "When creating or moving your duplicate, teleport and swap places with it",
+                }
+            if cleric_level >= 17:
+                stats["subclass_resources"]["improved_duplicity"] = {
+                    "name": "Improved Duplicity",
+                    "description": f"Allies also get Advantage vs creatures within 5 ft of illusion; when duplicate ends, creature within 5 ft heals {cleric_level} HP",
+                }
+
+        elif subclass_name == "War Domain" and cleric_level >= 3:
+            stats["channel_divinity_options"].append({
+                "name": "Guided Strike",
+                "action": "No action (Reaction if used for ally within 30 ft)",
+                "effect": "Give a missed attack roll a +10 bonus, potentially causing it to hit.",
+            })
+            war_priest_uses = max(1, wis_mod)
+            stats["subclass_resources"]["war_priest"] = {
+                "name": "War Priest",
+                "uses": war_priest_uses,
+                "recharge": "Short or Long Rest",
+                "description": f"Bonus Action to make 1 weapon or Unarmed attack ({war_priest_uses}/Short or Long Rest).",
+            }
+            if cleric_level >= 6:
+                stats["subclass_resources"]["war_gods_blessing"] = {
+                    "name": "War God's Blessing",
+                    "description": "Expend 1 Channel Divinity to cast Shield of Faith or Spiritual Weapon without slot and without Concentration (lasts 1 min)",
+                }
+            if cleric_level >= 17:
+                stats["subclass_resources"]["avatar_of_battle"] = {
+                    "name": "Avatar of Battle",
+                    "description": "Resistance to Bludgeoning, Piercing, and Slashing damage",
+                }
+
+        elif subclass_name == "Knowledge Domain" and cleric_level >= 3:
+            stats["channel_divinity_options"].append({
+                "name": "Mind Magic",
+                "action": "Magic Action",
+                "effect": "Expend 1 Channel Divinity to cast any prepared Divination spell from Knowledge Domain Spells table without expending spell slot or material components.",
+            })
+            if cleric_level >= 6:
+                stats["subclass_resources"]["unfettered_mind"] = {
+                    "name": "Unfettered Mind",
+                    "description": f"Telepathy 60 ft (up to {max(1, wis_mod)} creatures) & Intelligence saving throw proficiency",
+                }
+            if cleric_level >= 17:
+                stats["subclass_resources"]["divine_foreknowledge"] = {
+                    "name": "Divine Foreknowledge",
+                    "recharge": "Long Rest (or 6+ level spell slot)",
+                    "description": "Bonus Action: Gain Advantage on D20 Tests for 1 hour (1/Long Rest or expend level 6+ slot)",
+                }
+
+        elif subclass_name == "Grave Domain" and cleric_level >= 3:
+            stats["channel_divinity_options"].append({
+                "name": "Path to the Grave",
+                "action": "Bonus Action (30 ft)",
+                "effect": f"Curse creature until start of next turn: Disadvantage on attacks & saves. When hit, end curse to deal extra {cleric_level} Necrotic or Radiant damage.",
+            })
+            stats["subclass_resources"]["circle_of_mortality"] = {
+                "name": "Circle of Mortality",
+                "description": "Cast Spare the Dying as Bonus Action; maximize healing dice on creatures with 0 HP; +1d4 Necrotic damage once/turn to wounded creature (+1d6 at lv 11)",
+            }
+            if cleric_level >= 6:
+                stats["subclass_resources"]["sentinel_at_deaths_door"] = {
+                    "name": "Sentinel at Death's Door",
+                    "uses": max(1, wis_mod),
+                    "recharge": "Long Rest",
+                    "description": f"Reaction when you or bloodied ally within 60 ft is hit: halve damage and cancel critical hit effects ({max(1, wis_mod)}/LR).",
+                }
+            if cleric_level >= 17:
+                stats["subclass_resources"]["divine_reaper"] = {
+                    "name": "Divine Reaper",
+                    "description": f"Target 2nd creature with Lv 1-5 necromancy/domain spell with 1 Channel Divinity; when enemy dies within 60 ft, heal ally {2 * cleric_level} HP (1/SR or LR)",
+                }
+
+        elif subclass_name == "Pestilence Domain" and cleric_level >= 3:
+            stats["subclass_resources"]["blight_weaver"] = {
+                "name": "Blight Weaver",
+                "description": "Resistance to Necrotic and Poison; ignore enemy resistance with Cleric spells/features; swap Necrotic/Poison damage types",
+            }
+            stats["channel_divinity_options"].append({
+                "name": "Touch of Corruption",
+                "action": "Magic Action (Melee spell attack or touch)",
+                "effect": f"Channel decay to inflict Poisoned condition and ongoing Necrotic damage (DC {save_dc}).",
+            })
+
+        elif subclass_name == "Freedom Domain" and cleric_level >= 3:
+            stats["subclass_resources"]["unencumbered_grace"] = {
+                "name": "Unencumbered Grace",
+                "description": "Unarmored AC = 10 + Dex + Wis; Acrobatics proficiency/expertise",
+            }
+            stats["channel_divinity_options"].append({
+                "name": "Invoke Liberty",
+                "action": "Magic Action (30-ft emanation)",
+                "effect": "Allies end Frightened, Grappled, Paralyzed, or Restrained (plus Charmed/Petrified at lv 9) and can use Reaction to move speed without OA.",
+            })
+
+        elif subclass_name == "Arcana Domain" and cleric_level >= 3:
+            stats["channel_divinity_options"].append({
+                "name": "Modify Magic",
+                "action": "No action (when casting spell)",
+                "effect": f"Fortifying: Grant 2d8 + {cleric_level} Temp HP to target; Tenacious: When creature succeeds on save, subtract 1d6 from its first save vs spell.",
+            })
+
+        return stats
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -8220,6 +8522,19 @@ class CharacterBuilder:
             barbarian_rage_damage = 3
         elif barbarian_level >= 1:
             barbarian_rage_damage = 2
+
+        cleric_level = self._get_class_level("Cleric")
+        cleric_divine_strike_dice = None
+        if cleric_level >= 7:
+            choices_made = self.character_data.get("choices_made", {})
+            blessed_strike = choices_made.get("blessed_strikes")
+            if not blessed_strike:
+                for k, v in choices_made.items():
+                    if "blessed_strikes" in k.lower() and isinstance(v, str):
+                        blessed_strike = v
+                        break
+            if blessed_strike == "Divine Strike":
+                cleric_divine_strike_dice = "2d8" if cleric_level >= 14 else "1d8"
 
         for weapon in active_weapons:
             weapon_name = (
@@ -8467,6 +8782,8 @@ class CharacterBuilder:
             rage_bonus_value = barbarian_rage_damage if (barbarian_rage_damage > 0 and is_melee and uses_strength) else 0
             if rage_bonus_value > 0:
                 damage_notes.append(f"+{rage_bonus_value} while Raging")
+            if cleric_divine_strike_dice:
+                damage_notes.append(f"+{cleric_divine_strike_dice} Divine Strike (Radiant or Necrotic, 1/turn)")
 
             attack_info = {
                 "name": weapon_name,
@@ -9890,6 +10207,11 @@ class CharacterBuilder:
         bard_stats = self.calculate_bard_stats()
         if bard_stats.get("has_bardic_inspiration"):
             character_data["bard_stats"] = bard_stats
+
+        # Add Cleric stats (Cleric only)
+        cleric_stats = self.calculate_cleric_stats()
+        if cleric_stats.get("cleric_level", 0) > 0:
+            character_data["cleric_stats"] = cleric_stats
 
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:

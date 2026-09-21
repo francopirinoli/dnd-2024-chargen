@@ -74,7 +74,67 @@
       "source": "Forgotten Realms: Heroes of Faer\u00fbn",
       "features_by_level": {
         "3": {
-          "Blessings of Knowledge": "You gain proficiency with one type of Artisan's Tools of your choice and in two of the following skills of your choice: Arcana, History, Nature, or Religion. You have Expertise in those two skills.",
+          "Blessings of Knowledge": {
+            "description": "You gain proficiency with one type of Artisan's Tools of your choice and in two of the following skills of your choice: Arcana, History, Nature, or Religion. You have Expertise in those two skills.",
+            "effects": [
+              {
+                "type": "grant_tool_proficiency",
+                "from_choice": "subclass_Blessings of Knowledge_artisan_tool"
+              },
+              {
+                "type": "grant_skill_proficiency",
+                "from_choice": "subclass_Blessings of Knowledge_knowledge_skills"
+              },
+              {
+                "type": "grant_skill_expertise",
+                "from_choice": "subclass_Blessings of Knowledge_knowledge_skills"
+              }
+            ],
+            "choices": [
+              {
+                "type": "select_single",
+                "name": "artisan_tool",
+                "source": {
+                  "type": "fixed_list",
+                  "options": [
+                    "Alchemist's Supplies",
+                    "Brewer's Supplies",
+                    "Calligrapher's Supplies",
+                    "Carpenter's Tools",
+                    "Cartographer's Tools",
+                    "Cobbler's Tools",
+                    "Cook's Utensils",
+                    "Glassblower's Tools",
+                    "Jeweler's Tools",
+                    "Leatherworker's Tools",
+                    "Mason's Tools",
+                    "Painter's Supplies",
+                    "Potter's Tools",
+                    "Smith's Tools",
+                    "Tinker's Tools",
+                    "Weaver's Tools",
+                    "Woodcarver's Tools"
+                  ]
+                },
+                "optional": false
+              },
+              {
+                "type": "select_multiple",
+                "count": 2,
+                "name": "knowledge_skills",
+                "source": {
+                  "type": "fixed_list",
+                  "options": [
+                    "Arcana",
+                    "History",
+                    "Nature",
+                    "Religion"
+                  ]
+                },
+                "optional": false
+              }
+            ]
+          },
           "Knowledge Domain Spells": {
             "description": "When you reach a Cleric level specified in the Knowledge Domain Spells table, you thereafter always have the listed spells prepared.",
             "spells": {
@@ -101,12 +161,39 @@
                 "Scrying",
                 "Synaptic Static"
               ]
-            }
+            },
+            "effects": [
+              {"type": "grant_spell", "spell": "Command", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Comprehend Languages", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Detect Magic", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Detect Thoughts", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Identify", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Mind Spike", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Dispel Magic", "min_level": 5, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Nondetection", "min_level": 5, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Tongues", "min_level": 5, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Arcane Eye", "min_level": 7, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Banishment", "min_level": 7, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Confusion", "min_level": 7, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Legend Lore", "min_level": 9, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Scrying", "min_level": 9, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Synaptic Static", "min_level": 9, "counts_against_limit": false}
+            ]
           },
           "Mind Magic": "As a Magic action, you can expend one use of your Channel Divinity to manifest your magical knowledge. Choose one spell from the Divination school on the Knowledge Domain Spells table that you have prepared. As part of that action, you cast that spell without expending a spell slot or needing Material components."
         },
         "6": {
-          "Unfettered Mind": "You gain telepathy out to 60 feet. When you use this telepathy, you can simultaneously contact a number of creatures equal to your Wisdom modifier (minimum of one).\nAdditionally, you gain proficiency in Intelligence saving throws. If you already have this proficiency, you instead gain saving throw proficiency with one ability in which you lack it."
+          "Unfettered Mind": {
+            "description": "You gain telepathy out to 60 feet. When you use this telepathy, you can simultaneously contact a number of creatures equal to your Wisdom modifier (minimum of one).\nAdditionally, you gain proficiency in Intelligence saving throws. If you already have this proficiency, you instead gain saving throw proficiency with one ability in which you lack it.",
+            "effects": [
+              {
+                "type": "grant_save_proficiency",
+                "abilities": [
+                  "Intelligence"
+                ]
+              }
+            ]
+          }
         },
         "17": {
           "Divine Foreknowledge": "As a Bonus Action, you magically expand your mind to the future. For 1 hour, you have Advantage on D20 Tests. Once you use this feature, you can't use it again until you finish a Long Rest. You can also restore your use of this feature by expending a level 6+ spell slot (no action required)."

@@ -338,6 +338,19 @@ export interface LevelUpPreviewResponse {
     next_recharge?: string;
     recharge_improved: boolean;
   };
+  cleric_changes?: {
+    has_channel_divinity: boolean;
+    is_cleric: boolean;
+    current_cd_uses: number;
+    next_cd_uses: number;
+    cd_uses_increased: boolean;
+    current_spark_dice?: string | null;
+    next_spark_dice?: string | null;
+    spark_dice_increased: boolean;
+    sear_undead_unlocked: boolean;
+    divine_intervention_unlocked: boolean;
+    greater_divine_intervention_unlocked: boolean;
+  };
 }
 
 export interface BackgroundSummary {

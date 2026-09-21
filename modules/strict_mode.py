@@ -195,6 +195,11 @@ KNOWN_CHOICE_KEYS: frozenset = frozenset({
     "subclass_aspect_of_the_wilds",
     # Bard / Supplements
     "primal_lore_skill",
+    # Cleric
+    "divine_order",
+    "blessed_strikes",
+    "knowledge_artisan_tool",
+    "knowledge_skills",
     # Artificer Replicate Magic Item
     "artificer_replicate_plans",
     "artificer_plans",

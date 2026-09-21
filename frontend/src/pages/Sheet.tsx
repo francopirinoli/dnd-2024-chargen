@@ -1420,6 +1420,8 @@ function Attacks({
   const hasRage = Boolean(barbarianStats.has_rage);
   const bardStats = rec(c.bard_stats);
   const hasBardicInspiration = Boolean(bardStats.has_bardic_inspiration);
+  const clericStats = rec(c.cleric_stats);
+  const hasChannelDivinity = Boolean(clericStats.has_channel_divinity);
   const combinations = arr<Record<string, unknown>>(c.attack_combinations);
 
   const serverBestCombination = rec(c.best_attack_combination);
@@ -1772,6 +1774,50 @@ function Attacks({
               <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
                 {num(bardStats.inspiration_uses)} uses / {str(bardStats.recharge) ?? "Long Rest"}
               </span>
+            </div>
+          )}
+
+          {hasChannelDivinity && clericStats.channel_divinity_max !== undefined && (
+            <div className="mt-3 flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-sky-400" />
+                  <span className="font-semibold uppercase tracking-wide text-sky-400">
+                    Channel Divinity
+                  </span>
+                  {clericStats.divine_spark_dice !== undefined && (
+                    <span className="rounded bg-sky-500/20 px-2 py-0.5 text-xs font-semibold text-sky-300">
+                      Spark {str(clericStats.divine_spark_dice)}
+                    </span>
+                  )}
+                  {clericStats.save_dc !== undefined && (
+                    <span className="text-muted-foreground hidden sm:inline">
+                      (Save DC {num(clericStats.save_dc)})
+                    </span>
+                  )}
+                </div>
+                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                  {num(clericStats.channel_divinity_max)} uses / Short or Long Rest
+                </span>
+              </div>
+
+              {arr<Record<string, unknown>>(clericStats.channel_divinity_options).length > 0 && (
+                <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {arr<Record<string, unknown>>(clericStats.channel_divinity_options).map((opt, idx) => (
+                    <div
+                      key={idx}
+                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                    >
+                      <div className="font-medium text-foreground">
+                        {str(opt.name)} <span className="text-[10px] text-muted-foreground">({str(opt.action)})</span>
+                      </div>
+                      <div className="text-[11px] text-muted-foreground line-clamp-2">
+                        {str(opt.effect)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </>
