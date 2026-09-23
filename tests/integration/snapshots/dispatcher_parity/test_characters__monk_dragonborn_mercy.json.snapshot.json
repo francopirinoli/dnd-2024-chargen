@@ -96,8 +96,8 @@
       "mainhand": {
         "attack_bonus": 5,
         "attack_bonus_display": "+5",
-        "avg_damage": 5.5,
-        "damage": "1d4 + 3",
+        "avg_damage": 6.5,
+        "damage": "1d6 + 3",
         "damage_type": "Piercing",
         "icon": "/static/images/weapons/dagger.svg",
         "name": "Dagger"
@@ -107,8 +107,8 @@
       "offhand": {
         "attack_bonus": 5,
         "attack_bonus_display": "+5",
-        "avg_damage": 2.5,
-        "damage": "1d4",
+        "avg_damage": 3.5,
+        "damage": "1d6",
         "damage_type": "Piercing",
         "icon": "/static/images/weapons/dagger.svg",
         "name": "Dagger"
@@ -130,6 +130,7 @@
         "+11d6+2 Necrotic (Hand of Harm, 1 FP, 1/turn)"
       ],
       "damage_type": "Bludgeoning",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
       "name": "Unarmed Strike",
@@ -151,6 +152,7 @@
       "damage_one_handed": "1d6 + 3",
       "damage_two_handed": "1d8 + 3",
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/spear.svg",
       "mastery": "Sap",
       "name": "Spear",
@@ -165,13 +167,14 @@
       "ability": "STR/DEX (DEX)",
       "attack_bonus": 5,
       "attack_bonus_display": "+5",
-      "avg_crit": 8.0,
-      "avg_damage": 5.5,
-      "avg_throw_damage": 5.5,
-      "damage": "1d4 + 3",
+      "avg_crit": 10.0,
+      "avg_damage": 6.5,
+      "avg_throw_damage": 6.5,
+      "damage": "1d6 + 3",
       "damage_bonus": 3,
       "damage_notes": [],
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/dagger.svg",
       "mastery": "Nick",
       "name": "Dagger",
@@ -181,7 +184,7 @@
         "Light",
         "Thrown (range 20/60)"
       ],
-      "throw_damage": "1d4 + 3"
+      "throw_damage": "1d6 + 3"
     }
   ],
   "background": "Hermit",
@@ -239,8 +242,8 @@
     "mainhand": {
       "attack_bonus": 5,
       "attack_bonus_display": "+5",
-      "avg_damage": 5.5,
-      "damage": "1d4 + 3",
+      "avg_damage": 6.5,
+      "damage": "1d6 + 3",
       "damage_type": "Piercing",
       "icon": "/static/images/weapons/dagger.svg",
       "name": "Dagger"
@@ -250,8 +253,8 @@
     "offhand": {
       "attack_bonus": 5,
       "attack_bonus_display": "+5",
-      "avg_damage": 2.5,
-      "damage": "1d4",
+      "avg_damage": 3.5,
+      "damage": "1d6",
       "damage_type": "Piercing",
       "icon": "/static/images/weapons/dagger.svg",
       "name": "Dagger"

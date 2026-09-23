@@ -162,6 +162,7 @@
       "damage_bonus": 3,
       "damage_notes": [],
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/bow.svg",
       "mastery": "Slow",
       "name": "Longbow",
@@ -181,6 +182,7 @@
       "damage": "2",
       "damage_notes": [],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
       "name": "Unarmed Strike",
@@ -197,6 +199,7 @@
       "damage_bonus": 3,
       "damage_notes": [],
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/sword.svg",
       "mastery": "Vex",
       "name": "Shortsword",
@@ -216,6 +219,7 @@
       "damage_bonus": 3,
       "damage_notes": [],
       "damage_type": "Slashing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/scimitar.svg",
       "mastery": "Nick",
       "name": "Scimitar",
@@ -1226,6 +1230,7 @@
       "source": "Magic Initiate (Druid)",
       "source_type": "feat",
       "spell": "${1st_level_spell}",
+      "spellcasting_ability": "${spellcasting_ability}",
       "type": "grant_spell"
     },
     {
@@ -1344,12 +1349,14 @@
       "source": "Magic Initiate (Druid)",
       "source_type": "feat",
       "spell": "${cantrips[0]}",
+      "spellcasting_ability": "${spellcasting_ability}",
       "type": "grant_cantrip"
     },
     {
       "source": "Magic Initiate (Druid)",
       "source_type": "feat",
       "spell": "${cantrips[1]}",
+      "spellcasting_ability": "${spellcasting_ability}",
       "type": "grant_cantrip"
     },
     {
@@ -1518,7 +1525,7 @@
     ],
     "feats": [
       {
-        "description": "You've learned the basics of Druid magic, gaining the following benefits:\n\nChoose two cantrips from the Druid spell list.\n\nChoose one 1st-level spell from the Druid spell list. You can cast this spell once without expending a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest. You can also cast the spell using any spell slots you have.\n\nYour spellcasting ability for these spells is Wisdom.",
+        "description": "You've learned the basics of Druid magic, gaining the following benefits:\n\nChoose two cantrips from the Druid spell list.\n\nChoose one 1st-level spell from the Druid spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have.\n\nIntelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat).",
         "name": "Magic Initiate (Druid)",
         "source": "Guide"
       }
@@ -1689,7 +1696,13 @@
     "weapons": {}
   },
   "resistances": [],
-  "save_advantages": [],
+  "save_advantages": [
+    {
+      "abilities": [],
+      "condition": "Charmed",
+      "display": "Advantage vs Charmed condition"
+    }
+  ],
   "skill_expertise": [
     "Stealth"
   ],
@@ -2098,7 +2111,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Wood Elf"
+        "source": "Wood Elf",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       }
     ],
     "known": {},
@@ -2121,7 +2137,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2140,7 +2159,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2157,7 +2179,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2181,7 +2206,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Wood Elf"
+        "source": "Wood Elf",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2203,7 +2231,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Illusion",
-        "source": "Gloom Stalker"
+        "source": "Gloom Stalker",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2222,7 +2253,10 @@
         "range": "90 feet",
         "ritual": false,
         "school": "Divination",
-        "source": "Ranger"
+        "source": "Ranger",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       }
     ],
     "prepared": {
@@ -2256,7 +2290,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Wood Elf"
+        "source": "Wood Elf",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       }
     ],
     "1": [
@@ -2278,7 +2315,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2297,7 +2337,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2314,7 +2357,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2338,7 +2384,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Wood Elf"
+        "source": "Wood Elf",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2360,7 +2409,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Illusion",
-        "source": "Gloom Stalker"
+        "source": "Gloom Stalker",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2379,7 +2431,10 @@
         "range": "90 feet",
         "ritual": false,
         "school": "Divination",
-        "source": "Ranger"
+        "source": "Ranger",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       }
     ],
     "2": [
@@ -2403,7 +2458,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2422,7 +2480,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Wisdom"
       }
     ]
   },

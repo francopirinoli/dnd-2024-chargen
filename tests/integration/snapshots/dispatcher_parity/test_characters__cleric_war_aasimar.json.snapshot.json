@@ -105,6 +105,7 @@
       "damage": "3",
       "damage_notes": [],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
       "name": "Unarmed Strike",
@@ -121,6 +122,7 @@
       "damage_bonus": 2,
       "damage_notes": [],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/mace.svg",
       "mastery": "Sap",
       "name": "Mace",
@@ -1761,7 +1763,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Divination",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -1780,7 +1785,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Necromancy",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -1798,7 +1806,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -1850,7 +1861,10 @@
         "range": "Self",
         "ritual": true,
         "school": "Divination",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -1869,7 +1883,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -1888,7 +1905,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -1907,7 +1927,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "War Domain"
+        "source": "War Domain",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -1928,7 +1951,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Abjuration",
-        "source": "War Domain"
+        "source": "War Domain",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       }
     ],
     "prepared": {
@@ -1967,7 +1993,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Divination",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -1986,7 +2015,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Necromancy",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2004,7 +2036,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2055,7 +2090,10 @@
         "range": "Self",
         "ritual": true,
         "school": "Divination",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2074,7 +2112,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2093,7 +2134,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2112,7 +2156,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "War Domain"
+        "source": "War Domain",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2133,7 +2180,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Abjuration",
-        "source": "War Domain"
+        "source": "War Domain",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       }
     ],
     "2": [
@@ -2154,7 +2204,10 @@
         "range": "120 feet",
         "ritual": true,
         "school": "Illusion",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2177,7 +2230,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2200,7 +2256,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2223,7 +2282,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Transmutation",
-        "source": "War Domain"
+        "source": "War Domain",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2242,7 +2304,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "War Domain"
+        "source": "War Domain",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       }
     ]
   },

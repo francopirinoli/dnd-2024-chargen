@@ -109,6 +109,7 @@
         "+2 from Dueling"
       ],
       "damage_type": "Piercing",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/spear.svg",
       "mastery": "Slow",
       "name": "Javelin",
@@ -130,6 +131,7 @@
         "+2 from Dueling"
       ],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/flail.svg",
       "mastery": "Sap",
       "name": "Flail",
@@ -146,6 +148,7 @@
       "damage_bonus": 3,
       "damage_notes": [],
       "damage_type": "Slashing",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/sword.svg",
       "mastery": "Graze",
       "name": "Greatsword",
@@ -164,6 +167,7 @@
       "damage": "4",
       "damage_notes": [],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
       "name": "Unarmed Strike",

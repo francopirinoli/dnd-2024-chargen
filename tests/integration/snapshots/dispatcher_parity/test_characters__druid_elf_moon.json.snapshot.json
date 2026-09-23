@@ -135,6 +135,7 @@
       "damage": "0",
       "damage_notes": [],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
       "name": "Unarmed Strike",
@@ -151,6 +152,7 @@
       "damage_bonus": -1,
       "damage_notes": [],
       "damage_type": "Slashing",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/sickle.svg",
       "mastery": "Nick",
       "name": "Sickle",
@@ -173,6 +175,7 @@
       "damage_one_handed": "1d6 - 1",
       "damage_two_handed": "1d8 - 1",
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/staff.svg",
       "mastery": "Topple",
       "name": "Quarterstaff",
@@ -1545,7 +1548,13 @@
     }
   },
   "resistances": [],
-  "save_advantages": [],
+  "save_advantages": [
+    {
+      "abilities": [],
+      "condition": "Charmed",
+      "display": "Advantage vs Charmed condition"
+    }
+  ],
   "skill_proficiencies": [
     "Insight",
     "Perception",
@@ -2026,7 +2035,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Divination",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2043,7 +2055,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2063,7 +2078,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Circle of the Moon"
+        "source": "Circle of the Moon",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2082,7 +2100,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Wood Elf"
+        "source": "Wood Elf",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       }
     ],
     "known": {},
@@ -2110,7 +2131,10 @@
         "range": "Self",
         "ritual": true,
         "school": "Divination",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2129,7 +2153,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2147,7 +2174,10 @@
         "range": "90 feet",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2166,7 +2196,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2185,7 +2218,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2207,7 +2243,10 @@
         "range": "Self",
         "ritual": true,
         "school": "Divination",
-        "source": "Druid"
+        "source": "Druid",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2231,7 +2270,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Circle of the Moon"
+        "source": "Circle of the Moon",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2255,7 +2297,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Wood Elf"
+        "source": "Wood Elf",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       }
     ],
     "prepared": {
@@ -2293,7 +2338,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Divination",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2310,7 +2358,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2330,7 +2381,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Circle of the Moon"
+        "source": "Circle of the Moon",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2349,7 +2403,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Wood Elf"
+        "source": "Wood Elf",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       }
     ],
     "1": [
@@ -2376,7 +2433,10 @@
         "range": "Self",
         "ritual": true,
         "school": "Divination",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2395,7 +2455,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2413,7 +2476,10 @@
         "range": "90 feet",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2432,7 +2498,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": false,
@@ -2451,7 +2520,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2473,7 +2545,10 @@
         "range": "Self",
         "ritual": true,
         "school": "Divination",
-        "source": "Druid"
+        "source": "Druid",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2497,7 +2572,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Circle of the Moon"
+        "source": "Circle of the Moon",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2521,7 +2599,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Wood Elf"
+        "source": "Wood Elf",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       }
     ],
     "2": [
@@ -2542,7 +2623,10 @@
         "range": "150 feet",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       },
       {
         "always_prepared": true,
@@ -2562,7 +2646,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Circle of the Moon"
+        "source": "Circle of the Moon",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Wisdom"
       }
     ]
   },

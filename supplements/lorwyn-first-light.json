@@ -250,7 +250,13 @@
       "source": "Lorwyn: First Light",
       "traits": {
         "Brave": {
-          "description": "You have Advantage on saving throws made to avoid or end the Frightened condition."
+          "description": "You have Advantage on saving throws made to avoid or end the Frightened condition.",
+          "effects": [
+            {
+              "type": "grant_save_advantage",
+              "condition": "Frightened"
+            }
+          ]
         },
         "Kithkin Nimbleness": {
           "description": "You can move through the space of any creature that is of a size larger than yours."

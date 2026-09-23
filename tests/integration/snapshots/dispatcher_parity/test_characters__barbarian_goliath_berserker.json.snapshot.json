@@ -136,6 +136,7 @@
         "+2 while Raging"
       ],
       "damage_type": "Piercing",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/spear.svg",
       "mastery": "Slow",
       "name": "Javelin",
@@ -159,6 +160,7 @@
         "+2 while Raging"
       ],
       "damage_type": "Slashing",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/axe.svg",
       "mastery": "Vex",
       "name": "Handaxe",
@@ -182,6 +184,7 @@
         "+2 while Raging"
       ],
       "damage_type": "Slashing",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/axe.svg",
       "mastery": "Cleave",
       "name": "Greataxe",
@@ -203,6 +206,7 @@
         "+2 while Raging"
       ],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
       "name": "Unarmed Strike",

@@ -88,13 +88,13 @@
       "description": "You've learned the basics of Cleric magic, gaining the following benefits:",
       "benefits": [
         "Choose two cantrips from the Cleric spell list.",
-        "Choose one 1st-level spell from the Cleric spell list. You can cast this spell once without expending a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest. You can also cast the spell using any spell slots you have.",
-        "Your spellcasting ability for these spells is Wisdom."
+        "Choose one 1st-level spell from the Cleric spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have.",
+        "Intelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat)."
       ],
       "effects": [
-        {"type": "grant_cantrip", "spell": "${cantrips[0]}"},
-        {"type": "grant_cantrip", "spell": "${cantrips[1]}"},
-        {"type": "grant_spell", "spell": "${1st_level_spell}", "level": 1}
+        {"type": "grant_cantrip", "spell": "${cantrips[0]}", "spellcasting_ability": "${spellcasting_ability}"},
+        {"type": "grant_cantrip", "spell": "${cantrips[1]}", "spellcasting_ability": "${spellcasting_ability}"},
+        {"type": "grant_spell", "spell": "${1st_level_spell}", "level": 1, "spellcasting_ability": "${spellcasting_ability}"}
       ],
       "category": "Origin",
       "prerequisite": "None",
@@ -120,6 +120,19 @@
             "file": "spells/class_lists/cleric.json",
             "list": "spells_by_level.1"
           }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose your spellcasting ability for this feat's spells.",
+          "name": "spellcasting_ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
         }
       ]
     },
@@ -127,13 +140,13 @@
       "description": "You've learned the basics of Druid magic, gaining the following benefits:",
       "benefits": [
         "Choose two cantrips from the Druid spell list.",
-        "Choose one 1st-level spell from the Druid spell list. You can cast this spell once without expending a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest. You can also cast the spell using any spell slots you have.",
-        "Your spellcasting ability for these spells is Wisdom."
+        "Choose one 1st-level spell from the Druid spell list. You always have that spell prepared. You can cast it once without a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have.",
+        "Intelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat)."
       ],
       "effects": [
-        {"type": "grant_cantrip", "spell": "${cantrips[0]}"},
-        {"type": "grant_cantrip", "spell": "${cantrips[1]}"},
-        {"type": "grant_spell", "spell": "${1st_level_spell}", "level": 1}
+        {"type": "grant_cantrip", "spell": "${cantrips[0]}", "spellcasting_ability": "${spellcasting_ability}"},
+        {"type": "grant_cantrip", "spell": "${cantrips[1]}", "spellcasting_ability": "${spellcasting_ability}"},
+        {"type": "grant_spell", "spell": "${1st_level_spell}", "level": 1, "spellcasting_ability": "${spellcasting_ability}"}
       ],
       "category": "Origin",
       "prerequisite": "None",
@@ -159,6 +172,19 @@
             "file": "spells/class_lists/druid.json",
             "list": "spells_by_level.1"
           }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose your spellcasting ability for this feat's spells.",
+          "name": "spellcasting_ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
+          }
         }
       ]
     },
@@ -166,13 +192,13 @@
       "description": "You've learned the basics of Wizard magic, gaining the following benefits:",
       "benefits": [
         "Choose two cantrips from the Wizard spell list.",
-        "Choose one 1st-level spell from the Wizard spell list. You can cast this spell once without expending a spell slot, and you regain the ability to cast it in this way when you finish a Long Rest. You can also cast the spell using any spell slots you have.",
-        "Your spellcasting ability for these spells is Intelligence."
+        "Choose one 1st-level spell from the Wizard spell list. You always have that spell prepared. You can cast it once without expending a spell slot, and you regain the ability to cast it in that way when you finish a Long Rest. You can also cast the spell using any spell slots you have.",
+        "Intelligence, Wisdom, or Charisma is your spellcasting ability for this feat's spells (choose when you select this feat)."
       ],
       "effects": [
-        {"type": "grant_cantrip", "spell": "${cantrips[0]}"},
-        {"type": "grant_cantrip", "spell": "${cantrips[1]}"},
-        {"type": "grant_spell", "spell": "${1st_level_spell}", "level": 1}
+        {"type": "grant_cantrip", "spell": "${cantrips[0]}", "spellcasting_ability": "${spellcasting_ability}"},
+        {"type": "grant_cantrip", "spell": "${cantrips[1]}", "spellcasting_ability": "${spellcasting_ability}"},
+        {"type": "grant_spell", "spell": "${1st_level_spell}", "level": 1, "spellcasting_ability": "${spellcasting_ability}"}
       ],
       "category": "Origin",
       "prerequisite": "None",
@@ -197,6 +223,19 @@
             "type": "external",
             "file": "spells/class_lists/wizard.json",
             "list": "spells_by_level.1"
+          }
+        },
+        {
+          "type": "select_single",
+          "description": "Choose your spellcasting ability for this feat's spells.",
+          "name": "spellcasting_ability",
+          "source": {
+            "type": "fixed_list",
+            "options": [
+              "Intelligence",
+              "Wisdom",
+              "Charisma"
+            ]
           }
         }
       ]

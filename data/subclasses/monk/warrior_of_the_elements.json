@@ -9,7 +9,7 @@
       "Manipulate Elements": {
         "description": "You know the Elementalism cantrip. Wisdom is your spellcasting ability for it.",
         "effects": [
-          {"type": "grant_cantrip", "spell": "Elementalism"}
+          {"type": "grant_cantrip", "spell": "Elementalism", "spellcasting_ability": "Wisdom"}
         ]
       }
     },

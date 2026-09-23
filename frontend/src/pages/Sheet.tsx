@@ -324,6 +324,10 @@ export function Sheet() {
   }
 
   const c = (buildQuery.data ?? {}) as Char;
+  const hasSpells =
+    spellApplicable ||
+    Object.keys(rec(c.spells_by_level)).length > 0 ||
+    Object.keys(rec(c.spell_slots)).length > 0;
   const currentLevel =
     num(c.level) ??
     (typeof choicesMade.level === "number" ? choicesMade.level : 1);
@@ -518,7 +522,7 @@ export function Sheet() {
             <Scroll className="h-3 w-3 text-primary" />
             <span>Proficiencies</span>
           </button>
-          {(spellApplicable || invocationApplicable) && (
+          {(hasSpells || invocationApplicable || replicateApplicable) && (
             <button
               type="button"
               onClick={() => scrollToSection("magic")}
@@ -571,8 +575,11 @@ export function Sheet() {
           isOpen={openSections.combat}
           onToggle={() => toggleSection("combat")}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <ACOptions c={c} />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+            <div className="space-y-6">
+              <ACOptions c={c} />
+              <SpecialFeatures c={c} />
+            </div>
             <Attacks
               c={c}
               masteryApplicable={masteryApplicable}
@@ -614,7 +621,7 @@ export function Sheet() {
         </CollapsibleCard>
 
         {/* 4. Magic & Spells */}
-        {(spellApplicable || invocationApplicable || replicateApplicable) && (
+        {(hasSpells || invocationApplicable || replicateApplicable) && (
           <CollapsibleCard
             id="section-magic"
             title="Spells & Magic"
@@ -711,7 +718,7 @@ export function Sheet() {
                   )}
                 </Section>
               )}
-              {spellApplicable && (
+              {hasSpells && (
                 <Spells
                   c={c}
                   spellApplicable={spellApplicable}
@@ -1406,18 +1413,7 @@ function ACOptions({ c }: { c: Char }) {
   );
 }
 
-function Attacks({
-  c,
-  masteryApplicable,
-  choicesMade,
-  onChooseMasteries,
-}: {
-  c: Char;
-  masteryApplicable?: boolean;
-  choicesMade?: ChoicesMade;
-  onChooseMasteries?: () => void;
-}) {
-  const attacks = arr<Record<string, unknown>>(c.attacks);
+function SpecialFeatures({ c }: { c: Char }) {
   const barbarianStats = rec(c.barbarian_stats);
   const hasRage = Boolean(barbarianStats.has_rage);
   const bardStats = rec(c.bard_stats);
@@ -1430,6 +1426,454 @@ function Attacks({
   const isFighter = Boolean(fighterStats.is_fighter);
   const monkStats = rec(c.monk_stats);
   const isMonk = Boolean(monkStats.is_monk);
+  const superiorityDice = rec(c.superiority_dice);
+  const hasSuperiorityDice = num(superiorityDice.count) !== undefined;
+  const hasArcaneShot = num(c.arcane_shot_dc) !== undefined;
+
+  const hasAnySpecial =
+    (hasRage && num(barbarianStats.rage_damage) !== undefined) ||
+    (hasBardicInspiration && bardStats.inspiration_die !== undefined) ||
+    (hasChannelDivinity && clericStats.channel_divinity_max !== undefined) ||
+    (hasWildShape && druidStats.wild_shape_max !== undefined) ||
+    (isFighter && fighterStats.fighter_level !== undefined) ||
+    (isMonk && monkStats.monk_level !== undefined) ||
+    hasSuperiorityDice ||
+    hasArcaneShot;
+
+  if (!hasAnySpecial) {
+    return null;
+  }
+
+  return (
+    <Section title="Special Features">
+      <div className="space-y-3">
+        {hasSuperiorityDice && (
+          <div className="rounded border border-border/80 bg-background/40 p-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+                Superiority Dice
+              </span>
+              {num(superiorityDice.save_dc) !== undefined && (
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
+                  DC {num(superiorityDice.save_dc)}
+                </span>
+              )}
+            </div>
+            <div className="mt-1 text-sm text-foreground">
+              {num(superiorityDice.count)} dice ({str(superiorityDice.die) ?? "d8"}) · Regain on Short or Long Rest
+            </div>
+            {arr<Record<string, unknown>>(c.maneuvers).length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {arr<Record<string, unknown>>(c.maneuvers).map((m, idx) => (
+                  <span
+                    key={idx}
+                    className="rounded border border-border bg-secondary/60 px-2 py-0.5 text-xs text-foreground"
+                    title={str(m.description)}
+                  >
+                    {str(m.name)}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {hasArcaneShot && (
+          <div className="rounded border border-border/80 bg-background/40 p-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+                Arcane Shot
+              </span>
+              <span className="rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
+                DC {num(c.arcane_shot_dc)}
+              </span>
+            </div>
+            <div className="mt-1 text-sm text-foreground">
+              {str(c.arcane_shot_die) ?? "d6"} Arcane Shot Die · {num(c.arcane_shot_uses) ?? "—"} uses per Short or Long Rest
+            </div>
+            {arr<Record<string, unknown>>(c.arcane_shots).length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {arr<Record<string, unknown>>(c.arcane_shots).map((s, idx) => (
+                  <span
+                    key={idx}
+                    className="rounded border border-border bg-secondary/60 px-2 py-0.5 text-xs text-foreground"
+                    title={str(s.description)}
+                  >
+                    {str(s.name)}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {hasRage && num(barbarianStats.rage_damage) !== undefined && (
+          <div className="flex items-center justify-between rounded border border-border/80 bg-background/40 p-3 text-xs">
+            <div className="flex items-center gap-2">
+              <Flame className="h-4 w-4 text-red-400" />
+              <span className="font-semibold uppercase tracking-wide text-red-400">
+                Rage Damage
+              </span>
+              <span className="rounded bg-red-500/20 px-2 py-0.5 text-xs font-semibold text-red-300">
+                +{num(barbarianStats.rage_damage)}
+              </span>
+              <span className="text-muted-foreground hidden sm:inline">
+                (Strength melee attacks while Raging)
+              </span>
+            </div>
+            <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+              {typeof barbarianStats.rage_uses === "string"
+                ? barbarianStats.rage_uses
+                : `${num(barbarianStats.rage_uses)} uses / Long Rest`}
+            </span>
+          </div>
+        )}
+
+        {hasBardicInspiration && bardStats.inspiration_die !== undefined && (
+          <div className="flex items-center justify-between rounded border border-border/80 bg-background/40 p-3 text-xs">
+            <div className="flex items-center gap-2">
+              <Music className="h-4 w-4 text-amber-400" />
+              <span className="font-semibold uppercase tracking-wide text-amber-400">
+                Bardic Inspiration
+              </span>
+              <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                {str(bardStats.inspiration_die)}
+              </span>
+              <span className="text-muted-foreground hidden sm:inline">
+                (Bonus Action to inspire creature within 60 ft)
+              </span>
+            </div>
+            <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+              {num(bardStats.inspiration_uses)} uses / {str(bardStats.recharge) ?? "Long Rest"}
+            </span>
+          </div>
+        )}
+
+        {hasChannelDivinity && clericStats.channel_divinity_max !== undefined && (
+          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-sky-400" />
+                <span className="font-semibold uppercase tracking-wide text-sky-400">
+                  Channel Divinity
+                </span>
+                {clericStats.divine_spark_dice !== undefined && (
+                  <span className="rounded bg-sky-500/20 px-2 py-0.5 text-xs font-semibold text-sky-300">
+                    Spark {str(clericStats.divine_spark_dice)}
+                  </span>
+                )}
+                {clericStats.save_dc !== undefined && (
+                  <span className="text-muted-foreground hidden sm:inline">
+                    (Save DC {num(clericStats.save_dc)})
+                  </span>
+                )}
+              </div>
+              <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                {num(clericStats.channel_divinity_max)} uses / Short or Long Rest
+              </span>
+            </div>
+
+            {arr<Record<string, unknown>>(clericStats.channel_divinity_options).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(clericStats.channel_divinity_options).map((opt, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="font-medium text-foreground">
+                      {str(opt.name)} <span className="text-[10px] text-muted-foreground">({str(opt.action)})</span>
+                    </div>
+                    <div className="text-[11px] text-muted-foreground line-clamp-2">
+                      {str(opt.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {hasWildShape && druidStats.wild_shape_max !== undefined && (
+          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <PawPrint className="h-4 w-4 text-emerald-400" />
+                <span className="font-semibold uppercase tracking-wide text-emerald-400">
+                  Wild Shape
+                </span>
+                {druidStats.wild_shape_max_cr !== undefined && (
+                  <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300">
+                    Max CR {str(druidStats.wild_shape_max_cr)}
+                  </span>
+                )}
+                {druidStats.wild_shape_temp_hp !== undefined && (
+                  <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-200">
+                    +{num(druidStats.wild_shape_temp_hp)} Temp HP
+                  </span>
+                )}
+                {druidStats.save_dc !== undefined && (
+                  <span className="text-muted-foreground hidden sm:inline">
+                    (Save DC {num(druidStats.save_dc)})
+                  </span>
+                )}
+              </div>
+              <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                {num(druidStats.wild_shape_max)} uses / Short or Long Rest
+              </span>
+            </div>
+
+            <div className="flex flex-wrap gap-2 text-[11px] text-muted-foreground">
+              <span>Known Forms: <strong className="text-foreground">{num(druidStats.wild_shape_known_forms)}</strong></span>
+              <span>·</span>
+              <span>Duration: <strong className="text-foreground">{num(druidStats.wild_shape_duration_hours)} hrs</strong></span>
+              <span>·</span>
+              <span>Fly Speed: <strong className="text-foreground">{druidStats.fly_speed_allowed ? "Yes" : "No (Lv 8+)"}</strong></span>
+              <span>·</span>
+              <span>Swim Speed: <strong className="text-foreground">Yes</strong></span>
+            </div>
+
+            {arr<Record<string, unknown>>(druidStats.wild_shape_options).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(druidStats.wild_shape_options).map((opt, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="font-medium text-foreground">
+                      {str(opt.name)} <span className="text-[10px] text-muted-foreground">({str(opt.action)})</span>
+                    </div>
+                    <div className="text-[11px] text-muted-foreground line-clamp-2">
+                      {str(opt.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isFighter && fighterStats.fighter_level !== undefined && (
+          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <Swords className="h-4 w-4 text-orange-400" />
+                <span className="font-semibold uppercase tracking-wide text-orange-400">
+                  Tactical Martial Exploits
+                </span>
+                <span className="rounded bg-orange-500/20 px-2 py-0.5 text-xs font-semibold text-orange-300">
+                  {str(fighterStats.extra_attacks_label) ?? `${num(fighterStats.attacks_per_action)} attack/action`}
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                  Second Wind: {num(fighterStats.second_wind_uses)} / {num(fighterStats.second_wind_max)}
+                </span>
+                {Boolean(fighterStats.has_action_surge) && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Action Surge: {num(fighterStats.action_surge_uses)} / {num(fighterStats.action_surge_max)}
+                  </span>
+                )}
+                {Boolean(fighterStats.has_indomitable) && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Indomitable: {num(fighterStats.indomitable_uses)} / {num(fighterStats.indomitable_max)} (+{num(fighterStats.indomitable_bonus)})
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+              <span>Second Wind: <strong className="text-foreground">{str(fighterStats.second_wind_healing)} HP</strong></span>
+              {Boolean(fighterStats.tactical_mind) && (
+                <>
+                  <span>·</span>
+                  <span className="text-emerald-400 font-medium">Tactical Mind: +1d10 to failed check</span>
+                </>
+              )}
+              {Boolean(fighterStats.tactical_shift) && (
+                <>
+                  <span>·</span>
+                  <span className="text-sky-400 font-medium">Tactical Shift: Half Speed move w/o OA</span>
+                </>
+              )}
+              {Boolean(fighterStats.has_tactical_master) && (
+                <>
+                  <span>·</span>
+                  <span className="text-amber-400 font-medium">Tactical Master (Push, Sap, Slow)</span>
+                </>
+              )}
+              {Boolean(fighterStats.has_studied_attacks) && (
+                <>
+                  <span>·</span>
+                  <span className="text-purple-400 font-medium">Studied Attacks (Advantage on miss)</span>
+                </>
+              )}
+            </div>
+
+            {arr<Record<string, unknown>>(fighterStats.actions).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(fighterStats.actions).map((act, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="font-medium text-foreground">
+                      {str(act.name)} <span className="text-[10px] text-muted-foreground">({str(act.action)})</span>
+                      {act.recharge !== undefined && (
+                        <span className="ml-1 text-[10px] text-muted-foreground">· {str(act.recharge)}</span>
+                      )}
+                    </div>
+                    <div className="text-[11px] text-muted-foreground line-clamp-2">
+                      {str(act.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isMonk && monkStats.monk_level !== undefined && (
+          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <Zap className="h-4 w-4 text-amber-400" />
+                <span className="font-semibold uppercase tracking-wide text-amber-400">
+                  Focus & Martial Arts
+                </span>
+                <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                  {str(monkStats.extra_attacks_label) ?? `${num(monkStats.attacks_per_action)} attack/action`}
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                  Focus Points: {num(monkStats.focus_points)} / {num(monkStats.focus_points_max)} FP
+                </span>
+                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                  Save DC: {num(monkStats.focus_save_dc)}
+                </span>
+                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                  Die: {str(monkStats.martial_arts_die)}
+                </span>
+                {(num(monkStats.unarmored_movement_bonus) ?? 0) > 0 && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Speed: +{num(monkStats.unarmored_movement_bonus)} ft
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+              <span>Recharge: <strong className="text-foreground">{str(monkStats.focus_recharge)}</strong></span>
+              {Boolean(monkStats.has_uncanny_metabolism) && (
+                <>
+                  <span>·</span>
+                  <span className="text-emerald-400 font-medium">Uncanny Metabolism (Init: Regain FP + Heal)</span>
+                </>
+              )}
+              {Boolean(monkStats.has_deflect_attacks) && (
+                <>
+                  <span>·</span>
+                  <span className="text-sky-400 font-medium">
+                    {Boolean(monkStats.has_deflect_energy) ? "Deflect Energy (Any damage)" : "Deflect Attacks (B/P/S)"}
+                  </span>
+                </>
+              )}
+              {Boolean(monkStats.has_stunning_strike) && (
+                <>
+                  <span>·</span>
+                  <span className="text-amber-400 font-medium">Stunning Strike (CON save)</span>
+                </>
+              )}
+              {Boolean(monkStats.has_empowered_strikes) && (
+                <>
+                  <span>·</span>
+                  <span className="text-purple-400 font-medium">Empowered Strikes (Force)</span>
+                </>
+              )}
+              {Boolean(monkStats.has_heightened_focus) && (
+                <>
+                  <span>·</span>
+                  <span className="text-rose-400 font-medium">Heightened Focus</span>
+                </>
+              )}
+              {Boolean(monkStats.has_self_restoration) && (
+                <>
+                  <span>·</span>
+                  <span className="text-teal-400 font-medium">Self-Restoration</span>
+                </>
+              )}
+              {Boolean(monkStats.has_disciplined_survivor) && (
+                <>
+                  <span>·</span>
+                  <span className="text-indigo-400 font-medium">Disciplined Survivor (All Saves)</span>
+                </>
+              )}
+              {Boolean(monkStats.has_perfect_focus) && (
+                <>
+                  <span>·</span>
+                  <span className="text-cyan-400 font-medium">Perfect Focus (Init: Regain to 4 FP)</span>
+                </>
+              )}
+              {Boolean(monkStats.has_superior_defense) && (
+                <>
+                  <span>·</span>
+                  <span className="text-yellow-400 font-medium">Superior Defense (3 FP Resistance)</span>
+                </>
+              )}
+              {Boolean(monkStats.has_body_and_mind) && (
+                <>
+                  <span>·</span>
+                  <span className="text-fuchsia-400 font-medium">Body and Mind (+4 DEX/WIS)</span>
+                </>
+              )}
+            </div>
+
+            {arr<Record<string, unknown>>(monkStats.actions).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(monkStats.actions).map((act, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-amber-300">{str(act.name)}</span>
+                      <div className="flex items-center gap-1">
+                        {act.cost !== undefined && (
+                          <span className="rounded bg-muted/60 px-1 text-[10px] text-muted-foreground font-normal">
+                            {str(act.cost)}
+                          </span>
+                        )}
+                        <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                          {str(act.action)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </Section>
+  );
+}
+
+function Attacks({
+  c,
+  masteryApplicable,
+  choicesMade,
+  onChooseMasteries,
+}: {
+  c: Char;
+  masteryApplicable?: boolean;
+  choicesMade?: ChoicesMade;
+  onChooseMasteries?: () => void;
+}) {
+  const attacks = arr<Record<string, unknown>>(c.attacks);
   const combinations = arr<Record<string, unknown>>(c.attack_combinations);
 
   const serverBestCombination = rec(c.best_attack_combination);
@@ -1525,7 +1969,7 @@ function Attacks({
                     <span className="font-semibold text-foreground">{name}</span>
                     {ability && (
                       <span className="text-[10px] uppercase tracking-wide text-muted-foreground">
-                        {ability.slice(0, 3)}
+                        {str(a.effective_ability) || (ability.match(/\(([A-Z]{3})\)/)?.[1] ?? ability.slice(0, 3))}
                       </span>
                     )}
                   </div>
@@ -1679,417 +2123,6 @@ function Attacks({
                     <li key={idx}>+ {note}</li>
                   ))}
                 </ul>
-              )}
-            </div>
-          )}
-
-          {num(rec(c.superiority_dice).count) !== undefined && (
-            <div className="mt-3 rounded border border-border/80 bg-background/40 p-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wide text-primary">
-                  Superiority Dice
-                </span>
-                {num(rec(c.superiority_dice).save_dc) !== undefined && (
-                  <span className="rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
-                    DC {num(rec(c.superiority_dice).save_dc)}
-                  </span>
-                )}
-              </div>
-              <div className="mt-1 text-sm text-foreground">
-                {num(rec(c.superiority_dice).count)} dice ({str(rec(c.superiority_dice).die) ?? "d8"}) · Regain on Short or Long Rest
-              </div>
-              {arr<Record<string, unknown>>(c.maneuvers).length > 0 && (
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {arr<Record<string, unknown>>(c.maneuvers).map((m, idx) => (
-                    <span
-                      key={idx}
-                      className="rounded border border-border bg-secondary/60 px-2 py-0.5 text-xs text-foreground"
-                      title={str(m.description)}
-                    >
-                      {str(m.name)}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {num(c.arcane_shot_dc) !== undefined && (
-            <div className="mt-3 rounded border border-border/80 bg-background/40 p-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wide text-primary">
-                  Arcane Shot
-                </span>
-                <span className="rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
-                  DC {num(c.arcane_shot_dc)}
-                </span>
-              </div>
-              <div className="mt-1 text-sm text-foreground">
-                {str(c.arcane_shot_die) ?? "d6"} Arcane Shot Die · {num(c.arcane_shot_uses) ?? "—"} uses per Short or Long Rest
-              </div>
-              {arr<Record<string, unknown>>(c.arcane_shots).length > 0 && (
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {arr<Record<string, unknown>>(c.arcane_shots).map((s, idx) => (
-                    <span
-                      key={idx}
-                      className="rounded border border-border bg-secondary/60 px-2 py-0.5 text-xs text-foreground"
-                      title={str(s.description)}
-                    >
-                      {str(s.name)}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {hasRage && num(barbarianStats.rage_damage) !== undefined && (
-            <div className="mt-3 flex items-center justify-between rounded border border-border/80 bg-background/40 p-3 text-xs">
-              <div className="flex items-center gap-2">
-                <Flame className="h-4 w-4 text-red-400" />
-                <span className="font-semibold uppercase tracking-wide text-red-400">
-                  Rage Damage
-                </span>
-                <span className="rounded bg-red-500/20 px-2 py-0.5 text-xs font-semibold text-red-300">
-                  +{num(barbarianStats.rage_damage)}
-                </span>
-                <span className="text-muted-foreground hidden sm:inline">
-                  (Strength melee attacks while Raging)
-                </span>
-              </div>
-              <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                {typeof barbarianStats.rage_uses === "string"
-                  ? barbarianStats.rage_uses
-                  : `${num(barbarianStats.rage_uses)} uses / Long Rest`}
-              </span>
-            </div>
-          )}
-
-          {hasBardicInspiration && bardStats.inspiration_die !== undefined && (
-            <div className="mt-3 flex items-center justify-between rounded border border-border/80 bg-background/40 p-3 text-xs">
-              <div className="flex items-center gap-2">
-                <Music className="h-4 w-4 text-amber-400" />
-                <span className="font-semibold uppercase tracking-wide text-amber-400">
-                  Bardic Inspiration
-                </span>
-                <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
-                  {str(bardStats.inspiration_die)}
-                </span>
-                <span className="text-muted-foreground hidden sm:inline">
-                  (Bonus Action to inspire creature within 60 ft)
-                </span>
-              </div>
-              <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                {num(bardStats.inspiration_uses)} uses / {str(bardStats.recharge) ?? "Long Rest"}
-              </span>
-            </div>
-          )}
-
-          {hasChannelDivinity && clericStats.channel_divinity_max !== undefined && (
-            <div className="mt-3 flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-sky-400" />
-                  <span className="font-semibold uppercase tracking-wide text-sky-400">
-                    Channel Divinity
-                  </span>
-                  {clericStats.divine_spark_dice !== undefined && (
-                    <span className="rounded bg-sky-500/20 px-2 py-0.5 text-xs font-semibold text-sky-300">
-                      Spark {str(clericStats.divine_spark_dice)}
-                    </span>
-                  )}
-                  {clericStats.save_dc !== undefined && (
-                    <span className="text-muted-foreground hidden sm:inline">
-                      (Save DC {num(clericStats.save_dc)})
-                    </span>
-                  )}
-                </div>
-                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                  {num(clericStats.channel_divinity_max)} uses / Short or Long Rest
-                </span>
-              </div>
-
-              {arr<Record<string, unknown>>(clericStats.channel_divinity_options).length > 0 && (
-                <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                  {arr<Record<string, unknown>>(clericStats.channel_divinity_options).map((opt, idx) => (
-                    <div
-                      key={idx}
-                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
-                    >
-                      <div className="font-medium text-foreground">
-                        {str(opt.name)} <span className="text-[10px] text-muted-foreground">({str(opt.action)})</span>
-                      </div>
-                      <div className="text-[11px] text-muted-foreground line-clamp-2">
-                        {str(opt.effect)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {hasWildShape && druidStats.wild_shape_max !== undefined && (
-            <div className="mt-3 flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <PawPrint className="h-4 w-4 text-emerald-400" />
-                  <span className="font-semibold uppercase tracking-wide text-emerald-400">
-                    Wild Shape
-                  </span>
-                  {druidStats.wild_shape_max_cr !== undefined && (
-                    <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300">
-                      Max CR {str(druidStats.wild_shape_max_cr)}
-                    </span>
-                  )}
-                  {druidStats.wild_shape_temp_hp !== undefined && (
-                    <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-200">
-                      +{num(druidStats.wild_shape_temp_hp)} Temp HP
-                    </span>
-                  )}
-                  {druidStats.save_dc !== undefined && (
-                    <span className="text-muted-foreground hidden sm:inline">
-                      (Save DC {num(druidStats.save_dc)})
-                    </span>
-                  )}
-                </div>
-                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                  {num(druidStats.wild_shape_max)} uses / Short or Long Rest
-                </span>
-              </div>
-
-              <div className="flex flex-wrap gap-2 text-[11px] text-muted-foreground">
-                <span>Known Forms: <strong className="text-foreground">{num(druidStats.wild_shape_known_forms)}</strong></span>
-                <span>·</span>
-                <span>Duration: <strong className="text-foreground">{num(druidStats.wild_shape_duration_hours)} hrs</strong></span>
-                <span>·</span>
-                <span>Fly Speed: <strong className="text-foreground">{druidStats.fly_speed_allowed ? "Yes" : "No (Lv 8+)"}</strong></span>
-                <span>·</span>
-                <span>Swim Speed: <strong className="text-foreground">Yes</strong></span>
-              </div>
-
-              {arr<Record<string, unknown>>(druidStats.wild_shape_options).length > 0 && (
-                <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                  {arr<Record<string, unknown>>(druidStats.wild_shape_options).map((opt, idx) => (
-                    <div
-                      key={idx}
-                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
-                    >
-                      <div className="font-medium text-foreground">
-                        {str(opt.name)} <span className="text-[10px] text-muted-foreground">({str(opt.action)})</span>
-                      </div>
-                      <div className="text-[11px] text-muted-foreground line-clamp-2">
-                        {str(opt.effect)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {isFighter && fighterStats.fighter_level !== undefined && (
-            <div className="mt-3 flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <Swords className="h-4 w-4 text-orange-400" />
-                  <span className="font-semibold uppercase tracking-wide text-orange-400">
-                    Tactical Martial Exploits
-                  </span>
-                  <span className="rounded bg-orange-500/20 px-2 py-0.5 text-xs font-semibold text-orange-300">
-                    {str(fighterStats.extra_attacks_label) ?? `${num(fighterStats.attacks_per_action)} attack/action`}
-                  </span>
-                </div>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                    Second Wind: {num(fighterStats.second_wind_uses)} / {num(fighterStats.second_wind_max)}
-                  </span>
-                  {Boolean(fighterStats.has_action_surge) && (
-                    <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                      Action Surge: {num(fighterStats.action_surge_uses)} / {num(fighterStats.action_surge_max)}
-                    </span>
-                  )}
-                  {Boolean(fighterStats.has_indomitable) && (
-                    <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                      Indomitable: {num(fighterStats.indomitable_uses)} / {num(fighterStats.indomitable_max)} (+{num(fighterStats.indomitable_bonus)})
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
-                <span>Second Wind: <strong className="text-foreground">{str(fighterStats.second_wind_healing)} HP</strong></span>
-                {Boolean(fighterStats.tactical_mind) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-emerald-400 font-medium">Tactical Mind: +1d10 to failed check</span>
-                  </>
-                )}
-                {Boolean(fighterStats.tactical_shift) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-sky-400 font-medium">Tactical Shift: Half Speed move w/o OA</span>
-                  </>
-                )}
-                {Boolean(fighterStats.has_tactical_master) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-amber-400 font-medium">Tactical Master (Push, Sap, Slow)</span>
-                  </>
-                )}
-                {Boolean(fighterStats.has_studied_attacks) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-purple-400 font-medium">Studied Attacks (Advantage on miss)</span>
-                  </>
-                )}
-              </div>
-
-              {arr<Record<string, unknown>>(fighterStats.actions).length > 0 && (
-                <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                  {arr<Record<string, unknown>>(fighterStats.actions).map((act, idx) => (
-                    <div
-                      key={idx}
-                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
-                    >
-                      <div className="font-medium text-foreground">
-                        {str(act.name)} <span className="text-[10px] text-muted-foreground">({str(act.action)})</span>
-                        {act.recharge !== undefined && (
-                          <span className="ml-1 text-[10px] text-muted-foreground">· {str(act.recharge)}</span>
-                        )}
-                      </div>
-                      <div className="text-[11px] text-muted-foreground line-clamp-2">
-                        {str(act.effect)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {isMonk && monkStats.monk_level !== undefined && (
-            <div className="mt-3 flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <Zap className="h-4 w-4 text-amber-400" />
-                  <span className="font-semibold uppercase tracking-wide text-amber-400">
-                    Focus & Martial Arts
-                  </span>
-                  <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
-                    {str(monkStats.extra_attacks_label) ?? `${num(monkStats.attacks_per_action)} attack/action`}
-                  </span>
-                </div>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                    Focus Points: {num(monkStats.focus_points)} / {num(monkStats.focus_points_max)} FP
-                  </span>
-                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                    Save DC: {num(monkStats.focus_save_dc)}
-                  </span>
-                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                    Die: {str(monkStats.martial_arts_die)}
-                  </span>
-                  {(num(monkStats.unarmored_movement_bonus) ?? 0) > 0 && (
-                    <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                      Speed: +{num(monkStats.unarmored_movement_bonus)} ft
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
-                <span>Recharge: <strong className="text-foreground">{str(monkStats.focus_recharge)}</strong></span>
-                {Boolean(monkStats.has_uncanny_metabolism) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-emerald-400 font-medium">Uncanny Metabolism (Init: Regain FP + Heal)</span>
-                  </>
-                )}
-                {Boolean(monkStats.has_deflect_attacks) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-sky-400 font-medium">
-                      {Boolean(monkStats.has_deflect_energy) ? "Deflect Energy (Any damage)" : "Deflect Attacks (B/P/S)"}
-                    </span>
-                  </>
-                )}
-                {Boolean(monkStats.has_stunning_strike) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-amber-400 font-medium">Stunning Strike (CON save)</span>
-                  </>
-                )}
-                {Boolean(monkStats.has_empowered_strikes) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-purple-400 font-medium">Empowered Strikes (Force)</span>
-                  </>
-                )}
-                {Boolean(monkStats.has_heightened_focus) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-rose-400 font-medium">Heightened Focus</span>
-                  </>
-                )}
-                {Boolean(monkStats.has_self_restoration) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-teal-400 font-medium">Self-Restoration</span>
-                  </>
-                )}
-                {Boolean(monkStats.has_disciplined_survivor) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-indigo-400 font-medium">Disciplined Survivor (All Saves)</span>
-                  </>
-                )}
-                {Boolean(monkStats.has_perfect_focus) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-cyan-400 font-medium">Perfect Focus (Init: Regain to 4 FP)</span>
-                  </>
-                )}
-                {Boolean(monkStats.has_superior_defense) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-yellow-400 font-medium">Superior Defense (3 FP Resistance)</span>
-                  </>
-                )}
-                {Boolean(monkStats.has_body_and_mind) && (
-                  <>
-                    <span>·</span>
-                    <span className="text-fuchsia-400 font-medium">Body and Mind (+4 DEX/WIS)</span>
-                  </>
-                )}
-              </div>
-
-              {arr<Record<string, unknown>>(monkStats.actions).length > 0 && (
-                <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                  {arr<Record<string, unknown>>(monkStats.actions).map((act, idx) => (
-                    <div
-                      key={idx}
-                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
-                    >
-                      <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
-                        <span className="text-amber-300">{str(act.name)}</span>
-                        <div className="flex items-center gap-1">
-                          {act.cost !== undefined && (
-                            <span className="rounded bg-muted/60 px-1 text-[10px] text-muted-foreground font-normal">
-                              {str(act.cost)}
-                            </span>
-                          )}
-                          <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
-                            {str(act.action)}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="mt-0.5 text-[11px] text-muted-foreground">
-                        {str(act.effect)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
               )}
             </div>
           )}
@@ -2331,10 +2364,28 @@ function Spells({
           </>
         )}
 
+        {!hasSpellcasting && levels.length > 0 && (
+          <div className="mb-4 rounded-lg border border-border/70 bg-muted/20 p-3 text-xs text-muted-foreground">
+            <span className="font-semibold text-foreground">Innate & Feat Spells:</span>{" "}
+            This character does not have spell slots from a spellcasting class. Spells granted by feats, species traits, or class features are cast without expending spell slots (cantrips at will, 1st-level feat spells once per Long Rest for free). Each spell displays its specific ability, save DC, and attack bonus below.
+          </div>
+        )}
+
         {levels.length > 0 && (
           <div className="mt-4 space-y-5 text-sm">
             {levels.map((lvl) => {
-              const list = arr<Record<string, unknown>>(byLevel[lvl]);
+              const ABILITY_NAMES = new Set([
+                "Strength",
+                "Dexterity",
+                "Constitution",
+                "Intelligence",
+                "Wisdom",
+                "Charisma",
+              ]);
+              const list = arr<Record<string, unknown>>(byLevel[lvl]).filter(
+                (sp) => !ABILITY_NAMES.has(str(sp.name) ?? ""),
+              );
+              if (list.length === 0) return null;
               return (
                 <div key={lvl}>
                   <div className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">
@@ -2351,6 +2402,11 @@ function Spells({
                       const description = str(sp.description);
                       const source = str(sp.source);
                       const showSource = source && source !== "Selected";
+                      const spAbility = str(sp.spellcasting_ability);
+                      const spDC = num(sp.spell_save_dc);
+                      const spAttack = num(sp.spell_attack_bonus);
+                      const isFreePerLongRest = sp.once_per_long_rest === true || sp.once_per_day === true;
+                      const isAtWill = lvl === "0" || sp.at_will === true;
                       const meta: Array<[string, string | undefined]> = [
                         ["School", school],
                         ["Casting Time", castingTime],
@@ -2358,21 +2414,34 @@ function Spells({
                         ["Components", components || undefined],
                         ["Duration", duration],
                       ];
+                      if (spAbility) meta.push(["Ability", spAbility]);
+                      if (spDC !== undefined && spDC > 0) meta.push(["Save DC", String(spDC)]);
+                      if (spAttack !== undefined) meta.push(["Attack", signed(spAttack)]);
                       return (
                         <li
                           key={`${name}-${i}`}
                           className="rounded border border-border bg-background/40 p-3"
                         >
-                          <div className="flex flex-wrap items-center gap-3 font-semibold text-foreground">
+                          <div className="flex flex-wrap items-center gap-2 font-semibold text-foreground">
                             <span>{name}</span>
                             {sp.concentration === true && (
-                              <span className="shrink-0 rounded bg-amber-600/80 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                              <span className="shrink-0 rounded bg-amber-600/80 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white" title="Concentration">
                                 C
                               </span>
                             )}
                             {sp.always_prepared === true && (
                               <span className="shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-2 py-0.5 text-[11px] uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
                                 Always Prepared
+                              </span>
+                            )}
+                            {isFreePerLongRest && (
+                              <span className="shrink-0 rounded-full border border-sky-500/40 bg-sky-500/10 px-2 py-0.5 text-[11px] uppercase tracking-wide text-sky-700 dark:text-sky-300">
+                                1 / Long Rest (Free)
+                              </span>
+                            )}
+                            {isAtWill && (
+                              <span className="shrink-0 rounded-full border border-purple-500/40 bg-purple-500/10 px-2 py-0.5 text-[11px] uppercase tracking-wide text-purple-700 dark:text-purple-300">
+                                At-Will
                               </span>
                             )}
                           </div>
@@ -2387,6 +2456,11 @@ function Spells({
                                 </span>
                               ))}
                           </div>
+                          {isFreePerLongRest && (
+                            <p className="mt-1.5 text-xs text-sky-600 dark:text-sky-400 font-medium">
+                              Can be cast once per Long Rest without expending a spell slot.
+                            </p>
+                          )}
                           {description && (
                             <p className="mt-2 text-xs text-foreground/90">
                               {description}

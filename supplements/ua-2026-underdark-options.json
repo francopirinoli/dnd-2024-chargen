@@ -551,7 +551,13 @@
           "description": "You can breathe both air and water. Additionally, you have a Swim speed equal to your Speed."
         },
         "Slippery": {
-          "description": "You have advantage on saving throws to avoid or end the Grappled and Restrained conditions."
+          "description": "You have advantage on saving throws to avoid or end the Grappled and Restrained conditions.",
+          "effects": [
+            {
+              "type": "grant_save_advantage",
+              "condition": "Grappled or Restrained"
+            }
+          ]
         },
         "Deific Manifestation": {
           "description": "You always have the Find Familiar spell prepared and can cast it without material components (once per Long Rest free, or using spell slots). When you cast the spell, you choose one of the normal forms for your familiar or one of the following special forms: Homunculus or Myconid Sprout (the familiar's creature type is Celestial). Additionally, your familiar's form is a divine blend of multiple creatures: choose a second form from the available options; your familiar gains one action, Reaction, or trait from that second form.",

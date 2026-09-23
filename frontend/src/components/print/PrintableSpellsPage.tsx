@@ -198,7 +198,17 @@ export function PrintableSpellsPage({ c }: PrintableSpellsPageProps) {
       {/* ── 2. Spells by Level Table / Cards ── */}
       <div className="space-y-3">
         {levels.map((lvl) => {
-          const list = arr<Record<string, unknown>>(byLevel[lvl]);
+          const ABILITY_NAMES = new Set([
+            "Strength",
+            "Dexterity",
+            "Constitution",
+            "Intelligence",
+            "Wisdom",
+            "Charisma",
+          ]);
+          const list = arr<Record<string, unknown>>(byLevel[lvl]).filter(
+            (sp) => !ABILITY_NAMES.has(str(sp.name) ?? ""),
+          );
           if (list.length === 0) return null;
 
           return (

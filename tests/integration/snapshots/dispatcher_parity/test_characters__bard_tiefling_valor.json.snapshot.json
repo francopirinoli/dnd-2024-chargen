@@ -155,6 +155,7 @@
       "damage": "1",
       "damage_notes": [],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
       "name": "Unarmed Strike",
@@ -172,6 +173,7 @@
       "damage_bonus": 2,
       "damage_notes": [],
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/dagger.svg",
       "mastery": "Nick",
       "name": "Dagger",
@@ -194,6 +196,7 @@
       "damage_bonus": 2,
       "damage_notes": [],
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/dagger.svg",
       "mastery": "Nick",
       "name": "Dagger",
@@ -1774,7 +1777,10 @@
         "range": "10 feet",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1795,7 +1801,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Illusion",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": true,
@@ -1860,7 +1869,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1881,7 +1893,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1901,7 +1916,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1918,7 +1936,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": true,
@@ -1977,7 +1998,10 @@
         "range": "10 feet",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1998,7 +2022,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Illusion",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": true,
@@ -2062,7 +2089,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -2083,7 +2113,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -2103,7 +2136,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -2120,7 +2156,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": true,
@@ -2164,7 +2203,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -2188,7 +2230,10 @@
         "range": "Touch",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       }
     ]
   },

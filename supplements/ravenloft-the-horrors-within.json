@@ -669,7 +669,13 @@
           ]
         },
         "Escaped Death": {
-          "description": "You have Advantage on Death Saving Throws."
+          "description": "You have Advantage on Death Saving Throws.",
+          "effects": [
+            {
+              "type": "grant_save_advantage",
+              "condition": "Death Saving Throws"
+            }
+          ]
         },
         "Everlasting": {
           "description": "You do not suffer Exhaustion from dehydration, malnutrition, or suffocation. You do not need to sleep, and magic cannot put you to sleep. You can finish a Long Rest in 4 hours of motionless inactivity."

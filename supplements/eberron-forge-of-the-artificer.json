@@ -878,7 +878,13 @@
       "source": "Eberron: Forge of the Artificer",
       "traits": {
         "Dual Mind": {
-          "description": "You have Advantage on Wisdom and Charisma saving throws."
+          "description": "You have Advantage on Wisdom and Charisma saving throws.",
+          "effects": [
+            {
+              "type": "grant_save_advantage",
+              "abilities": ["Wisdom", "Charisma"]
+            }
+          ]
         },
         "Mental Discipline": {
           "description": "You have Resistance to Psychic damage.",
@@ -930,7 +936,13 @@
           ]
         },
         "Fey Gift": {
-          "description": "You know the Friends cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Cleric, Druid, or Wizard spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spell you cast with this trait (chosen when you select this species)."
+          "description": "You know the Friends cantrip. Whenever you finish a Long Rest, you can replace that cantrip with a different cantrip from the Cleric, Druid, or Wizard spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for the spell you cast with this trait (chosen when you select this species).",
+          "effects": [
+            {
+              "type": "grant_cantrip",
+              "spell": "Friends"
+            }
+          ]
         },
         "Lethargy Resilience": {
           "description": "When you fail a saving throw to avoid or end the Unconscious condition, you can succeed instead. Once you use this trait, you can't do so again until you finish 1d4 Long Rests."
@@ -1050,13 +1062,156 @@
           ]
         },
         "Integrated Protection": {
-          "description": "You gain a +1 bonus to your Armor Class. In addition, armor you have donned can't be removed against your will while you're alive."
+          "description": "You gain a +1 bonus to your Armor Class. In addition, armor you have donned can't be removed against your will while you're alive.",
+          "effects": [
+            {
+              "type": "bonus_ac",
+              "value": 1
+            }
+          ]
         },
         "Sentry's Rest": {
           "description": "You don't need to sleep, and magic can't put you to sleep. You can finish a Long Rest in 6 hours if you spend those hours in an inactive, motionless state. During this time, you appear inert but remain conscious."
         },
-        "Specialized Design": {
-          "description": "You gain one skill proficiency and one tool proficiency of your choice."
+        "Specialized Design (Skill)": {
+          "description": "You gain proficiency in one skill of your choice.",
+          "type": "choice",
+          "choices": {
+            "type": "select_single",
+            "count": 1,
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Acrobatics",
+                "Animal Handling",
+                "Arcana",
+                "Athletics",
+                "Deception",
+                "History",
+                "Insight",
+                "Intimidation",
+                "Investigation",
+                "Medicine",
+                "Nature",
+                "Perception",
+                "Performance",
+                "Persuasion",
+                "Religion",
+                "Sleight of Hand",
+                "Stealth",
+                "Survival"
+              ]
+            }
+          },
+          "choice_effects": {
+            "Acrobatics": [{"type": "grant_skill_proficiency", "skills": ["Acrobatics"]}],
+            "Animal Handling": [{"type": "grant_skill_proficiency", "skills": ["Animal Handling"]}],
+            "Arcana": [{"type": "grant_skill_proficiency", "skills": ["Arcana"]}],
+            "Athletics": [{"type": "grant_skill_proficiency", "skills": ["Athletics"]}],
+            "Deception": [{"type": "grant_skill_proficiency", "skills": ["Deception"]}],
+            "History": [{"type": "grant_skill_proficiency", "skills": ["History"]}],
+            "Insight": [{"type": "grant_skill_proficiency", "skills": ["Insight"]}],
+            "Intimidation": [{"type": "grant_skill_proficiency", "skills": ["Intimidation"]}],
+            "Investigation": [{"type": "grant_skill_proficiency", "skills": ["Investigation"]}],
+            "Medicine": [{"type": "grant_skill_proficiency", "skills": ["Medicine"]}],
+            "Nature": [{"type": "grant_skill_proficiency", "skills": ["Nature"]}],
+            "Perception": [{"type": "grant_skill_proficiency", "skills": ["Perception"]}],
+            "Performance": [{"type": "grant_skill_proficiency", "skills": ["Performance"]}],
+            "Persuasion": [{"type": "grant_skill_proficiency", "skills": ["Persuasion"]}],
+            "Religion": [{"type": "grant_skill_proficiency", "skills": ["Religion"]}],
+            "Sleight of Hand": [{"type": "grant_skill_proficiency", "skills": ["Sleight of Hand"]}],
+            "Stealth": [{"type": "grant_skill_proficiency", "skills": ["Stealth"]}],
+            "Survival": [{"type": "grant_skill_proficiency", "skills": ["Survival"]}]
+          }
+        },
+        "Specialized Design (Tool)": {
+          "description": "You gain proficiency with one tool of your choice.",
+          "type": "choice",
+          "choices": {
+            "type": "select_single",
+            "count": 1,
+            "source": {
+              "type": "fixed_list",
+              "options": [
+                "Alchemist's Supplies",
+                "Brewer's Supplies",
+                "Calligrapher's Supplies",
+                "Carpenter's Tools",
+                "Cartographer's Tools",
+                "Cobbler's Tools",
+                "Cook's Utensils",
+                "Glassblower's Tools",
+                "Jeweler's Tools",
+                "Leatherworker's Tools",
+                "Mason's Tools",
+                "Painter's Supplies",
+                "Potter's Tools",
+                "Smith's Tools",
+                "Tinker's Tools",
+                "Weaver's Tools",
+                "Woodcarver's Tools",
+                "Disguise Kit",
+                "Forgery Kit",
+                "Herbalism Kit",
+                "Navigator's Tools",
+                "Poisoner's Kit",
+                "Thieves' Tools",
+                "Bagpipes",
+                "Drum",
+                "Dulcimer",
+                "Flute",
+                "Horn",
+                "Lute",
+                "Lyre",
+                "Pan Flute",
+                "Shawm",
+                "Viol",
+                "Dice Set",
+                "Dragonchess Set",
+                "Playing Card Set",
+                "Three-Dragon Ante Set"
+              ]
+            }
+          },
+          "choice_effects": {
+            "Alchemist's Supplies": [{"type": "grant_tool_proficiency", "tools": ["Alchemist's Supplies"]}],
+            "Brewer's Supplies": [{"type": "grant_tool_proficiency", "tools": ["Brewer's Supplies"]}],
+            "Calligrapher's Supplies": [{"type": "grant_tool_proficiency", "tools": ["Calligrapher's Supplies"]}],
+            "Carpenter's Tools": [{"type": "grant_tool_proficiency", "tools": ["Carpenter's Tools"]}],
+            "Cartographer's Tools": [{"type": "grant_tool_proficiency", "tools": ["Cartographer's Tools"]}],
+            "Cobbler's Tools": [{"type": "grant_tool_proficiency", "tools": ["Cobbler's Tools"]}],
+            "Cook's Utensils": [{"type": "grant_tool_proficiency", "tools": ["Cook's Utensils"]}],
+            "Glassblower's Tools": [{"type": "grant_tool_proficiency", "tools": ["Glassblower's Tools"]}],
+            "Jeweler's Tools": [{"type": "grant_tool_proficiency", "tools": ["Jeweler's Tools"]}],
+            "Leatherworker's Tools": [{"type": "grant_tool_proficiency", "tools": ["Leatherworker's Tools"]}],
+            "Mason's Tools": [{"type": "grant_tool_proficiency", "tools": ["Mason's Tools"]}],
+            "Painter's Supplies": [{"type": "grant_tool_proficiency", "tools": ["Painter's Supplies"]}],
+            "Potter's Tools": [{"type": "grant_tool_proficiency", "tools": ["Potter's Tools"]}],
+            "Smith's Tools": [{"type": "grant_tool_proficiency", "tools": ["Smith's Tools"]}],
+            "Tinker's Tools": [{"type": "grant_tool_proficiency", "tools": ["Tinker's Tools"]}],
+            "Weaver's Tools": [{"type": "grant_tool_proficiency", "tools": ["Weaver's Tools"]}],
+            "Woodcarver's Tools": [{"type": "grant_tool_proficiency", "tools": ["Woodcarver's Tools"]}],
+            "Disguise Kit": [{"type": "grant_tool_proficiency", "tools": ["Disguise Kit"]}],
+            "Forgery Kit": [{"type": "grant_tool_proficiency", "tools": ["Forgery Kit"]}],
+            "Herbalism Kit": [{"type": "grant_tool_proficiency", "tools": ["Herbalism Kit"]}],
+            "Navigator's Tools": [{"type": "grant_tool_proficiency", "tools": ["Navigator's Tools"]}],
+            "Poisoner's Kit": [{"type": "grant_tool_proficiency", "tools": ["Poisoner's Kit"]}],
+            "Thieves' Tools": [{"type": "grant_tool_proficiency", "tools": ["Thieves' Tools"]}],
+            "Bagpipes": [{"type": "grant_tool_proficiency", "tools": ["Bagpipes"]}],
+            "Drum": [{"type": "grant_tool_proficiency", "tools": ["Drum"]}],
+            "Dulcimer": [{"type": "grant_tool_proficiency", "tools": ["Dulcimer"]}],
+            "Flute": [{"type": "grant_tool_proficiency", "tools": ["Flute"]}],
+            "Horn": [{"type": "grant_tool_proficiency", "tools": ["Horn"]}],
+            "Lute": [{"type": "grant_tool_proficiency", "tools": ["Lute"]}],
+            "Lyre": [{"type": "grant_tool_proficiency", "tools": ["Lyre"]}],
+            "Pan Flute": [{"type": "grant_tool_proficiency", "tools": ["Pan Flute"]}],
+            "Shawm": [{"type": "grant_tool_proficiency", "tools": ["Shawm"]}],
+            "Viol": [{"type": "grant_tool_proficiency", "tools": ["Viol"]}],
+            "Dice Set": [{"type": "grant_tool_proficiency", "tools": ["Dice Set"]}],
+            "Dragonchess Set": [{"type": "grant_tool_proficiency", "tools": ["Dragonchess Set"]}],
+            "Playing Card Set": [{"type": "grant_tool_proficiency", "tools": ["Playing Card Set"]}],
+            "Three-Dragon Ante Set": [{"type": "grant_tool_proficiency", "tools": ["Three-Dragon Ante Set"]}]
+          }
         },
         "Tireless": {
           "description": "You don't gain Exhaustion levels from dehydration, malnutrition, or suffocation."

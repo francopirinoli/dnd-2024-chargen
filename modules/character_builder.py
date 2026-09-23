@@ -894,40 +894,87 @@ class CharacterBuilder:
                     self.character_data["proficiencies"]["tools"].append(item)
                     self.character_data["proficiency_sources"]["tools"][item] = feat_name
 
+        elif choice_name == "spellcasting_ability":
+            ability = values[0] if values else None
+            if ability:
+                self.character_data.setdefault("feat_spellcasting_abilities", {})[feat_name] = ability
+                for spell_name, info in self.character_data["spells"]["always_prepared"].items():
+                    if info.get("source") == feat_name:
+                        info["spellcasting_ability"] = ability
+                for spell_name, info in self.character_data["spell_metadata"].items():
+                    if info.get("source") == feat_name:
+                        info["spellcasting_ability"] = ability
+
         elif choice_name == "cantrips":
+            ability = self.character_data.get("feat_spellcasting_abilities", {}).get(feat_name)
+            if not ability:
+                ab_choice = self.character_data.get("choices_made", {}).get(f"feat_{feat_name}_spellcasting_ability")
+                if isinstance(ab_choice, list) and ab_choice:
+                    ability = ab_choice[0]
+                elif isinstance(ab_choice, str):
+                    ability = ab_choice
             for cantrip in values:
+                if not cantrip or not isinstance(cantrip, str):
+                    continue
+                if cantrip.strip() in ("Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"):
+                    continue
                 # Store in always_prepared so stats count these correctly as "+X" bonus
-                self.character_data["spells"]["always_prepared"][cantrip] = {
+                prepared_info = {
                     "level": 0,
                     "source": feat_name,
                     "always_prepared": True,
                     "counts_against_limit": False,
                 }
-                self.character_data["spell_metadata"][cantrip] = {
+                if ability:
+                    prepared_info["spellcasting_ability"] = ability
+                self.character_data["spells"]["always_prepared"][cantrip] = prepared_info
+
+                meta_info = {
                     "source": feat_name,
                     "always_prepared": True,
                     "once_per_day": False,
                     "counts_against_limit": False,
                 }
+                if ability:
+                    meta_info["spellcasting_ability"] = ability
+                self.character_data["spell_metadata"][cantrip] = meta_info
 
-        elif "spell" in choice_name:
+        elif "spell" in choice_name and choice_name != "spellcasting_ability":
+            ability = self.character_data.get("feat_spellcasting_abilities", {}).get(feat_name)
+            if not ability:
+                ab_choice = self.character_data.get("choices_made", {}).get(f"feat_{feat_name}_spellcasting_ability")
+                if isinstance(ab_choice, list) and ab_choice:
+                    ability = ab_choice[0]
+                elif isinstance(ab_choice, str):
+                    ability = ab_choice
             for spell in values:
+                if not spell or not isinstance(spell, str):
+                    continue
+                if spell.strip() in ("Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"):
+                    continue
                 spell_def = self._load_spell_definition(spell) or {}
                 spell_level = spell_def.get("level", 1)
                 # Store in always_prepared so stats count these correctly as "+X" bonus
-                self.character_data["spells"]["always_prepared"][spell] = {
+                prepared_info = {
                     "level": spell_level,
                     "source": feat_name,
                     "always_prepared": True,
                     "once_per_day": True,
                     "counts_against_limit": False,
                 }
-                self.character_data["spell_metadata"][spell] = {
+                if ability:
+                    prepared_info["spellcasting_ability"] = ability
+                self.character_data["spells"]["always_prepared"][spell] = prepared_info
+
+                meta_info = {
                     "source": feat_name,
                     "always_prepared": True,
                     "once_per_day": True,
                     "counts_against_limit": False,
                 }
+                if ability:
+                    meta_info["spellcasting_ability"] = ability
+                self.character_data["spell_metadata"][spell] = meta_info
 
         feat_data = feat_data if isinstance(feat_data, dict) else self._load_feat_data(feat_name)
         if not isinstance(feat_data, dict) or "choice_effects" not in feat_data:
@@ -1681,6 +1728,12 @@ class CharacterBuilder:
                         if isinstance(value, list):
                             return value[0]
                         return value
+            elif key == "spellcasting_ability":
+                for feat_key, value in self.character_data.get("choices_made", {}).items():
+                    if feat_key.endswith("spellcasting_ability") and value:
+                        if isinstance(value, list):
+                            return value[0]
+                        return value
                 return None
             return None
 
@@ -1706,6 +1759,13 @@ class CharacterBuilder:
             else:
                 resolved_spell = spell_name
 
+            ability_ref = effect.get("spellcasting_ability") or effect.get("ability")
+            resolved_ability = None
+            if isinstance(ability_ref, str) and ability_ref.startswith("${"):
+                resolved_ability = _resolve_choice_reference(ability_ref)
+            elif isinstance(ability_ref, str):
+                resolved_ability = ability_ref
+
             if resolved_spell:
                 # Map source_type to actual display name
                 if source_type == "species":
@@ -1720,21 +1780,27 @@ class CharacterBuilder:
                     display_source = source_name
 
                 # Add to always_prepared dict with metadata
-                self.character_data["spells"]["always_prepared"][resolved_spell] = {
+                prepared_info = {
                     "level": 0,
                     "source": display_source,
                     "always_prepared": True,
                     "counts_against_limit": counts_against_limit,
                 }
+                if resolved_ability:
+                    prepared_info["spellcasting_ability"] = resolved_ability
+                self.character_data["spells"]["always_prepared"][resolved_spell] = prepared_info
 
                 # Also track in spell_metadata for compatibility
-                self.character_data["spell_metadata"][resolved_spell] = {
+                meta_info = {
                     "source": display_source,
                     "source_type": source_type,
                     "always_prepared": True,
                     "once_per_day": False,
                     "counts_against_limit": counts_against_limit,
                 }
+                if resolved_ability:
+                    meta_info["spellcasting_ability"] = resolved_ability
+                self.character_data["spell_metadata"][resolved_spell] = meta_info
 
         elif effect_type == "grant_cantrip_choice":
             # This branch intentionally does nothing here.  The cantrip choice
@@ -1768,6 +1834,13 @@ class CharacterBuilder:
             else:
                 resolved_spell = spell_name
 
+            ability_ref = effect.get("spellcasting_ability") or effect.get("ability")
+            resolved_ability = None
+            if isinstance(ability_ref, str) and ability_ref.startswith("${"):
+                resolved_ability = _resolve_choice_reference(ability_ref)
+            elif isinstance(ability_ref, str):
+                resolved_ability = ability_ref
+
             effective_level = self.character_data["level"]
             if source_class_name and source_type in ("class", "subclass"):
                 class_levels = self.character_data.get("class_levels", {})
@@ -1799,7 +1872,7 @@ class CharacterBuilder:
                 once_per_day = source_type in ["species", "lineage"]
 
                 # Add to always_prepared dict with metadata
-                self.character_data["spells"]["always_prepared"][resolved_spell] = {
+                prepared_info = {
                     "level": spell_level,
                     "source": display_source,
                     "always_prepared": True,
@@ -1807,9 +1880,12 @@ class CharacterBuilder:
                     "once_per_long_rest": once_per_long_rest,
                     "counts_against_limit": counts_against_limit,
                 }
+                if resolved_ability:
+                    prepared_info["spellcasting_ability"] = resolved_ability
+                self.character_data["spells"]["always_prepared"][resolved_spell] = prepared_info
 
                 # Also track in spell_metadata for compatibility
-                self.character_data["spell_metadata"][resolved_spell] = {
+                meta_info = {
                     "source": display_source,
                     "source_type": source_type,
                     "once_per_day": once_per_day,
@@ -1817,6 +1893,9 @@ class CharacterBuilder:
                     "always_prepared": True,
                     "counts_against_limit": counts_against_limit,
                 }
+                if resolved_ability:
+                    meta_info["spellcasting_ability"] = resolved_ability
+                self.character_data["spell_metadata"][resolved_spell] = meta_info
 
         elif effect_type == "grant_weapon_proficiency":
             proficiencies = effect.get("proficiencies", [])
@@ -2004,11 +2083,11 @@ class CharacterBuilder:
                     )
 
         elif effect_type == "grant_save_advantage":
-            abilities = effect.get("abilities", [])
-            display = effect.get("display", "")
+            abilities = effect.get("abilities") or ([effect["ability"]] if "ability" in effect else [])
+            display = effect.get("display") or source_name or ""
             condition = effect.get("condition", "")
             # Avoid duplicate entries
-            if abilities and not any(
+            if (abilities or condition) and not any(
                 e.get("abilities") == abilities and e.get("condition") == condition
                 for e in self.character_data["save_advantages"]
             ):
@@ -3462,6 +3541,11 @@ class CharacterBuilder:
 
     def _load_spell_definition(self, spell_name: str) -> Dict[str, Any]:
         """Load spell definition from spell definitions directory."""
+        if not spell_name or not isinstance(spell_name, str):
+            return {}
+        if spell_name.strip() in ("Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"):
+            return {}
+
         # Check cache first
         if spell_name in self._spell_definitions_cache:
             return self._spell_definitions_cache[spell_name]
@@ -9743,6 +9827,12 @@ class CharacterBuilder:
 
             # Calculate damage
             damage_dice = weapon_props.get("damage", "1d4")
+            martial_arts_die = self.character_data.get("martial_arts_die")
+            if is_monk_weapon and martial_arts_die:
+                base_avg = self._calculate_average_damage(damage_dice, 0)
+                ma_avg = self._calculate_average_damage(martial_arts_die, 0)
+                if ma_avg > base_avg:
+                    damage_dice = martial_arts_die
             damage_bonus = ability_mod + item_damage_bonus
             damage_type = weapon_props.get("damage_type", "Bludgeoning")
 
@@ -9877,6 +9967,11 @@ class CharacterBuilder:
                     match = re.search(r"\((\d+d\d+)\)", prop)
                     if match:
                         versatile_die = match.group(1)
+                        if is_monk_weapon and martial_arts_die:
+                            vers_avg = self._calculate_average_damage(versatile_die, 0)
+                            ma_avg = self._calculate_average_damage(martial_arts_die, 0)
+                            if ma_avg > vers_avg:
+                                versatile_die = martial_arts_die
 
                         # One-handed damage (use current damage calculation)
                         damage_one_handed_str = damage_str
@@ -9949,6 +10044,7 @@ class CharacterBuilder:
                 "avg_crit": avg_crit,
                 "properties": properties,
                 "ability": ability_name,
+                "effective_ability": "DEX" if (dex_mod > str_mod and ("(DEX)" in ability_name or ability_name == "DEX")) else ("STR" if "(STR)" in ability_name or ability_name == "STR" else ability_name[:3]),
                 "proficient": is_proficient,
                 "mastery": mastery,
                 "icon": self._get_weapon_icon(weapon_name),
@@ -10083,6 +10179,7 @@ class CharacterBuilder:
             "avg_crit": unarmed_crit_avg,
             "properties": [],
             "ability": unarmed_ability,
+            "effective_ability": unarmed_ability,
             "proficient": True,  # Everyone is proficient with unarmed strikes
             "mastery": None,
             "icon": "/static/images/weapons/strike.svg",
@@ -10245,11 +10342,15 @@ class CharacterBuilder:
     def _has_weapon_proficiency(
         self, weapon_props: Dict[str, Any], weapon_proficiencies: List[str]
     ) -> bool:
-        """Check if character has proficiency for weapon."""
-        prof_required = weapon_props.get("proficiency_required", "")
         weapon_name = weapon_props.get("name", "")
         weapon_properties = weapon_props.get("properties", [])
         weapon_category = weapon_props.get("category", "")
+        prof_required = weapon_props.get("proficiency_required", "")
+        if not prof_required:
+            if "simple" in weapon_category.lower():
+                prof_required = "Simple weapons"
+            elif "martial" in weapon_category.lower():
+                prof_required = "Martial weapons"
 
         # Check specific weapon proficiency first
         if weapon_name in weapon_proficiencies:
@@ -10259,23 +10360,25 @@ class CharacterBuilder:
         if prof_required in weapon_proficiencies:
             return True
 
-        # Check conditional proficiencies (e.g., "Martial weapons with Finesse or Light property")
+        # Check conditional proficiencies (e.g., "Martial weapons that have the Light property", "Martial weapons with Finesse or Light property")
         for prof in weapon_proficiencies:
             prof_lower = prof.lower()
+            separator = None
+            if " with " in prof_lower:
+                separator = " with "
+            elif " that have " in prof_lower:
+                separator = " that have "
+            elif " that has " in prof_lower:
+                separator = " that has "
             
-            # Handle "Martial weapons with Finesse or Light property" pattern
-            if "with" in prof_lower:
-                # Extract the weapon type and required properties
-                parts = prof_lower.split(" with ")
+            if separator:
+                parts = prof_lower.split(separator)
                 if len(parts) == 2:
                     weapon_type = parts[0].strip()  # e.g., "martial weapons"
-                    property_requirement = parts[1].strip()
+                    property_requirement = parts[1].replace("the ", "").strip()
                     
                     # Check if weapon matches the base type (Simple/Martial)
-                    # Extract the key word (Simple or Martial)
                     weapon_cat_lower = weapon_category.lower()
-                    
-                    # Check for "simple" or "martial" in both the proficiency and category
                     type_matches = False
                     if "simple" in weapon_type and "simple" in weapon_cat_lower:
                         type_matches = True
@@ -10284,17 +10387,13 @@ class CharacterBuilder:
                     
                     if type_matches:
                         # Check if weapon has any of the required properties
-                        # Handle "or" separated properties
                         if " or " in property_requirement:
                             required_props = [p.strip().replace(" property", "") 
                                             for p in property_requirement.split(" or ")]
-                            # Check if weapon has any of the required properties
                             for req_prop in required_props:
                                 req_prop_capitalized = req_prop.capitalize()
                                 if req_prop_capitalized in weapon_properties:
                                     return True
-                                # Also check if the property is part of a longer property string
-                                # (e.g., "Finesse" in "Finesse, Light")
                                 if any(req_prop_capitalized.lower() in prop.lower() 
                                       for prop in weapon_properties):
                                     return True
@@ -11195,13 +11294,25 @@ class CharacterBuilder:
         spell_slots = spells.get("slots", {})
         spell_metadata = character_data.get("spell_metadata", {})
 
+        ABILITY_NAMES = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"}
+        for ab in ABILITY_NAMES:
+            spells.get("always_prepared", {}).pop(ab, None)
+            spell_metadata.pop(ab, None)
+            if isinstance(spells.get("prepared"), dict):
+                spells["prepared"].get("cantrips", {}).pop(ab, None)
+                spells["prepared"].get("spells", {}).pop(ab, None)
+            spells.get("known", {}).pop(ab, None)
+            spells.get("background_spells", {}).pop(ab, None)
+
         # Organize spells by level for display
         spells_by_level = {}
 
         # Process always_prepared spells (dict of spell_name -> metadata)
         for spell_name, spell_info in spells.get("always_prepared", {}).items():
+            if not spell_name or spell_name in ABILITY_NAMES:
+                continue
             spell_data = self._load_spell_definition(spell_name)
-            if spell_data:
+            if spell_data and spell_data.get("name") not in ABILITY_NAMES:
                 # Merge with stored metadata
                 spell_data.update(
                     {
@@ -11213,6 +11324,8 @@ class CharacterBuilder:
                         ),
                     }
                 )
+                if spell_info.get("spellcasting_ability"):
+                    spell_data["spellcasting_ability"] = spell_info["spellcasting_ability"]
                 level = spell_info.get("level", spell_data.get("level", 0))
                 if level not in spells_by_level:
                     spells_by_level[level] = []
@@ -11223,8 +11336,10 @@ class CharacterBuilder:
         if isinstance(prepared, dict):
             # Process prepared cantrips
             for spell_name, spell_info in prepared.get("cantrips", {}).items():
+                if not spell_name or spell_name in ABILITY_NAMES:
+                    continue
                 spell_data = self._load_spell_definition(spell_name)
-                if spell_data:
+                if spell_data and spell_data.get("name") not in ABILITY_NAMES:
                     meta = spell_metadata.get(spell_name, {})
                     spell_data.update(
                         {
@@ -11238,8 +11353,10 @@ class CharacterBuilder:
 
             # Process prepared spells
             for spell_name, spell_info in prepared.get("spells", {}).items():
+                if not spell_name or spell_name in ABILITY_NAMES:
+                    continue
                 spell_data = self._load_spell_definition(spell_name)
-                if spell_data:
+                if spell_data and spell_data.get("name") not in ABILITY_NAMES:
                     meta = spell_metadata.get(spell_name, {})
                     spell_data.update(
                         {
@@ -11254,8 +11371,10 @@ class CharacterBuilder:
 
         # Process known spells (dict of spell_name -> metadata)
         for spell_name, spell_info in spells.get("known", {}).items():
+            if not spell_name or spell_name in ABILITY_NAMES:
+                continue
             spell_data = self._load_spell_definition(spell_name)
-            if spell_data:
+            if spell_data and spell_data.get("name") not in ABILITY_NAMES:
                 spell_data.update(spell_info)
                 level = spell_info.get("level", spell_data.get("level", 1))
                 if level not in spells_by_level:
@@ -11264,8 +11383,10 @@ class CharacterBuilder:
 
         # Process background spells (dict of spell_name -> metadata)
         for spell_name, spell_info in spells.get("background_spells", {}).items():
+            if not spell_name or spell_name in ABILITY_NAMES:
+                continue
             spell_data = self._load_spell_definition(spell_name)
-            if spell_data:
+            if spell_data and spell_data.get("name") not in ABILITY_NAMES:
                 spell_data.update(
                     {
                         "source": spell_info.get("source", "Background"),
@@ -11303,6 +11424,37 @@ class CharacterBuilder:
                 damage_bonus = meta.get("damage_bonus")
                 if damage_bonus:
                     spell["damage_ability_bonus"] = damage_bonus
+
+        # Annotate per-spell ability, attack bonus, and save DC
+        processed_abilities = self.calculate_processed_ability_scores()
+        prof_bonus = self.calculate_proficiency_bonus(character_data.get("level", 1))
+        class_data = character_data.get("class_data") or {}
+        subclass_data = character_data.get("subclass_data") or {}
+        class_spell_ability = (class_data.get("spellcasting_ability") if isinstance(class_data, dict) else None) or (subclass_data.get("spellcasting_ability") if isinstance(subclass_data, dict) else None)
+        lineage_spell_ability = self.character_data.get("spellcasting_ability")
+        feat_abilities = self.character_data.get("feat_spellcasting_abilities", {})
+
+        for spell_list in spells_by_level.values():
+            for spell in spell_list:
+                s_name = spell.get("name")
+                meta = spell_meta.get(s_name) or {}
+                sp_ability = spell.get("spellcasting_ability") or meta.get("spellcasting_ability")
+                source_str = str(spell.get("source", ""))
+                if not sp_ability:
+                    if source_str in feat_abilities:
+                        sp_ability = feat_abilities[source_str]
+                    elif source_str in (self.character_data.get("lineage"), self.character_data.get("species"), "Species", "Lineage"):
+                        sp_ability = lineage_spell_ability
+                    elif source_str in (self.character_data.get("class"), self.character_data.get("subclass"), "Class", "Subclass"):
+                        sp_ability = class_spell_ability
+                    elif class_spell_ability:
+                        sp_ability = class_spell_ability
+
+                if sp_ability:
+                    spell["spellcasting_ability"] = sp_ability
+                    ab_mod = processed_abilities.get(sp_ability.lower(), {}).get("modifier", 0)
+                    spell["spell_save_dc"] = 8 + prof_bonus + ab_mod
+                    spell["spell_attack_bonus"] = prof_bonus + ab_mod
 
         # For compatibility with tests: add 'cantrips' and 'level_1' keys to spells
         # 'cantrips' = all level 0 spells, 'level_1' = all level 1 spells
@@ -13223,7 +13375,10 @@ class CharacterBuilder:
                     self.character_data["spells"]["prepared"]["cantrips"].pop(cantrip, None)  # legacy
                     self.character_data["spell_metadata"].pop(cantrip, None)
 
-            elif "spell" in choice_name:
+            elif choice_name == "spellcasting_ability":
+                self.character_data.get("feat_spellcasting_abilities", {}).pop(feat_name, None)
+
+            elif "spell" in choice_name and choice_name != "spellcasting_ability":
                 for spell in old_values:
                     self.character_data["spells"]["always_prepared"].pop(spell, None)
                     self.character_data["spells"]["prepared"]["spells"].pop(spell, None)  # legacy

@@ -139,6 +139,7 @@
       "damage": "0",
       "damage_notes": [],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
       "name": "Unarmed Strike",
@@ -159,6 +160,7 @@
       "damage_one_handed": "1d6 - 1",
       "damage_two_handed": "1d8 - 1",
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/staff.svg",
       "mastery": "Topple",
       "name": "Quarterstaff",
@@ -178,6 +180,7 @@
       "damage_bonus": 1,
       "damage_notes": [],
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/dagger.svg",
       "mastery": "Nick",
       "name": "Dagger",
@@ -1766,7 +1769,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -1785,7 +1791,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -1804,7 +1813,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": true,
@@ -1827,7 +1839,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Illusion",
-        "source": "Forest Gnome"
+        "source": "Forest Gnome",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       }
     ],
     "known": {},
@@ -1850,7 +1865,10 @@
         "range": "30 feet",
         "ritual": true,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -1875,7 +1893,10 @@
         "range": "Self",
         "ritual": true,
         "school": "Divination",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -1893,7 +1914,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -1912,7 +1936,10 @@
         "range": "90 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": true,
@@ -1934,7 +1961,10 @@
         "range": "Self",
         "ritual": true,
         "school": "Divination",
-        "source": "Forest Gnome"
+        "source": "Forest Gnome",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       }
     ],
     "prepared": {
@@ -2007,7 +2037,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -2026,7 +2059,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -2045,7 +2081,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": true,
@@ -2068,7 +2107,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Illusion",
-        "source": "Forest Gnome"
+        "source": "Forest Gnome",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       }
     ],
     "1": [
@@ -2090,7 +2132,10 @@
         "range": "30 feet",
         "ritual": true,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -2115,7 +2160,10 @@
         "range": "Self",
         "ritual": true,
         "school": "Divination",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -2133,7 +2181,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -2152,7 +2203,10 @@
         "range": "90 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": true,
@@ -2174,7 +2228,10 @@
         "range": "Self",
         "ritual": true,
         "school": "Divination",
-        "source": "Forest Gnome"
+        "source": "Forest Gnome",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       }
     ],
     "2": [
@@ -2196,7 +2253,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Transmutation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       },
       {
         "always_prepared": false,
@@ -2217,7 +2277,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Intelligence"
       }
     ]
   },

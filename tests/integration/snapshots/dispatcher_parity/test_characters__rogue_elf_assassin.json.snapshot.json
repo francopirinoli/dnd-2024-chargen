@@ -159,6 +159,7 @@
       "damage_bonus": 3,
       "damage_notes": [],
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/bow.svg",
       "mastery": "Vex",
       "name": "Shortbow",
@@ -177,6 +178,7 @@
       "damage": "0",
       "damage_notes": [],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
       "name": "Unarmed Strike",
@@ -193,6 +195,7 @@
       "damage_bonus": 3,
       "damage_notes": [],
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/rapier.svg",
       "mastery": "Vex",
       "name": "Rapier",
@@ -212,6 +215,7 @@
       "damage_bonus": 3,
       "damage_notes": [],
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/dagger.svg",
       "mastery": "Nick",
       "name": "Dagger",
@@ -1222,7 +1226,13 @@
     "weapons": {}
   },
   "resistances": [],
-  "save_advantages": [],
+  "save_advantages": [
+    {
+      "abilities": [],
+      "condition": "Charmed",
+      "display": "Advantage vs Charmed condition"
+    }
+  ],
   "skill_expertise": [
     "Stealth",
     "Perception"
@@ -1579,7 +1589,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Illusion",
-        "source": "Drow"
+        "source": "Drow",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Intelligence"
       }
     ],
     "known": {},
@@ -1603,7 +1616,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Drow"
+        "source": "Drow",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Intelligence"
       }
     ],
     "prepared": {
@@ -1635,7 +1651,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Illusion",
-        "source": "Drow"
+        "source": "Drow",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Intelligence"
       }
     ],
     "1": [
@@ -1658,7 +1677,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Drow"
+        "source": "Drow",
+        "spell_attack_bonus": 4,
+        "spell_save_dc": 12,
+        "spellcasting_ability": "Intelligence"
       }
     ]
   },

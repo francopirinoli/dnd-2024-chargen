@@ -153,6 +153,7 @@
       "damage": "1",
       "damage_notes": [],
       "damage_type": "Bludgeoning",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
       "name": "Unarmed Strike",
@@ -169,6 +170,7 @@
       "damage_bonus": 0,
       "damage_notes": [],
       "damage_type": "Slashing",
+      "effective_ability": "STR",
       "icon": "/static/images/weapons/sickle.svg",
       "mastery": "Nick",
       "name": "Sickle",
@@ -188,6 +190,7 @@
       "damage_bonus": 1,
       "damage_notes": [],
       "damage_type": "Piercing",
+      "effective_ability": "DEX",
       "icon": "/static/images/weapons/dagger.svg",
       "mastery": "Nick",
       "name": "Dagger",
@@ -1577,7 +1580,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1598,7 +1604,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Illusion",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1615,7 +1624,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       }
     ],
     "known": {},
@@ -1636,7 +1648,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1654,7 +1669,10 @@
         "range": "90 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1671,7 +1689,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": true,
@@ -1692,7 +1713,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "The Fiend"
+        "source": "The Fiend",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": true,
@@ -1712,7 +1736,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Evocation",
-        "source": "The Fiend"
+        "source": "The Fiend",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       }
     ],
     "prepared": {
@@ -1752,7 +1779,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Conjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1773,7 +1803,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Illusion",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1790,7 +1823,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       }
     ],
     "1": [
@@ -1810,7 +1846,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Abjuration",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1828,7 +1867,10 @@
         "range": "90 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1845,7 +1887,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": true,
@@ -1866,7 +1911,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "The Fiend"
+        "source": "The Fiend",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": true,
@@ -1886,7 +1934,10 @@
         "range": "Self",
         "ritual": false,
         "school": "Evocation",
-        "source": "The Fiend"
+        "source": "The Fiend",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       }
     ],
     "2": [
@@ -1911,7 +1962,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": false,
@@ -1931,7 +1985,10 @@
         "range": "60 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "Selected"
+        "source": "Selected",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": true,
@@ -1954,7 +2011,10 @@
         "range": "30 feet",
         "ritual": false,
         "school": "Enchantment",
-        "source": "The Fiend"
+        "source": "The Fiend",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       },
       {
         "always_prepared": true,
@@ -1974,7 +2034,10 @@
         "range": "120 feet",
         "ritual": false,
         "school": "Evocation",
-        "source": "The Fiend"
+        "source": "The Fiend",
+        "spell_attack_bonus": 5,
+        "spell_save_dc": 13,
+        "spellcasting_ability": "Charisma"
       }
     ]
   },
