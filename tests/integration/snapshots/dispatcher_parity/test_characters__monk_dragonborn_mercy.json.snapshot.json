@@ -126,7 +126,9 @@
       "avg_crit": 10.0,
       "avg_damage": 6.5,
       "damage": "1d6 + 3",
-      "damage_notes": [],
+      "damage_notes": [
+        "+11d6+2 Necrotic (Hand of Harm, 1 FP, 1/turn)"
+      ],
       "damage_type": "Bludgeoning",
       "icon": "/static/images/weapons/strike.svg",
       "mastery": null,
@@ -318,6 +320,28 @@
   ],
   "class_data": {
     "armor_proficiencies": [],
+    "attacks_per_action_by_level": {
+      "1": 1,
+      "10": 2,
+      "11": 2,
+      "12": 2,
+      "13": 2,
+      "14": 2,
+      "15": 2,
+      "16": 2,
+      "17": 2,
+      "18": 2,
+      "19": 2,
+      "2": 1,
+      "20": 2,
+      "3": 1,
+      "4": 1,
+      "5": 2,
+      "6": 2,
+      "7": 2,
+      "8": 2,
+      "9": 2
+    },
     "description": "Monks are masters of martial arts, harnessing the power of body, mind, and spirit. Through discipline and training, they channel their Focus to perform extraordinary feats of combat and athleticism.",
     "features_by_level": {
       "1": {
@@ -445,7 +469,18 @@
         }
       },
       "19": {
-        "Epic Boon": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Irresistible Offense is recommended."
+        "Epic Boon": {
+          "choices": {
+            "name": "class_feat_19",
+            "source": {
+              "file": "general_feats.json",
+              "list": "general_feats",
+              "type": "external"
+            }
+          },
+          "description": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Irresistible Offense is recommended.",
+          "feature_kind": "asi"
+        }
       },
       "2": {
         "Monk's Focus": {
@@ -542,7 +577,51 @@
         "Acrobatic Movement": "While you aren't wearing armor or wielding a Shield, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the movement."
       }
     },
+    "focus_points_by_level": {
+      "1": 0,
+      "10": 10,
+      "11": 11,
+      "12": 12,
+      "13": 13,
+      "14": 14,
+      "15": 15,
+      "16": 16,
+      "17": 17,
+      "18": 18,
+      "19": 19,
+      "2": 2,
+      "20": 20,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9
+    },
     "hit_die": 8,
+    "martial_arts_die_by_level": {
+      "1": "1d6",
+      "10": "1d8",
+      "11": "1d10",
+      "12": "1d10",
+      "13": "1d10",
+      "14": "1d10",
+      "15": "1d10",
+      "16": "1d10",
+      "17": "1d12",
+      "18": "1d12",
+      "19": "1d12",
+      "2": "1d6",
+      "20": "1d12",
+      "3": "1d6",
+      "4": "1d6",
+      "5": "1d8",
+      "6": "1d8",
+      "7": "1d8",
+      "8": "1d8",
+      "9": "1d8"
+    },
     "multiclassing": {
       "armor_training": [],
       "hit_die_granted": 8,
@@ -644,6 +723,28 @@
       "Viol"
     ],
     "tool_proficiencies_count": 1,
+    "unarmored_movement_bonus_by_level": {
+      "1": 0,
+      "10": 20,
+      "11": 20,
+      "12": 20,
+      "13": 20,
+      "14": 25,
+      "15": 25,
+      "16": 25,
+      "17": 25,
+      "18": 30,
+      "19": 30,
+      "2": 10,
+      "20": 30,
+      "3": 10,
+      "4": 10,
+      "5": 10,
+      "6": 15,
+      "7": 15,
+      "8": 15,
+      "9": 15
+    },
     "weapon_proficiencies": [
       "Simple weapons",
       "Martial weapons that have the Light property"
@@ -761,6 +862,15 @@
     {
       "source": "Hermit",
       "source_type": "background",
+      "tools": [
+        "Herbalism Kit"
+      ],
+      "type": "grant_tool_proficiency"
+    },
+    {
+      "source": "Implements of Mercy",
+      "source_class_name": "Monk",
+      "source_type": "subclass",
       "tools": [
         "Herbalism Kit"
       ],
@@ -949,6 +1059,97 @@
   "maneuvers_known": [],
   "martial_arts_die": "1d6",
   "monk_dexterous_attacks": true,
+  "monk_stats": {
+    "actions": [
+      {
+        "action": "Bonus Action",
+        "cost": "0 FP (Dash) or 1 FP (Dash + Disengage)",
+        "effect": "Take Dash for free, or spend 1 FP to take both Dash and Disengage with doubled jump distance.",
+        "name": "Step of the Wind"
+      },
+      {
+        "action": "Bonus Action",
+        "cost": "0 FP (Disengage) or 1 FP (Disengage + Dodge)",
+        "effect": "Take Disengage for free, or spend 1 FP to take both Disengage and Dodge.",
+        "name": "Patient Defense"
+      },
+      {
+        "action": "Bonus Action",
+        "cost": "1 Focus Point",
+        "effect": "Make two Unarmed Strikes.",
+        "name": "Flurry of Blows"
+      },
+      {
+        "action": "Bonus Action",
+        "cost": "Free",
+        "effect": "Make one Unarmed Strike as a Bonus Action.",
+        "name": "Bonus Unarmed Strike"
+      },
+      {
+        "action": "Magic Action (or replace 1 Flurry strike)",
+        "cost": "1 FP (or 0 FP with Flurry)",
+        "effect": "Heal creature touched for 11d6+2 HP.",
+        "name": "Hand of Healing"
+      },
+      {
+        "action": "Reaction",
+        "cost": "0 FP to reduce, 1 FP to redirect",
+        "effect": "When hit by an attack dealing Bludgeoning, Piercing, or Slashing damage, reduce damage by 1d10+3+3. If reduced to 0, spend 1 FP to counterattack dealing 21d6+3 damage (DEX save DC 12).",
+        "name": "Deflect Attacks"
+      },
+      {
+        "action": "Special (1/turn on Unarmed Strike hit)",
+        "cost": "1 Focus Point",
+        "effect": "Deal extra 11d6+2 Necrotic damage.",
+        "name": "Hand of Harm"
+      },
+      {
+        "action": "Special (on Initiative roll)",
+        "effect": "Regain all expended Focus Points, and regain 3+1d6 HP.",
+        "name": "Uncanny Metabolism",
+        "recharge": "Long Rest",
+        "uses": 1
+      }
+    ],
+    "active_perks": [],
+    "attacks_per_action": 1,
+    "extra_attacks_label": "1 attack",
+    "focus_points": 3,
+    "focus_points_max": 3,
+    "focus_recharge": "Short or Long Rest",
+    "focus_save_dc": 12,
+    "has_acrobatic_movement": false,
+    "has_body_and_mind": false,
+    "has_bonus_unarmed_strike": true,
+    "has_deflect_attacks": true,
+    "has_deflect_energy": false,
+    "has_dexterous_attacks": true,
+    "has_disciplined_survivor": false,
+    "has_empowered_strikes": false,
+    "has_evasion": false,
+    "has_heightened_focus": false,
+    "has_perfect_focus": false,
+    "has_self_restoration": false,
+    "has_slow_fall": false,
+    "has_stunning_strike": false,
+    "has_superior_defense": false,
+    "has_uncanny_metabolism": true,
+    "is_monk": true,
+    "martial_arts_die": "1d6",
+    "monk_level": 3,
+    "subclass": "Warrior of Mercy",
+    "subclass_details": {
+      "warrior_of_mercy": {
+        "flurry_of_healing_and_harm": false,
+        "hand_of_harm_formula": "11d6+2",
+        "hand_of_healing_formula": "11d6+2",
+        "hand_of_ultimate_mercy": false,
+        "physicians_touch": false
+      }
+    },
+    "unarmored_defense_ac": 15,
+    "unarmored_movement_bonus": 10
+  },
   "name": "Scale-of-Jade",
   "proficiencies": {
     "armor": [],
@@ -994,7 +1195,7 @@
       "Religion": "Hermit"
     },
     "tools": {
-      "Herbalism Kit": "Hermit",
+      "Herbalism Kit": "Implements of Mercy",
       "Woodcarver's Tools": "Monk"
     },
     "weapons": {}
@@ -1305,6 +1506,12 @@
                 "Medicine"
               ],
               "type": "grant_skill_proficiency"
+            },
+            {
+              "tools": [
+                "Herbalism Kit"
+              ],
+              "type": "grant_tool_proficiency"
             }
           ]
         }

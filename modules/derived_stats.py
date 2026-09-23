@@ -994,6 +994,66 @@ def build_level_up_preview(
         ),
     }
 
+    monk_curr = builder_current.calculate_monk_stats()
+    monk_next = builder_next.calculate_monk_stats()
+    is_monk = target_class_name.lower() == "monk"
+    monk_changes = {
+        "is_monk": is_monk,
+        "current_martial_arts_die": monk_curr.get("martial_arts_die", "1d6"),
+        "next_martial_arts_die": monk_next.get("martial_arts_die", "1d6"),
+        "martial_arts_die_increased": (
+            monk_next.get("martial_arts_die") != monk_curr.get("martial_arts_die")
+        ),
+        "current_focus_points": monk_curr.get("focus_points_max", 0),
+        "next_focus_points": monk_next.get("focus_points_max", 0),
+        "focus_points_increased": (
+            monk_next.get("focus_points_max", 0) > monk_curr.get("focus_points_max", 0)
+        ),
+        "current_unarmored_movement": monk_curr.get("unarmored_movement_bonus", 0),
+        "next_unarmored_movement": monk_next.get("unarmored_movement_bonus", 0),
+        "unarmored_movement_increased": (
+            monk_next.get("unarmored_movement_bonus", 0) > monk_curr.get("unarmored_movement_bonus", 0)
+        ),
+        "uncanny_metabolism_unlocked": (
+            bool(monk_next.get("has_uncanny_metabolism")) and not bool(monk_curr.get("has_uncanny_metabolism"))
+        ),
+        "deflect_attacks_unlocked": (
+            bool(monk_next.get("has_deflect_attacks")) and not bool(monk_curr.get("has_deflect_attacks"))
+        ),
+        "deflect_energy_unlocked": (
+            bool(monk_next.get("has_deflect_energy")) and not bool(monk_curr.get("has_deflect_energy"))
+        ),
+        "stunning_strike_unlocked": (
+            bool(monk_next.get("has_stunning_strike")) and not bool(monk_curr.get("has_stunning_strike"))
+        ),
+        "empowered_strikes_unlocked": (
+            bool(monk_next.get("has_empowered_strikes")) and not bool(monk_curr.get("has_empowered_strikes"))
+        ),
+        "heightened_focus_unlocked": (
+            bool(monk_next.get("has_heightened_focus")) and not bool(monk_curr.get("has_heightened_focus"))
+        ),
+        "self_restoration_unlocked": (
+            bool(monk_next.get("has_self_restoration")) and not bool(monk_curr.get("has_self_restoration"))
+        ),
+        "disciplined_survivor_unlocked": (
+            bool(monk_next.get("has_disciplined_survivor")) and not bool(monk_curr.get("has_disciplined_survivor"))
+        ),
+        "perfect_focus_unlocked": (
+            bool(monk_next.get("has_perfect_focus")) and not bool(monk_curr.get("has_perfect_focus"))
+        ),
+        "superior_defense_unlocked": (
+            bool(monk_next.get("has_superior_defense")) and not bool(monk_curr.get("has_superior_defense"))
+        ),
+        "body_and_mind_unlocked": (
+            bool(monk_next.get("has_body_and_mind")) and not bool(monk_curr.get("has_body_and_mind"))
+        ),
+        "current_attacks_per_action": monk_curr.get("attacks_per_action", 1),
+        "next_attacks_per_action": monk_next.get("attacks_per_action", 1),
+        "attacks_per_action_increased": (
+            monk_next.get("attacks_per_action", 1) > monk_curr.get("attacks_per_action", 1)
+        ),
+    }
+
     return {
         "can_level_up": True,
         "class_name": target_class_name,
@@ -1056,4 +1116,5 @@ def build_level_up_preview(
         "cleric_changes": cleric_changes,
         "druid_changes": druid_changes,
         "fighter_changes": fighter_changes,
+        "monk_changes": monk_changes,
     }

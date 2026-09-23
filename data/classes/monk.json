@@ -96,6 +96,94 @@
     "19": 6,
     "20": 6
   },
+  "martial_arts_die_by_level": {
+    "1": "1d6",
+    "2": "1d6",
+    "3": "1d6",
+    "4": "1d6",
+    "5": "1d8",
+    "6": "1d8",
+    "7": "1d8",
+    "8": "1d8",
+    "9": "1d8",
+    "10": "1d8",
+    "11": "1d10",
+    "12": "1d10",
+    "13": "1d10",
+    "14": "1d10",
+    "15": "1d10",
+    "16": "1d10",
+    "17": "1d12",
+    "18": "1d12",
+    "19": "1d12",
+    "20": "1d12"
+  },
+  "focus_points_by_level": {
+    "1": 0,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10,
+    "11": 11,
+    "12": 12,
+    "13": 13,
+    "14": 14,
+    "15": 15,
+    "16": 16,
+    "17": 17,
+    "18": 18,
+    "19": 19,
+    "20": 20
+  },
+  "unarmored_movement_bonus_by_level": {
+    "1": 0,
+    "2": 10,
+    "3": 10,
+    "4": 10,
+    "5": 10,
+    "6": 15,
+    "7": 15,
+    "8": 15,
+    "9": 15,
+    "10": 20,
+    "11": 20,
+    "12": 20,
+    "13": 20,
+    "14": 25,
+    "15": 25,
+    "16": 25,
+    "17": 25,
+    "18": 30,
+    "19": 30,
+    "20": 30
+  },
+  "attacks_per_action_by_level": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 2,
+    "6": 2,
+    "7": 2,
+    "8": 2,
+    "9": 2,
+    "10": 2,
+    "11": 2,
+    "12": 2,
+    "13": 2,
+    "14": 2,
+    "15": 2,
+    "16": 2,
+    "17": 2,
+    "18": 2,
+    "19": 2,
+    "20": 2
+  },
   "features_by_level": {
     "1": {
       "Martial Arts": {
@@ -299,7 +387,18 @@
       }
     },
     "19": {
-      "Epic Boon": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Irresistible Offense is recommended."
+      "Epic Boon": {
+        "description": "You gain an Epic Boon feat or another feat of your choice for which you qualify. Boon of Irresistible Offense is recommended.",
+        "choices": {
+          "name": "class_feat_19",
+          "source": {
+            "type": "external",
+            "file": "general_feats.json",
+            "list": "general_feats"
+          }
+        },
+        "feature_kind": "asi"
+      }
     },
     "20": {
       "Body and Mind": {

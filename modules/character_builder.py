@@ -2036,6 +2036,14 @@ class CharacterBuilder:
                 if damage_type and damage_type not in self.character_data["resistances"]:
                     self.character_data["resistances"].append(damage_type)
 
+        elif effect_type == "grant_damage_immunity":
+            damage_types = effect.get("damage_types") or (
+                [effect["damage_type"]] if "damage_type" in effect else []
+            )
+            for damage_type in damage_types:
+                if damage_type and damage_type not in self.character_data["immunities"]:
+                    self.character_data["immunities"].append(damage_type)
+
         elif effect_type == "grant_condition_immunity":
             condition = effect.get("condition")
             if condition and condition not in self.character_data["condition_immunities"]:
@@ -9024,6 +9032,445 @@ class CharacterBuilder:
         stats["subclass_details"] = subclass_details
         return stats
 
+    def calculate_monk_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Monk 2024 RAW statistics including:
+        - Martial Arts die scaling (1d6 -> 1d8 -> 1d10 -> 1d12)
+        - Focus Points scaling (level 2+, equal to level) and recharge
+        - Focus Save DC (8 + PB + WIS mod)
+        - Unarmored Defense AC (10 + DEX mod + WIS mod)
+        - Unarmored Movement bonus scaling (10 -> 15 -> 20 -> 25 -> 30 ft)
+        - Attacks per Action (1, or 2 with Extra Attack at lv 5+)
+        - Feature progression:
+          - Uncanny Metabolism (lv 2)
+          - Deflect Attacks (lv 3) & Deflect Energy (lv 13)
+          - Slow Fall (lv 4)
+          - Stunning Strike (lv 5)
+          - Empowered Strikes (lv 6)
+          - Evasion (lv 7)
+          - Acrobatic Movement (lv 9)
+          - Heightened Focus (lv 10)
+          - Self-Restoration (lv 10)
+          - Disciplined Survivor (lv 14)
+          - Perfect Focus (lv 15)
+          - Superior Defense (lv 18)
+          - Body and Mind (lv 20)
+        - Subclass mechanics for:
+          - Warrior of Mercy (Hand of Healing, Hand of Harm, Physician's Touch, Flurry of Healing & Harm, Hand of Ultimate Mercy)
+          - Warrior of Shadow (Shadow Arts / Darkness, Darkvision, Shadow Step, Improved Shadow Step, Cloak of Shadows)
+          - Warrior of the Elements (Elemental Attunement, Elementalism, Elemental Burst, Stride of the Elements, Elemental Epitome)
+          - Warrior of the Open Hand (Open Hand Technique, Wholeness of Body, Fleet Step, Quivering Palm)
+          - Warrior of Venom (Potent Arsenal, Envenom Weapon, Toxic Touch, Toxin Refiner, Toxic Blood, Hallucinogenic Breath)
+          - Warrior of the Mystic Arts (Sorcerer Spellcasting, Mystic Fighting Style, Mystic Focus, Focused Strike, Improved Mystic Fighting Style)
+        """
+        stats: Dict[str, Any] = {
+            "is_monk": False,
+            "monk_level": 0,
+            "subclass": None,
+            "martial_arts_die": "1d6",
+            "focus_points": 0,
+            "focus_points_max": 0,
+            "focus_save_dc": 10,
+            "focus_recharge": "Short or Long Rest",
+            "unarmored_movement_bonus": 0,
+            "unarmored_defense_ac": 10,
+            "attacks_per_action": 1,
+            "extra_attacks_label": "None",
+            "has_bonus_unarmed_strike": True,
+            "has_dexterous_attacks": True,
+            "has_uncanny_metabolism": False,
+            "has_deflect_attacks": False,
+            "has_deflect_energy": False,
+            "has_slow_fall": False,
+            "has_stunning_strike": False,
+            "has_empowered_strikes": False,
+            "has_evasion": False,
+            "has_acrobatic_movement": False,
+            "has_heightened_focus": False,
+            "has_self_restoration": False,
+            "has_disciplined_survivor": False,
+            "has_perfect_focus": False,
+            "has_superior_defense": False,
+            "has_body_and_mind": False,
+            "subclass_details": {},
+            "active_perks": [],
+            "actions": [],
+        }
+
+        monk_level = self._get_class_level("Monk")
+        if monk_level <= 0:
+            return stats
+
+        stats["is_monk"] = True
+        stats["monk_level"] = monk_level
+        subclass_name = self._get_class_subclass("Monk")
+        stats["subclass"] = subclass_name
+
+        level = self.character_data.get("level", monk_level)
+        pb = self.calculate_proficiency_bonus(level)
+        scores = self.calculate_processed_ability_scores()
+        dex_mod = scores.get("dexterity", {}).get("modifier", 0)
+        wis_mod = scores.get("wisdom", {}).get("modifier", 0)
+        con_mod = scores.get("constitution", {}).get("modifier", 0)
+
+        # Martial Arts Die
+        ma_die = "1d12" if monk_level >= 17 else ("1d10" if monk_level >= 11 else ("1d8" if monk_level >= 5 else "1d6"))
+        stats["martial_arts_die"] = ma_die
+
+        # Focus Points (Level 2+)
+        fp = monk_level if monk_level >= 2 else 0
+        stats["focus_points"] = fp
+        stats["focus_points_max"] = fp
+        stats["focus_save_dc"] = 8 + pb + wis_mod
+
+        # Unarmored Movement bonus
+        um_bonus = 30 if monk_level >= 18 else (25 if monk_level >= 14 else (20 if monk_level >= 10 else (15 if monk_level >= 6 else (10 if monk_level >= 2 else 0))))
+        stats["unarmored_movement_bonus"] = um_bonus
+
+        # Unarmored Defense AC
+        stats["unarmored_defense_ac"] = 10 + dex_mod + wis_mod
+
+        # Attacks per action
+        attacks_count = 2 if monk_level >= 5 else 1
+        stats["attacks_per_action"] = attacks_count
+        stats["extra_attacks_label"] = "Extra Attack (2 attacks)" if monk_level >= 5 else "1 attack"
+
+        # Base Monk Actions:
+        # Bonus Unarmed Strike (Level 1)
+        stats["actions"].append({
+            "name": "Bonus Unarmed Strike",
+            "action": "Bonus Action",
+            "cost": "Free",
+            "effect": "Make one Unarmed Strike as a Bonus Action.",
+        })
+
+        # Level 2 Focus actions
+        if monk_level >= 2:
+            stats["has_uncanny_metabolism"] = True
+            flurry_strikes = "three" if monk_level >= 10 else "two"
+            stats["actions"].append({
+                "name": "Flurry of Blows",
+                "action": "Bonus Action",
+                "cost": "1 Focus Point",
+                "effect": f"Make {flurry_strikes} Unarmed Strikes.",
+            })
+            pd_extra = f" Gain 2{ma_die} Temp HP." if monk_level >= 10 else ""
+            stats["actions"].append({
+                "name": "Patient Defense",
+                "action": "Bonus Action",
+                "cost": "0 FP (Disengage) or 1 FP (Disengage + Dodge)",
+                "effect": f"Take Disengage for free, or spend 1 FP to take both Disengage and Dodge.{pd_extra}",
+            })
+            sotw_extra = " Move a willing Large or smaller ally with you without OA." if monk_level >= 10 else ""
+            stats["actions"].append({
+                "name": "Step of the Wind",
+                "action": "Bonus Action",
+                "cost": "0 FP (Dash) or 1 FP (Dash + Disengage)",
+                "effect": f"Take Dash for free, or spend 1 FP to take both Dash and Disengage with doubled jump distance.{sotw_extra}",
+            })
+            stats["actions"].append({
+                "name": "Uncanny Metabolism",
+                "action": "Special (on Initiative roll)",
+                "uses": 1,
+                "recharge": "Long Rest",
+                "effect": f"Regain all expended Focus Points, and regain {monk_level}+{ma_die} HP.",
+            })
+
+        # Deflect Attacks (Level 3) & Deflect Energy (Level 13)
+        if monk_level >= 3:
+            stats["has_deflect_attacks"] = True
+            if monk_level >= 13:
+                stats["has_deflect_energy"] = True
+            damage_scope = "any damage type" if monk_level >= 13 else "Bludgeoning, Piercing, or Slashing damage"
+            dex_str = f"+{dex_mod}" if dex_mod >= 0 else str(dex_mod)
+            stats["actions"].append({
+                "name": "Deflect Energy" if monk_level >= 13 else "Deflect Attacks",
+                "action": "Reaction",
+                "cost": "0 FP to reduce, 1 FP to redirect",
+                "effect": f"When hit by an attack dealing {damage_scope}, reduce damage by 1d10{dex_str}+{monk_level}. If reduced to 0, spend 1 FP to counterattack dealing 2{ma_die}{dex_str} damage (DEX save DC {stats['focus_save_dc']}).",
+            })
+
+        # Slow Fall (Level 4)
+        if monk_level >= 4:
+            stats["has_slow_fall"] = True
+            stats["actions"].append({
+                "name": "Slow Fall",
+                "action": "Reaction",
+                "cost": "Free",
+                "effect": f"Reduce falling damage by {5 * monk_level} HP.",
+            })
+
+        # Stunning Strike (Level 5)
+        if monk_level >= 5:
+            stats["has_stunning_strike"] = True
+            stats["actions"].append({
+                "name": "Stunning Strike",
+                "action": "Special (1/turn on hit)",
+                "cost": "1 Focus Point",
+                "effect": f"Target makes CON save (DC {stats['focus_save_dc']}). Fail: Stunned until start of next turn. Success: Speed halved & next attack has Advantage.",
+            })
+
+        # Empowered Strikes (Level 6)
+        if monk_level >= 6:
+            stats["has_empowered_strikes"] = True
+            stats["active_perks"].append("Empowered Strikes (Unarmed Strikes can deal Force damage)")
+
+        # Evasion (Level 7)
+        if monk_level >= 7:
+            stats["has_evasion"] = True
+            stats["active_perks"].append("Evasion (DEX saves: no damage on success, half on failure)")
+
+        # Acrobatic Movement (Level 9)
+        if monk_level >= 9:
+            stats["has_acrobatic_movement"] = True
+            stats["active_perks"].append("Acrobatic Movement (Run along vertical surfaces & across liquids)")
+
+        # Heightened Focus & Self-Restoration (Level 10)
+        if monk_level >= 10:
+            stats["has_heightened_focus"] = True
+            stats["has_self_restoration"] = True
+            stats["active_perks"].append("Heightened Focus (Flurry: 3 strikes; Patient Defense: Temp HP; Step of Wind: Carry ally)")
+            stats["active_perks"].append("Self-Restoration (End Charmed, Frightened, or Poisoned at end of turn; immune to food/drink exhaustion)")
+
+        # Disciplined Survivor (Level 14)
+        if monk_level >= 14:
+            stats["has_disciplined_survivor"] = True
+            stats["active_perks"].append("Disciplined Survivor (Proficiency in all saves)")
+            stats["actions"].append({
+                "name": "Disciplined Survivor Reroll",
+                "action": "Special (on failed save)",
+                "cost": "1 Focus Point",
+                "effect": "Reroll a failed saving throw and take the new result.",
+            })
+
+        # Perfect Focus (Level 15)
+        if monk_level >= 15:
+            stats["has_perfect_focus"] = True
+            stats["active_perks"].append("Perfect Focus (Regain Focus Points up to 4 on Initiative roll)")
+
+        # Superior Defense (Level 18)
+        if monk_level >= 18:
+            stats["has_superior_defense"] = True
+            stats["actions"].append({
+                "name": "Superior Defense",
+                "action": "Special (start of turn)",
+                "cost": "3 Focus Points",
+                "effect": "Gain Resistance to all damage except Force for 1 minute.",
+            })
+
+        # Body and Mind (Level 20)
+        if monk_level >= 20:
+            stats["has_body_and_mind"] = True
+            stats["active_perks"].append("Body and Mind (+4 Dexterity and +4 Wisdom, maximum 25)")
+
+        # Subclass Mechanics
+        subclass_details: Dict[str, Any] = {}
+        wis_str = f"+{wis_mod}" if wis_mod >= 0 else str(wis_mod)
+
+        # 1. Warrior of Mercy
+        if subclass_name == "Warrior of Mercy" and monk_level >= 3:
+            subclass_details["warrior_of_mercy"] = {
+                "hand_of_healing_formula": f"1{ma_die}{wis_str}",
+                "hand_of_harm_formula": f"1{ma_die}{wis_str}",
+                "physicians_touch": monk_level >= 6,
+                "flurry_of_healing_and_harm": monk_level >= 11,
+                "hand_of_ultimate_mercy": monk_level >= 17,
+            }
+            touch_extra = " Also end Blinded, Deafened, Paralyzed, Poisoned, or Stunned." if monk_level >= 6 else ""
+            stats["actions"].append({
+                "name": "Hand of Healing",
+                "action": "Magic Action (or replace 1 Flurry strike)",
+                "cost": "1 FP (or 0 FP with Flurry)",
+                "effect": f"Heal creature touched for 1{ma_die}{wis_str} HP.{touch_extra}",
+            })
+            harm_extra = " Also inflicts Poisoned condition until end of next turn." if monk_level >= 6 else ""
+            stats["actions"].append({
+                "name": "Hand of Harm",
+                "action": "Special (1/turn on Unarmed Strike hit)",
+                "cost": "1 Focus Point",
+                "effect": f"Deal extra 1{ma_die}{wis_str} Necrotic damage.{harm_extra}",
+            })
+            if monk_level >= 11:
+                stats["actions"].append({
+                    "name": "Flurry of Healing & Harm",
+                    "action": "Special (with Flurry of Blows)",
+                    "uses": max(1, wis_mod),
+                    "recharge": "Long Rest",
+                    "effect": f"Replace each Flurry strike with Hand of Healing (0 FP) AND apply Hand of Harm without expending FP ({max(1, wis_mod)} uses/LR).",
+                })
+            if monk_level >= 17:
+                stats["actions"].append({
+                    "name": "Hand of Ultimate Mercy",
+                    "action": "Magic Action",
+                    "cost": "5 Focus Points",
+                    "uses": 1,
+                    "recharge": "Long Rest",
+                    "effect": f"Touch a creature dead within 24 hours to revive it with 4d10{wis_str} HP and clear debilitating conditions (1/LR).",
+                })
+
+        # 2. Warrior of Shadow
+        elif subclass_name == "Warrior of Shadow" and monk_level >= 3:
+            subclass_details["warrior_of_shadow"] = {
+                "darkness_cost": "1 Focus Point",
+                "shadow_step": monk_level >= 6,
+                "improved_shadow_step": monk_level >= 11,
+                "cloak_of_shadows": monk_level >= 17,
+            }
+            stats["actions"].append({
+                "name": "Shadow Arts: Darkness",
+                "action": "Magic Action",
+                "cost": "1 Focus Point",
+                "effect": "Cast Darkness without components. You can see through it, and move it 60 ft at start of each turn.",
+            })
+            if monk_level >= 6:
+                stats["actions"].append({
+                    "name": "Shadow Step",
+                    "action": "Bonus Action",
+                    "cost": "Free",
+                    "effect": "Teleport up to 60 ft between Dim Light or Darkness; gain Advantage on next melee attack.",
+                })
+            if monk_level >= 11:
+                stats["actions"].append({
+                    "name": "Improved Shadow Step",
+                    "action": "Bonus Action",
+                    "cost": "1 Focus Point",
+                    "effect": "Teleport up to 60 ft regardless of lighting, and make an Unarmed Strike as part of the bonus action.",
+                })
+            if monk_level >= 17:
+                stats["actions"].append({
+                    "name": "Cloak of Shadows",
+                    "action": "Magic Action",
+                    "cost": "3 Focus Points",
+                    "effect": "In Dim Light/Darkness: become Invisible, move through occupied spaces, and Flurry of Blows costs 0 FP for 1 minute.",
+                })
+
+        # 3. Warrior of the Elements
+        elif subclass_name == "Warrior of the Elements" and monk_level >= 3:
+            subclass_details["warrior_of_the_elements"] = {
+                "elemental_attunement": True,
+                "elemental_burst": monk_level >= 6,
+                "stride_of_the_elements": monk_level >= 11,
+                "elemental_epitome": monk_level >= 17,
+            }
+            stats["actions"].append({
+                "name": "Elemental Attunement",
+                "action": "Special (start of turn)",
+                "cost": "1 Focus Point",
+                "effect": f"For 10 min: +10 ft reach on Unarmed Strikes, deal Acid/Cold/Fire/Lightning/Thunder, and push or pull target 10 ft on STR save (DC {stats['focus_save_dc']}).",
+            })
+            if monk_level >= 6:
+                stats["actions"].append({
+                    "name": "Elemental Burst",
+                    "action": "Magic Action",
+                    "cost": "2 Focus Points",
+                    "effect": f"20-ft radius sphere within 120 ft deals 3{ma_die} elemental damage (Acid, Cold, Fire, Lightning, or Thunder); DEX save DC {stats['focus_save_dc']} for half.",
+                })
+            if monk_level >= 11:
+                stats["active_perks"].append("Stride of the Elements (Fly Speed and Swim Speed equal to Speed while Elemental Attunement active)")
+            if monk_level >= 17:
+                stats["active_perks"].append(f"Elemental Epitome (Elemental Resistance; Step of the Wind deals 1{ma_die} on passing within 5 ft; +1{ma_die} damage 1/turn)")
+
+        # 4. Warrior of the Open Hand
+        elif subclass_name == "Warrior of the Open Hand" and monk_level >= 3:
+            subclass_details["warrior_of_the_open_hand"] = {
+                "open_hand_technique": True,
+                "wholeness_of_body": monk_level >= 6,
+                "fleet_step": monk_level >= 11,
+                "quivering_palm": monk_level >= 17,
+            }
+            stats["actions"].append({
+                "name": "Open Hand Technique",
+                "action": "Special (on Flurry hit)",
+                "cost": "Free",
+                "effect": f"Addle (no OA until next turn), Push (STR save DC {stats['focus_save_dc']} or 15 ft push), or Topple (DEX save DC {stats['focus_save_dc']} or Prone).",
+            })
+            if monk_level >= 6:
+                stats["actions"].append({
+                    "name": "Wholeness of Body",
+                    "action": "Bonus Action",
+                    "uses": max(1, wis_mod),
+                    "recharge": "Long Rest",
+                    "effect": f"Regain 1{ma_die}{wis_str} HP ({max(1, wis_mod)} uses/LR).",
+                })
+            if monk_level >= 11:
+                stats["active_perks"].append("Fleet Step (Take Step of the Wind immediately after another Bonus Action)")
+            if monk_level >= 17:
+                stats["actions"].append({
+                    "name": "Quivering Palm",
+                    "action": "Special (on hit 4 FP, then Action/Attack to end)",
+                    "cost": "4 Focus Points",
+                    "effect": f"Set lethal vibrations in target. End vibrations: target makes CON save DC {stats['focus_save_dc']}, taking 10d12 Force damage (or half on save).",
+                })
+
+        # 5. Warrior of Venom (UA Supplement)
+        elif subclass_name == "Warrior of Venom" and monk_level >= 3:
+            subclass_details["warrior_of_venom"] = {
+                "envenom_weapon": True,
+                "toxic_touch": monk_level >= 6,
+                "toxin_refiner": monk_level >= 11,
+                "toxic_blood": monk_level >= 11,
+                "hallucinogenic_breath": monk_level >= 17,
+            }
+            stats["actions"].append({
+                "name": "Envenom Weapon",
+                "action": "Special (start of turn)",
+                "cost": "1 Focus Point",
+                "effect": f"Coat weapon for 1 min: Slowing Toxin (halved speed, no reactions, action or bonus action only) or Venom (+2{ma_die} Poison or Acid damage).",
+            })
+            if monk_level >= 6:
+                stats["actions"].append({
+                    "name": "Toxic Touch",
+                    "action": "Magic Action",
+                    "cost": "1 Focus Point",
+                    "effect": f"Touch creature: CON save DC {stats['focus_save_dc']} or Poisoned for 1 min with Intoxicant (Charmed), Sedative (Unconscious), or Truth Serum (cannot lie).",
+                })
+            if monk_level >= 11:
+                stats["active_perks"].append(f"Toxin Refiner (Immunity to Poison; taking poison adds +1{ma_die} to Envenom; ingesting poison heals 1{ma_die})")
+                stats["active_perks"].append(f"Toxic Blood (Melee attacker takes 1d6 Poison damage, or 1{ma_die} if Bloodied)")
+            if monk_level >= 17:
+                stats["actions"].append({
+                    "name": "Hallucinogenic Breath",
+                    "action": "Special (replace 1 attack)",
+                    "cost": "2 Focus Points",
+                    "effect": f"Target within 30 ft: CON save DC {stats['focus_save_dc']} or 3{ma_die} Poison damage & Frightened/fleeing for 1 min (half damage on save).",
+                })
+
+        # 6. Warrior of the Mystic Arts (AU Supplement)
+        elif subclass_name == "Warrior of the Mystic Arts" and monk_level >= 3:
+            mystic_dc = 8 + pb + wis_mod
+            mystic_attack = pb + wis_mod
+            subclass_details["warrior_of_the_mystic_arts"] = {
+                "spellcasting_ability": "Wisdom",
+                "spell_save_dc": mystic_dc,
+                "spell_attack_bonus": mystic_attack,
+                "mystic_fighting_style": monk_level >= 6,
+                "mystic_focus": monk_level >= 6,
+                "focused_strike": monk_level >= 11,
+                "improved_mystic_fighting_style": monk_level >= 17,
+            }
+            if monk_level >= 6:
+                stats["actions"].append({
+                    "name": "Mystic Fighting Style",
+                    "action": "Special (Attack action)",
+                    "effect": "Replace one Unarmed Strike with a casting of an action Sorcerer cantrip.",
+                })
+                stats["actions"].append({
+                    "name": "Mystic Focus",
+                    "action": "Special / Bonus Action",
+                    "effect": "Expend spell slot to regain slot-level Focus Points (no action), or spend 2 FP for lv 1 slot / 3 FP for lv 2 slot as Bonus Action.",
+                })
+            if monk_level >= 11:
+                stats["active_perks"].append("Focused Strike (Stunning Strike grants target Disadvantage on saves against your spells)")
+            if monk_level >= 17:
+                stats["actions"].append({
+                    "name": "Improved Mystic Fighting Style",
+                    "action": "Special (with Flurry of Blows)",
+                    "effect": "Replace two Flurry Unarmed Strikes with casting a level 1 or 2 Sorcerer spell as part of the bonus action.",
+                })
+
+        stats["subclass_details"] = subclass_details
+        return stats
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -9223,6 +9670,9 @@ class CharacterBuilder:
         if fighter_subclass == "Champion" and fighter_level >= 3:
             fighter_crit_threshold = 18 if fighter_level >= 15 else 19
 
+        monk_level = self._get_class_level("Monk")
+        monk_subclass = self._get_class_subclass("Monk")
+
         for weapon in active_weapons:
             weapon_name = (
                 weapon.get("display_name")
@@ -9236,6 +9686,9 @@ class CharacterBuilder:
             # Determine ability modifier
             category = weapon_props.get("category", "")
             properties = weapon_props.get("properties", [])
+            is_monk_weapon = category == "Simple Melee" or (
+                category == "Martial Melee" and "Light" in properties
+            )
 
             if "Finesse" in properties:
                 str_mod = ability_scores.get("strength", {}).get("modifier", 0)
@@ -9248,11 +9701,6 @@ class CharacterBuilder:
             else:
                 str_mod = ability_scores.get("strength", {}).get("modifier", 0)
                 dex_mod = ability_scores.get("dexterity", {}).get("modifier", 0)
-                # Check if this is a monk weapon eligible for Dexterous Attacks:
-                # Simple Melee, or Martial Melee with Light property
-                is_monk_weapon = category == "Simple Melee" or (
-                    category == "Martial Melee" and "Light" in properties
-                )
                 if self.character_data.get("monk_dexterous_attacks") and is_monk_weapon:
                     ability_mod = max(str_mod, dex_mod)
                     ability_name = f"STR/DEX ({'STR' if str_mod >= dex_mod else 'DEX'})"
@@ -9484,6 +9932,9 @@ class CharacterBuilder:
                 damage_notes.append(f"+1{psi_die}{int_str} Force (Psionic Strike, 1/turn)")
             if fighter_subclass == "Hell Knight" and fighter_level >= 3:
                 damage_notes.append("+1d6 Infernal Wound (Cold, Fire, or Necrotic, 1/turn)")
+            if monk_subclass == "Warrior of Venom" and monk_level >= 3 and is_monk_weapon:
+                ma_d = "1d12" if monk_level >= 17 else ("1d10" if monk_level >= 11 else ("1d8" if monk_level >= 5 else "1d6"))
+                damage_notes.append(f"Envenom Weapon (1 FP): Slowing Toxin or +2{ma_d} Poison/Acid")
 
             attack_info = {
                 "name": weapon_name,
@@ -9609,6 +10060,16 @@ class CharacterBuilder:
             unarmed_notes.append(f"+{unarmed_rage_bonus} while Raging")
         if fighter_crit_threshold < 20:
             unarmed_notes.append(f"Crit on {fighter_crit_threshold}-20")
+        if monk_level >= 6:
+            unarmed_notes.append("Empowered Strikes (can deal Force damage)")
+        if monk_subclass == "Warrior of the Elements" and monk_level >= 3:
+            unarmed_notes.append("Elemental Attunement (+10 ft reach, can deal Acid/Cold/Fire/Lightning/Thunder, push/pull 10 ft)")
+        if monk_subclass == "Warrior of Mercy" and monk_level >= 3:
+            wis_m = ability_scores.get("wisdom", {}).get("modifier", 0)
+            wis_s = f"+{wis_m}" if wis_m >= 0 else str(wis_m)
+            poison_s = "; +Poisoned at lv 6+" if monk_level >= 6 else ""
+            ma_d = "1d12" if monk_level >= 17 else ("1d10" if monk_level >= 11 else ("1d8" if monk_level >= 5 else "1d6"))
+            unarmed_notes.append(f"+1{ma_d}{wis_s} Necrotic (Hand of Harm, 1 FP, 1/turn{poison_s})")
 
         unarmed_attack = {
             "name": "Unarmed Strike",
@@ -10928,6 +11389,11 @@ class CharacterBuilder:
         fighter_stats = self.calculate_fighter_stats()
         if fighter_stats.get("fighter_level", 0) > 0:
             character_data["fighter_stats"] = fighter_stats
+
+        # Add Monk stats (Monk only)
+        monk_stats = self.calculate_monk_stats()
+        if monk_stats.get("monk_level", 0) > 0:
+            character_data["monk_stats"] = monk_stats
 
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:

@@ -39,6 +39,7 @@ import {
   Wand2,
   Music,
   PawPrint,
+  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -424,8 +425,8 @@ export function LevelUpDialog({ open, onClose, onSuccess }: LevelUpDialogProps) 
               </div>
             </div>
 
-            {/* Spellcasting, Weapon Mastery, Bardic Inspiration, Channel Divinity, Wild Shape & Fighter Martial Exploits callouts */}
-            {(preview.spellcasting_changes?.has_spellcasting || preview.mastery_changes?.increased || (preview.bard_changes?.has_bardic_inspiration && (preview.bard_changes.die_increased || preview.bard_changes.recharge_improved)) || (preview.cleric_changes?.has_channel_divinity && (preview.cleric_changes.cd_uses_increased || preview.cleric_changes.spark_dice_increased || preview.cleric_changes.divine_intervention_unlocked)) || (preview.druid_changes?.has_wild_shape && (preview.druid_changes.ws_uses_increased || preview.druid_changes.max_cr_increased || preview.druid_changes.known_forms_increased || preview.druid_changes.fly_speed_unlocked || preview.druid_changes.wild_resurgence_unlocked || preview.druid_changes.elemental_fury_unlocked || preview.druid_changes.beast_spells_unlocked || preview.druid_changes.archdruid_unlocked)) || (preview.fighter_changes?.is_fighter && (preview.fighter_changes.second_wind_increased || preview.fighter_changes.tactical_mind_unlocked || preview.fighter_changes.tactical_shift_unlocked || preview.fighter_changes.action_surge_unlocked || preview.fighter_changes.action_surge_increased || preview.fighter_changes.indomitable_unlocked || preview.fighter_changes.indomitable_increased || preview.fighter_changes.attacks_per_action_increased || preview.fighter_changes.tactical_master_unlocked || preview.fighter_changes.studied_attacks_unlocked))) && (
+            {/* Spellcasting, Weapon Mastery, Bardic Inspiration, Channel Divinity, Wild Shape, Fighter Martial Exploits & Monk Focus callouts */}
+            {(preview.spellcasting_changes?.has_spellcasting || preview.mastery_changes?.increased || (preview.bard_changes?.has_bardic_inspiration && (preview.bard_changes.die_increased || preview.bard_changes.recharge_improved)) || (preview.cleric_changes?.has_channel_divinity && (preview.cleric_changes.cd_uses_increased || preview.cleric_changes.spark_dice_increased || preview.cleric_changes.divine_intervention_unlocked)) || (preview.druid_changes?.has_wild_shape && (preview.druid_changes.ws_uses_increased || preview.druid_changes.max_cr_increased || preview.druid_changes.known_forms_increased || preview.druid_changes.fly_speed_unlocked || preview.druid_changes.wild_resurgence_unlocked || preview.druid_changes.elemental_fury_unlocked || preview.druid_changes.beast_spells_unlocked || preview.druid_changes.archdruid_unlocked)) || (preview.fighter_changes?.is_fighter && (preview.fighter_changes.second_wind_increased || preview.fighter_changes.tactical_mind_unlocked || preview.fighter_changes.tactical_shift_unlocked || preview.fighter_changes.action_surge_unlocked || preview.fighter_changes.action_surge_increased || preview.fighter_changes.indomitable_unlocked || preview.fighter_changes.indomitable_increased || preview.fighter_changes.attacks_per_action_increased || preview.fighter_changes.tactical_master_unlocked || preview.fighter_changes.studied_attacks_unlocked)) || (preview.monk_changes?.is_monk && (preview.monk_changes.martial_arts_die_increased || preview.monk_changes.focus_points_increased || preview.monk_changes.unarmored_movement_increased || preview.monk_changes.uncanny_metabolism_unlocked || preview.monk_changes.deflect_attacks_unlocked || preview.monk_changes.deflect_energy_unlocked || preview.monk_changes.stunning_strike_unlocked || preview.monk_changes.empowered_strikes_unlocked || preview.monk_changes.heightened_focus_unlocked || preview.monk_changes.self_restoration_unlocked || preview.monk_changes.disciplined_survivor_unlocked || preview.monk_changes.perfect_focus_unlocked || preview.monk_changes.superior_defense_unlocked || preview.monk_changes.body_and_mind_unlocked || preview.monk_changes.attacks_per_action_increased))) && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {preview.spellcasting_changes?.has_spellcasting && (
                   <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm space-y-1.5">
@@ -620,6 +621,94 @@ export function LevelUpDialog({ open, onClose, onSuccess }: LevelUpDialogProps) 
                     {preview.fighter_changes.studied_attacks_unlocked && (
                       <p className="text-xs text-muted-foreground">
                         Studied Attacks: <span className="font-semibold text-foreground">Gain Advantage on next attack if an attack roll misses</span>
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {preview.monk_changes?.is_monk && (preview.monk_changes.martial_arts_die_increased || preview.monk_changes.focus_points_increased || preview.monk_changes.unarmored_movement_increased || preview.monk_changes.uncanny_metabolism_unlocked || preview.monk_changes.deflect_attacks_unlocked || preview.monk_changes.deflect_energy_unlocked || preview.monk_changes.stunning_strike_unlocked || preview.monk_changes.empowered_strikes_unlocked || preview.monk_changes.heightened_focus_unlocked || preview.monk_changes.self_restoration_unlocked || preview.monk_changes.disciplined_survivor_unlocked || preview.monk_changes.perfect_focus_unlocked || preview.monk_changes.superior_defense_unlocked || preview.monk_changes.body_and_mind_unlocked || preview.monk_changes.attacks_per_action_increased) && (
+                  <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 text-sm space-y-1.5">
+                    <div className="flex items-center gap-2 font-semibold text-amber-400">
+                      <Zap className="h-4 w-4 text-amber-400" />
+                      Focus & Martial Arts Enhanced
+                    </div>
+                    {preview.monk_changes.martial_arts_die_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Martial Arts Die: {preview.monk_changes.current_martial_arts_die} →{" "}
+                        <span className="font-semibold text-foreground">{preview.monk_changes.next_martial_arts_die}</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.focus_points_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Focus Points: {preview.monk_changes.current_focus_points} →{" "}
+                        <span className="font-semibold text-foreground">{preview.monk_changes.next_focus_points} Focus Points</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.unarmored_movement_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Unarmored Movement: +{preview.monk_changes.current_unarmored_movement} ft →{" "}
+                        <span className="font-semibold text-foreground">+{preview.monk_changes.next_unarmored_movement} ft Speed</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.attacks_per_action_increased && (
+                      <p className="text-xs text-muted-foreground">
+                        Attacks per Action: {preview.monk_changes.current_attacks_per_action} →{" "}
+                        <span className="font-semibold text-foreground">{preview.monk_changes.next_attacks_per_action} attacks with Attack action</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.uncanny_metabolism_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Uncanny Metabolism: <span className="font-semibold text-foreground">Regain all Focus Points and heal on Initiative roll (1/LR)</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.deflect_attacks_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Deflect Attacks: <span className="font-semibold text-foreground">Reduce B/P/S damage by 1d10+DEX+Level; 1 FP counterattack</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.stunning_strike_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Stunning Strike: <span className="font-semibold text-foreground">Spend 1 FP on hit to Stun, or halve speed & grant Advantage</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.empowered_strikes_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Empowered Strikes: <span className="font-semibold text-foreground">Unarmed Strikes can deal Force damage</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.heightened_focus_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Heightened Focus: <span className="font-semibold text-foreground">Flurry grants 3 strikes; Patient Defense gives Temp HP; Step of Wind carries ally</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.self_restoration_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Self-Restoration: <span className="font-semibold text-foreground">End Charmed/Frightened/Poisoned at turn end; no exhaustion from hunger/thirst</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.deflect_energy_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Deflect Energy: <span className="font-semibold text-foreground">Deflect Attacks now applies to any damage type</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.disciplined_survivor_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Disciplined Survivor: <span className="font-semibold text-foreground">Gain proficiency in all saving throws; reroll failed save for 1 FP</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.perfect_focus_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Perfect Focus: <span className="font-semibold text-foreground">Regain Focus Points up to 4 on Initiative roll</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.superior_defense_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Superior Defense: <span className="font-semibold text-foreground">Spend 3 FP for Resistance to all damage except Force</span>
+                      </p>
+                    )}
+                    {preview.monk_changes.body_and_mind_unlocked && (
+                      <p className="text-xs text-muted-foreground">
+                        Body and Mind: <span className="font-semibold text-foreground">+4 Dexterity and +4 Wisdom (max 25)</span>
                       </p>
                     )}
                   </div>

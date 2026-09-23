@@ -453,6 +453,8 @@ class TestWarriorOfMercy:
         skills = builder.character_data["proficiencies"]["skills"]
         assert "Insight" in skills
         assert "Medicine" in skills
+        tools = builder.character_data["proficiencies"]["tools"]
+        assert "Herbalism Kit" in tools
 
     def test_features_present(self):
         builder = _build_monk(level=3, subclass="Warrior of Mercy")

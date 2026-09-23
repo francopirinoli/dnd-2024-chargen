@@ -25,6 +25,7 @@ import {
   Flame,
   Music,
   PawPrint,
+  Zap,
 } from "lucide-react";
 import { PrepareSpellsDialog } from "@/components/sheet/PrepareSpellsDialog";
 import { ChooseMasteriesDialog } from "@/components/sheet/ChooseMasteriesDialog";
@@ -1427,6 +1428,8 @@ function Attacks({
   const hasWildShape = Boolean(druidStats.has_wild_shape);
   const fighterStats = rec(c.fighter_stats);
   const isFighter = Boolean(fighterStats.is_fighter);
+  const monkStats = rec(c.monk_stats);
+  const isMonk = Boolean(monkStats.is_monk);
   const combinations = arr<Record<string, unknown>>(c.attack_combinations);
 
   const serverBestCombination = rec(c.best_attack_combination);
@@ -1956,6 +1959,132 @@ function Attacks({
                         )}
                       </div>
                       <div className="text-[11px] text-muted-foreground line-clamp-2">
+                        {str(act.effect)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {isMonk && monkStats.monk_level !== undefined && (
+            <div className="mt-3 flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Zap className="h-4 w-4 text-amber-400" />
+                  <span className="font-semibold uppercase tracking-wide text-amber-400">
+                    Focus & Martial Arts
+                  </span>
+                  <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                    {str(monkStats.extra_attacks_label) ?? `${num(monkStats.attacks_per_action)} attack/action`}
+                  </span>
+                </div>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Focus Points: {num(monkStats.focus_points)} / {num(monkStats.focus_points_max)} FP
+                  </span>
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Save DC: {num(monkStats.focus_save_dc)}
+                  </span>
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Die: {str(monkStats.martial_arts_die)}
+                  </span>
+                  {(num(monkStats.unarmored_movement_bonus) ?? 0) > 0 && (
+                    <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                      Speed: +{num(monkStats.unarmored_movement_bonus)} ft
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+                <span>Recharge: <strong className="text-foreground">{str(monkStats.focus_recharge)}</strong></span>
+                {Boolean(monkStats.has_uncanny_metabolism) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-emerald-400 font-medium">Uncanny Metabolism (Init: Regain FP + Heal)</span>
+                  </>
+                )}
+                {Boolean(monkStats.has_deflect_attacks) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-sky-400 font-medium">
+                      {Boolean(monkStats.has_deflect_energy) ? "Deflect Energy (Any damage)" : "Deflect Attacks (B/P/S)"}
+                    </span>
+                  </>
+                )}
+                {Boolean(monkStats.has_stunning_strike) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-amber-400 font-medium">Stunning Strike (CON save)</span>
+                  </>
+                )}
+                {Boolean(monkStats.has_empowered_strikes) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-purple-400 font-medium">Empowered Strikes (Force)</span>
+                  </>
+                )}
+                {Boolean(monkStats.has_heightened_focus) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-rose-400 font-medium">Heightened Focus</span>
+                  </>
+                )}
+                {Boolean(monkStats.has_self_restoration) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-teal-400 font-medium">Self-Restoration</span>
+                  </>
+                )}
+                {Boolean(monkStats.has_disciplined_survivor) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-indigo-400 font-medium">Disciplined Survivor (All Saves)</span>
+                  </>
+                )}
+                {Boolean(monkStats.has_perfect_focus) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-cyan-400 font-medium">Perfect Focus (Init: Regain to 4 FP)</span>
+                  </>
+                )}
+                {Boolean(monkStats.has_superior_defense) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-yellow-400 font-medium">Superior Defense (3 FP Resistance)</span>
+                  </>
+                )}
+                {Boolean(monkStats.has_body_and_mind) && (
+                  <>
+                    <span>·</span>
+                    <span className="text-fuchsia-400 font-medium">Body and Mind (+4 DEX/WIS)</span>
+                  </>
+                )}
+              </div>
+
+              {arr<Record<string, unknown>>(monkStats.actions).length > 0 && (
+                <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {arr<Record<string, unknown>>(monkStats.actions).map((act, idx) => (
+                    <div
+                      key={idx}
+                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                    >
+                      <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                        <span className="text-amber-300">{str(act.name)}</span>
+                        <div className="flex items-center gap-1">
+                          {act.cost !== undefined && (
+                            <span className="rounded bg-muted/60 px-1 text-[10px] text-muted-foreground font-normal">
+                              {str(act.cost)}
+                            </span>
+                          )}
+                          <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                            {str(act.action)}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="mt-0.5 text-[11px] text-muted-foreground">
                         {str(act.effect)}
                       </div>
                     </div>

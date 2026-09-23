@@ -394,6 +394,32 @@ export interface LevelUpPreviewResponse {
     current_masteries: number;
     next_masteries: number;
   };
+  monk_changes?: {
+    is_monk: boolean;
+    current_martial_arts_die: string;
+    next_martial_arts_die: string;
+    martial_arts_die_increased: boolean;
+    current_focus_points: number;
+    next_focus_points: number;
+    focus_points_increased: boolean;
+    current_unarmored_movement: number;
+    next_unarmored_movement: number;
+    unarmored_movement_increased: boolean;
+    uncanny_metabolism_unlocked: boolean;
+    deflect_attacks_unlocked: boolean;
+    deflect_energy_unlocked: boolean;
+    stunning_strike_unlocked: boolean;
+    empowered_strikes_unlocked: boolean;
+    heightened_focus_unlocked: boolean;
+    self_restoration_unlocked: boolean;
+    disciplined_survivor_unlocked: boolean;
+    perfect_focus_unlocked: boolean;
+    superior_defense_unlocked: boolean;
+    body_and_mind_unlocked: boolean;
+    attacks_per_action_increased: boolean;
+    current_attacks_per_action: number;
+    next_attacks_per_action: number;
+  };
 }
 
 export interface BackgroundSummary {

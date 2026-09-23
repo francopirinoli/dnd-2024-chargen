@@ -72,6 +72,7 @@ KNOWN_EFFECT_TYPES: frozenset = frozenset({
     "grant_cantrip",
     "grant_cantrip_choice",
     "grant_condition_immunity",
+    "grant_damage_immunity",
     "grant_damage_resistance",
     "grant_darkvision",
     "grant_language",

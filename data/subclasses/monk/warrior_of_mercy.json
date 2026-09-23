@@ -8,7 +8,8 @@
       "Implements of Mercy": {
         "description": "You gain proficiency in the Insight and Medicine skills and proficiency with the Herbalism Kit.",
         "effects": [
-          {"type": "grant_skill_proficiency", "skills": ["Insight", "Medicine"]}
+          {"type": "grant_skill_proficiency", "skills": ["Insight", "Medicine"]},
+          {"type": "grant_tool_proficiency", "tools": ["Herbalism Kit"]}
         ]
       },
       "Hand of Healing": "As a Magic action, you can expend 1 Focus Point to touch a creature and restore a number of Hit Points equal to a roll of your Martial Arts die plus your Wisdom modifier. When you use your Flurry of Blows, you can replace one of the Unarmed Strikes with a use of this feature without expending a Focus Point for the healing.",

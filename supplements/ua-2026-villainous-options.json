@@ -258,13 +258,23 @@
       "features_by_level": {
         "3": {
           "Envenom Weapon": "At the start of your turn, you can expend 1 Focus Point to apply a toxin produced from your blood to one Monk weapon that you're holding. A creature that takes damage from the weapon is subjected to one of the following toxin effects (choose when you apply the toxin):\n- Slowing Toxin: Until the start of your next turn, the target's Speed is halved; it can't take Reactions; and it can take either an action or a Bonus Action on its turn, not both.\n- Venom: The target takes Poison damage equal to two rolls of your Martial Arts die.\nThe toxin retains potency for 1 minute or until a creature takes damage from the weapon.",
-          "Potent Arsenal": "You gain a Poisoner's Kit, and you have proficiency with it. When creating a Basic Poison, you can do so over the course of 1 day (8 hours of work). Additionally, whenever you deal Poison damage with a Monk feature or a Monk weapon, you can change that damage type to Acid."
+          "Potent Arsenal": {
+            "description": "You gain a Poisoner's Kit, and you have proficiency with it. When creating a Basic Poison, you can do so over the course of 1 day (8 hours of work). Additionally, whenever you deal Poison damage with a Monk feature or a Monk weapon, you can change that damage type to Acid.",
+            "effects": [
+              {"type": "grant_tool_proficiency", "tools": ["Poisoner's Kit"]}
+            ]
+          }
         },
         "6": {
           "Toxic Touch": "As a Magic action, you can expend 1 Focus Point to apply a potent toxin to a creature you touch. The target makes a Constitution saving throw. On a failed save, the target has the Poisoned condition for 1 minute. While Poisoned, the target is affected by one of the following effects of your choice:\n- Intoxicant: The target has the Charmed condition for the duration or until you or your allies deal damage to the target.\n- Sedative: The creature falls asleep and has the Unconscious condition for the duration. Another creature can use an action to shake it awake and remove the condition.\n- Truth Serum: The target can't knowingly communicate a lie for the duration."
         },
         "11": {
-          "Toxin Refiner": "Your body can filter poison. You gain Immunity to Poison damage. Whenever you are subjected to Poison damage, your Envenom Weapon options each deal extra Poison damage equal to one roll of your Martial Arts die, and you can't gain this benefit again until the end of your next turn. In addition, whenever you ingest a poison, you regain Hit Points equal to one roll of your Martial Arts die.",
+          "Toxin Refiner": {
+            "description": "Your body can filter poison. You gain Immunity to Poison damage. Whenever you are subjected to Poison damage, your Envenom Weapon options each deal extra Poison damage equal to one roll of your Martial Arts die, and you can't gain this benefit again until the end of your next turn. In addition, whenever you ingest a poison, you regain Hit Points equal to one roll of your Martial Arts die.",
+            "effects": [
+              {"type": "grant_damage_immunity", "damage_type": "Poison"}
+            ]
+          },
           "Toxic Blood": "Enemies draw your toxic blood at their own peril. Whenever a creature hits you with a melee attack roll, the attacker takes 1d6 Poison damage. If you are Bloodied, the attacker instead takes Poison damage equal to one roll of your Martial Arts die."
         },
         "17": {
