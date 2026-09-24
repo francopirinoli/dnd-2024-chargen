@@ -26,6 +26,7 @@ import {
   Music,
   PawPrint,
   Zap,
+  Sun,
 } from "lucide-react";
 import { PrepareSpellsDialog } from "@/components/sheet/PrepareSpellsDialog";
 import { ChooseMasteriesDialog } from "@/components/sheet/ChooseMasteriesDialog";
@@ -1198,6 +1199,9 @@ function SavingThrows({ c }: { c: Char }) {
   const abilities = rec(c.abilities);
   const advantages = arr<Record<string, unknown>>(c.save_advantages);
   const hasAnyAdvantage = advantages.length > 0;
+  const paladinStats = rec(c.paladin_stats);
+  const auraProtection = rec(paladinStats.aura_of_protection);
+  const hasAura = Boolean(auraProtection.active) && num(auraProtection.bonus) !== undefined;
 
   const advantageFor = (name: string) => {
     for (const sa of advantages) {
@@ -1265,6 +1269,14 @@ function SavingThrows({ c }: { c: Char }) {
               Adv
             </span>{" "}
             Advantage on save
+          </>
+        )}
+        {hasAura && (
+          <>
+            {" · "}
+            <span className="text-amber-400 font-semibold" title={str(auraProtection.description)}>
+              Aura +{num(auraProtection.bonus)} included
+            </span>
           </>
         )}
       </div>
@@ -1426,6 +1438,8 @@ function SpecialFeatures({ c }: { c: Char }) {
   const isFighter = Boolean(fighterStats.is_fighter);
   const monkStats = rec(c.monk_stats);
   const isMonk = Boolean(monkStats.is_monk);
+  const paladinStats = rec(c.paladin_stats);
+  const isPaladin = Boolean(paladinStats.is_paladin) || num(paladinStats.paladin_level) !== undefined;
   const superiorityDice = rec(c.superiority_dice);
   const hasSuperiorityDice = num(superiorityDice.count) !== undefined;
   const hasArcaneShot = num(c.arcane_shot_dc) !== undefined;
@@ -1437,6 +1451,7 @@ function SpecialFeatures({ c }: { c: Char }) {
     (hasWildShape && druidStats.wild_shape_max !== undefined) ||
     (isFighter && fighterStats.fighter_level !== undefined) ||
     (isMonk && monkStats.monk_level !== undefined) ||
+    (isPaladin && paladinStats.paladin_level !== undefined) ||
     hasSuperiorityDice ||
     hasArcaneShot;
 
@@ -1847,6 +1862,107 @@ function SpecialFeatures({ c }: { c: Char }) {
                           {str(act.action)}
                         </span>
                       </div>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isPaladin && paladinStats.paladin_level !== undefined && (
+          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <Sun className="h-4 w-4 text-amber-400" />
+                <span className="font-semibold uppercase tracking-wide text-amber-400">
+                  Sacred Rites & Auras
+                </span>
+                <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                  Pool: {num(paladinStats.lay_on_hands_pool)} HP (Lay on Hands)
+                </span>
+                {Boolean(paladinStats.has_channel_divinity) && (
+                  <span className="rounded bg-primary/20 px-2 py-0.5 text-xs font-semibold text-primary">
+                    Channel Divinity: {num(paladinStats.channel_divinity_max)} uses (DC {num(paladinStats.channel_divinity_save_dc)})
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                {Boolean(paladinStats.paladin_smite_free_cast) && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Divine Smite: 1 Free / LR
+                  </span>
+                )}
+                {Boolean(paladinStats.faithful_steed_free_cast) && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Find Steed: 1 Free / LR
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+              {rec(paladinStats.aura_of_protection).active === true && (
+                <span className="text-amber-300 font-medium">
+                  Aura of Protection: +{num(rec(paladinStats.aura_of_protection).bonus)} to all saves ({str(rec(paladinStats.aura_of_protection).range)})
+                </span>
+              )}
+              {rec(paladinStats.aura_of_courage).active === true && (
+                <>
+                  <span>·</span>
+                  <span className="text-emerald-400 font-medium">
+                    Aura of Courage: Frightened Immunity ({str(rec(paladinStats.aura_of_courage).range)})
+                  </span>
+                </>
+              )}
+              {rec(paladinStats.radiant_strikes).active === true && (
+                <>
+                  <span>·</span>
+                  <span className="text-yellow-400 font-medium">
+                    Radiant Strikes (+1d8 Radiant on melee)
+                  </span>
+                </>
+              )}
+              {arr<string>(paladinStats.conditions_cured).length > 0 && (
+                <>
+                  <span>·</span>
+                  <span>Cures (5 HP): <strong className="text-foreground">{arr<string>(paladinStats.conditions_cured).join(", ")}</strong></span>
+                </>
+              )}
+            </div>
+
+            {(arr<Record<string, unknown>>(paladinStats.channel_divinity_options).length > 0 ||
+              arr<Record<string, unknown>>(paladinStats.actions).length > 0) && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(paladinStats.channel_divinity_options).map((opt, idx) => (
+                  <div
+                    key={`cd-${idx}`}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-amber-300">{str(opt.name)}</span>
+                      <span className="rounded bg-sky-500/20 px-1 text-[10px] text-sky-300">
+                        {str(opt.action)}
+                      </span>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(opt.effect)}
+                    </div>
+                  </div>
+                ))}
+                {arr<Record<string, unknown>>(paladinStats.actions).map((act, idx) => (
+                  <div
+                    key={`act-${idx}`}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-primary">{str(act.name)}</span>
+                      <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                        {str(act.action)}
+                      </span>
                     </div>
                     <div className="mt-0.5 text-[11px] text-muted-foreground">
                       {str(act.effect)}

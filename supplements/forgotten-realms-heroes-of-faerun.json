@@ -300,7 +300,38 @@
               ]
             }
           },
-          "Genie's Splendor": "When you aren't wearing any armor, your base Armor Class equals 10 plus your Dexterity and Charisma modifiers. You can use a Shield and still gain this benefit.\nYou also gain proficiency in one of the following skills of your choice: Acrobatics, Intimidation, Performance, or Persuasion."
+          "Genie's Splendor": {
+            "description": "When you aren't wearing any armor, your base Armor Class equals 10 plus your Dexterity and Charisma modifiers. You can use a Shield and still gain this benefit.\nYou also gain proficiency in one of the following skills of your choice: Acrobatics, Intimidation, Performance, or Persuasion.",
+            "choices": {
+              "type": "select_single",
+              "count": 1,
+              "name": "genies_splendor_skill",
+              "source": {
+                "type": "fixed_list",
+                "options": [
+                  "Acrobatics",
+                  "Intimidation",
+                  "Performance",
+                  "Persuasion"
+                ]
+              }
+            },
+            "effects": [
+              {
+                "type": "alternative_ac",
+                "base": 10,
+                "modifiers": [
+                  "dexterity",
+                  "charisma"
+                ],
+                "condition": "no_armor"
+              },
+              {
+                "type": "grant_skill_proficiency",
+                "from_choice": "genies_splendor_skill"
+              }
+            ]
+          }
         },
         "7": {
           "Aura of Elemental Shielding": "Choose one of the following damage types: Acid, Cold, Fire, Lightning, or Thunder. You and your allies have Resistance to that damage type while in your Aura of Protection.\nAt the start of each of your turns, you can change the damage type affected by this feature to one of the other listed options (no action required)."

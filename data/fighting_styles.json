@@ -76,6 +76,20 @@
           "type": "unarmed_fighting"
         }
       ]
+    },
+    "Blessed Warrior": {
+      "description": "You learn two cantrips of your choice from the Cleric spell list. Charisma is your spellcasting ability for these cantrips.",
+      "effects": [
+        {
+          "type": "grant_cantrip_choice",
+          "count": 2,
+          "spell_list": "Cleric",
+          "spellcasting_ability": "Charisma",
+          "counts_against_limit": false,
+          "category": "always_prepared",
+          "depends_on": "fighting_style"
+        }
+      ]
     }
   }
 }

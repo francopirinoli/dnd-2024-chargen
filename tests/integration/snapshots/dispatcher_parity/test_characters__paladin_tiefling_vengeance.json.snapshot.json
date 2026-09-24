@@ -350,7 +350,15 @@
         "Weapon Mastery": "Your training with weapons allows you to use the mastery properties of two kinds of weapons of your choice with which you have proficiency."
       },
       "10": {
-        "Aura of Courage": "You and your allies have Immunity to the Frightened condition while in your Aura of Protection. If a Frightened ally enters the aura, that condition has no effect on that ally while there."
+        "Aura of Courage": {
+          "description": "You and your allies have Immunity to the Frightened condition while in your Aura of Protection. If a Frightened ally enters the aura, that condition has no effect on that ally while there.",
+          "effects": [
+            {
+              "condition": "Frightened",
+              "type": "grant_condition_immunity"
+            }
+          ]
+        }
       },
       "11": {
         "Radiant Strikes": "Your strikes carry supernatural power. When you hit a target with an attack roll using a Melee weapon or an Unarmed Strike, the target takes an extra 1d8 Radiant damage."
@@ -405,9 +413,8 @@
             "name": "fighting_style",
             "optional": false,
             "source": {
-              "file": "fighting_styles.json",
-              "list": "fighting_styles",
-              "type": "external"
+              "list": "fighting_style_options",
+              "type": "internal"
             },
             "type": "select_single"
           },
@@ -489,6 +496,89 @@
       },
       "9": {
         "Abjure Foes": "As a Magic action, expend one use of Channel Divinity. Target a number of creatures equal to your Charisma modifier (minimum of one) within 60 feet. Each must succeed on a Wisdom saving throw or have the Frightened condition for 1 minute or until it takes any damage. While Frightened this way, can only do one of: move, take an action, or take a Bonus Action."
+      }
+    },
+    "fighting_style_options": {
+      "Blessed Warrior": {
+        "description": "You learn two cantrips of your choice from the Cleric spell list. Charisma is your spellcasting ability for these cantrips.",
+        "effects": [
+          {
+            "category": "always_prepared",
+            "count": 2,
+            "counts_against_limit": false,
+            "depends_on": "fighting_style",
+            "spell_list": "Cleric",
+            "spellcasting_ability": "Charisma",
+            "type": "grant_cantrip_choice"
+          }
+        ]
+      },
+      "Blind Fighting": {
+        "description": "You have blindsight with a range of 10 feet.",
+        "notes": "Requires special sensing implementation."
+      },
+      "Defense": {
+        "description": "While you are wearing armor, you gain a +1 bonus to AC.",
+        "effects": [
+          {
+            "condition": "wearing armor",
+            "type": "bonus_ac",
+            "value": 1
+          }
+        ]
+      },
+      "Dueling": {
+        "description": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+        "effects": [
+          {
+            "condition": "one handed melee weapon",
+            "type": "bonus_damage",
+            "value": 2
+          }
+        ]
+      },
+      "Great Weapon Fighting": {
+        "description": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can reroll the die and must use the new roll. The weapon must have the Two-Handed or Versatile property for you to gain this benefit.",
+        "effects": [
+          {
+            "type": "great_weapon_fighting"
+          }
+        ]
+      },
+      "Interception": {
+        "description": "When a creature you can see hits a target, other than you, within 5 feet of you with an attack, you can use your reaction to reduce the damage the target takes by 1d10 + your proficiency bonus (to a minimum of 0 damage). You must be wielding a shield or a simple or martial weapon.",
+        "notes": "This is a reaction ability that requires tactical implementation."
+      },
+      "Protection": {
+        "description": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose disadvantage on the attack roll. You must be wielding a shield.",
+        "notes": "This is a reaction ability that requires tactical implementation."
+      },
+      "Thrown Weapon Fighting": {
+        "description": "You can draw a weapon that has the thrown property as part of the attack you make with the weapon. In addition, when you hit with a ranged attack using a thrown weapon, you gain a +2 bonus to the damage roll.",
+        "effects": [
+          {
+            "condition": "thrown weapon ranged attack",
+            "type": "bonus_damage",
+            "value": 2
+          }
+        ]
+      },
+      "Two-Weapon Fighting": {
+        "description": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
+        "effects": [
+          {
+            "applies_to": "offhand",
+            "type": "two_weapon_fighting_modifier"
+          }
+        ]
+      },
+      "Unarmed Fighting": {
+        "description": "Your unarmed strikes can deal bludgeoning damage equal to 1d6 + your Strength modifier on a hit. If you aren't wielding any weapons or a shield when you make the attack roll, the d6 becomes a d8. At the start of each of your turns, you can deal 1d4 bludgeoning damage to one creature grappled by you.",
+        "effects": [
+          {
+            "type": "unarmed_fighting"
+          }
+        ]
       }
     },
     "hit_die": 10,
@@ -628,7 +718,7 @@
     "spell_preparation_formula": "level + charisma_modifier",
     "spell_slots_by_level": {
       "1": [
-        0,
+        2,
         0,
         0,
         0,
@@ -1307,6 +1397,71 @@
   "magical_darkness_sight": {},
   "maneuvers_known": [],
   "name": "Seraphel Ashveil",
+  "paladin_stats": {
+    "actions": [
+      {
+        "action": "Bonus Action (Immediately after hit)",
+        "effect": "Expend a spell slot (or free 1/Long Rest) to deal +2d8 Radiant damage (+1d8 per slot level above 1st) with Melee weapon or Unarmed Strike.",
+        "name": "Divine Smite"
+      },
+      {
+        "action": "Bonus Action (Touch)",
+        "effect": "Restore up to 15 HP from healing pool, or expend 5 HP per condition to cure Poisoned.",
+        "name": "Lay on Hands"
+      }
+    ],
+    "active_perks": [
+      "Lay on Hands (15 HP pool, Bonus Action)",
+      "Paladin's Smite (Divine Smite 1/Long Rest without spell slot)"
+    ],
+    "aura_of_courage": {
+      "active": false,
+      "description": "",
+      "range": "None"
+    },
+    "aura_of_protection": {
+      "active": false,
+      "bonus": 0,
+      "description": "",
+      "range": "None"
+    },
+    "channel_divinity_max": 2,
+    "channel_divinity_options": [
+      {
+        "action": "Bonus Action / Attack Action (30 ft)",
+        "effect": "Advantage on attack rolls against target creature for 1 min or until drops to 0 HP (can transfer to another creature within 30 ft on kill, no action).",
+        "name": "Vow of Enmity"
+      },
+      {
+        "action": "Bonus Action",
+        "effect": "For 10 minutes or until Incapacitated, detect the location of any Celestial, Fiend, or Undead within 60 ft, and any consecrated or desecrated ground.",
+        "name": "Divine Sense"
+      }
+    ],
+    "channel_divinity_recharge": "Short or Long Rest (regain 1 on Short Rest, all on Long Rest)",
+    "channel_divinity_save_dc": 12,
+    "channel_divinity_uses": 2,
+    "conditions_cured": [
+      "Poisoned"
+    ],
+    "faithful_steed_free_cast": false,
+    "has_channel_divinity": true,
+    "has_lay_on_hands": true,
+    "is_paladin": true,
+    "lay_on_hands_action": "Bonus Action",
+    "lay_on_hands_cure_cost": 5,
+    "lay_on_hands_pool": 15,
+    "paladin_level": 3,
+    "paladin_smite_free_cast": true,
+    "radiant_strikes": {
+      "active": false,
+      "damage": "",
+      "description": ""
+    },
+    "save_dc": 12,
+    "subclass": "Oath of Vengeance",
+    "subclass_resources": {}
+  },
   "proficiencies": {
     "armor": [
       "Light armor",

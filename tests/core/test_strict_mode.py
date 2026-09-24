@@ -55,7 +55,7 @@ def test_effect_enum_has_expected_size():
     (+6 over the Phase 6 baseline of 28). Phase 10 (D2-3) added
     grant_spell_slots and grant_weapon_mastery (+2). attack_ability_override (+1).
     Arcana Unleashed added grant_arcane_shot and grant_arcane_shot_dice (+2)."""
-    assert len(strict_mode.KNOWN_EFFECT_TYPES) == 40
+    assert len(strict_mode.KNOWN_EFFECT_TYPES) == 41
 
 
 # ---------------------------------------------------------------------------

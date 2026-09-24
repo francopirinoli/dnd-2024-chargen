@@ -125,7 +125,7 @@ def test_pact_of_the_blade_uses_charisma_for_only_the_bonded_weapon():
         attack["name"]: attack for attack in builder.calculate_weapon_attacks()["attacks"]
     }
     assert attacks["Mace"]["ability"] == "CHA"
-    assert attacks["Mace"]["attack_bonus"] == 4
+    assert attacks["Mace"]["attack_bonus"] == 6
     assert attacks["Mace"]["damage"] == "1d6 + 4"
     assert attacks["Dagger"]["ability"] == "STR/DEX (DEX)"
 

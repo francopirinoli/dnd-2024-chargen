@@ -1054,6 +1054,40 @@ def build_level_up_preview(
         ),
     }
 
+    paladin_curr = builder_current.calculate_paladin_stats()
+    paladin_next = builder_next.calculate_paladin_stats()
+    is_paladin = target_class_name.lower() == "paladin"
+    paladin_changes = {
+        "is_paladin": is_paladin,
+        "has_lay_on_hands": bool(paladin_next.get("has_lay_on_hands")),
+        "current_loh_pool": paladin_curr.get("lay_on_hands_pool", 0),
+        "next_loh_pool": paladin_next.get("lay_on_hands_pool", 0),
+        "loh_pool_increased": (
+            paladin_next.get("lay_on_hands_pool", 0) > paladin_curr.get("lay_on_hands_pool", 0)
+        ),
+        "has_channel_divinity": bool(paladin_next.get("has_channel_divinity")),
+        "current_cd_uses": paladin_curr.get("channel_divinity_max", 0),
+        "next_cd_uses": paladin_next.get("channel_divinity_max", 0),
+        "cd_uses_increased": (
+            paladin_next.get("channel_divinity_max", 0) > paladin_curr.get("channel_divinity_max", 0)
+        ),
+        "aura_of_protection_unlocked": (
+            bool(paladin_next.get("aura_of_protection", {}).get("active"))
+            and not bool(paladin_curr.get("aura_of_protection", {}).get("active"))
+        ),
+        "aura_of_courage_unlocked": (
+            bool(paladin_next.get("aura_of_courage", {}).get("active"))
+            and not bool(paladin_curr.get("aura_of_courage", {}).get("active"))
+        ),
+        "radiant_strikes_unlocked": (
+            bool(paladin_next.get("radiant_strikes", {}).get("active"))
+            and not bool(paladin_curr.get("radiant_strikes", {}).get("active"))
+        ),
+        "restoring_touch_unlocked": (
+            len(paladin_next.get("conditions_cured", [])) > len(paladin_curr.get("conditions_cured", []))
+        ),
+    }
+
     return {
         "can_level_up": True,
         "class_name": target_class_name,
@@ -1117,4 +1151,5 @@ def build_level_up_preview(
         "druid_changes": druid_changes,
         "fighter_changes": fighter_changes,
         "monk_changes": monk_changes,
+        "paladin_changes": paladin_changes,
     }

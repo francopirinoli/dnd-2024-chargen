@@ -17,6 +17,31 @@ def _build_paladin(level=1, subclass=None):
     return builder
 
 
+def _build_full_paladin(level=1, subclass=None, ability_scores=None, background_bonuses=None, choices_extra=None):
+    """Helper to build a full Paladin character via apply_choices."""
+    builder = CharacterBuilder()
+    choices = {
+        "character_name": "Test Paladin",
+        "level": level,
+        "species": "Human",
+        "class": "Paladin",
+        "background": "Acolyte",
+        "ability_scores": ability_scores or {
+            "Strength": 16, "Dexterity": 10, "Constitution": 14,
+            "Intelligence": 8, "Wisdom": 12, "Charisma": 16
+        },
+        "background_bonuses": background_bonuses if background_bonuses is not None else {
+            "Strength": 2, "Charisma": 1
+        },
+    }
+    if subclass and level >= 3:
+        choices["subclass"] = subclass
+    if choices_extra:
+        choices.update(choices_extra)
+    builder.apply_choices(choices)
+    return builder
+
+
 @pytest.fixture
 def paladin_choices():
     """Base Paladin choices template."""
@@ -244,3 +269,223 @@ class TestPaladinSpellProgression:
         # Level 9 oath spells
         assert "Beacon of Hope" in always_prepared
         assert "Dispel Magic" in always_prepared
+
+
+# ==================== 2024 Paladin Audit & Mechanics Tests ====================
+
+
+class TestPaladinMechanics2024:
+
+    def test_level_1_paladin_has_two_first_level_spell_slots(self):
+        """2024 Paladin gains 2 level 1 spell slots at level 1."""
+        builder = _build_paladin(level=1)
+        slots = builder.character_data["class_data"]["spell_slots_by_level"]["1"]
+        assert slots[0] == 2
+        char = builder.to_character()
+        assert char["spell_slots"]["1st"] == 2
+
+    def test_blessed_warrior_fighting_style_grants_cleric_cantrips(self):
+        """Blessed Warrior fighting style grants 2 Cleric cantrips using Charisma."""
+        builder = _build_full_paladin(
+            level=2,
+            choices_extra={
+                "Fighting Style": "Blessed Warrior",
+                "Blessed Warrior_bonus_cantrip": ["Guidance", "Sacred Flame"],
+            },
+        )
+        character = builder.to_character()
+
+        # Both cantrips should be in cantrips or always_prepared
+        cantrip_names = [
+            s.get("name") if isinstance(s, dict) else s
+            for s in character.get("spells", {}).get("cantrips", [])
+        ] + list(character.get("spells", {}).get("always_prepared", {}).keys())
+        assert "Guidance" in cantrip_names
+        assert "Sacred Flame" in cantrip_names
+
+    def test_calculate_paladin_stats_level_1(self):
+        """Level 1 Paladin has Lay on Hands pool = 5 and cures Poisoned."""
+        builder = _build_paladin(level=1)
+        stats = builder.calculate_paladin_stats()
+        assert stats["is_paladin"] is True
+        assert stats["has_lay_on_hands"] is True
+        assert stats["lay_on_hands_pool"] == 5
+        assert stats["conditions_cured"] == ["Poisoned"]
+        assert stats["has_channel_divinity"] is False
+
+    def test_calculate_paladin_stats_channel_divinity_level_3(self):
+        """Level 3 Paladin has 2 Channel Divinity uses and Divine Sense."""
+        builder = _build_paladin(level=3, subclass="Oath of Devotion")
+        stats = builder.calculate_paladin_stats()
+        assert stats["has_channel_divinity"] is True
+        assert stats["channel_divinity_max"] == 2
+        assert stats["channel_divinity_save_dc"] > 0
+        cd_names = [opt["name"] for opt in stats["channel_divinity_options"]]
+        assert "Divine Sense" in cd_names
+        assert "Sacred Weapon" in cd_names
+
+    def test_calculate_paladin_stats_abjure_foes_level_9(self):
+        """Level 9 Paladin gains Abjure Foes Channel Divinity option."""
+        builder = _build_paladin(level=9, subclass="Oath of Devotion")
+        stats = builder.calculate_paladin_stats()
+        cd_names = [opt["name"] for opt in stats["channel_divinity_options"]]
+        assert "Abjure Foes" in cd_names
+
+    def test_channel_divinity_uses_level_11(self):
+        """At level 11+, Channel Divinity uses increase to 3."""
+        builder = _build_paladin(level=11, subclass="Oath of Devotion")
+        stats = builder.calculate_paladin_stats()
+        assert stats["channel_divinity_max"] == 3
+
+    def test_faithful_steed_free_cast_level_5(self):
+        """At level 5+, Find Steed is prepared and has a free cast."""
+        builder = _build_paladin(level=5, subclass="Oath of Devotion")
+        stats = builder.calculate_paladin_stats()
+        assert stats["faithful_steed_free_cast"] is True
+
+    def test_aura_of_protection_applies_to_saving_throws(self):
+        """Level 6+ Paladin gains Aura of Protection bonus (+CHA mod, min 1) to all saves."""
+        builder = _build_full_paladin(
+            level=6,
+            subclass="Oath of Devotion",
+            ability_scores={
+                "Strength": 16, "Dexterity": 10, "Constitution": 14,
+                "Intelligence": 8, "Wisdom": 12, "Charisma": 16
+            },
+            background_bonuses={"Strength": 0, "Charisma": 0},
+        )
+        character = builder.to_character()
+        paladin_stats = character.get("paladin_stats", {})
+        aura = paladin_stats.get("aura_of_protection", {})
+        assert aura.get("active") is True
+        assert aura.get("bonus") == 3
+        assert aura.get("range") == "10 ft"
+
+        # CHA mod is +3. All saving throws should include +3 from aura
+        abilities = character["abilities"]
+        # Dex mod is 0, not proficient (PB=3), so save is 0 + 0 + 3 (aura) = 3
+        assert abilities["dexterity"]["saving_throw"] == 3
+        assert abilities["dexterity"]["aura_bonus"] == 3
+
+    def test_aura_of_courage_level_10(self):
+        """Level 10+ Paladin gains Aura of Courage and Frightened condition immunity."""
+        builder = _build_paladin(level=10, subclass="Oath of Devotion")
+        character = builder.to_character()
+        paladin_stats = character.get("paladin_stats", {})
+        assert paladin_stats.get("aura_of_courage", {}).get("active") is True
+        assert "Frightened" in character.get("condition_immunities", [])
+
+    def test_radiant_strikes_level_11(self):
+        """Level 11+ Paladin adds +1d8 Radiant to melee weapon and unarmed attacks."""
+        builder = _build_full_paladin(
+            level=11,
+            subclass="Oath of Devotion",
+            ability_scores={
+                "Strength": 16, "Dexterity": 10, "Constitution": 14,
+                "Intelligence": 8, "Wisdom": 12, "Charisma": 14
+            },
+            background_bonuses={"Strength": 0, "Charisma": 0},
+        )
+        builder.character_data["equipment"] = {
+            "weapons": [{"name": "Longsword", "equipped": True, "properties": {"category": "Martial Melee"}}],
+            "armor": [],
+            "items": [],
+            "gold": 0,
+        }
+        character = builder.to_character()
+        paladin_stats = character.get("paladin_stats", {})
+        assert paladin_stats.get("radiant_strikes", {}).get("active") is True
+
+        attacks = character.get("attacks", [])
+        longsword = next(a for a in attacks if a["name"] == "Longsword")
+        assert any("+1d8 Radiant (Radiant Strikes)" in note for note in longsword.get("damage_notes", []))
+
+        unarmed = next(a for a in attacks if a["name"] == "Unarmed Strike")
+        assert any("+1d8 Radiant (Radiant Strikes)" in note for note in unarmed.get("damage_notes", []))
+
+    def test_restoring_touch_level_14(self):
+        """Level 14 Paladin can cure 6 additional conditions with Lay on Hands."""
+        builder = _build_paladin(level=14, subclass="Oath of Devotion")
+        stats = builder.calculate_paladin_stats()
+        cured = stats["conditions_cured"]
+        for cond in ["Poisoned", "Blinded", "Charmed", "Deafened", "Frightened", "Paralyzed", "Stunned"]:
+            assert cond in cured
+
+    def test_aura_expansion_level_18(self):
+        """Level 18+ Paladin expands Aura of Protection and Courage to 30 ft."""
+        builder = _build_paladin(level=18, subclass="Oath of Devotion")
+        stats = builder.calculate_paladin_stats()
+        assert stats["aura_of_protection"]["range"] == "30 ft"
+        assert stats["aura_of_courage"]["range"] == "30 ft"
+
+
+# ==================== Oath of the Noble Genies Tests ====================
+
+
+class TestOathOfTheNobleGenies:
+
+    def test_genies_splendor_alternative_ac_unarmored_and_shield(self):
+        """Genie's Splendor: unarmored AC equals 10 + DEX + CHA, shields allowed."""
+        builder = _build_full_paladin(
+            level=3,
+            subclass="Oath of the Noble Genies",
+            ability_scores={
+                "Strength": 14, "Dexterity": 14, "Constitution": 12,
+                "Intelligence": 10, "Wisdom": 10, "Charisma": 16
+            },
+            background_bonuses={"Strength": 0, "Charisma": 0},
+        )
+        # DEX mod = +2, CHA mod = +3 -> Unarmored AC = 10 + 2 + 3 = 15
+        ac_options = builder.calculate_ac_options()
+        genie_option = next((opt for opt in ac_options if "Genie's Splendor" in opt.get("notes", [])), None)
+        assert genie_option is not None
+        assert genie_option["ac"] == 15
+
+        # With Shield equipped: AC should be 15 + 2 = 17
+        builder.character_data["equipment"] = {
+            "weapons": [],
+            "armor": [{"name": "Shield", "category": "Shield", "equipped": True}],
+            "items": [],
+            "gold": 0,
+        }
+        ac_options_shield = builder.calculate_ac_options()
+        genie_shield_option = next((opt for opt in ac_options_shield if "Genie's Splendor" in opt.get("notes", [])), None)
+        assert genie_shield_option is not None
+        assert genie_shield_option["ac"] == 17
+
+    def test_genies_splendor_skill_choice(self):
+        """Genie's Splendor grants proficiency in one of Acrobatics, Intimidation, Performance, Persuasion."""
+        builder = _build_full_paladin(
+            level=3,
+            subclass="Oath of the Noble Genies",
+            choices_extra={"genies_splendor_skill": "Performance"},
+        )
+        character = builder.to_character()
+        assert "Performance" in character["proficiencies"]["skills"]
+
+    def test_noble_genies_channel_divinity_elemental_smite(self):
+        """Oath of the Noble Genies has Elemental Smite Channel Divinity option."""
+        builder = _build_paladin(level=3, subclass="Oath of the Noble Genies")
+        stats = builder.calculate_paladin_stats()
+        cd_names = [opt["name"] for opt in stats["channel_divinity_options"]]
+        assert "Elemental Smite" in cd_names
+
+    def test_noble_genies_higher_levels(self):
+        """Level 7, 15, 20 features for Noble Genies."""
+        builder = _build_full_paladin(
+            level=20,
+            subclass="Oath of the Noble Genies",
+            ability_scores={
+                "Strength": 16, "Dexterity": 10, "Constitution": 14,
+                "Intelligence": 8, "Wisdom": 12, "Charisma": 18
+            },
+            background_bonuses={"Strength": 0, "Charisma": 0},
+        )
+        stats = builder.calculate_paladin_stats()
+        perk_text = " ".join(stats["active_perks"])
+        assert "Aura of Elemental Shielding" in perk_text
+        action_names = [act["name"] for act in stats["actions"]]
+        assert "Elemental Rebuke" in action_names
+        assert "Noble Scion" in action_names
+        assert "Elemental Rebuke" in stats["subclass_resources"]
+

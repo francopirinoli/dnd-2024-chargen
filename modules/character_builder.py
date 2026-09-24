@@ -9555,6 +9555,281 @@ class CharacterBuilder:
         stats["subclass_details"] = subclass_details
         return stats
 
+    def calculate_paladin_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Lay on Hands, Channel Divinity, Auras, Radiant Strikes,
+        Spell preparation, and subclass statistics for Paladin characters.
+
+        Returns:
+            Dictionary with is_paladin, paladin_level, subclass,
+            has_lay_on_hands, lay_on_hands_pool, lay_on_hands_action,
+            conditions_cured, lay_on_hands_cure_cost,
+            has_channel_divinity, channel_divinity_uses, channel_divinity_max,
+            channel_divinity_save_dc, channel_divinity_recharge,
+            paladin_smite_free_cast, faithful_steed_free_cast,
+            aura_of_protection, aura_of_courage, radiant_strikes,
+            channel_divinity_options, subclass_resources, actions, active_perks.
+        """
+        stats: Dict[str, Any] = {
+            "is_paladin": False,
+            "paladin_level": 0,
+            "subclass": "",
+            "save_dc": 0,
+            "has_lay_on_hands": False,
+            "lay_on_hands_pool": 0,
+            "lay_on_hands_action": "Bonus Action",
+            "conditions_cured": [],
+            "lay_on_hands_cure_cost": 5,
+            "has_channel_divinity": False,
+            "channel_divinity_uses": 0,
+            "channel_divinity_max": 0,
+            "channel_divinity_save_dc": 0,
+            "channel_divinity_recharge": "Short or Long Rest (regain 1 on Short Rest, all on Long Rest)",
+            "paladin_smite_free_cast": False,
+            "faithful_steed_free_cast": False,
+            "aura_of_protection": {
+                "active": False,
+                "range": "None",
+                "bonus": 0,
+                "description": "",
+            },
+            "aura_of_courage": {
+                "active": False,
+                "range": "None",
+                "description": "",
+            },
+            "radiant_strikes": {
+                "active": False,
+                "damage": "",
+                "description": "",
+            },
+            "channel_divinity_options": [],
+            "subclass_resources": {},
+            "actions": [],
+            "active_perks": [],
+        }
+
+        paladin_level = self._get_class_level("Paladin")
+        stats["paladin_level"] = paladin_level
+        if paladin_level < 1:
+            return stats
+
+        stats["is_paladin"] = True
+        subclass_name = self._get_class_subclass("Paladin") or ""
+        stats["subclass"] = subclass_name
+
+        ability_scores = getattr(self.ability_scores, "final_scores", {}) if hasattr(self, "ability_scores") else {}
+        cha_score = ability_scores.get("Charisma", 10) if isinstance(ability_scores, dict) else 10
+        cha_mod = self.calculate_ability_modifier(cha_score)
+        pb = self.calculate_proficiency_bonus(self.character_data.get("level", paladin_level))
+        save_dc = 8 + pb + cha_mod
+        stats["save_dc"] = save_dc
+
+        # Lay on Hands (Level 1+)
+        stats["has_lay_on_hands"] = True
+        loh_pool = 5 * paladin_level
+        stats["lay_on_hands_pool"] = loh_pool
+        conditions = ["Poisoned"]
+        if paladin_level >= 14:
+            conditions.extend(["Blinded", "Charmed", "Deafened", "Frightened", "Paralyzed", "Stunned"])
+        stats["conditions_cured"] = conditions
+        stats["active_perks"].append(f"Lay on Hands ({loh_pool} HP pool, Bonus Action)")
+        if paladin_level >= 14:
+            stats["active_perks"].append("Restoring Touch (cure 6 additional conditions for 5 HP each)")
+
+        stats["actions"].append({
+            "name": "Lay on Hands",
+            "action": "Bonus Action (Touch)",
+            "effect": f"Restore up to {loh_pool} HP from healing pool, or expend 5 HP per condition to cure {', '.join(conditions)}.",
+        })
+
+        # Paladin's Smite (Level 2+)
+        if paladin_level >= 2:
+            stats["paladin_smite_free_cast"] = True
+            stats["active_perks"].append("Paladin's Smite (Divine Smite 1/Long Rest without spell slot)")
+            stats["actions"].append({
+                "name": "Divine Smite",
+                "action": "Bonus Action (Immediately after hit)",
+                "effect": "Expend a spell slot (or free 1/Long Rest) to deal +2d8 Radiant damage (+1d8 per slot level above 1st) with Melee weapon or Unarmed Strike.",
+            })
+
+        # Channel Divinity (Level 3+)
+        if paladin_level >= 3:
+            stats["has_channel_divinity"] = True
+            cd_max = 3 if paladin_level >= 11 else 2
+            stats["channel_divinity_uses"] = cd_max
+            stats["channel_divinity_max"] = cd_max
+            stats["channel_divinity_save_dc"] = save_dc
+
+            stats["channel_divinity_options"].append({
+                "name": "Divine Sense",
+                "action": "Bonus Action",
+                "effect": "For 10 minutes or until Incapacitated, detect the location of any Celestial, Fiend, or Undead within 60 ft, and any consecrated or desecrated ground.",
+            })
+
+            if paladin_level >= 9:
+                stats["channel_divinity_options"].append({
+                    "name": "Abjure Foes",
+                    "action": "Magic Action (60 ft)",
+                    "effect": f"Target up to {max(1, cha_mod)} creatures. Each makes Wis save (DC {save_dc}) or is Frightened for 1 min (ends on damage). While Frightened, can only take an action, bonus action, or move.",
+                })
+                stats["active_perks"].append("Abjure Foes (Channel Divinity)")
+
+        # Faithful Steed (Level 5+)
+        if paladin_level >= 5:
+            stats["faithful_steed_free_cast"] = True
+            stats["active_perks"].append("Faithful Steed (Find Steed 1/Long Rest without spell slot)")
+
+        # Aura of Protection (Level 6+, expands at 18)
+        aura_range = "30 ft" if paladin_level >= 18 else "10 ft"
+        aura_bonus = max(1, cha_mod)
+        if paladin_level >= 6:
+            stats["aura_of_protection"] = {
+                "active": True,
+                "range": aura_range,
+                "bonus": aura_bonus,
+                "description": f"+{aura_bonus} to all saving throws for you and allies within {aura_range} (inactive while Incapacitated).",
+            }
+            stats["active_perks"].append(f"Aura of Protection: +{aura_bonus} to all saves ({aura_range})")
+
+        # Aura of Courage (Level 10+, expands at 18)
+        if paladin_level >= 10:
+            stats["aura_of_courage"] = {
+                "active": True,
+                "range": aura_range,
+                "description": f"Immunity to Frightened condition for you and allies within {aura_range}.",
+            }
+            stats["active_perks"].append(f"Aura of Courage: Frightened Immunity ({aura_range})")
+
+        # Radiant Strikes (Level 11+)
+        if paladin_level >= 11:
+            stats["radiant_strikes"] = {
+                "active": True,
+                "damage": "1d8 Radiant",
+                "description": "+1d8 Radiant damage on all melee weapon attacks and unarmed strikes.",
+            }
+            stats["active_perks"].append("Radiant Strikes (+1d8 Radiant on melee attacks)")
+
+        # Subclass options and features
+        subclass_clean = subclass_name.lower()
+        if "devotion" in subclass_clean and paladin_level >= 3:
+            stats["channel_divinity_options"].append({
+                "name": "Sacred Weapon",
+                "action": "Attack Action",
+                "effect": f"Imbue 1 melee weapon for 10 min: add +{max(1, cha_mod)} to attack rolls, can deal normal or Radiant damage, emits 20 ft bright / 20 ft dim light.",
+            })
+            if paladin_level >= 7:
+                stats["active_perks"].append(f"Aura of Devotion: Immunity to Charmed in Aura ({aura_range})")
+            if paladin_level >= 15:
+                stats["active_perks"].append("Smite of Protection: You and allies in aura gain Half Cover until next turn after Divine Smite")
+            if paladin_level >= 20:
+                stats["actions"].append({
+                    "name": "Holy Nimbus",
+                    "action": "Bonus Action (10 min, 1/Long Rest or 5th-level slot)",
+                    "effect": f"Advantage on saves vs Fiends/Undead; enemies starting turn in aura take {cha_mod + pb} Radiant damage; sunlight emanation.",
+                })
+
+        elif "glory" in subclass_clean and paladin_level >= 3:
+            stats["channel_divinity_options"].append({
+                "name": "Inspiring Smite",
+                "action": "Immediate (after Divine Smite)",
+                "effect": f"Distribute 2d8 + {paladin_level} Temporary HP among creatures within 30 ft.",
+            })
+            stats["channel_divinity_options"].append({
+                "name": "Peerless Athlete",
+                "action": "Bonus Action (1 hour)",
+                "effect": "Advantage on Strength (Athletics) and Dexterity (Acrobatics) checks; Long and High Jump distance +10 ft.",
+            })
+            if paladin_level >= 7:
+                stats["active_perks"].append("Aura of Alacrity: Speed +10 ft (+10 ft for allies entering aura)")
+            if paladin_level >= 15:
+                glorious_uses = max(1, cha_mod)
+                stats["subclass_resources"]["Glorious Defense"] = {"current": glorious_uses, "max": glorious_uses, "recharge": "Long Rest"}
+                stats["actions"].append({
+                    "name": "Glorious Defense",
+                    "action": f"Reaction ({glorious_uses}/Long Rest)",
+                    "effect": f"When you or creature within 10 ft hit by attack, grant +{max(1, cha_mod)} to AC against attack. If attack misses, make free weapon attack against attacker if in range.",
+                })
+            if paladin_level >= 20:
+                stats["actions"].append({
+                    "name": "Living Legend",
+                    "action": "Bonus Action (10 min, 1/Long Rest or 5th-level slot)",
+                    "effect": "Advantage on Charisma checks; Reaction to reroll failed save; once per turn turn missed weapon attack into a hit.",
+                })
+
+        elif "ancient" in subclass_clean and paladin_level >= 3:
+            stats["channel_divinity_options"].append({
+                "name": "Nature's Wrath",
+                "action": "Magic Action (15 ft)",
+                "effect": f"Creatures of choice within 15 ft make Str save (DC {save_dc}) or are Restrained for 1 min (repeats save at end of each turn).",
+            })
+            if paladin_level >= 7:
+                stats["active_perks"].append(f"Aura of Warding: Resistance to Necrotic, Psychic, Radiant in Aura ({aura_range})")
+            if paladin_level >= 15:
+                stats["subclass_resources"]["Undying Sentinel"] = {"current": 1, "max": 1, "recharge": "Long Rest"}
+                stats["actions"].append({
+                    "name": "Undying Sentinel",
+                    "action": "Reaction (1/Long Rest)",
+                    "effect": f"When reduced to 0 HP, drop to 1 HP instead and regain {3 * paladin_level} HP. Suffer no drawbacks of old age.",
+                })
+            if paladin_level >= 20:
+                stats["actions"].append({
+                    "name": "Elder Champion",
+                    "action": "Bonus Action (1 min, 1/Long Rest or 5th-level slot)",
+                    "effect": "Enemies in aura have Disadvantage on saves vs your spells/CD; regain 10 HP at start of each turn; cast Action spells as Bonus Action.",
+                })
+
+        elif "vengeance" in subclass_clean and paladin_level >= 3:
+            stats["channel_divinity_options"].append({
+                "name": "Vow of Enmity",
+                "action": "Bonus Action / Attack Action (30 ft)",
+                "effect": "Advantage on attack rolls against target creature for 1 min or until drops to 0 HP (can transfer to another creature within 30 ft on kill, no action).",
+            })
+            if paladin_level >= 7:
+                stats["actions"].append({
+                    "name": "Relentless Avenger",
+                    "action": "Reaction (on Opportunity Attack hit)",
+                    "effect": "Reduce target Speed to 0 until end of turn; move up to half your Speed as part of reaction without provoking OA.",
+                })
+            if paladin_level >= 15:
+                stats["actions"].append({
+                    "name": "Soul of Vengeance",
+                    "action": "Reaction",
+                    "effect": "When creature under Vow of Enmity attacks, make one melee attack against it if in range.",
+                })
+            if paladin_level >= 20:
+                stats["actions"].append({
+                    "name": "Avenging Angel",
+                    "action": "Bonus Action (10 min, 1/Long Rest or 5th-level slot)",
+                    "effect": f"Fly Speed 60 ft (hover); enemies starting turn in aura must make Wis save (DC {save_dc}) or be Frightened for 1 min (attacks against them have Advantage).",
+                })
+
+        elif ("noble genies" in subclass_clean or "genie" in subclass_clean) and paladin_level >= 3:
+            stats["channel_divinity_options"].append({
+                "name": "Elemental Smite",
+                "action": "Channel Divinity (after Divine Smite)",
+                "effect": f"Dao's Crush (Grappled & Restrained, DC {save_dc}), Djinni's Escape (teleport 30 ft, corporeal resistance, immune grappled/prone/restrained), Efreeti's Fury (+2d4 fire to target & 2d4 fire to 2nd creature), or Marid's Surge (push 15 ft & Prone, DC {save_dc}).",
+            })
+            stats["active_perks"].append("Genie's Splendor: Unarmored AC 10 + DEX + CHA (shield allowed)")
+            if paladin_level >= 7:
+                stats["active_perks"].append(f"Aura of Elemental Shielding: Resistance to Acid, Cold, Fire, Lightning, or Thunder in Aura ({aura_range})")
+            if paladin_level >= 15:
+                rebuke_uses = max(1, cha_mod)
+                stats["subclass_resources"]["Elemental Rebuke"] = {"current": rebuke_uses, "max": rebuke_uses, "recharge": "Long Rest"}
+                stats["actions"].append({
+                    "name": "Elemental Rebuke",
+                    "action": f"Reaction ({rebuke_uses}/Long Rest)",
+                    "effect": f"When hit by attack, halve damage and attacker makes Dex save (DC {save_dc}) taking 2d10 + {cha_mod} elemental damage (half on save).",
+                })
+            if paladin_level >= 20:
+                stats["actions"].append({
+                    "name": "Noble Scion",
+                    "action": "Bonus Action (10 min, 1/Long Rest or 5th-level slot)",
+                    "effect": "Fly Speed 60 ft (hover); Minor Wish: Reaction to make you or ally in aura succeed on a failed D20 Test.",
+                })
+
+        return stats
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -9595,14 +9870,22 @@ class CharacterBuilder:
         )
         base_scores = getattr(self.ability_scores, "base_scores", {}) or {}
 
+        # Check if Aura of Protection applies (Paladin level 6+)
+        paladin_level = self._get_class_level("Paladin")
+        aura_bonus = 0
+        if paladin_level >= 6:
+            cha_score = raw_scores.get("Charisma", 10)
+            cha_mod = self.calculate_ability_modifier(cha_score)
+            aura_bonus = max(1, cha_mod)
+
         processed_scores = {}
         for ability_name, score in raw_scores.items():
             ability_lower = ability_name.lower()
             modifier = self.calculate_ability_modifier(score)
             is_proficient = ability_name in saving_throw_profs
-            saving_throw_bonus = modifier + (proficiency_bonus if is_proficient else 0)
+            saving_throw_bonus = modifier + (proficiency_bonus if is_proficient else 0) + aura_bonus
 
-            processed_scores[ability_lower] = {
+            ability_entry = {
                 "score": score,
                 "modifier": modifier,
                 "saving_throw": saving_throw_bonus,
@@ -9612,6 +9895,9 @@ class CharacterBuilder:
                 "background_bonus": background_bonuses.get(ability_name, 0),
                 "additional_modifier": additional_modifiers.get(ability_name, 0),
             }
+            if aura_bonus > 0:
+                ability_entry["aura_bonus"] = aura_bonus
+            processed_scores[ability_lower] = ability_entry
 
         return processed_scores
 
@@ -9756,6 +10042,7 @@ class CharacterBuilder:
 
         monk_level = self._get_class_level("Monk")
         monk_subclass = self._get_class_subclass("Monk")
+        paladin_level = self._get_class_level("Paladin")
 
         for weapon in active_weapons:
             weapon_name = (
@@ -9774,17 +10061,16 @@ class CharacterBuilder:
                 category == "Martial Melee" and "Light" in properties
             )
 
+            str_mod = ability_scores.get("strength", {}).get("modifier", 0)
+            dex_mod = ability_scores.get("dexterity", {}).get("modifier", 0)
+
             if "Finesse" in properties:
-                str_mod = ability_scores.get("strength", {}).get("modifier", 0)
-                dex_mod = ability_scores.get("dexterity", {}).get("modifier", 0)
                 ability_mod = max(str_mod, dex_mod)
                 ability_name = f"STR/DEX ({'STR' if str_mod >= dex_mod else 'DEX'})"
             elif "Ranged" in category:
-                ability_mod = ability_scores.get("dexterity", {}).get("modifier", 0)
+                ability_mod = dex_mod
                 ability_name = "DEX"
             else:
-                str_mod = ability_scores.get("strength", {}).get("modifier", 0)
-                dex_mod = ability_scores.get("dexterity", {}).get("modifier", 0)
                 if self.character_data.get("monk_dexterous_attacks") and is_monk_weapon:
                     ability_mod = max(str_mod, dex_mod)
                     ability_name = f"STR/DEX ({'STR' if str_mod >= dex_mod else 'DEX'})"
@@ -10030,6 +10316,8 @@ class CharacterBuilder:
             if monk_subclass == "Warrior of Venom" and monk_level >= 3 and is_monk_weapon:
                 ma_d = "1d12" if monk_level >= 17 else ("1d10" if monk_level >= 11 else ("1d8" if monk_level >= 5 else "1d6"))
                 damage_notes.append(f"Envenom Weapon (1 FP): Slowing Toxin or +2{ma_d} Poison/Acid")
+            if paladin_level >= 11 and is_melee:
+                damage_notes.append("+1d8 Radiant (Radiant Strikes)")
 
             attack_info = {
                 "name": weapon_name,
@@ -10166,6 +10454,8 @@ class CharacterBuilder:
             poison_s = "; +Poisoned at lv 6+" if monk_level >= 6 else ""
             ma_d = "1d12" if monk_level >= 17 else ("1d10" if monk_level >= 11 else ("1d8" if monk_level >= 5 else "1d6"))
             unarmed_notes.append(f"+1{ma_d}{wis_s} Necrotic (Hand of Harm, 1 FP, 1/turn{poison_s})")
+        if paladin_level >= 11:
+            unarmed_notes.append("+1d8 Radiant (Radiant Strikes)")
 
         unarmed_attack = {
             "name": "Unarmed Strike",
@@ -11546,6 +11836,11 @@ class CharacterBuilder:
         monk_stats = self.calculate_monk_stats()
         if monk_stats.get("monk_level", 0) > 0:
             character_data["monk_stats"] = monk_stats
+
+        # Add Paladin stats (Paladin only)
+        paladin_stats = self.calculate_paladin_stats()
+        if paladin_stats.get("paladin_level", 0) > 0:
+            character_data["paladin_stats"] = paladin_stats
 
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:
