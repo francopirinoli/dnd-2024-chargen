@@ -2408,20 +2408,6 @@ function SpecialFeatures({ c }: { c: Char }) {
               </div>
             )}
 
-            {/* Active Perks Badges */}
-            {arr<string>(sorcererStats.active_perks).length > 0 && (
-              <div className="flex flex-wrap gap-1.5">
-                {arr<string>(sorcererStats.active_perks).map((perk, idx) => (
-                  <span
-                    key={`sorc-perk-${idx}`}
-                    className="rounded bg-primary/10 px-2 py-0.5 text-[11px] text-primary"
-                  >
-                    {perk}
-                  </span>
-                ))}
-              </div>
-            )}
-
             {/* Actions Grid */}
             {arr<Record<string, unknown>>(sorcererStats.actions).length > 0 && (
               <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
