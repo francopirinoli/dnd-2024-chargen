@@ -1499,6 +1499,14 @@ function SpecialFeatures({ c }: { c: Char }) {
   const signatureSpells = rec(wizardStats.signature_spells);
   const wizardSubclass = rec(wizardStats.subclass_details);
   const spellbookStats = rec(wizardStats.spellbook);
+  const artificerStats = rec(c.artificer_stats);
+  const isArtificer = Boolean(artificerStats.is_artificer) || num(artificerStats.artificer_level) !== undefined;
+  const magicalTinkering = rec(artificerStats.magical_tinkering);
+  const flashOfGenius = rec(artificerStats.flash_of_genius);
+  const spellStoringItem = rec(artificerStats.spell_storing_item);
+  const soulOfArtifice = rec(artificerStats.soul_of_artifice);
+  const attunementStats = rec(artificerStats.magic_item_attunement);
+  const artificerSubclass = rec(artificerStats.subclass_details);
   const superiorityDice = rec(c.superiority_dice);
   const hasSuperiorityDice = num(superiorityDice.count) !== undefined;
   const hasArcaneShot = num(c.arcane_shot_dc) !== undefined;
@@ -1516,6 +1524,7 @@ function SpecialFeatures({ c }: { c: Char }) {
     (isSorcerer && sorcererStats.sorcerer_level !== undefined) ||
     (isWarlock && warlockStats.warlock_level !== undefined) ||
     (isWizard && wizardStats.wizard_level !== undefined) ||
+    (isArtificer && artificerStats.artificer_level !== undefined) ||
     hasSuperiorityDice ||
     hasArcaneShot;
 
@@ -2850,6 +2859,259 @@ function SpecialFeatures({ c }: { c: Char }) {
                     <div className="mt-0.5 text-[11px] text-muted-foreground">
                       {str(act.effect)}
                     </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isArtificer && artificerStats.artificer_level !== undefined && (
+          <div className="rounded border border-border/80 bg-background/40 p-3 space-y-3">
+            {/* Header / Badges */}
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-2">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-foreground">
+                  {str(artificerSubclass.name) || "Artificer"} (Level {num(artificerStats.artificer_level)})
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  INT Mod: {signed(num(c.ability_scores && rec(c.ability_scores).intelligence && rec(rec(c.ability_scores).intelligence).modifier))}
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                {num(attunementStats.max_attuned_items) !== undefined && (
+                  <span className="rounded bg-primary/20 px-2 py-0.5 font-semibold text-primary">
+                    Attunement: Up to {num(attunementStats.max_attuned_items)} Items
+                  </span>
+                )}
+                {flashOfGenius.active === true && (
+                  <span className="rounded bg-accent/20 px-2 py-0.5 font-semibold text-accent-foreground">
+                    Flash of Genius: +{num(flashOfGenius.bonus)} • {num(flashOfGenius.uses_max)}/LR
+                  </span>
+                )}
+                {spellStoringItem.active === true && (
+                  <span className="rounded bg-secondary/80 px-2 py-0.5 text-foreground font-medium">
+                    Spell-Storing Item: {num(spellStoringItem.max_activations)} Casts
+                  </span>
+                )}
+                {Boolean(artificerStats.tool_expertise && rec(artificerStats.tool_expertise).active) && (
+                  <span className="rounded bg-secondary/80 px-2 py-0.5 text-foreground font-medium">
+                    Tool Expertise (2× PB)
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Core Features: Magical Tinkering, The Right Tool, Spellcasting, etc. */}
+            <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
+              <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                <div className="font-medium text-foreground flex items-center justify-between">
+                  <span>Magical Tinkering & Focus</span>
+                  <span className="text-[10px] text-muted-foreground">Active Objects: {num(magicalTinkering.max_objects) ?? 1}</span>
+                </div>
+                <div className="text-[11px] text-muted-foreground leading-relaxed">
+                  Touch a Tiny nonmagical object as a Magic action to invest a minor magical property (light, sound, odor, or message). You can have active objects equal to your Intelligence modifier (minimum 1).
+                  Produce spells through tools (Thieves&apos;, Tinker&apos;s, or Artisan&apos;s Tools with proficiency). DC {num(artificerStats.spell_save_dc)}, Attack {signed(num(artificerStats.spell_attack_bonus))}.
+                </div>
+              </div>
+
+              {Boolean(artificerStats.the_right_tool && rec(artificerStats.the_right_tool).active) && (
+                <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                  <div className="font-medium text-foreground flex items-center justify-between">
+                    <span>The Right Tool for the Job</span>
+                    <span className="text-[10px] text-muted-foreground">1 Hour • Magic Action</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground leading-relaxed">
+                    With Tinker&apos;s Tools in hand, magically produce one set of Artisan&apos;s Tools or Thieves&apos; Tools within 5 feet (requires 1 hour of uninterrupted work, which can coincide with a rest).
+                  </div>
+                </div>
+              )}
+
+              {flashOfGenius.active === true && (
+                <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                  <div className="font-medium text-foreground flex items-center justify-between">
+                    <span>Flash of Genius</span>
+                    <span className="text-[10px] text-muted-foreground">{num(flashOfGenius.uses_max)}/Long Rest • Reaction</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground leading-relaxed">
+                    When you or a creature you can see within 30 feet makes an ability check or saving throw, take a Reaction to add your Intelligence modifier (<strong className="text-foreground">+{num(flashOfGenius.bonus)}</strong>) to the roll.
+                  </div>
+                </div>
+              )}
+
+              {spellStoringItem.active === true && (
+                <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                  <div className="font-medium text-foreground flex items-center justify-between">
+                    <span>Spell-Storing Item</span>
+                    <span className="text-[10px] text-muted-foreground">{num(spellStoringItem.max_activations)} Activations</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground leading-relaxed">
+                    Store a level 1 or 2 Artificer spell (1 action casting time) into a weapon or spellcasting focus. A creature holding the item can use a Magic action to cast it using your INT modifier.
+                  </div>
+                </div>
+              )}
+
+              {soulOfArtifice.active === true && (
+                <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1 sm:col-span-2">
+                  <div className="font-medium text-foreground flex items-center justify-between">
+                    <span>Soul of Artifice</span>
+                    <span className="text-[10px] text-muted-foreground">Level 20 Capstone</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground leading-relaxed">
+                    Gain a <strong className="text-foreground">+1 bonus to all saving throws per magic item you are currently attuned to</strong>. If reduced to 0 HP but not killed outright, use Reaction to end one infusion/replication to drop to 1 HP instead.
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Subclass Features */}
+            {Boolean(artificerSubclass.name) && (
+              <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1.5 text-xs">
+                <div className="font-medium text-foreground flex items-center justify-between">
+                  <span>{str(artificerSubclass.name)} Features</span>
+                  <span className="text-[10px] text-muted-foreground">Specialization</span>
+                </div>
+                <div className="text-[11px] text-muted-foreground leading-relaxed space-y-1">
+                  {/* Alchemist */}
+                  {Boolean(artificerSubclass.experimental_elixir) && (
+                    <div>
+                      Experimental Elixir: <strong className="text-foreground">Produce 2 elixirs per Long Rest</strong> (or expend 1st+ level slots; roll 1d6 or choose: Healing, Swiftness, Resilience, Boldness, Flight, Transformation).
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.alchemical_savant) && (
+                    <div>
+                      Alchemical Savant: <strong className="text-foreground">+{num(rec(artificerSubclass.alchemical_savant).bonus)} bonus</strong> to one roll of a spell that restores HP or deals Acid, Fire, Necrotic, or Poison damage via Alchemist&apos;s Supplies.
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.restorative_reagents) && (
+                    <div>
+                      Restorative Reagents: Drinking your elixir grants <strong className="text-foreground">{str(rec(artificerSubclass.restorative_reagents).temp_hp_formula)} Temp HP</strong>. Free Lesser Restoration {num(rec(artificerSubclass.restorative_reagents).free_lesser_restoration_uses)}/LR.
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.chemical_mastery) && (
+                    <div>
+                      Chemical Mastery: <strong className="text-foreground">Resistance to Acid & Poison; Immunity to Poisoned</strong>. Free Greater Restoration and Heal 1/LR each.
+                    </div>
+                  )}
+
+                  {/* Armorer */}
+                  {Boolean(artificerSubclass.arcane_armor) && (
+                    <div>
+                      Arcane Armor: <strong className="text-foreground">No Strength requirement</strong>, don/doff as Action, covers whole body, functions as Spellcasting Focus.
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.armor_model) && (
+                    <div>
+                      Armor Model: <strong className="text-foreground">Guardian</strong> (Thunder Gauntlets 1d8 Thunder [INT], enemies hit have Disadvantage vs others; Defensive Field Temp HP) or <strong className="text-foreground">Infiltrator</strong> (Lightning Launcher 1d6+1d6 [INT], +5 ft Speed, Advantage on Stealth).
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.improved_armorer) && (
+                    <div>
+                      Improved Armorer: Armor counts as 4 separate pieces (chest, boots, helmet, weapon); <strong className="text-foreground">+2 extra infusions/replications</strong> for Arcane Armor items.
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.perfected_armor) && (
+                    <div>
+                      Perfected Armor: Guardian (Tinkered Pull reaction 30 ft pull + attack) or Infiltrator (marked target grants attack Advantage & +1d6 extra lightning).
+                    </div>
+                  )}
+
+                  {/* Artillerist */}
+                  {Boolean(artificerSubclass.eldritch_cannon) && (
+                    <div>
+                      Eldritch Cannon: Magic action to create cannon (<strong className="text-foreground">AC 18, {num(rec(artificerSubclass.eldritch_cannon).cannon_hp)} HP</strong>, lasts 1 hr). Bonus Action: Flamethrower (15-ft cone), Force Ballista (+hit, 120 ft, 5 ft push), or Protector (1d8+INT Temp HP in 10 ft).
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.arcane_firearm) && (
+                    <div>
+                      Arcane Firearm: <strong className="text-foreground">+1d8 damage</strong> to one damage roll of an Artificer spell cast through wand, staff, or rod.
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.explosive_cannon) && (
+                    <div>
+                      Explosive Cannon: Cannon damage increases by +1d8. Action within 60 ft to detonate cannon for <strong className="text-foreground">3d8 Force damage</strong> in 20-ft radius (Dex save half).
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.fortified_position) && (
+                    <div>
+                      Fortified Position: <strong className="text-foreground">2 cannons active simultaneously</strong> (command both with 1 BA); you and allies have Half Cover (+2 AC & Dex saves) within 10 ft of a cannon.
+                    </div>
+                  )}
+
+                  {/* Battle Smith */}
+                  {Boolean(artificerSubclass.battle_ready) && (
+                    <div>
+                      Battle Ready: Martial weapons proficiency; <strong className="text-foreground">use Intelligence modifier for attack & damage rolls with magic weapons</strong>.
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.steel_defender) && (
+                    <div>
+                      Steel Defender: Automaton companion (<strong className="text-foreground">AC {num(rec(artificerSubclass.steel_defender).ac)}, HP {num(rec(artificerSubclass.steel_defender).hp)}</strong>). Bonus Action to command Force-Empowered Rend, Repair (3/LR, 2d8+PB HP), or Deflect Attack reaction.
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.arcane_jolt) && (
+                    <div>
+                      Arcane Jolt: On magic weapon or Steel Defender hit, deal extra <strong className="text-foreground">{str(rec(artificerSubclass.arcane_jolt).dice)} Force damage</strong> or heal {str(rec(artificerSubclass.arcane_jolt).dice)} HP ({num(rec(artificerSubclass.arcane_jolt).uses_max)}/Long Rest).
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.improved_defender) && (
+                    <div>
+                      Improved Defender: Arcane Jolt deals 4d6 damage/heal; Steel Defender +2 AC, Deflect Attack deals 1d4 + INT Force damage to attacker.
+                    </div>
+                  )}
+
+                  {/* Cartographer */}
+                  {Boolean(artificerSubclass.adventurers_atlas) && (
+                    <div>
+                      Adventurer&apos;s Atlas: Magical maps for up to <strong className="text-foreground">{num(rec(artificerSubclass.adventurers_atlas).max_map_holders)} creatures</strong> (+1d4 to Initiative, target allies regardless of cover or visibility; 1/2 scroll scribing time).
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.mapping_magic) && (
+                    <div>
+                      Mapping Magic: Free Faerie Fire <strong className="text-foreground">{num(rec(artificerSubclass.mapping_magic).free_faerie_fire_uses)}/Long Rest</strong>. Spend half Speed to teleport 10 ft or near a map holder within 30 ft.
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.guided_precision) && (
+                    <div>
+                      Guided Precision: <strong className="text-foreground">+{num(rec(artificerSubclass.guided_precision).damage_bonus)} damage</strong> once/turn on Cartographer spells or Faerie Fire targets; immune to losing Concentration on Faerie Fire from damage.
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.ingenious_movement) && (
+                    <div>
+                      Ingenious Movement: When using Flash of Genius, you or an ally within 30 ft can <strong className="text-foreground">teleport up to 30 ft</strong> as part of the Reaction.
+                    </div>
+                  )}
+                  {Boolean(artificerSubclass.superior_atlas) && (
+                    <div>
+                      Superior Atlas: Map holder dropping to 0 HP destroys map to drop to <strong className="text-foreground">{num(rec(artificerSubclass.superior_atlas).cheat_death_hp)} HP</strong> and teleport 5 ft to ally; free Find the Path 1/LR.
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Actions Grid */}
+            {arr<Record<string, unknown>>(artificerStats.actions).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(artificerStats.actions).map((act, idx) => (
+                  <div
+                    key={`artificer-act-${idx}`}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-primary">{str(act.name)}</span>
+                      <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                        {str(act.action)}
+                      </span>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
+                    </div>
+                    {str(act.recharge) && (
+                      <div className="mt-0.5 text-[10px] font-medium text-accent-foreground">
+                        {str(act.recharge)}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

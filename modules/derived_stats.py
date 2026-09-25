@@ -829,6 +829,34 @@ def build_level_up_preview(
         "available_plans": rep_next.get("available_plans", []),
     }
 
+    art_curr = builder_current.calculate_artificer_stats()
+    art_next = builder_next.calculate_artificer_stats()
+    artificer_changes = {
+        "is_artificer": is_artificer,
+        "flash_of_genius_unlocked": (
+            bool(art_next.get("flash_of_genius", {}).get("active"))
+            and not bool(art_curr.get("flash_of_genius", {}).get("active"))
+        ),
+        "spell_storing_item_unlocked": (
+            bool(art_next.get("spell_storing_item", {}).get("active"))
+            and not bool(art_curr.get("spell_storing_item", {}).get("active"))
+        ),
+        "current_attunement_limit": art_curr.get("magic_item_attunement", {}).get("max_attuned_items", 3),
+        "next_attunement_limit": art_next.get("magic_item_attunement", {}).get("max_attuned_items", 3),
+        "attunement_limit_increased": (
+            art_next.get("magic_item_attunement", {}).get("max_attuned_items", 3)
+            > art_curr.get("magic_item_attunement", {}).get("max_attuned_items", 3)
+        ),
+        "tool_expertise_unlocked": (
+            bool(art_next.get("tool_expertise", {}).get("active"))
+            and not bool(art_curr.get("tool_expertise", {}).get("active"))
+        ),
+        "soul_of_artifice_unlocked": (
+            bool(art_next.get("soul_of_artifice", {}).get("active"))
+            and not bool(art_curr.get("soul_of_artifice", {}).get("active"))
+        ),
+    }
+
     barb_curr = builder_current.calculate_barbarian_stats()
     barb_next = builder_next.calculate_barbarian_stats()
     is_barbarian = target_class_name.lower() == "barbarian"
@@ -1219,6 +1247,7 @@ def build_level_up_preview(
         "mastery_changes": mastery_changes,
         "invocation_changes": invocation_changes,
         "replication_changes": replication_changes,
+        "artificer_changes": artificer_changes,
         "barbarian_changes": barbarian_changes,
         "bard_changes": bard_changes,
         "cleric_changes": cleric_changes,

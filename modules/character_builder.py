@@ -7923,6 +7923,493 @@ class CharacterBuilder:
 
         return stats
 
+    def calculate_artificer_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Artificer 2024 RAW statistics including:
+        - Spellcasting focus via tools and Intelligence spellcasting.
+        - Magical Tinkering (lv 1+: invest minor property in up to max(1, INT mod) Tiny objects; Prestidigitation & Mending).
+        - The Right Tool for the Job (lv 3+: produce artisan's or thieves' tools).
+        - Tool Expertise (lv 6+: double PB for ability checks using tool proficiency).
+        - Flash of Genius (lv 7+: Reaction to add +INT mod to ability check/save within 30 ft, INT mod uses/LR).
+        - Magic Item Attunement scaling (4 items at lv 6, 5 at lv 10, 6 at lv 18).
+        - Magic Item Adept (lv 10+: Common/Uncommon crafting 1/4 time & 1/2 cost).
+        - Spell-Storing Item (lv 11+: store 1st/2nd level spell with 1-action cast time into weapon/focus; 2x INT activations).
+        - Advanced Artifice (lv 14+: ignore item attunement/use restrictions).
+        - Soul of Artifice (lv 20: +1 to all saves per attuned magic item; drop to 1 HP instead of 0).
+        - Subclass mechanics for Alchemist, Armorer, Artillerist, Battle Smith, and Cartographer.
+        """
+        artificer_level = self._get_class_level("Artificer")
+        if artificer_level <= 0:
+            return {
+                "is_artificer": False,
+                "artificer_level": 0,
+                "subclass": "",
+                "spellcasting_ability": "Intelligence",
+                "spell_save_dc": 10,
+                "spell_attack_bonus": 2,
+                "magical_tinkering": {
+                    "active": False,
+                    "max_objects": 1,
+                    "properties": [],
+                },
+                "the_right_tool": {"active": False},
+                "tool_expertise": {"active": False},
+                "flash_of_genius": {
+                    "active": False,
+                    "uses_max": 0,
+                    "bonus": 0,
+                    "range_feet": 30,
+                    "recharge": "Long Rest",
+                },
+                "magic_item_attunement": {
+                    "max_attuned_items": 3,
+                    "magic_item_adept": False,
+                    "advanced_artifice": False,
+                    "magic_item_master": False,
+                },
+                "spell_storing_item": {
+                    "active": False,
+                    "max_activations": 0,
+                    "max_spell_level": 2,
+                },
+                "soul_of_artifice": {
+                    "active": False,
+                    "bonus_per_attuned": 1,
+                },
+                "active_perks": [],
+                "actions": [],
+                "subclass_details": {},
+            }
+
+        ability_scores = self.calculate_processed_ability_scores()
+        int_mod = ability_scores.get("intelligence", {}).get("modifier", 0)
+        level = self.character_data.get("level", 1)
+        prof_bonus = self.calculate_proficiency_bonus(level)
+        spell_save_dc = 8 + prof_bonus + int_mod
+        spell_attack_bonus = prof_bonus + int_mod
+
+        subclass_name = self._get_class_subclass("Artificer")
+        if not subclass_name and self.character_data.get("class") == "Artificer":
+            subclass_name = (
+                self.character_data.get("subclass")
+                or self.character_data.get("choices_made", {}).get("subclass")
+                or ""
+            )
+
+        # Attunement scaling
+        if artificer_level >= 18:
+            max_attuned = 6
+        elif artificer_level >= 10:
+            max_attuned = 5
+        elif artificer_level >= 6:
+            max_attuned = 4
+        else:
+            max_attuned = 3
+
+        stats: Dict[str, Any] = {
+            "is_artificer": True,
+            "artificer_level": artificer_level,
+            "subclass": subclass_name,
+            "spellcasting_ability": "Intelligence",
+            "spell_save_dc": spell_save_dc,
+            "spell_attack_bonus": spell_attack_bonus,
+            "magical_tinkering": {
+                "active": True,
+                "max_objects": max(1, int_mod),
+                "properties": [
+                    "Shed bright light in a 5-foot radius and dim light for an additional 5 feet",
+                    "Emit a recorded message of up to 6 seconds when tapped",
+                    "Emit an odor or a nonverbal sound (wind, waves, chirping, etc.)",
+                    "Display a static visual effect (up to 25 words, lines, or shapes) on surface",
+                ],
+            },
+            "the_right_tool": {
+                "active": artificer_level >= 3,
+                "description": "With Tinker's Tools in hand, magically produce one set of Artisan's Tools or Thieves' Tools within 5 feet (Magic action, 1 hour, can coincide with rest).",
+            },
+            "tool_expertise": {
+                "active": artificer_level >= 6,
+                "description": "Your proficiency bonus is doubled for any ability check that uses your proficiency with a tool.",
+            },
+            "flash_of_genius": {
+                "active": artificer_level >= 7,
+                "uses_max": max(1, int_mod),
+                "bonus": max(1, int_mod),
+                "range_feet": 30,
+                "recharge": "Long Rest",
+                "description": "Reaction to add your Intelligence modifier to an ability check or saving throw made by you or a creature within 30 feet.",
+            },
+            "magic_item_attunement": {
+                "max_attuned_items": max_attuned,
+                "magic_item_adept": artificer_level >= 10,
+                "advanced_artifice": artificer_level >= 14,
+                "magic_item_master": artificer_level >= 18,
+            },
+            "spell_storing_item": {
+                "active": artificer_level >= 11,
+                "max_activations": max(2, 2 * int_mod),
+                "max_spell_level": 2,
+                "casting_time_req": "1 action",
+                "description": "Store a level 1 or 2 Artificer spell into a weapon or focus. Any creature holding it can cast the spell as a Magic action using your INT modifier.",
+            },
+            "soul_of_artifice": {
+                "active": artificer_level >= 20,
+                "bonus_per_attuned": 1,
+                "cheat_death": "Reaction to end one infusion/replication to drop to 1 Hit Point instead of 0.",
+            },
+            "active_perks": [],
+            "actions": [],
+            "subclass_details": {},
+        }
+
+        # Active Perks
+        perks = [
+            f"Magical Tinkering (Active objects: {max(1, int_mod)}; Prestidigitation & Mending cantrips)",
+        ]
+        if artificer_level >= 2:
+            perks.append("Replicate Magic Item (Infuse/replicate magic items into mundane objects)")
+        if artificer_level >= 3:
+            perks.append("The Right Tool for the Job (Magically create Artisan's Tools or Thieves' Tools in 1 hour)")
+        if artificer_level >= 6:
+            perks.append("Tool Expertise (Double proficiency bonus for checks using tool proficiencies)")
+            perks.append("Magic Item Tinker (Attune to up to 4 magic items)")
+        if artificer_level >= 7:
+            perks.append(f"Flash of Genius (+{max(1, int_mod)} to check/save within 30 ft as Reaction; {max(1, int_mod)}/Long Rest)")
+        if artificer_level >= 10:
+            perks.append("Magic Item Adept (Attune to up to 5 magic items; craft Common/Uncommon items in 1/4 time & 1/2 cost)")
+        if artificer_level >= 11:
+            perks.append(f"Spell-Storing Item (Store 1st/2nd lv Artificer spell; {max(2, 2 * int_mod)} activations)")
+        if artificer_level >= 14:
+            perks.append("Advanced Artifice (Ignore species, class, spell, and level restrictions on magic items; +1 replicate plan)")
+        if artificer_level >= 18:
+            perks.append("Magic Item Master (Attune to up to 6 magic items)")
+        if artificer_level >= 20:
+            perks.append("Soul of Artifice (+1 to all saves per attuned magic item; Reaction to drop to 1 HP instead of 0)")
+
+        # Actions
+        actions = [
+            {
+                "name": "Magical Tinkering",
+                "action": "Magic action",
+                "effect": f"Touch a Tiny nonmagical object to invest a minor property (light, sound, odor, or message). Max active: {max(1, int_mod)}.",
+            }
+        ]
+        if artificer_level >= 3:
+            actions.append({
+                "name": "The Right Tool for the Job",
+                "action": "Magic action (1 hour)",
+                "effect": "Create one set of Artisan's Tools or Thieves' Tools within 5 feet using Tinker's Tools (can coincide with a rest).",
+            })
+        if artificer_level >= 7:
+            actions.append({
+                "name": "Flash of Genius",
+                "action": "Reaction",
+                "effect": f"Add +{max(1, int_mod)} to an ability check or saving throw made by you or a creature within 30 ft.",
+                "recharge": f"{max(1, int_mod)}/Long Rest",
+            })
+        if artificer_level >= 11:
+            actions.append({
+                "name": "Spell-Storing Item",
+                "action": "Magic action",
+                "effect": f"Cast stored 1st/2nd level Artificer spell from held weapon or focus (uses your spellcasting ability). Activations: {max(2, 2 * int_mod)}/LR.",
+            })
+        if artificer_level >= 20:
+            actions.append({
+                "name": "Soul of Artifice",
+                "action": "Reaction",
+                "effect": "When reduced to 0 HP but not killed outright, end one Artificer infusion/replication to drop to 1 HP instead.",
+            })
+
+        # Subclass Details
+        subclass_details: Dict[str, Any] = {"name": subclass_name}
+
+        if subclass_name == "Alchemist" and artificer_level >= 3:
+            subclass_details["experimental_elixir"] = {
+                "active": True,
+                "free_elixirs": 2,
+                "spell_slot_creation": True,
+                "table": [
+                    "1: Healing (Drink restores 2d4 + INT HP)",
+                    "2: Swiftness (+10 ft walking speed for 1 hour)",
+                    "3: Resilience (+1 bonus to AC for 10 minutes)",
+                    "4: Boldness (Roll 1d4 on attack rolls and saves for 1 minute)",
+                    "5: Flight (Flying speed 10 ft for 10 minutes)",
+                    "6: Transformation (Alter Self effect for 10 minutes)",
+                ],
+            }
+            perks.append("Experimental Elixir (Create 2 elixirs per Long Rest; create extra with 1st+ level spell slots)")
+            actions.append({
+                "name": "Experimental Elixir",
+                "action": "Action",
+                "effect": "Produce 2 experimental elixirs on Long Rest, or expend a spell slot of level 1+ to create an elixir with chosen effect.",
+            })
+
+            if artificer_level >= 5:
+                subclass_details["alchemical_savant"] = {
+                    "active": True,
+                    "bonus": max(1, int_mod),
+                    "types": ["Acid", "Fire", "Necrotic", "Poison", "Healing"],
+                }
+                perks.append(f"Alchemical Savant (+{max(1, int_mod)} bonus to one roll of spell dealing Acid/Fire/Necrotic/Poison damage or restoring HP via Alchemist's Supplies)")
+
+            if artificer_level >= 9:
+                subclass_details["restorative_reagents"] = {
+                    "active": True,
+                    "temp_hp_formula": f"2d6 + {int_mod}",
+                    "free_lesser_restoration_uses": max(1, int_mod),
+                }
+                perks.append(f"Restorative Reagents (Elixirs grant 2d6 + {int_mod} Temp HP; free Lesser Restoration {max(1, int_mod)}/LR)")
+                actions.append({
+                    "name": "Lesser Restoration (Restorative Reagents)",
+                    "action": "Action",
+                    "effect": "Cast Lesser Restoration without expending a spell slot.",
+                    "recharge": f"{max(1, int_mod)}/Long Rest",
+                })
+
+            if artificer_level >= 15:
+                subclass_details["chemical_mastery"] = {
+                    "active": True,
+                    "resistances": ["Acid", "Poison"],
+                    "immunities": ["Poisoned condition"],
+                    "free_spells": ["Greater Restoration", "Heal"],
+                }
+                perks.append("Chemical Mastery (Acid & Poison resistance, Poisoned immunity; free Greater Restoration & Heal 1/LR each)")
+                actions.append({
+                    "name": "Greater Restoration (Chemical Mastery)",
+                    "action": "Action",
+                    "effect": "Cast Greater Restoration without expending a spell slot.",
+                    "recharge": "1/Long Rest",
+                })
+                actions.append({
+                    "name": "Heal (Chemical Mastery)",
+                    "action": "Action",
+                    "effect": "Cast Heal without expending a spell slot.",
+                    "recharge": "1/Long Rest",
+                })
+
+        elif subclass_name == "Armorer" and artificer_level >= 3:
+            subclass_details["arcane_armor"] = {
+                "active": True,
+                "no_strength_requirement": True,
+                "spellcasting_focus": True,
+                "action_don_doff": True,
+            }
+            subclass_details["armor_model"] = {
+                "Guardian": {
+                    "weapon": "Thunder Gauntlets (1d8 Thunder, Simple Melee, uses INT for atk/dmg, hit target has Disadvantage vs others)",
+                    "defensive_field": f"Bonus Action to gain {artificer_level} Temporary HP ({prof_bonus}/Long Rest)",
+                },
+                "Infiltrator": {
+                    "weapon": "Lightning Launcher (1d6 Lightning, Simple Ranged 90/300, uses INT for atk/dmg; once/turn extra 1d6 Lightning)",
+                    "powered_steps": "+5 ft walking speed",
+                    "dampening_field": "Advantage on Dexterity (Stealth) checks",
+                },
+            }
+            perks.append("Arcane Armor (No STR requirement, don/doff as Action, acts as Spellcasting Focus)")
+            perks.append("Armor Model: Guardian (Thunder Gauntlets 1d8 Thunder [INT], Defensive Field THP) or Infiltrator (Lightning Launcher 1d6+1d6 [INT], +5 ft Speed, Stealth Advantage)")
+            actions.append({
+                "name": "Arcane Armor Don/Doff",
+                "action": "Action",
+                "effect": "Don or doff your Arcane Armor as a single action.",
+            })
+            actions.append({
+                "name": "Defensive Field (Guardian)",
+                "action": "Bonus Action",
+                "effect": f"Gain {artificer_level} Temporary Hit Points. Replaces existing temp HP.",
+                "recharge": f"{prof_bonus}/Long Rest",
+            })
+
+            if artificer_level >= 5:
+                subclass_details["extra_attack"] = True
+                perks.append("Extra Attack (Attack twice per Attack action)")
+
+            if artificer_level >= 9:
+                subclass_details["improved_armorer"] = {
+                    "active": True,
+                    "separate_pieces": ["chest piece", "boots", "helmet", "special weapon"],
+                    "extra_infusions": 2,
+                }
+                perks.append("Improved Armorer (Armor splits into 4 separate items; +2 extra infusions/replications for Arcane Armor pieces)")
+
+            if artificer_level >= 15:
+                subclass_details["perfected_armor"] = {
+                    "active": True,
+                    "guardian_pull": "Tinkered Pull reaction pulls Huge or smaller creature up to 30 ft and gives free melee attack",
+                    "infiltrator_mark": "Lightning Launcher marks target: attackers gain Advantage and hit deals extra 1d6 lightning",
+                }
+                perks.append("Perfected Armor (Guardian: Tinkered Pull reaction 30 ft pull + attack; Infiltrator: marked target grants Advantage & extra 1d6)")
+                actions.append({
+                    "name": "Tinkered Pull (Perfected Guardian)",
+                    "action": "Reaction",
+                    "effect": "When a Huge or smaller creature ends its turn within 30 ft, pull it to within 5 ft (Str save DC) and make a melee attack.",
+                })
+
+        elif subclass_name == "Artillerist" and artificer_level >= 3:
+            cannon_options = {
+                "Flamethrower": f"15-foot cone, Dex save DC {spell_save_dc}, deals {'3d8' if artificer_level >= 9 else '2d8'} Fire damage (half on save)",
+                "Force Ballista": f"Ranged spell attack (+{spell_attack_bonus}, 120 ft), deals {'3d8' if artificer_level >= 9 else '2d8'} Force damage and pushes 5 ft",
+                "Protector": f"Emits burst within 10 ft: creatures gain 1d8 + {int_mod} Temporary HP",
+            }
+            subclass_details["eldritch_cannon"] = {
+                "active": True,
+                "cannon_ac": 18,
+                "cannon_hp": artificer_level * 5,
+                "duration": "1 hour",
+                "options": cannon_options,
+            }
+            perks.append("Eldritch Cannon (Magic action to create cannon; Bonus Action to fire Flamethrower, Force Ballista, or Protector)")
+            actions.append({
+                "name": "Create Eldritch Cannon",
+                "action": "Magic action",
+                "effect": f"Create a Small or Tiny Eldritch Cannon (AC 18, {artificer_level * 5} HP) within 5 ft using tools. Lasts 1 hour (1 free/LR or 1st+ slot).",
+            })
+            actions.append({
+                "name": "Activate Eldritch Cannon",
+                "action": "Bonus Action",
+                "effect": "Command Eldritch Cannon to move up to 15 ft and activate: Flamethrower, Force Ballista, or Protector.",
+            })
+
+            if artificer_level >= 5:
+                subclass_details["arcane_firearm"] = True
+                perks.append("Arcane Firearm (Add +1d8 to one damage roll of an Artificer spell cast through wand/staff/rod)")
+
+            if artificer_level >= 9:
+                subclass_details["explosive_cannon"] = {
+                    "active": True,
+                    "bonus_damage_die": "1d8",
+                    "detonation_damage": "3d8",
+                }
+                perks.append("Explosive Cannon (Cannon damage rolls +1d8; Action to detonate cannon dealing 3d8 Force in 20-ft radius)")
+                actions.append({
+                    "name": "Detonate Eldritch Cannon",
+                    "action": "Action",
+                    "effect": f"Command cannon within 60 ft to detonate: destroys cannon and deals 3d8 Force damage in 20 ft radius (Dex save DC {spell_save_dc} half).",
+                })
+
+            if artificer_level >= 15:
+                subclass_details["fortified_position"] = {
+                    "active": True,
+                    "dual_cannons": True,
+                    "half_cover_aura_feet": 10,
+                }
+                perks.append("Fortified Position (Create 2 cannons and activate both with 1 Bonus Action; Half Cover [+2 AC & Dex saves] within 10 ft)")
+
+        elif subclass_name == "Battle Smith" and artificer_level >= 3:
+            subclass_details["battle_ready"] = {
+                "active": True,
+                "martial_weapons": True,
+                "magic_weapon_int_attack": True,
+            }
+            defender_ac = 15 + prof_bonus + (2 if artificer_level >= 15 else 0)
+            defender_hp = 2 + int_mod + 5 * artificer_level
+            subclass_details["steel_defender"] = {
+                "active": True,
+                "ac": defender_ac,
+                "hp": defender_hp,
+                "attack": f"+{spell_attack_bonus} to hit, 1d8 + {prof_bonus} Force damage",
+                "repair": f"3/Long Rest (2d8 + {prof_bonus} HP)",
+                "deflect_attack": f"Imposes Disadvantage on attack roll against nearby creature{'; deals 1d4 + ' + str(int_mod) + ' Force damage' if artificer_level >= 15 else ''}",
+            }
+            perks.append("Battle Ready (Proficiency with Martial weapons; attack and damage rolls with magic weapons use INT modifier)")
+            perks.append(f"Steel Defender (Companion AC {defender_ac}, HP {defender_hp}; BA command: 1d8+{prof_bonus} Force rend, Repair 3/LR, Deflect Attack)")
+            actions.append({
+                "name": "Command Steel Defender",
+                "action": "Bonus Action",
+                "effect": "Command Steel Defender to attack (Force-Empowered Rend), Dash, Disengage, Help, Hide, Search, or Use an Object.",
+            })
+
+            if artificer_level >= 5:
+                subclass_details["extra_attack"] = True
+                perks.append("Extra Attack (Attack twice per Attack action)")
+
+            if artificer_level >= 9:
+                subclass_details["arcane_jolt"] = {
+                    "active": True,
+                    "dice": "4d6" if artificer_level >= 15 else "2d6",
+                    "uses_max": max(1, int_mod),
+                }
+                perks.append(f"Arcane Jolt (Deal extra {'4d6' if artificer_level >= 15 else '2d6'} Force damage or heal {'4d6' if artificer_level >= 15 else '2d6'} HP on magic weapon or defender hit; {max(1, int_mod)}/LR)")
+                actions.append({
+                    "name": "Arcane Jolt",
+                    "action": "Special (on hit)",
+                    "effect": f"Channel magic on hit with magic weapon or Steel Defender: deal +{'4d6' if artificer_level >= 15 else '2d6'} Force damage or heal {'4d6' if artificer_level >= 15 else '2d6'} HP within 30 ft.",
+                    "recharge": f"{max(1, int_mod)}/Long Rest",
+                })
+
+            if artificer_level >= 15:
+                subclass_details["improved_defender"] = {
+                    "active": True,
+                    "defender_ac_bonus": 2,
+                    "deflect_damage": f"1d4 + {int_mod} Force",
+                }
+                perks.append(f"Improved Defender (Arcane Jolt dice upgraded to 4d6; Steel Defender +2 AC, Deflect Attack deals 1d4 + {int_mod} Force damage)")
+
+        elif subclass_name == "Cartographer" and artificer_level >= 3:
+            subclass_details["adventurers_atlas"] = {
+                "active": True,
+                "max_map_holders": max(2, 1 + int_mod),
+                "initiative_bonus": "1d4",
+                "scroll_crafting_half_time": True,
+            }
+            subclass_details["mapping_magic"] = {
+                "active": True,
+                "free_faerie_fire_uses": max(1, int_mod),
+                "teleport": "Spend half speed to teleport 10 ft or near map holder within 30 ft",
+            }
+            perks.append(f"Adventurer's Atlas (Provide magical maps to up to {max(2, 1 + int_mod)} creatures; +1d4 to Initiative, target allies through cover; 1/2 scroll crafting time)")
+            perks.append(f"Mapping Magic (Cast Faerie Fire {max(1, int_mod)}/LR free; spend half speed to teleport 10 ft or within 5 ft of map holder within 30 ft)")
+            actions.append({
+                "name": "Create Adventurer's Atlas",
+                "action": "Magic action (Long Rest)",
+                "effect": f"Touch up to {max(2, 1 + int_mod)} creatures using Cartographer's Tools: grants magical maps with +1d4 Initiative & omnidirectional ally targeting.",
+            })
+            actions.append({
+                "name": "Faerie Fire (Mapping Magic)",
+                "action": "Action",
+                "effect": "Cast Faerie Fire without expending a spell slot.",
+                "recharge": f"{max(1, int_mod)}/Long Rest",
+            })
+            actions.append({
+                "name": "Atlas Teleport (Mapping Magic)",
+                "action": "Bonus Action / Movement",
+                "effect": "Spend half your Speed to teleport up to 10 ft to an unoccupied space, or within 5 ft of a map holder within 30 ft.",
+            })
+
+            if artificer_level >= 5:
+                subclass_details["guided_precision"] = {
+                    "active": True,
+                    "damage_bonus": max(1, int_mod),
+                    "no_conc_loss_from_damage": True,
+                }
+                perks.append(f"Guided Precision (+{max(1, int_mod)} damage once/turn on Cartographer spells or Faerie Fire targets; immune to losing Concentration on Faerie Fire from damage)")
+
+            if artificer_level >= 9:
+                subclass_details["ingenious_movement"] = {
+                    "active": True,
+                    "teleport_range_feet": 30,
+                }
+                perks.append("Ingenious Movement (When using Flash of Genius, you or an ally within 30 ft can teleport up to 30 ft as part of the Reaction)")
+
+            if artificer_level >= 15:
+                subclass_details["superior_atlas"] = {
+                    "active": True,
+                    "cheat_death_hp": artificer_level * 2,
+                    "free_find_the_path": True,
+                }
+                perks.append(f"Superior Atlas (Map holder dropping to 0 HP destroys map to drop to {artificer_level * 2} HP and teleport 5 ft to ally; free Find the Path 1/LR)")
+                actions.append({
+                    "name": "Find the Path (Superior Atlas)",
+                    "action": "Action",
+                    "effect": "Cast Find the Path without expending a spell slot or material components.",
+                    "recharge": "1/Long Rest",
+                })
+
+        stats["active_perks"] = perks
+        stats["actions"] = actions
+        stats["subclass_details"] = subclass_details
+
+        return stats
+
     def calculate_barbarian_stats(self) -> Dict[str, Any]:
         """
         Calculate Rage, Brutal Strike, and subclass statistics for Barbarian characters.
@@ -12299,6 +12786,47 @@ class CharacterBuilder:
                     ability_mod = override_mod
                     ability_name = override["ability"].upper()[:3]
 
+            # Artificer Subclass Attacks (Battle Smith Battle Ready & Armorer Arcane Armor weapons)
+            artificer_level = self._get_class_level("Artificer")
+            artificer_subclass = self._get_class_subclass("Artificer")
+            if not artificer_subclass and self.character_data.get("class") == "Artificer":
+                artificer_subclass = (
+                    self.character_data.get("subclass")
+                    or self.character_data.get("choices_made", {}).get("subclass")
+                    or ""
+                )
+            int_mod = ability_scores.get("intelligence", {}).get("modifier", 0)
+            lower_wname = weapon_name.lower()
+
+            # Armorer: Thunder Gauntlets and Lightning Launcher use INT
+            if artificer_level >= 3 and artificer_subclass == "Armorer":
+                if "thunder gauntlet" in lower_wname or "lightning launcher" in lower_wname:
+                    if int_mod > ability_mod:
+                        ability_mod = int_mod
+                        ability_name = "INT"
+
+            # Battle Smith: Battle Ready (magic weapons use INT)
+            if artificer_level >= 3 and artificer_subclass == "Battle Smith":
+                active_reps = (
+                    self.character_data.get("artificer_active_replications")
+                    or self.character_data.get("choices_made", {}).get("artificer_active_replications")
+                    or []
+                )
+                is_magic = bool(
+                    weapon.get("is_magic")
+                    or weapon.get("magic")
+                    or weapon_props.get("is_magic")
+                    or item_attack_bonus != 0
+                    or item_damage_bonus != 0
+                    or weapon.get("rarity")
+                    or any(tag in lower_wname for tag in ["+1", "+2", "+3"])
+                    or bool(re.search(r'\bmagic\b', lower_wname) and not ("nonmagic" in lower_wname or "non-magic" in lower_wname))
+                    or any(isinstance(rep, str) and rep.lower() in lower_wname for rep in active_reps)
+                )
+                if is_magic and int_mod > ability_mod:
+                    ability_mod = int_mod
+                    ability_name = "INT"
+
             # Check proficiency
             is_proficient = self._has_weapon_proficiency(weapon_props, weapon_profs)
             prof_bonus = proficiency_bonus if is_proficient else 0
@@ -14144,6 +14672,11 @@ class CharacterBuilder:
         artificer_replications = self.calculate_artificer_replications_stats()
         if artificer_replications.get("has_replications"):
             character_data["artificer_replications"] = artificer_replications
+
+        # Add Artificer stats (Artificer only)
+        artificer_stats = self.calculate_artificer_stats()
+        if artificer_stats.get("artificer_level", 0) > 0:
+            character_data["artificer_stats"] = artificer_stats
 
         # Add Barbarian stats (Barbarian only)
         barbarian_stats = self.calculate_barbarian_stats()
