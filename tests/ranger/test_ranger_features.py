@@ -258,6 +258,35 @@ class TestRangerExpertiseChoices:
         assert "Stealth" in character.get("skill_expertise", [])
         assert character["skills"]["stealth"]["expertise"] is True
 
+    def test_level_2_deft_explorer_prefixed_choice_applies_expertise_and_languages(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Test Ranger",
+            "level": 2,
+            "class": "Ranger",
+            "species": "Human",
+            "background": "Soldier",
+            "skill_choices": ["Stealth", "Perception", "Survival"],
+            "fighting_style": "Archery",
+            "ability_scores": {
+                "Strength": 10,
+                "Dexterity": 15,
+                "Constitution": 14,
+                "Intelligence": 10,
+                "Wisdom": 14,
+                "Charisma": 8,
+            },
+            "background_bonuses": {"Strength": 2, "Constitution": 1},
+            "Deft Explorer_deft_explorer_expertise": "Stealth",
+            "Deft Explorer_deft_explorer_languages": ["Elvish", "Draconic"],
+        })
+        character = builder.to_character()
+
+        assert "Stealth" in character.get("skill_expertise", [])
+        assert character["skills"]["stealth"]["expertise"] is True
+        assert "Elvish" in character["proficiencies"]["languages"]
+        assert "Draconic" in character["proficiencies"]["languages"]
+
     def test_level_2_deft_explorer_choice_titles_are_human_readable(self):
         """Regression: choice titles must show display_name, not raw key (e.g. 'Expertise' not 'deft_explorer_expertise')."""
         builder = build_ranger_with_choices(2)
@@ -832,3 +861,293 @@ class TestFeyWandererFeatures:
         assert expected_spell in always_prepared, (
             f"Expected '{expected_spell}' always prepared at level {level}"
         )
+
+
+class TestRangerTacticalStats:
+    """Test calculate_ranger_stats and tactical properties (2024 RAW)."""
+
+    def test_favored_enemy_uses_progression(self):
+        """Favored enemy free casts: 2 at Lv 1-4, 3 at Lv 5-8, 4 at Lv 9-12, 5 at Lv 13-16, 6 at Lv 17-20."""
+        expected = [
+            (1, 2, "1d6"),
+            (4, 2, "1d6"),
+            (5, 3, "1d6"),
+            (8, 3, "1d6"),
+            (9, 4, "1d6"),
+            (12, 4, "1d6"),
+            (13, 5, "1d6"),
+            (16, 5, "1d6"),
+            (17, 6, "1d6"),
+            (19, 6, "1d6"),
+            (20, 6, "1d10"),
+        ]
+        for level, expected_uses, expected_die in expected:
+            builder = CharacterBuilder()
+            builder.set_species("Human")
+            builder.set_background("Soldier")
+            builder.set_class("Ranger", level)
+            builder.set_subclass("Hunter")
+            char = builder.to_character()
+            stats = char.get("ranger_stats", {})
+            assert stats.get("is_ranger") is True
+            fe = stats.get("favored_enemy", {})
+            assert fe.get("active") is True
+            assert fe.get("max_uses") == expected_uses, f"Level {level} expected {expected_uses} uses, got {fe.get('max_uses')}"
+            assert fe.get("damage_die") == expected_die, f"Level {level} expected {expected_die} die, got {fe.get('damage_die')}"
+
+    def test_relentless_and_precise_hunter(self):
+        """Level 13 concentration protection and Level 17 advantage perks."""
+        char12 = build_ranger(12, "Hunter")
+        char13 = build_ranger(13, "Hunter")
+        char17 = build_ranger(17, "Hunter")
+
+        assert char12["ranger_stats"]["favored_enemy"]["relentless_hunter"] is False
+        assert char13["ranger_stats"]["favored_enemy"]["relentless_hunter"] is True
+        assert char13["ranger_stats"]["favored_enemy"]["precise_hunter"] is False
+        assert char17["ranger_stats"]["favored_enemy"]["precise_hunter"] is True
+
+    def test_foe_slayer_level_20(self):
+        """Level 20 Foe Slayer changes Hunter's Mark die to 1d10."""
+        char19 = build_ranger(19, "Hunter")
+        char20 = build_ranger(20, "Hunter")
+        assert char19["ranger_stats"]["favored_enemy"]["foe_slayer"] is False
+        assert char19["ranger_stats"]["favored_enemy"]["damage_die"] == "1d6"
+        assert char20["ranger_stats"]["favored_enemy"]["foe_slayer"] is True
+        assert char20["ranger_stats"]["favored_enemy"]["damage_die"] == "1d10"
+
+    def test_roving_speeds(self):
+        """Level 6 Roving adds +10 ft speed and Climb/Swim speed equal to walking speed."""
+        char5 = build_ranger(5, "Hunter")
+        char6 = build_ranger(6, "Hunter")
+        # Human base speed is 30
+        assert char5["combat"]["speed"] == 30
+        assert char6["combat"]["speed"] == 40
+        assert char6["combat"]["climb_speed"] == 40
+        assert char6["combat"]["swim_speed"] == 40
+        roving = char6["ranger_stats"]["roving"]
+        assert roving["active"] is True
+        assert roving["climb_speed"] == 40
+        assert roving["swim_speed"] == 40
+
+    def test_tireless_and_natures_veil(self):
+        """Level 10 Tireless and Level 14 Nature's Veil resources and actions."""
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Tireless Ranger",
+            "level": 14,
+            "class": "Ranger",
+            "species": "Human",
+            "background": "Soldier",
+            "subclass": "Hunter",
+            "ability_scores": {
+                "Strength": 10,
+                "Dexterity": 14,
+                "Constitution": 14,
+                "Intelligence": 10,
+                "Wisdom": 16,
+                "Charisma": 8,
+            },
+        })
+        char = builder.to_character()
+        stats = char["ranger_stats"]
+
+        tireless = stats["tireless"]
+        assert tireless["active"] is True
+        assert tireless["uses"] == 3  # WIS +3
+        assert tireless["temp_hp_roll"] == "1d8 + 3"
+        assert tireless["short_rest_exhaustion_reduction"] is True
+
+        natures_veil = stats["natures_veil"]
+        assert natures_veil["active"] is True
+        assert natures_veil["uses"] == 3
+        assert natures_veil["action"] == "Bonus Action"
+
+    def test_feral_senses_blindsight(self):
+        """Level 18 Feral Senses grants Blindsight 30 ft."""
+        char17 = build_ranger(17, "Hunter")
+        char18 = build_ranger(18, "Hunter")
+        assert char17.get("blindsight", 0) == 0
+        assert char18.get("blindsight") == 30
+        assert char18["combat"]["blindsight"] == 30
+        assert char18["ranger_stats"]["feral_senses"]["active"] is True
+        assert char18["ranger_stats"]["feral_senses"]["blindsight_range"] == 30
+
+
+class TestRangerDerivedStats:
+    """Test level-up changes detection for Ranger."""
+
+    def test_ranger_level_up_changes(self):
+        from modules.derived_stats import build_level_up_preview
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Leveling Ranger",
+            "level": 5,
+            "class": "Ranger",
+            "species": "Human",
+            "background": "Soldier",
+            "subclass": "Hunter",
+            "ability_scores": {
+                "Strength": 10,
+                "Dexterity": 14,
+                "Constitution": 14,
+                "Intelligence": 10,
+                "Wisdom": 16,
+                "Charisma": 8,
+            },
+        })
+        char_dict = builder.to_character()
+        changes = build_level_up_preview(char_dict["choices_made"], "Ranger")
+        ranger_chg = changes["ranger_changes"]
+        assert ranger_chg["is_ranger"] is True
+        assert ranger_chg["roving_unlocked"] is True
+
+        # Level 19 -> 20 Foe Slayer
+        builder20 = CharacterBuilder()
+        builder20.apply_choices({
+            "character_name": "Epic Ranger",
+            "level": 19,
+            "class": "Ranger",
+            "species": "Human",
+            "background": "Soldier",
+            "subclass": "Hunter",
+            "ability_scores": {
+                "Strength": 10,
+                "Dexterity": 14,
+                "Constitution": 14,
+                "Intelligence": 10,
+                "Wisdom": 16,
+                "Charisma": 8,
+            },
+        })
+        char_dict20 = builder20.to_character()
+        changes20 = build_level_up_preview(char_dict20["choices_made"], "Ranger")
+        assert changes20["ranger_changes"]["foe_slayer_unlocked"] is True
+
+
+class TestRangerWeaponNotes:
+    """Test damage notes for Ranger weapon attacks and unarmed strikes."""
+
+    def test_hunters_mark_weapon_and_unarmed_notes(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Marking Ranger",
+            "level": 3,
+            "class": "Ranger",
+            "species": "Human",
+            "background": "Soldier",
+            "subclass": "Hunter",
+            "hunters_prey": "Colossus Slayer",
+            "ability_scores": {
+                "Strength": 10,
+                "Dexterity": 16,
+                "Constitution": 14,
+                "Intelligence": 10,
+                "Wisdom": 14,
+                "Charisma": 8,
+            },
+        })
+        builder.character_data["equipment"] = {
+            "weapons": [
+                {
+                    "name": "Longbow",
+                    "equipped": True,
+                    "properties": {
+                        "category": "Martial Ranged",
+                        "damage": "1d8",
+                        "damage_type": "Piercing",
+                        "properties": ["Ammunition", "Heavy", "Two-Handed"],
+                    },
+                }
+            ],
+            "armor": [],
+            "items": [],
+            "gold": 0,
+        }
+        char = builder.to_character()
+        attacks = {a["name"]: a for a in char["attacks"]}
+        assert "Longbow" in attacks
+        lb_notes = attacks["Longbow"]["damage_notes"]
+        assert any("Hunter's Mark" in n for n in lb_notes)
+        assert any("Colossus Slayer" in n for n in lb_notes)
+
+        # Unarmed strike also gets Hunter's Mark note
+        assert "Unarmed Strike" in attacks
+        unarmed_notes = attacks["Unarmed Strike"]["damage_notes"]
+        assert any("Hunter's Mark" in n for n in unarmed_notes)
+
+
+class TestRangerSupplements:
+    """Test Hollow Warden and Winter Walker supplement subclasses."""
+
+    def test_hollow_warden_con_save_bonus(self):
+        """Hollow Warden Lv 7+ adds Wisdom modifier to Constitution saving throws (Hungering Might)."""
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Hollow Ranger",
+            "level": 7,
+            "class": "Ranger",
+            "species": "Human",
+            "background": "Soldier",
+            "subclass": "Hollow Warden",
+            "ability_scores": {
+                "Strength": 10,
+                "Dexterity": 14,
+                "Constitution": 14,  # mod +2, prof bonus +3
+                "Intelligence": 10,
+                "Wisdom": 16,        # mod +3
+                "Charisma": 8,
+            },
+        })
+        char = builder.to_character()
+        con_entry = char["abilities"]["constitution"]
+        # Ranger gets Str and Dex save prof, not Con.
+        # Con modifier = +2. Hungering might adds +3 (Wis mod). Total save = +5.
+        assert con_entry["saving_throw"] == 5
+        assert con_entry.get("hungering_might_bonus") == 3
+        stats = char["ranger_stats"]
+        assert any("Hungering Might" in p for p in stats["active_perks"])
+
+    def test_winter_walker_stats_and_damage_notes(self):
+        """Winter Walker gets Frigid Explorer Cold damage notes and Hunter's Rime."""
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Winter Ranger",
+            "level": 3,
+            "class": "Ranger",
+            "species": "Human",
+            "background": "Soldier",
+            "subclass": "Winter Walker",
+            "ability_scores": {
+                "Strength": 10,
+                "Dexterity": 16,
+                "Constitution": 14,
+                "Intelligence": 10,
+                "Wisdom": 14,
+                "Charisma": 8,
+            },
+        })
+        builder.character_data["equipment"] = {
+            "weapons": [
+                {
+                    "name": "Shortsword",
+                    "equipped": True,
+                    "properties": {
+                        "category": "Martial Melee",
+                        "damage": "1d6",
+                        "damage_type": "Piercing",
+                        "properties": ["Finesse", "Light"],
+                    },
+                }
+            ],
+            "armor": [],
+            "items": [],
+            "gold": 0,
+        }
+        char = builder.to_character()
+        attacks = {a["name"]: a for a in char["attacks"]}
+        sw_notes = attacks["Shortsword"]["damage_notes"]
+        assert any("Polar Strikes" in n for n in sw_notes)
+        stats = char["ranger_stats"]
+        assert any("Frigid Explorer" in p for p in stats["active_perks"])
+        assert any("Hunter's Rime" in p for p in stats["active_perks"])
+

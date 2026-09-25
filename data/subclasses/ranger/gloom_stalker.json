@@ -5,7 +5,12 @@
   "source": "Player's Handbook 2024",
   "features_by_level": {
     "3": {
-      "Dread Ambusher": "You have mastered the art of creating fearsome ambushes, granting you the following benefits. Ambusher's Leap: At the start of your first turn of each combat, your speed increases by 10 feet until the end of that turn. Dreadful Strike: When you attack a creature and hit it with a weapon, you can deal an extra 2d6 Psychic damage. You can use this benefit only once per turn, you can use it a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. Initiative Bonus: When you roll Initiative, you can add your Wisdom modifier to the roll.",
+      "Dread Ambusher": {
+        "description": "You have mastered the art of creating fearsome ambushes, granting you the following benefits. Ambusher's Leap: At the start of your first turn of each combat, your speed increases by 10 feet until the end of that turn. Dreadful Strike: When you attack a creature and hit it with a weapon, you can deal an extra 2d6 Psychic damage. You can use this benefit only once per turn, you can use it a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. Initiative Bonus: When you roll Initiative, you can add your Wisdom modifier to the roll.",
+        "effects": [
+          {"type": "bonus_initiative", "ability": "Wisdom"}
+        ]
+      },
       "Gloom Stalker Spells": {
         "description": "When you reach a Ranger level specified in the Gloom Stalker Spells table, you thereafter always have the listed spells prepared.",
         "effects": [
@@ -19,7 +24,7 @@
       "Umbral Sight": {
         "description": "You gain Darkvision with a range of 60 feet. If you already have Darkvision when you gain this feature, its range increases by 60 feet. You are also adept at evading creatures that rely on Darkvision. While entirely in Darkness, you have the Invisible condition to any creature that relies on Darkvision to see you in that Darkness.",
         "effects": [
-          {"type": "grant_darkvision", "range": 60}
+          {"type": "grant_darkvision", "range": 60, "increase_if_present": true}
         ]
       }
     },

@@ -1607,3 +1607,47 @@ class TestCharacterDerived:
             ["Guidance"],
             ["Druidcraft"],
         ]
+
+    def test_validate_and_build_ranger_with_deft_explorer_prefixed_choices(self, client):
+        choices = {
+            "class": "Ranger",
+            "level": 2,
+            "species": "Human",
+            "background": "Wayfarer",
+            "skill_choices": ["Stealth", "Perception", "Survival"],
+            "fighting_style": "Archery",
+            "Deft Explorer_deft_explorer_expertise": "Stealth",
+            "Deft Explorer_deft_explorer_languages": ["Elvish", "Draconic"],
+            "ability_scores": {
+                "Strength": 10,
+                "Dexterity": 15,
+                "Constitution": 14,
+                "Intelligence": 10,
+                "Wisdom": 14,
+                "Charisma": 8,
+            },
+            "background_bonuses": {"Dexterity": 2, "Wisdom": 1},
+        }
+
+        # 1. Validation must succeed without "Unknown choices: Deft Explorer_deft_explorer_expertise"
+        resp_validate = client.post("/api/v1/character/validate", json={"choices_made": choices})
+        assert resp_validate.status_code == 200
+        val_data = resp_validate.get_json()
+        assert isinstance(val_data.get("steps"), list)
+
+        # 2. Preview-step must succeed
+        resp_preview = client.post(
+            "/api/v1/character/preview-step",
+            json={"step": "class", "choices_made": choices},
+        )
+        assert resp_preview.status_code == 200
+
+        # 3. Build character must apply expertise and languages
+        resp_build = client.post("/api/v1/character/build", json={"choices_made": choices})
+        assert resp_build.status_code == 200
+        char = resp_build.get_json()["character"]
+        assert "Stealth" in char.get("skill_expertise", [])
+        assert char["skills"]["stealth"]["expertise"] is True
+        assert "Elvish" in char["proficiencies"]["languages"]
+        assert "Draconic" in char["proficiencies"]["languages"]
+

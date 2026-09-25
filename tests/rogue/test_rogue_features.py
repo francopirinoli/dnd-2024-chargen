@@ -762,3 +762,182 @@ class TestRogueSleightOfHandExpertise:
         char = builder.to_character()
         proficient_skills = set(char["proficiencies"]["skills"])
         assert set(expertise_choice["options"]) == proficient_skills
+
+
+class TestRogueAudit2024:
+    """Comprehensive 2024 audit tests for Rogue mechanics, choices, and stats."""
+
+    def test_performance_in_skill_options(self):
+        """2024 PHB includes Performance in Rogue skill proficiencies options."""
+        builder = CharacterBuilder()
+        class_data = builder._load_class_data("Rogue")
+        assert "Performance" in class_data["skill_options"]
+        assert len(class_data["skill_options"]) == 11
+
+    def test_rogue_stats_scaling_and_features(self):
+        """Verify rogue_stats across levels 1 to 20."""
+        # Level 1
+        r1 = build_rogue(1)
+        assert r1["rogue_stats"]["is_rogue"] is True
+        assert r1["rogue_stats"]["rogue_level"] == 1
+        assert r1["rogue_stats"]["sneak_attack_dice"] == "1d6"
+        assert r1["rogue_stats"]["cunning_action"]["active"] is False
+        assert r1["rogue_stats"]["cunning_strike"]["active"] is False
+
+        # Level 2 Cunning Action
+        r2 = build_rogue(2)
+        assert r2["rogue_stats"]["cunning_action"]["active"] is True
+        assert "Dash" in r2["rogue_stats"]["cunning_action"]["actions"]
+        assert "Disengage" in r2["rogue_stats"]["cunning_action"]["actions"]
+        assert "Hide" in r2["rogue_stats"]["cunning_action"]["actions"]
+
+        # Level 3 Steady Aim
+        r3 = build_rogue(3, "Thief")
+        assert r3["rogue_stats"]["steady_aim"] is True
+        assert r3["rogue_stats"]["sneak_attack_dice"] == "2d6"
+
+        # Level 5 Cunning Strike & Uncanny Dodge
+        r5 = build_rogue(5, "Thief")
+        assert r5["rogue_stats"]["cunning_strike"]["active"] is True
+        assert r5["rogue_stats"]["cunning_strike"]["max_effects"] == 1
+        assert r5["rogue_stats"]["cunning_strike"]["save_dc"] == 11
+        opt_names = [o["name"] for o in r5["rogue_stats"]["cunning_strike"]["options"]]
+        assert "Poison" in opt_names
+        assert "Trip" in opt_names
+        assert "Withdraw" in opt_names
+        assert r5["rogue_stats"]["uncanny_dodge"] is True
+
+        # Level 7 Evasion & Reliable Talent
+        r7 = build_rogue(7, "Thief")
+        assert r7["rogue_stats"]["evasion"] is True
+        assert r7["rogue_stats"]["reliable_talent"] is True
+
+        # Level 11 Improved Cunning Strike
+        r11 = build_rogue(11, "Thief")
+        assert r11["rogue_stats"]["cunning_strike"]["max_effects"] == 2
+
+        # Level 14 Devious Strikes
+        r14 = build_rogue(14, "Thief")
+        opt_names_14 = [o["name"] for o in r14["rogue_stats"]["cunning_strike"]["options"]]
+        assert "Daze" in opt_names_14
+        assert "Knock Out" in opt_names_14
+        assert "Obscure" in opt_names_14
+
+        # Level 15 Slippery Mind
+        r15 = build_rogue(15, "Thief")
+        assert r15["rogue_stats"]["slippery_mind"] is True
+
+        # Level 18 Elusive
+        r18 = build_rogue(18, "Thief")
+        assert r18["rogue_stats"]["elusive"] is True
+
+        # Level 20 Stroke of Luck
+        r20 = build_rogue(20, "Thief")
+        assert r20["rogue_stats"]["stroke_of_luck"]["active"] is True
+        assert r20["rogue_stats"]["sneak_attack_dice"] == "10d6"
+
+    def test_thief_climb_speed(self):
+        """Thief level 3+ Second-Story Work gives climb speed equal to walking speed."""
+        thief = build_rogue(3, "Thief")
+        walk_speed = thief.get("speed", 30)
+        assert thief.get("climb_speed") == walk_speed
+        assert thief["combat"].get("climb_speed") == walk_speed
+
+    def test_thief_supreme_sneak_cunning_strike(self):
+        """Thief level 9+ adds Stealth Attack to Cunning Strike options."""
+        thief = build_rogue(9, "Thief")
+        options = thief["rogue_stats"]["cunning_strike"]["options"]
+        opt_names = [o["name"] for o in options]
+        assert "Stealth Attack" in opt_names
+
+    def test_soulknife_psychic_blades_attacks(self):
+        """Soulknife level 3+ adds Psychic Blade and bonus attack to attacks list."""
+        soulknife = build_rogue(3, "Soulknife")
+        attacks = soulknife.get("attacks", [])
+        attack_names = [a["name"] for a in attacks]
+        assert "Psychic Blade" in attack_names
+        assert "Psychic Blade (Bonus Attack)" in attack_names
+
+        pb = next(a for a in attacks if a["name"] == "Psychic Blade")
+        assert pb["damage_type"] == "Psychic"
+        assert pb["mastery"] == "Vex"
+        assert "Finesse" in pb["properties"]
+        assert any("Sneak Attack" in note for note in pb["damage_notes"])
+
+        pb_bonus = next(a for a in attacks if a["name"] == "Psychic Blade (Bonus Attack)")
+        assert pb_bonus["damage_type"] == "Psychic"
+        assert "1d4" in pb_bonus["damage"]
+
+    def test_weapon_attacks_sneak_attack_notes(self):
+        """Finesse and Ranged weapons receive Sneak Attack damage notes, while non-finesse melee do not."""
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Rogue Test",
+            "level": 3,
+            "class": "Rogue",
+            "subclass": "Thief",
+            "species": "Human",
+            "background": "Criminal",
+            "skill_choices": ["Stealth", "Perception", "Deception", "Athletics"],
+            "equipment_selections": {
+                "class_equipment": "option_a",
+            },
+            "ability_scores": {
+                "Strength": 10, "Dexterity": 15, "Constitution": 14,
+                "Intelligence": 12, "Wisdom": 10, "Charisma": 8,
+            },
+            "background_bonuses": {"Dexterity": 2, "Intelligence": 1},
+        })
+        builder.character_data.setdefault("equipment", {}).setdefault("weapons", []).append({
+            "name": "Club",
+            "properties": {"category": "Simple Melee", "properties": ["Light"], "damage": "1d4", "damage_type": "Bludgeoning"},
+        })
+        char = builder.to_character()
+        attacks = {a["name"]: a for a in char["attacks"]}
+
+        assert "Rapier" in attacks
+        assert any("+2d6 Sneak Attack" in n for n in attacks["Rapier"]["damage_notes"])
+
+        assert "Shortbow" in attacks
+        assert any("+2d6 Sneak Attack" in n for n in attacks["Shortbow"]["damage_notes"])
+
+        if "Club" in attacks:
+            assert not any("Sneak Attack" in n for n in attacks["Club"]["damage_notes"])
+
+    def test_assassin_extra_sneak_damage_in_weapon_notes(self):
+        """Assassin level 3+ adds Assassinate extra damage to Finesse/Ranged weapon notes."""
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Assassin Test",
+            "level": 5,
+            "class": "Rogue",
+            "subclass": "Assassin",
+            "species": "Human",
+            "background": "Criminal",
+            "skill_choices": ["Stealth", "Perception", "Deception", "Athletics"],
+            "equipment_selections": {
+                "class_equipment": "option_a",
+            },
+            "ability_scores": {
+                "Strength": 10, "Dexterity": 15, "Constitution": 14,
+                "Intelligence": 12, "Wisdom": 10, "Charisma": 8,
+            },
+            "background_bonuses": {"Dexterity": 2, "Intelligence": 1},
+        })
+        char = builder.to_character()
+        rapier = next(a for a in char["attacks"] if a["name"] == "Rapier")
+        assert any("+5 Assassinate extra damage" in n for n in rapier["damage_notes"])
+
+    def test_strict_mode_rogue_keys(self):
+        """Verify strict mode allows all authored and prefixed Rogue choice keys."""
+        from modules import strict_mode
+        keys = [
+            "thieves_cant_language",
+            "Thieves' Cant_thieves_cant_language",
+            "rogue_expertise_skills_1",
+            "rogue_expertise_skills_6",
+            "Expertise_rogue_expertise_skills_1",
+            "Expertise_rogue_expertise_skills_6",
+        ]
+        for key in keys:
+            strict_mode.check_choices_made_keys({key: "dummy"}, {"class": "Rogue"})

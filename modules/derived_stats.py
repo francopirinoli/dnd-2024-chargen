@@ -1088,6 +1088,47 @@ def build_level_up_preview(
         ),
     }
 
+    ranger_curr = builder_current.calculate_ranger_stats()
+    ranger_next = builder_next.calculate_ranger_stats()
+    is_ranger = target_class_name.lower() == "ranger"
+    ranger_changes = {
+        "is_ranger": is_ranger,
+        "has_favored_enemy": bool(ranger_next.get("favored_enemy", {}).get("active")),
+        "current_favored_enemy_uses": ranger_curr.get("favored_enemy", {}).get("max_uses", 0),
+        "next_favored_enemy_uses": ranger_next.get("favored_enemy", {}).get("max_uses", 0),
+        "favored_enemy_uses_increased": (
+            ranger_next.get("favored_enemy", {}).get("max_uses", 0) > ranger_curr.get("favored_enemy", {}).get("max_uses", 0)
+        ),
+        "roving_unlocked": (
+            bool(ranger_next.get("roving", {}).get("active"))
+            and not bool(ranger_curr.get("roving", {}).get("active"))
+        ),
+        "tireless_unlocked": (
+            bool(ranger_next.get("tireless", {}).get("active"))
+            and not bool(ranger_curr.get("tireless", {}).get("active"))
+        ),
+        "natures_veil_unlocked": (
+            bool(ranger_next.get("natures_veil", {}).get("active"))
+            and not bool(ranger_curr.get("natures_veil", {}).get("active"))
+        ),
+        "feral_senses_unlocked": (
+            bool(ranger_next.get("feral_senses", {}).get("active"))
+            and not bool(ranger_curr.get("feral_senses", {}).get("active"))
+        ),
+        "relentless_hunter_unlocked": (
+            bool(ranger_next.get("favored_enemy", {}).get("relentless_hunter"))
+            and not bool(ranger_curr.get("favored_enemy", {}).get("relentless_hunter"))
+        ),
+        "precise_hunter_unlocked": (
+            bool(ranger_next.get("favored_enemy", {}).get("precise_hunter"))
+            and not bool(ranger_curr.get("favored_enemy", {}).get("precise_hunter"))
+        ),
+        "foe_slayer_unlocked": (
+            bool(ranger_next.get("favored_enemy", {}).get("foe_slayer"))
+            and not bool(ranger_curr.get("favored_enemy", {}).get("foe_slayer"))
+        ),
+    }
+
     return {
         "can_level_up": True,
         "class_name": target_class_name,
@@ -1152,4 +1193,5 @@ def build_level_up_preview(
         "fighter_changes": fighter_changes,
         "monk_changes": monk_changes,
         "paladin_changes": paladin_changes,
+        "ranger_changes": ranger_changes,
     }

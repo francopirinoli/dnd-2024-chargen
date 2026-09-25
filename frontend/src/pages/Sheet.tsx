@@ -27,6 +27,8 @@ import {
   PawPrint,
   Zap,
   Sun,
+  Crosshair,
+  Target,
 } from "lucide-react";
 import { PrepareSpellsDialog } from "@/components/sheet/PrepareSpellsDialog";
 import { ChooseMasteriesDialog } from "@/components/sheet/ChooseMasteriesDialog";
@@ -1202,6 +1204,9 @@ function SavingThrows({ c }: { c: Char }) {
   const paladinStats = rec(c.paladin_stats);
   const auraProtection = rec(paladinStats.aura_of_protection);
   const hasAura = Boolean(auraProtection.active) && num(auraProtection.bonus) !== undefined;
+  const conAbility = rec(abilities.constitution);
+  const hungeringMightBonus = num(conAbility.hungering_might_bonus);
+  const hasHungeringMight = hungeringMightBonus !== undefined && hungeringMightBonus > 0;
 
   const advantageFor = (name: string) => {
     for (const sa of advantages) {
@@ -1276,6 +1281,14 @@ function SavingThrows({ c }: { c: Char }) {
             {" · "}
             <span className="text-amber-400 font-semibold" title={str(auraProtection.description)}>
               Aura +{num(auraProtection.bonus)} included
+            </span>
+          </>
+        )}
+        {hasHungeringMight && (
+          <>
+            {" · "}
+            <span className="text-emerald-400 font-semibold" title="Hungering Might: +Wisdom modifier to Constitution saves">
+              Hungering Might Con +{hungeringMightBonus} included
             </span>
           </>
         )}
@@ -1440,6 +1453,17 @@ function SpecialFeatures({ c }: { c: Char }) {
   const isMonk = Boolean(monkStats.is_monk);
   const paladinStats = rec(c.paladin_stats);
   const isPaladin = Boolean(paladinStats.is_paladin) || num(paladinStats.paladin_level) !== undefined;
+  const rangerStats = rec(c.ranger_stats);
+  const isRanger = Boolean(rangerStats.is_ranger) || num(rangerStats.ranger_level) !== undefined;
+  const favoredEnemy = rec(rangerStats.favored_enemy);
+  const roving = rec(rangerStats.roving);
+  const tireless = rec(rangerStats.tireless);
+  const naturesVeil = rec(rangerStats.natures_veil);
+  const feralSenses = rec(rangerStats.feral_senses);
+  const rogueStats = rec(c.rogue_stats);
+  const isRogue = Boolean(rogueStats.is_rogue) || num(rogueStats.rogue_level) !== undefined;
+  const cunningStrike = rec(rogueStats.cunning_strike);
+  const cunningAction = rec(rogueStats.cunning_action);
   const superiorityDice = rec(c.superiority_dice);
   const hasSuperiorityDice = num(superiorityDice.count) !== undefined;
   const hasArcaneShot = num(c.arcane_shot_dc) !== undefined;
@@ -1452,6 +1476,8 @@ function SpecialFeatures({ c }: { c: Char }) {
     (isFighter && fighterStats.fighter_level !== undefined) ||
     (isMonk && monkStats.monk_level !== undefined) ||
     (isPaladin && paladinStats.paladin_level !== undefined) ||
+    (isRanger && rangerStats.ranger_level !== undefined) ||
+    (isRogue && rogueStats.rogue_level !== undefined) ||
     hasSuperiorityDice ||
     hasArcaneShot;
 
@@ -1956,6 +1982,228 @@ function SpecialFeatures({ c }: { c: Char }) {
                 {arr<Record<string, unknown>>(paladinStats.actions).map((act, idx) => (
                   <div
                     key={`act-${idx}`}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-primary">{str(act.name)}</span>
+                      <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                        {str(act.action)}
+                      </span>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isRanger && rangerStats.ranger_level !== undefined && (
+          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <Crosshair className="h-4 w-4 text-emerald-400" />
+                <span className="font-semibold uppercase tracking-wide text-emerald-400">
+                  Wilderness Exploits
+                </span>
+                {Boolean(favoredEnemy.active) && (
+                  <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300">
+                    Favored Enemy: {num(favoredEnemy.uses)} / {num(favoredEnemy.max_uses)} Free HM / LR ({str(favoredEnemy.damage_die)})
+                  </span>
+                )}
+                {num(rangerStats.save_dc) !== undefined && (
+                  <span className="rounded bg-primary/20 px-2 py-0.5 text-xs font-semibold text-primary">
+                    DC {num(rangerStats.save_dc)} · Attack {signed(num(rangerStats.spell_attack))}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                {Boolean(tireless.active) && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Tireless: {num(tireless.uses)} / {num(tireless.max_uses)} ({str(tireless.temp_hp_roll)} THP)
+                  </span>
+                )}
+                {Boolean(naturesVeil.active) && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Nature's Veil: {num(naturesVeil.uses)} / {num(naturesVeil.max_uses)} (Invisibility)
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+              {Boolean(favoredEnemy.active) && (
+                <span>Hunter's Mark: <strong className="text-foreground">+{str(favoredEnemy.damage_die)}</strong> (Bonus Action, 90 ft)</span>
+              )}
+              {Boolean(favoredEnemy.relentless_hunter) && (
+                <>
+                  <span>·</span>
+                  <span className="text-emerald-400 font-medium">Relentless Hunter (Damage can't break Conc)</span>
+                </>
+              )}
+              {Boolean(favoredEnemy.precise_hunter) && (
+                <>
+                  <span>·</span>
+                  <span className="text-sky-400 font-medium">Precise Hunter (Advantage vs Marked)</span>
+                </>
+              )}
+              {Boolean(favoredEnemy.foe_slayer) && (
+                <>
+                  <span>·</span>
+                  <span className="text-amber-400 font-medium">Foe Slayer (1d10 HM Die)</span>
+                </>
+              )}
+              {Boolean(roving.active) && (
+                <>
+                  <span>·</span>
+                  <span className="text-teal-400 font-medium">
+                    Roving: +10 ft speed, Climb & Swim {num(roving.climb_speed)} ft
+                  </span>
+                </>
+              )}
+              {Boolean(tireless.short_rest_exhaustion_reduction) && (
+                <>
+                  <span>·</span>
+                  <span className="text-indigo-400 font-medium">Tireless: Short Rest Exhaustion -1</span>
+                </>
+              )}
+              {Boolean(feralSenses.active) && (
+                <>
+                  <span>·</span>
+                  <span className="text-purple-400 font-medium">
+                    Feral Senses: Blindsight {num(feralSenses.blindsight_range)} ft
+                  </span>
+                </>
+              )}
+            </div>
+
+            {arr<Record<string, unknown>>(rangerStats.actions).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(rangerStats.actions).map((act, idx) => (
+                  <div
+                    key={`ranger-act-${idx}`}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-emerald-300">{str(act.name)}</span>
+                      <span className="rounded bg-emerald-500/20 px-1 text-[10px] text-emerald-300">
+                        {str(act.action)}
+                      </span>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isRogue && rogueStats.rogue_level !== undefined && (
+          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <Target className="h-4 w-4 text-rose-400" />
+                <span className="font-semibold uppercase tracking-wide text-rose-400">
+                  Cunning & Sneak Attack
+                </span>
+                <span className="rounded bg-rose-500/20 px-2 py-0.5 text-xs font-semibold text-rose-300">
+                  Sneak Attack: {str(rogueStats.sneak_attack_dice)}
+                </span>
+                {Boolean(cunningStrike.active) && (
+                  <span className="rounded bg-primary/20 px-2 py-0.5 text-xs font-semibold text-primary">
+                    Cunning Strike: DC {num(cunningStrike.save_dc)} · Up to {num(cunningStrike.max_effects)} effect{num(cunningStrike.max_effects) === 1 ? "" : "s"}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                {Boolean(cunningAction.active) && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Cunning Action: Dash, Disengage, Hide (Bonus Action)
+                  </span>
+                )}
+                {Boolean(rogueStats.steady_aim) && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Steady Aim: Advantage (Speed 0)
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+              {Boolean(rogueStats.uncanny_dodge) && (
+                <span className="text-amber-400 font-medium">Uncanny Dodge (Halve hit damage as Reaction)</span>
+              )}
+              {Boolean(rogueStats.evasion) && (
+                <>
+                  <span>·</span>
+                  <span className="text-emerald-400 font-medium">Evasion (Dex saves: 0 damage on save, half on fail)</span>
+                </>
+              )}
+              {Boolean(rogueStats.reliable_talent) && (
+                <>
+                  <span>·</span>
+                  <span className="text-sky-400 font-medium">Reliable Talent (Min 10 on proficient d20 rolls)</span>
+                </>
+              )}
+              {Boolean(rogueStats.slippery_mind) && (
+                <>
+                  <span>·</span>
+                  <span className="text-indigo-400 font-medium">Slippery Mind (Wis & Cha Save Proficiencies)</span>
+                </>
+              )}
+              {Boolean(rogueStats.elusive) && (
+                <>
+                  <span>·</span>
+                  <span className="text-purple-400 font-medium">Elusive (No advantage against you)</span>
+                </>
+              )}
+              {rec(rogueStats.stroke_of_luck).active === true && (
+                <>
+                  <span>·</span>
+                  <span className="text-amber-300 font-medium">Stroke of Luck (Turn failed d20 into 20, 1/Rest)</span>
+                </>
+              )}
+            </div>
+
+            {arr<Record<string, unknown>>(cunningStrike.options).length > 0 && (
+              <div className="mt-1">
+                <div className="text-[11px] font-medium text-muted-foreground mb-1">
+                  Cunning Strike Options (Trade Sneak Attack dice):
+                </div>
+                <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-3">
+                  {arr<Record<string, unknown>>(cunningStrike.options).map((opt, idx) => (
+                    <div
+                      key={`cunning-opt-${idx}`}
+                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                    >
+                      <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                        <span className="text-rose-300">{str(opt.name)}</span>
+                        <span className="rounded bg-rose-500/20 px-1 text-[10px] text-rose-300">
+                          Cost: {str(opt.cost)}
+                        </span>
+                      </div>
+                      <div className="text-[10px] text-muted-foreground">
+                        Save: <strong className="text-foreground">{str(opt.save)}</strong>
+                        {opt.dc !== null && opt.dc !== undefined && ` (DC ${num(opt.dc)})`}
+                      </div>
+                      <div className="mt-0.5 text-[11px] text-muted-foreground line-clamp-2">
+                        {str(opt.effect)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {arr<Record<string, unknown>>(rogueStats.actions).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(rogueStats.actions).map((act, idx) => (
+                  <div
+                    key={`rogue-act-${idx}`}
                     className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
                   >
                     <div className="flex items-center justify-between gap-1 font-semibold text-foreground">

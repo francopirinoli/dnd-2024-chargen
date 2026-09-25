@@ -28,7 +28,7 @@
           }
         },
         "effects": [
-          {"type": "grant_skill_proficiency", "skills": ["__otherworldly_glamour_skill__"]}
+          {"type": "grant_skill_proficiency", "from_choice": "otherworldly_glamour_skill"}
         ]
       }
     },

@@ -49,13 +49,14 @@ def test_effect_enum_matches_schema():
 
 
 def test_effect_enum_has_expected_size():
-    """Sanity check: 40 effect types. Phase 7 (D0-1/D0-2/D4-3) added
+    """Sanity check: 43 effect types. Phase 7 (D0-1/D0-2/D4-3) added
     grant_spell_at_will, bonus_spell_damage_ability_mod, bonus_spell_range,
     grant_magical_darkness_sight, grant_maneuver, grant_superiority_dice
     (+6 over the Phase 6 baseline of 28). Phase 10 (D2-3) added
     grant_spell_slots and grant_weapon_mastery (+2). attack_ability_override (+1).
-    Arcana Unleashed added grant_arcane_shot and grant_arcane_shot_dice (+2)."""
-    assert len(strict_mode.KNOWN_EFFECT_TYPES) == 41
+    Arcana Unleashed added grant_arcane_shot and grant_arcane_shot_dice (+2).
+    Added grant_climb_speed and grant_swim_speed (+2)."""
+    assert len(strict_mode.KNOWN_EFFECT_TYPES) == 43
 
 
 # ---------------------------------------------------------------------------

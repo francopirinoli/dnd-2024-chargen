@@ -1653,6 +1653,31 @@ class CharacterBuilder:
                 return choices_made[key]
         return None
 
+    def _resolve_from_choice_value(self, from_choice_key: str) -> Any:
+        """Resolve a choice value from choices_made given an effect's from_choice key.
+
+        Handles:
+        1. Exact match (e.g. 'deft_explorer_expertise')
+        2. Clean key without 'subclass_' prefix
+        3. Feature-prefixed keys (e.g. 'Deft Explorer_deft_explorer_expertise')
+        4. Suffix match (e.g. any key ending with f'_{from_choice_key}' or f'_{clean_key}')
+        5. Short key (last component, e.g. 'expertise')
+        6. Trait fallback via _resolve_choice_value
+        """
+        choices_made = self.character_data.get("choices_made", {})
+        if from_choice_key in choices_made:
+            return choices_made[from_choice_key]
+        clean_key = from_choice_key[9:] if from_choice_key.startswith("subclass_") else from_choice_key
+        if clean_key in choices_made:
+            return choices_made[clean_key]
+        for k, v in choices_made.items():
+            if k.endswith(f"_{from_choice_key}") or k.endswith(f"_{clean_key}"):
+                return v
+        short_key = from_choice_key.split("_")[-1]
+        if short_key in choices_made:
+            return choices_made[short_key]
+        return self._resolve_choice_value(from_choice_key)
+
     def _apply_feature_scaling(self, description: str, scaling: Dict[str, Any]) -> str:
         """
         Apply scaling substitutions to feature description.
@@ -1740,14 +1765,7 @@ class CharacterBuilder:
         if effect_type == "grant_cantrip":
             if "from_choice" in effect:
                 choice_key = effect["from_choice"]
-                clean_key = choice_key[9:] if choice_key.startswith("subclass_") else choice_key
-                short_key = choice_key.split("_")[-1]
-                spell_name = (
-                    self.character_data.get("choices_made", {}).get(choice_key)
-                    or self.character_data.get("choices_made", {}).get(clean_key)
-                    or self.character_data.get("choices_made", {}).get(short_key)
-                    or self._resolve_choice_value(choice_key)
-                )
+                spell_name = self._resolve_from_choice_value(choice_key)
             else:
                 spell_name = effect.get("spell") or effect.get("cantrip")
             counts_against_limit = effect.get("counts_against_limit", False)
@@ -1814,14 +1832,7 @@ class CharacterBuilder:
         elif effect_type == "grant_spell":
             if "from_choice" in effect:
                 choice_key = effect["from_choice"]
-                clean_key = choice_key[9:] if choice_key.startswith("subclass_") else choice_key
-                short_key = choice_key.split("_")[-1]
-                spell_name = (
-                    self.character_data.get("choices_made", {}).get(choice_key)
-                    or self.character_data.get("choices_made", {}).get(clean_key)
-                    or self.character_data.get("choices_made", {}).get(short_key)
-                    or self._resolve_choice_value(choice_key)
-                )
+                spell_name = self._resolve_from_choice_value(choice_key)
             else:
                 spell_name = effect.get("spell")
             min_level = effect.get("min_level", 1)
@@ -1932,14 +1943,7 @@ class CharacterBuilder:
         elif effect_type == "grant_tool_proficiency":
             if "from_choice" in effect:
                 choice_key = effect["from_choice"]
-                clean_key = choice_key[9:] if choice_key.startswith("subclass_") else choice_key
-                short_key = choice_key.split("_")[-1]
-                chosen = (
-                    self.character_data.get("choices_made", {}).get(choice_key)
-                    or self.character_data.get("choices_made", {}).get(clean_key)
-                    or self.character_data.get("choices_made", {}).get(short_key)
-                    or self._resolve_choice_value(choice_key)
-                )
+                chosen = self._resolve_from_choice_value(choice_key)
                 tools = chosen if isinstance(chosen, list) else [chosen] if chosen else []
             elif "tools" in effect:
                 tools = effect.get("tools", [])
@@ -1966,25 +1970,11 @@ class CharacterBuilder:
         elif effect_type == "grant_skill_proficiency":
             if "from_choice" in effect:
                 choice_key = effect["from_choice"]
-                clean_key = choice_key[9:] if choice_key.startswith("subclass_") else choice_key
-                short_key = choice_key.split("_")[-1]
-                chosen = (
-                    self.character_data.get("choices_made", {}).get(choice_key)
-                    or self.character_data.get("choices_made", {}).get(clean_key)
-                    or self.character_data.get("choices_made", {}).get(short_key)
-                    or self._resolve_choice_value(choice_key)
-                )
+                chosen = self._resolve_from_choice_value(choice_key)
                 skills = chosen if isinstance(chosen, list) else [chosen] if chosen else []
             elif isinstance(effect.get("skills"), str) and effect["skills"].startswith("$"):
                 choice_key = effect["skills"][1:]
-                clean_key = choice_key[9:] if choice_key.startswith("subclass_") else choice_key
-                short_key = choice_key.split("_")[-1]
-                chosen = (
-                    self.character_data.get("choices_made", {}).get(choice_key)
-                    or self.character_data.get("choices_made", {}).get(clean_key)
-                    or self.character_data.get("choices_made", {}).get(short_key)
-                    or self._resolve_choice_value(choice_key)
-                )
+                chosen = self._resolve_from_choice_value(choice_key)
                 skills = chosen if isinstance(chosen, list) else [chosen] if chosen else []
             else:
                 raw_skills = effect.get("skills", [])
@@ -2037,14 +2027,7 @@ class CharacterBuilder:
             # Resolve skills from a choice key if specified, otherwise use direct list
             if "from_choice" in effect:
                 choice_key = effect["from_choice"]
-                clean_key = choice_key[9:] if choice_key.startswith("subclass_") else choice_key
-                short_key = choice_key.split("_")[-1]
-                chosen = (
-                    self.character_data.get("choices_made", {}).get(choice_key)
-                    or self.character_data.get("choices_made", {}).get(clean_key)
-                    or self.character_data.get("choices_made", {}).get(short_key)
-                    or self._resolve_choice_value(choice_key)
-                )
+                chosen = self._resolve_from_choice_value(choice_key)
                 if isinstance(chosen, list):
                     skills = chosen
                 elif isinstance(chosen, str) and chosen:
@@ -2130,7 +2113,9 @@ class CharacterBuilder:
 
         elif effect_type == "grant_darkvision":
             darkvision_range = effect.get("range", 60)
-            if darkvision_range > self.character_data["darkvision"]:
+            if effect.get("increase_if_present") and self.character_data.get("darkvision", 0) > 0:
+                self.character_data["darkvision"] += darkvision_range
+            elif darkvision_range > self.character_data.get("darkvision", 0):
                 self.character_data["darkvision"] = darkvision_range
 
         elif effect_type == "increase_speed":
@@ -2142,6 +2127,25 @@ class CharacterBuilder:
                 self.character_data["speed_bonuses"][feature_group] = speed_increase
             else:
                 self.character_data["speed"] += speed_increase
+
+        elif effect_type == "grant_blindsight":
+            blindsight_range = effect.get("range", 0)
+            if blindsight_range > self.character_data.get("blindsight", 0):
+                self.character_data["blindsight"] = blindsight_range
+
+        elif effect_type == "grant_climb_speed":
+            speed_val = effect.get("value")
+            if speed_val == "speed":
+                self.character_data["climb_speed"] = self.character_data.get("speed", 30)
+            elif isinstance(speed_val, int):
+                self.character_data["climb_speed"] = max(self.character_data.get("climb_speed", 0), speed_val)
+
+        elif effect_type == "grant_swim_speed":
+            speed_val = effect.get("value")
+            if speed_val == "speed":
+                self.character_data["swim_speed"] = self.character_data.get("speed", 30)
+            elif isinstance(speed_val, int):
+                self.character_data["swim_speed"] = max(self.character_data.get("swim_speed", 0), speed_val)
 
         elif effect_type == "ability_bonus":
             # Store ability bonuses for later calculation (like Thaumaturge)
@@ -2291,7 +2295,7 @@ class CharacterBuilder:
             # Resolve languages from a choice key if specified, otherwise use direct list
             if "from_choice" in effect:
                 choice_key = effect["from_choice"]
-                chosen = self.character_data.get("choices_made", {}).get(choice_key)
+                chosen = self._resolve_from_choice_value(choice_key)
                 if isinstance(chosen, list):
                     languages = chosen
                 elif isinstance(chosen, str) and chosen:
@@ -5270,10 +5274,12 @@ class CharacterBuilder:
                             feature_name in feature_name_variants
                             or any(cn in feature_name_variants for cn in choice_names)
                             or choice_key in choice_names
+                            or any(choice_key == f"{feature_name}_{cn}" for cn in choice_names)
                             or any(choice_key == f"subclass_{feature_name}_{cn}" for cn in choice_names)
                             or any(choice_key == f"class_{feature_name}_{cn}" for cn in choice_names)
                             or any(choice_key == f"subclass_{cn}" for cn in choice_names)
                             or any(choice_key == f"class_{cn}" for cn in choice_names)
+                            or any(choice_key.endswith(f"_{cn}") for cn in choice_names)
                         )
 
                         if is_match and isinstance(feature_data, dict):
@@ -5357,7 +5363,7 @@ class CharacterBuilder:
                             if isinstance(choice_value, list):
                                 desc_parts = []
                                 for item in choice_value:
-                                    if item in data_value:
+                                    if isinstance(item, (str, int)) and item in data_value:
                                         opt = data_value[item]
                                         if isinstance(opt, dict) and opt.get("description"):
                                             desc_parts.append(f"**{item}**: {opt['description']}")
@@ -5366,7 +5372,7 @@ class CharacterBuilder:
                                 if desc_parts:
                                     choice_description = "\n\n".join(desc_parts)
                                     break
-                            elif choice_value in data_value:
+                            elif isinstance(choice_value, (str, int)) and choice_value in data_value:
                                 option_data = data_value[choice_value]
                                 if isinstance(option_data, dict):
                                     if "description" in option_data:
@@ -5528,10 +5534,15 @@ class CharacterBuilder:
                 # spell). Resolve it here so direct apply_choice() calls and
                 # batch rebuilds use the same dispatcher path.
                 for effect in feature_data.get("effects", []):
+                    from_choice = effect.get("from_choice") if isinstance(effect, dict) else None
                     if (
                         isinstance(effect, dict)
+                        and from_choice
                         and (
-                            effect.get("from_choice") in (choice_key, clean_choice_key)
+                            from_choice in (choice_key, clean_choice_key)
+                            or clean_choice_key == f"{feature_name}_{from_choice}"
+                            or clean_choice_key.endswith(f"_{from_choice}")
+                            or choice_key.endswith(f"_{from_choice}")
                         )
                     ):
                         results.append((effect, feature_name, "class_choice"))
@@ -9830,6 +9841,749 @@ class CharacterBuilder:
 
         return stats
 
+    def calculate_ranger_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Favored Enemy (free Hunter's Mark), Roving speeds, Tireless,
+        Nature's Veil, Feral Senses, Spellcasting, and subclass statistics
+        for Ranger characters (2024 RAW).
+
+        Returns:
+            Dictionary with is_ranger, ranger_level, subclass, save_dc,
+            spell_attack, favored_enemy, roving, tireless, natures_veil,
+            feral_senses, subclass_resources, actions, active_perks,
+            and subclass_details.
+        """
+        stats: Dict[str, Any] = {
+            "is_ranger": False,
+            "ranger_level": 0,
+            "subclass": "",
+            "save_dc": 0,
+            "spell_attack": 0,
+            "favored_enemy": {
+                "active": False,
+                "uses": 0,
+                "max_uses": 0,
+                "recharge": "Long Rest",
+                "damage_die": "1d6",
+                "hunters_mark_prepared": False,
+                "relentless_hunter": False,
+                "precise_hunter": False,
+                "foe_slayer": False,
+                "description": "",
+            },
+            "roving": {
+                "active": False,
+                "speed_bonus": 0,
+                "climb_speed": 0,
+                "swim_speed": 0,
+                "description": "",
+            },
+            "tireless": {
+                "active": False,
+                "temp_hp_roll": "",
+                "uses": 0,
+                "max_uses": 0,
+                "recharge": "Long Rest",
+                "short_rest_exhaustion_reduction": False,
+                "description": "",
+            },
+            "natures_veil": {
+                "active": False,
+                "uses": 0,
+                "max_uses": 0,
+                "recharge": "Long Rest",
+                "action": "Bonus Action",
+                "duration": "End of your next turn",
+                "description": "",
+            },
+            "feral_senses": {
+                "active": False,
+                "blindsight_range": 0,
+                "description": "",
+            },
+            "subclass_resources": {},
+            "subclass_details": {},
+            "actions": [],
+            "active_perks": [],
+        }
+
+        ranger_level = self._get_class_level("Ranger")
+        stats["ranger_level"] = ranger_level
+        if ranger_level < 1:
+            return stats
+
+        stats["is_ranger"] = True
+        subclass_name = self._get_class_subclass("Ranger") or ""
+        stats["subclass"] = subclass_name
+
+        ability_scores = getattr(self.ability_scores, "final_scores", {}) if hasattr(self, "ability_scores") else {}
+        wis_score = ability_scores.get("Wisdom", 10) if isinstance(ability_scores, dict) else 10
+        wis_mod = self.calculate_ability_modifier(wis_score)
+        pb = self.calculate_proficiency_bonus(self.character_data.get("level", ranger_level))
+        save_dc = 8 + pb + wis_mod
+        spell_attack = pb + wis_mod
+        stats["save_dc"] = save_dc
+        stats["spell_attack"] = spell_attack
+
+        # 1. Favored Enemy (Level 1+)
+        # Free casts of Hunter's Mark: 2 at Lv 1, 3 at Lv 5, 4 at Lv 9, 5 at Lv 13, 6 at Lv 17
+        fe_uses = 2 + (1 if ranger_level >= 5 else 0) + (1 if ranger_level >= 9 else 0) + (1 if ranger_level >= 13 else 0) + (1 if ranger_level >= 17 else 0)
+        hm_die = "1d10" if ranger_level >= 20 else "1d6"
+        relentless = ranger_level >= 13
+        precise = ranger_level >= 17
+        foe_slayer = ranger_level >= 20
+
+        fe_desc = f"You always have Hunter's Mark prepared. You can cast it {fe_uses} times per Long Rest without expending a spell slot (extra {hm_die} damage)."
+        if relentless:
+            fe_desc += " Taking damage can't break your concentration on Hunter's Mark."
+        if precise:
+            fe_desc += " Advantage on attack rolls against target marked by Hunter's Mark."
+        if foe_slayer:
+            fe_desc += " Foe Slayer: Hunter's Mark damage die is 1d10."
+
+        stats["favored_enemy"] = {
+            "active": True,
+            "uses": fe_uses,
+            "max_uses": fe_uses,
+            "recharge": "Long Rest",
+            "damage_die": hm_die,
+            "hunters_mark_prepared": True,
+            "relentless_hunter": relentless,
+            "precise_hunter": precise,
+            "foe_slayer": foe_slayer,
+            "description": fe_desc,
+        }
+        stats["active_perks"].append(f"Favored Enemy ({fe_uses} free Hunter's Mark/LR, {hm_die})")
+        if relentless:
+            stats["active_perks"].append("Relentless Hunter (concentration protected)")
+        if precise:
+            stats["active_perks"].append("Precise Hunter (Advantage vs marked quarry)")
+        if foe_slayer:
+            stats["active_perks"].append("Foe Slayer (1d10 Hunter's Mark die)")
+
+        stats["actions"].append({
+            "name": "Hunter's Mark",
+            "action": f"Bonus Action (90 ft, {fe_uses} Free/LR)",
+            "effect": f"Mark quarry for 1 hour (Concentration). Deal extra {hm_die} damage whenever you hit it with an attack roll. Can move mark as Bonus Action on kill.",
+        })
+
+        # 2. Deft Explorer (Level 2+) & Expertise (Level 9+)
+        if ranger_level >= 2:
+            stats["active_perks"].append("Deft Explorer (Expertise + 2 Languages)")
+        if ranger_level >= 9:
+            stats["active_perks"].append("Expertise (2 additional skills)")
+
+        # 3. Roving (Level 6+)
+        walk_speed = self.character_data.get("speed", 30)
+        if ranger_level >= 6:
+            stats["roving"] = {
+                "active": True,
+                "speed_bonus": 10,
+                "climb_speed": walk_speed,
+                "swim_speed": walk_speed,
+                "description": f"+10 ft Speed while not wearing Heavy Armor. Climb Speed and Swim Speed equal to walking speed ({walk_speed} ft).",
+            }
+            stats["active_perks"].append(f"Roving (+10 ft speed, Climb/Swim {walk_speed} ft)")
+
+        # 4. Tireless (Level 10+)
+        if ranger_level >= 10:
+            tireless_uses = max(1, wis_mod)
+            tireless_thp = f"1d8 + {max(1, wis_mod)}"
+            stats["tireless"] = {
+                "active": True,
+                "temp_hp_roll": tireless_thp,
+                "uses": tireless_uses,
+                "max_uses": tireless_uses,
+                "recharge": "Long Rest",
+                "short_rest_exhaustion_reduction": True,
+                "description": f"Magic Action: Grant yourself {tireless_thp} Temporary HP ({tireless_uses}/Long Rest). Short Rest reduces Exhaustion by 1.",
+            }
+            stats["active_perks"].append(f"Tireless ({tireless_uses}/LR temp HP, Short Rest Exhaustion -1)")
+            stats["actions"].append({
+                "name": "Tireless (Temporary HP)",
+                "action": f"Magic Action ({tireless_uses}/Long Rest)",
+                "effect": f"Gain {tireless_thp} Temporary Hit Points. In addition, whenever you finish a Short Rest, reduce your Exhaustion level by 1.",
+            })
+
+        # 5. Nature's Veil (Level 14+)
+        if ranger_level >= 14:
+            nv_uses = max(1, wis_mod)
+            stats["natures_veil"] = {
+                "active": True,
+                "uses": nv_uses,
+                "max_uses": nv_uses,
+                "recharge": "Long Rest",
+                "action": "Bonus Action",
+                "duration": "End of your next turn",
+                "description": f"Bonus Action: You become Invisible until the end of your next turn ({nv_uses}/Long Rest).",
+            }
+            stats["active_perks"].append(f"Nature's Veil ({nv_uses}/LR Bonus Action Invisibility)")
+            stats["actions"].append({
+                "name": "Nature's Veil",
+                "action": f"Bonus Action ({nv_uses}/Long Rest)",
+                "effect": "Invoke nature spirits to give yourself the Invisible condition until the end of your next turn.",
+            })
+
+        # 6. Feral Senses (Level 18+)
+        if ranger_level >= 18:
+            stats["feral_senses"] = {
+                "active": True,
+                "blindsight_range": 30,
+                "description": "You have Blindsight with a range of 30 feet.",
+            }
+            stats["active_perks"].append("Feral Senses (Blindsight 30 ft)")
+
+        # 7. Subclass Specializations
+        subclass_clean = subclass_name.lower()
+        choices_made = self.character_data.get("choices_made", {})
+
+        if "gloom stalker" in subclass_clean and ranger_level >= 3:
+            da_uses = max(1, wis_mod)
+            da_die = "2d8" if ranger_level >= 11 else "2d6"
+            stats["subclass_resources"]["Dreadful Strike"] = {
+                "current": da_uses,
+                "max": da_uses,
+                "recharge": "Long Rest",
+            }
+            stats["active_perks"].append(f"Dread Ambusher (+{wis_mod} Init, +10 ft turn 1, {da_uses}/LR +{da_die} Psychic)")
+            stats["active_perks"].append("Umbral Sight (Darkvision +60 ft, Invisibility in Darkness)")
+
+            stats["actions"].append({
+                "name": "Dreadful Strike",
+                "action": f"On Weapon Hit (1/turn, {da_uses}/Long Rest)",
+                "effect": f"Deal extra {da_die} Psychic damage." + (f" Target + enemies within 10 ft make Wis save (DC {save_dc}) or Frightened until next turn, or make bonus attack vs creature within 5 ft." if ranger_level >= 11 else ""),
+            })
+
+            if ranger_level >= 7:
+                stats["active_perks"].append("Iron Mind (Proficiency in Wisdom saves)")
+
+            if ranger_level >= 15:
+                stats["actions"].append({
+                    "name": "Shadowy Dodge",
+                    "action": "Reaction",
+                    "effect": "When attacked, impose Disadvantage on the attack roll and teleport up to 30 feet to an unoccupied space you can see.",
+                })
+
+        elif "fey wanderer" in subclass_clean and ranger_level >= 3:
+            fey_die = "1d6" if ranger_level >= 11 else "1d4"
+            stats["active_perks"].append(f"Dreadful Strikes (+{fey_die} Psychic 1/turn/target)")
+            stats["active_perks"].append(f"Otherworldly Glamour (+{max(1, wis_mod)} to Charisma checks)")
+
+            stats["actions"].append({
+                "name": "Dreadful Strikes",
+                "action": "On Weapon Hit (1/turn per creature)",
+                "effect": f"Deal an extra {fey_die} Psychic damage to the target. Can apply to multiple different creatures per turn.",
+            })
+
+            if ranger_level >= 7:
+                stats["active_perks"].append("Beguiling Twist (Adv vs Charmed/Frightened, Redirect save)")
+                stats["actions"].append({
+                    "name": "Beguiling Twist",
+                    "action": "Reaction (120 ft)",
+                    "effect": f"When you or ally in 120 ft succeeds on save vs Charmed/Frightened, force another creature in 120 ft to make Wis save (DC {save_dc}) or be Charmed or Frightened for 1 min.",
+                })
+
+            if ranger_level >= 11:
+                stats["active_perks"].append("Fey Reinforcements (Free Summon Fey 1/LR, no conc for 1 min)")
+                stats["actions"].append({
+                    "name": "Fey Reinforcements",
+                    "action": "Magic Action (1/Long Rest or Spell Slot)",
+                    "effect": "Cast Summon Fey without material components. Free cast 1/LR. Can cast with 1 min duration requiring no Concentration.",
+                })
+
+            if ranger_level >= 15:
+                mw_uses = max(1, wis_mod)
+                stats["subclass_resources"]["Misty Wanderer"] = {
+                    "current": mw_uses,
+                    "max": mw_uses,
+                    "recharge": "Long Rest",
+                }
+                stats["active_perks"].append(f"Misty Wanderer ({mw_uses} Free Misty Step/LR + Bring Ally)")
+                stats["actions"].append({
+                    "name": "Misty Wanderer",
+                    "action": f"Bonus Action ({mw_uses}/Long Rest or Spell Slot)",
+                    "effect": "Cast Misty Step without expending a spell slot. Bring along 1 willing creature within 5 ft to teleport adjacent to you.",
+                })
+
+        elif "hunter" in subclass_clean and ranger_level >= 3:
+            stats["active_perks"].append("Hunter's Lore (Learn immunities/resistances/vulnerabilities of marked target)")
+            prey_choice = choices_made.get("hunters_prey") or "Colossus Slayer"
+            if prey_choice == "Colossus Slayer":
+                stats["active_perks"].append("Colossus Slayer (+1d8 weapon damage 1/turn vs wounded)")
+                stats["actions"].append({
+                    "name": "Colossus Slayer",
+                    "action": "On Weapon Hit (1/turn)",
+                    "effect": "Deal extra 1d8 damage to target if it is below its maximum Hit Points.",
+                })
+            elif prey_choice == "Horde Breaker":
+                stats["active_perks"].append("Horde Breaker (Extra attack vs adjacent foe 1/turn)")
+                stats["actions"].append({
+                    "name": "Horde Breaker",
+                    "action": "Attack Action (1/turn)",
+                    "effect": "Make an extra weapon attack against a different creature within 5 ft of original target.",
+                })
+
+            if ranger_level >= 7:
+                defense_choice = choices_made.get("defensive_tactics") or "Multiattack Defense"
+                if defense_choice == "Escape the Horde":
+                    stats["active_perks"].append("Escape the Horde (Disadvantage on Opportunity Attacks against you)")
+                elif defense_choice == "Multiattack Defense":
+                    stats["active_perks"].append("Multiattack Defense (+4 AC vs attacker after being hit)")
+                    stats["actions"].append({
+                        "name": "Multiattack Defense",
+                        "action": "Passive Trigger",
+                        "effect": "When hit by an attack roll, gain +4 bonus to AC against all subsequent attacks by that creature this turn.",
+                    })
+
+            if ranger_level >= 11:
+                stats["active_perks"].append("Superior Hunter's Prey (Splash Hunter's Mark damage to 2nd target in 30 ft)")
+
+            if ranger_level >= 15:
+                stats["active_perks"].append("Superior Hunter's Defense (Halve damage as Reaction)")
+                stats["actions"].append({
+                    "name": "Superior Hunter's Defense",
+                    "action": "Reaction",
+                    "effect": "When you take damage, you can take a Reaction to give yourself Resistance against that damage.",
+                })
+
+        elif "beast master" in subclass_clean and ranger_level >= 3:
+            beast_hp = 5 + 5 * ranger_level
+            beast_ac = 13 + pb
+            stats["subclass_details"]["primal_companion"] = {
+                "hp": beast_hp,
+                "ac": beast_ac,
+                "pb": pb,
+            }
+            stats["active_perks"].append(f"Primal Companion (HP {beast_hp}, AC {beast_ac})")
+            stats["actions"].append({
+                "name": "Command Primal Companion",
+                "action": "Bonus Action or 1 Attack",
+                "effect": f"Command your Beast of the Land, Sea, or Sky (HP {beast_hp}, AC {beast_ac}). It acts on your initiative.",
+            })
+
+            if ranger_level >= 7:
+                stats["active_perks"].append("Exceptional Training (Companion Bonus Action Dash/Disengage/Dodge/Help, Force dmg)")
+
+            if ranger_level >= 11:
+                stats["active_perks"].append("Bestial Fury (Companion attacks twice, benefits from Hunter's Mark)")
+
+            if ranger_level >= 15:
+                stats["active_perks"].append("Share Spells (Self spells also affect Companion in 30 ft)")
+
+        elif "hollow warden" in subclass_clean and ranger_level >= 3:
+            ac_bonus = "+2" if ranger_level >= 11 else "+1"
+            stats["active_perks"].append(f"Wrath of the Wild ({ac_bonus} AC, 10-ft Frightened aura, Prowling Retribution)")
+            stats["actions"].append({
+                "name": "Wrath of the Wild",
+                "action": "Bonus Action (Costs 1 Favored Enemy use, 1 min)",
+                "effect": f"Transform: Gain {ac_bonus} AC; Reaction opportunity attack on enemy moving 5+ ft within reach; enemies starting turn in 10-ft emanation make Wis save (DC {save_dc}) or Frightened until next turn.",
+            })
+
+            if ranger_level >= 7:
+                stats["active_perks"].append(f"Hungering Might (+{max(1, wis_mod)} Con saves, Bloodied heal 1d10+{wis_mod})")
+
+            if ranger_level >= 11:
+                stats["active_perks"].append("Rot and Violence (No healing/reactions on aura fail, Sap/Slow mastery)")
+
+            if ranger_level >= 15:
+                stats["active_perks"].append(f"Ancient Might (Exhaustion immunity, +{max(1, wis_mod)} dmg vs Frightened, 1/LR drop to {2*ranger_level} HP)")
+
+        elif "winter walker" in subclass_clean and ranger_level >= 3:
+            ww_die = "1d6" if ranger_level >= 11 else "1d4"
+            stats["active_perks"].append(f"Frigid Explorer (Cold Resistance, ignore enemy Cold res, +{ww_die} Cold Polar Strikes)")
+            stats["active_perks"].append(f"Hunter's Rime (1d10+{ranger_level} Temp HP on Hunter's Mark, target can't Disengage)")
+
+            stats["actions"].append({
+                "name": "Polar Strikes",
+                "action": "On Weapon Hit (1/turn)",
+                "effect": f"Deal extra {ww_die} Cold damage with weapon attack. Damage ignores Cold resistance.",
+            })
+
+            if ranger_level >= 7:
+                stats["active_perks"].append(f"Fortifying Soul (1/LR Magic Action heal {max(1, wis_mod)} targets 1d10+{ranger_level} HP)")
+                stats["actions"].append({
+                    "name": "Fortifying Soul",
+                    "action": "Magic Action (1/Long Rest)",
+                    "effect": f"Choose up to {max(1, wis_mod)} allies in view: each regains 1d10 + {ranger_level} HP and has Advantage vs Frightened for 1 hour.",
+                })
+
+            if ranger_level >= 11:
+                cr_uses = max(1, wis_mod)
+                stats["subclass_resources"]["Chilling Retribution"] = {
+                    "current": cr_uses,
+                    "max": cr_uses,
+                    "recharge": "Long Rest",
+                }
+                stats["active_perks"].append(f"Chilling Retribution ({cr_uses}/LR Reaction Stun on hit)")
+                stats["actions"].append({
+                    "name": "Chilling Retribution",
+                    "action": f"Reaction ({cr_uses}/Long Rest)",
+                    "effect": f"When hit by attack, force attacker to make Wis save (DC {save_dc}) or be Stunned (Speed 0) until end of your next turn.",
+                })
+
+            if ranger_level >= 15:
+                stats["active_perks"].append("Frozen Haunt (Cold Immunity, 2d4 Cold 15-ft aura, Incorporeal movement)")
+
+        return stats
+
+    def calculate_rogue_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Rogue 2024 RAW statistics including:
+        - Sneak Attack progression (1d6 -> 10d6)
+        - Cunning Action (lv 2+: Dash, Disengage, Hide as Bonus Action)
+        - Steady Aim (lv 3+: Advantage on next attack, speed becomes 0)
+        - Cunning Strike (lv 5+: DC 8 + Dex mod + PB, Poison, Trip, Withdraw)
+        - Uncanny Dodge (lv 5+: Reaction to halve attack damage)
+        - Reliable Talent (lv 7+: d20 roll <= 9 treated as 10 on proficient checks)
+        - Evasion (lv 7+: Dex save vs half damage deals 0 on success, half on fail)
+        - Improved Cunning Strike (lv 11+: up to 2 Cunning Strike effects per Sneak Attack)
+        - Devious Strikes (lv 14+: Daze, Knock Out, Obscure)
+        - Slippery Mind (lv 15+: Wisdom and Charisma saving throw proficiencies)
+        - Elusive (lv 18+: No attack roll has advantage against you)
+        - Stroke of Luck (lv 20+: Turn failed d20 Test into 20, 1/Rest)
+        - Subclass mechanics for Thief, Assassin, Soulknife, and Arcane Trickster.
+        """
+        rogue_level = self._get_class_level("Rogue")
+        if rogue_level <= 0:
+            return {
+                "is_rogue": False,
+                "rogue_level": 0,
+                "subclass": "",
+                "sneak_attack_dice": "0d6",
+                "cunning_action": {"active": False, "actions": []},
+                "steady_aim": False,
+                "cunning_strike": {
+                    "active": False,
+                    "save_dc": 0,
+                    "max_effects": 0,
+                    "options": [],
+                },
+                "uncanny_dodge": False,
+                "evasion": False,
+                "reliable_talent": False,
+                "slippery_mind": False,
+                "elusive": False,
+                "stroke_of_luck": {"active": False, "uses": 0, "recharge": "Short or Long Rest"},
+                "active_perks": [],
+                "actions": [],
+                "subclass_details": {},
+            }
+
+        subclass = self._get_class_subclass("Rogue") or ""
+        ability_scores = self.calculate_processed_ability_scores()
+        dex_mod = ability_scores.get("dexterity", {}).get("modifier", 0)
+        proficiency_bonus = self.calculate_proficiency_bonus(rogue_level)
+
+        dice_count = (rogue_level + 1) // 2
+        sneak_attack_dice = f"{dice_count}d6"
+
+        cunning_action_active = rogue_level >= 2
+        cunning_actions = ["Dash", "Disengage", "Hide"] if cunning_action_active else []
+        steady_aim = rogue_level >= 3
+
+        cunning_strike_active = rogue_level >= 5
+        save_dc = 8 + dex_mod + proficiency_bonus if cunning_strike_active else 0
+        max_effects = 2 if rogue_level >= 11 else (1 if cunning_strike_active else 0)
+
+        cunning_strike_options = []
+        if cunning_strike_active:
+            cunning_strike_options.extend([
+                {
+                    "name": "Poison",
+                    "cost": "1d6",
+                    "save": "Constitution",
+                    "dc": save_dc,
+                    "effect": "Target is Poisoned for 1 minute (save ends at end of its turns). Requires Poisoner's Kit.",
+                },
+                {
+                    "name": "Trip",
+                    "cost": "1d6",
+                    "save": "Dexterity",
+                    "dc": save_dc,
+                    "effect": "Target is knocked Prone if it is Large or smaller.",
+                },
+                {
+                    "name": "Withdraw",
+                    "cost": "1d6",
+                    "save": "None",
+                    "dc": None,
+                    "effect": "Move up to half your Speed immediately after the attack without provoking Opportunity Attacks.",
+                },
+            ])
+
+            if subclass == "Thief" and rogue_level >= 9:
+                cunning_strike_options.append({
+                    "name": "Stealth Attack",
+                    "cost": "1d6",
+                    "save": "None",
+                    "dc": None,
+                    "effect": "If you have the Invisible condition from Hide, this attack doesn't end it if you end the turn behind 3/4 or Total Cover.",
+                })
+
+            if rogue_level >= 14:
+                cunning_strike_options.extend([
+                    {
+                        "name": "Daze",
+                        "cost": "2d6",
+                        "save": "Constitution",
+                        "dc": save_dc,
+                        "effect": "Target can do only one of the following on its next turn: move, take an Action, or take a Bonus Action.",
+                    },
+                    {
+                        "name": "Knock Out",
+                        "cost": "6d6",
+                        "save": "Constitution",
+                        "dc": save_dc,
+                        "effect": "Target has the Unconscious condition for 1 minute or until it takes damage / an ally wakes it with an Action.",
+                    },
+                    {
+                        "name": "Obscure",
+                        "cost": "3d6",
+                        "save": "Dexterity",
+                        "dc": save_dc,
+                        "effect": "Target has the Blinded condition until the end of its next turn.",
+                    },
+                ])
+
+        uncanny_dodge = rogue_level >= 5
+        evasion = rogue_level >= 7
+        reliable_talent = rogue_level >= 7
+        slippery_mind = rogue_level >= 15
+        elusive = rogue_level >= 18
+        stroke_of_luck = {
+            "active": rogue_level >= 20,
+            "uses": 1 if rogue_level >= 20 else 0,
+            "max_uses": 1 if rogue_level >= 20 else 0,
+            "recharge": "Short or Long Rest",
+            "effect": "Turn a failed d20 Test into a 20.",
+        }
+
+        subclass_details: Dict[str, Any] = {}
+        actions: List[Dict[str, Any]] = []
+
+        if cunning_action_active:
+            actions.append({
+                "name": "Cunning Action",
+                "action": "Bonus Action",
+                "effect": "Take the Dash, Disengage, or Hide action.",
+            })
+
+        if steady_aim:
+            actions.append({
+                "name": "Steady Aim",
+                "action": "Bonus Action",
+                "effect": "Give yourself Advantage on your next attack roll this turn. Speed becomes 0 until end of turn.",
+            })
+
+        if uncanny_dodge:
+            actions.append({
+                "name": "Uncanny Dodge",
+                "action": "Reaction",
+                "effect": "Halve attack damage against you from an attacker you can see.",
+            })
+
+        if stroke_of_luck["active"]:
+            actions.append({
+                "name": "Stroke of Luck",
+                "action": "Special (1/Rest)",
+                "recharge": "Short or Long Rest",
+                "effect": "Turn a failed d20 Test into a 20.",
+            })
+
+        if subclass == "Thief":
+            subclass_details = {
+                "fast_hands": rogue_level >= 3,
+                "second_story_work": {
+                    "active": rogue_level >= 3,
+                    "climb_speed": self.character_data.get("speed", 30) if rogue_level >= 3 else 0,
+                    "jump_ability": "Dexterity",
+                },
+                "supreme_sneak": rogue_level >= 9,
+                "use_magic_device": {
+                    "active": rogue_level >= 13,
+                    "attunement_slots": 4 if rogue_level >= 13 else 3,
+                    "charge_conservation": rogue_level >= 13,
+                    "scroll_use": rogue_level >= 13,
+                },
+                "thiefs_reflexes": rogue_level >= 17,
+            }
+            if rogue_level >= 3:
+                actions.append({
+                    "name": "Fast Hands",
+                    "action": "Bonus Action",
+                    "effect": "Sleight of Hand check to pick lock/disarm trap with Thieves' Tools, or pick pocket; take Utilize action; or use a magic item requiring an action.",
+                })
+        elif subclass == "Assassin":
+            subclass_details = {
+                "assassinate": {
+                    "active": rogue_level >= 3,
+                    "initiative_advantage": rogue_level >= 3,
+                    "surprising_strikes_advantage": rogue_level >= 3,
+                    "extra_sneak_damage": rogue_level if rogue_level >= 3 else 0,
+                },
+                "assassins_tools": rogue_level >= 3,
+                "infiltration_expertise": {
+                    "active": rogue_level >= 9,
+                    "masterful_mimicry": rogue_level >= 9,
+                    "roving_aim": rogue_level >= 9,
+                },
+                "envenom_weapons": rogue_level >= 13,
+                "death_strike": {
+                    "active": rogue_level >= 17,
+                    "save_dc": save_dc if rogue_level >= 17 else 0,
+                },
+            }
+        elif subclass == "Soulknife":
+            psi_die = "d12" if rogue_level >= 17 else ("d10" if rogue_level >= 11 else ("d8" if rogue_level >= 5 else "d6"))
+            psi_count = 2 * proficiency_bonus if rogue_level >= 3 else 0
+            subclass_details = {
+                "psionic_power": {
+                    "active": rogue_level >= 3,
+                    "dice_count": psi_count,
+                    "die_size": psi_die,
+                    "psi_bolstered_knack": rogue_level >= 3,
+                    "psychic_whispers": rogue_level >= 3,
+                },
+                "psychic_blades": rogue_level >= 3,
+                "soul_blades": {
+                    "active": rogue_level >= 9,
+                    "homing_strikes": rogue_level >= 9,
+                    "psychic_teleportation": rogue_level >= 9,
+                },
+                "psychic_veil": rogue_level >= 13,
+                "rend_mind": {
+                    "active": rogue_level >= 17,
+                    "save_dc": save_dc if rogue_level >= 17 else 0,
+                },
+            }
+            if rogue_level >= 3:
+                actions.append({
+                    "name": "Psychic Whispers",
+                    "action": "Magic Action",
+                    "effect": f"Roll a {psi_die}; you and up to {proficiency_bonus} creatures within 1 mile can speak telepathically for that many hours.",
+                })
+            if rogue_level >= 9:
+                actions.append({
+                    "name": "Psychic Teleportation",
+                    "action": f"Bonus Action (1 {psi_die})",
+                    "effect": f"Manifest Psychic Blade, expend a {psi_die}, and throw it to an unoccupied space up to 10 × roll ft away; teleport there.",
+                })
+            if rogue_level >= 13:
+                actions.append({
+                    "name": "Psychic Veil",
+                    "action": "Magic Action (1/Long Rest or 1 Psionic Die)",
+                    "effect": "Gain the Invisible condition for 1 hour (ends on damage or forcing a save).",
+                })
+        elif subclass == "Arcane Trickster":
+            subclass_details = {
+                "mage_hand_legerdemain": rogue_level >= 3,
+                "magical_ambush": rogue_level >= 9,
+                "versatile_trickster": rogue_level >= 13,
+                "spell_thief": rogue_level >= 17,
+            }
+            if rogue_level >= 3:
+                actions.append({
+                    "name": "Mage Hand Legerdemain",
+                    "action": "Bonus Action",
+                    "effect": "Cast Mage Hand as a Bonus Action and make it Invisible. Control it as a Bonus Action to make Sleight of Hand checks.",
+                })
+            if rogue_level >= 17:
+                at_save_dc = 8 + ability_scores.get("intelligence", {}).get("modifier", 0) + proficiency_bonus
+                actions.append({
+                    "name": "Spell Thief",
+                    "action": "Reaction (1/Long Rest)",
+                    "effect": f"Force creature casting spell targeting/including you to make Int save (DC {at_save_dc}). On fail, negate spell on you and steal it for 8 hours.",
+                })
+
+        active_perks = [f"Sneak Attack ({sneak_attack_dice})"]
+        if cunning_action_active:
+            active_perks.append("Cunning Action (Dash, Disengage, Hide as Bonus Action)")
+        if steady_aim:
+            active_perks.append("Steady Aim (Advantage on next attack roll)")
+        if cunning_strike_active:
+            effects_str = "up to 2 effects" if rogue_level >= 11 else "1 effect"
+            active_perks.append(f"Cunning Strike (DC {save_dc}, {effects_str})")
+        if uncanny_dodge:
+            active_perks.append("Uncanny Dodge (Halve attack damage as Reaction)")
+        if evasion:
+            active_perks.append("Evasion (Dex save: 0 damage on success, half on failure)")
+        if reliable_talent:
+            active_perks.append("Reliable Talent (d20 roll <= 9 treated as 10 on proficient checks)")
+        if slippery_mind:
+            active_perks.append("Slippery Mind (Wisdom & Charisma save proficiencies)")
+        if elusive:
+            active_perks.append("Elusive (No attack roll can have Advantage against you)")
+        if stroke_of_luck["active"]:
+            active_perks.append("Stroke of Luck (Turn failed d20 Test into 20, 1/Rest)")
+
+        if subclass == "Thief":
+            if rogue_level >= 3:
+                active_perks.append("Fast Hands (Bonus Action: Sleight of Hand, Thieves' Tools, Utilize, Magic Item)")
+                active_perks.append("Second-Story Work (Climb speed = Speed, Jump with Dex)")
+            if rogue_level >= 9:
+                active_perks.append("Supreme Sneak (Stealth Attack cunning strike)")
+            if rogue_level >= 13:
+                active_perks.append("Use Magic Device (4 Attunements, 1-in-6 conserve charges, Scroll use)")
+            if rogue_level >= 17:
+                active_perks.append("Thief's Reflexes (Two turns during round 1 of combat)")
+        elif subclass == "Assassin":
+            if rogue_level >= 3:
+                active_perks.append(f"Assassinate (Advantage on Initiative; +{rogue_level} Sneak Attack dmg in round 1)")
+            if rogue_level >= 9:
+                active_perks.append("Infiltration Expertise (Masterful Mimicry, Roving Aim)")
+            if rogue_level >= 13:
+                active_perks.append("Envenom Weapons (Poison strike deals +2d6 Poison ignoring resistance)")
+            if rogue_level >= 17:
+                active_perks.append(f"Death Strike (Round 1 Sneak Attack DC {save_dc} Con save or double damage)")
+        elif subclass == "Soulknife":
+            if rogue_level >= 3:
+                psi_die = subclass_details["psionic_power"]["die_size"]
+                psi_count = subclass_details["psionic_power"]["dice_count"]
+                active_perks.append(f"Psionic Power ({psi_count}{psi_die} Energy Dice, Knack, Whispers)")
+                active_perks.append("Psychic Blades (1d6/1d4 Psychic, Finesse, Thrown 60/120, Vex)")
+            if rogue_level >= 9:
+                active_perks.append("Soul Blades (Homing Strikes, Psychic Teleportation)")
+            if rogue_level >= 13:
+                active_perks.append("Psychic Veil (1 hr Invisibility 1/LR or 1 Psionic die)")
+            if rogue_level >= 17:
+                active_perks.append(f"Rend Mind (DC {save_dc} Wis save or Stunned 1 min)")
+        elif subclass == "Arcane Trickster":
+            if rogue_level >= 3:
+                active_perks.append("Mage Hand Legerdemain (Bonus Action, Invisible, Sleight of Hand)")
+            if rogue_level >= 9:
+                active_perks.append("Magical Ambush (Disadvantage on saves vs your spells while hidden)")
+            if rogue_level >= 13:
+                active_perks.append("Versatile Trickster (Trip strike affects creature near Mage Hand)")
+            if rogue_level >= 17:
+                active_perks.append("Spell Thief (Steal spell targeting you on failed Int save 1/LR)")
+
+        return {
+            "is_rogue": True,
+            "rogue_level": rogue_level,
+            "subclass": subclass,
+            "sneak_attack_dice": sneak_attack_dice,
+            "cunning_action": {
+                "active": cunning_action_active,
+                "actions": cunning_actions,
+            },
+            "steady_aim": steady_aim,
+            "cunning_strike": {
+                "active": cunning_strike_active,
+                "save_dc": save_dc,
+                "max_effects": max_effects,
+                "options": cunning_strike_options,
+            },
+            "uncanny_dodge": uncanny_dodge,
+            "evasion": evasion,
+            "reliable_talent": reliable_talent,
+            "slippery_mind": slippery_mind,
+            "elusive": elusive,
+            "stroke_of_luck": stroke_of_luck,
+            "active_perks": active_perks,
+            "actions": actions,
+            "subclass_details": subclass_details,
+        }
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -9878,12 +10632,23 @@ class CharacterBuilder:
             cha_mod = self.calculate_ability_modifier(cha_score)
             aura_bonus = max(1, cha_mod)
 
+        # Check if Hungering Might applies to Con saves (Hollow Warden Ranger level 7+)
+        ranger_level = self._get_class_level("Ranger")
+        ranger_subclass = (self._get_class_subclass("Ranger") or "").lower()
+        hungering_might_bonus = 0
+        if ranger_level >= 7 and "hollow warden" in ranger_subclass:
+            wis_score = raw_scores.get("Wisdom", 10)
+            hungering_might_bonus = max(1, self.calculate_ability_modifier(wis_score))
+
         processed_scores = {}
         for ability_name, score in raw_scores.items():
             ability_lower = ability_name.lower()
             modifier = self.calculate_ability_modifier(score)
             is_proficient = ability_name in saving_throw_profs
-            saving_throw_bonus = modifier + (proficiency_bonus if is_proficient else 0) + aura_bonus
+            extra_save_bonus = aura_bonus
+            if ability_name == "Constitution" and hungering_might_bonus > 0:
+                extra_save_bonus += hungering_might_bonus
+            saving_throw_bonus = modifier + (proficiency_bonus if is_proficient else 0) + extra_save_bonus
 
             ability_entry = {
                 "score": score,
@@ -9897,6 +10662,8 @@ class CharacterBuilder:
             }
             if aura_bonus > 0:
                 ability_entry["aura_bonus"] = aura_bonus
+            if ability_name == "Constitution" and hungering_might_bonus > 0:
+                ability_entry["hungering_might_bonus"] = hungering_might_bonus
             processed_scores[ability_lower] = ability_entry
 
         return processed_scores
@@ -10043,6 +10810,8 @@ class CharacterBuilder:
         monk_level = self._get_class_level("Monk")
         monk_subclass = self._get_class_subclass("Monk")
         paladin_level = self._get_class_level("Paladin")
+        ranger_level = self._get_class_level("Ranger")
+        ranger_subclass = (self._get_class_subclass("Ranger") or "").lower()
 
         for weapon in active_weapons:
             weapon_name = (
@@ -10318,6 +11087,42 @@ class CharacterBuilder:
                 damage_notes.append(f"Envenom Weapon (1 FP): Slowing Toxin or +2{ma_d} Poison/Acid")
             if paladin_level >= 11 and is_melee:
                 damage_notes.append("+1d8 Radiant (Radiant Strikes)")
+            if ranger_level >= 1:
+                hm_die = "1d10" if ranger_level >= 20 else "1d6"
+                damage_notes.append(f"+{hm_die} Hunter's Mark (vs marked target)")
+            if ranger_level >= 3:
+                choices_made = self.character_data.get("choices_made", {})
+                if "hunter" in ranger_subclass:
+                    hunters_prey = choices_made.get("hunters_prey")
+                    if hunters_prey == "Colossus Slayer":
+                        damage_notes.append("+1d8 Colossus Slayer (1/turn if target below max HP)")
+                elif "fey wanderer" in ranger_subclass:
+                    fey_die = "1d6" if ranger_level >= 11 else "1d4"
+                    damage_notes.append(f"+{fey_die} Psychic (Dreadful Strikes, 1/turn/target)")
+                elif "gloom stalker" in ranger_subclass:
+                    gs_die = "2d8" if ranger_level >= 11 else "2d6"
+                    damage_notes.append(f"+{gs_die} Psychic (Dreadful Strike, 1/turn)")
+                elif "winter walker" in ranger_subclass:
+                    ww_die = "1d6" if ranger_level >= 11 else "1d4"
+                    damage_notes.append(f"+{ww_die} Cold (Polar Strikes, 1/turn)")
+                elif "hollow warden" in ranger_subclass:
+                    if ranger_level >= 15:
+                        wis_mod = ability_scores.get("wisdom", {}).get("modifier", 0)
+                        damage_notes.append(f"+{max(1, wis_mod)} Ominous Strikes (vs Frightened targets)")
+
+            # Sneak Attack (Rogue level >= 1 with Finesse or Ranged weapon)
+            rogue_level = self._get_class_level("Rogue")
+            rogue_subclass = self._get_class_subclass("Rogue") or ""
+            is_finesse = "Finesse" in properties
+            is_ranged = "Ranged" in category
+            if rogue_level >= 1 and (is_finesse or is_ranged):
+                sneak_dice = f"{(rogue_level + 1) // 2}d6"
+                damage_notes.append(f"+{sneak_dice} Sneak Attack (1/turn, Finesse/Ranged)")
+                if rogue_subclass == "Assassin" and rogue_level >= 3:
+                    damage_notes.append(f"+{rogue_level} Assassinate extra damage on Sneak Attack in round 1")
+                if rogue_subclass == "Assassin" and rogue_level >= 17:
+                    cunning_dc = 8 + dex_mod + proficiency_bonus
+                    damage_notes.append(f"Death Strike in round 1 (DC {cunning_dc} Con save or double damage)")
 
             attack_info = {
                 "name": weapon_name,
@@ -10456,6 +11261,9 @@ class CharacterBuilder:
             unarmed_notes.append(f"+1{ma_d}{wis_s} Necrotic (Hand of Harm, 1 FP, 1/turn{poison_s})")
         if paladin_level >= 11:
             unarmed_notes.append("+1d8 Radiant (Radiant Strikes)")
+        if ranger_level >= 1:
+            hm_die = "1d10" if ranger_level >= 20 else "1d6"
+            unarmed_notes.append(f"+{hm_die} Hunter's Mark (vs marked target)")
 
         unarmed_attack = {
             "name": "Unarmed Strike",
@@ -10481,6 +11289,66 @@ class CharacterBuilder:
             unarmed_attack["rage_damage_bonus"] = unarmed_rage_bonus
 
         attacks.append(unarmed_attack)
+
+        # Soulknife Psychic Blades (manifested simple melee weapon, finesse, thrown 60/120, vex)
+        rogue_level = self._get_class_level("Rogue")
+        rogue_subclass = self._get_class_subclass("Rogue") or ""
+        if rogue_subclass == "Soulknife" and rogue_level >= 3:
+            pb_mod = max(str_mod, dex_mod)
+            pb_attack_bonus = pb_mod + proficiency_bonus
+            pb_damage_str = f"1d6 + {pb_mod}" if pb_mod > 0 else (f"1d6 - {abs(pb_mod)}" if pb_mod < 0 else "1d6")
+            pb_avg = self._calculate_average_damage("1d6", pb_mod)
+            pb_crit = self._calculate_average_damage("1d6", pb_mod, is_crit=True)
+            sneak_dice = f"{(rogue_level + 1) // 2}d6"
+            pb_notes = [f"+{sneak_dice} Sneak Attack (1/turn, Finesse/Ranged)"]
+            if rogue_level >= 9:
+                pb_notes.append("Homing Strikes (spend Psionic Energy Die on miss to turn miss into hit)")
+            if rogue_level >= 17:
+                cunning_dc = 8 + dex_mod + proficiency_bonus
+                pb_notes.append(f"Rend Mind (DC {cunning_dc} Wis save or Stunned 1 min)")
+
+            attacks.append({
+                "name": "Psychic Blade",
+                "attack_bonus": pb_attack_bonus,
+                "attack_bonus_display": f"+{pb_attack_bonus}" if pb_attack_bonus >= 0 else str(pb_attack_bonus),
+                "damage": pb_damage_str,
+                "damage_bonus": pb_mod,
+                "damage_type": "Psychic",
+                "avg_damage": pb_avg,
+                "avg_crit": pb_crit,
+                "properties": ["Finesse", "Thrown (range 60/120)"],
+                "ability": f"STR/DEX ({'STR' if str_mod >= dex_mod else 'DEX'})",
+                "effective_ability": "DEX" if dex_mod >= str_mod else "STR",
+                "proficient": True,
+                "mastery": "Vex",
+                "icon": "/static/images/weapons/dagger.svg",
+                "damage_notes": pb_notes,
+                "quantity": 1,
+            })
+
+            # Bonus action attack (1d4 psychic, no positive ability mod per 2024 RAW)
+            bonus_mod = min(0, pb_mod)
+            bonus_damage_str = f"1d4 - {abs(bonus_mod)}" if bonus_mod < 0 else "1d4"
+            bonus_avg = self._calculate_average_damage("1d4", bonus_mod)
+            bonus_crit = self._calculate_average_damage("1d4", bonus_mod, is_crit=True)
+            attacks.append({
+                "name": "Psychic Blade (Bonus Attack)",
+                "attack_bonus": pb_attack_bonus,
+                "attack_bonus_display": f"+{pb_attack_bonus}" if pb_attack_bonus >= 0 else str(pb_attack_bonus),
+                "damage": bonus_damage_str,
+                "damage_bonus": bonus_mod,
+                "damage_type": "Psychic",
+                "avg_damage": bonus_avg,
+                "avg_crit": bonus_crit,
+                "properties": ["Finesse", "Thrown (range 60/120)", "Bonus Action"],
+                "ability": f"STR/DEX ({'STR' if str_mod >= dex_mod else 'DEX'})",
+                "effective_ability": "DEX" if dex_mod >= str_mod else "STR",
+                "proficient": True,
+                "mastery": "Vex",
+                "icon": "/static/images/weapons/dagger.svg",
+                "damage_notes": ["Bonus Action after Psychic Blade attack (requires free other hand)"],
+                "quantity": 1,
+            })
 
         # Check if character has 2+ light weapons for dual wielding
         # Create combination cards for each pair
@@ -11197,6 +12065,7 @@ class CharacterBuilder:
         """Create the canonical structured entry for a bonus_initiative effect."""
         return {
             "value": effect.get("value", 0),
+            "ability": effect.get("ability"),
             "source": source_name,
             "source_type": source_type,
             "source_class_name": source_class_name,
@@ -11209,12 +12078,21 @@ class CharacterBuilder:
     ) -> int:
         """Calculate initiative from Dexterity plus structured initiative bonuses."""
         initiative_bonus = dex_modifier
+        raw_scores = getattr(self.ability_scores, "final_scores", {}) if hasattr(self, "ability_scores") else {}
         for entry in self.character_data.get("initiative_bonuses", []):
+            ability = entry.get("ability")
             value = entry.get("value", 0)
-            if value == "proficiency":
+            if ability:
+                ab_score = raw_scores.get(ability.capitalize(), 10)
+                ab_mod = self.calculate_ability_modifier(ab_score)
+                initiative_bonus += ab_mod
+            elif value == "proficiency":
                 initiative_bonus += proficiency_bonus
             else:
-                initiative_bonus += int(value)
+                try:
+                    initiative_bonus += int(value)
+                except (ValueError, TypeError):
+                    pass
 
         return initiative_bonus
 
@@ -11561,12 +12439,29 @@ class CharacterBuilder:
 
         # Add calculated combat stats
         character_data["combat"] = self.calculate_combat_stats()
+        ranger_lvl = self._get_class_level("Ranger")
+        if ranger_lvl >= 6:
+            walk_spd = character_data.get("speed", 30)
+            self.character_data["climb_speed"] = max(self.character_data.get("climb_speed", 0), walk_spd)
+            self.character_data["swim_speed"] = max(self.character_data.get("swim_speed", 0), walk_spd)
+        if ranger_lvl >= 18:
+            self.character_data["blindsight"] = max(self.character_data.get("blindsight", 0), 30)
+
+        rogue_lvl = self._get_class_level("Rogue")
+        rogue_sub = self._get_class_subclass("Rogue") or ""
+        if rogue_lvl >= 3 and rogue_sub == "Thief":
+            walk_spd = character_data.get("speed", 30)
+            self.character_data["climb_speed"] = max(self.character_data.get("climb_speed", 0), walk_spd)
+
         if "climb_speed" in self.character_data:
             character_data["climb_speed"] = self.character_data["climb_speed"]
             character_data["combat"]["climb_speed"] = self.character_data["climb_speed"]
         if "swim_speed" in self.character_data:
             character_data["swim_speed"] = self.character_data["swim_speed"]
             character_data["combat"]["swim_speed"] = self.character_data["swim_speed"]
+        if "blindsight" in self.character_data:
+            character_data["blindsight"] = self.character_data["blindsight"]
+            character_data["combat"]["blindsight"] = self.character_data["blindsight"]
 
         # Add calculated weapon attacks and combinations
         weapon_data = self.calculate_weapon_attacks()
@@ -11841,6 +12736,16 @@ class CharacterBuilder:
         paladin_stats = self.calculate_paladin_stats()
         if paladin_stats.get("paladin_level", 0) > 0:
             character_data["paladin_stats"] = paladin_stats
+
+        # Add Ranger stats (Ranger only)
+        ranger_stats = self.calculate_ranger_stats()
+        if ranger_stats.get("ranger_level", 0) > 0:
+            character_data["ranger_stats"] = ranger_stats
+
+        # Add Rogue stats (Rogue only)
+        rogue_stats = self.calculate_rogue_stats()
+        if rogue_stats.get("rogue_level", 0) > 0:
+            character_data["rogue_stats"] = rogue_stats
 
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:

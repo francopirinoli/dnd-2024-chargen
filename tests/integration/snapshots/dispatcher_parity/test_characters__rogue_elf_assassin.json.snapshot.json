@@ -157,7 +157,10 @@
       "avg_damage": 6.5,
       "damage": "1d6 + 3",
       "damage_bonus": 3,
-      "damage_notes": [],
+      "damage_notes": [
+        "+2d6 Sneak Attack (1/turn, Finesse/Ranged)",
+        "+3 Assassinate extra damage on Sneak Attack in round 1"
+      ],
       "damage_type": "Piercing",
       "effective_ability": "DEX",
       "icon": "/static/images/weapons/bow.svg",
@@ -193,7 +196,10 @@
       "avg_damage": 7.5,
       "damage": "1d8 + 3",
       "damage_bonus": 3,
-      "damage_notes": [],
+      "damage_notes": [
+        "+2d6 Sneak Attack (1/turn, Finesse/Ranged)",
+        "+3 Assassinate extra damage on Sneak Attack in round 1"
+      ],
       "damage_type": "Piercing",
       "effective_ability": "DEX",
       "icon": "/static/images/weapons/rapier.svg",
@@ -213,7 +219,10 @@
       "avg_throw_damage": 5.5,
       "damage": "1d4 + 3",
       "damage_bonus": 3,
-      "damage_notes": [],
+      "damage_notes": [
+        "+2d6 Sneak Attack (1/turn, Finesse/Ranged)",
+        "+3 Assassinate extra damage on Sneak Attack in round 1"
+      ],
       "damage_type": "Piercing",
       "effective_ability": "DEX",
       "icon": "/static/images/weapons/dagger.svg",
@@ -684,6 +693,7 @@
       "Intimidation",
       "Investigation",
       "Perception",
+      "Performance",
       "Persuasion",
       "Sleight of Hand",
       "Stealth"
@@ -1226,6 +1236,76 @@
     "weapons": {}
   },
   "resistances": [],
+  "rogue_stats": {
+    "actions": [
+      {
+        "action": "Bonus Action",
+        "effect": "Give yourself Advantage on your next attack roll this turn. Speed becomes 0 until end of turn.",
+        "name": "Steady Aim"
+      },
+      {
+        "action": "Bonus Action",
+        "effect": "Take the Dash, Disengage, or Hide action.",
+        "name": "Cunning Action"
+      }
+    ],
+    "active_perks": [
+      "Sneak Attack (2d6)",
+      "Cunning Action (Dash, Disengage, Hide as Bonus Action)",
+      "Steady Aim (Advantage on next attack roll)",
+      "Assassinate (Advantage on Initiative; +3 Sneak Attack dmg in round 1)"
+    ],
+    "cunning_action": {
+      "actions": [
+        "Dash",
+        "Disengage",
+        "Hide"
+      ],
+      "active": true
+    },
+    "cunning_strike": {
+      "active": false,
+      "max_effects": 0,
+      "options": [],
+      "save_dc": 0
+    },
+    "elusive": false,
+    "evasion": false,
+    "is_rogue": true,
+    "reliable_talent": false,
+    "rogue_level": 3,
+    "slippery_mind": false,
+    "sneak_attack_dice": "2d6",
+    "steady_aim": true,
+    "stroke_of_luck": {
+      "active": false,
+      "effect": "Turn a failed d20 Test into a 20.",
+      "max_uses": 0,
+      "recharge": "Short or Long Rest",
+      "uses": 0
+    },
+    "subclass": "Assassin",
+    "subclass_details": {
+      "assassinate": {
+        "active": true,
+        "extra_sneak_damage": 3,
+        "initiative_advantage": true,
+        "surprising_strikes_advantage": true
+      },
+      "assassins_tools": true,
+      "death_strike": {
+        "active": false,
+        "save_dc": 0
+      },
+      "envenom_weapons": false,
+      "infiltration_expertise": {
+        "active": false,
+        "masterful_mimicry": false,
+        "roving_aim": false
+      }
+    },
+    "uncanny_dodge": false
+  },
   "save_advantages": [
     {
       "abilities": [],

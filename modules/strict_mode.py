@@ -71,6 +71,7 @@ KNOWN_EFFECT_TYPES: frozenset = frozenset({
     "grant_armor_proficiency",
     "grant_cantrip",
     "grant_cantrip_choice",
+    "grant_climb_speed",
     "grant_condition_immunity",
     "grant_damage_immunity",
     "grant_damage_resistance",
@@ -86,11 +87,12 @@ KNOWN_EFFECT_TYPES: frozenset = frozenset({
     "grant_skill_proficiency_or_expertise",
     "grant_spell",
     "grant_spell_at_will",
-    "grant_superiority_dice",
-    "grant_tool_proficiency",
-    "grant_weapon_proficiency",
     "grant_spell_slots",
+    "grant_superiority_dice",
+    "grant_swim_speed",
+    "grant_tool_proficiency",
     "grant_weapon_mastery",
+    "grant_weapon_proficiency",
     "great_weapon_fighting",
     "increase_speed",
     "monk_dexterous_attacks",
@@ -214,6 +216,18 @@ KNOWN_CHOICE_KEYS: frozenset = frozenset({
     "knightly_envoy_language",
     "knightly_envoy_skill",
     "diabolical_gift_skill",
+    # Ranger
+    "deft_explorer_expertise",
+    "deft_explorer_languages",
+    "Deft Explorer_deft_explorer_expertise",
+    "Deft Explorer_deft_explorer_languages",
+    # Rogue
+    "thieves_cant_language",
+    "Thieves' Cant_thieves_cant_language",
+    "rogue_expertise_skills_1",
+    "rogue_expertise_skills_6",
+    "Expertise_rogue_expertise_skills_1",
+    "Expertise_rogue_expertise_skills_6",
     # Artificer Replicate Magic Item
     "artificer_replicate_plans",
     "artificer_plans",
@@ -327,9 +341,17 @@ def _authored_choice_keys() -> Set[str]:
                     if isinstance(nested, list):
                         for ci in nested:
                             if isinstance(ci, dict):
-                                _add(ci.get("name"))
+                                raw_name = ci.get("name")
+                                _add(raw_name)
+                                if raw_name:
+                                    _add(f"{feature_name}_{raw_name}")
+                                    _add(f"subclass_{feature_name}_{raw_name}")
                     elif isinstance(nested, dict):
-                        _add(nested.get("name"))
+                        raw_name = nested.get("name")
+                        _add(raw_name)
+                        if raw_name:
+                            _add(f"{feature_name}_{raw_name}")
+                            _add(f"subclass_{feature_name}_{raw_name}")
 
     def _walk_doc(doc: Any) -> None:
         if not isinstance(doc, dict):
@@ -344,7 +366,15 @@ def _authored_choice_keys() -> Set[str]:
                     if isinstance(nested, list):
                         for ci in nested:
                             if isinstance(ci, dict):
-                                _add(ci.get("name"))
+                                raw_name = ci.get("name")
+                                _add(raw_name)
+                                if raw_name:
+                                    _add(f"{trait_name}_{raw_name}")
+                    elif isinstance(nested, dict):
+                        raw_name = nested.get("name")
+                        _add(raw_name)
+                        if raw_name:
+                            _add(f"{trait_name}_{raw_name}")
         # Lineages live under species docs and have their own traits.
         lineages = doc.get("lineages") or {}
         if isinstance(lineages, dict):
@@ -428,9 +458,17 @@ def collect_data_driven_choice_keys(character_data: Dict[str, Any]) -> Set[str]:
                     if isinstance(nested, list):
                         for ci in nested:
                             if isinstance(ci, dict):
-                                _add(ci.get("name"))
+                                raw_name = ci.get("name")
+                                _add(raw_name)
+                                if raw_name:
+                                    _add(f"{feature_name}_{raw_name}")
+                                    _add(f"subclass_{feature_name}_{raw_name}")
                     elif isinstance(nested, dict):
-                        _add(nested.get("name"))
+                        raw_name = nested.get("name")
+                        _add(raw_name)
+                        if raw_name:
+                            _add(f"{feature_name}_{raw_name}")
+                            _add(f"subclass_{feature_name}_{raw_name}")
 
     for src_key in (
         "class_data",
@@ -452,7 +490,15 @@ def collect_data_driven_choice_keys(character_data: Dict[str, Any]) -> Set[str]:
                     if isinstance(nested, list):
                         for ci in nested:
                             if isinstance(ci, dict):
-                                _add(ci.get("name"))
+                                raw_name = ci.get("name")
+                                _add(raw_name)
+                                if raw_name:
+                                    _add(f"{trait_name}_{raw_name}")
+                    elif isinstance(nested, dict):
+                        raw_name = nested.get("name")
+                        _add(raw_name)
+                        if raw_name:
+                            _add(f"{trait_name}_{raw_name}")
 
     return keys
 

@@ -160,7 +160,10 @@
       "avg_damage": 7.5,
       "damage": "1d8 + 3",
       "damage_bonus": 3,
-      "damage_notes": [],
+      "damage_notes": [
+        "+1d6 Hunter's Mark (vs marked target)",
+        "+2d6 Psychic (Dreadful Strike, 1/turn)"
+      ],
       "damage_type": "Piercing",
       "effective_ability": "DEX",
       "icon": "/static/images/weapons/bow.svg",
@@ -180,7 +183,9 @@
       "avg_crit": 2.0,
       "avg_damage": 2.0,
       "damage": "2",
-      "damage_notes": [],
+      "damage_notes": [
+        "+1d6 Hunter's Mark (vs marked target)"
+      ],
       "damage_type": "Bludgeoning",
       "effective_ability": "STR",
       "icon": "/static/images/weapons/strike.svg",
@@ -197,7 +202,10 @@
       "avg_damage": 6.5,
       "damage": "1d6 + 3",
       "damage_bonus": 3,
-      "damage_notes": [],
+      "damage_notes": [
+        "+1d6 Hunter's Mark (vs marked target)",
+        "+2d6 Psychic (Dreadful Strike, 1/turn)"
+      ],
       "damage_type": "Piercing",
       "effective_ability": "DEX",
       "icon": "/static/images/weapons/sword.svg",
@@ -217,7 +225,10 @@
       "avg_damage": 6.5,
       "damage": "1d6 + 3",
       "damage_bonus": 3,
-      "damage_notes": [],
+      "damage_notes": [
+        "+1d6 Hunter's Mark (vs marked target)",
+        "+2d6 Psychic (Dreadful Strike, 1/turn)"
+      ],
       "damage_type": "Slashing",
       "effective_ability": "DEX",
       "icon": "/static/images/weapons/scimitar.svg",
@@ -1151,15 +1162,22 @@
       "level": 3,
       "total_hp": 25
     },
-    "initiative": 3,
-    "initiative_bonus": 3,
+    "initiative": 5,
+    "initiative_bonus": 5,
     "passive_perception": 14,
     "speed": 35,
     "uses_shield": false
   },
   "condition_immunities": [],
-  "darkvision": 60,
+  "darkvision": 120,
   "effects": [
+    {
+      "ability": "Wisdom",
+      "source": "Dread Ambusher",
+      "source_class_name": "Ranger",
+      "source_type": "subclass",
+      "type": "bonus_initiative"
+    },
     {
       "condition": "Charmed",
       "display": "Advantage vs Charmed condition",
@@ -1224,6 +1242,14 @@
       "source": "Deft Explorer",
       "source_type": "class_choice",
       "type": "grant_language"
+    },
+    {
+      "increase_if_present": true,
+      "range": 60,
+      "source": "Umbral Sight",
+      "source_class_name": "Ranger",
+      "source_type": "subclass",
+      "type": "grant_darkvision"
     },
     {
       "level": 1,
@@ -1305,13 +1331,6 @@
       "range": 60,
       "source": "Darkvision",
       "source_type": "species",
-      "type": "grant_darkvision"
-    },
-    {
-      "range": 60,
-      "source": "Umbral Sight",
-      "source_class_name": "Ranger",
-      "source_type": "subclass",
       "type": "grant_darkvision"
     },
     {
@@ -1694,6 +1713,81 @@
       "Cartographer's Tools": "Guide"
     },
     "weapons": {}
+  },
+  "ranger_stats": {
+    "actions": [
+      {
+        "action": "Bonus Action (90 ft, 2 Free/LR)",
+        "effect": "Mark quarry for 1 hour (Concentration). Deal extra 1d6 damage whenever you hit it with an attack roll. Can move mark as Bonus Action on kill.",
+        "name": "Hunter's Mark"
+      },
+      {
+        "action": "On Weapon Hit (1/turn, 2/Long Rest)",
+        "effect": "Deal extra 2d6 Psychic damage.",
+        "name": "Dreadful Strike"
+      }
+    ],
+    "active_perks": [
+      "Favored Enemy (2 free Hunter's Mark/LR, 1d6)",
+      "Deft Explorer (Expertise + 2 Languages)",
+      "Dread Ambusher (+2 Init, +10 ft turn 1, 2/LR +2d6 Psychic)",
+      "Umbral Sight (Darkvision +60 ft, Invisibility in Darkness)"
+    ],
+    "favored_enemy": {
+      "active": true,
+      "damage_die": "1d6",
+      "description": "You always have Hunter's Mark prepared. You can cast it 2 times per Long Rest without expending a spell slot (extra 1d6 damage).",
+      "foe_slayer": false,
+      "hunters_mark_prepared": true,
+      "max_uses": 2,
+      "precise_hunter": false,
+      "recharge": "Long Rest",
+      "relentless_hunter": false,
+      "uses": 2
+    },
+    "feral_senses": {
+      "active": false,
+      "blindsight_range": 0,
+      "description": ""
+    },
+    "is_ranger": true,
+    "natures_veil": {
+      "action": "Bonus Action",
+      "active": false,
+      "description": "",
+      "duration": "End of your next turn",
+      "max_uses": 0,
+      "recharge": "Long Rest",
+      "uses": 0
+    },
+    "ranger_level": 3,
+    "roving": {
+      "active": false,
+      "climb_speed": 0,
+      "description": "",
+      "speed_bonus": 0,
+      "swim_speed": 0
+    },
+    "save_dc": 12,
+    "spell_attack": 4,
+    "subclass": "Gloom Stalker",
+    "subclass_details": {},
+    "subclass_resources": {
+      "Dreadful Strike": {
+        "current": 2,
+        "max": 2,
+        "recharge": "Long Rest"
+      }
+    },
+    "tireless": {
+      "active": false,
+      "description": "",
+      "max_uses": 0,
+      "recharge": "Long Rest",
+      "short_rest_exhaustion_reduction": false,
+      "temp_hp_roll": "",
+      "uses": 0
+    }
   },
   "resistances": [],
   "save_advantages": [
@@ -2500,7 +2594,15 @@
         "Shadowy Dodge": "When a creature makes an attack roll against you, you can take a Reaction to impose Disadvantage on that roll. Whether the attack hits or misses, you can teleport up to 30 feet to an unoccupied space that you can see."
       },
       "3": {
-        "Dread Ambusher": "You have mastered the art of creating fearsome ambushes, granting you the following benefits. Ambusher's Leap: At the start of your first turn of each combat, your speed increases by 10 feet until the end of that turn. Dreadful Strike: When you attack a creature and hit it with a weapon, you can deal an extra 2d6 Psychic damage. You can use this benefit only once per turn, you can use it a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. Initiative Bonus: When you roll Initiative, you can add your Wisdom modifier to the roll.",
+        "Dread Ambusher": {
+          "description": "You have mastered the art of creating fearsome ambushes, granting you the following benefits. Ambusher's Leap: At the start of your first turn of each combat, your speed increases by 10 feet until the end of that turn. Dreadful Strike: When you attack a creature and hit it with a weapon, you can deal an extra 2d6 Psychic damage. You can use this benefit only once per turn, you can use it a number of times equal to your Wisdom modifier (minimum of once), and you regain all expended uses when you finish a Long Rest. Initiative Bonus: When you roll Initiative, you can add your Wisdom modifier to the roll.",
+          "effects": [
+            {
+              "ability": "Wisdom",
+              "type": "bonus_initiative"
+            }
+          ]
+        },
         "Gloom Stalker Spells": {
           "description": "When you reach a Ranger level specified in the Gloom Stalker Spells table, you thereafter always have the listed spells prepared.",
           "effects": [
@@ -2535,6 +2637,7 @@
           "description": "You gain Darkvision with a range of 60 feet. If you already have Darkvision when you gain this feature, its range increases by 60 feet. You are also adept at evading creatures that rely on Darkvision. While entirely in Darkness, you have the Invisible condition to any creature that relies on Darkvision to see you in that Darkness.",
           "effects": [
             {
+              "increase_if_present": true,
               "range": 60,
               "type": "grant_darkvision"
             }
