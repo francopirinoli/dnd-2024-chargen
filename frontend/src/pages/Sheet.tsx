@@ -2395,6 +2395,15 @@ function SpecialFeatures({ c }: { c: Char }) {
                   {Boolean(sorcererSubclass.clockwork_cavalcade) && (
                     <div>Clockwork Cavalcade: <strong className="text-foreground">Heal 100 HP, restore objects, dispel spells lv 1-6</strong></div>
                   )}
+                  {Boolean(sorcererSubclass.spellfire_burst) && (
+                    <div>Spellfire Burst: <strong className="text-foreground">THP 1d4+{str(sorcererSubclass.spellfire_burst_thp)} or {str(sorcererSubclass.spellfire_burst_die)} Fire/Radiant</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.absorb_spells) && (
+                    <div>Absorb Spells: <strong className="text-foreground">Counterspell + Regain 1d4 SP on failed save</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.crown_of_spellfire) && (
+                    <div>Crown of Spellfire: <strong className="text-foreground">Fly 60 ft, Spell Avoidance, Hit Dice dmg reduction</strong></div>
+                  )}
                 </div>
               </div>
             )}

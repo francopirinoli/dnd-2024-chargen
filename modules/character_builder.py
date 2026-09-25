@@ -1241,6 +1241,67 @@ class CharacterBuilder:
         for trait_name, trait_data in traits.items():
             self._apply_trait_effects(trait_name, trait_data, "lineage")
 
+    def _format_spells_table(
+        self, trait_data: Any, feature_level: Optional[int] = None
+    ) -> Tuple[str, Optional[int]]:
+        """Format an HTML spell table or simple spell list for features that grant spells."""
+        if not isinstance(trait_data, dict):
+            return "", None
+
+        spells_by_level: Dict[int, List[str]] = {}
+        current_level = self.character_data.get("level", 1)
+
+        for effect in trait_data.get("effects", []):
+            if isinstance(effect, dict) and effect.get("type") == "grant_spell":
+                spell_name = effect.get("spell")
+                min_lvl = effect.get("min_level", feature_level or 1)
+                if spell_name:
+                    if min_lvl not in spells_by_level:
+                        spells_by_level[min_lvl] = []
+                    if spell_name not in spells_by_level[min_lvl]:
+                        spells_by_level[min_lvl].append(spell_name)
+
+        if "spells" in trait_data and isinstance(trait_data["spells"], dict):
+            for min_lvl_str, spell_list in trait_data["spells"].items():
+                try:
+                    min_lvl = int(min_lvl_str)
+                except (ValueError, TypeError):
+                    min_lvl = 1
+                if isinstance(spell_list, list):
+                    for sp in spell_list:
+                        if isinstance(sp, str):
+                            if min_lvl not in spells_by_level:
+                                spells_by_level[min_lvl] = []
+                            if sp not in spells_by_level[min_lvl]:
+                                spells_by_level[min_lvl].append(sp)
+
+        if not spells_by_level:
+            return "", None
+
+        if len(spells_by_level) > 1:
+            table_html = "\n\n"
+            table_html += '<table class="table table-sm table-bordered mt-2">\n'
+            table_html += "<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n"
+            table_html += "<tbody>\n"
+            last_lvl = None
+            for lvl_key in sorted(spells_by_level.keys()):
+                last_lvl = lvl_key
+                spells = ", ".join(spells_by_level[lvl_key])
+                if current_level >= lvl_key:
+                    row_class = "table-success"
+                    marker = "✓ "
+                else:
+                    row_class = "table-secondary"
+                    marker = "🔒 "
+                table_html += f'<tr class="{row_class}"><td>{lvl_key}</td><td>{marker}{spells}</td></tr>\n'
+            table_html += "</tbody>\n</table>"
+            return table_html, last_lvl
+        else:
+            all_spells = []
+            for spells in spells_by_level.values():
+                all_spells.extend(spells)
+            return f"\n\nSpells Always Prepared: {', '.join(all_spells)}", None
+
     def _apply_trait_effects(
         self, trait_name: str, trait_data: Any, source: str, level: int = None
     ):
@@ -1504,48 +1565,12 @@ class CharacterBuilder:
             if isinstance(spellcasting_choices, list) and spellcasting_choices:
                 description += f"\n\nCantrips Known: {', '.join(spellcasting_choices)}"
 
-        # Check for grant_spell effects and append spell list to description
-        if isinstance(trait_data, dict) and "effects" in trait_data:
-            spells_by_level = {}  # Group spells by their min_level
-            current_level = self.character_data.get("level", 1)
-
-            for effect in trait_data.get("effects", []):
-                if effect.get("type") == "grant_spell":
-                    spell_name = effect.get("spell")
-                    min_level = effect.get("min_level", 1)
-                    if spell_name:
-                        if min_level not in spells_by_level:
-                            spells_by_level[min_level] = []
-                        spells_by_level[min_level].append(spell_name)
-
-            if spells_by_level:
-                # Check if spells are granted at multiple levels
-                if len(spells_by_level) > 1:
-                    # Create an HTML table format for multiple levels
-                    description += "\n\n"
-                    description += (
-                        '<table class="table table-sm table-bordered mt-2">\n'
-                    )
-                    description += "<thead><tr><th>Character Level</th><th>Spells</th></tr></thead>\n"
-                    description += "<tbody>\n"
-                    for level in sorted(spells_by_level.keys()):
-                        spells = ", ".join(spells_by_level[level])
-                        if current_level >= level:
-                            row_class = "table-success"
-                            marker = "✓ "
-                        else:
-                            row_class = "table-secondary"
-                            marker = "🔒 "
-                        description += f'<tr class="{row_class}"><td>{level}</td><td>{marker}{spells}</td></tr>\n'
-                    description += "</tbody>\n</table>"
-                else:
-                    # Single level, use simple format
-                    all_spells = []
-                    for spells in spells_by_level.values():
-                        all_spells.extend(spells)
-                    description += (
-                        f"\n\nSpells Always Prepared: {', '.join(all_spells)}"
-                    )
+        # Check for grant_spell effects or spells dict and append spell list to description
+        spells_table, last_level = self._format_spells_table(trait_data, level)
+        if spells_table:
+            description += spells_table
+            if last_level is not None:
+                level = last_level
 
         # Render structured options (e.g. Celestial Revelation transformations)
         if isinstance(trait_data, dict) and "options" in trait_data:
@@ -1598,7 +1623,7 @@ class CharacterBuilder:
                         min_lvl = 1
                     if isinstance(spell_list, list):
                         for sp in spell_list:
-                            if isinstance(sp, str) and not any(isinstance(e, dict) and e.get("type") == "grant_spell" and e.get("spell") == sp for e in effects):
+                            if isinstance(sp, str) and not any(isinstance(e, dict) and e.get("type") in ("grant_spell", "grant_cantrip") and e.get("spell") == sp for e in effects):
                                 effects.append({
                                     "type": "grant_spell",
                                     "spell": sp,
@@ -11013,6 +11038,36 @@ class CharacterBuilder:
                     "action": "Magic Action (1/Long Rest or 7 SP)",
                     "effect": "30-ft Cube: restore up to 100 HP, repair objects, and dispel all spells of level 6 and lower.",
                 })
+        elif subclass == "Spellfire Sorcery":
+            burst_die = "1d8" if sorcerer_level >= 14 else "1d4"
+            thp_bonus = f"{cha_mod} + {sorcerer_level}" if sorcerer_level >= 14 else f"{cha_mod}"
+            subclass_details = {
+                "name": "Spellfire Sorcery",
+                "spellfire_burst": sorcerer_level >= 3,
+                "spellfire_burst_die": burst_die,
+                "spellfire_burst_thp": thp_bonus,
+                "absorb_spells": sorcerer_level >= 6,
+                "honed_spellfire": sorcerer_level >= 14,
+                "crown_of_spellfire": sorcerer_level >= 18,
+            }
+            if sorcerer_level >= 3:
+                actions.append({
+                    "name": "Spellfire Burst",
+                    "action": "Bonus Action or Part of Magic Action",
+                    "effect": f"When spending 1+ SP: Bolstering Flames (1 creature gains 1d4+{thp_bonus} THP) or Radiant Fire (1 creature takes {burst_die} Fire or Radiant damage). 1/turn.",
+                })
+            if sorcerer_level >= 6:
+                actions.append({
+                    "name": "Absorb Spells",
+                    "action": "Reaction",
+                    "effect": "Counterspell always prepared. When a creature fails save vs your Counterspell, regain 1d4 Sorcery Points.",
+                })
+            if sorcerer_level >= 18:
+                actions.append({
+                    "name": "Crown of Spellfire",
+                    "action": "Bonus Action (with Innate Sorcery, 1/LR or 5 SP)",
+                    "effect": "Fly 60 ft (hover), Spell Avoidance (no damage on success, half on fail), Burning Life Force (spend up to CHA Hit Dice on hit to reduce damage).",
+                })
 
         active_perks = []
         if innate_active:
@@ -11067,6 +11122,18 @@ class CharacterBuilder:
                 active_perks.append("Trance of Order (1 min: no advantage against you, rolls <= 9 become 10; 1/LR or 5 SP)")
             if sorcerer_level >= 18:
                 active_perks.append("Clockwork Cavalcade (30-ft Cube: heal 100 HP, repair, dispel spells <= 6th; 1/LR or 7 SP)")
+        elif subclass == "Spellfire Sorcery":
+            if sorcerer_level >= 3:
+                burst_die = "1d8" if sorcerer_level >= 14 else "1d4"
+                thp_bonus = f"+{cha_mod}+{sorcerer_level}" if sorcerer_level >= 14 else f"+{cha_mod}"
+                active_perks.append(f"Spellfire Burst (Spend SP -> Bolstering Flames 1d4{thp_bonus} THP or Radiant Fire {burst_die} Fire/Radiant)")
+                active_perks.append("Spellfire Spells (10 always-prepared spells)")
+            if sorcerer_level >= 6:
+                active_perks.append("Absorb Spells (Counterspell prepared, regain 1d4 SP on failed save)")
+            if sorcerer_level >= 14:
+                active_perks.append("Honed Spellfire (+Sorcerer level to THP, 1d8 Radiant Fire damage)")
+            if sorcerer_level >= 18:
+                active_perks.append("Crown of Spellfire (Fly 60 ft hover, Spell Avoidance, Burning Life Force damage reduction)")
 
         return {
             "is_sorcerer": True,
@@ -14477,6 +14544,10 @@ class CharacterBuilder:
                     if isinstance(feature_data, str)
                     else feature_data.get("description", "")
                 )
+                if isinstance(feature_data, dict):
+                    spells_table, _ = self._format_spells_table(feature_data, level)
+                    if spells_table:
+                        description += spells_table
                 all_features_by_level[level].append(
                     {
                         "name": feature_name,

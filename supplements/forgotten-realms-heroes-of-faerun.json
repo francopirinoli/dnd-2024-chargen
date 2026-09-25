@@ -298,7 +298,20 @@
                 "Banishing Smite",
                 "Contact Other Plane"
               ]
-            }
+            },
+            "effects": [
+              {"type": "grant_spell", "spell": "Chromatic Orb", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_cantrip", "spell": "Elementalism", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Thunderous Smite", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Mirror Image", "min_level": 5, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Phantasmal Force", "min_level": 5, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Fly", "min_level": 9, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Gaseous Form", "min_level": 9, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Conjure Minor Elementals", "min_level": 13, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Summon Elemental", "min_level": 13, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Banishing Smite", "min_level": 17, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Contact Other Plane", "min_level": 17, "counts_against_limit": false}
+            ]
           },
           "Genie's Splendor": {
             "description": "When you aren't wearing any armor, your base Armor Class equals 10 plus your Dexterity and Charisma modifiers. You can use a Shield and still gain this benefit.\nYou also gain proficiency in one of the following skills of your choice: Acrobatics, Intimidation, Performance, or Persuasion.",
@@ -351,7 +364,15 @@
       "source": "Forgotten Realms: Heroes of Faer\u00fbn",
       "features_by_level": {
         "3": {
-          "Frigid Explorer": "You gain the following benefits.\nBiting Cold. Damage from your weapon attacks, Ranger spells, and Ranger features ignores Resistance to Cold damage.\nFrost Resistance. You have Resistance to Cold damage.\nPolar Strikes. When you hit a creature with an attack roll using a weapon, you can deal an extra 1d4 Cold damage to the target, which can take this extra damage only once per turn. When you reach Ranger level 11, this extra damage increases to 1d6.",
+          "Frigid Explorer": {
+            "description": "You gain the following benefits.\nBiting Cold. Damage from your weapon attacks, Ranger spells, and Ranger features ignores Resistance to Cold damage.\nFrost Resistance. You have Resistance to Cold damage.\nPolar Strikes. When you hit a creature with an attack roll using a weapon, you can deal an extra 1d4 Cold damage to the target, which can take this extra damage only once per turn. When you reach Ranger level 11, this extra damage increases to 1d6.",
+            "effects": [
+              {
+                "type": "grant_damage_resistance",
+                "damage_type": "Cold"
+              }
+            ]
+          },
           "Hunter's Rime": "Ice rimes you and your prey, protecting you and hindering them. When you cast Hunter's Mark, you gain Temporary Hit Points equal to 1d10 plus your Ranger level.\nAdditionally, while a creature is marked by your Hunter's Mark, it can't take the Disengage action.",
           "Winter Walker Spells": {
             "description": "When you reach a Ranger level specified in the Winter Walker Spells table, you thereafter always have the listed spells prepared.",
@@ -371,7 +392,14 @@
               "17": [
                 "Cone of Cold"
               ]
-            }
+            },
+            "effects": [
+              {"type": "grant_spell", "spell": "Ice Knife", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Hold Person", "min_level": 5, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Remove Curse", "min_level": 9, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Ice Storm", "min_level": 13, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Cone of Cold", "min_level": 17, "counts_against_limit": false}
+            ]
           }
         },
         "7": {
@@ -435,32 +463,32 @@
                 "Greater Restoration",
                 "Flame Strike"
               ]
-            }
+            },
+            "effects": [
+              {"type": "grant_spell", "spell": "Cure Wounds", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Guiding Bolt", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Lesser Restoration", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Scorching Ray", "min_level": 3, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Aura of Vitality", "min_level": 5, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Dispel Magic", "min_level": 5, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Fire Shield", "min_level": 7, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Wall of Fire", "min_level": 7, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Greater Restoration", "min_level": 9, "counts_against_limit": false},
+              {"type": "grant_spell", "spell": "Flame Strike", "min_level": 9, "counts_against_limit": false}
+            ]
           }
         },
         "6": {
           "Absorb Spells": {
-            "description": "When you reach a Sorcerer level specified in the Spellfire Spells table, you thereafter always have the listed spells prepared.",
-            "spells": {
-              "3": [
-                "Cure Wounds",
-                "Guiding Bolt",
-                "Lesser Restoration",
-                "Scorching Ray"
-              ],
-              "5": [
-                "Aura of Vitality",
-                "Dispel Magic"
-              ],
-              "7": [
-                "Fire Shield",
-                "Wall of Fire"
-              ],
-              "9": [
-                "Greater Restoration",
-                "Flame Strike"
-              ]
-            }
+            "description": "You always have the Counterspell spell prepared, and it doesn't count against your number of prepared spells. Whenever a creature fails the saving throw against a Counterspell you cast, you regain 1d4 Sorcery Points.",
+            "effects": [
+              {
+                "type": "grant_spell",
+                "spell": "Counterspell",
+                "min_level": 6,
+                "counts_against_limit": false
+              }
+            ]
           }
         },
         "14": {
