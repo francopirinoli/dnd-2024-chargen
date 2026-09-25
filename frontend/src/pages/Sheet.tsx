@@ -1451,13 +1451,13 @@ function ACOptions({ c }: { c: Char }) {
 
 function SpecialFeatures({ c }: { c: Char }) {
   const barbarianStats = rec(c.barbarian_stats);
-  const hasRage = Boolean(barbarianStats.has_rage);
+  const isBarbarian = Boolean(barbarianStats.is_barbarian) || num(barbarianStats.barbarian_level) !== undefined;
   const bardStats = rec(c.bard_stats);
-  const hasBardicInspiration = Boolean(bardStats.has_bardic_inspiration);
+  const isBard = Boolean(bardStats.is_bard) || num(bardStats.bard_level) !== undefined;
   const clericStats = rec(c.cleric_stats);
-  const hasChannelDivinity = Boolean(clericStats.has_channel_divinity);
+  const isCleric = Boolean(clericStats.is_cleric) || num(clericStats.cleric_level) !== undefined;
   const druidStats = rec(c.druid_stats);
-  const hasWildShape = Boolean(druidStats.has_wild_shape);
+  const isDruid = Boolean(druidStats.is_druid) || num(druidStats.druid_level) !== undefined;
   const fighterStats = rec(c.fighter_stats);
   const isFighter = Boolean(fighterStats.is_fighter);
   const monkStats = rec(c.monk_stats);
@@ -1512,10 +1512,10 @@ function SpecialFeatures({ c }: { c: Char }) {
   const hasArcaneShot = num(c.arcane_shot_dc) !== undefined;
 
   const hasAnySpecial =
-    (hasRage && num(barbarianStats.rage_damage) !== undefined) ||
-    (hasBardicInspiration && bardStats.inspiration_die !== undefined) ||
-    (hasChannelDivinity && clericStats.channel_divinity_max !== undefined) ||
-    (hasWildShape && druidStats.wild_shape_max !== undefined) ||
+    (isBarbarian && barbarianStats.barbarian_level !== undefined) ||
+    (isBard && bardStats.bard_level !== undefined) ||
+    (isCleric && clericStats.cleric_level !== undefined) ||
+    (isDruid && druidStats.druid_level !== undefined) ||
     (isFighter && fighterStats.fighter_level !== undefined) ||
     (isMonk && monkStats.monk_level !== undefined) ||
     (isPaladin && paladinStats.paladin_level !== undefined) ||
@@ -1595,84 +1595,104 @@ function SpecialFeatures({ c }: { c: Char }) {
           </div>
         )}
 
-        {hasRage && num(barbarianStats.rage_damage) !== undefined && (
-          <div className="flex items-center justify-between rounded border border-border/80 bg-background/40 p-3 text-xs">
-            <div className="flex items-center gap-2">
-              <Flame className="h-4 w-4 text-red-400" />
-              <span className="font-semibold uppercase tracking-wide text-red-400">
-                Rage Damage
-              </span>
-              <span className="rounded bg-red-500/20 px-2 py-0.5 text-xs font-semibold text-red-300">
-                +{num(barbarianStats.rage_damage)}
-              </span>
-              <span className="text-muted-foreground hidden sm:inline">
-                (Strength melee attacks while Raging)
-              </span>
-            </div>
-            <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-              {typeof barbarianStats.rage_uses === "string"
-                ? barbarianStats.rage_uses
-                : `${num(barbarianStats.rage_uses)} uses / Long Rest`}
-            </span>
-          </div>
-        )}
-
-        {hasBardicInspiration && bardStats.inspiration_die !== undefined && (
-          <div className="flex items-center justify-between rounded border border-border/80 bg-background/40 p-3 text-xs">
-            <div className="flex items-center gap-2">
-              <Music className="h-4 w-4 text-amber-400" />
-              <span className="font-semibold uppercase tracking-wide text-amber-400">
-                Bardic Inspiration
-              </span>
-              <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
-                {str(bardStats.inspiration_die)}
-              </span>
-              <span className="text-muted-foreground hidden sm:inline">
-                (Bonus Action to inspire creature within 60 ft)
-              </span>
-            </div>
-            <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-              {num(bardStats.inspiration_uses)} uses / {str(bardStats.recharge) ?? "Long Rest"}
-            </span>
-          </div>
-        )}
-
-        {hasChannelDivinity && clericStats.channel_divinity_max !== undefined && (
-          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-            <div className="flex items-center justify-between">
+        {isBarbarian && barbarianStats.barbarian_level !== undefined && (
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
               <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-sky-400" />
-                <span className="font-semibold uppercase tracking-wide text-sky-400">
-                  Channel Divinity
+                <Flame className="h-4 w-4 text-red-400" />
+                <span className="font-semibold text-primary">
+                  {str(barbarianStats.subclass) ? `${str(barbarianStats.subclass)} ` : ""}Barbarian Features
                 </span>
-                {clericStats.divine_spark_dice !== undefined && (
-                  <span className="rounded bg-sky-500/20 px-2 py-0.5 text-xs font-semibold text-sky-300">
-                    Spark {str(clericStats.divine_spark_dice)}
-                  </span>
-                )}
-                {clericStats.save_dc !== undefined && (
-                  <span className="text-muted-foreground hidden sm:inline">
-                    (Save DC {num(clericStats.save_dc)})
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(barbarianStats.barbarian_level)}
+                </span>
+                <span className="rounded bg-red-500/20 px-2 py-0.5 text-xs font-semibold text-red-300">
+                  Rage: +{num(barbarianStats.rage_damage)} Dmg
+                </span>
+                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                  {typeof barbarianStats.rage_uses === "string"
+                    ? barbarianStats.rage_uses
+                    : `${num(barbarianStats.rage_uses)} uses / Long Rest`}
+                </span>
+                {barbarianStats.brutal_strike_dice !== null && barbarianStats.brutal_strike_dice !== undefined && (
+                  <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                    Brutal Strike: +{str(barbarianStats.brutal_strike_dice)}
                   </span>
                 )}
               </div>
-              <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                {num(clericStats.channel_divinity_max)} uses / Short or Long Rest
-              </span>
             </div>
 
-            {arr<Record<string, unknown>>(clericStats.channel_divinity_options).length > 0 && (
+            {arr<string>(barbarianStats.active_perks).length > 0 && (
+              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-b border-border/30 pb-2">
+                {arr<string>(barbarianStats.active_perks).map((perk, idx) => (
+                  <span key={idx} className="flex items-center gap-1">
+                    {idx > 0 && <span>·</span>}
+                    <span className="text-foreground/90 font-medium">{perk}</span>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {arr<string>(barbarianStats.brutal_strike_effects).length > 0 && (
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-semibold text-foreground">
+                  <span>Brutal Strike Riders (Choose {num(barbarianStats.brutal_strike_options_count) ?? 1})</span>
+                  <span className="text-[10px] text-muted-foreground font-normal">Forego Advantage on Strength Attack</span>
+                </div>
+                <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {arr<string>(barbarianStats.brutal_strike_effects).map((eff, idx) => (
+                    <div
+                      key={`brutal-${idx}`}
+                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5 text-[11px] text-muted-foreground"
+                    >
+                      <span className="font-medium text-foreground">{eff}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {Object.keys(rec(barbarianStats.subclass_resources)).length > 0 && (
+              <div className="rounded border border-border/50 bg-background/40 p-2 space-y-1 text-xs">
+                <div className="font-semibold text-primary">{str(barbarianStats.subclass)} Resources</div>
+                <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 text-[11px] text-muted-foreground">
+                  {Object.entries(rec(barbarianStats.subclass_resources)).map(([key, val]) => {
+                    const res = rec(val);
+                    return (
+                      <div key={key}>
+                        <strong className="text-foreground">{str(res.name) ?? key}:</strong>{" "}
+                        {str(res.description) ?? `${num(res.uses) ?? ""} ${str(res.damage) ?? ""}`}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {arr<Record<string, unknown>>(barbarianStats.actions).length > 0 && (
               <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                {arr<Record<string, unknown>>(clericStats.channel_divinity_options).map((opt, idx) => (
+                {arr<Record<string, unknown>>(barbarianStats.actions).map((act, idx) => (
                   <div
-                    key={idx}
+                    key={`barb-act-${idx}`}
                     className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
                   >
-                    <div className="font-medium text-foreground">
-                      {str(opt.name)} <span className="text-[10px] text-muted-foreground">({str(opt.action)})</span>
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-primary">{str(act.name)}</span>
+                      <div className="flex items-center gap-1">
+                        {act.recharge !== undefined && (
+                          <span className="rounded bg-muted/60 px-1 text-[10px] text-muted-foreground font-normal">
+                            {str(act.recharge)}
+                          </span>
+                        )}
+                        <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                          {str(act.action)}
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-[11px] text-muted-foreground line-clamp-2">
-                      {str(opt.effect)}
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
                     </div>
                   </div>
                 ))}
@@ -1681,14 +1701,270 @@ function SpecialFeatures({ c }: { c: Char }) {
           </div>
         )}
 
-        {hasWildShape && druidStats.wild_shape_max !== undefined && (
-          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-            <div className="flex items-center justify-between">
+        {isBard && bardStats.bard_level !== undefined && (
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
+              <div className="flex items-center gap-2">
+                <Music className="h-4 w-4 text-amber-400" />
+                <span className="font-semibold text-primary">
+                  {str(bardStats.subclass) ? `${str(bardStats.subclass)} ` : ""}Bard Features
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(bardStats.bard_level)}
+                </span>
+                {bardStats.inspiration_die !== undefined && (
+                  <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                    Inspiration: {str(bardStats.inspiration_die)}
+                  </span>
+                )}
+                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                  {num(bardStats.inspiration_uses)} uses / {str(bardStats.recharge) ?? "Long Rest"}
+                </span>
+                {Boolean(bardStats.font_of_inspiration) && (
+                  <span className="rounded bg-sky-500/20 px-2 py-0.5 text-xs font-semibold text-sky-300">
+                    Font of Inspiration
+                  </span>
+                )}
+                {Boolean(bardStats.countercharm) && (
+                  <span className="rounded bg-purple-500/20 px-2 py-0.5 text-xs font-semibold text-purple-300">
+                    Countercharm
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {arr<string>(bardStats.active_perks).length > 0 && (
+              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-b border-border/30 pb-2">
+                {arr<string>(bardStats.active_perks).map((perk, idx) => (
+                  <span key={idx} className="flex items-center gap-1">
+                    {idx > 0 && <span>·</span>}
+                    <span className="text-foreground/90 font-medium">{perk}</span>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {Object.keys(rec(bardStats.subclass_resources)).length > 0 && (
+              <div className="rounded border border-border/50 bg-background/40 p-2 space-y-1 text-xs">
+                <div className="font-semibold text-primary">{str(bardStats.subclass)} Resources</div>
+                <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 text-[11px] text-muted-foreground">
+                  {Object.entries(rec(bardStats.subclass_resources)).map(([key, val]) => {
+                    const res = rec(val);
+                    return (
+                      <div key={key}>
+                        <strong className="text-foreground">{str(res.name) ?? key}:</strong>{" "}
+                        {str(res.description) ?? str(res.unarmored_ac) ?? str(res.agile_strikes) ?? ""}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {arr<Record<string, unknown>>(bardStats.actions).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(bardStats.actions).map((act, idx) => (
+                  <div
+                    key={`bard-act-${idx}`}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-primary">{str(act.name)}</span>
+                      <div className="flex items-center gap-1">
+                        {act.recharge !== undefined && (
+                          <span className="rounded bg-muted/60 px-1 text-[10px] text-muted-foreground font-normal">
+                            {str(act.recharge)}
+                          </span>
+                        )}
+                        <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                          {str(act.action)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isCleric && clericStats.cleric_level !== undefined && (
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-sky-400" />
+                <span className="font-semibold text-primary">
+                  {str(clericStats.subclass) ? `${str(clericStats.subclass)} ` : ""}Cleric Features
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(clericStats.cleric_level)}
+                </span>
+                {clericStats.save_dc !== undefined && (
+                  <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                    Save DC {num(clericStats.save_dc)}
+                  </span>
+                )}
+                {Boolean(clericStats.has_channel_divinity) && num(clericStats.channel_divinity_max) !== undefined && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Channel Divinity: {num(clericStats.channel_divinity_max)} uses / Rest
+                  </span>
+                )}
+                {clericStats.divine_spark_dice !== undefined && (
+                  <span className="rounded bg-sky-500/20 px-2 py-0.5 text-xs font-semibold text-sky-300">
+                    Divine Spark: {str(clericStats.divine_spark_dice)}
+                  </span>
+                )}
+                {rec(clericStats.divine_order).name !== undefined && (
+                  <span className="rounded bg-accent/20 px-2 py-0.5 text-xs font-semibold text-accent-foreground">
+                    Order: {str(rec(clericStats.divine_order).name)}
+                  </span>
+                )}
+                {rec(clericStats.blessed_strikes).name !== undefined && (
+                  <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                    {str(rec(clericStats.blessed_strikes).name)}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {arr<string>(clericStats.active_perks).length > 0 && (
+              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-b border-border/30 pb-2">
+                {arr<string>(clericStats.active_perks).map((perk, idx) => (
+                  <span key={idx} className="flex items-center gap-1">
+                    {idx > 0 && <span>·</span>}
+                    <span className="text-foreground/90 font-medium">{perk}</span>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {(rec(clericStats.divine_order).name !== undefined || rec(clericStats.blessed_strikes).name !== undefined) && (
+              <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
+                {rec(clericStats.divine_order).name !== undefined && (
+                  <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                    <div className="font-medium text-foreground flex items-center justify-between">
+                      <span>Divine Order: {str(rec(clericStats.divine_order).name)}</span>
+                      <span className="text-[10px] text-muted-foreground">Level 1</span>
+                    </div>
+                    <div className="text-[11px] text-muted-foreground leading-relaxed">
+                      {str(rec(clericStats.divine_order).description)}
+                    </div>
+                  </div>
+                )}
+                {rec(clericStats.blessed_strikes).name !== undefined && (
+                  <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                    <div className="font-medium text-foreground flex items-center justify-between">
+                      <span>Blessed Strikes: {str(rec(clericStats.blessed_strikes).name)}</span>
+                      <span className="text-[10px] text-muted-foreground">Level 7</span>
+                    </div>
+                    <div className="text-[11px] text-muted-foreground leading-relaxed">
+                      {str(rec(clericStats.blessed_strikes).description)}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {arr<Record<string, unknown>>(clericStats.channel_divinity_options).length > 0 && (
+              <div className="space-y-1.5">
+                <div className="text-xs font-semibold text-foreground">
+                  Channel Divinity Options ({num(clericStats.channel_divinity_max)} uses / Short or Long Rest)
+                </div>
+                <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {arr<Record<string, unknown>>(clericStats.channel_divinity_options).map((opt, idx) => (
+                    <div
+                      key={`cleric-cd-${idx}`}
+                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                    >
+                      <div className="font-medium text-foreground">
+                        {str(opt.name)} <span className="text-[10px] text-muted-foreground">({str(opt.action)})</span>
+                      </div>
+                      <div className="text-[11px] text-muted-foreground line-clamp-2">
+                        {str(opt.effect)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {Object.keys(rec(clericStats.subclass_resources)).length > 0 && (
+              <div className="rounded border border-border/50 bg-background/40 p-2 space-y-1 text-xs">
+                <div className="font-semibold text-primary">{str(clericStats.subclass)} Resources</div>
+                <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 text-[11px] text-muted-foreground">
+                  {Object.entries(rec(clericStats.subclass_resources)).map(([key, val]) => {
+                    const res = rec(val);
+                    return (
+                      <div key={key}>
+                        <strong className="text-foreground">{str(res.name) ?? key}:</strong>{" "}
+                        {str(res.description) ?? ""}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {arr<Record<string, unknown>>(clericStats.actions).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(clericStats.actions).map((act, idx) => (
+                  <div
+                    key={`cleric-act-${idx}`}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-primary">{str(act.name)}</span>
+                      <div className="flex items-center gap-1">
+                        {act.recharge !== undefined && (
+                          <span className="rounded bg-muted/60 px-1 text-[10px] text-muted-foreground font-normal">
+                            {str(act.recharge)}
+                          </span>
+                        )}
+                        <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                          {str(act.action)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isDruid && druidStats.druid_level !== undefined && (
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
               <div className="flex items-center gap-2">
                 <PawPrint className="h-4 w-4 text-emerald-400" />
-                <span className="font-semibold uppercase tracking-wide text-emerald-400">
-                  Wild Shape
+                <span className="font-semibold text-primary">
+                  {str(druidStats.subclass) ? `${str(druidStats.subclass)} ` : ""}Druid Features
                 </span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(druidStats.druid_level)}
+                </span>
+                {druidStats.save_dc !== undefined && (
+                  <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                    Save DC {num(druidStats.save_dc)}
+                  </span>
+                )}
+                {Boolean(druidStats.has_wild_shape) && num(druidStats.wild_shape_max) !== undefined && (
+                  <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                    Wild Shape: {num(druidStats.wild_shape_max)} uses / Rest
+                  </span>
+                )}
                 {druidStats.wild_shape_max_cr !== undefined && (
                   <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300">
                     Max CR {str(druidStats.wild_shape_max_cr)}
@@ -1696,42 +1972,134 @@ function SpecialFeatures({ c }: { c: Char }) {
                 )}
                 {druidStats.wild_shape_temp_hp !== undefined && (
                   <span className="rounded bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-200">
-                    +{num(druidStats.wild_shape_temp_hp)} Temp HP
+                    +{num(druidStats.wild_shape_temp_hp)} THP
                   </span>
                 )}
-                {druidStats.save_dc !== undefined && (
-                  <span className="text-muted-foreground hidden sm:inline">
-                    (Save DC {num(druidStats.save_dc)})
+                {rec(druidStats.primal_order).name !== undefined && (
+                  <span className="rounded bg-accent/20 px-2 py-0.5 text-xs font-semibold text-accent-foreground">
+                    Order: {str(rec(druidStats.primal_order).name)}
+                  </span>
+                )}
+                {rec(druidStats.elemental_fury).name !== undefined && (
+                  <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                    {str(rec(druidStats.elemental_fury).name)}
                   </span>
                 )}
               </div>
-              <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                {num(druidStats.wild_shape_max)} uses / Short or Long Rest
-              </span>
             </div>
 
-            <div className="flex flex-wrap gap-2 text-[11px] text-muted-foreground">
-              <span>Known Forms: <strong className="text-foreground">{num(druidStats.wild_shape_known_forms)}</strong></span>
-              <span>·</span>
-              <span>Duration: <strong className="text-foreground">{num(druidStats.wild_shape_duration_hours)} hrs</strong></span>
-              <span>·</span>
-              <span>Fly Speed: <strong className="text-foreground">{druidStats.fly_speed_allowed ? "Yes" : "No (Lv 8+)"}</strong></span>
-              <span>·</span>
-              <span>Swim Speed: <strong className="text-foreground">Yes</strong></span>
-            </div>
+            {arr<string>(druidStats.active_perks).length > 0 && (
+              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-b border-border/30 pb-2">
+                {arr<string>(druidStats.active_perks).map((perk, idx) => (
+                  <span key={idx} className="flex items-center gap-1">
+                    {idx > 0 && <span>·</span>}
+                    <span className="text-foreground/90 font-medium">{perk}</span>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {(rec(druidStats.primal_order).name !== undefined || rec(druidStats.elemental_fury).name !== undefined) && (
+              <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
+                {rec(druidStats.primal_order).name !== undefined && (
+                  <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                    <div className="font-medium text-foreground flex items-center justify-between">
+                      <span>Primal Order: {str(rec(druidStats.primal_order).name)}</span>
+                      <span className="text-[10px] text-muted-foreground">Level 1</span>
+                    </div>
+                    <div className="text-[11px] text-muted-foreground leading-relaxed">
+                      {str(rec(druidStats.primal_order).description)}
+                    </div>
+                  </div>
+                )}
+                {rec(druidStats.elemental_fury).name !== undefined && (
+                  <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                    <div className="font-medium text-foreground flex items-center justify-between">
+                      <span>Elemental Fury: {str(rec(druidStats.elemental_fury).name)}</span>
+                      <span className="text-[10px] text-muted-foreground">Level 7</span>
+                    </div>
+                    <div className="text-[11px] text-muted-foreground leading-relaxed">
+                      {str(rec(druidStats.elemental_fury).description)}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {Boolean(druidStats.has_wild_shape) && (
+              <div className="flex flex-wrap gap-2 text-[11px] text-muted-foreground bg-background/40 p-2 rounded border border-border/40">
+                <span>Known Forms: <strong className="text-foreground">{num(druidStats.wild_shape_known_forms)}</strong></span>
+                <span>·</span>
+                <span>Duration: <strong className="text-foreground">{num(druidStats.wild_shape_duration_hours)} hrs</strong></span>
+                <span>·</span>
+                <span>Fly Speed: <strong className="text-foreground">{druidStats.fly_speed_allowed ? "Yes" : "No (Lv 8+)"}</strong></span>
+                <span>·</span>
+                <span>Swim Speed: <strong className="text-foreground">Yes</strong></span>
+              </div>
+            )}
 
             {arr<Record<string, unknown>>(druidStats.wild_shape_options).length > 0 && (
+              <div className="space-y-1.5">
+                <div className="text-xs font-semibold text-foreground">
+                  Wild Shape Transformations & Spends
+                </div>
+                <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {arr<Record<string, unknown>>(druidStats.wild_shape_options).map((opt, idx) => (
+                    <div
+                      key={`druid-ws-${idx}`}
+                      className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                    >
+                      <div className="font-medium text-foreground">
+                        {str(opt.name)} <span className="text-[10px] text-muted-foreground">({str(opt.action)})</span>
+                      </div>
+                      <div className="text-[11px] text-muted-foreground line-clamp-2">
+                        {str(opt.effect)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {Object.keys(rec(druidStats.subclass_resources)).length > 0 && (
+              <div className="rounded border border-border/50 bg-background/40 p-2 space-y-1 text-xs">
+                <div className="font-semibold text-primary">{str(druidStats.subclass)} Resources</div>
+                <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 text-[11px] text-muted-foreground">
+                  {Object.entries(rec(druidStats.subclass_resources)).map(([key, val]) => {
+                    const res = rec(val);
+                    return (
+                      <div key={key}>
+                        <strong className="text-foreground">{str(res.name) ?? key}:</strong>{" "}
+                        {str(res.description) ?? ""}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {arr<Record<string, unknown>>(druidStats.actions).length > 0 && (
               <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                {arr<Record<string, unknown>>(druidStats.wild_shape_options).map((opt, idx) => (
+                {arr<Record<string, unknown>>(druidStats.actions).map((act, idx) => (
                   <div
-                    key={idx}
+                    key={`druid-act-${idx}`}
                     className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
                   >
-                    <div className="font-medium text-foreground">
-                      {str(opt.name)} <span className="text-[10px] text-muted-foreground">({str(opt.action)})</span>
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-primary">{str(act.name)}</span>
+                      <div className="flex items-center gap-1">
+                        {act.recharge !== undefined && (
+                          <span className="rounded bg-muted/60 px-1 text-[10px] text-muted-foreground font-normal">
+                            {str(act.recharge)}
+                          </span>
+                        )}
+                        <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                          {str(act.action)}
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-[11px] text-muted-foreground line-clamp-2">
-                      {str(opt.effect)}
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
                     </div>
                   </div>
                 ))}
@@ -1741,18 +2109,21 @@ function SpecialFeatures({ c }: { c: Char }) {
         )}
 
         {isFighter && fighterStats.fighter_level !== undefined && (
-          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex flex-wrap items-center gap-2">
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
+              <div className="flex items-center gap-2">
                 <Swords className="h-4 w-4 text-orange-400" />
-                <span className="font-semibold uppercase tracking-wide text-orange-400">
-                  Tactical Martial Exploits
+                <span className="font-semibold text-primary">
+                  {str(fighterStats.subclass) ? `${str(fighterStats.subclass)} ` : ""}Fighter Features
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(fighterStats.fighter_level)}
                 </span>
                 <span className="rounded bg-orange-500/20 px-2 py-0.5 text-xs font-semibold text-orange-300">
                   {str(fighterStats.extra_attacks_label) ?? `${num(fighterStats.attacks_per_action)} attack/action`}
                 </span>
-              </div>
-              <div className="flex flex-wrap items-center gap-1.5">
                 <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
                   Second Wind: {num(fighterStats.second_wind_uses)} / {num(fighterStats.second_wind_max)}
                 </span>
@@ -1769,7 +2140,7 @@ function SpecialFeatures({ c }: { c: Char }) {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-b border-border/30 pb-2">
               <span>Second Wind: <strong className="text-foreground">{str(fighterStats.second_wind_healing)} HP</strong></span>
               {Boolean(fighterStats.tactical_mind) && (
                 <>
@@ -1821,26 +2192,29 @@ function SpecialFeatures({ c }: { c: Char }) {
         )}
 
         {isMonk && monkStats.monk_level !== undefined && (
-          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex flex-wrap items-center gap-2">
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
+              <div className="flex items-center gap-2">
                 <Zap className="h-4 w-4 text-amber-400" />
-                <span className="font-semibold uppercase tracking-wide text-amber-400">
-                  Focus & Martial Arts
-                </span>
-                <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
-                  {str(monkStats.extra_attacks_label) ?? `${num(monkStats.attacks_per_action)} attack/action`}
+                <span className="font-semibold text-primary">
+                  {str(monkStats.subclass) ? `${str(monkStats.subclass)} ` : ""}Monk Features
                 </span>
               </div>
-              <div className="flex flex-wrap items-center gap-1.5">
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(monkStats.monk_level)}
+                </span>
                 <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
                   Focus Points: {num(monkStats.focus_points)} / {num(monkStats.focus_points_max)} FP
                 </span>
                 <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
                   Save DC: {num(monkStats.focus_save_dc)}
                 </span>
-                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
                   Die: {str(monkStats.martial_arts_die)}
+                </span>
+                <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+                  {str(monkStats.extra_attacks_label) ?? `${num(monkStats.attacks_per_action)} attack/action`}
                 </span>
                 {(num(monkStats.unarmored_movement_bonus) ?? 0) > 0 && (
                   <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
@@ -1850,7 +2224,7 @@ function SpecialFeatures({ c }: { c: Char }) {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-b border-border/30 pb-2">
               <span>Recharge: <strong className="text-foreground">{str(monkStats.focus_recharge)}</strong></span>
               {Boolean(monkStats.has_uncanny_metabolism) && (
                 <>
@@ -1947,23 +2321,26 @@ function SpecialFeatures({ c }: { c: Char }) {
         )}
 
         {isPaladin && paladinStats.paladin_level !== undefined && (
-          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex flex-wrap items-center gap-2">
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
+              <div className="flex items-center gap-2">
                 <Sun className="h-4 w-4 text-amber-400" />
-                <span className="font-semibold uppercase tracking-wide text-amber-400">
-                  Sacred Rites & Auras
+                <span className="font-semibold text-primary">
+                  {str(paladinStats.subclass) ? `${str(paladinStats.subclass)} ` : ""}Paladin Features
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(paladinStats.paladin_level)}
                 </span>
                 <span className="rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
-                  Pool: {num(paladinStats.lay_on_hands_pool)} HP (Lay on Hands)
+                  Lay on Hands: {num(paladinStats.lay_on_hands_pool)} HP
                 </span>
                 {Boolean(paladinStats.has_channel_divinity) && (
                   <span className="rounded bg-primary/20 px-2 py-0.5 text-xs font-semibold text-primary">
                     Channel Divinity: {num(paladinStats.channel_divinity_max)} uses (DC {num(paladinStats.channel_divinity_save_dc)})
                   </span>
                 )}
-              </div>
-              <div className="flex flex-wrap items-center gap-1.5">
                 {Boolean(paladinStats.paladin_smite_free_cast) && (
                   <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
                     Divine Smite: 1 Free / LR
@@ -1977,7 +2354,7 @@ function SpecialFeatures({ c }: { c: Char }) {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-b border-border/30 pb-2">
               {rec(paladinStats.aura_of_protection).active === true && (
                 <span className="text-amber-300 font-medium">
                   Aura of Protection: +{num(rec(paladinStats.aura_of_protection).bonus)} to all saves ({str(rec(paladinStats.aura_of_protection).range)})
@@ -2048,12 +2425,17 @@ function SpecialFeatures({ c }: { c: Char }) {
         )}
 
         {isRanger && rangerStats.ranger_level !== undefined && (
-          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex flex-wrap items-center gap-2">
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
+              <div className="flex items-center gap-2">
                 <Crosshair className="h-4 w-4 text-emerald-400" />
-                <span className="font-semibold uppercase tracking-wide text-emerald-400">
-                  Wilderness Exploits
+                <span className="font-semibold text-primary">
+                  {str(rangerStats.subclass) ? `${str(rangerStats.subclass)} ` : ""}Ranger Features
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(rangerStats.ranger_level)}
                 </span>
                 {Boolean(favoredEnemy.active) && (
                   <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300">
@@ -2065,8 +2447,6 @@ function SpecialFeatures({ c }: { c: Char }) {
                     DC {num(rangerStats.save_dc)} · Attack {signed(num(rangerStats.spell_attack))}
                   </span>
                 )}
-              </div>
-              <div className="flex flex-wrap items-center gap-1.5">
                 {Boolean(tireless.active) && (
                   <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
                     Tireless: {num(tireless.uses)} / {num(tireless.max_uses)} ({str(tireless.temp_hp_roll)} THP)
@@ -2074,13 +2454,13 @@ function SpecialFeatures({ c }: { c: Char }) {
                 )}
                 {Boolean(naturesVeil.active) && (
                   <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                    Nature's Veil: {num(naturesVeil.uses)} / {num(naturesVeil.max_uses)} (Invisibility)
+                    Nature's Veil: {num(naturesVeil.uses)} / {num(naturesVeil.max_uses)}
                   </span>
                 )}
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-b border-border/30 pb-2">
               {Boolean(favoredEnemy.active) && (
                 <span>Hunter's Mark: <strong className="text-foreground">+{str(favoredEnemy.damage_die)}</strong> (Bonus Action, 90 ft)</span>
               )}
@@ -2150,12 +2530,17 @@ function SpecialFeatures({ c }: { c: Char }) {
         )}
 
         {isRogue && rogueStats.rogue_level !== undefined && (
-          <div className="flex flex-col gap-2 rounded border border-border/80 bg-background/40 p-3 text-xs">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex flex-wrap items-center gap-2">
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
+              <div className="flex items-center gap-2">
                 <Target className="h-4 w-4 text-rose-400" />
-                <span className="font-semibold uppercase tracking-wide text-rose-400">
-                  Cunning & Sneak Attack
+                <span className="font-semibold text-primary">
+                  {str(rogueStats.subclass) ? `${str(rogueStats.subclass)} ` : ""}Rogue Features
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(rogueStats.rogue_level)}
                 </span>
                 <span className="rounded bg-rose-500/20 px-2 py-0.5 text-xs font-semibold text-rose-300">
                   Sneak Attack: {str(rogueStats.sneak_attack_dice)}
@@ -2165,22 +2550,20 @@ function SpecialFeatures({ c }: { c: Char }) {
                     Cunning Strike: DC {num(cunningStrike.save_dc)} · Up to {num(cunningStrike.max_effects)} effect{num(cunningStrike.max_effects) === 1 ? "" : "s"}
                   </span>
                 )}
-              </div>
-              <div className="flex flex-wrap items-center gap-1.5">
                 {Boolean(cunningAction.active) && (
                   <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                    Cunning Action: Dash, Disengage, Hide (Bonus Action)
+                    Cunning Action
                   </span>
                 )}
                 {Boolean(rogueStats.steady_aim) && (
                   <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
-                    Steady Aim: Advantage (Speed 0)
+                    Steady Aim
                   </span>
                 )}
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-t border-border/40 pt-1.5">
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted-foreground border-b border-border/30 pb-2">
               {Boolean(rogueStats.uncanny_dodge) && (
                 <span className="text-amber-400 font-medium">Uncanny Dodge (Halve hit damage as Reaction)</span>
               )}
@@ -2272,7 +2655,12 @@ function SpecialFeatures({ c }: { c: Char }) {
         {isSorcerer && sorcererStats.sorcerer_level !== undefined && (
           <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
-              <span className="font-semibold text-primary">Sorcerer Features</span>
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-rose-400" />
+                <span className="font-semibold text-primary">
+                  {str(sorcererSubclass.name) ? `${str(sorcererSubclass.name)} ` : ""}Sorcerer Features
+                </span>
+              </div>
               <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
                 <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
                   Level {num(sorcererStats.sorcerer_level)}
@@ -2474,7 +2862,12 @@ function SpecialFeatures({ c }: { c: Char }) {
         {isWarlock && warlockStats.warlock_level !== undefined && (
           <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
-              <span className="font-semibold text-primary">Warlock Features</span>
+              <div className="flex items-center gap-2">
+                <Flame className="h-4 w-4 text-purple-400" />
+                <span className="font-semibold text-primary">
+                  {str(warlockSubclass.name) ? `${str(warlockSubclass.name)} ` : ""}Warlock Features
+                </span>
+              </div>
               <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
                 <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
                   Level {num(warlockStats.warlock_level)}
@@ -2677,18 +3070,22 @@ function SpecialFeatures({ c }: { c: Char }) {
 
         {/* Wizard */}
         {isWizard && wizardStats.wizard_level !== undefined && (
-          <div className="rounded border border-border/80 bg-background/40 p-3 space-y-3">
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
             {/* Header / Badges */}
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-2">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-foreground">
-                  {str(wizardSubclass.name) || "Wizard"} (Level {num(wizardStats.wizard_level)})
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  INT Mod: {signed(num(c.ability_scores && rec(c.ability_scores).intelligence && rec(rec(c.ability_scores).intelligence).modifier))}
+                <BookOpen className="h-4 w-4 text-sky-400" />
+                <span className="font-semibold text-primary">
+                  {str(wizardSubclass.name) ? `${str(wizardSubclass.name)} ` : ""}Wizard Features
                 </span>
               </div>
-              <div className="flex flex-wrap items-center gap-1.5 text-xs">
+              <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(wizardStats.wizard_level)}
+                </span>
+                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                  INT Mod: {signed(num(c.ability_scores && rec(c.ability_scores).intelligence && rec(rec(c.ability_scores).intelligence).modifier))}
+                </span>
                 {arcaneRecovery.active === true && (
                   <span className="rounded bg-primary/20 px-2 py-0.5 font-semibold text-primary">
                     Arcane Recovery: Up to Level {num(arcaneRecovery.max_slot_levels)} Slots • 1/LR
@@ -2867,18 +3264,22 @@ function SpecialFeatures({ c }: { c: Char }) {
         )}
 
         {isArtificer && artificerStats.artificer_level !== undefined && (
-          <div className="rounded border border-border/80 bg-background/40 p-3 space-y-3">
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
             {/* Header / Badges */}
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-2">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-foreground">
-                  {str(artificerSubclass.name) || "Artificer"} (Level {num(artificerStats.artificer_level)})
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  INT Mod: {signed(num(c.ability_scores && rec(c.ability_scores).intelligence && rec(rec(c.ability_scores).intelligence).modifier))}
+                <Shield className="h-4 w-4 text-amber-400" />
+                <span className="font-semibold text-primary">
+                  {str(artificerSubclass.name) ? `${str(artificerSubclass.name)} ` : ""}Artificer Features
                 </span>
               </div>
-              <div className="flex flex-wrap items-center gap-1.5 text-xs">
+              <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(artificerStats.artificer_level)}
+                </span>
+                <span className="rounded border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium text-foreground">
+                  INT Mod: {signed(num(c.ability_scores && rec(c.ability_scores).intelligence && rec(rec(c.ability_scores).intelligence).modifier))}
+                </span>
                 {num(attunementStats.max_attuned_items) !== undefined && (
                   <span className="rounded bg-primary/20 px-2 py-0.5 font-semibold text-primary">
                     Attunement: Up to {num(attunementStats.max_attuned_items)} Items

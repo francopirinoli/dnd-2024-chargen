@@ -1049,6 +1049,20 @@
   "condition_immunities": [],
   "darkvision": 60,
   "druid_stats": {
+    "actions": [
+      {
+        "action": "Bonus Action",
+        "effect": "Transform into a known beast form (Max CR 1). Gain +9 Temp HP. Lasts 1.5 hrs.",
+        "name": "Wild Shape",
+        "recharge": "2 uses / Short or Long Rest"
+      },
+      {
+        "action": "Magic Action",
+        "effect": "Expend 1 Wild Shape use to cast Find Familiar without material components. Familiar is a Fey and lasts until next Long Rest.",
+        "name": "Wild Companion",
+        "recharge": "1 Wild Shape use"
+      }
+    ],
     "active_perks": [
       "Primal Order: Warden"
     ],
@@ -1058,6 +1072,7 @@
     "elemental_fury": null,
     "fly_speed_allowed": false,
     "has_wild_shape": true,
+    "is_druid": true,
     "primal_order": {
       "description": "Martial weapon proficiency & Medium armor training",
       "name": "Warden"

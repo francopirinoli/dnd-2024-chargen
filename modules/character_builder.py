@@ -8419,6 +8419,7 @@ class CharacterBuilder:
             brutal_strike_dice, brutal_strike_effects, subclass_resources, active_perks.
         """
         stats: Dict[str, Any] = {
+            "is_barbarian": False,
             "has_rage": False,
             "barbarian_level": 0,
             "subclass": "",
@@ -8428,6 +8429,7 @@ class CharacterBuilder:
             "brutal_strike_effects": [],
             "subclass_resources": {},
             "active_perks": [],
+            "actions": [],
         }
 
         barbarian_level = self._get_class_level("Barbarian")
@@ -8435,6 +8437,7 @@ class CharacterBuilder:
         if barbarian_level < 1:
             return stats
 
+        stats["is_barbarian"] = True
         stats["has_rage"] = True
         subclass_name = self._get_class_subclass("Barbarian") or ""
         stats["subclass"] = subclass_name
@@ -8575,7 +8578,70 @@ class CharacterBuilder:
                 "damage": stats["rage_damage"],
                 "description": f"When hit with melee attack while Raging, attacker takes {stats['rage_damage']} Radiant damage. Shed 20 ft bright light.",
             }
+        # Actions Grid
+        rage_recharge = "Unlimited" if stats["rage_uses"] == "Unlimited" else f"{stats['rage_uses']} uses / Long Rest"
+        actions = [
+            {
+                "name": "Enter Rage",
+                "action": "Bonus Action",
+                "effect": f"Enter Rage for 10 min. Gain B/P/S damage resistance, +{stats['rage_damage']} melee damage using Str, and Advantage on Str checks/saves.",
+                "recharge": rage_recharge,
+            },
+        ]
+        if barbarian_level >= 2:
+            actions.append({
+                "name": "Reckless Attack",
+                "action": "Attack Action",
+                "effect": "On your first attack on your turn, gain Advantage on melee attack rolls using Strength. Attacks against you have Advantage until start of your next turn.",
+                "recharge": "At will",
+            })
+        if barbarian_level >= 7:
+            actions.append({
+                "name": "Instinctive Pounce",
+                "action": "Bonus Action",
+                "effect": "As part of the Bonus Action you take to enter Rage, you can move up to half your Speed.",
+                "recharge": "With Rage",
+            })
+        if barbarian_level >= 9:
+            actions.append({
+                "name": "Brutal Strike",
+                "action": "Attack Action",
+                "effect": f"Forego Advantage on a Strength melee attack to deal extra {stats['brutal_strike_dice']} damage and apply a Brutal Strike rider (Hamstring Blow, Forceful Blow, etc.).",
+                "recharge": "At will (while Raging)",
+            })
 
+        # Subclass actions
+        if subclass_name == "Path of the Zealot" and barbarian_level >= 3:
+            actions.append({
+                "name": "Warrior of the Gods",
+                "action": "Bonus Action",
+                "effect": f"Roll d12s from your healing pool ({stats['subclass_resources'].get('warrior_of_the_gods', {}).get('pool', '4d12')}) to heal yourself.",
+                "recharge": "Long Rest",
+            })
+        elif subclass_name == "Path of the Berserker" and barbarian_level >= 14:
+            actions.append({
+                "name": "Retaliation",
+                "action": "Reaction",
+                "effect": "When you take damage from a creature within 5 ft, make 1 melee attack against that creature.",
+                "recharge": "At will",
+            })
+        elif subclass_name == "Path of the World Tree":
+            if barbarian_level >= 6:
+                actions.append({
+                    "name": "Branches of the Tree",
+                    "action": "Reaction",
+                    "effect": "When another creature within 20 ft ends turn, force Str save or teleport it to within 5 ft of you.",
+                    "recharge": "At will (while Raging)",
+                })
+        elif subclass_name == "Path of Lament" and barbarian_level >= 3:
+            actions.append({
+                "name": "Banshee's Wail",
+                "action": "Action",
+                "effect": f"30-ft emanation: Con save or {stats['rage_damage']}d12 Psychic damage & Deafened 1 min.",
+                "recharge": "Long Rest or 1 Rage",
+            })
+
+        stats["actions"] = actions
         return stats
 
     def calculate_bard_stats(self) -> Dict[str, Any]:
@@ -8588,6 +8654,7 @@ class CharacterBuilder:
             superior_inspiration, words_of_creation, subclass_resources, active_perks.
         """
         stats: Dict[str, Any] = {
+            "is_bard": False,
             "has_bardic_inspiration": False,
             "bard_level": 0,
             "subclass": "",
@@ -8601,6 +8668,7 @@ class CharacterBuilder:
             "words_of_creation": False,
             "subclass_resources": {},
             "active_perks": [],
+            "actions": [],
         }
 
         bard_level = self._get_class_level("Bard")
@@ -8608,6 +8676,7 @@ class CharacterBuilder:
         if bard_level < 1:
             return stats
 
+        stats["is_bard"] = True
         stats["has_bardic_inspiration"] = True
         subclass_name = self._get_class_subclass("Bard") or ""
         stats["subclass"] = subclass_name
@@ -8768,6 +8837,89 @@ class CharacterBuilder:
                     "description": "Roll twice on Spirits from Beyond table and choose; if duplicate rolls, choose any spirit on the table",
                 }
 
+        # Actions Grid
+        actions = [
+            {
+                "name": "Bardic Inspiration",
+                "action": "Bonus Action",
+                "effect": f"Grant 1{die} die to a creature within 60 ft; can add to a failed d20 test within 1 hour.",
+                "recharge": f"{stats['inspiration_uses']} uses / {stats['recharge']}",
+            },
+        ]
+        if bard_level >= 5:
+            actions.append({
+                "name": "Font of Inspiration",
+                "action": "Bonus Action",
+                "effect": "Expend any level 1+ spell slot to regain 1 expended Bardic Inspiration use.",
+                "recharge": "At will",
+            })
+        if bard_level >= 7:
+            actions.append({
+                "name": "Countercharm",
+                "action": "Reaction",
+                "effect": "When you or a creature within 30 ft fails a save against Charmed or Frightened, reroll with Advantage.",
+                "recharge": "At will",
+            })
+
+        # Subclass actions
+        if subclass_name == "College of Dance":
+            actions.append({
+                "name": "Agile Strikes",
+                "action": "Free",
+                "effect": f"As part of spending Bardic Inspiration, make 1 Unarmed Strike dealing 1{die} + Dex Bludgeoning damage.",
+                "recharge": "With Inspiration",
+            })
+            if bard_level >= 6:
+                actions.append({
+                    "name": "Inspiring Movement",
+                    "action": "Reaction",
+                    "effect": "When enemy ends turn within 5 ft, spend 1 Inspiration to move half Speed without OA; ally within 30 ft also moves half Speed.",
+                    "recharge": "1 Inspiration",
+                })
+        elif subclass_name == "College of Glamour":
+            actions.append({
+                "name": "Mantle of Inspiration",
+                "action": "Bonus Action",
+                "effect": f"Spend 1 Inspiration: up to {stats['inspiration_uses']} allies within 60 ft gain 2x 1{die} Temp HP and reaction move Speed without OA.",
+                "recharge": "1 Inspiration",
+            })
+            if bard_level >= 6:
+                actions.append({
+                    "name": "Mantle of Majesty",
+                    "action": "Bonus Action",
+                    "effect": "Cast Command without a slot; repeat BA Command on subsequent turns for 1 min.",
+                    "recharge": "1/Long Rest or Level 3+ Slot",
+                })
+            if bard_level >= 14:
+                actions.append({
+                    "name": "Unbreakable Majesty",
+                    "action": "Bonus Action",
+                    "effect": "1 min majesty: first attacker each turn makes Cha save or attack misses.",
+                    "recharge": "1/Short or Long Rest",
+                })
+        elif subclass_name == "College of Lore":
+            actions.append({
+                "name": "Cutting Words",
+                "action": "Reaction",
+                "effect": f"Spend 1 Inspiration: subtract 1{die} from a creature's attack roll, damage roll, or ability check within 60 ft.",
+                "recharge": "1 Inspiration",
+            })
+        elif subclass_name == "College of Valor":
+            actions.append({
+                "name": "Combat Inspiration",
+                "action": "Reaction / Hit",
+                "effect": f"Inspiration recipient can add 1{die} to AC as Reaction against attack, or add 1{die} to damage roll after hitting.",
+                "recharge": "With Inspiration",
+            })
+            if bard_level >= 14:
+                actions.append({
+                    "name": "Battle Magic",
+                    "action": "Bonus Action",
+                    "effect": "Make 1 weapon attack after casting a spell with casting time of an Action.",
+                    "recharge": "At will",
+                })
+
+        stats["actions"] = actions
         return stats
 
     def calculate_cleric_stats(self) -> Dict[str, Any]:
@@ -8783,6 +8935,7 @@ class CharacterBuilder:
             channel_divinity_options, subclass_resources, active_perks.
         """
         stats: Dict[str, Any] = {
+            "is_cleric": False,
             "has_channel_divinity": False,
             "cleric_level": 0,
             "subclass": "",
@@ -8799,12 +8952,15 @@ class CharacterBuilder:
             "channel_divinity_options": [],
             "subclass_resources": {},
             "active_perks": [],
+            "actions": [],
         }
 
         cleric_level = self._get_class_level("Cleric")
         stats["cleric_level"] = cleric_level
         if cleric_level < 1:
             return stats
+
+        stats["is_cleric"] = True
 
         subclass_name = self._get_class_subclass("Cleric") or ""
         stats["subclass"] = subclass_name
@@ -9057,6 +9213,82 @@ class CharacterBuilder:
                 "effect": f"Fortifying: Grant 2d8 + {cleric_level} Temp HP to target; Tenacious: When creature succeeds on save, subtract 1d6 from its first save vs spell.",
             })
 
+        # Actions Grid
+        actions = []
+        if stats.get("has_channel_divinity"):
+            actions.append({
+                "name": "Turn Undead",
+                "action": "Action",
+                "effect": f"Channel Divinity: Undead within 30 ft make Wis save (DC {save_dc}) or Frightened & Incapacitated for 1 min.",
+                "recharge": f"{stats['channel_divinity_max']} uses / Short or Long Rest",
+            })
+            actions.append({
+                "name": "Divine Spark",
+                "action": "Action",
+                "effect": f"Channel Divinity: Creature within 30 ft heals {stats['divine_spark_dice']} HP or makes Con save (DC {save_dc}) for {stats['divine_spark_dice']} Radiant/Necrotic.",
+                "recharge": "Channel Divinity",
+            })
+            actions.append({
+                "name": "Harness Divine Power",
+                "action": "Bonus Action",
+                "effect": "Channel Divinity: Expend 1 use to regain a level 1 to 3 spell slot.",
+                "recharge": "Channel Divinity",
+            })
+        if cleric_level >= 10:
+            actions.append({
+                "name": "Divine Intervention",
+                "action": "Action",
+                "effect": "Call on deity to cast any Cleric spell of level 5 or lower without expending a spell slot or requiring material components.",
+                "recharge": "Long Rest",
+            })
+        if cleric_level >= 20:
+            actions.append({
+                "name": "Greater Divine Intervention",
+                "action": "Action",
+                "effect": "Call on deity to cast Wish without expending a spell slot.",
+                "recharge": "2d4 Long Rests",
+            })
+
+        # Subclass domain actions
+        if subclass_name == "War Domain" and cleric_level >= 3:
+            war_uses = stats.get("subclass_resources", {}).get("war_priest", {}).get("max_uses", 3)
+            actions.append({
+                "name": "War Priest",
+                "action": "Bonus Action",
+                "effect": "Make 1 weapon attack as a Bonus Action after taking the Attack or Magic action.",
+                "recharge": f"{war_uses} uses / Long Rest",
+            })
+        elif subclass_name == "Light Domain" and cleric_level >= 3:
+            flare_uses = stats.get("subclass_resources", {}).get("warding_flare", {}).get("max_uses", 3)
+            actions.append({
+                "name": "Warding Flare",
+                "action": "Reaction",
+                "effect": "Impose Disadvantage on an attack roll made against you or an ally within 30 ft.",
+                "recharge": f"{flare_uses} uses / Long Rest",
+            })
+        elif subclass_name == "Life Domain" and cleric_level >= 3:
+            actions.append({
+                "name": "Preserve Life",
+                "action": "Action",
+                "effect": f"Channel Divinity: Restore up to {5 * cleric_level} HP divided among bloodied creatures within 30 ft (max half max HP).",
+                "recharge": "Channel Divinity",
+            })
+        elif subclass_name == "Trickery Domain" and cleric_level >= 3:
+            actions.append({
+                "name": "Invoke Duplicity",
+                "action": "Bonus Action",
+                "effect": "Channel Divinity: Create an illusory double within 30 ft (lasts 1 min); cast spells from its space with Advantage on attacks.",
+                "recharge": "Channel Divinity",
+            })
+        elif subclass_name == "Freedom Domain" and cleric_level >= 3:
+            actions.append({
+                "name": "Invoke Liberty",
+                "action": "Magic Action",
+                "effect": "Channel Divinity: End Frightened, Grappled, Paralyzed, or Restrained on allies in 30 ft; allies can move half speed without OA.",
+                "recharge": "Channel Divinity",
+            })
+
+        stats["actions"] = actions
         return stats
 
     def calculate_druid_stats(self) -> Dict[str, Any]:
@@ -9073,6 +9305,7 @@ class CharacterBuilder:
             archdruid, wild_shape_options, subclass_resources, active_perks.
         """
         stats: Dict[str, Any] = {
+            "is_druid": False,
             "has_wild_shape": False,
             "druid_level": 0,
             "subclass": "",
@@ -9095,12 +9328,15 @@ class CharacterBuilder:
             "wild_shape_options": [],
             "subclass_resources": {},
             "active_perks": [],
+            "actions": [],
         }
 
         druid_level = self._get_class_level("Druid")
         stats["druid_level"] = druid_level
         if druid_level < 1:
             return stats
+
+        stats["is_druid"] = True
 
         subclass_name = self._get_class_subclass("Druid") or ""
         stats["subclass"] = subclass_name
@@ -9343,6 +9579,74 @@ class CharacterBuilder:
                 "effect": f"Transform into Large Behemoth, Leviathan, or Insectoid. AC = {13 + wis_mod}; Temp HP = {4 * druid_level}; Speed 40 ft (Climb/Swim/Fly 40 ft); Rend deals {rend_dice}+{wis_mod} damage.",
             })
 
+        # Actions Grid
+        actions = []
+        if stats.get("has_wild_shape"):
+            actions.append({
+                "name": "Wild Shape",
+                "action": "Bonus Action",
+                "effect": f"Transform into a known beast form (Max CR {stats['wild_shape_max_cr']}). Gain +{stats['wild_shape_temp_hp']} Temp HP. Lasts {stats['wild_shape_duration_hours']} hrs.",
+                "recharge": f"{stats['wild_shape_max']} uses / Short or Long Rest",
+            })
+            actions.append({
+                "name": "Wild Companion",
+                "action": "Magic Action",
+                "effect": "Expend 1 Wild Shape use to cast Find Familiar without material components. Familiar is a Fey and lasts until next Long Rest.",
+                "recharge": "1 Wild Shape use",
+            })
+        if druid_level >= 5:
+            actions.append({
+                "name": "Wild Resurgence",
+                "action": "Bonus Action",
+                "effect": "Expend 1 spell slot to regain 1 Wild Shape use (1/LR), or expend 1 Wild Shape use to regain a level 1 spell slot.",
+                "recharge": "1/Long Rest or 1 Wild Shape",
+            })
+        if druid_level >= 20:
+            actions.append({
+                "name": "Archdruid",
+                "action": "Free",
+                "effect": "When you roll Initiative and have no uses of Wild Shape left, regain 1 use.",
+                "recharge": "Initiative",
+            })
+
+        # Subclass actions
+        if subclass_name == "Circle of the Moon":
+            if druid_level >= 6:
+                actions.append({
+                    "name": "Moonlight Step",
+                    "action": "Bonus Action",
+                    "effect": "Teleport up to 30 ft to an unoccupied space and gain Advantage on your next attack before end of turn.",
+                    "recharge": f"{stats.get('subclass_resources', {}).get('moonlight_step', {}).get('uses', 3)} uses / Long Rest",
+                })
+        elif subclass_name == "Circle of the Stars":
+            actions.append({
+                "name": "Starry Form",
+                "action": "Bonus Action",
+                "effect": "Expend 1 Wild Shape use to take a Starry Form (Archer, Chalice, or Dragon) for 10 min.",
+                "recharge": "1 Wild Shape use",
+            })
+        elif subclass_name == "Circle of Spores":
+            actions.append({
+                "name": "Halo of Spores",
+                "action": "Reaction",
+                "effect": f"When a creature within 10 ft moves or starts turn, Con save DC {save_dc} or take 1d4 Necrotic damage.",
+                "recharge": "At will",
+            })
+            actions.append({
+                "name": "Symbiotic Entity",
+                "action": "Bonus Action",
+                "effect": f"Expend 1 Wild Shape use: gain {4 * druid_level} Temp HP, double Halo of Spores damage, +1d6 Necrotic on melee hits.",
+                "recharge": "1 Wild Shape use",
+            })
+        elif subclass_name == "Circle of the Sea" and druid_level >= 3:
+            actions.append({
+                "name": "Wrath of the Sea",
+                "action": "Bonus Action",
+                "effect": f"Expend 1 Wild Shape use: emanation of ocean spray; Con save DC {save_dc} or take Cold damage and push 15 ft.",
+                "recharge": "1 Wild Shape use",
+            })
+
+        stats["actions"] = actions
         return stats
 
     def calculate_fighter_stats(self) -> Dict[str, Any]:
@@ -14680,12 +14984,12 @@ class CharacterBuilder:
 
         # Add Barbarian stats (Barbarian only)
         barbarian_stats = self.calculate_barbarian_stats()
-        if barbarian_stats.get("has_rage"):
+        if barbarian_stats.get("barbarian_level", 0) > 0:
             character_data["barbarian_stats"] = barbarian_stats
 
         # Add Bard stats (Bard only)
         bard_stats = self.calculate_bard_stats()
-        if bard_stats.get("has_bardic_inspiration"):
+        if bard_stats.get("bard_level", 0) > 0:
             character_data["bard_stats"] = bard_stats
 
         # Add Cleric stats (Cleric only)

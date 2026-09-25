@@ -919,6 +919,32 @@
     ]
   },
   "cleric_stats": {
+    "actions": [
+      {
+        "action": "Action",
+        "effect": "Channel Divinity: Creature within 30 ft heals 1d8 HP or makes Con save (DC 13) for 1d8 Radiant/Necrotic.",
+        "name": "Divine Spark",
+        "recharge": "Channel Divinity"
+      },
+      {
+        "action": "Action",
+        "effect": "Channel Divinity: Undead within 30 ft make Wis save (DC 13) or Frightened & Incapacitated for 1 min.",
+        "name": "Turn Undead",
+        "recharge": "2 uses / Short or Long Rest"
+      },
+      {
+        "action": "Bonus Action",
+        "effect": "Channel Divinity: Expend 1 use to regain a level 1 to 3 spell slot.",
+        "name": "Harness Divine Power",
+        "recharge": "Channel Divinity"
+      },
+      {
+        "action": "Bonus Action",
+        "effect": "Make 1 weapon attack as a Bonus Action after taking the Attack or Magic action.",
+        "name": "War Priest",
+        "recharge": "3 uses / Long Rest"
+      }
+    ],
     "active_perks": [
       "Divine Order: Protector"
     ],
@@ -951,6 +977,7 @@
     "divine_spark_dice": "1d8",
     "greater_divine_intervention": false,
     "has_channel_divinity": true,
+    "is_cleric": true,
     "recharge": "Short or Long Rest (regain 1 on Short Rest, all on Long Rest)",
     "save_dc": 13,
     "sear_undead": false,

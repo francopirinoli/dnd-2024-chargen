@@ -261,6 +261,20 @@
     "status": "active"
   },
   "bard_stats": {
+    "actions": [
+      {
+        "action": "Bonus Action",
+        "effect": "Grant 1d6 die to a creature within 60 ft; can add to a failed d20 test within 1 hour.",
+        "name": "Bardic Inspiration",
+        "recharge": "3 uses / Long Rest"
+      },
+      {
+        "action": "Reaction / Hit",
+        "effect": "Inspiration recipient can add 1d6 to AC as Reaction against attack, or add 1d6 to damage roll after hitting.",
+        "name": "Combat Inspiration",
+        "recharge": "With Inspiration"
+      }
+    ],
     "active_perks": [
       "Bardic Inspiration: Bonus Action, give d6 die to a creature within 60 ft; add to failed D20 Test within 1 hour (3 uses/Long Rest)",
       "Jack of All Trades: Add half Proficiency Bonus (round down) to ability checks using a skill proficiency you lack",
@@ -272,6 +286,7 @@
     "has_bardic_inspiration": true,
     "inspiration_die": "d6",
     "inspiration_uses": 3,
+    "is_bard": true,
     "magical_secrets": false,
     "recharge": "Long Rest",
     "subclass": "College of Valor",

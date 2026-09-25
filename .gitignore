@@ -59,6 +59,8 @@ frontend/tsconfig.node.tsbuildinfo
 scratch/
 powershell.bat
 frontend/powershell.bat
+powershell.cmd
+frontend/powershell.cmd
 
 # Frontend build artifacts and dependencies
 frontend/dist/

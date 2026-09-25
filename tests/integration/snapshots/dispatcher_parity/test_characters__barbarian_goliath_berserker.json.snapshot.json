@@ -271,6 +271,20 @@
     "status": "active"
   },
   "barbarian_stats": {
+    "actions": [
+      {
+        "action": "Attack Action",
+        "effect": "On your first attack on your turn, gain Advantage on melee attack rolls using Strength. Attacks against you have Advantage until start of your next turn.",
+        "name": "Reckless Attack",
+        "recharge": "At will"
+      },
+      {
+        "action": "Bonus Action",
+        "effect": "Enter Rage for 10 min. Gain B/P/S damage resistance, +2 melee damage using Str, and Advantage on Str checks/saves.",
+        "name": "Enter Rage",
+        "recharge": "3 uses / Long Rest"
+      }
+    ],
     "active_perks": [
       "Damage Resistance: Bludgeoning, Piercing, and Slashing while Raging",
       "Advantage on Strength checks and Strength saving throws while Raging",
@@ -283,6 +297,7 @@
     "brutal_strike_dice": null,
     "brutal_strike_effects": [],
     "has_rage": true,
+    "is_barbarian": true,
     "rage_damage": 2,
     "rage_uses": 3,
     "rage_uses_numeric": 3,
