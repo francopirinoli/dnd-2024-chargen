@@ -11154,6 +11154,461 @@ class CharacterBuilder:
             "subclass_details": subclass_details,
         }
 
+    def calculate_warlock_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Warlock 2024 RAW statistics including:
+        - Pact Magic (1 slot at lv 1, 2 at lv 2-10, 3 at lv 11-16, 4 at lv 17-20; slot level scales from 1st to 5th; short/long rest recharge)
+        - Magical Cunning (lv 2+: 1-min rite to regain half max slots rounded up; 1/LR)
+        - Contact Patron (lv 9+: Contact Other Plane free 1/LR with automatic saving throw success)
+        - Mystic Arcanum (lv 11+: 6th level; lv 13+: 7th; lv 15+: 8th; lv 17+: 9th; 1/LR each)
+        - Eldritch Master (lv 20: Magical Cunning regains ALL expended Pact Magic slots)
+        - Subclass mechanics for Archfey, Celestial, Fiend, Great Old One, Vestige, Undead, and Primordial Patrons.
+        """
+        warlock_level = self._get_class_level("Warlock")
+        if warlock_level <= 0:
+            return {
+                "is_warlock": False,
+                "warlock_level": 0,
+                "subclass": "",
+                "spellcasting_ability": "Charisma",
+                "spell_save_dc": 10,
+                "spell_attack_bonus": 2,
+                "pact_magic": {
+                    "slots": 0,
+                    "slot_level": 0,
+                    "recharge": "Short or Long Rest",
+                    "cantrips_known": 0,
+                    "prepared_spells_count": 0,
+                },
+                "magical_cunning": {
+                    "active": False,
+                    "slots_regained": 0,
+                    "eldritch_master": False,
+                },
+                "contact_patron": {"active": False},
+                "mystic_arcanum": {"active": False, "unlocked_levels": []},
+                "eldritch_master": False,
+                "invocations": {"max_invocations": 0, "count": 0, "selected": []},
+                "active_perks": [],
+                "actions": [],
+                "subclass_details": {},
+            }
+
+        subclass = self._get_class_subclass("Warlock") or ""
+        ability_scores = self.calculate_processed_ability_scores()
+        cha_mod = ability_scores.get("charisma", {}).get("modifier", 0)
+        proficiency_bonus = self.calculate_proficiency_bonus(warlock_level)
+        spell_save_dc = 8 + cha_mod + proficiency_bonus
+        spell_attack_bonus = cha_mod + proficiency_bonus
+
+        # Pact Magic slots and slot level progression (2024 RAW table)
+        if warlock_level == 1:
+            pact_slots = 1
+            slot_level = 1
+        elif warlock_level == 2:
+            pact_slots = 2
+            slot_level = 1
+        elif warlock_level in (3, 4):
+            pact_slots = 2
+            slot_level = 2
+        elif warlock_level in (5, 6):
+            pact_slots = 2
+            slot_level = 3
+        elif warlock_level in (7, 8):
+            pact_slots = 2
+            slot_level = 4
+        elif 9 <= warlock_level <= 10:
+            pact_slots = 2
+            slot_level = 5
+        elif 11 <= warlock_level <= 16:
+            pact_slots = 3
+            slot_level = 5
+        else: # 17..20
+            pact_slots = 4
+            slot_level = 5
+
+        # Cantrips known & prepared spells count
+        if warlock_level < 4:
+            cantrips_known = 2
+        elif warlock_level < 10:
+            cantrips_known = 3
+        else:
+            cantrips_known = 4
+
+        prepared_table = {
+            1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9, 9: 10, 10: 10,
+            11: 11, 12: 11, 13: 12, 14: 12, 15: 13, 16: 13, 17: 14, 18: 14, 19: 15, 20: 15
+        }
+        prepared_spells_count = prepared_table.get(warlock_level, 2)
+
+        # Invocations max count
+        invocations_table = {
+            1: 1, 2: 3, 3: 3, 4: 3, 5: 5, 6: 5, 7: 6, 8: 6, 9: 7, 10: 7,
+            11: 7, 12: 8, 13: 8, 14: 8, 15: 9, 16: 9, 17: 9, 18: 10, 19: 10, 20: 10
+        }
+        max_invocations = invocations_table.get(warlock_level, 1)
+
+        # Current invocations
+        eldritch_inv_data = self.calculate_eldritch_invocation_stats()
+        current_invocations = eldritch_inv_data.get("current_invocations", [])
+        invocations_list = eldritch_inv_data.get("invocations", [])
+
+        # Magical Cunning (Level 2+) & Eldritch Master (Level 20)
+        has_magical_cunning = warlock_level >= 2
+        has_eldritch_master = warlock_level >= 20
+        if has_eldritch_master:
+            magical_cunning_regain = pact_slots
+        elif has_magical_cunning:
+            magical_cunning_regain = (pact_slots + 1) // 2  # ceil(pact_slots / 2)
+        else:
+            magical_cunning_regain = 0
+
+        magical_cunning = {
+            "active": has_magical_cunning,
+            "slots_regained": magical_cunning_regain,
+            "max_slots": pact_slots,
+            "eldritch_master": has_eldritch_master,
+            "action": "1-minute esoteric rite",
+            "recharge": "Long Rest",
+        }
+
+        # Contact Patron (Level 9+)
+        has_contact_patron = warlock_level >= 9
+        contact_patron = {
+            "active": has_contact_patron,
+            "spell": "Contact Other Plane",
+            "auto_succeed_save": True,
+            "action": "Magic Action (1/Long Rest)",
+            "recharge": "Long Rest",
+        }
+
+        # Mystic Arcanum (Levels 11, 13, 15, 17)
+        unlocked_arcanum_levels = []
+        if warlock_level >= 11:
+            unlocked_arcanum_levels.append(6)
+        if warlock_level >= 13:
+            unlocked_arcanum_levels.append(7)
+        if warlock_level >= 15:
+            unlocked_arcanum_levels.append(8)
+        if warlock_level >= 17:
+            unlocked_arcanum_levels.append(9)
+
+        mystic_arcanum = {
+            "active": len(unlocked_arcanum_levels) > 0,
+            "unlocked_levels": unlocked_arcanum_levels,
+            "recharge": "Long Rest",
+        }
+
+        actions: List[Dict[str, str]] = []
+        if has_magical_cunning:
+            actions.append({
+                "name": "Magical Cunning",
+                "action": "1-minute rite (1/Long Rest)",
+                "effect": f"Regain {magical_cunning_regain} expended Pact Magic slot{'s' if magical_cunning_regain > 1 else ''}{' (all slots with Eldritch Master)' if has_eldritch_master else ' (half max rounded up)'}."
+            })
+        if has_contact_patron:
+            actions.append({
+                "name": "Contact Patron",
+                "action": "Magic Action (1/Long Rest)",
+                "effect": "Cast Contact Other Plane without a spell slot to contact patron; automatically succeed on the DC 15 INT saving throw."
+            })
+
+        # Subclass Mechanics
+        subclass_details: Dict[str, Any] = {}
+        active_perks: List[str] = []
+
+        if subclass == "The Archfey":
+            steps_uses = max(1, cha_mod)
+            subclass_details = {
+                "name": "The Archfey",
+                "steps_of_the_fey": warlock_level >= 3,
+                "steps_uses": steps_uses,
+                "misty_escape": warlock_level >= 6,
+                "beguiling_defenses": warlock_level >= 10,
+                "bewitching_magic": warlock_level >= 14,
+            }
+            if warlock_level >= 3:
+                actions.append({
+                    "name": "Steps of the Fey (Misty Step)",
+                    "action": f"Bonus Action ({steps_uses}/Long Rest)",
+                    "effect": "Cast Misty Step without a spell slot. Rider: Refreshing Step (you/ally within 10 ft gains 1d10 THP) or Taunting Step (creatures within 5 ft Wis save or Disadvantage vs others)." + (" Disappearing Step (Invisible) or Dreadful Step (2d10 Psychic) also available." if warlock_level >= 6 else ""),
+                })
+            if warlock_level >= 6:
+                actions.append({
+                    "name": "Misty Escape",
+                    "action": "Reaction (on taking damage)",
+                    "effect": "Cast Misty Step in response to taking damage, adding a Steps of the Fey rider option.",
+                })
+            if warlock_level >= 10:
+                actions.append({
+                    "name": "Beguiling Defenses",
+                    "action": "Reaction (1/LR or spend Pact slot)",
+                    "effect": "Immune to Charmed. On hit, halve damage taken; attacker makes Wis save or takes equal Psychic damage.",
+                })
+            if warlock_level >= 14:
+                actions.append({
+                    "name": "Bewitching Magic",
+                    "action": "Free Action (with Enchantment/Illusion spell)",
+                    "effect": "Cast Misty Step without a spell slot immediately after casting an Enchantment or Illusion spell using an action and a spell slot.",
+                })
+
+        elif subclass == "The Celestial":
+            healing_dice = 1 + warlock_level
+            max_heal_dice = max(1, cha_mod)
+            subclass_details = {
+                "name": "The Celestial",
+                "healing_light": warlock_level >= 3,
+                "healing_light_dice": healing_dice,
+                "healing_light_max_heal_dice": max_heal_dice,
+                "radiant_soul": warlock_level >= 6,
+                "radiant_soul_bonus": cha_mod,
+                "celestial_resilience": warlock_level >= 10,
+                "celestial_resilience_thp": warlock_level + cha_mod,
+                "celestial_resilience_ally_thp": (warlock_level // 2) + cha_mod,
+                "searing_vengeance": warlock_level >= 14,
+            }
+            if warlock_level >= 3:
+                actions.append({
+                    "name": "Healing Light",
+                    "action": "Bonus Action",
+                    "effect": f"Heal creature within 60 ft by spending up to {max_heal_dice}d6 from pool of {healing_dice}d6 (regain all on Long Rest).",
+                })
+            if warlock_level >= 6:
+                actions.append({
+                    "name": "Radiant Soul",
+                    "action": "Passive",
+                    "effect": f"Resistance to Radiant damage. Once per turn, add +{cha_mod} (CHA mod) to Radiant or Fire damage dealt by a spell.",
+                })
+            if warlock_level >= 14:
+                actions.append({
+                    "name": "Searing Vengeance",
+                    "action": "Reaction (1/Long Rest)",
+                    "effect": f"When you/ally within 60 ft makes Death Save: target regains half max HP, stands up; enemies within 30 ft take 2d8+{cha_mod} Radiant damage and are Blinded until end of turn.",
+                })
+
+        elif subclass == "The Fiend":
+            dark_blessing_thp = max(1, warlock_level + cha_mod)
+            luck_uses = max(1, cha_mod)
+            subclass_details = {
+                "name": "The Fiend",
+                "dark_ones_blessing": warlock_level >= 3,
+                "dark_ones_blessing_thp": dark_blessing_thp,
+                "dark_ones_own_luck": warlock_level >= 6,
+                "dark_ones_own_luck_uses": luck_uses,
+                "fiendish_resilience": warlock_level >= 10,
+                "hurl_through_hell": warlock_level >= 14,
+            }
+            if warlock_level >= 3:
+                actions.append({
+                    "name": "Dark One's Blessing",
+                    "action": "Passive",
+                    "effect": f"When you or an ally within 10 ft reduces an enemy to 0 HP, gain {dark_blessing_thp} Temporary HP (CHA mod + Warlock level).",
+                })
+            if warlock_level >= 6:
+                actions.append({
+                    "name": "Dark One's Own Luck",
+                    "action": f"Special ({luck_uses}/Long Rest)",
+                    "effect": "Add 1d10 to an ability check or saving throw after rolling (1/roll).",
+                })
+            if warlock_level >= 10:
+                actions.append({
+                    "name": "Fiendish Resilience",
+                    "action": "Short or Long Rest",
+                    "effect": "Choose one damage type (other than Force) to gain Resistance to until your next rest.",
+                })
+            if warlock_level >= 14:
+                actions.append({
+                    "name": "Hurl Through Hell",
+                    "action": "On Attack Hit (1/LR or spend Pact slot)",
+                    "effect": "Target must make CHA save or hurtle through nightmare landscape: takes 8d10 Psychic damage (if not Fiend) and Incapacitated until end of next turn.",
+                })
+
+        elif subclass == "The Great Old One":
+            telepathy_miles = max(1, cha_mod)
+            subclass_details = {
+                "name": "The Great Old One",
+                "awakened_mind": warlock_level >= 3,
+                "awakened_mind_miles": telepathy_miles,
+                "psychic_spells": warlock_level >= 3,
+                "clairvoyant_combatant": warlock_level >= 6,
+                "eldritch_hex": warlock_level >= 10,
+                "thought_shield": warlock_level >= 10,
+                "create_thrall": warlock_level >= 14,
+                "create_thrall_thp": warlock_level + cha_mod,
+            }
+            if warlock_level >= 3:
+                actions.append({
+                    "name": "Awakened Mind",
+                    "action": "Bonus Action",
+                    "effect": f"Establish telepathic bond with creature within 30 ft; lasts {warlock_level} min while within {telepathy_miles} miles.",
+                })
+                actions.append({
+                    "name": "Psychic Spells",
+                    "action": "Passive",
+                    "effect": "Change Warlock spell damage to Psychic. Cast Enchantment and Illusion Warlock spells without Verbal or Somatic components.",
+                })
+            if warlock_level >= 6:
+                actions.append({
+                    "name": "Clairvoyant Combatant",
+                    "action": "On Awakened Mind (1/SR or LR or spend Pact slot)",
+                    "effect": "Telepathic target makes WIS save: fail = disadvantage on attacks against you, advantage for you on attacks against it.",
+                })
+            if warlock_level >= 10:
+                actions.append({
+                    "name": "Eldritch Hex",
+                    "action": "Passive",
+                    "effect": "Hex always prepared. Target of your Hex also has Disadvantage on saving throws of chosen ability.",
+                })
+                actions.append({
+                    "name": "Thought Shield",
+                    "action": "Passive",
+                    "effect": "Thoughts cannot be read. Resistance to Psychic damage; reflect any Psychic damage taken back to attacker.",
+                })
+            if warlock_level >= 14:
+                actions.append({
+                    "name": "Create Thrall",
+                    "action": "Magic Action (Summon Aberration)",
+                    "effect": f"Summon Aberration without Concentration (duration 1 min). Gains {warlock_level + cha_mod} THP and deals extra Psychic damage vs Hexed targets.",
+                })
+
+        elif subclass == "Vestige Patron":
+            subclass_details = {
+                "name": "Vestige Patron",
+                "vestige_companion": warlock_level >= 3,
+                "vestige_power": warlock_level >= 6,
+                "vestige_recovery": warlock_level >= 10,
+                "semblance_of_life": warlock_level >= 14,
+            }
+            if warlock_level >= 3:
+                actions.append({
+                    "name": "Vestige Companion",
+                    "action": "Companion",
+                    "effect": "Manifests loyal companion (Celestial, Fiend, or Undead). Shares initiative count and acts after your turn.",
+                })
+            if warlock_level >= 6:
+                actions.append({
+                    "name": "Vestige Power",
+                    "action": "Passive",
+                    "effect": "Companion regains Divine Power on SR/LR or Magical Cunning. Share damage resistances with companion within 30 ft.",
+                })
+            if warlock_level >= 10:
+                actions.append({
+                    "name": "Vestige Recovery",
+                    "action": "Reaction (1/Long Rest)",
+                    "effect": "When companion drops to 0 HP, spend Pact Magic slot to restore it to full HP and teleport up to 30 ft.",
+                })
+            if warlock_level >= 14:
+                actions.append({
+                    "name": "Semblance of Life",
+                    "action": "Magic Action (1 hour)",
+                    "effect": "Shape-shift companion within 90 ft into powerful Celestial, Fiendish, or Undead spirit using Warlock slot level.",
+                })
+
+        elif subclass == "Undead Patron":
+            dread_uses = max(1, cha_mod)
+            subclass_details = {
+                "name": "Undead Patron",
+                "form_of_dread": warlock_level >= 3,
+                "form_of_dread_uses": dread_uses,
+                "form_of_dread_thp": f"1d10+{warlock_level}",
+                "grave_touched": warlock_level >= 6,
+                "necrotic_husk": warlock_level >= 10,
+                "superior_dread": warlock_level >= 14,
+            }
+            if warlock_level >= 3:
+                actions.append({
+                    "name": "Form of Dread",
+                    "action": f"Bonus Action ({dread_uses}/Long Rest)",
+                    "effect": f"Transform for 1 min: gain 1d10+{warlock_level} THP, immune to Frightened, on attack hit force WIS save or target Frightened until end of next turn.",
+                })
+            if warlock_level >= 6:
+                actions.append({
+                    "name": "Grave Touched",
+                    "action": "Passive",
+                    "effect": "Necrotic damage ignores resistance. Change spell damage to Necrotic. +1 damage die of Necrotic while in Form of Dread. Don't need sleep.",
+                })
+            if warlock_level >= 10:
+                actions.append({
+                    "name": "Necrotic Husk",
+                    "action": "Passive / Reaction (1/SR or LR)",
+                    "effect": f"Resistance to Necrotic (Immunity in Form of Dread). Unholy Resuscitation: at 0 HP drop to {2 * warlock_level} HP + 1 Exhaustion; 30-ft emanation deals 2d10+{cha_mod} Necrotic damage.",
+                })
+            if warlock_level >= 14:
+                actions.append({
+                    "name": "Superior Dread",
+                    "action": "Passive (in Form of Dread)",
+                    "effect": "Resistance to Bludgeoning, Piercing, Slashing. Fly Speed hover, pass through objects. Cast Conjuration and Necromancy spells without V/S/M.",
+                })
+
+        elif subclass == "Primordial Patron":
+            node_damage = "3d6" if warlock_level >= 14 else ("2d6" if warlock_level >= 6 else "1d6")
+            subclass_details = {
+                "name": "Primordial Patron",
+                "elemental_node": warlock_level >= 3,
+                "elemental_node_damage": node_damage,
+                "primeval_protection": warlock_level >= 6,
+                "elemental_harbinger": warlock_level >= 14,
+            }
+            if warlock_level >= 3:
+                actions.append({
+                    "name": "Elemental Node",
+                    "action": "Magic Action (1/SR or LR or spend Pact slot)",
+                    "effect": f"Create 5-ft (10-ft at lv 6) sphere: deals {node_damage} elemental damage on enter/end turn (Dex save half). Move 30 ft as Bonus Action.",
+                })
+            if warlock_level >= 6:
+                actions.append({
+                    "name": "Primeval Protection",
+                    "action": "Passive",
+                    "effect": "Resistance to chosen element (Immunity while inside Elemental Node). Node radius expands to 10 feet.",
+                })
+            if warlock_level >= 14:
+                actions.append({
+                    "name": "Elemental Harbinger",
+                    "action": "Special",
+                    "effect": "Elemental Vortex: spend slot to pull creature 15 ft toward node. Node lasts 1 hr. Primordial Herald: cast Planar Ally free 1/2d4 LR.",
+                })
+
+        # Add active perks
+        active_perks.append(f"Pact Magic: {pact_slots} Level {slot_level} Slot{'s' if pact_slots > 1 else ''} (Short or Long Rest)")
+        if has_magical_cunning:
+            active_perks.append(f"Magical Cunning (Regain {magical_cunning_regain} slot{'s' if magical_cunning_regain > 1 else ''}; 1/LR)")
+        if has_contact_patron:
+            active_perks.append("Contact Patron (Cast Contact Other Plane free; auto-succeed save; 1/LR)")
+        if mystic_arcanum["active"]:
+            arc_levels_str = ", ".join(f"Level {lvl}" for lvl in unlocked_arcanum_levels)
+            active_perks.append(f"Mystic Arcanum ({arc_levels_str}; 1 free cast each/LR)")
+        if has_eldritch_master:
+            active_perks.append("Eldritch Master (Magical Cunning regains ALL expended slots)")
+
+        return {
+            "is_warlock": True,
+            "warlock_level": warlock_level,
+            "subclass": subclass,
+            "spellcasting_ability": "Charisma",
+            "spell_save_dc": spell_save_dc,
+            "spell_attack_bonus": spell_attack_bonus,
+            "pact_magic": {
+                "slots": pact_slots,
+                "slot_level": slot_level,
+                "recharge": "Short or Long Rest",
+                "cantrips_known": cantrips_known,
+                "prepared_spells_count": prepared_spells_count,
+            },
+            "magical_cunning": magical_cunning,
+            "contact_patron": contact_patron,
+            "mystic_arcanum": mystic_arcanum,
+            "eldritch_master": has_eldritch_master,
+            "invocations": {
+                "max_invocations": max_invocations,
+                "count": len(current_invocations),
+                "selected": current_invocations,
+                "invocations_list": invocations_list,
+            },
+            "active_perks": active_perks,
+            "actions": actions,
+            "subclass_details": subclass_details,
+        }
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -13321,6 +13776,11 @@ class CharacterBuilder:
         sorcerer_stats = self.calculate_sorcerer_stats()
         if sorcerer_stats.get("sorcerer_level", 0) > 0:
             character_data["sorcerer_stats"] = sorcerer_stats
+
+        # Add Warlock stats (Warlock only)
+        warlock_stats = self.calculate_warlock_stats()
+        if warlock_stats.get("warlock_level", 0) > 0:
+            character_data["warlock_stats"] = warlock_stats
 
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:

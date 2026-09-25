@@ -2132,6 +2132,73 @@
   "tool_proficiencies": [
     "Forgery Kit"
   ],
+  "warlock_stats": {
+    "actions": [
+      {
+        "action": "1-minute rite (1/Long Rest)",
+        "effect": "Regain 1 expended Pact Magic slot (half max rounded up).",
+        "name": "Magical Cunning"
+      },
+      {
+        "action": "Passive",
+        "effect": "When you or an ally within 10 ft reduces an enemy to 0 HP, gain 6 Temporary HP (CHA mod + Warlock level).",
+        "name": "Dark One's Blessing"
+      }
+    ],
+    "active_perks": [
+      "Pact Magic: 2 Level 2 Slots (Short or Long Rest)",
+      "Magical Cunning (Regain 1 slot; 1/LR)"
+    ],
+    "contact_patron": {
+      "action": "Magic Action (1/Long Rest)",
+      "active": false,
+      "auto_succeed_save": true,
+      "recharge": "Long Rest",
+      "spell": "Contact Other Plane"
+    },
+    "eldritch_master": false,
+    "invocations": {
+      "count": 0,
+      "invocations_list": [],
+      "max_invocations": 3,
+      "selected": []
+    },
+    "is_warlock": true,
+    "magical_cunning": {
+      "action": "1-minute esoteric rite",
+      "active": true,
+      "eldritch_master": false,
+      "max_slots": 2,
+      "recharge": "Long Rest",
+      "slots_regained": 1
+    },
+    "mystic_arcanum": {
+      "active": false,
+      "recharge": "Long Rest",
+      "unlocked_levels": []
+    },
+    "pact_magic": {
+      "cantrips_known": 2,
+      "prepared_spells_count": 4,
+      "recharge": "Short or Long Rest",
+      "slot_level": 2,
+      "slots": 2
+    },
+    "spell_attack_bonus": 5,
+    "spell_save_dc": 13,
+    "spellcasting_ability": "Charisma",
+    "subclass": "The Fiend",
+    "subclass_details": {
+      "dark_ones_blessing": true,
+      "dark_ones_blessing_thp": 6,
+      "dark_ones_own_luck": false,
+      "dark_ones_own_luck_uses": 3,
+      "fiendish_resilience": false,
+      "hurl_through_hell": false,
+      "name": "The Fiend"
+    },
+    "warlock_level": 3
+  },
   "warnings": [
     "Spell selections had validation issues: [{'field': 'spell_selections.cantrips', 'reason': 'max_exceeded', 'submitted_count': 3, 'max_allowed': 2}, {'field': 'spell_selections.spells', 'reason': 'max_exceeded', 'submitted_count': 5, 'max_allowed': 4}]"
   ],

@@ -1471,6 +1471,14 @@ function SpecialFeatures({ c }: { c: Char }) {
   const metamagic = rec(sorcererStats.metamagic);
   const sorcerousRestoration = rec(sorcererStats.sorcerous_restoration);
   const sorcererSubclass = rec(sorcererStats.subclass_details);
+  const warlockStats = rec(c.warlock_stats);
+  const isWarlock = Boolean(warlockStats.is_warlock) || num(warlockStats.warlock_level) !== undefined;
+  const pactMagic = rec(warlockStats.pact_magic);
+  const magicalCunning = rec(warlockStats.magical_cunning);
+  const contactPatron = rec(warlockStats.contact_patron);
+  const mysticArcanum = rec(warlockStats.mystic_arcanum);
+  const invocationsStats = rec(warlockStats.invocations);
+  const warlockSubclass = rec(warlockStats.subclass_details);
   const superiorityDice = rec(c.superiority_dice);
   const hasSuperiorityDice = num(superiorityDice.count) !== undefined;
   const hasArcaneShot = num(c.arcane_shot_dc) !== undefined;
@@ -1486,6 +1494,7 @@ function SpecialFeatures({ c }: { c: Char }) {
     (isRanger && rangerStats.ranger_level !== undefined) ||
     (isRogue && rogueStats.rogue_level !== undefined) ||
     (isSorcerer && sorcererStats.sorcerer_level !== undefined) ||
+    (isWarlock && warlockStats.warlock_level !== undefined) ||
     hasSuperiorityDice ||
     hasArcaneShot;
 
@@ -2414,6 +2423,210 @@ function SpecialFeatures({ c }: { c: Char }) {
                 {arr<Record<string, unknown>>(sorcererStats.actions).map((act, idx) => (
                   <div
                     key={`sorc-act-${idx}`}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-primary">{str(act.name)}</span>
+                      <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                        {str(act.action)}
+                      </span>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isWarlock && warlockStats.warlock_level !== undefined && (
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
+              <span className="font-semibold text-primary">Warlock Features</span>
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(warlockStats.warlock_level)}
+                </span>
+                {num(pactMagic.slots) !== undefined && (
+                  <span className="rounded bg-primary/15 px-2 py-0.5 font-semibold text-primary">
+                    Pact Magic: {num(pactMagic.slots)} Slot{num(pactMagic.slots) === 1 ? "" : "s"} (Level {num(pactMagic.slot_level)}) • Short/Long Rest
+                  </span>
+                )}
+                {magicalCunning.active === true && (
+                  <span className="rounded bg-accent/20 px-2 py-0.5 font-semibold text-accent-foreground">
+                    Magical Cunning: 1/LR (Regain {num(magicalCunning.slots_regained)} slot{num(magicalCunning.slots_regained) === 1 ? "" : "s"})
+                  </span>
+                )}
+                {num(invocationsStats.max_invocations) !== undefined && (
+                  <span className="rounded bg-secondary/80 px-2 py-0.5 text-foreground font-medium">
+                    Invocations: {num(invocationsStats.count)}/{num(invocationsStats.max_invocations)}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Core Features: Pact Magic & Magical Cunning */}
+            <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
+              <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                <div className="font-medium text-foreground flex items-center justify-between">
+                  <span>Pact Magic & Eldritch Secrets</span>
+                  <span className="text-[10px] text-muted-foreground">Recharge: Short or Long Rest</span>
+                </div>
+                <div className="text-[11px] text-muted-foreground leading-relaxed">
+                  Charisma is your spellcasting ability (DC {num(warlockStats.spell_save_dc)}, Attack {signed(num(warlockStats.spell_attack_bonus))}).
+                  Slots are always cast at your highest available level (Level {num(pactMagic.slot_level)}).
+                  {contactPatron.active === true && (
+                    <span className="block text-primary font-medium mt-0.5">
+                      Contact Patron: Cast Contact Other Plane without a slot; automatically succeed on the DC 15 INT save (1/LR).
+                    </span>
+                  )}
+                  {mysticArcanum.active === true && (
+                    <span className="block text-primary font-medium mt-0.5">
+                      Mystic Arcanum: {arr<number>(mysticArcanum.unlocked_levels).map(l => `Level ${l}`).join(", ")} (1 free cast each/LR).
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {magicalCunning.active === true && (
+                <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                  <div className="font-medium text-foreground flex items-center justify-between">
+                    <span>Magical Cunning</span>
+                    <span className="text-[10px] text-muted-foreground">1-min rite • 1/Long Rest</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground leading-relaxed">
+                    Perform an esoteric rite for 1 minute to regain {num(magicalCunning.slots_regained)} expended Pact Magic slot{num(magicalCunning.slots_regained) === 1 ? "" : "s"}.
+                    {Boolean(warlockStats.eldritch_master) ? (
+                      <span className="block text-primary font-medium mt-0.5">
+                        Eldritch Master: Regain ALL expended Pact Magic spell slots!
+                      </span>
+                    ) : (
+                      <span className="block text-muted-foreground mt-0.5">
+                        Recovers half your maximum Pact Magic slots (rounded up).
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Subclass Features */}
+            {Boolean(warlockSubclass.name) && (
+              <div className="rounded border border-border/50 bg-background/40 p-2 space-y-1 text-xs">
+                <div className="font-semibold text-primary">{str(warlockSubclass.name)}</div>
+                <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 text-[11px] text-muted-foreground">
+                  {/* Archfey */}
+                  {num(warlockSubclass.steps_uses) !== undefined && (
+                    <div>Steps of the Fey: <strong className="text-foreground">{num(warlockSubclass.steps_uses)} free Misty Step/LR + riders</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.misty_escape) && (
+                    <div>Misty Escape: <strong className="text-foreground">Reaction on damage: cast Misty Step</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.beguiling_defenses) && (
+                    <div>Beguiling Defenses: <strong className="text-foreground">Immune to Charmed; halve damage & reflect Psychic</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.bewitching_magic) && (
+                    <div>Bewitching Magic: <strong className="text-foreground">Free Misty Step with Enchantment/Illusion spell</strong></div>
+                  )}
+
+                  {/* Celestial */}
+                  {num(warlockSubclass.healing_light_dice) !== undefined && (
+                    <div>Healing Light: <strong className="text-foreground">Pool of {num(warlockSubclass.healing_light_dice)}d6 (max {num(warlockSubclass.healing_light_max_heal_dice)}d6/heal, Bonus Action)</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.radiant_soul) && (
+                    <div>Radiant Soul: <strong className="text-foreground">Resist Radiant; +{str(warlockSubclass.radiant_soul_bonus)} to Radiant/Fire spell damage</strong></div>
+                  )}
+                  {num(warlockSubclass.celestial_resilience_thp) !== undefined && (
+                    <div>Celestial Resilience: <strong className="text-foreground">{num(warlockSubclass.celestial_resilience_thp)} THP on rest/Cunning ({num(warlockSubclass.celestial_resilience_ally_thp)} to 5 allies)</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.searing_vengeance) && (
+                    <div>Searing Vengeance: <strong className="text-foreground">Revive at 50% HP, deal 2d8+{str(warlockSubclass.radiant_soul_bonus)} Radiant & Blind (1/LR)</strong></div>
+                  )}
+
+                  {/* Fiend */}
+                  {num(warlockSubclass.dark_ones_blessing_thp) !== undefined && (
+                    <div>Dark One's Blessing: <strong className="text-foreground">+{num(warlockSubclass.dark_ones_blessing_thp)} THP on enemy drop to 0 HP</strong></div>
+                  )}
+                  {num(warlockSubclass.dark_ones_own_luck_uses) !== undefined && (
+                    <div>Dark One's Own Luck: <strong className="text-foreground">+1d10 to check/save ({num(warlockSubclass.dark_ones_own_luck_uses)} uses/LR)</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.fiendish_resilience) && (
+                    <div>Fiendish Resilience: <strong className="text-foreground">Choose 1 damage resistance on rest (not Force)</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.hurl_through_hell) && (
+                    <div>Hurl Through Hell: <strong className="text-foreground">8d10 Psychic + Incapacitated on hit (1/LR or slot)</strong></div>
+                  )}
+
+                  {/* Great Old One */}
+                  {num(warlockSubclass.awakened_mind_miles) !== undefined && (
+                    <div>Awakened Mind: <strong className="text-foreground">Telepathy 30 ft (lasts {num(warlockStats.warlock_level)} min up to {num(warlockSubclass.awakened_mind_miles)} miles)</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.psychic_spells) && (
+                    <div>Psychic Spells: <strong className="text-foreground">Damage to Psychic; Enchantment/Illusion without V/S</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.clairvoyant_combatant) && (
+                    <div>Clairvoyant Combatant: <strong className="text-foreground">Target Wis save: Disadv vs you, Adv for you</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.eldritch_hex) && (
+                    <div>Eldritch Hex: <strong className="text-foreground">Hex prepared; target has Disadvantage on saves</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.thought_shield) && (
+                    <div>Thought Shield: <strong className="text-foreground">Resist Psychic, reflect psychic damage, unreadable mind</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.create_thrall) && (
+                    <div>Create Thrall: <strong className="text-foreground">Summon Aberration no concentration ({num(warlockSubclass.create_thrall_thp)} THP)</strong></div>
+                  )}
+
+                  {/* Vestige Patron */}
+                  {Boolean(warlockSubclass.vestige_companion) && (
+                    <div>Vestige Companion: <strong className="text-foreground">Celestial/Fiend/Undead companion acts after your turn</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.vestige_power) && (
+                    <div>Vestige Power: <strong className="text-foreground">Companion regains power on rest/Cunning; share resists</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.vestige_recovery) && (
+                    <div>Vestige Recovery: <strong className="text-foreground">Restore 0 HP companion to full HP + teleport 30 ft (1/LR)</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.semblance_of_life) && (
+                    <div>Semblance of Life: <strong className="text-foreground">Shape-shift companion into powerful spirit for 1 hr</strong></div>
+                  )}
+
+                  {/* Undead Patron */}
+                  {Boolean(warlockSubclass.form_of_dread) && (
+                    <div>Form of Dread: <strong className="text-foreground">{str(warlockSubclass.form_of_dread_thp)} THP, immune Frightened, frighten on hit ({num(warlockSubclass.form_of_dread_uses)}/LR)</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.grave_touched) && (
+                    <div>Grave Touched: <strong className="text-foreground">Necrotic ignores resist; +1 necrotic die; no sleep needed</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.necrotic_husk) && (
+                    <div>Necrotic Husk: <strong className="text-foreground">Resist Necrotic; Unholy Resuscitation revive + 30-ft emanation</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.superior_dread) && (
+                    <div>Superior Dread: <strong className="text-foreground">Resist B/P/S; Fly speed hover; cast without V/S/M</strong></div>
+                  )}
+
+                  {/* Primordial Patron */}
+                  {Boolean(warlockSubclass.elemental_node) && (
+                    <div>Elemental Node: <strong className="text-foreground">{str(warlockSubclass.elemental_node_damage)} elemental damage sphere (Bonus Action move 30 ft)</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.primeval_protection) && (
+                    <div>Primeval Protection: <strong className="text-foreground">Resist chosen element (Immune inside Node); 10-ft radius</strong></div>
+                  )}
+                  {Boolean(warlockSubclass.elemental_harbinger) && (
+                    <div>Elemental Harbinger: <strong className="text-foreground">Vortex 15-ft pull; Node lasts 1 hr; cast Planar Ally free</strong></div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Actions Grid */}
+            {arr<Record<string, unknown>>(warlockStats.actions).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(warlockStats.actions).map((act, idx) => (
+                  <div
+                    key={`warlock-act-${idx}`}
                     className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
                   >
                     <div className="flex items-center justify-between gap-1 font-semibold text-foreground">

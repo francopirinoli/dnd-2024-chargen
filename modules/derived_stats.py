@@ -1129,6 +1129,39 @@ def build_level_up_preview(
         ),
     }
 
+    warl_curr = builder_current.calculate_warlock_stats()
+    warl_next = builder_next.calculate_warlock_stats()
+    is_warlock = target_class_name.lower() == "warlock"
+    warlock_changes = {
+        "is_warlock": is_warlock,
+        "current_pact_slots": warl_curr.get("pact_magic", {}).get("slots", 0),
+        "next_pact_slots": warl_next.get("pact_magic", {}).get("slots", 0),
+        "current_slot_level": warl_curr.get("pact_magic", {}).get("slot_level", 0),
+        "next_slot_level": warl_next.get("pact_magic", {}).get("slot_level", 0),
+        "has_magical_cunning": bool(warl_next.get("magical_cunning", {}).get("active")),
+        "magical_cunning_unlocked": (
+            bool(warl_next.get("magical_cunning", {}).get("active"))
+            and not bool(warl_curr.get("magical_cunning", {}).get("active"))
+        ),
+        "contact_patron_unlocked": (
+            bool(warl_next.get("contact_patron", {}).get("active"))
+            and not bool(warl_curr.get("contact_patron", {}).get("active"))
+        ),
+        "mystic_arcanum_unlocked": (
+            len(warl_next.get("mystic_arcanum", {}).get("unlocked_levels", []))
+            > len(warl_curr.get("mystic_arcanum", {}).get("unlocked_levels", []))
+        ),
+        "newest_arcanum_level": (
+            warl_next.get("mystic_arcanum", {}).get("unlocked_levels", [])[-1]
+            if warl_next.get("mystic_arcanum", {}).get("unlocked_levels")
+            else None
+        ),
+        "eldritch_master_unlocked": (
+            bool(warl_next.get("eldritch_master"))
+            and not bool(warl_curr.get("eldritch_master"))
+        ),
+    }
+
     return {
         "can_level_up": True,
         "class_name": target_class_name,
@@ -1194,4 +1227,5 @@ def build_level_up_preview(
         "monk_changes": monk_changes,
         "paladin_changes": paladin_changes,
         "ranger_changes": ranger_changes,
+        "warlock_changes": warlock_changes,
     }

@@ -7,6 +7,12 @@
     "3": {
       "Celestial Spells": {
         "description": "The magic of your patron ensures you always have certain spells ready; when you reach a Warlock level specified in the Celestial Spells table, you thereafter always have the listed spells prepared.",
+        "spells": {
+          "3": ["Light", "Sacred Flame", "Aid", "Cure Wounds", "Guiding Bolt", "Lesser Restoration"],
+          "5": ["Daylight", "Revivify"],
+          "7": ["Guardian of Faith", "Wall of Fire"],
+          "9": ["Greater Restoration", "Summon Celestial"]
+        },
         "effects": [
           {"type": "grant_cantrip", "spell": "Light", "counts_against_limit": false},
           {"type": "grant_cantrip", "spell": "Sacred Flame", "counts_against_limit": false},
