@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { useCharacterStore } from "@/store/characterStore";
+import { useSupplementStore } from "@/store/supplementStore";
 import { ChoiceList } from "./ChoiceList";
 
 type Loose = Record<string, unknown>;
@@ -128,7 +129,14 @@ export function ClassAdvancedChoices({
   onlySpells?: boolean;
 } = {}) {
   const choicesMade = useCharacterStore((s) => s.choicesMade);
-  const sourceChoices = choicesForDerived ?? choicesMade;
+  const activeSources = useSupplementStore((s) => s.activeSources);
+  const sourceChoices = useMemo(() => {
+    const base = choicesForDerived ?? choicesMade;
+    return {
+      ...base,
+      active_sources: base.active_sources ?? activeSources,
+    };
+  }, [choicesForDerived, choicesMade, activeSources]);
 
   const spellsQ = useDerived(sourceChoices, "spell_management");
   const masteryQ = useDerived(sourceChoices, "mastery_management");
@@ -224,6 +232,7 @@ function useDerived(choicesMade: Loose, view: string) {
       choicesMade.eldritch_invocation_selections,
       choicesMade.artificer_replicate_plans,
       choicesMade.artificer_active_replications,
+      choicesMade.active_sources,
     ],
     queryFn: () => api.character.derived(choicesMade, view),
     enabled: Array.isArray(choicesMade["classes"]) && (choicesMade["classes"] as unknown[]).length > 0,
@@ -1161,9 +1170,13 @@ export function InvocationPicker({ data }: { data: Loose }) {
         ...nextChoices[invocationName],
         [choiceKey]: value,
       };
+      if (choiceKey !== "choice") {
+        delete nextChoices[invocationName]["choice"];
+      }
     } else {
       const copy = { ...nextChoices[invocationName] };
       delete copy[choiceKey];
+      delete copy["choice"];
       nextChoices[invocationName] = copy;
     }
 
@@ -1286,8 +1299,12 @@ export function InvocationPicker({ data }: { data: Loose }) {
 
               {/* Sub-choice selectors for invocations (e.g. Origin Feat for Lessons of the First Ones) */}
               {isSelected && invocationChoices.map((descriptor) => {
-                const choiceKey = str(descriptor.choice_key) ?? "choice";
-                const currentVal = str(selections.choices?.[name]?.[choiceKey]) ?? "";
+                const choiceKey = str(descriptor.choice_key) ?? str(descriptor.choice_name) ?? "origin_feat";
+                const currentVal =
+                  str(selections.choices?.[name]?.[choiceKey]) ??
+                  str(selections.choices?.[name]?.["choice"]) ??
+                  str(descriptor.selected) ??
+                  "";
                 const options = arr<string>(descriptor.options);
                 const featSubChoices = arr<Loose>(descriptor.feat_sub_choices);
 

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { api, type ChoicesMade } from "@/lib/api";
 import { useCharacterStore } from "@/store/characterStore";
+import { useSupplementStore } from "@/store/supplementStore";
 import { useRosterStore } from "@/store/rosterStore";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
@@ -105,10 +106,16 @@ function safeFilename(name: string): string {
 
 export function Sheet() {
   const choicesMade = useCharacterStore((s) => s.choicesMade);
+  const activeSources = useSupplementStore((s) => s.activeSources);
+  const effectiveChoices: Record<string, unknown> & ChoicesMade = useMemo(() => ({
+    ...choicesMade,
+    active_sources: choicesMade.active_sources ?? activeSources,
+  }), [choicesMade, activeSources]);
+
   const saveCurrent = useRosterStore((s) => s.saveCurrent);
   const buildQuery = useQuery({
-    queryKey: ["character", "build", choicesMade],
-    queryFn: () => api.character.build(choicesMade),
+    queryKey: ["character", "build", effectiveChoices],
+    queryFn: () => api.character.build(effectiveChoices),
     retry: false,
     placeholderData: keepPreviousData,
   });
@@ -174,15 +181,16 @@ export function Sheet() {
       "character",
       "derived",
       "spell_management",
-      choicesMade.class,
-      choicesMade.level,
-      choicesMade.subclass,
-      choicesMade.classes,
+      effectiveChoices.class,
+      effectiveChoices.level,
+      effectiveChoices.subclass,
+      effectiveChoices.classes,
+      effectiveChoices.active_sources,
     ],
-    queryFn: () => api.character.derived(choicesMade, "spell_management"),
+    queryFn: () => api.character.derived(effectiveChoices, "spell_management"),
     enabled:
-      Array.isArray(choicesMade["classes"]) &&
-      (choicesMade["classes"] as unknown[]).length > 0,
+      Array.isArray(effectiveChoices["classes"]) &&
+      (effectiveChoices["classes"] as unknown[]).length > 0,
     retry: false,
   });
   const masteryDerived = useQuery({
@@ -190,15 +198,16 @@ export function Sheet() {
       "character",
       "derived",
       "mastery_management",
-      choicesMade.class,
-      choicesMade.level,
-      choicesMade.subclass,
-      choicesMade.classes,
+      effectiveChoices.class,
+      effectiveChoices.level,
+      effectiveChoices.subclass,
+      effectiveChoices.classes,
+      effectiveChoices.active_sources,
     ],
-    queryFn: () => api.character.derived(choicesMade, "mastery_management"),
+    queryFn: () => api.character.derived(effectiveChoices, "mastery_management"),
     enabled:
-      Array.isArray(choicesMade["classes"]) &&
-      (choicesMade["classes"] as unknown[]).length > 0,
+      Array.isArray(effectiveChoices["classes"]) &&
+      (effectiveChoices["classes"] as unknown[]).length > 0,
     retry: false,
   });
   const invocationDerived = useQuery({
@@ -206,17 +215,18 @@ export function Sheet() {
       "character",
       "derived",
       "invocation_management",
-      choicesMade.class,
-      choicesMade.level,
-      choicesMade.subclass,
-      choicesMade.classes,
-      choicesMade.eldritch_invocation_selections,
+      effectiveChoices.class,
+      effectiveChoices.level,
+      effectiveChoices.subclass,
+      effectiveChoices.classes,
+      effectiveChoices.eldritch_invocation_selections,
+      effectiveChoices.active_sources,
     ],
-    queryFn: () => api.character.derived(choicesMade, "invocation_management"),
+    queryFn: () => api.character.derived(effectiveChoices, "invocation_management"),
     enabled: Boolean(
-      choicesMade.class === "Warlock" ||
-        (Array.isArray(choicesMade["classes"]) &&
-          (choicesMade["classes"] as Array<{ class_name?: string }>).some(
+      effectiveChoices.class === "Warlock" ||
+        (Array.isArray(effectiveChoices["classes"]) &&
+          (effectiveChoices["classes"] as Array<{ class_name?: string }>).some(
             (c) => c?.class_name === "Warlock",
           )),
     ),
@@ -226,18 +236,19 @@ export function Sheet() {
   const replicateDerived = useQuery({
     queryKey: [
       "character", "derived", "replicate_magic_item_management",
-      choicesMade.class,
-      choicesMade.level,
-      choicesMade.subclass,
-      choicesMade.classes,
-      choicesMade.artificer_replicate_plans,
-      choicesMade.artificer_active_replications,
+      effectiveChoices.class,
+      effectiveChoices.level,
+      effectiveChoices.subclass,
+      effectiveChoices.classes,
+      effectiveChoices.artificer_replicate_plans,
+      effectiveChoices.artificer_active_replications,
+      effectiveChoices.active_sources,
     ],
-    queryFn: () => api.character.derived(choicesMade, "replicate_magic_item_management"),
+    queryFn: () => api.character.derived(effectiveChoices, "replicate_magic_item_management"),
     enabled: Boolean(
-      choicesMade.class === "Artificer" ||
-        (Array.isArray(choicesMade["classes"]) &&
-          (choicesMade["classes"] as Array<{ class_name?: string }>).some(
+      effectiveChoices.class === "Artificer" ||
+        (Array.isArray(effectiveChoices["classes"]) &&
+          (effectiveChoices["classes"] as Array<{ class_name?: string }>).some(
             (c) => c?.class_name === "Artificer",
           )),
     ),
@@ -2944,6 +2955,9 @@ function Proficiencies({ c }: { c: Char }) {
 function Languages({ c }: { c: Char }) {
   const langs = arr<string>(c.languages);
   const darkvision = c.darkvision as number | undefined;
+  const truesight = c.truesight as number | undefined;
+  const magicalDarknessSight = c.magical_darkness_sight as { range?: number } | undefined;
+
   return (
     <Section title="Languages & Senses">
       <div className="space-y-3">
@@ -2955,11 +2969,26 @@ function Languages({ c }: { c: Char }) {
         </div>
         <div>
           <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide mb-1">
-            Darkvision
+            Senses
           </p>
-          <p className="text-sm">
-            {darkvision && darkvision > 0 ? `${darkvision} feet` : "None"}
-          </p>
+          <div className="space-y-1">
+            <p className="text-sm">
+              <span className="font-medium text-foreground">Darkvision:</span>{" "}
+              {darkvision && darkvision > 0 ? `${darkvision} feet` : "None"}
+            </p>
+            {magicalDarknessSight?.range && magicalDarknessSight.range > 0 && (
+              <p className="text-sm">
+                <span className="font-medium text-foreground">Devil's Sight:</span>{" "}
+                {magicalDarknessSight.range} feet (Magical Darkness)
+              </p>
+            )}
+            {truesight && truesight > 0 && (
+              <p className="text-sm">
+                <span className="font-medium text-foreground">Truesight:</span>{" "}
+                {truesight} feet
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </Section>

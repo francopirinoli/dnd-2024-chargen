@@ -1,6 +1,8 @@
+import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { useCharacterStore } from "@/store/characterStore";
+import { useSupplementStore } from "@/store/supplementStore";
 import { InvocationPicker } from "@/components/wizard/ClassAdvancedChoices";
 import {
   Dialog,
@@ -21,23 +23,29 @@ interface InvocationsDialogProps {
 
 export function InvocationsDialog({ open, onClose }: InvocationsDialogProps) {
   const choicesMade = useCharacterStore((s) => s.choicesMade);
+  const activeSources = useSupplementStore((s) => s.activeSources);
+  const effectiveChoices: Record<string, unknown> = useMemo(() => ({
+    ...choicesMade,
+    active_sources: choicesMade.active_sources ?? activeSources,
+  }), [choicesMade, activeSources]);
 
   const query = useQuery({
     queryKey: [
       "character", "derived", "invocation_management",
-      choicesMade.class,
-      choicesMade.level,
-      choicesMade.subclass,
-      choicesMade.classes,
-      choicesMade.eldritch_invocation_selections,
+      effectiveChoices.class,
+      effectiveChoices.level,
+      effectiveChoices.subclass,
+      effectiveChoices.classes,
+      effectiveChoices.eldritch_invocation_selections,
+      effectiveChoices.active_sources,
     ],
-    queryFn: () => api.character.derived(choicesMade as Loose, "invocation_management"),
+    queryFn: () => api.character.derived(effectiveChoices as Loose, "invocation_management"),
     enabled:
       open &&
       Boolean(
-        choicesMade.class === "Warlock" ||
-          (Array.isArray(choicesMade["classes"]) &&
-            (choicesMade["classes"] as Array<{ class_name?: string }>).some(
+        effectiveChoices.class === "Warlock" ||
+          (Array.isArray(effectiveChoices["classes"]) &&
+            (effectiveChoices["classes"] as Array<{ class_name?: string }>).some(
               (c) => c?.class_name === "Warlock",
             )),
       ),

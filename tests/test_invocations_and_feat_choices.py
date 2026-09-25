@@ -181,3 +181,127 @@ class TestInvocationsAndFeatChoices:
         assert "Pact of the Blade" in inv_changes["current_invocations"]
         assert "Agonizing Blast" in inv_changes["current_invocations"]
         assert "available_invocations" in inv_changes
+
+    def test_lessons_of_the_first_ones_supplement_sources_filtering(self):
+        # 1. Core only
+        builder_core = CharacterBuilder()
+        builder_core.apply_choices({
+            "active_sources": ["core-phb-2024"],
+            "class": "Warlock",
+            "level": 2,
+            "eldritch_invocation_selections": {
+                "selected": ["Lessons of the First Ones"],
+                "cantrip_choices": {},
+                "choices": {}
+            }
+        })
+        stats_core = builder_core.calculate_eldritch_invocation_stats()
+        desc_core = next(d for d in stats_core["invocation_choice_descriptors"] if d["invocation"] == "Lessons of the First Ones")
+        assert "Alert" in desc_core["options"]
+        assert "Echoing Soul" not in desc_core["options"]
+        assert "Arcane Infiltrator" not in desc_core["options"]
+        assert len(desc_core["options"]) == 12
+
+        # 2. With supplements enabled
+        builder_supp = CharacterBuilder()
+        builder_supp.apply_choices({
+            "active_sources": ["core-phb-2024", "ravenloft-the-horrors-within", "arcana-unleashed"],
+            "class": "Warlock",
+            "level": 2,
+            "eldritch_invocation_selections": {
+                "selected": ["Lessons of the First Ones"],
+                "cantrip_choices": {},
+                "choices": {}
+            }
+        })
+        stats_supp = builder_supp.calculate_eldritch_invocation_stats()
+        desc_supp = next(d for d in stats_supp["invocation_choice_descriptors"] if d["invocation"] == "Lessons of the First Ones")
+        assert "Alert" in desc_supp["options"]
+        assert "Echoing Soul" in desc_supp["options"]
+        assert "Arcane Infiltrator" in desc_supp["options"]
+        assert len(desc_supp["options"]) > 12
+
+    def test_gift_of_the_depths_swim_speed_and_water_breathing(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "class": "Warlock",
+            "level": 5,
+            "eldritch_invocation_selections": {
+                "selected": ["Gift of the Depths"],
+                "cantrip_choices": {},
+                "choices": {}
+            }
+        })
+        char = builder.to_character()
+        assert char.get("swim_speed") == 30
+        assert char["combat"].get("swim_speed") == 30
+        assert "Water Breathing" in char["spells"]["always_prepared"]
+        assert char["spells"]["always_prepared"]["Water Breathing"]["once_per_long_rest"] is True
+
+        # When swapping invocation, swim speed and Water Breathing should be cleared
+        builder.apply_choice("eldritch_invocation_selections", {
+            "selected": ["Armor of Shadows"],
+            "cantrip_choices": {},
+            "choices": {}
+        })
+        char_after = builder.to_character()
+        assert char_after.get("swim_speed") is None
+        assert char_after["combat"].get("swim_speed") is None
+        assert "Water Breathing" not in char_after["spells"]["always_prepared"]
+
+    def test_devils_sight_magical_darkness_sight(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "class": "Warlock",
+            "level": 2,
+            "eldritch_invocation_selections": {
+                "selected": ["Devil's Sight"],
+                "cantrip_choices": {},
+                "choices": {}
+            }
+        })
+        assert builder.character_data.get("magical_darkness_sight") == {
+            "range": 120,
+            "source": "Devil's Sight",
+            "source_type": "invocation",
+        }
+
+        # Swap invocation
+        builder.apply_choice("eldritch_invocation_selections", {
+            "selected": ["Armor of Shadows"],
+            "cantrip_choices": {},
+            "choices": {}
+        })
+        assert builder.character_data.get("magical_darkness_sight") == {}
+
+    def test_witch_sight_truesight(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "class": "Warlock",
+            "level": 15,
+            "eldritch_invocation_selections": {
+                "selected": ["Witch Sight"],
+                "cantrip_choices": {},
+                "choices": {}
+            }
+        })
+        char = builder.to_character()
+        assert char.get("truesight") == 30
+
+    def test_at_will_spells_invocations(self):
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "class": "Warlock",
+            "level": 2,
+            "eldritch_invocation_selections": {
+                "selected": ["Armor of Shadows", "Fiendish Vigor"],
+                "cantrip_choices": {},
+                "choices": {}
+            }
+        })
+        char = builder.to_character()
+        always_prep = char["spells"]["always_prepared"]
+        assert "Mage Armor" in always_prep
+        assert always_prep["Mage Armor"]["at_will"] is True
+        assert "False Life" in always_prep
+        assert always_prep["False Life"]["at_will"] is True

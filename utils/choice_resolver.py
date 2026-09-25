@@ -130,8 +130,6 @@ def resolve_choice_options(
                 character.get("choices_made", {}).get("active_sources")
                 or character.get("active_sources")
             )
-        if not active_sources:
-            active_sources = ["core-phb-2024"]
 
         if list_name in ("general_feats", "origin_feats"):
             try:
@@ -161,8 +159,6 @@ def resolve_choice_options(
                     character.get("choices_made", {}).get("active_sources")
                     or character.get("active_sources")
                 )
-            if not active_sources:
-                active_sources = ["core-phb-2024"]
             file_path = file_pattern.format(**{depends_on: dependency_value})
             return load_external_choice_list(file_path, list_name, active_sources=active_sources)
         return []

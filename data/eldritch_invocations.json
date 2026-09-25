@@ -123,6 +123,10 @@
         "type": "grant_spell",
         "spell": "Water Breathing",
         "once_per_long_rest": true
+      },
+      {
+        "type": "grant_swim_speed",
+        "value": "speed"
       }
     ]
   },

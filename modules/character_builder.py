@@ -2626,6 +2626,24 @@ class CharacterBuilder:
         self.character_data["arcane_shots_known"] = []
         self.character_data["arcane_shot_die"] = None
         self.character_data["magical_darkness_sight"] = {}
+
+        # Reset swim speed to non-effect baseline (Ranger 6 or Barbarian Salmon)
+        base_swim = 0
+        if self._get_class_level("Ranger") >= 6:
+            base_swim = max(base_swim, self.character_data.get("speed", 30))
+        aspect = (
+            self.character_data.get("choices_made", {}).get("aspect_of_the_wilds")
+            or self.character_data.get("choices_made", {}).get("subclass_aspect_of_the_wilds")
+        )
+        if aspect == "Salmon":
+            base_swim = max(base_swim, self.character_data.get("speed", 30))
+        if base_swim > 0:
+            self.character_data["swim_speed"] = base_swim
+        else:
+            self.character_data.pop("swim_speed", None)
+            if "combat" in self.character_data and "swim_speed" in self.character_data["combat"]:
+                self.character_data["combat"].pop("swim_speed", None)
+
         # P2-4: damage/range overrides live inside spell_metadata sub-keys;
         # clear only those sub-keys rather than a separate top-level dict.
         for meta in self.character_data.get("spell_metadata", {}).values():
@@ -2765,6 +2783,12 @@ class CharacterBuilder:
                         "source": source,
                         "source_type": stype,
                     }
+            elif etype == "grant_swim_speed":
+                speed_val = effect.get("value")
+                if speed_val == "speed":
+                    self.character_data["swim_speed"] = self.character_data.get("speed", 30)
+                elif isinstance(speed_val, int):
+                    self.character_data["swim_speed"] = max(self.character_data.get("swim_speed", 0), speed_val)
 
     def _filter_applied_effects(self, predicate) -> None:
         """Drop applied effects matching *predicate* and rebuild structured fields.
@@ -4104,7 +4128,12 @@ class CharacterBuilder:
         try:
             from modules.supplement_manager import get_supplement_manager
             mgr = get_supplement_manager()
-            return mgr.get_eldritch_invocations(getattr(self, "active_sources", None))
+            active_sources = (
+                getattr(self, "active_sources", None)
+                or self.character_data.get("active_sources")
+                or self.character_data.get("choices_made", {}).get("active_sources")
+            )
+            return mgr.get_eldritch_invocations(active_sources)
         except Exception:
             invocations_file = self.data_dir / "eldritch_invocations.json"
             if not invocations_file.exists():
@@ -4680,6 +4709,11 @@ class CharacterBuilder:
 
         # Apply based on choice type
         choice_key_lower = choice_key.lower()
+
+        if choice_key_lower in ["active_sources", "active_supplements", "sources"]:
+            self.character_data["active_sources"] = choice_value
+            self.active_sources = choice_value
+            return True
 
         # Core character selections
         if choice_key_lower == "species":
@@ -7294,7 +7328,12 @@ class CharacterBuilder:
         try:
             from modules.supplement_manager import get_supplement_manager
             mgr = get_supplement_manager()
-            return mgr.get_eldritch_invocations(getattr(self, "active_sources", None))
+            active_sources = (
+                getattr(self, "active_sources", None)
+                or self.character_data.get("active_sources")
+                or self.character_data.get("choices_made", {}).get("active_sources")
+            )
+            return mgr.get_eldritch_invocations(active_sources)
         except Exception:
             path = self.data_dir / "eldritch_invocations.json"
             if not path.exists():
@@ -7449,6 +7488,8 @@ class CharacterBuilder:
                     continue
                 choice_name = choice.get("name")
                 selected_value = selected_choice_values.get(choice_name)
+                if selected_value is None and choice_name == "origin_feat":
+                    selected_value = selected_choice_values.get("choice")
                 if not isinstance(choice_name, str) or selected_value is None:
                     continue
                 selected_values = (
@@ -7519,11 +7560,7 @@ class CharacterBuilder:
                 self.character_data["spells"]["always_prepared"].pop(spell_name, None)
                 self.character_data["spell_metadata"].pop(spell_name, None)
 
-        if hasattr(self, "applied_effects"):
-            self.applied_effects = [
-                e for e in self.applied_effects
-                if e.get("source_type") != "invocation"
-            ]
+        self._filter_applied_effects(lambda e: e.get("source_type") == "invocation")
 
     def get_dependent_invocations(
         self, invocation_name: str, current_invocations: Optional[List[str]] = None
@@ -7614,6 +7651,8 @@ class CharacterBuilder:
                     continue
                 options = resolve_choice_options(choice, self.character_data)
                 selected_val = invocation_choices.get(name, {}).get(choice_name)
+                if selected_val is None and choice_name == "origin_feat":
+                    selected_val = invocation_choices.get(name, {}).get("choice")
 
                 # Check if the selected option is a feat that itself has choices
                 feat_sub_choices = []
@@ -7641,6 +7680,7 @@ class CharacterBuilder:
                     "id": f"invocation_{name}_{choice_name}",
                     "invocation": name,
                     "choice_name": choice_name,
+                    "choice_key": choice_name,
                     "title": choice.get("description") or f"Choose {choice_name.replace('_', ' ').title()}",
                     "type": choice.get("type", "select_single"),
                     "count": choice.get("count", 1),
@@ -13721,6 +13761,9 @@ class CharacterBuilder:
 
         # Add Eldritch Invocation stats (Warlock only)
         character_data["eldritch_invocation_stats"] = self.calculate_eldritch_invocation_stats()
+        current_invs = character_data["eldritch_invocation_stats"].get("current_invocations", [])
+        if "Witch Sight" in current_invs:
+            character_data["truesight"] = max(int(character_data.get("truesight", 0) or 0), 30)
 
         # Add Replicate Magic Item stats (Artificer only)
         artificer_replications = self.calculate_artificer_replications_stats()
