@@ -498,16 +498,16 @@
     },
     "hit_die": 6,
     "metamagic_options": {
-      "Careful Spell": "When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell's full force. Spend 1 Sorcery Point; choose up to your Charisma modifier (minimum of 1) of those creatures. A chosen creature automatically succeeds on its saving throw against the spell.",
-      "Distant Spell": "When you cast a spell that has a range of 5 feet or greater, you can spend 1 Sorcery Point to double the range of the spell. When you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the range of the spell 30 feet.",
-      "Empowered Spell": "When you roll damage for a spell, you can spend 1 Sorcery Point to reroll up to your Charisma modifier (minimum of 1) of the damage dice. You must use the new rolls.",
-      "Extended Spell": "When you cast a spell that has a duration of 1 minute or longer, you can spend 1 Sorcery Point to double its duration, to a maximum of 24 hours.",
-      "Heightened Spell": "When you cast a spell that forces a creature to make a saving throw, you can spend 3 Sorcery Points to give one target of the spell Disadvantage on its first saving throw against the spell.",
+      "Careful Spell": "When you cast a spell that forces other creatures to make a saving throw, you can protect some of those creatures from the spell's full force. Spend 1 Sorcery Point and choose a number of those creatures up to your Charisma modifier (minimum of 1). A chosen creature automatically succeeds on its saving throw against the spell, and it takes no damage if it would normally take half damage on a successful save.",
+      "Distant Spell": "When you cast a spell that has a range of at least 5 feet, you can spend 1 Sorcery Point to double the range of the spell. When you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the range of the spell 30 feet.",
+      "Empowered Spell": "When you roll damage for a spell, you can spend 1 Sorcery Point to reroll a number of the damage dice up to your Charisma modifier (minimum of 1). You must use the new rolls. You can use Empowered Spell even if you have already used a different Metamagic option during the casting of the spell.",
+      "Extended Spell": "When you cast a spell that has a duration of 1 minute or longer, you can spend 1 Sorcery Point to double its duration, to a maximum of 24 hours. If the spell requires Concentration, you also have Advantage on saving throws you make to maintain that Concentration.",
+      "Heightened Spell": "When you cast a spell that forces a creature to make a saving throw, you can spend 2 Sorcery Points to give one target of the spell Disadvantage on its first saving throw made against the spell.",
       "Quickened Spell": "When you cast a spell that has a casting time of an Action, you can spend 2 Sorcery Points to change the casting time to a Bonus Action for this casting.",
-      "Seeking Spell": "If you make an attack roll for a spell and miss, you can spend 1 Sorcery Point to reroll the d20, and you must use the new roll.",
-      "Subtle Spell": "When you cast a spell, you can spend 1 Sorcery Point to cast it without any Verbal or Somatic components.",
+      "Seeking Spell": "If you make an attack roll for a spell and miss, you can spend 1 Sorcery Point to reroll the d20, and you must use the new roll. You can use Seeking Spell even if you have already used a different Metamagic option during the casting of the spell.",
+      "Subtle Spell": "When you cast a spell, you can spend 1 Sorcery Point to cast it without any Verbal, Somatic, or Material components, except Material components that are consumed by the spell or that have a cost specified in the spell.",
       "Transmuted Spell": "When you cast a spell that deals a type of damage from the following list, you can spend 1 Sorcery Point to change that damage type to one of the other listed types: Acid, Cold, Fire, Lightning, Poison, Thunder.",
-      "Twinned Spell": "When you cast a spell that targets only one creature and doesn't have a range of Self, you can spend a number of Sorcery Points equal to the spell's level (1 Sorcery Point minimum) to target a second creature in range with the same spell."
+      "Twinned Spell": "When you cast a spell, such as Charm Person or Hold Person, that can be cast with a higher-level spell slot to target an additional creature, you can spend 1 Sorcery Point to increase the spell's effective level by 1."
     },
     "multiclassing": {
       "armor_training": [],
@@ -1125,11 +1125,11 @@
           },
           {
             "choice_key": "metamagic",
-            "description": "When you cast a spell that has a range of 5 feet or greater, you can spend 1 Sorcery Point to double the range of the spell. When you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the range of the spell 30 feet.",
+            "description": "When you cast a spell that has a range of at least 5 feet, you can spend 1 Sorcery Point to double the range of the spell. When you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the range of the spell 30 feet.",
             "name": "Distant Spell"
           }
         ],
-        "description": "You gain the ability to twist your spells to suit your needs. You gain two Metamagic options of your choice from the options below. You gain two additional options at 10th and 17th level. Whenever you gain a Sorcerer level, you can replace one of your Metamagic options with another one.\n\n**Selected Options**:\n\u2022 **Quickened Spell**: When you cast a spell that has a casting time of an Action, you can spend 2 Sorcery Points to change the casting time to a Bonus Action for this casting.\n\u2022 **Distant Spell**: When you cast a spell that has a range of 5 feet or greater, you can spend 1 Sorcery Point to double the range of the spell. When you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the range of the spell 30 feet.",
+        "description": "You gain the ability to twist your spells to suit your needs. You gain two Metamagic options of your choice from the options below. You gain two additional options at 10th and 17th level. Whenever you gain a Sorcerer level, you can replace one of your Metamagic options with another one.\n\n**Selected Options**:\n\u2022 **Quickened Spell**: When you cast a spell that has a casting time of an Action, you can spend 2 Sorcery Points to change the casting time to a Bonus Action for this casting.\n\u2022 **Distant Spell**: When you cast a spell that has a range of at least 5 feet, you can spend 1 Sorcery Point to double the range of the spell. When you cast a spell that has a range of Touch, you can spend 1 Sorcery Point to make the range of the spell 30 feet.",
         "level": 2,
         "name": "Metamagic: Quickened Spell, Distant Spell",
         "source": "Sorcerer"
@@ -1423,6 +1423,145 @@
       "modifier": 1,
       "proficient": false,
       "source": "None"
+    }
+  },
+  "sorcerer_stats": {
+    "actions": [
+      {
+        "action": "Bonus Action",
+        "effect": "Expend a spell slot to gain Sorcery Points equal to the slot's level.",
+        "name": "Font of Magic (Convert Slot)"
+      },
+      {
+        "action": "Bonus Action",
+        "effect": "Transform Sorcery Points into one spell slot (Level 1=2 SP, L2=3 SP, L3=5 SP, L4=6 SP, L5=7 SP).",
+        "name": "Font of Magic (Create Slot)"
+      },
+      {
+        "action": "Bonus Action",
+        "effect": "Unleash magic for 1 min: +1 Spell Save DC (DC 14) and Advantage on Sorcerer spell attack rolls (2/Long Rest).",
+        "name": "Innate Sorcery"
+      }
+    ],
+    "active_perks": [
+      "Innate Sorcery (2/LR: +1 Spell Save DC [DC 14], Adv on spell attack rolls)",
+      "Font of Magic (3 Sorcery Points)",
+      "Draconic Resilience (+3 HP, AC 10+Dex+Cha = 14 unarmored)"
+    ],
+    "arcane_apotheosis": false,
+    "font_of_magic": {
+      "active": true,
+      "converting_slots": "Expend a spell slot to gain Sorcery Points equal to the slot's level (Bonus Action)",
+      "create_spell_slots": [
+        {
+          "cost_sp": 2,
+          "min_sorcerer_level": 2,
+          "slot_level": 1
+        },
+        {
+          "cost_sp": 3,
+          "min_sorcerer_level": 3,
+          "slot_level": 2
+        }
+      ],
+      "creating_spell_slots": {
+        "Level 1": "2 SP",
+        "Level 2": "3 SP",
+        "Level 3": "5 SP",
+        "Level 4": "6 SP",
+        "Level 5": "7 SP"
+      },
+      "recharge": "Long Rest",
+      "sorcery_points": 3,
+      "sorcery_points_max": 3
+    },
+    "innate_sorcery": {
+      "action": "Bonus Action",
+      "active": true,
+      "advantage_on_attacks": true,
+      "arcane_apotheosis": false,
+      "attack_advantage": true,
+      "base_save_dc": 13,
+      "dc_bonus": 1,
+      "duration": "1 minute",
+      "free_metamagic_per_turn": false,
+      "innate_save_dc": 14,
+      "max_uses": 2,
+      "metamagic_limit_per_spell": 1,
+      "recharge": "Long Rest",
+      "recharge_cost_sp": null,
+      "save_dc_bonus": 1,
+      "sorcery_incarnate": false,
+      "spell_attack_bonus": 5,
+      "uses": 2
+    },
+    "is_sorcerer": true,
+    "metamagic": {
+      "active": true,
+      "arcane_apotheosis": false,
+      "max_options": 2,
+      "selected_options": [
+        {
+          "cost": "1 SP",
+          "cost_num": 1,
+          "description": "Double the spell's range, or make a Touch spell have a range of 30 feet.",
+          "name": "Distant Spell",
+          "sp_cost": "1 SP"
+        },
+        {
+          "cost": "2 SP",
+          "cost_num": 2,
+          "description": "Change casting time from an Action to a Bonus Action (cannot cast another level 1+ spell on the turn).",
+          "name": "Quickened Spell",
+          "sp_cost": "2 SP"
+        }
+      ],
+      "sorcery_incarnate": false
+    },
+    "sorcerer_level": 3,
+    "sorcerous_restoration": {
+      "active": false,
+      "frequency": "Once per Long Rest, regain points upon finishing a Short Rest",
+      "points": 0,
+      "sp_regained": 0
+    },
+    "sorcery_incarnate": false,
+    "sorcery_points": 3,
+    "sorcery_points_max": 3,
+    "spell_attack_bonus": 5,
+    "spell_save_dc": 13,
+    "subclass": "Draconic Sorcery",
+    "subclass_details": {
+      "ac_base": "10 + DEX + CHA",
+      "damage_resistance": null,
+      "draconic_element": "Gold",
+      "draconic_resilience": {
+        "ac_formula": "10 + DEX mod + CHA mod",
+        "ac_value": 14,
+        "active": true,
+        "hp_bonus": 3
+      },
+      "dragon_companion": false,
+      "dragon_companion_details": {
+        "active": false,
+        "free_cast": "Summon Dragon without spell slot, material components, or concentration (duration 1 min)",
+        "recharge": "1/Long Rest"
+      },
+      "dragon_wings": false,
+      "dragon_wings_details": {
+        "active": false,
+        "duration": "1 hour",
+        "fly_speed": 60,
+        "recharge": "1/Long Rest or 3 Sorcery Points"
+      },
+      "elemental_affinity": {
+        "active": false,
+        "damage_bonus": 0,
+        "damage_resistance": null,
+        "element": "Gold"
+      },
+      "elemental_affinity_bonus": null,
+      "name": "Draconic Sorcery"
     }
   },
   "species": "Aasimar",

@@ -228,6 +228,14 @@ KNOWN_CHOICE_KEYS: frozenset = frozenset({
     "rogue_expertise_skills_6",
     "Expertise_rogue_expertise_skills_1",
     "Expertise_rogue_expertise_skills_6",
+    # Sorcerer
+    "metamagic",
+    "Metamagic_metamagic",
+    "draconic_element",
+    "draconic_ancestry",
+    "draconic_ancestor",
+    "Elemental Affinity_draconic_element",
+    "subclass_Elemental Affinity_draconic_element",
     # Artificer Replicate Magic Item
     "artificer_replicate_plans",
     "artificer_plans",

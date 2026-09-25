@@ -21,7 +21,7 @@ def _build_sorcerer(level=1, subclass=None):
 
 
 def _build_full_sorcerer(level=3, subclass=None, ability_scores=None,
-                         background_bonuses=None):
+                         background_bonuses=None, choices=None):
     """Helper to build a full Sorcerer character with apply_choices."""
     if ability_scores is None:
         ability_scores = {
@@ -31,7 +31,7 @@ def _build_full_sorcerer(level=3, subclass=None, ability_scores=None,
     if background_bonuses is None:
         background_bonuses = {"Charisma": 2, "Constitution": 1}
 
-    choices = {
+    char_choices = {
         "character_name": "Test Sorcerer",
         "level": level,
         "species": "Human",
@@ -41,10 +41,12 @@ def _build_full_sorcerer(level=3, subclass=None, ability_scores=None,
         "background_bonuses": background_bonuses,
     }
     if subclass and level >= 3:
-        choices["subclass"] = subclass
+        char_choices["subclass"] = subclass
+    if choices:
+        char_choices.update(choices)
 
     builder = CharacterBuilder()
-    builder.apply_choices(choices)
+    builder.apply_choices(char_choices)
     return builder
 
 
@@ -434,3 +436,151 @@ class TestWildMagicSorcery:
             if "Wild Magic" in sa.get("condition", "")
         ]
         assert len(wild_magic_saves) == 0
+
+
+# ==================== 2024 RAW PHB Sorcerer Audit ====================
+
+
+class TestSorcerer2024Audit:
+    """Audit tests ensuring Sorcerer complies fully with D&D 2024 RAW PHB rules."""
+
+    def test_level_1_innate_sorcery(self):
+        builder = _build_full_sorcerer(level=1)
+        char = builder.to_character()
+        stats = char.get("sorcerer_stats", {})
+
+        assert stats.get("is_sorcerer") is True
+        assert stats.get("sorcerer_level") == 1
+
+        innate = stats.get("innate_sorcery", {})
+        assert innate.get("active") is True
+        assert innate.get("max_uses") == 2
+        assert innate.get("dc_bonus") == 1
+        assert innate.get("attack_advantage") is True
+        assert innate.get("action") == "Bonus Action"
+        assert innate.get("recharge") == "Long Rest"
+
+        # Level 1 has no font of magic or metamagic yet
+        fom = stats.get("font_of_magic", {})
+        assert fom.get("active") is False
+        assert fom.get("sorcery_points_max") == 0
+
+        meta = stats.get("metamagic", {})
+        assert meta.get("active") is False
+
+    def test_level_2_font_of_magic_and_metamagic(self):
+        builder = _build_full_sorcerer(
+            level=2,
+            choices={"metamagic": ["Heightened Spell", "Twinned Spell"]},
+        )
+        char = builder.to_character()
+        stats = char.get("sorcerer_stats", {})
+
+        fom = stats.get("font_of_magic", {})
+        assert fom.get("active") is True
+        assert fom.get("sorcery_points_max") == 2
+
+        # Slot creation costs match 2024 RAW
+        costs = fom.get("creating_spell_slots", {})
+        assert costs["Level 1"] == "2 SP"
+        assert costs["Level 2"] == "3 SP"
+        assert costs["Level 3"] == "5 SP"
+        assert costs["Level 4"] == "6 SP"
+        assert costs["Level 5"] == "7 SP"
+
+        # Metamagic 2 picks at level 2
+        meta = stats.get("metamagic", {})
+        assert meta.get("active") is True
+        assert meta.get("max_options") == 2
+        selected = {opt["name"]: opt for opt in meta.get("selected_options", [])}
+        assert "Heightened Spell" in selected
+        assert selected["Heightened Spell"]["sp_cost"] == "2 SP"  # 2024 RAW (was 3 SP in 2014)
+        assert "Twinned Spell" in selected
+        assert selected["Twinned Spell"]["sp_cost"] == "1 SP"  # 2024 RAW
+
+    def test_metamagic_scaling_by_level(self):
+        # Level 9 -> 2 options
+        char_9 = _build_full_sorcerer(level=9).to_character()
+        assert char_9["sorcerer_stats"]["metamagic"]["max_options"] == 2
+
+        # Level 10 -> 4 options
+        char_10 = _build_full_sorcerer(level=10).to_character()
+        assert char_10["sorcerer_stats"]["metamagic"]["max_options"] == 4
+
+        # Level 17 -> 6 options
+        char_17 = _build_full_sorcerer(level=17).to_character()
+        assert char_17["sorcerer_stats"]["metamagic"]["max_options"] == 6
+
+    def test_sorcerous_restoration_at_level_5(self):
+        builder = _build_full_sorcerer(level=5)
+        char = builder.to_character()
+        restoration = char["sorcerer_stats"]["sorcerous_restoration"]
+
+        assert restoration.get("active") is True
+        assert restoration.get("sp_regained") == 2  # 5 // 2 = 2
+
+        # At level 10: 10 // 2 = 5
+        char_10 = _build_full_sorcerer(level=10).to_character()
+        assert char_10["sorcerer_stats"]["sorcerous_restoration"]["sp_regained"] == 5
+
+    def test_sorcery_incarnate_at_level_7(self):
+        char_7 = _build_full_sorcerer(level=7).to_character()
+        innate = char_7["sorcerer_stats"]["innate_sorcery"]
+
+        assert innate.get("recharge_cost_sp") == 2
+        assert innate.get("metamagic_limit_per_spell") == 2
+
+    def test_arcane_apotheosis_at_level_20(self):
+        char_20 = _build_full_sorcerer(level=20).to_character()
+        innate = char_20["sorcerer_stats"]["innate_sorcery"]
+
+        assert innate.get("free_metamagic_per_turn") is True
+        assert char_20["sorcerer_stats"]["font_of_magic"]["sorcery_points_max"] == 20
+
+    def test_draconic_sorcery_elemental_affinity_and_resilience(self):
+        # Apply draconic_element = Fire
+        builder = _build_full_sorcerer(
+            level=6,
+            subclass="Draconic Sorcery",
+            choices={"draconic_element": "Fire"},
+        )
+        char = builder.to_character()
+
+        # Check Draconic Resilience AC
+        resilience_ac = [
+            opt for opt in char.get("ac_options", [])
+            if opt.get("notes") and any("Draconic Resilience" in note for note in opt["notes"])
+        ]
+        assert len(resilience_ac) == 1
+        assert "Cha" in resilience_ac[0]["formula"] or "CHA" in resilience_ac[0]["formula"]
+
+        # Check Elemental Affinity Fire resistance granted dynamically
+        resistances = char.get("resistances", [])
+        assert "Fire" in resistances or any(
+            (r if isinstance(r, str) else r.get("type", "")) == "Fire"
+            for r in resistances
+        )
+
+        # Check subclass stats
+        sub_details = char["sorcerer_stats"]["subclass_details"]
+        assert sub_details.get("draconic_element") == "Fire"
+        assert sub_details.get("damage_resistance") == "Fire"
+        assert sub_details.get("ac_base") == "10 + DEX + CHA"
+
+    def test_clockwork_sorcery_restore_balance(self):
+        builder = _build_full_sorcerer(level=3, subclass="Clockwork Sorcery")
+        char = builder.to_character()
+        sub_details = char["sorcerer_stats"]["subclass_details"]
+
+        # Restore Balance uses equals Charisma modifier (4 for 18 Cha)
+        assert sub_details.get("restore_balance_uses") == 4
+
+    def test_aberrant_sorcery_psionic_sorcery(self):
+        builder = _build_full_sorcerer(level=6, subclass="Aberrant Sorcery")
+        char = builder.to_character()
+        sub_details = char["sorcerer_stats"]["subclass_details"]
+
+        assert sub_details.get("telepathic_speech") is True
+        assert sub_details.get("psionic_sorcery") is True
+        assert sub_details.get("psychic_defenses") is True
+

@@ -1464,6 +1464,13 @@ function SpecialFeatures({ c }: { c: Char }) {
   const isRogue = Boolean(rogueStats.is_rogue) || num(rogueStats.rogue_level) !== undefined;
   const cunningStrike = rec(rogueStats.cunning_strike);
   const cunningAction = rec(rogueStats.cunning_action);
+  const sorcererStats = rec(c.sorcerer_stats);
+  const isSorcerer = Boolean(sorcererStats.is_sorcerer) || num(sorcererStats.sorcerer_level) !== undefined;
+  const innateSorcery = rec(sorcererStats.innate_sorcery);
+  const fontOfMagic = rec(sorcererStats.font_of_magic);
+  const metamagic = rec(sorcererStats.metamagic);
+  const sorcerousRestoration = rec(sorcererStats.sorcerous_restoration);
+  const sorcererSubclass = rec(sorcererStats.subclass_details);
   const superiorityDice = rec(c.superiority_dice);
   const hasSuperiorityDice = num(superiorityDice.count) !== undefined;
   const hasArcaneShot = num(c.arcane_shot_dc) !== undefined;
@@ -1478,6 +1485,7 @@ function SpecialFeatures({ c }: { c: Char }) {
     (isPaladin && paladinStats.paladin_level !== undefined) ||
     (isRanger && rangerStats.ranger_level !== undefined) ||
     (isRogue && rogueStats.rogue_level !== undefined) ||
+    (isSorcerer && sorcererStats.sorcerer_level !== undefined) ||
     hasSuperiorityDice ||
     hasArcaneShot;
 
@@ -2204,6 +2212,213 @@ function SpecialFeatures({ c }: { c: Char }) {
                 {arr<Record<string, unknown>>(rogueStats.actions).map((act, idx) => (
                   <div
                     key={`rogue-act-${idx}`}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-primary">{str(act.name)}</span>
+                      <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                        {str(act.action)}
+                      </span>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isSorcerer && sorcererStats.sorcerer_level !== undefined && (
+          <div className="rounded-lg border border-border/70 bg-card/60 p-3 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
+              <span className="font-semibold text-primary">Sorcerer Features</span>
+              <div className="flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                <span className="rounded bg-primary/10 px-2 py-0.5 text-primary font-medium">
+                  Level {num(sorcererStats.sorcerer_level)}
+                </span>
+                {num(fontOfMagic.sorcery_points_max) !== undefined && (
+                  <span className="rounded bg-primary/15 px-2 py-0.5 font-semibold text-primary">
+                    Sorcery Points: {num(fontOfMagic.sorcery_points_max)} SP
+                  </span>
+                )}
+                {innateSorcery.active === true && (
+                  <span className="rounded bg-accent/20 px-2 py-0.5 font-semibold text-accent-foreground">
+                    Innate Sorcery: {num(innateSorcery.max_uses)}/LR (+{num(innateSorcery.dc_bonus)} DC, Adv Attacks)
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Innate Sorcery & Font of Magic Details */}
+            <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
+              <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                <div className="font-medium text-foreground flex items-center justify-between">
+                  <span>Innate Sorcery</span>
+                  <span className="text-[10px] text-muted-foreground">{str(innateSorcery.action)} • 1 min</span>
+                </div>
+                <div className="text-[11px] text-muted-foreground leading-relaxed">
+                  +1 to Sorcerer Spell Save DC and Advantage on Sorcerer spell attack rolls.
+                  {Boolean(innateSorcery.free_metamagic_per_turn) && (
+                    <span className="block text-primary font-medium mt-0.5">
+                      Arcane Apotheosis: 1 free Metamagic every turn while active!
+                    </span>
+                  )}
+                  {num(innateSorcery.recharge_cost_sp) !== undefined && (
+                    <span className="block text-muted-foreground mt-0.5">
+                      Sorcery Incarnate: When out of uses, activate for 2 SP. Use 2 Metamagics per spell.
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {fontOfMagic.active === true && (
+                <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                  <div className="font-medium text-foreground flex items-center justify-between">
+                    <span>Font of Magic</span>
+                    <span className="text-[10px] text-muted-foreground">Recharge: Long Rest</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground leading-relaxed">
+                    Convert slots to SP (1:1). Create spell slots as Bonus Action:
+                    <div className="flex flex-wrap gap-1 mt-1 text-[10px]">
+                      {Object.entries(rec(fontOfMagic.creating_spell_slots)).map(([lvl, cost]) => (
+                        <span key={lvl} className="rounded bg-primary/10 px-1.5 py-0.5 text-foreground">
+                          {lvl}: <strong className="text-primary">{str(cost)}</strong>
+                        </span>
+                      ))}
+                    </div>
+                    {sorcerousRestoration.active === true && (
+                      <div className="mt-1 text-[10px] text-primary">
+                        Sorcerous Restoration: Regain up to {num(sorcerousRestoration.sp_regained)} SP on Short Rest (1/LR).
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Metamagic Options */}
+            {metamagic.active === true && (
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-semibold text-foreground">
+                  <span>Metamagic Options ({arr(metamagic.selected_options).length}/{num(metamagic.max_options)})</span>
+                </div>
+                {arr<Record<string, unknown>>(metamagic.selected_options).length > 0 ? (
+                  <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                    {arr<Record<string, unknown>>(metamagic.selected_options).map((meta, idx) => (
+                      <div
+                        key={`meta-opt-${idx}`}
+                        className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                      >
+                        <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                          <span className="text-primary">{str(meta.name)}</span>
+                          <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                            {str(meta.sp_cost)}
+                          </span>
+                        </div>
+                        <div className="mt-0.5 text-[11px] text-muted-foreground">
+                          {str(meta.description)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-xs text-muted-foreground italic">
+                    No Metamagic options selected yet. Choose {num(metamagic.max_options)} in the Class step.
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Subclass Features */}
+            {Boolean(sorcererSubclass.name) && (
+              <div className="rounded border border-border/50 bg-background/40 p-2 space-y-1 text-xs">
+                <div className="font-semibold text-primary">{str(sorcererSubclass.name)}</div>
+                <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 text-[11px] text-muted-foreground">
+                  {Boolean(sorcererSubclass.draconic_element) && (
+                    <div>
+                      Element: <strong className="text-foreground">{str(sorcererSubclass.draconic_element)}</strong>
+                      {Boolean(sorcererSubclass.damage_resistance) && (
+                        <span> (Resist {str(sorcererSubclass.damage_resistance)})</span>
+                      )}
+                    </div>
+                  )}
+                  {Boolean(sorcererSubclass.ac_base) && (
+                    <div>Draconic Resilience: <strong className="text-foreground">Base AC {str(sorcererSubclass.ac_base)} + +1 HP/lvl</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.elemental_affinity_bonus) && (
+                    <div>Elemental Affinity: <strong className="text-foreground">+{str(sorcererSubclass.elemental_affinity_bonus)} damage</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.dragon_wings) && (
+                    <div>Dragon Wings: <strong className="text-foreground">Fly 60 ft (Bonus Action, 1 hr)</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.dragon_companion) && (
+                    <div>Dragon Companion: <strong className="text-foreground">Summon Dragon (no concentration)</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.tides_of_chaos) && (
+                    <div>Tides of Chaos: <strong className="text-foreground">Advantage on d20 Test (1/LR or Surge recharge)</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.bend_luck_cost) && (
+                    <div>Bend Luck: <strong className="text-foreground">1d4 bonus/penalty to roll ({str(sorcererSubclass.bend_luck_cost)})</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.controlled_chaos) && (
+                    <div>Controlled Chaos: <strong className="text-foreground">Roll twice on Wild Magic Surge table</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.tamed_surge) && (
+                    <div>Tamed Surge: <strong className="text-foreground">Choose roll or reroll 1/LR</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.telepathic_speech) && (
+                    <div>Telepathic Speech: <strong className="text-foreground">Telepathic bond (Bonus Action, miles = Cha mod)</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.psionic_sorcery) && (
+                    <div>Psionic Sorcery: <strong className="text-foreground">Cast Psionic Spells using SP directly (no V/S/M)</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.psychic_defenses) && (
+                    <div>Psychic Defenses: <strong className="text-foreground">Resistance to Psychic damage, Adv vs Charmed/Frightened</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.revelation_in_flesh) && (
+                    <div>Revelation in Flesh: <strong className="text-foreground">1 SP per benefit (flying, swimming, squeezing, see invisible)</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.warping_implosion) && (
+                    <div>Warping Implosion: <strong className="text-foreground">Teleport up to 120 ft + 3d10 Force pull damage</strong></div>
+                  )}
+                  {num(sorcererSubclass.restore_balance_uses) !== undefined && (
+                    <div>Restore Balance: <strong className="text-foreground">{num(sorcererSubclass.restore_balance_uses)} uses/LR (negate Adv/Disadv)</strong></div>
+                  )}
+                  {num(sorcererSubclass.bastion_of_law_max_dice) !== undefined && (
+                    <div>Bastion of Law: <strong className="text-foreground">Ward with up to {num(sorcererSubclass.bastion_of_law_max_dice)}d8 damage reduction</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.trance_of_order) && (
+                    <div>Trance of Order: <strong className="text-foreground">d20 rolls under 10 become 10 (1 min, 2 SP recharge)</strong></div>
+                  )}
+                  {Boolean(sorcererSubclass.clockwork_cavalcade) && (
+                    <div>Clockwork Cavalcade: <strong className="text-foreground">Heal 100 HP, restore objects, dispel spells lv 1-6</strong></div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Active Perks Badges */}
+            {arr<string>(sorcererStats.active_perks).length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                {arr<string>(sorcererStats.active_perks).map((perk, idx) => (
+                  <span
+                    key={`sorc-perk-${idx}`}
+                    className="rounded bg-primary/10 px-2 py-0.5 text-[11px] text-primary"
+                  >
+                    {perk}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Actions Grid */}
+            {arr<Record<string, unknown>>(sorcererStats.actions).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(sorcererStats.actions).map((act, idx) => (
+                  <div
+                    key={`sorc-act-${idx}`}
                     className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
                   >
                     <div className="flex items-center justify-between gap-1 font-semibold text-foreground">

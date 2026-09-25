@@ -2089,9 +2089,10 @@ class CharacterBuilder:
             damage_types = effect.get("damage_types") or (
                 [effect["damage_type"]] if "damage_type" in effect else []
             )
-            # Support dynamic damage type resolved from a species/trait choice
+            # Support dynamic damage type resolved from a class/subclass or species/trait choice
             if not damage_types and "damage_type_from_choice" in effect:
-                choice_value = self._resolve_choice_value(effect["damage_type_from_choice"])
+                choice_key = effect["damage_type_from_choice"]
+                choice_value = self._resolve_from_choice_value(choice_key) or self._resolve_choice_value(choice_key)
                 if choice_value:
                     damage_types = [self._extract_parenthetical(choice_value)]
             for damage_type in damage_types:
@@ -6891,7 +6892,7 @@ class CharacterBuilder:
                     if not isinstance(feature_data, dict):
                         continue
                     for effect in feature_data.get("effects", []):
-                        if isinstance(effect, dict) and "from_choice" in effect:
+                        if isinstance(effect, dict) and ("from_choice" in effect or "damage_type_from_choice" in effect):
                             self._apply_effect(effect, feature_name, source_type)
 
     # ==================== Calculation Methods ====================
@@ -10584,6 +10585,508 @@ class CharacterBuilder:
             "subclass_details": subclass_details,
         }
 
+    def calculate_sorcerer_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Sorcerer 2024 RAW statistics including:
+        - Innate Sorcery (lv 1+: Bonus Action, 1 min, +1 Spell Save DC, Adv on spell attacks, 2/LR)
+        - Font of Magic (lv 2+: Sorcery Points = level, convert slots to SP, create slots 1st-5th)
+        - Metamagic (lv 2+: 2 options, lv 10+: 4 options, lv 17+: 6 options; 2024 RAW SP costs)
+        - Sorcerous Restoration (lv 5+: Short Rest regain SP = level // 2, 1/LR)
+        - Sorcery Incarnate (lv 7+: 2 Metamagics per spell during Innate Sorcery, recharge with 2 SP)
+        - Arcane Apotheosis (lv 20+: 1 free Metamagic per turn during Innate Sorcery)
+        - Subclass mechanics for Draconic Sorcery, Wild Magic Sorcery, Aberrant Sorcery, and Clockwork Sorcery.
+        """
+        sorcerer_level = self._get_class_level("Sorcerer")
+        if sorcerer_level <= 0:
+            return {
+                "is_sorcerer": False,
+                "sorcerer_level": 0,
+                "subclass": "",
+                "sorcery_points": 0,
+                "sorcery_points_max": 0,
+                "innate_sorcery": {
+                    "active": False,
+                    "uses": 0,
+                    "max_uses": 0,
+                    "save_dc_bonus": 0,
+                    "advantage_on_attacks": False,
+                },
+                "font_of_magic": {"active": False},
+                "metamagic": {
+                    "active": False,
+                    "max_options": 0,
+                    "selected_options": [],
+                },
+                "sorcerous_restoration": {"active": False, "points": 0},
+                "sorcery_incarnate": False,
+                "arcane_apotheosis": False,
+                "active_perks": [],
+                "actions": [],
+                "subclass_details": {},
+            }
+
+        subclass = self._get_class_subclass("Sorcerer") or ""
+        ability_scores = self.calculate_processed_ability_scores()
+        cha_mod = ability_scores.get("charisma", {}).get("modifier", 0)
+        dex_mod = ability_scores.get("dexterity", {}).get("modifier", 0)
+        proficiency_bonus = self.calculate_proficiency_bonus(sorcerer_level)
+        spell_save_dc = 8 + cha_mod + proficiency_bonus
+        spell_attack_bonus = cha_mod + proficiency_bonus
+        choices_made = self.character_data.get("choices_made", {})
+
+        # Innate Sorcery (Level 1)
+        innate_active = sorcerer_level >= 1
+        innate_dc = spell_save_dc + 1
+        innate_sorcery = {
+            "active": innate_active,
+            "uses": 2 if innate_active else 0,
+            "max_uses": 2 if innate_active else 0,
+            "duration": "1 minute",
+            "base_save_dc": spell_save_dc,
+            "innate_save_dc": innate_dc,
+            "spell_attack_bonus": spell_attack_bonus,
+            "save_dc_bonus": 1 if innate_active else 0,
+            "dc_bonus": 1 if innate_active else 0,
+            "advantage_on_attacks": innate_active,
+            "attack_advantage": innate_active,
+            "action": "Bonus Action",
+            "recharge": "Long Rest",
+            "sorcery_incarnate": sorcerer_level >= 7,
+            "recharge_cost_sp": 2 if sorcerer_level >= 7 else None,
+            "metamagic_limit_per_spell": 2 if sorcerer_level >= 7 else 1,
+            "arcane_apotheosis": sorcerer_level >= 20,
+            "free_metamagic_per_turn": sorcerer_level >= 20,
+        }
+
+        # Font of Magic (Level 2)
+        font_active = sorcerer_level >= 2
+        sorcery_points_max = sorcerer_level if font_active else 0
+        create_slot_costs = [
+            {"slot_level": 1, "cost_sp": 2, "min_sorcerer_level": 2},
+            {"slot_level": 2, "cost_sp": 3, "min_sorcerer_level": 3},
+            {"slot_level": 3, "cost_sp": 5, "min_sorcerer_level": 5},
+            {"slot_level": 4, "cost_sp": 6, "min_sorcerer_level": 7},
+            {"slot_level": 5, "cost_sp": 7, "min_sorcerer_level": 9},
+        ]
+        available_create_slots = [
+            s for s in create_slot_costs if sorcerer_level >= s["min_sorcerer_level"]
+        ]
+        font_of_magic = {
+            "active": font_active,
+            "sorcery_points": sorcery_points_max,
+            "sorcery_points_max": sorcery_points_max,
+            "recharge": "Long Rest",
+            "create_spell_slots": available_create_slots,
+            "creating_spell_slots": {
+                "Level 1": "2 SP",
+                "Level 2": "3 SP",
+                "Level 3": "5 SP",
+                "Level 4": "6 SP",
+                "Level 5": "7 SP",
+            },
+            "converting_slots": "Expend a spell slot to gain Sorcery Points equal to the slot's level (Bonus Action)",
+        }
+
+        # Sorcerous Restoration (Level 5)
+        restoration_active = sorcerer_level >= 5
+        restoration_points = (sorcerer_level // 2) if restoration_active else 0
+        sorcerous_restoration = {
+            "active": restoration_active,
+            "points": restoration_points,
+            "sp_regained": restoration_points,
+            "frequency": "Once per Long Rest, regain points upon finishing a Short Rest",
+        }
+
+        # Metamagic (Level 2)
+        metamagic_active = sorcerer_level >= 2
+        max_metamagic_options = 6 if sorcerer_level >= 17 else (4 if sorcerer_level >= 10 else (2 if metamagic_active else 0))
+
+        # 2024 PHB Metamagic dictionary
+        RAW_2024_METAMAGIC = {
+            "Careful Spell": {
+                "cost": "1 SP",
+                "cost_num": 1,
+                "description": f"Protect up to {max(1, cha_mod)} allies from area spell saves; they automatically succeed and take 0 damage on half-damage saves.",
+            },
+            "Distant Spell": {
+                "cost": "1 SP",
+                "cost_num": 1,
+                "description": "Double the spell's range, or make a Touch spell have a range of 30 feet.",
+            },
+            "Empowered Spell": {
+                "cost": "1 SP",
+                "cost_num": 1,
+                "description": f"Reroll up to {max(1, cha_mod)} damage dice. Can be used alongside another Metamagic option.",
+            },
+            "Extended Spell": {
+                "cost": "1 SP",
+                "cost_num": 1,
+                "description": "Double duration up to 24 hours. Gain Advantage on Concentration saving throws to maintain the spell.",
+            },
+            "Heightened Spell": {
+                "cost": "2 SP",
+                "cost_num": 2,
+                "description": "Give one target Disadvantage on its first saving throw against the spell.",
+            },
+            "Quickened Spell": {
+                "cost": "2 SP",
+                "cost_num": 2,
+                "description": "Change casting time from an Action to a Bonus Action (cannot cast another level 1+ spell on the turn).",
+            },
+            "Seeking Spell": {
+                "cost": "1 SP",
+                "cost_num": 1,
+                "description": "Reroll a missed spell attack d20. Can be used alongside another Metamagic option.",
+            },
+            "Subtle Spell": {
+                "cost": "1 SP",
+                "cost_num": 1,
+                "description": "Cast without Verbal, Somatic, or non-costly/non-consumed Material components.",
+            },
+            "Transmuted Spell": {
+                "cost": "1 SP",
+                "cost_num": 1,
+                "description": "Change damage type to Acid, Cold, Fire, Lightning, Poison, or Thunder.",
+            },
+            "Twinned Spell": {
+                "cost": "1 SP",
+                "cost_num": 1,
+                "description": "When casting a spell that targets an additional creature when upcast (e.g. Charm Person, Hold Person), spend 1 SP to increase effective level by 1.",
+            },
+        }
+
+        # Resolve selected metamagic
+        selected_raw = choices_made.get("metamagic") or choices_made.get("Metamagic_metamagic") or []
+        if isinstance(selected_raw, str):
+            selected_raw = [selected_raw]
+        elif not isinstance(selected_raw, list):
+            selected_raw = []
+
+        selected_metamagic_options = []
+        for opt_name in selected_raw:
+            meta_info = RAW_2024_METAMAGIC.get(opt_name, {
+                "cost": "1 SP",
+                "cost_num": 1,
+                "description": "Modify the spell according to Metamagic rules.",
+            })
+            selected_metamagic_options.append({
+                "name": opt_name,
+                "cost": meta_info["cost"],
+                "sp_cost": meta_info["cost"],
+                "cost_num": meta_info["cost_num"],
+                "description": meta_info["description"],
+            })
+
+        metamagic = {
+            "active": metamagic_active,
+            "max_options": max_metamagic_options,
+            "selected_options": selected_metamagic_options,
+            "sorcery_incarnate": sorcerer_level >= 7,
+            "arcane_apotheosis": sorcerer_level >= 20,
+        }
+
+        actions = []
+        if innate_active:
+            actions.append({
+                "name": "Innate Sorcery",
+                "action": "Bonus Action",
+                "effect": f"Unleash magic for 1 min: +1 Spell Save DC (DC {innate_dc}) and Advantage on Sorcerer spell attack rolls (2/Long Rest{'; or 2 SP' if sorcerer_level >= 7 else ''}).",
+            })
+        if font_active:
+            actions.append({
+                "name": "Font of Magic (Convert Slot)",
+                "action": "Bonus Action",
+                "effect": "Expend a spell slot to gain Sorcery Points equal to the slot's level.",
+            })
+            actions.append({
+                "name": "Font of Magic (Create Slot)",
+                "action": "Bonus Action",
+                "effect": "Transform Sorcery Points into one spell slot (Level 1=2 SP, L2=3 SP, L3=5 SP, L4=6 SP, L5=7 SP).",
+            })
+
+        subclass_details = {}
+        if subclass == "Draconic Sorcery":
+            draconic_element = (
+                self._resolve_from_choice_value("draconic_element")
+                or choices_made.get("draconic_element")
+                or choices_made.get("Elemental Affinity_draconic_element")
+                or choices_made.get("subclass_Elemental Affinity_draconic_element")
+                or choices_made.get("draconic_ancestry")
+                or "Fire"
+            )
+            subclass_details = {
+                "name": "Draconic Sorcery",
+                "draconic_element": draconic_element,
+                "damage_resistance": draconic_element if sorcerer_level >= 6 else None,
+                "ac_base": "10 + DEX + CHA",
+                "elemental_affinity_bonus": f"+{cha_mod} (CHA)" if sorcerer_level >= 6 else None,
+                "dragon_wings": sorcerer_level >= 14,
+                "dragon_companion": sorcerer_level >= 18,
+                "draconic_resilience": {
+                    "active": sorcerer_level >= 3,
+                    "hp_bonus": sorcerer_level if sorcerer_level >= 3 else 0,
+                    "ac_formula": "10 + DEX mod + CHA mod",
+                    "ac_value": 10 + dex_mod + cha_mod,
+                },
+                "elemental_affinity": {
+                    "active": sorcerer_level >= 6,
+                    "element": draconic_element,
+                    "damage_resistance": draconic_element if sorcerer_level >= 6 else None,
+                    "damage_bonus": cha_mod if sorcerer_level >= 6 else 0,
+                },
+                "dragon_wings_details": {
+                    "active": sorcerer_level >= 14,
+                    "fly_speed": 60,
+                    "duration": "1 hour",
+                    "recharge": "1/Long Rest or 3 Sorcery Points",
+                },
+                "dragon_companion_details": {
+                    "active": sorcerer_level >= 18,
+                    "recharge": "1/Long Rest",
+                    "free_cast": "Summon Dragon without spell slot, material components, or concentration (duration 1 min)",
+                },
+            }
+            if sorcerer_level >= 14:
+                actions.append({
+                    "name": "Dragon Wings",
+                    "action": "Bonus Action",
+                    "effect": "Manifest draconic wings granting Fly Speed 60 ft for 1 hour (1/Long Rest or 3 SP).",
+                })
+            if sorcerer_level >= 18:
+                actions.append({
+                    "name": "Dragon Companion",
+                    "action": "Magic Action",
+                    "effect": "Cast Summon Dragon without a slot, material components, or concentration (1/Long Rest).",
+                })
+
+        elif subclass == "Wild Magic Sorcery":
+            subclass_details = {
+                "name": "Wild Magic Sorcery",
+                "wild_magic_surge": sorcerer_level >= 3,
+                "tides_of_chaos": sorcerer_level >= 3,
+                "bend_luck_cost": "1 SP" if sorcerer_level >= 6 else None,
+                "controlled_chaos": sorcerer_level >= 14,
+                "tamed_surge": sorcerer_level >= 18,
+                "tides_of_chaos_details": {
+                    "active": sorcerer_level >= 3,
+                    "effect": "Gain Advantage on one D20 Test. Recharges when you cast a level 1+ Sorcerer spell (which triggers a Surge) or finish a Long Rest.",
+                },
+                "bend_luck": {
+                    "active": sorcerer_level >= 6,
+                    "cost": "1 Sorcery Point",
+                    "die": "1d4",
+                    "action": "Reaction",
+                },
+                "tamed_surge_details": {
+                    "active": sorcerer_level >= 18,
+                    "recharge": "1/Long Rest",
+                },
+            }
+            if sorcerer_level >= 3:
+                actions.append({
+                    "name": "Tides of Chaos",
+                    "action": "Special",
+                    "effect": "Gain Advantage on one D20 Test. Recharges on level 1+ spell cast (triggers Surge) or Long Rest.",
+                })
+            if sorcerer_level >= 6:
+                actions.append({
+                    "name": "Bend Luck",
+                    "action": "Reaction (1 SP)",
+                    "effect": "Apply 1d4 bonus or penalty to another creature's D20 Test within sight.",
+                })
+            if sorcerer_level >= 18:
+                actions.append({
+                    "name": "Tamed Surge",
+                    "action": "Special (1/Long Rest)",
+                    "effect": "Choose an effect from the Wild Magic Surge table instead of rolling after casting a spell with a slot.",
+                })
+
+        elif subclass == "Aberrant Sorcery":
+            subclass_details = {
+                "name": "Aberrant Sorcery",
+                "psionic_spells": sorcerer_level >= 3,
+                "telepathic_speech": sorcerer_level >= 3,
+                "psionic_sorcery": sorcerer_level >= 6,
+                "psychic_defenses": sorcerer_level >= 6,
+                "revelation_in_flesh": sorcerer_level >= 14,
+                "warping_implosion": sorcerer_level >= 18,
+                "telepathic_speech_details": {
+                    "active": sorcerer_level >= 3,
+                    "range_miles": max(1, cha_mod),
+                    "duration_minutes": sorcerer_level,
+                },
+                "psionic_sorcery_details": {
+                    "active": sorcerer_level >= 6,
+                    "effect": "Cast Psionic Spells using Sorcery Points equal to spell level (no V/S/M components).",
+                },
+                "psychic_defenses_details": {
+                    "active": sorcerer_level >= 6,
+                    "damage_resistance": "Psychic",
+                    "advantage_saves": "Charmed or Frightened",
+                },
+                "revelation_in_flesh_details": {
+                    "active": sorcerer_level >= 14,
+                    "cost": "1+ Sorcery Points",
+                    "duration": "10 minutes",
+                    "options": ["Aquatic Adaptation (Swim 2x Speed, breathe water)", "Glistening Flight (Fly Speed = Speed, Hover)", "See the Invisible (60 ft)", "Wormlike Movement (Squeeze 1-in, 5 ft escape grapple/restraint)"],
+                },
+                "warping_implosion_details": {
+                    "active": sorcerer_level >= 18,
+                    "save_dc": spell_save_dc,
+                    "damage": "3d10 Force",
+                    "recharge": "1/Long Rest or 5 Sorcery Points",
+                },
+            }
+            if sorcerer_level >= 3:
+                actions.append({
+                    "name": "Telepathic Speech",
+                    "action": "Bonus Action",
+                    "effect": f"Form telepathic bond with a creature within 30 ft (lasts {sorcerer_level} min up to {max(1, cha_mod)} miles).",
+                })
+            if sorcerer_level >= 14:
+                actions.append({
+                    "name": "Revelation in Flesh",
+                    "action": "Bonus Action (1+ SP)",
+                    "effect": "Magically alter your body for 10 min: choose 1 adaptation per SP spent (Swim 2x, Fly Speed, See Invisible 60 ft, Wormlike Movement).",
+                })
+            if sorcerer_level >= 18:
+                actions.append({
+                    "name": "Warping Implosion",
+                    "action": "Magic Action (1/Long Rest or 5 SP)",
+                    "effect": f"Teleport 120 ft; creatures within 30 ft of departure point make DC {spell_save_dc} Str save or take 3d10 Force damage and are pulled toward the space.",
+                })
+
+        elif subclass == "Clockwork Sorcery":
+            subclass_details = {
+                "name": "Clockwork Sorcery",
+                "clockwork_spells": sorcerer_level >= 3,
+                "restore_balance_uses": max(1, cha_mod) if sorcerer_level >= 3 else 0,
+                "bastion_of_law_max_dice": 5 if sorcerer_level >= 6 else 0,
+                "trance_of_order": sorcerer_level >= 14,
+                "clockwork_cavalcade": sorcerer_level >= 18,
+                "restore_balance": {
+                    "active": sorcerer_level >= 3,
+                    "uses": max(1, cha_mod),
+                    "max_uses": max(1, cha_mod),
+                    "range": "60 feet",
+                    "recharge": "Long Rest",
+                },
+                "bastion_of_law": {
+                    "active": sorcerer_level >= 6,
+                    "max_sp": 5,
+                    "die": "d8",
+                    "duration": "Long Rest",
+                },
+                "trance_of_order_details": {
+                    "active": sorcerer_level >= 14,
+                    "duration": "1 minute",
+                    "recharge": "1/Long Rest or 5 Sorcery Points",
+                },
+                "clockwork_cavalcade_details": {
+                    "active": sorcerer_level >= 18,
+                    "heal_pool": 100,
+                    "cube_size": "30-foot Cube",
+                    "recharge": "1/Long Rest or 7 Sorcery Points",
+                },
+            }
+            if sorcerer_level >= 3:
+                actions.append({
+                    "name": "Restore Balance",
+                    "action": "Reaction",
+                    "effect": f"Prevent a d20 roll within 60 ft from being affected by Advantage/Disadvantage ({max(1, cha_mod)}/Long Rest).",
+                })
+            if sorcerer_level >= 6:
+                actions.append({
+                    "name": "Bastion of Law",
+                    "action": "Magic Action (1-5 SP)",
+                    "effect": "Ward a creature within 30 ft with d8s equal to SP spent. When taking damage, roll dice to reduce damage.",
+                })
+            if sorcerer_level >= 14:
+                actions.append({
+                    "name": "Trance of Order",
+                    "action": "Bonus Action (1/Long Rest or 5 SP)",
+                    "effect": "For 1 min: attacks against you can't have Advantage, and d20 rolls of 9 or lower become 10.",
+                })
+            if sorcerer_level >= 18:
+                actions.append({
+                    "name": "Clockwork Cavalcade",
+                    "action": "Magic Action (1/Long Rest or 7 SP)",
+                    "effect": "30-ft Cube: restore up to 100 HP, repair objects, and dispel all spells of level 6 and lower.",
+                })
+
+        active_perks = []
+        if innate_active:
+            active_perks.append(f"Innate Sorcery (2/LR: +1 Spell Save DC [DC {innate_dc}], Adv on spell attack rolls)")
+        if font_active:
+            active_perks.append(f"Font of Magic ({sorcery_points_max} Sorcery Points)")
+        if restoration_active:
+            active_perks.append(f"Sorcerous Restoration (Regain {restoration_points} SP on Short Rest 1/LR)")
+        if sorcerer_level >= 7:
+            active_perks.append("Sorcery Incarnate (Use up to 2 Metamagics per spell; activate with 2 SP)")
+        if sorcerer_level >= 20:
+            active_perks.append("Arcane Apotheosis (Free Metamagic on each turn during Innate Sorcery)")
+
+        if subclass == "Draconic Sorcery":
+            if sorcerer_level >= 3:
+                active_perks.append(f"Draconic Resilience (+{sorcerer_level} HP, AC 10+Dex+Cha = {10 + dex_mod + cha_mod} unarmored)")
+            if sorcerer_level >= 6:
+                drac_elem = subclass_details.get("elemental_affinity", {}).get("element", "Fire")
+                active_perks.append(f"Elemental Affinity (Resistance to {drac_elem}, +{cha_mod} damage on {drac_elem} spells)")
+            if sorcerer_level >= 14:
+                active_perks.append("Dragon Wings (Fly Speed 60 ft for 1 hr, 1/LR or 3 SP)")
+            if sorcerer_level >= 18:
+                active_perks.append("Dragon Companion (Summon Dragon without slot/components/conc 1/LR)")
+        elif subclass == "Wild Magic Sorcery":
+            if sorcerer_level >= 3:
+                active_perks.append("Wild Magic Surge (Roll d20 after casting level 1+ spell; on 20 trigger Surge)")
+                active_perks.append("Tides of Chaos (Advantage on one D20 Test; recharges on slot cast or LR)")
+            if sorcerer_level >= 6:
+                active_perks.append("Bend Luck (Reaction: spend 1 SP to add/subtract 1d4 to another creature's d20)")
+            if sorcerer_level >= 14:
+                active_perks.append("Controlled Chaos (Roll twice on Wild Magic Surge table and choose either)")
+            if sorcerer_level >= 18:
+                active_perks.append("Tamed Surge (Choose Wild Magic Surge effect 1/LR)")
+        elif subclass == "Aberrant Sorcery":
+            if sorcerer_level >= 3:
+                active_perks.append("Psionic Spells (Always prepared psionic spells)")
+                active_perks.append(f"Telepathic Speech (Bonus Action: telepathic bond within {max(1, cha_mod)} miles)")
+            if sorcerer_level >= 6:
+                active_perks.append("Psionic Sorcery (Cast Psionic Spells with Sorcery Points; no components)")
+                active_perks.append("Psychic Defenses (Psychic damage resistance, Adv vs Charmed/Frightened)")
+            if sorcerer_level >= 14:
+                active_perks.append("Revelation in Flesh (Spend 1+ SP for 10 min adaptations: Swim, Fly, See Invisible, Wormlike)")
+            if sorcerer_level >= 18:
+                active_perks.append(f"Warping Implosion (Teleport 120 ft, 30 ft radius DC {spell_save_dc} Str save or 3d10 Force)")
+        elif subclass == "Clockwork Sorcery":
+            if sorcerer_level >= 3:
+                active_perks.append("Clockwork Spells (Always prepared clockwork spells)")
+                active_perks.append(f"Restore Balance ({max(1, cha_mod)}/LR: Reaction to cancel Advantage/Disadvantage within 60 ft)")
+            if sorcerer_level >= 6:
+                active_perks.append("Bastion of Law (Ward creature with 1-5 d8s of damage reduction)")
+            if sorcerer_level >= 14:
+                active_perks.append("Trance of Order (1 min: no advantage against you, rolls <= 9 become 10; 1/LR or 5 SP)")
+            if sorcerer_level >= 18:
+                active_perks.append("Clockwork Cavalcade (30-ft Cube: heal 100 HP, repair, dispel spells <= 6th; 1/LR or 7 SP)")
+
+        return {
+            "is_sorcerer": True,
+            "sorcerer_level": sorcerer_level,
+            "subclass": subclass,
+            "sorcery_points": sorcery_points_max,
+            "sorcery_points_max": sorcery_points_max,
+            "spell_save_dc": spell_save_dc,
+            "spell_attack_bonus": spell_attack_bonus,
+            "innate_sorcery": innate_sorcery,
+            "font_of_magic": font_of_magic,
+            "sorcerous_restoration": sorcerous_restoration,
+            "metamagic": metamagic,
+            "sorcery_incarnate": sorcerer_level >= 7,
+            "arcane_apotheosis": sorcerer_level >= 20,
+            "active_perks": active_perks,
+            "actions": actions,
+            "subclass_details": subclass_details,
+        }
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -12747,6 +13250,11 @@ class CharacterBuilder:
         if rogue_stats.get("rogue_level", 0) > 0:
             character_data["rogue_stats"] = rogue_stats
 
+        # Add Sorcerer stats (Sorcerer only)
+        sorcerer_stats = self.calculate_sorcerer_stats()
+        if sorcerer_stats.get("sorcerer_level", 0) > 0:
+            character_data["sorcerer_stats"] = sorcerer_stats
+
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:
             effects_for_export = []
@@ -13860,6 +14368,23 @@ class CharacterBuilder:
                         if subclass_data:
                             feature_key = f"subclass_{feature_key}"
 
+                        choice_count = choice_item.get("count", 1)
+                        add_by_lvl = choice_item.get("additional_choices_by_level")
+                        if isinstance(add_by_lvl, dict) and character:
+                            try:
+                                char_lvl = int(character.get("level", level) or level)
+                            except (ValueError, TypeError):
+                                char_lvl = level
+                            for add_lvl_k, add_lvl_v in add_by_lvl.items():
+                                try:
+                                    if char_lvl >= int(add_lvl_k):
+                                        if isinstance(add_lvl_v, dict):
+                                            choice_count += int(add_lvl_v.get("count", 0))
+                                        elif isinstance(add_lvl_v, (int, float)):
+                                            choice_count += int(add_lvl_v)
+                                except (ValueError, TypeError):
+                                    pass
+
                         choice = {
                             "title": f"{feature_name} - {choice_name_suffix} ({source_name}, Level {level})",
                             "type": "feature",
@@ -13867,7 +14392,7 @@ class CharacterBuilder:
                             "options": resolve_choice_options(
                                 choice_item, character, class_data, subclass_data
                             ),
-                            "count": choice_item.get("count", 1),
+                            "count": choice_count,
                             "required": not choice_item.get("optional", False),
                             "level": level,
                             "feature_name": feature_key,
@@ -13897,6 +14422,23 @@ class CharacterBuilder:
                     if subclass_data:
                         feature_key = f"subclass_{feature_name}"
 
+                    choice_count = choices_data.get("count", 1)
+                    add_by_lvl = choices_data.get("additional_choices_by_level")
+                    if isinstance(add_by_lvl, dict) and character:
+                        try:
+                            char_lvl = int(character.get("level", level) or level)
+                        except (ValueError, TypeError):
+                            char_lvl = level
+                        for add_lvl_k, add_lvl_v in add_by_lvl.items():
+                            try:
+                                if char_lvl >= int(add_lvl_k):
+                                    if isinstance(add_lvl_v, dict):
+                                        choice_count += int(add_lvl_v.get("count", 0))
+                                    elif isinstance(add_lvl_v, (int, float)):
+                                        choice_count += int(add_lvl_v)
+                            except (ValueError, TypeError):
+                                pass
+
                     choice = {
                         "title": f"{feature_name} ({source_name}, Level {level})",
                         "type": "feature",
@@ -13904,7 +14446,7 @@ class CharacterBuilder:
                         "options": resolve_choice_options(
                             choices_data, character, class_data, subclass_data
                         ),
-                        "count": choices_data.get("count", 1),
+                        "count": choice_count,
                         "required": not choices_data.get("optional", False),
                         "level": level,
                         "feature_name": feature_key,
