@@ -1692,11 +1692,24 @@ class CharacterBuilder:
         choices_made = self.character_data.get("choices_made", {})
         if from_choice_key in choices_made:
             return choices_made[from_choice_key]
+        norm_key = from_choice_key.lower().replace(" ", "_")
+        if norm_key in choices_made:
+            return choices_made[norm_key]
+        title_spaced = from_choice_key.replace("_", " ").title()
+        if title_spaced in choices_made:
+            return choices_made[title_spaced]
         clean_key = from_choice_key[9:] if from_choice_key.startswith("subclass_") else from_choice_key
         if clean_key in choices_made:
             return choices_made[clean_key]
+        clean_norm = clean_key.lower().replace(" ", "_")
+        if clean_norm in choices_made:
+            return choices_made[clean_norm]
         for k, v in choices_made.items():
-            if k.endswith(f"_{from_choice_key}") or k.endswith(f"_{clean_key}"):
+            k_norm = k.lower().replace(" ", "_")
+            if k_norm in (norm_key, clean_norm):
+                return v
+        for k, v in choices_made.items():
+            if k.endswith(f"_{from_choice_key}") or k.endswith(f"_{clean_key}") or k.endswith(f"_{norm_key}") or k.endswith(f"_{clean_norm}"):
                 return v
         short_key = from_choice_key.split("_")[-1]
         if short_key in choices_made:
@@ -1857,18 +1870,42 @@ class CharacterBuilder:
         elif effect_type == "grant_spell":
             if "from_choice" in effect:
                 choice_key = effect["from_choice"]
-                spell_name = self._resolve_from_choice_value(choice_key)
+                raw_spell = self._resolve_from_choice_value(choice_key)
             else:
-                spell_name = effect.get("spell")
+                raw_spell = effect.get("spell")
+
+            spell_names = (
+                raw_spell if isinstance(raw_spell, list)
+                else [raw_spell] if raw_spell else []
+            )
+
+            eligible_from = effect.get("eligible_from")
+            if eligible_from == "spellbook":
+                spellbook = self.character_data.get("spells", {}).get("spellbook", {})
+                if isinstance(spellbook, dict):
+                    eligible_names = set(spellbook)
+                elif isinstance(spellbook, list):
+                    eligible_names = {
+                        item if isinstance(item, str) else item.get("name")
+                        for item in spellbook
+                        if isinstance(item, (str, dict))
+                    }
+                else:
+                    eligible_names = set()
+                spell_names = [name for name in spell_names if name in eligible_names]
+
+            required_levels = effect.get("spell_levels")
+            if isinstance(required_levels, list):
+                spell_names = [
+                    name for name in spell_names
+                    if self._load_spell_definition(name).get("level") in required_levels
+                ]
+
             min_level = effect.get("min_level", 1)
             counts_against_limit = effect.get("counts_against_limit", False)
-
-            # Resolve choice reference if present
-            resolved_spell = None
-            if isinstance(spell_name, str) and spell_name.startswith("${"):
-                resolved_spell = _resolve_choice_reference(spell_name)
-            else:
-                resolved_spell = spell_name
+            once_per_long_rest = bool(effect.get("once_per_long_rest", False))
+            once_per_short_rest = bool(effect.get("once_per_short_rest", False))
+            once_per_day = source_type in ["species", "lineage"]
 
             ability_ref = effect.get("spellcasting_ability") or effect.get("ability")
             resolved_ability = None
@@ -1883,12 +1920,22 @@ class CharacterBuilder:
                 if source_class_name in class_levels:
                     effective_level = class_levels[source_class_name]
 
-            if resolved_spell and effective_level >= min_level:
-                # Load spell definition to get actual spell level
+            if effective_level < min_level:
+                spell_names = []
+
+            for spell_item in spell_names:
+                if not isinstance(spell_item, str) or not spell_item:
+                    continue
+                if spell_item.startswith("${"):
+                    resolved_spell = _resolve_choice_reference(spell_item)
+                else:
+                    resolved_spell = spell_item
+                if not resolved_spell:
+                    continue
+
                 spell_def = self._load_spell_definition(resolved_spell)
                 spell_level = spell_def.get("level", 1)
 
-                # Map source_type to actual name for display
                 if source_type == "species":
                     display_source = self.character_data.get("species", source_name)
                 elif source_type == "lineage":
@@ -1902,12 +1949,6 @@ class CharacterBuilder:
                 else:
                     display_source = source_name
 
-                # Species/lineage grants retain the legacy once-per-day flag.
-                # Explicit long-rest grants carry their independent metadata.
-                once_per_long_rest = bool(effect.get("once_per_long_rest", False))
-                once_per_day = source_type in ["species", "lineage"]
-
-                # Add to always_prepared dict with metadata
                 prepared_info = {
                     "level": spell_level,
                     "source": display_source,
@@ -1916,11 +1957,12 @@ class CharacterBuilder:
                     "once_per_long_rest": once_per_long_rest,
                     "counts_against_limit": counts_against_limit,
                 }
+                if once_per_short_rest:
+                    prepared_info["once_per_short_rest"] = True
                 if resolved_ability:
                     prepared_info["spellcasting_ability"] = resolved_ability
                 self.character_data["spells"]["always_prepared"][resolved_spell] = prepared_info
 
-                # Also track in spell_metadata for compatibility
                 meta_info = {
                     "source": display_source,
                     "source_type": source_type,
@@ -1929,6 +1971,8 @@ class CharacterBuilder:
                     "always_prepared": True,
                     "counts_against_limit": counts_against_limit,
                 }
+                if once_per_short_rest:
+                    meta_info["once_per_short_rest"] = True
                 if resolved_ability:
                     meta_info["spellcasting_ability"] = resolved_ability
                 self.character_data["spell_metadata"][resolved_spell] = meta_info
@@ -2395,9 +2439,7 @@ class CharacterBuilder:
             # `always_prepared` dict that `grant_spell` writes to, with an
             # `at_will: True` flag so renderers can annotate "(at will)".
             if "from_choice" in effect:
-                chosen = self.character_data.get("choices_made", {}).get(
-                    effect["from_choice"]
-                )
+                chosen = self._resolve_from_choice_value(effect["from_choice"])
                 spell_names = chosen if isinstance(chosen, list) else [chosen] if chosen else []
             else:
                 spell_names = [effect.get("spell")]
@@ -5595,17 +5637,22 @@ class CharacterBuilder:
                 # batch rebuilds use the same dispatcher path.
                 for effect in feature_data.get("effects", []):
                     from_choice = effect.get("from_choice") if isinstance(effect, dict) else None
-                    if (
-                        isinstance(effect, dict)
-                        and from_choice
-                        and (
+                    if isinstance(effect, dict) and from_choice:
+                        from_norm = str(from_choice).lower().replace(" ", "_")
+                        ck_norm = str(choice_key).lower().replace(" ", "_")
+                        cck_norm = str(clean_choice_key).lower().replace(" ", "_")
+                        feat_norm = str(feature_name).lower().replace(" ", "_")
+                        if (
                             from_choice in (choice_key, clean_choice_key)
+                            or from_norm in (ck_norm, cck_norm, feat_norm)
                             or clean_choice_key == f"{feature_name}_{from_choice}"
+                            or cck_norm == f"{feat_norm}_{from_norm}"
                             or clean_choice_key.endswith(f"_{from_choice}")
                             or choice_key.endswith(f"_{from_choice}")
-                        )
-                    ):
-                        results.append((effect, feature_name, "class_choice"))
+                            or cck_norm.endswith(f"_{from_norm}")
+                            or ck_norm.endswith(f"_{from_norm}")
+                        ):
+                            results.append((effect, feature_name, "class_choice"))
 
                 # Data-driven choice_effects on class/subclass features
                 feat_choice_effects = feature_data.get("choice_effects", {})
@@ -11649,6 +11696,334 @@ class CharacterBuilder:
             "subclass_details": subclass_details,
         }
 
+    def calculate_wizard_stats(self) -> Dict[str, Any]:
+        """
+        Calculate Wizard 2024 RAW statistics including:
+        - Spellcasting & Ritual Adept: Cast ritual spells from spellbook without preparing them.
+        - Arcane Recovery (lv 1+: recover slot levels <= (wizard_level + 1) // 2 on Short Rest, max slot level 5; 1/LR).
+        - Scholar (lv 2+: expertise in chosen academic skill: Arcana, History, Investigation, Medicine, Nature, or Religion).
+        - Memorize Spell (lv 5+: swap 1 prepared level 1+ spell with one from spellbook on Short Rest).
+        - Spell Mastery (lv 18+: choose 1st and 2nd level spell with 1 action cast time; at-will free cast at lowest level).
+        - Signature Spells (lv 20: choose two 3rd level spells; always prepared, cast each once per Short or Long Rest without a slot).
+        - Spellbook tracking: total spells in spellbook, minimum free spells gained from leveling (6 + 2 * (level - 1)).
+        - Subclass mechanics for Abjurer, Diviner, Evoker, Illusionist, and Bladesinger.
+        """
+        wizard_level = self._get_class_level("Wizard")
+        if wizard_level <= 0:
+            return {
+                "is_wizard": False,
+                "wizard_level": 0,
+                "subclass": "",
+                "spellcasting_ability": "Intelligence",
+                "spell_save_dc": 10,
+                "spell_attack_bonus": 2,
+                "arcane_recovery": {
+                    "active": False,
+                    "max_slot_levels": 0,
+                    "max_single_slot_level": 5,
+                    "recharge": "1/Long Rest",
+                },
+                "scholar": {
+                    "active": False,
+                    "skill": None,
+                },
+                "memorize_spell": {"active": False},
+                "spell_mastery": {
+                    "active": False,
+                    "spells": [],
+                },
+                "signature_spells": {
+                    "active": False,
+                    "spells": [],
+                },
+                "spellbook": {
+                    "count": 0,
+                    "spells": [],
+                    "min_free_spells": 0,
+                },
+                "active_perks": [],
+                "actions": [],
+                "subclass_details": {},
+            }
+
+        subclass = self._get_class_subclass("Wizard") or ""
+        ability_scores = self.calculate_processed_ability_scores()
+        int_mod = ability_scores.get("intelligence", {}).get("modifier", 0)
+        proficiency_bonus = self.calculate_proficiency_bonus(self.character_data.get("level", wizard_level))
+        spell_save_dc = 8 + int_mod + proficiency_bonus
+        spell_attack_bonus = int_mod + proficiency_bonus
+
+        active_perks = []
+        actions = []
+
+        # Spellcasting base perk
+        active_perks.append("Ritual Adept: Cast ritual spells from your spellbook without preparing them")
+
+        # Arcane Recovery (Level 1+)
+        max_recovery_levels = (wizard_level + 1) // 2
+        arcane_recovery = {
+            "active": True,
+            "max_slot_levels": max_recovery_levels,
+            "max_single_slot_level": 5,
+            "recharge": "1/Long Rest",
+            "description": f"Recover expended spell slots up to a combined level of {max_recovery_levels} (none level 6+) upon finishing a Short Rest (1/LR).",
+        }
+        active_perks.append(f"Arcane Recovery: Up to Level {max_recovery_levels} Slots (1/LR on Short Rest)")
+        actions.append({
+            "name": "Arcane Recovery",
+            "action": "Short Rest",
+            "effect": f"Recover expended spell slots up to a combined level of {max_recovery_levels} (none level 6+). Usable once per Long Rest.",
+        })
+
+        # Scholar (Level 2+)
+        scholar_skill = None
+        if wizard_level >= 2:
+            scholar_skill = (
+                self._resolve_from_choice_value("wizard_scholar_skill")
+                or self._resolve_from_choice_value("scholar")
+                or self._resolve_from_choice_value("Scholar")
+            )
+            if scholar_skill:
+                active_perks.append(f"Scholar: Expertise in {scholar_skill}")
+        scholar = {
+            "active": wizard_level >= 2,
+            "skill": scholar_skill,
+        }
+
+        # Memorize Spell (Level 5+)
+        has_memorize_spell = wizard_level >= 5
+        memorize_spell = {
+            "active": has_memorize_spell,
+            "description": "On a Short Rest, swap one prepared level 1+ spell with another from your spellbook." if has_memorize_spell else "",
+        }
+        if has_memorize_spell:
+            active_perks.append("Memorize Spell: Swap 1 prepared spell on Short Rest")
+            actions.append({
+                "name": "Memorize Spell",
+                "action": "Short Rest",
+                "effect": "Study your spellbook to replace one of your prepared level 1+ Wizard spells with another level 1+ spell from the book.",
+            })
+
+        # Spell Mastery (Level 18+)
+        has_spell_mastery = wizard_level >= 18
+        spell_mastery_choice = (
+            self._resolve_from_choice_value("spell_mastery")
+            or self._resolve_from_choice_value("Spell Mastery")
+            or []
+        )
+        if isinstance(spell_mastery_choice, str):
+            spell_mastery_spells = [spell_mastery_choice]
+        elif isinstance(spell_mastery_choice, list):
+            spell_mastery_spells = [s for s in spell_mastery_choice if isinstance(s, str)]
+        else:
+            spell_mastery_spells = []
+
+        spell_mastery = {
+            "active": has_spell_mastery,
+            "spells": spell_mastery_spells,
+        }
+        if has_spell_mastery:
+            spells_str = ", ".join(spell_mastery_spells) if spell_mastery_spells else "2 chosen spells (levels 1 & 2)"
+            active_perks.append(f"Spell Mastery: Cast at lowest level at-will ({spells_str})")
+            for sm_spell in spell_mastery_spells:
+                actions.append({
+                    "name": f"Spell Mastery ({sm_spell})",
+                    "action": "1 Action",
+                    "effect": f"Cast {sm_spell} at its lowest level without expending a spell slot.",
+                })
+
+        # Signature Spells (Level 20)
+        has_sig_spells = wizard_level >= 20
+        sig_spells_choice = (
+            self._resolve_from_choice_value("signature_spells")
+            or self._resolve_from_choice_value("Signature Spells")
+            or []
+        )
+        if isinstance(sig_spells_choice, str):
+            signature_spells_list = [sig_spells_choice]
+        elif isinstance(sig_spells_choice, list):
+            signature_spells_list = [s for s in sig_spells_choice if isinstance(s, str)]
+        else:
+            signature_spells_list = []
+
+        signature_spells = {
+            "active": has_sig_spells,
+            "spells": signature_spells_list,
+        }
+        if has_sig_spells:
+            spells_str = ", ".join(signature_spells_list) if signature_spells_list else "2 chosen 3rd-level spells"
+            active_perks.append(f"Signature Spells: Cast 1/SR or LR without a slot ({spells_str})")
+            for ss_spell in signature_spells_list:
+                actions.append({
+                    "name": f"Signature Spell ({ss_spell})",
+                    "action": "Action",
+                    "effect": f"Cast {ss_spell} at level 3 without expending a spell slot (1/Short or Long Rest).",
+                })
+
+        # Spellbook stats
+        spellbook_dict = self.character_data.get("spells", {}).get("spellbook", {})
+        if isinstance(spellbook_dict, dict):
+            spells_in_book = list(spellbook_dict.keys())
+        elif isinstance(spellbook_dict, list):
+            spells_in_book = [s if isinstance(s, str) else s.get("name", "") for s in spellbook_dict if s]
+        else:
+            spells_in_book = []
+        min_free_spells = 6 + (wizard_level - 1) * 2
+        spellbook_stats = {
+            "count": len(spells_in_book),
+            "spells": spells_in_book,
+            "min_free_spells": min_free_spells,
+        }
+
+        # Subclass Details
+        subclass_details: Dict[str, Any] = {"name": subclass}
+        subclass_lower = subclass.lower()
+
+        # Abjurer / School of Abjuration
+        if "abjur" in subclass_lower:
+            ward_hp = 2 * wizard_level + max(0, int_mod)
+            subclass_details["abjuration_savant"] = True
+            subclass_details["arcane_ward_max_hp"] = ward_hp
+            active_perks.append(f"Arcane Ward: {ward_hp} Max HP (absorbs damage, regains 2x slot level on Abjuration cast or Bonus Action)")
+            actions.append({
+                "name": "Arcane Ward (Create)",
+                "action": "Special",
+                "effect": f"When you cast an Abjuration spell with a slot, create a ward with {ward_hp} HP (lasts until Long Rest). Absorbs damage before you take damage.",
+            })
+            actions.append({
+                "name": "Arcane Ward (Recharge)",
+                "action": "Bonus Action",
+                "effect": "Expend a spell slot to restore 2x the slot level in Hit Points to your Arcane Ward.",
+            })
+            if wizard_level >= 6:
+                subclass_details["projected_ward"] = True
+                actions.append({
+                    "name": "Projected Ward",
+                    "action": "Reaction",
+                    "effect": "When a creature within 30 ft takes damage, cause your Arcane Ward to absorb that damage.",
+                })
+            if wizard_level >= 10:
+                subclass_details["spell_breaker"] = True
+                active_perks.append("Spell Breaker: Counterspell & Dispel Magic always prepared; BA Dispel Magic (+PB to check); slot preserved if dispel/counter fails")
+                actions.append({
+                    "name": "Spell Breaker (Dispel Magic)",
+                    "action": "Bonus Action",
+                    "effect": "Cast Dispel Magic as a Bonus Action and add your Proficiency Bonus to the ability check. Slot is not expended if it fails to stop the spell.",
+                })
+            if wizard_level >= 14:
+                subclass_details["spell_resistance"] = True
+                active_perks.append("Spell Resistance: Advantage on saving throws against spells, and Resistance to damage of spells")
+
+        # Diviner / School of Divination
+        elif "divin" in subclass_lower:
+            portent_dice = 3 if wizard_level >= 14 else 2
+            subclass_details["divination_savant"] = True
+            subclass_details["portent_dice_count"] = portent_dice
+            active_perks.append(f"Portent: {portent_dice} Foretelling Dice ({portent_dice}d20 rolled on Long Rest to replace any D20 Test)")
+            actions.append({
+                "name": "Portent",
+                "action": "Special",
+                "effect": f"Replace any D20 Test made by you or a creature within sight with one of your {portent_dice} foretelling rolls before the roll (1/turn).",
+            })
+            if wizard_level >= 6:
+                subclass_details["expert_divination"] = True
+                active_perks.append("Expert Divination: Regain a lower-level spell slot (up to level 5) when casting a 2nd+ level Divination spell")
+            if wizard_level >= 10:
+                subclass_details["the_third_eye"] = True
+                actions.append({
+                    "name": "The Third Eye",
+                    "action": "Bonus Action",
+                    "effect": "Choose one benefit until Short or Long Rest (1/SR or LR): Darkvision 120 ft, Greater Comprehension (read all languages), or cast See Invisibility without a slot.",
+                })
+            if wizard_level >= 14:
+                subclass_details["greater_portent"] = True
+
+        # Evoker / School of Evocation
+        elif "evoc" in subclass_lower:
+            subclass_details["evocation_savant"] = True
+            subclass_details["potent_cantrip"] = True
+            active_perks.append("Potent Cantrip: Targets take half damage on a missed cantrip attack or successful save")
+            if wizard_level >= 6:
+                subclass_details["sculpt_spells"] = True
+                active_perks.append("Sculpt Spells: Protect 1 + spell level creatures from your Evocation spells (auto-succeed save, take 0 damage)")
+                actions.append({
+                    "name": "Sculpt Spells",
+                    "action": "Special",
+                    "effect": "When casting an Evocation spell, choose 1 + spell level creatures. They auto-succeed on saving throws and take 0 damage on half-damage saves.",
+                })
+            if wizard_level >= 10:
+                subclass_details["empowered_evocation"] = True
+                empowered_bonus = max(1, int_mod)
+                subclass_details["empowered_evocation_bonus"] = empowered_bonus
+                active_perks.append(f"Empowered Evocation: Add +{empowered_bonus} INT modifier to one damage roll of your Evocation Wizard spells")
+            if wizard_level >= 14:
+                subclass_details["overchannel"] = True
+                actions.append({
+                    "name": "Overchannel",
+                    "action": "Special",
+                    "effect": "Deal maximum damage with a 1st-5th level damage spell. 1st use free; subsequent uses before LR inflict 2d12+ necrotic damage per slot level.",
+                })
+
+        # Illusionist / School of Illusion
+        elif "illus" in subclass_lower:
+            subclass_details["illusion_savant"] = True
+            subclass_details["improved_illusions"] = True
+            active_perks.append("Improved Illusions: No verbal components for Illusion spells; +60 ft range to 10+ ft spells; Minor Illusion bonus action (both sound & image)")
+            actions.append({
+                "name": "Minor Illusion (Improved)",
+                "action": "Bonus Action",
+                "effect": "Cast Minor Illusion as a Bonus Action creating both a sound and an image in a single casting.",
+            })
+            if wizard_level >= 6:
+                subclass_details["phantasmal_creatures"] = True
+                active_perks.append("Phantasmal Creatures: Summon Beast & Summon Fey always prepared; cast as Illusion; 1 free cast/LR (halves creature HP)")
+                actions.append({
+                    "name": "Phantasmal Creature",
+                    "action": "Action",
+                    "effect": "Cast Summon Beast or Summon Fey as an Illusion spell without a spell slot (creature has half HP; 1/LR).",
+                })
+            if wizard_level >= 10:
+                subclass_details["illusory_self"] = True
+                actions.append({
+                    "name": "Illusory Self",
+                    "action": "Reaction",
+                    "effect": "When hit by an attack, cause it to automatically miss by interposing an illusory duplicate (1/Short or Long Rest, or expend level 2+ slot).",
+                })
+            if wizard_level >= 14:
+                subclass_details["illusory_reality"] = True
+                actions.append({
+                    "name": "Illusory Reality",
+                    "action": "Bonus Action",
+                    "effect": "Choose one inanimate, nonmagical object from an active Illusion spell and make it real for 1 minute (cannot deal damage or give conditions).",
+                })
+
+        # Bladesinger (if present)
+        elif "blade" in subclass_lower:
+            subclass_details["bladesong"] = True
+            actions.append({
+                "name": "Bladesong",
+                "action": "Bonus Action",
+                "effect": f"Invoke Bladesong for 1 minute ({proficiency_bonus}/Long Rest): +{int_mod} to AC, speed +10 ft, Advantage on Acrobatics, +{int_mod} to Con saves to maintain concentration.",
+            })
+
+        return {
+            "is_wizard": True,
+            "wizard_level": wizard_level,
+            "subclass": subclass,
+            "spellcasting_ability": "Intelligence",
+            "spell_save_dc": spell_save_dc,
+            "spell_attack_bonus": spell_attack_bonus,
+            "arcane_recovery": arcane_recovery,
+            "scholar": scholar,
+            "memorize_spell": memorize_spell,
+            "spell_mastery": spell_mastery,
+            "signature_spells": signature_spells,
+            "spellbook": spellbook_stats,
+            "active_perks": active_perks,
+            "actions": actions,
+            "subclass_details": subclass_details,
+        }
+
     def calculate_processed_ability_scores(self) -> Dict[str, Dict[str, Any]]:
         """Calculate ability scores with modifiers and saving throws."""
         raw_scores = dict(self.ability_scores.final_scores)
@@ -13824,6 +14199,11 @@ class CharacterBuilder:
         warlock_stats = self.calculate_warlock_stats()
         if warlock_stats.get("warlock_level", 0) > 0:
             character_data["warlock_stats"] = warlock_stats
+
+        # Add Wizard stats (Wizard only)
+        wizard_stats = self.calculate_wizard_stats()
+        if wizard_stats.get("wizard_level", 0) > 0:
+            character_data["wizard_stats"] = wizard_stats
 
         # Add applied effects for export
         if hasattr(self, "applied_effects") and self.applied_effects:

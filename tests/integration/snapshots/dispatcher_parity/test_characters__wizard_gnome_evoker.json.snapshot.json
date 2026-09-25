@@ -480,7 +480,7 @@
             {
               "casting_time": "1 action",
               "eligible_from": "spellbook",
-              "from_choice": "Spell Mastery",
+              "from_choice": "spell_mastery",
               "spell_levels": [
                 1,
                 2
@@ -534,7 +534,19 @@
             },
             "type": "select_multiple"
           },
-          "description": "Choose two level 3 spells in your spellbook as your signature spells. You always have these spells prepared, and you can cast each of them once at level 3 without expending a spell slot. When you do so, you can't cast them in this way again until you finish a Short or Long Rest."
+          "description": "Choose two level 3 spells in your spellbook as your signature spells. You always have these spells prepared, and you can cast each of them once at level 3 without expending a spell slot. When you do so, you can't cast them in this way again until you finish a Short or Long Rest.",
+          "effects": [
+            {
+              "counts_against_limit": false,
+              "eligible_from": "spellbook",
+              "from_choice": "signature_spells",
+              "once_per_short_rest": true,
+              "spell_levels": [
+                3
+              ],
+              "type": "grant_spell"
+            }
+          ]
         }
       },
       "3": {
@@ -613,7 +625,7 @@
       "3": 6,
       "4": 7,
       "5": 9,
-      "6": 9,
+      "6": 10,
       "7": 11,
       "8": 12,
       "9": 14
@@ -2324,5 +2336,62 @@
   },
   "weapon_proficiencies": [
     "Simple weapons"
-  ]
+  ],
+  "wizard_stats": {
+    "actions": [
+      {
+        "action": "Short Rest",
+        "effect": "Recover expended spell slots up to a combined level of 2 (none level 6+). Usable once per Long Rest.",
+        "name": "Arcane Recovery"
+      }
+    ],
+    "active_perks": [
+      "Ritual Adept: Cast ritual spells from your spellbook without preparing them",
+      "Arcane Recovery: Up to Level 2 Slots (1/LR on Short Rest)"
+    ],
+    "arcane_recovery": {
+      "active": true,
+      "description": "Recover expended spell slots up to a combined level of 2 (none level 6+) upon finishing a Short Rest (1/LR).",
+      "max_single_slot_level": 5,
+      "max_slot_levels": 2,
+      "recharge": "1/Long Rest"
+    },
+    "is_wizard": true,
+    "memorize_spell": {
+      "active": false,
+      "description": ""
+    },
+    "scholar": {
+      "active": true,
+      "skill": null
+    },
+    "signature_spells": {
+      "active": false,
+      "spells": []
+    },
+    "spell_attack_bonus": 5,
+    "spell_mastery": {
+      "active": false,
+      "spells": []
+    },
+    "spell_save_dc": 13,
+    "spellbook": {
+      "count": 6,
+      "min_free_spells": 10,
+      "spells": [
+        "Burning Hands",
+        "Chromatic Orb",
+        "Detect Magic",
+        "Alarm",
+        "Blindness/Deafness",
+        "Cloud of Daggers"
+      ]
+    },
+    "spellcasting_ability": "Intelligence",
+    "subclass": "Evoker",
+    "subclass_details": {
+      "name": "Evoker"
+    },
+    "wizard_level": 3
+  }
 }

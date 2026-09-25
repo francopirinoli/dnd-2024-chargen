@@ -207,7 +207,7 @@
         "effects": [
           {
             "type": "grant_spell_at_will",
-            "from_choice": "Spell Mastery",
+            "from_choice": "spell_mastery",
             "eligible_from": "spellbook",
             "spell_levels": [1, 2],
             "casting_time": "1 action"
@@ -242,6 +242,16 @@
     "20": {
       "Signature Spells": {
         "description": "Choose two level 3 spells in your spellbook as your signature spells. You always have these spells prepared, and you can cast each of them once at level 3 without expending a spell slot. When you do so, you can't cast them in this way again until you finish a Short or Long Rest.",
+        "effects": [
+          {
+            "type": "grant_spell",
+            "from_choice": "signature_spells",
+            "eligible_from": "spellbook",
+            "spell_levels": [3],
+            "once_per_short_rest": true,
+            "counts_against_limit": false
+          }
+        ],
         "choices": {
           "type": "select_multiple",
           "count": 2,
@@ -589,7 +599,7 @@
     "3": 6,
     "4": 7,
     "5": 9,
-    "6": 9,
+    "6": 10,
     "7": 11,
     "8": 12,
     "9": 14,

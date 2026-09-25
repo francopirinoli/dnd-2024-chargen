@@ -1490,6 +1490,15 @@ function SpecialFeatures({ c }: { c: Char }) {
   const mysticArcanum = rec(warlockStats.mystic_arcanum);
   const invocationsStats = rec(warlockStats.invocations);
   const warlockSubclass = rec(warlockStats.subclass_details);
+  const wizardStats = rec(c.wizard_stats);
+  const isWizard = Boolean(wizardStats.is_wizard) || num(wizardStats.wizard_level) !== undefined;
+  const arcaneRecovery = rec(wizardStats.arcane_recovery);
+  const scholar = rec(wizardStats.scholar);
+  const memorizeSpell = rec(wizardStats.memorize_spell);
+  const spellMastery = rec(wizardStats.spell_mastery);
+  const signatureSpells = rec(wizardStats.signature_spells);
+  const wizardSubclass = rec(wizardStats.subclass_details);
+  const spellbookStats = rec(wizardStats.spellbook);
   const superiorityDice = rec(c.superiority_dice);
   const hasSuperiorityDice = num(superiorityDice.count) !== undefined;
   const hasArcaneShot = num(c.arcane_shot_dc) !== undefined;
@@ -1506,6 +1515,7 @@ function SpecialFeatures({ c }: { c: Char }) {
     (isRogue && rogueStats.rogue_level !== undefined) ||
     (isSorcerer && sorcererStats.sorcerer_level !== undefined) ||
     (isWarlock && warlockStats.warlock_level !== undefined) ||
+    (isWizard && wizardStats.wizard_level !== undefined) ||
     hasSuperiorityDice ||
     hasArcaneShot;
 
@@ -2638,6 +2648,197 @@ function SpecialFeatures({ c }: { c: Char }) {
                 {arr<Record<string, unknown>>(warlockStats.actions).map((act, idx) => (
                   <div
                     key={`warlock-act-${idx}`}
+                    className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-1 font-semibold text-foreground">
+                      <span className="text-primary">{str(act.name)}</span>
+                      <span className="rounded bg-primary/20 px-1 text-[10px] text-primary">
+                        {str(act.action)}
+                      </span>
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-muted-foreground">
+                      {str(act.effect)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Wizard */}
+        {isWizard && wizardStats.wizard_level !== undefined && (
+          <div className="rounded border border-border/80 bg-background/40 p-3 space-y-3">
+            {/* Header / Badges */}
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-2">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-foreground">
+                  {str(wizardSubclass.name) || "Wizard"} (Level {num(wizardStats.wizard_level)})
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  INT Mod: {signed(num(c.ability_scores && rec(c.ability_scores).intelligence && rec(rec(c.ability_scores).intelligence).modifier))}
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                {arcaneRecovery.active === true && (
+                  <span className="rounded bg-primary/20 px-2 py-0.5 font-semibold text-primary">
+                    Arcane Recovery: Up to Level {num(arcaneRecovery.max_slot_levels)} Slots • 1/LR
+                  </span>
+                )}
+                {scholar.active === true && Boolean(scholar.skill) && (
+                  <span className="rounded bg-accent/20 px-2 py-0.5 font-semibold text-accent-foreground">
+                    Scholar: {str(scholar.skill)} (Expertise)
+                  </span>
+                )}
+                {memorizeSpell.active === true && (
+                  <span className="rounded bg-secondary/80 px-2 py-0.5 text-foreground font-medium">
+                    Memorize Spell: Short Rest Swap
+                  </span>
+                )}
+                {num(spellbookStats.count) !== undefined && (
+                  <span className="rounded bg-secondary/80 px-2 py-0.5 text-foreground font-medium">
+                    Spellbook: {num(spellbookStats.count)} Spells
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Core Features: Arcane Recovery & Spellcasting Study */}
+            <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
+              <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                <div className="font-medium text-foreground flex items-center justify-between">
+                  <span>Arcane Recovery</span>
+                  <span className="text-[10px] text-muted-foreground">Short Rest • 1/Long Rest</span>
+                </div>
+                <div className="text-[11px] text-muted-foreground leading-relaxed">
+                  Recover expended spell slots with a combined level of up to <strong className="text-foreground">{num(arcaneRecovery.max_slot_levels)}</strong> (half Wizard level rounded up, none level 6+).
+                  Intelligence is your spellcasting ability (DC {num(wizardStats.spell_save_dc)}, Attack {signed(num(wizardStats.spell_attack_bonus))}).
+                  <span className="block text-primary font-medium mt-0.5">
+                    Ritual Adept: You can cast any Ritual spell in your spellbook without preparing it.
+                  </span>
+                </div>
+              </div>
+
+              {memorizeSpell.active === true && (
+                <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                  <div className="font-medium text-foreground flex items-center justify-between">
+                    <span>Memorize Spell</span>
+                    <span className="text-[10px] text-muted-foreground">Short Rest Study</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground leading-relaxed">
+                    Whenever you finish a Short Rest, you can study your spellbook and replace one of your prepared level 1+ Wizard spells with another level 1+ spell from your spellbook.
+                  </div>
+                </div>
+              )}
+
+              {spellMastery.active === true && (
+                <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                  <div className="font-medium text-foreground flex items-center justify-between">
+                    <span>Spell Mastery</span>
+                    <span className="text-[10px] text-muted-foreground">At-Will Casts (Levels 1 & 2)</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground leading-relaxed">
+                    Always prepared and cast at their lowest level without expending a spell slot:{" "}
+                    <strong className="text-foreground">
+                      {arr<string>(spellMastery.spells).join(", ") || "Selected 1st & 2nd level action spells"}
+                    </strong>
+                    . Swap one on a Long Rest.
+                  </div>
+                </div>
+              )}
+
+              {signatureSpells.active === true && (
+                <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1">
+                  <div className="font-medium text-foreground flex items-center justify-between">
+                    <span>Signature Spells</span>
+                    <span className="text-[10px] text-muted-foreground">1/Short or Long Rest</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground leading-relaxed">
+                    Always prepared, free cast at level 3 once per Short or Long Rest each:{" "}
+                    <strong className="text-foreground">
+                      {arr<string>(signatureSpells.spells).join(", ") || "Selected 3rd level spells"}
+                    </strong>
+                    .
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Subclass Features */}
+            {Boolean(wizardSubclass.name) && (
+              <div className="rounded border border-border/50 bg-background/50 p-2 space-y-1.5 text-xs">
+                <div className="font-medium text-foreground flex items-center justify-between">
+                  <span>{str(wizardSubclass.name)} Features</span>
+                  <span className="text-[10px] text-muted-foreground">Specialization</span>
+                </div>
+                <div className="text-[11px] text-muted-foreground leading-relaxed space-y-1">
+                  {/* Abjurer */}
+                  {num(wizardSubclass.arcane_ward_max_hp) !== undefined && (
+                    <div>Arcane Ward: <strong className="text-foreground">{num(wizardSubclass.arcane_ward_max_hp)} Max HP</strong> (absorbs damage first; regains 2× slot level on Abjuration cast or Bonus Action)</div>
+                  )}
+                  {Boolean(wizardSubclass.projected_ward) && (
+                    <div>Projected Ward: <strong className="text-foreground">Reaction (30 ft) to absorb damage taken by an ally with your Arcane Ward</strong></div>
+                  )}
+                  {Boolean(wizardSubclass.spell_breaker) && (
+                    <div>Spell Breaker: <strong className="text-foreground">Counterspell & Dispel Magic prepared; BA Dispel Magic (+PB to check); slot preserved on failure</strong></div>
+                  )}
+                  {Boolean(wizardSubclass.spell_resistance) && (
+                    <div>Spell Resistance: <strong className="text-foreground">Advantage on saves against spells; Resistance to spell damage</strong></div>
+                  )}
+
+                  {/* Diviner */}
+                  {num(wizardSubclass.portent_dice_count) !== undefined && (
+                    <div>Portent: <strong className="text-foreground">{num(wizardSubclass.portent_dice_count)} Foretelling Dice</strong> (roll on Long Rest; replace any D20 Test before the roll, 1/turn)</div>
+                  )}
+                  {Boolean(wizardSubclass.expert_divination) && (
+                    <div>Expert Divination: <strong className="text-foreground">Regain a lower-level slot (up to lv 5) when casting a 2nd+ level Divination spell</strong></div>
+                  )}
+                  {Boolean(wizardSubclass.the_third_eye) && (
+                    <div>The Third Eye: <strong className="text-foreground">Bonus Action (1/SR or LR) for Darkvision 120 ft, Greater Comprehension, or See Invisibility</strong></div>
+                  )}
+
+                  {/* Evoker */}
+                  {Boolean(wizardSubclass.potent_cantrip) && (
+                    <div>Potent Cantrip: <strong className="text-foreground">Targets take half damage on a missed cantrip attack or successful save</strong></div>
+                  )}
+                  {Boolean(wizardSubclass.sculpt_spells) && (
+                    <div>Sculpt Spells: <strong className="text-foreground">Protect 1 + spell level creatures (auto-succeed save, take 0 damage)</strong></div>
+                  )}
+                  {num(wizardSubclass.empowered_evocation_bonus) !== undefined && (
+                    <div>Empowered Evocation: <strong className="text-foreground">Add +{num(wizardSubclass.empowered_evocation_bonus)} to one damage roll of an Evocation wizard spell</strong></div>
+                  )}
+                  {Boolean(wizardSubclass.overchannel) && (
+                    <div>Overchannel: <strong className="text-foreground">Deal maximum damage with 1st-5th level spells (1st free, then 2d12+ necrotic/level)</strong></div>
+                  )}
+
+                  {/* Illusionist */}
+                  {Boolean(wizardSubclass.improved_illusions) && (
+                    <div>Improved Illusions: <strong className="text-foreground">No verbal components; +60 ft range to 10+ ft spells; Minor Illusion as Bonus Action (sound & image)</strong></div>
+                  )}
+                  {Boolean(wizardSubclass.phantasmal_creatures) && (
+                    <div>Phantasmal Creatures: <strong className="text-foreground">Summon Beast & Summon Fey prepared; cast as Illusion; 1 free cast/LR (halves HP)</strong></div>
+                  )}
+                  {Boolean(wizardSubclass.illusory_self) && (
+                    <div>Illusory Self: <strong className="text-foreground">Reaction to cause an incoming attack to miss (1/SR or LR, or expend 2nd+ slot)</strong></div>
+                  )}
+                  {Boolean(wizardSubclass.illusory_reality) && (
+                    <div>Illusory Reality: <strong className="text-foreground">Bonus Action to make one inanimate nonmagical illusion object real for 1 min</strong></div>
+                  )}
+
+                  {/* Bladesinger */}
+                  {Boolean(wizardSubclass.bladesong) && (
+                    <div>Bladesong: <strong className="text-foreground">Bonus Action: +INT to AC, speed +10 ft, Adv on Acrobatics, +INT to concentration saves</strong></div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Actions Grid */}
+            {arr<Record<string, unknown>>(wizardStats.actions).length > 0 && (
+              <div className="mt-1 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {arr<Record<string, unknown>>(wizardStats.actions).map((act, idx) => (
+                  <div
+                    key={`wizard-act-${idx}`}
                     className="rounded border border-border/50 bg-background/50 px-2 py-1.5"
                   >
                     <div className="flex items-center justify-between gap-1 font-semibold text-foreground">

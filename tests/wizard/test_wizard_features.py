@@ -784,3 +784,86 @@ class TestSpellMastery:
         character = build_wizard_with_spell_mastery(spellbook, selection)
 
         assert set(selection).isdisjoint(character["spells"]["always_prepared"])
+
+
+class TestWizardCalculatedStats:
+    """Validate wizard_stats calculations for class features and subclasses."""
+
+    def test_arcane_recovery_calculation(self):
+        """Arcane recovery slot levels = (level + 1) // 2."""
+        c1 = build_wizard(1)
+        assert "wizard_stats" in c1
+        ws1 = c1["wizard_stats"]
+        assert ws1["is_wizard"] is True
+        assert ws1["arcane_recovery"]["active"] is True
+        assert ws1["arcane_recovery"]["max_slot_levels"] == 1
+
+        c5 = build_wizard(5)
+        ws5 = c5["wizard_stats"]
+        assert ws5["arcane_recovery"]["max_slot_levels"] == 3
+
+        c20 = build_wizard(20)
+        ws20 = c20["wizard_stats"]
+        assert ws20["arcane_recovery"]["max_slot_levels"] == 10
+
+    def test_scholar_expertise(self):
+        """Scholar choice grants expertise at level 2+."""
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "character_name": "Scholar Wizard",
+            "level": 2,
+            "class": "Wizard",
+            "species": "Human",
+            "background": "Sage",
+            "ability_scores": {
+                "Strength": 8, "Dexterity": 14, "Constitution": 14,
+                "Intelligence": 16, "Wisdom": 12, "Charisma": 10
+            },
+            "wizard_scholar_skill": "Arcana",
+        })
+        char = builder.to_character()
+        ws = char["wizard_stats"]
+        assert ws["scholar"]["active"] is True
+        assert ws["scholar"]["skill"] == "Arcana"
+        assert "Arcana" in char.get("skill_expertise", [])
+
+    def test_memorize_spell_activation(self):
+        """Memorize Spell activates at level 5+."""
+        c4 = build_wizard(4)
+        assert c4["wizard_stats"]["memorize_spell"]["active"] is False
+
+        c5 = build_wizard(5)
+        assert c5["wizard_stats"]["memorize_spell"]["active"] is True
+
+    def test_abjurer_arcane_ward_hp(self):
+        """Arcane Ward HP = 2 * wizard_level + Int mod."""
+        c3 = build_wizard(3, "Abjuration")
+        ws = c3["wizard_stats"]
+        assert ws["subclass_details"]["abjuration_savant"] is True
+        # Base Int is 16 (+3), Level 3 -> 2*3 + 3 = 9
+        assert ws["subclass_details"]["arcane_ward_max_hp"] == 9
+
+    def test_diviner_portent_dice(self):
+        """Portent gives 2 dice at lv 3, 3 at lv 14."""
+        c3 = build_wizard(3, "Divination")
+        assert c3["wizard_stats"]["subclass_details"]["portent_dice_count"] == 2
+
+        c14 = build_wizard(14, "Divination")
+        assert c14["wizard_stats"]["subclass_details"]["portent_dice_count"] == 3
+
+    def test_evoker_features(self):
+        """Evoker has potent cantrip at lv 3, sculpt spells at lv 6, empowered at lv 10."""
+        c10 = build_wizard(10, "Evocation")
+        ws = c10["wizard_stats"]
+        assert ws["subclass_details"]["potent_cantrip"] is True
+        assert ws["subclass_details"]["sculpt_spells"] is True
+        assert ws["subclass_details"]["empowered_evocation"] is True
+        assert ws["subclass_details"]["empowered_evocation_bonus"] == 3
+
+    def test_illusionist_features(self):
+        """Illusionist has improved illusions at lv 3, phantasmal creatures at lv 6."""
+        c6 = build_wizard(6, "Illusionist")
+        ws = c6["wizard_stats"]
+        assert ws["subclass_details"]["improved_illusions"] is True
+        assert ws["subclass_details"]["phantasmal_creatures"] is True
+
