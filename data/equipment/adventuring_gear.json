@@ -34,6 +34,11 @@
     "weight": 1.5,
     "category": "Ammunition"
   },
+  "Ammunition (Firearm Bullets 10)": {
+    "cost": "3 gp",
+    "weight": 2,
+    "category": "Ammunition"
+  },
   "Antitoxin (vial)": {
     "cost": "50 gp",
     "weight": 0,
@@ -177,6 +182,16 @@
   "Grappling Hook": {
     "cost": "2 gp",
     "weight": 4,
+    "category": "Utility"
+  },
+  "Gunpowder (keg)": {
+    "cost": "250 gp",
+    "weight": 20,
+    "category": "Utility"
+  },
+  "Gunpowder (powder horn)": {
+    "cost": "35 gp",
+    "weight": 2,
     "category": "Utility"
   },
   "Hammer": {

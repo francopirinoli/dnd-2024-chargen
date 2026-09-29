@@ -386,6 +386,8 @@ class TestWeaponMastery:
             "Greataxe": "Cleave",
             "Light Crossbow": "Slow",
             "Pike": "Push",
+            "Pistol": "Vex",
+            "Musket": "Slow",
         }
 
         for weapon_name, expected_mastery in expected_masteries.items():
@@ -394,6 +396,81 @@ class TestWeaponMastery:
             assert weapon.get("mastery") == expected_mastery, (
                 f"{weapon_name} should have mastery '{expected_mastery}', got '{weapon.get('mastery')}'"
             )
+
+    def test_firearms_properties_and_stats(self, weapons):
+        """Test 2024 core rules Pistol and Musket stats and properties."""
+        assert "Pistol" in weapons
+        pistol = weapons["Pistol"]
+        assert pistol["category"] == "Martial Ranged"
+        assert pistol["damage"] == "1d10"
+        assert pistol["damage_type"] == "Piercing"
+        assert pistol["weight"] == 3
+        assert pistol["cost"] == "250 gp"
+        assert pistol["mastery"] == "Vex"
+        assert "Loading" in pistol["properties"]
+        assert "Ammunition (range 30/90)" in pistol["properties"]
+
+        assert "Musket" in weapons
+        musket = weapons["Musket"]
+        assert musket["category"] == "Martial Ranged"
+        assert musket["damage"] == "1d12"
+        assert musket["damage_type"] == "Piercing"
+        assert musket["weight"] == 10
+        assert musket["cost"] == "500 gp"
+        assert musket["mastery"] == "Slow"
+        assert "Loading" in musket["properties"]
+        assert "Two-Handed" in musket["properties"]
+        assert "Ammunition (range 40/120)" in musket["properties"]
+
+    def test_firearms_attack_calculation(self):
+        """Test attack calculations for Pistol and Musket in CharacterBuilder."""
+        from modules.character_builder import CharacterBuilder
+
+        builder = CharacterBuilder()
+        builder.apply_choices({
+            "class": "Fighter",
+            "level": 1,
+            "ability_scores": {
+                "Strength": 10,
+                "Dexterity": 16,
+                "Constitution": 14,
+                "Intelligence": 10,
+                "Wisdom": 12,
+                "Charisma": 8,
+            },
+            "weapon_mastery_selections": ["Pistol", "Musket", "Dagger"],
+        })
+        builder.character_data["equipment"] = {
+            "weapons": [
+                {"name": "Pistol", "properties": builder._weapon_data["Pistol"]},
+                {"name": "Musket", "properties": builder._weapon_data["Musket"]},
+            ],
+            "armor": [],
+            "items": [],
+        }
+        res = builder.calculate_weapon_attacks()
+        attacks = {atk["name"]: atk for atk in res.get("attacks", [])}
+
+        assert "Pistol" in attacks
+        pistol_atk = attacks["Pistol"]
+        assert pistol_atk["attack_bonus"] == 5  # Dex +3, Prof +2
+        assert pistol_atk["damage"] == "1d10 + 3"
+        assert pistol_atk["damage_type"] == "Piercing"
+        assert pistol_atk["mastery"] == "Vex"
+        assert "Ammunition (range 30/90)" in pistol_atk["properties"]
+        assert "Loading" in pistol_atk["properties"]
+        assert pistol_atk["icon"] == "/static/images/weapons/crossbow.svg"
+
+        assert "Musket" in attacks
+        musket_atk = attacks["Musket"]
+        assert musket_atk["attack_bonus"] == 5  # Dex +3, Prof +2
+        assert musket_atk["damage"] == "1d12 + 3"
+        assert musket_atk["damage_type"] == "Piercing"
+        assert musket_atk["mastery"] == "Slow"
+        assert "Ammunition (range 40/120)" in musket_atk["properties"]
+        assert "Loading" in musket_atk["properties"]
+        assert "Two-Handed" in musket_atk["properties"]
+        assert musket_atk["icon"] == "/static/images/weapons/crossbow.svg"
 
 
 class TestItemTypeDetection:
@@ -449,6 +526,23 @@ class TestItemTypeDetection:
             # Note: gear might have different naming, so we just test the lookup works
             pass
             # Don't assert, just verify the database structure
+
+    def test_firearm_ammunition_and_gear(self, equipment_data):
+        """Test firearm bullets and gunpowder in adventuring gear."""
+        gear = equipment_data["gear"]
+        assert "Ammunition (Firearm Bullets 10)" in gear
+        bullets = gear["Ammunition (Firearm Bullets 10)"]
+        assert bullets["category"] == "Ammunition"
+        assert bullets["cost"] == "3 gp"
+        assert bullets["weight"] == 2
+
+        assert "Gunpowder (powder horn)" in gear
+        horn = gear["Gunpowder (powder horn)"]
+        assert horn["cost"] == "35 gp"
+
+        assert "Gunpowder (keg)" in gear
+        keg = gear["Gunpowder (keg)"]
+        assert keg["cost"] == "250 gp"
 
     def test_equippable_flag(self, equipment_data):
         """Test equippable flag logic."""

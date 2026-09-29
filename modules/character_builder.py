@@ -13920,6 +13920,8 @@ class CharacterBuilder:
             "crossbow_hand": "crossbow.svg",
             "crossbow_heavy": "crossbow.svg",
             "longbow": "bow.svg",
+            "pistol": "crossbow.svg",
+            "musket": "crossbow.svg",
             "unarmed_strike": "strike.svg",
         }
 
