@@ -490,8 +490,16 @@ export function PrintableCombatPage({ c }: PrintableCombatPageProps) {
               const score = num(data.score) ?? 10;
               const mod = num(data.modifier) ?? 0;
               const save = rec(savingThrows[ab.key]);
-              const isProf = save.proficient === true;
-              const saveMod = num(save.modifier) ?? mod;
+              const isProf =
+                save.proficient === true ||
+                data.saving_throw_proficient === true ||
+                arr<string>(rec(c.proficiencies).saving_throws).some(
+                  (s) => s.toLowerCase() === ab.full.toLowerCase() || s.toLowerCase() === ab.key,
+                );
+              const saveMod =
+                num(save.modifier) ??
+                num(data.saving_throw) ??
+                (isProf ? mod + pb : mod);
 
               return (
                 <div

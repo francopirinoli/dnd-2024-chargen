@@ -560,7 +560,7 @@
       "description": "Your pact draws on the power of a dying god, a being once worshipped by countless followers but now abandoned and forgotten. Driven to regain its former power, the vestige shares its remaining strength with you.",
       "features_by_level": {
         "3": {
-          "Vestige Companion": "The vestige manifests as a loyal companion with the Vestige Companion stat block. It is a Celestial, Fiend, or Undead (choose when you gain this feature). It is friendly to you and your allies and obeys your commands. In combat, it shares your Initiative count and acts immediately after your turn.",
+          "Vestige Companion": "The vestige manifests as a loyal companion with the Vestige Companion stat block. It is a Celestial, Fiend, or Undead (choose when you gain this feature). It is friendly to you and your allies and obeys your commands. In combat, it shares your Initiative count and acts immediately after your turn. You can change its form (Celestial, Fiend, or Undead) whenever you finish a Long Rest.\n\nAs a Bonus Action, you can command your vestige to use its Divine Power feature (once per Long Rest, regaining use on a Short or Long Rest at level 6):\n- Celestial (Healing Touch): The vestige touches a creature within 5 feet of it, restoring Hit Points equal to 1d8 plus your Charisma modifier and ending the Blinded, Deafened, or Poisoned condition on it.\n- Fiend (Fiendish Swap): The vestige and you teleport, swapping places if within 60 feet of each other.\n- Undead (Cursed Invocation): The vestige curses a creature within 30 feet of it until the end of your next turn; the target has Disadvantage on attack rolls against you and the vestige.",
           "Vestige Spells": {
             "description": "The magic of your Vestige Companion ensures you always have certain spells ready. Select one of the following Cleric domains: Life, Light, Trickery, or War. The Domain Spells of your chosen domain are Warlock spells for you and are always prepared.",
             "choices": [
@@ -855,14 +855,14 @@
           "Benign Transposition": "As a Bonus Action, you can teleport up to 30 feet to an unoccupied space you can see. Alternatively, you can choose a willing Small or Medium creature within 30 feet of you that you can see; both you and that creature teleport, swapping spaces. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), regaining all expended uses on a Long Rest. Whenever you cast a level 1+ Conjuration spell using a spell slot, you regain one expended use."
         },
         "6": {
-          "Distant Transposition": "The range of your Benign Transposition increases to 60 feet. In addition, you can target Large willing creatures with it.",
+          "Distant Transposition": "The range of your Benign Transposition increases to 60 feet. In addition, you can target Large willing creatures with it. You also regain an expended use of Benign Transposition whenever you expend a level 3+ spell slot to cast a Conjuration spell.",
           "Durable Summons": "Any creature that you summon or create with a Conjuration spell gains Temporary Hit Points equal to twice your Wizard level."
         },
         "10": {
           "Focused Conjuration": "While you are maintaining Concentration on a Conjuration spell, your Concentration can't be broken as a result of taking damage."
         },
         "14": {
-          "Splintered Summons": "When you cast a Conjuration spell that summons or creates one creature, you can summon or create two of that creature instead. Each creature has half the Hit Points of the normal creature."
+          "Splintered Summons": "When you cast a Conjuration spell that summons or creates one creature, you can summon or create two of that creature instead. Each creature has half the Hit Points of the normal creature. Once you use this feature, you can't use it again until you finish a Long Rest, unless you expend a level 5+ spell slot to use it again."
         }
       }
     },
@@ -875,7 +875,7 @@
         "3": {
           "Enchantment Savant": "Choose two Wizard spells from the Enchantment school, each of which must be no higher than level 2, and add them to your spellbook for free. In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Enchantment school to your spellbook for free.",
           "Enchanting Conversationalist": {
-            "description": "You gain proficiency in two of the following skills of your choice: Deception, Insight, Intimidation, or Persuasion.",
+            "description": "You gain proficiency in two of the following skills of your choice: Deception, Insight, Intimidation, or Persuasion. In addition, whenever you make an ability check using either of the chosen skills, you can add your Intelligence modifier to the check.",
             "choices": [
               {
                 "type": "select_multiple",
@@ -907,7 +907,7 @@
           "Split Enchantment": "When you use a spell slot to cast an Enchantment spell, such as Charm Person or Hold Person, that can be cast with a higher-level spell slot to target an additional creature, you can increase the spell's effective level by 1 for free. You can use this feature a number of times equal to your Intelligence modifier (minimum of once), regaining all expended uses on a Long Rest."
         },
         "10": {
-          "Instinctive Charm": "When a creature within 30 feet of you that you can see hits you with an attack roll, you can take a Reaction to force the attacker to make a Wisdom saving throw against your spell save DC. On a failed save, the attack misses instead, and if there is another creature within range of the attack other than the attacker, the attacker targets that creature with the triggering attack."
+          "Instinctive Charm": "When a creature within 30 feet of you that you can see hits you with an attack roll, you can take a Reaction to force the attacker to make a Wisdom saving throw against your spell save DC. On a failed save, the attack misses instead, and if there is another creature within range of the attack other than the attacker, the attacker targets that creature with the triggering attack. Once you use this feature, you can't use it again until you finish a Short or Long Rest, unless you expend a level 1+ spell slot to use it again."
         },
         "14": {
           "Alter Memories": "When you cast an Enchantment spell that imposes the Charmed condition using a spell slot, you can choose one creature targeted by the spell. That creature remains unaware of being Charmed by you. In addition, once before the spell ends, you can take a Magic action to alter its memory of the time spent Charmed."
@@ -923,7 +923,7 @@
         "3": {
           "Necromancy Savant": "Choose two Wizard spells from the Necromancy school, each of which must be no higher than level 2, and add them to your spellbook for free. In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Necromancy school to your spellbook for free.",
           "Necromancy Spellbook": {
-            "description": "Your spellbook's necromantic secrets grant you Resistance to Necrotic damage, and the Find Familiar spell appears in your spellbook if it isn't there already (your familiar can take the form of an Undead skeleton or zombie animal).",
+            "description": "Your spellbook's necromantic secrets grant you Resistance to Necrotic damage, and the Find Familiar spell appears in your spellbook if it isn't there already. When you cast Find Familiar, your familiar can take the form of an Undead skeleton or zombie animal (using the normal familiar stat blocks or skeleton/zombie stat blocks). When you take the Attack action on your turn, you can forgo one of your attacks to allow your familiar to make one attack with its Reaction. In addition, whenever you cast a Necromancy spell using a spell slot, you can choose an Undead creature within 60 feet of you to regain Hit Points equal to the spell slot's level plus your Wizard level.",
             "effects": [
               {
                 "type": "grant_damage_resistance",
@@ -970,7 +970,7 @@
           "Transmutation Savant": "Choose two Wizard spells from the Transmutation school, each of which must be no higher than level 2, and add them to your spellbook for free. In addition, whenever you gain access to a new level of spell slots in this class, you can add one Wizard spell from the Transmutation school to your spellbook for free.",
           "Transmuter's Stone": "When you finish a Long Rest, you can create a Transmuter's Stone that lasts until you use this feature again. A creature with the stone in its possession gains proficiency in Constitution saving throws and one of the following benefits: Darkvision 60 ft, Speed +10 ft, or Resistance to Acid, Cold, Fire, Lightning, or Thunder damage.",
           "Wondrous Alteration": {
-            "description": "You always have the Alter Self spell prepared and can cast it once per Long Rest without expending a spell slot. While under the effects of Alter Self, you gain enhanced benefits for each of its options.",
+            "description": "You always have the Alter Self spell prepared and can cast it once without expending a spell slot. You regain the ability to cast it in this way when you finish a Long Rest.\n\nWhile under the effects of Alter Self, you gain an additional benefit for each of its options:\n- Aquatic Adaptation: While underwater, you can take the Dash action as a Bonus Action.\n- Change Appearance: You have Advantage on Charisma (Deception) checks.\n- Natural Weapons: The damage of your new growth increases to 2d6 damage of the type associated with the growth (Bludgeoning, Piercing, or Slashing). You also have Advantage on Constitution saving throws to maintain Concentration.",
             "effects": [
               {
                 "type": "grant_spell",
@@ -987,7 +987,7 @@
         "10": {
           "Potent Stone": "When you create your Transmuter's Stone, you can choose up to two benefits. In addition, you can change either or both benefits whenever you cast a Transmutation spell using a spell slot.",
           "Shape-Shifter": {
-            "description": "You always have the Polymorph spell prepared and can cast it once per Long Rest without expending a spell slot.",
+            "description": "You always have the Polymorph spell prepared and can cast it once without expending a spell slot. You regain the ability to cast it in this way when you finish a Long Rest.\n\nWhen you cast Polymorph targeting only yourself:\n- You retain your Intelligence, Wisdom, and Charisma scores, your proficiencies, and your feats and class features.\n- You can speak, and you can cast Transmutation spells that do not require material components with a specific cost and do not require Concentration.",
             "effects": [
               {
                 "type": "grant_spell",
